@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedModels\GenderEnum.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
+    <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
