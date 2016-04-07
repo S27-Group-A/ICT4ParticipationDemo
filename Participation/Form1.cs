@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Participation.VrijwilligersSysteem.GUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,13 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
+        
         public Startmenu()
         {
             InitializeComponent();
+            VolunteerForm test = new VolunteerForm();
+            test.Show();
+            this.Hide();
         }
     }
 }
