@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class Request
+    partial class RequestForm
     {
         /// <summary>
         /// Required designer variable.

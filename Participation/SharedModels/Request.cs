@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Participation.SharedModels
 {
-    class Request
+    public class Request
     {
         private string _title, _text, _location;
         private int _urgency;
         private DateTime _date;
         private List<string> _perks = new List<string>();
+
 
         Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
@@ -29,7 +30,5 @@ namespace Participation.SharedModels
             _text = text;
             _location = location;
         }
-
-
     }
 }
