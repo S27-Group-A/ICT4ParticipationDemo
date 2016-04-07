@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.VrijwilligersSysteem;
 using Participation.SharedModels;
+using UI;
 
 namespace Participation
 {
@@ -20,7 +21,9 @@ namespace Participation
         {
             InitializeComponent();
             VolunteerForm test = new VolunteerForm();
+            RequestForm reqtest = new RequestForm();
             test.Show();
+            reqtest.Show();
             this.Hide();
         }
     }

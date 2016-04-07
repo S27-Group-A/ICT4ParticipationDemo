@@ -20,6 +20,10 @@ namespace UI
         public RequestForm()
         {
             InitializeComponent();
+            for (int i = 0; i <= 5; i++)
+            {
+                urgencyLbx.Items.Add(i);
+            }
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)
@@ -29,10 +33,23 @@ namespace UI
             {
                 perks.Add(perk.ToString());
             }
-            var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value, (int)urgencyLbx.SelectedValue);
+            if (titleTbx.Text == "")
+                MessageBox.Show("Vul de titel in");
+            else if (descriptionTbx.Text == "")
+                MessageBox.Show("Vul de beschrijving in");
+            else if (locationTbx.Text == "")
+                MessageBox.Show("Vul uw woonplaats in");
+            else if (dateDtp.Value == DateTime.Today || dateDtp.Value < DateTime.Today || dateDtp.Value == null)
+                MessageBox.Show("Vul een geldige datum in");
+            else
+            {
+                var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value, (int)urgencyLbx.SelectedItem);
+                MessageBox.Show("Test: \n" + request.ToString());
+            }
+
+
             //TODO HPS.1 including below
             //hpsLogic.AddRequest(patient, request);
         }
-
     }
 }

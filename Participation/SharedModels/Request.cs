@@ -32,14 +32,18 @@ namespace Participation.SharedModels
             _urgency = urgency;
         }
 
-        /*
         public Request(string title, string text, string location)
         {
             _title = title;
             _text = text;
             _location = location;
         }
-        */
 
+        public override string ToString()
+        {
+            //TODO Optionally return perks per perk as string
+            var returnString = _title + " " + _text + " " + _location + " " + _urgency + " " + _date.ToString() + " " + _perks.ToString();
+            return returnString;
+        }
     }
 }
