@@ -19,7 +19,7 @@ namespace Participation.SharedModels
         private DateTime date;
         private int urgency;
 
-        Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             _title = title;
             _text = text;
@@ -29,22 +29,11 @@ namespace Participation.SharedModels
             _urgency = urgency;
         }
 
-        Request(string title, string text, string location)
+        public Request(string title, string text, string location)
         {
             _title = title;
             _text = text;
             _location = location;
-        }
-
-        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
-        {
-            // TODO: Complete member initialization
-            this.title = title;
-            this.text = text;
-            this.perks = perks;
-            this.location = location;
-            this.date = date;
-            this.urgency = urgency;
         }
 
 
