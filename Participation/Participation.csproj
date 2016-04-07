@@ -74,7 +74,10 @@
     <Compile Include="SharedModels\GenderEnum.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
     <Compile Include="SharedModels\Patient.cs" />
+    <Compile Include="SharedModels\Response.cs" />
+    <Compile Include="SharedModels\Review.cs" />
     <Compile Include="SharedModels\User.cs" />
+    <Compile Include="SharedModels\Volunteer.cs" />
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +85,7 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
+    <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
     <EmbeddedResource Include="Aanmeldscherm.resx">
       <DependentUpon>Aanmeldscherm.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,7 +130,6 @@
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="InlogSysteem\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
-    <Folder Include="VrijwilligersSysteem\Logic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
