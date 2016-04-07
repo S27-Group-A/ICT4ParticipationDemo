@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HulpSysteem\GUI\Hulpvragen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\Hulpvragen.designer.cs">
+      <DependentUpon>Hulpvragen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inloggen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,17 +70,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.Designer.cs">
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="SharedModels\Request.cs" />
+>>>>>>> refs/remotes/origin/TomBranch
     <EmbeddedResource Include="Aanmeldscherm.resx">
       <DependentUpon>Aanmeldscherm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\Hulpvragen.resx">
+      <DependentUpon>Hulpvragen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inloggen.resx">
       <DependentUpon>Inloggen.cs</DependentUpon>
@@ -106,11 +119,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="VrijwilligersSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Logic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
+=======
+    <Folder Include="BeheerSysteem\" />
+    <Folder Include="ChatSysteem\" />
+    <Folder Include="HulpSysteem\Data\" />
+    <Folder Include="HulpSysteem\Logic\" />
+    <Folder Include="InlogSysteem\" />
+    <Folder Include="VrijwilligersSysteem\" />
+>>>>>>> refs/remotes/origin/TomBranch
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
