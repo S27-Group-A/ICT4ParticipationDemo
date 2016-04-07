@@ -17,13 +17,9 @@ namespace Participation
         public Startmenu()
         {
             InitializeComponent();
-<<<<<<< HEAD
             VolunteerForm test = new VolunteerForm();
             test.Show();
             this.Hide();
-=======
-            
->>>>>>> refs/remotes/origin/TomBranch
         }
     }
 }
