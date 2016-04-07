@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Participation.SharedModels
 {
-    class Request
+    public class Request
     {
         private string _title, _text, _location;
         private int _urgency;
         private DateTime _date;
         private List<string> _perks = new List<string>();
+        private string title;
+        private string text;
+        private List<string> perks;
+        private string location;
+        private DateTime date;
+        private int urgency;
 
         Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
@@ -28,6 +34,17 @@ namespace Participation.SharedModels
             _title = title;
             _text = text;
             _location = location;
+        }
+
+        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        {
+            // TODO: Complete member initialization
+            this.title = title;
+            this.text = text;
+            this.perks = perks;
+            this.location = location;
+            this.date = date;
+            this.urgency = urgency;
         }
 
 

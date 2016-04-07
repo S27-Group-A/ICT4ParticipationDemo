@@ -32,5 +32,15 @@ namespace Participation.SharedModels
             this.Gender = gender;
             _meetings = new List<Meeting>();
         }
+
+        //methods
+
+        /// <summary>
+        /// Profiel gegevens aanpassen
+        /// </summary>
+        private void EditProfile()
+        {
+
+        }
     }
 }
