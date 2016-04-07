@@ -62,6 +62,7 @@
     <Compile Include="HulpSysteem\GUI\Hulpvragen.designer.cs">
       <DependentUpon>Hulpvragen.cs</DependentUpon>
     </Compile>
+    <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="Inloggen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,7 +124,6 @@
     <Folder Include="BeheerSysteem\" />
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
-    <Folder Include="HulpSysteem\Logic\" />
     <Folder Include="InlogSysteem\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Logic\" />

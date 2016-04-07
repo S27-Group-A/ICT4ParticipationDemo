@@ -1,4 +1,5 @@
-﻿using Participation.SharedModels;
+﻿using Participation.HulpSysteem.Logic;
+using Participation.SharedModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,9 @@ namespace UI
 {
     public partial class RequestForm : Form
     {
+        HPSLogic hpsLogic;
+        //TODO HPS.1 Impliment below
+        //Patient patient = currentUser;
         public RequestForm()
         {
             InitializeComponent();
@@ -26,6 +30,8 @@ namespace UI
                 perks.Add(perk.ToString());
             }
             var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value, (int)urgencyLbx.SelectedValue);
+            //TODO HPS.1 including below
+            //hpsLogic.AddRequest(patient, request);
         }
 
     }

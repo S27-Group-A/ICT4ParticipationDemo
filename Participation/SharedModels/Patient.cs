@@ -10,13 +10,13 @@ namespace Participation.SharedModels
     public class Patient : User
     {
         //properties
-        private List<Request> _requests { get; set; }
+        public List<Request> requests { get; set; }
 
         //constructors
         public Patient(string name, string email, string despription, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender)
             : base(name, email, despription, birthday, profilePicture, location, phoneNumber, gender)
         {
-            _requests = new List<Request>();
+            requests = new List<Request>();
         }
 
         //Methods
