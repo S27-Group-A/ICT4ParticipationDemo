@@ -70,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedModels\GenderEnum.cs" />
+    <Compile Include="SharedModels\Meeting.cs" />
+    <Compile Include="SharedModels\User.cs" />
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,17 +119,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="VrijwilligersSysteem\Data\" />
-    <Folder Include="VrijwilligersSysteem\Logic\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
     <Folder Include="BeheerSysteem\" />
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="HulpSysteem\Logic\" />
     <Folder Include="InlogSysteem\" />
-    <Folder Include="VrijwilligersSysteem\" />
+    <Folder Include="VrijwilligersSysteem\Data\" />
+    <Folder Include="VrijwilligersSysteem\Logic\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
