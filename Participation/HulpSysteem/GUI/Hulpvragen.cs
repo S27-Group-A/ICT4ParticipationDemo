@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Participation.HulpSysteem.GUI
+namespace UI
 {
-    public partial class HulpSysteem : Form
+    public partial class Hulpvragen : Form
     {
-        public HulpSysteem()
+        public Hulpvragen()
         {
             InitializeComponent();
         }

@@ -56,6 +56,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HulpSysteem\GUI\Hulpvragen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\Hulpvragen.designer.cs">
+      <DependentUpon>Hulpvragen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inloggen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\Hulpvragen.resx">
+      <DependentUpon>Hulpvragen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inloggen.resx">
       <DependentUpon>Inloggen.cs</DependentUpon>
@@ -94,6 +103,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BeheerSysteem\" />
+    <Folder Include="ChatSysteem\" />
+    <Folder Include="HulpSysteem\Data\" />
+    <Folder Include="HulpSysteem\Logic\" />
+    <Folder Include="InlogSysteem\" />
+    <Folder Include="VrijwilligersSysteem\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
