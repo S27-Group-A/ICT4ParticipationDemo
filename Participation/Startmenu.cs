@@ -16,7 +16,7 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
-
+        LISLogic _listLogic = new LISLogic();
         public Startmenu()
         {
             InitializeComponent();
@@ -40,7 +40,9 @@ namespace Participation
             if (checkFields())
             {
                 var user = new User(emailTbx.Text, passwordTbx.Text);
-                
+                if (_listLogic.AddUser(user))
+                    clearFields();
+                else throw new Exception("LISLogic.AddUser() returned false");
             }
 
         }

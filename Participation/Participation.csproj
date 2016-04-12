@@ -50,6 +50,7 @@
     <Compile Include="Aanmeldscherm.Designer.cs">
       <DependentUpon>Aanmeldscherm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="Startmenu.cs">
       <SubType>Form</SubType>
     </Compile>

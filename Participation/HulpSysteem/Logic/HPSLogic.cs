@@ -9,6 +9,10 @@ namespace Participation.HulpSysteem.Logic
 {
     public class HPSLogic
     {
+        public HPSLogic()
+        {
+        }
+
         public void AddRequest(Patient patient, Request request)
         {
             patient.requests.Add(request);
