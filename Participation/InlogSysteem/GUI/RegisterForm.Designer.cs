@@ -32,35 +32,36 @@
             this.emailLbl = new System.Windows.Forms.Label();
             this.emailTbx = new System.Windows.Forms.TextBox();
             this.passwordTbx = new System.Windows.Forms.TextBox();
-            this.startMenuRegisterBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.registerBtn = new System.Windows.Forms.Button();
+            this.birthdateLbl = new System.Windows.Forms.Label();
+            this.locationLbl = new System.Windows.Forms.Label();
+            this.telephonenumberLbl = new System.Windows.Forms.Label();
+            this.genderLbl = new System.Windows.Forms.Label();
+            this.profilePictureLbl = new System.Windows.Forms.Label();
+            this.repeatPasswordLbl = new System.Windows.Forms.Label();
+            this.repeatPasswordTbx = new System.Windows.Forms.TextBox();
+            this.birthdateDtp = new System.Windows.Forms.DateTimePicker();
+            this.locationTbx = new System.Windows.Forms.TextBox();
+            this.telephonenumberTbx = new System.Windows.Forms.TextBox();
+            this.profilePictureUrlTbx = new System.Windows.Forms.TextBox();
+            this.maleRbt = new System.Windows.Forms.RadioButton();
+            this.femaleRbt = new System.Windows.Forms.RadioButton();
+            this.needHelpRbt = new System.Windows.Forms.RadioButton();
+            this.canHelpRbt = new System.Windows.Forms.RadioButton();
+            this.obligedLbl = new System.Windows.Forms.Label();
+            this.browseProfilePictureBtn = new System.Windows.Forms.Button();
+            this.allowedPictureFormatsLbl = new System.Windows.Forms.Label();
+            this.allowedVogFormatsLbl = new System.Windows.Forms.Label();
+            this.browseVogUrlBtn = new System.Windows.Forms.Button();
+            this.vogUrlTbx = new System.Windows.Forms.TextBox();
+            this.vogGbx = new System.Windows.Forms.GroupBox();
+            this.perkTbx = new System.Windows.Forms.TextBox();
+            this.addPerkTbx = new System.Windows.Forms.Button();
+            this.listPerksLbl = new System.Windows.Forms.Label();
+            this.perksGbx = new System.Windows.Forms.GroupBox();
+            this.backBtn = new System.Windows.Forms.Button();
+            this.vogGbx.SuspendLayout();
+            this.perksGbx.SuspendLayout();
             this.SuspendLayout();
             // 
             // passwordLbl
@@ -101,334 +102,349 @@
             this.passwordTbx.Size = new System.Drawing.Size(208, 27);
             this.passwordTbx.TabIndex = 9;
             // 
-            // startMenuRegisterBtn
+            // registerBtn
             // 
-            this.startMenuRegisterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startMenuRegisterBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startMenuRegisterBtn.Location = new System.Drawing.Point(237, 366);
-            this.startMenuRegisterBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.startMenuRegisterBtn.Name = "startMenuRegisterBtn";
-            this.startMenuRegisterBtn.Size = new System.Drawing.Size(159, 36);
-            this.startMenuRegisterBtn.TabIndex = 8;
-            this.startMenuRegisterBtn.Text = "Registreren";
-            this.startMenuRegisterBtn.UseVisualStyleBackColor = true;
+            this.registerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.registerBtn.Location = new System.Drawing.Point(180, 644);
+            this.registerBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.registerBtn.Name = "registerBtn";
+            this.registerBtn.Size = new System.Drawing.Size(410, 36);
+            this.registerBtn.TabIndex = 8;
+            this.registerBtn.Text = "Registreren";
+            this.registerBtn.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // birthdateLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label1.Location = new System.Drawing.Point(28, 196);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Geboortedatum: *";
+            this.birthdateLbl.AutoSize = true;
+            this.birthdateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.birthdateLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.birthdateLbl.Location = new System.Drawing.Point(28, 196);
+            this.birthdateLbl.Name = "birthdateLbl";
+            this.birthdateLbl.Size = new System.Drawing.Size(140, 20);
+            this.birthdateLbl.TabIndex = 13;
+            this.birthdateLbl.Text = "Geboortedatum: *";
             // 
-            // label2
+            // locationLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label2.Location = new System.Drawing.Point(28, 225);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Woonplaats: *";
+            this.locationLbl.AutoSize = true;
+            this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locationLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.locationLbl.Location = new System.Drawing.Point(28, 225);
+            this.locationLbl.Name = "locationLbl";
+            this.locationLbl.Size = new System.Drawing.Size(113, 20);
+            this.locationLbl.TabIndex = 14;
+            this.locationLbl.Text = "Woonplaats: *";
             // 
-            // label3
+            // telephonenumberLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label3.Location = new System.Drawing.Point(27, 258);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 20);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Telefoonnummer:";
+            this.telephonenumberLbl.AutoSize = true;
+            this.telephonenumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telephonenumberLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.telephonenumberLbl.Location = new System.Drawing.Point(27, 258);
+            this.telephonenumberLbl.Name = "telephonenumberLbl";
+            this.telephonenumberLbl.Size = new System.Drawing.Size(139, 20);
+            this.telephonenumberLbl.TabIndex = 15;
+            this.telephonenumberLbl.Text = "Telefoonnummer:";
             // 
-            // label4
+            // genderLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label4.Location = new System.Drawing.Point(27, 287);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 20);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Geslacht: ";
+            this.genderLbl.AutoSize = true;
+            this.genderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genderLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.genderLbl.Location = new System.Drawing.Point(27, 287);
+            this.genderLbl.Name = "genderLbl";
+            this.genderLbl.Size = new System.Drawing.Size(86, 20);
+            this.genderLbl.TabIndex = 16;
+            this.genderLbl.Text = "Geslacht: ";
             // 
-            // label5
+            // profilePictureLbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label5.Location = new System.Drawing.Point(27, 318);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(90, 20);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Profielfoto:";
+            this.profilePictureLbl.AutoSize = true;
+            this.profilePictureLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profilePictureLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.profilePictureLbl.Location = new System.Drawing.Point(27, 318);
+            this.profilePictureLbl.Name = "profilePictureLbl";
+            this.profilePictureLbl.Size = new System.Drawing.Size(90, 20);
+            this.profilePictureLbl.TabIndex = 17;
+            this.profilePictureLbl.Text = "Profielfoto:";
             // 
-            // label6
+            // repeatPasswordLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label6.Location = new System.Drawing.Point(27, 164);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(212, 20);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "(Herhaling) Wachtwoord: * ";
+            this.repeatPasswordLbl.AutoSize = true;
+            this.repeatPasswordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repeatPasswordLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.repeatPasswordLbl.Location = new System.Drawing.Point(27, 164);
+            this.repeatPasswordLbl.Name = "repeatPasswordLbl";
+            this.repeatPasswordLbl.Size = new System.Drawing.Size(212, 20);
+            this.repeatPasswordLbl.TabIndex = 18;
+            this.repeatPasswordLbl.Text = "(Herhaling) Wachtwoord: * ";
             // 
-            // textBox1
+            // repeatPasswordTbx
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(238, 160);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 27);
-            this.textBox1.TabIndex = 19;
+            this.repeatPasswordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repeatPasswordTbx.Location = new System.Drawing.Point(238, 160);
+            this.repeatPasswordTbx.Name = "repeatPasswordTbx";
+            this.repeatPasswordTbx.Size = new System.Drawing.Size(208, 27);
+            this.repeatPasswordTbx.TabIndex = 19;
             // 
-            // dateTimePicker1
+            // birthdateDtp
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(238, 194);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 22);
-            this.dateTimePicker1.TabIndex = 20;
+            this.birthdateDtp.Location = new System.Drawing.Point(238, 194);
+            this.birthdateDtp.Name = "birthdateDtp";
+            this.birthdateDtp.Size = new System.Drawing.Size(208, 22);
+            this.birthdateDtp.TabIndex = 20;
             // 
-            // textBox2
+            // locationTbx
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(238, 222);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 27);
-            this.textBox2.TabIndex = 21;
+            this.locationTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locationTbx.Location = new System.Drawing.Point(238, 222);
+            this.locationTbx.Name = "locationTbx";
+            this.locationTbx.Size = new System.Drawing.Size(208, 27);
+            this.locationTbx.TabIndex = 21;
             // 
-            // textBox3
+            // telephonenumberTbx
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(238, 255);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(208, 27);
-            this.textBox3.TabIndex = 22;
+            this.telephonenumberTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telephonenumberTbx.Location = new System.Drawing.Point(238, 255);
+            this.telephonenumberTbx.Name = "telephonenumberTbx";
+            this.telephonenumberTbx.Size = new System.Drawing.Size(208, 27);
+            this.telephonenumberTbx.TabIndex = 22;
             // 
-            // textBox5
+            // profilePictureUrlTbx
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(238, 315);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(208, 27);
-            this.textBox5.TabIndex = 24;
+            this.profilePictureUrlTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profilePictureUrlTbx.Location = new System.Drawing.Point(238, 315);
+            this.profilePictureUrlTbx.Name = "profilePictureUrlTbx";
+            this.profilePictureUrlTbx.Size = new System.Drawing.Size(208, 27);
+            this.profilePictureUrlTbx.TabIndex = 24;
             // 
-            // radioButton1
+            // maleRbt
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.radioButton1.Location = new System.Drawing.Point(238, 288);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(56, 21);
-            this.radioButton1.TabIndex = 25;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Man";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.maleRbt.AutoSize = true;
+            this.maleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.maleRbt.Location = new System.Drawing.Point(238, 288);
+            this.maleRbt.Name = "maleRbt";
+            this.maleRbt.Size = new System.Drawing.Size(56, 21);
+            this.maleRbt.TabIndex = 25;
+            this.maleRbt.TabStop = true;
+            this.maleRbt.Text = "Man";
+            this.maleRbt.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // femaleRbt
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.radioButton2.Location = new System.Drawing.Point(300, 288);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioButton2.Size = new System.Drawing.Size(68, 21);
-            this.radioButton2.TabIndex = 26;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Vrouw";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.femaleRbt.AutoSize = true;
+            this.femaleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.femaleRbt.Location = new System.Drawing.Point(300, 288);
+            this.femaleRbt.Name = "femaleRbt";
+            this.femaleRbt.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.femaleRbt.Size = new System.Drawing.Size(68, 21);
+            this.femaleRbt.TabIndex = 26;
+            this.femaleRbt.TabStop = true;
+            this.femaleRbt.Text = "Vrouw";
+            this.femaleRbt.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // needHelpRbt
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.radioButton3.Location = new System.Drawing.Point(32, 48);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(295, 33);
-            this.radioButton3.TabIndex = 27;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Ik ben op zoek naar hulp";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.needHelpRbt.AutoSize = true;
+            this.needHelpRbt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.needHelpRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.needHelpRbt.Location = new System.Drawing.Point(32, 48);
+            this.needHelpRbt.Name = "needHelpRbt";
+            this.needHelpRbt.Size = new System.Drawing.Size(295, 33);
+            this.needHelpRbt.TabIndex = 27;
+            this.needHelpRbt.TabStop = true;
+            this.needHelpRbt.Text = "Ik ben op zoek naar hulp";
+            this.needHelpRbt.UseVisualStyleBackColor = true;
+            this.needHelpRbt.CheckedChanged += new System.EventHandler(this.needHelpRbt_CheckedChanged);
             // 
-            // radioButton4
+            // canHelpRbt
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.radioButton4.Location = new System.Drawing.Point(384, 48);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(168, 33);
-            this.radioButton4.TabIndex = 28;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Ik wil helpen";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.canHelpRbt.AutoSize = true;
+            this.canHelpRbt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.canHelpRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.canHelpRbt.Location = new System.Drawing.Point(384, 48);
+            this.canHelpRbt.Name = "canHelpRbt";
+            this.canHelpRbt.Size = new System.Drawing.Size(168, 33);
+            this.canHelpRbt.TabIndex = 28;
+            this.canHelpRbt.TabStop = true;
+            this.canHelpRbt.Text = "Ik wil helpen";
+            this.canHelpRbt.UseVisualStyleBackColor = true;
+            this.canHelpRbt.CheckedChanged += new System.EventHandler(this.canHelpRbt_CheckedChanged);
             // 
-            // label7
+            // obligedLbl
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label7.Location = new System.Drawing.Point(30, 9);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(288, 20);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Velden met * zijn verplicht in te vullen";
+            this.obligedLbl.AutoSize = true;
+            this.obligedLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.obligedLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.obligedLbl.Location = new System.Drawing.Point(30, 9);
+            this.obligedLbl.Name = "obligedLbl";
+            this.obligedLbl.Size = new System.Drawing.Size(288, 20);
+            this.obligedLbl.TabIndex = 29;
+            this.obligedLbl.Text = "Velden met * zijn verplicht in te vullen";
             // 
-            // button1
+            // browseProfilePictureBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(453, 315);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 27);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Bladeren...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.browseProfilePictureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browseProfilePictureBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.browseProfilePictureBtn.Location = new System.Drawing.Point(453, 315);
+            this.browseProfilePictureBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.browseProfilePictureBtn.Name = "browseProfilePictureBtn";
+            this.browseProfilePictureBtn.Size = new System.Drawing.Size(99, 27);
+            this.browseProfilePictureBtn.TabIndex = 30;
+            this.browseProfilePictureBtn.Text = "Bladeren...";
+            this.browseProfilePictureBtn.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // allowedPictureFormatsLbl
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label8.Location = new System.Drawing.Point(234, 345);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(266, 17);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "Toegestaande formaten: .jpeg, png, bmp";
+            this.allowedPictureFormatsLbl.AutoSize = true;
+            this.allowedPictureFormatsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allowedPictureFormatsLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.allowedPictureFormatsLbl.Location = new System.Drawing.Point(234, 345);
+            this.allowedPictureFormatsLbl.Name = "allowedPictureFormatsLbl";
+            this.allowedPictureFormatsLbl.Size = new System.Drawing.Size(266, 17);
+            this.allowedPictureFormatsLbl.TabIndex = 31;
+            this.allowedPictureFormatsLbl.Text = "Toegestaande formaten: .jpeg, png, bmp";
             // 
-            // label10
+            // allowedVogFormatsLbl
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label10.Location = new System.Drawing.Point(16, 64);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(331, 17);
-            this.label10.TabIndex = 35;
-            this.label10.Text = "Toegestaande formaten: .jpeg, png, bmp, pdf, docx";
+            this.allowedVogFormatsLbl.AutoSize = true;
+            this.allowedVogFormatsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.allowedVogFormatsLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.allowedVogFormatsLbl.Location = new System.Drawing.Point(16, 64);
+            this.allowedVogFormatsLbl.Name = "allowedVogFormatsLbl";
+            this.allowedVogFormatsLbl.Size = new System.Drawing.Size(331, 17);
+            this.allowedVogFormatsLbl.TabIndex = 35;
+            this.allowedVogFormatsLbl.Text = "Toegestaande formaten: .jpeg, png, bmp, pdf, docx";
             // 
-            // button2
+            // browseVogUrlBtn
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(441, 34);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 27);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Bladeren...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.browseVogUrlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.browseVogUrlBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.browseVogUrlBtn.Location = new System.Drawing.Point(441, 34);
+            this.browseVogUrlBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.browseVogUrlBtn.Name = "browseVogUrlBtn";
+            this.browseVogUrlBtn.Size = new System.Drawing.Size(99, 27);
+            this.browseVogUrlBtn.TabIndex = 34;
+            this.browseVogUrlBtn.Text = "Bladeren...";
+            this.browseVogUrlBtn.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // vogUrlTbx
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(19, 34);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(415, 27);
-            this.textBox4.TabIndex = 33;
+            this.vogUrlTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vogUrlTbx.Location = new System.Drawing.Point(19, 34);
+            this.vogUrlTbx.Name = "vogUrlTbx";
+            this.vogUrlTbx.Size = new System.Drawing.Size(415, 27);
+            this.vogUrlTbx.TabIndex = 33;
             // 
-            // groupBox1
+            // vogGbx
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(12, 409);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(578, 100);
-            this.groupBox1.TabIndex = 36;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
-            this.groupBox1.Visible = false;
+            this.vogGbx.Controls.Add(this.vogUrlTbx);
+            this.vogGbx.Controls.Add(this.allowedVogFormatsLbl);
+            this.vogGbx.Controls.Add(this.browseVogUrlBtn);
+            this.vogGbx.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.vogGbx.Location = new System.Drawing.Point(12, 376);
+            this.vogGbx.Name = "vogGbx";
+            this.vogGbx.Size = new System.Drawing.Size(578, 100);
+            this.vogGbx.TabIndex = 36;
+            this.vogGbx.TabStop = false;
+            this.vogGbx.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
+            this.vogGbx.Visible = false;
             // 
-            // textBox6
+            // perkTbx
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(19, 35);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(415, 27);
-            this.textBox6.TabIndex = 36;
+            this.perkTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.perkTbx.Location = new System.Drawing.Point(19, 35);
+            this.perkTbx.Name = "perkTbx";
+            this.perkTbx.Size = new System.Drawing.Size(415, 27);
+            this.perkTbx.TabIndex = 36;
             // 
-            // button3
+            // addPerkTbx
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button3.Location = new System.Drawing.Point(441, 36);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(99, 27);
-            this.button3.TabIndex = 36;
-            this.button3.Text = "Toevoegen";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addPerkTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addPerkTbx.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.addPerkTbx.Location = new System.Drawing.Point(441, 36);
+            this.addPerkTbx.Margin = new System.Windows.Forms.Padding(4);
+            this.addPerkTbx.Name = "addPerkTbx";
+            this.addPerkTbx.Size = new System.Drawing.Size(99, 27);
+            this.addPerkTbx.TabIndex = 36;
+            this.addPerkTbx.Text = "Toevoegen";
+            this.addPerkTbx.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // listPerksLbl
             // 
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label11.Location = new System.Drawing.Point(19, 65);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(521, 60);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "Vaardigheden: ";
+            this.listPerksLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listPerksLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listPerksLbl.Location = new System.Drawing.Point(19, 65);
+            this.listPerksLbl.Name = "listPerksLbl";
+            this.listPerksLbl.Size = new System.Drawing.Size(521, 60);
+            this.listPerksLbl.TabIndex = 38;
+            this.listPerksLbl.Text = "Vaardigheden: ";
             // 
-            // groupBox2
+            // perksGbx
             // 
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(12, 515);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(578, 145);
-            this.groupBox2.TabIndex = 39;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Extra vaardigheden: ";
-            this.groupBox2.Visible = false;
+            this.perksGbx.Controls.Add(this.perkTbx);
+            this.perksGbx.Controls.Add(this.addPerkTbx);
+            this.perksGbx.Controls.Add(this.listPerksLbl);
+            this.perksGbx.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.perksGbx.Location = new System.Drawing.Point(12, 482);
+            this.perksGbx.Name = "perksGbx";
+            this.perksGbx.Size = new System.Drawing.Size(578, 145);
+            this.perksGbx.TabIndex = 39;
+            this.perksGbx.TabStop = false;
+            this.perksGbx.Text = "Extra vaardigheden: ";
+            this.perksGbx.Visible = false;
+            // 
+            // backBtn
+            // 
+            this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.backBtn.Location = new System.Drawing.Point(13, 644);
+            this.backBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(159, 36);
+            this.backBtn.TabIndex = 40;
+            this.backBtn.Text = "Terug";
+            this.backBtn.UseVisualStyleBackColor = true;
             // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(619, 672);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(619, 699);
+            this.Controls.Add(this.backBtn);
+            this.Controls.Add(this.perksGbx);
+            this.Controls.Add(this.vogGbx);
+            this.Controls.Add(this.allowedPictureFormatsLbl);
+            this.Controls.Add(this.browseProfilePictureBtn);
+            this.Controls.Add(this.obligedLbl);
+            this.Controls.Add(this.canHelpRbt);
+            this.Controls.Add(this.needHelpRbt);
+            this.Controls.Add(this.femaleRbt);
+            this.Controls.Add(this.maleRbt);
+            this.Controls.Add(this.profilePictureUrlTbx);
+            this.Controls.Add(this.telephonenumberTbx);
+            this.Controls.Add(this.locationTbx);
+            this.Controls.Add(this.birthdateDtp);
+            this.Controls.Add(this.repeatPasswordTbx);
+            this.Controls.Add(this.repeatPasswordLbl);
+            this.Controls.Add(this.profilePictureLbl);
+            this.Controls.Add(this.genderLbl);
+            this.Controls.Add(this.telephonenumberLbl);
+            this.Controls.Add(this.locationLbl);
+            this.Controls.Add(this.birthdateLbl);
             this.Controls.Add(this.passwordLbl);
             this.Controls.Add(this.emailLbl);
             this.Controls.Add(this.emailTbx);
             this.Controls.Add(this.passwordTbx);
-            this.Controls.Add(this.startMenuRegisterBtn);
+            this.Controls.Add(this.registerBtn);
             this.Name = "RegisterForm";
             this.Text = "Register";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.vogGbx.ResumeLayout(false);
+            this.vogGbx.PerformLayout();
+            this.perksGbx.ResumeLayout(false);
+            this.perksGbx.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,32 +455,33 @@
         private System.Windows.Forms.Label emailLbl;
         private System.Windows.Forms.TextBox emailTbx;
         private System.Windows.Forms.TextBox passwordTbx;
-        private System.Windows.Forms.Button startMenuRegisterBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button registerBtn;
+        private System.Windows.Forms.Label birthdateLbl;
+        private System.Windows.Forms.Label locationLbl;
+        private System.Windows.Forms.Label telephonenumberLbl;
+        private System.Windows.Forms.Label genderLbl;
+        private System.Windows.Forms.Label profilePictureLbl;
+        private System.Windows.Forms.Label repeatPasswordLbl;
+        private System.Windows.Forms.TextBox repeatPasswordTbx;
+        private System.Windows.Forms.DateTimePicker birthdateDtp;
+        private System.Windows.Forms.TextBox locationTbx;
+        private System.Windows.Forms.TextBox telephonenumberTbx;
+        private System.Windows.Forms.TextBox profilePictureUrlTbx;
+        private System.Windows.Forms.RadioButton maleRbt;
+        private System.Windows.Forms.RadioButton femaleRbt;
+        private System.Windows.Forms.RadioButton needHelpRbt;
+        private System.Windows.Forms.RadioButton canHelpRbt;
+        private System.Windows.Forms.Label obligedLbl;
+        private System.Windows.Forms.Button browseProfilePictureBtn;
+        private System.Windows.Forms.Label allowedPictureFormatsLbl;
+        private System.Windows.Forms.Label allowedVogFormatsLbl;
+        private System.Windows.Forms.Button browseVogUrlBtn;
+        private System.Windows.Forms.TextBox vogUrlTbx;
+        private System.Windows.Forms.GroupBox vogGbx;
+        private System.Windows.Forms.TextBox perkTbx;
+        private System.Windows.Forms.Button addPerkTbx;
+        private System.Windows.Forms.Label listPerksLbl;
+        private System.Windows.Forms.GroupBox perksGbx;
+        private System.Windows.Forms.Button backBtn;
     }
 }

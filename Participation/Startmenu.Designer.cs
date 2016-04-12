@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.logInBtn = new System.Windows.Forms.Button();
-            this.startMenuRegisterBtn = new System.Windows.Forms.Button();
+            this.registerBtn = new System.Windows.Forms.Button();
             this.passwordTbx = new System.Windows.Forms.TextBox();
             this.emailTbx = new System.Windows.Forms.TextBox();
             this.emailLbl = new System.Windows.Forms.Label();
@@ -55,18 +55,18 @@
             this.logInBtn.UseVisualStyleBackColor = true;
             this.logInBtn.Click += new System.EventHandler(this.startMenuLogInBtn_Click);
             // 
-            // startMenuRegisterBtn
+            // registerBtn
             // 
-            this.startMenuRegisterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startMenuRegisterBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startMenuRegisterBtn.Location = new System.Drawing.Point(217, 87);
-            this.startMenuRegisterBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.startMenuRegisterBtn.Name = "startMenuRegisterBtn";
-            this.startMenuRegisterBtn.Size = new System.Drawing.Size(159, 36);
-            this.startMenuRegisterBtn.TabIndex = 1;
-            this.startMenuRegisterBtn.Text = "Registreren";
-            this.startMenuRegisterBtn.UseVisualStyleBackColor = true;
-            this.startMenuRegisterBtn.Click += new System.EventHandler(this.startMenuRegisterBtn_Click);
+            this.registerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.registerBtn.Location = new System.Drawing.Point(217, 87);
+            this.registerBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.registerBtn.Name = "registerBtn";
+            this.registerBtn.Size = new System.Drawing.Size(159, 36);
+            this.registerBtn.TabIndex = 1;
+            this.registerBtn.Text = "Registreren";
+            this.registerBtn.UseVisualStyleBackColor = true;
+            this.registerBtn.Click += new System.EventHandler(this.startMenuRegisterBtn_Click);
             // 
             // passwordTbx
             // 
@@ -166,7 +166,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1091, 367);
+            this.ClientSize = new System.Drawing.Size(860, 229);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rfidGbx);
             this.Controls.Add(this.rfidBtn);
@@ -175,7 +175,7 @@
             this.Controls.Add(this.emailLbl);
             this.Controls.Add(this.emailTbx);
             this.Controls.Add(this.passwordTbx);
-            this.Controls.Add(this.startMenuRegisterBtn);
+            this.Controls.Add(this.registerBtn);
             this.Controls.Add(this.logInBtn);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -193,7 +193,7 @@
         #endregion
 
         private System.Windows.Forms.Button logInBtn;
-        private System.Windows.Forms.Button startMenuRegisterBtn;
+        private System.Windows.Forms.Button registerBtn;
         private System.Windows.Forms.TextBox passwordTbx;
         private System.Windows.Forms.TextBox emailTbx;
         private System.Windows.Forms.Label emailLbl;

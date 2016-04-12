@@ -16,5 +16,32 @@ namespace Participation.InlogSysteem.GUI
         {
             InitializeComponent();
         }
+
+        private void needHelpRbt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(needHelpRbt.Checked)
+                HideVogAndPerks();
+            else if(canHelpRbt.Checked)
+                ShowVogAndPerks();
+        }
+
+        private void canHelpRbt_CheckedChanged(object sender, EventArgs e)
+        {
+            if (needHelpRbt.Checked)
+                HideVogAndPerks();
+            else if (canHelpRbt.Checked)
+                ShowVogAndPerks();
+        }
+
+        private void ShowVogAndPerks()
+        {
+            perksGbx.Show();
+            vogGbx.Show();
+        }
+        private void HideVogAndPerks()
+        {
+            perksGbx.Hide();
+            vogGbx.Hide();
+        }
     }
 }
