@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InlogSysteem\GUI\Register.cs">
+    <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InlogSysteem\GUI\Register.Designer.cs">
-      <DependentUpon>Register.cs</DependentUpon>
+    <Compile Include="InlogSysteem\GUI\RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="Startmenu.cs">
@@ -81,8 +81,8 @@
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
-    <EmbeddedResource Include="InlogSysteem\GUI\Register.resx">
-      <DependentUpon>Register.cs</DependentUpon>
+    <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Startmenu.resx">
       <DependentUpon>Startmenu.cs</DependentUpon>

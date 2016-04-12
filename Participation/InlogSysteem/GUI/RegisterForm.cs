@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Participation.InlogSysteem.GUI
 {
-    public partial class Register : Form
+    public partial class RegisterForm : Form
     {
-        public Register()
+        public RegisterForm()
         {
             InitializeComponent();
         }

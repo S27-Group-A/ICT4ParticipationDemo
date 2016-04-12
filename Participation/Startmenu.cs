@@ -21,7 +21,7 @@ namespace Participation
         //TODO Suggestions to where this should go in the program architecture im open to
         private User _loggedInUser = new User();
         private LISLogic _listLogic = new LISLogic();
-        private Register
+        private RegisterForm _registerForm;
 
 
         public Startmenu()
@@ -51,6 +51,9 @@ namespace Participation
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
+            _registerForm = new RegisterForm();
+            _registerForm.Show();
+            this.Hide();
             /*
             if (checkFields())
             {
