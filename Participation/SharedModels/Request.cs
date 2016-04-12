@@ -39,6 +39,10 @@ namespace Participation.SharedModels
             _location = location;
         }
 
+        public Request()
+        {
+        }
+
         public override string ToString()
         {
             //TODO Optionally return perks per perk as string

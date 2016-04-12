@@ -45,9 +45,10 @@
             // 
             // confirmBtn
             // 
-            this.confirmBtn.Location = new System.Drawing.Point(137, 406);
+            this.confirmBtn.Location = new System.Drawing.Point(183, 500);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(75, 23);
+            this.confirmBtn.Size = new System.Drawing.Size(100, 28);
             this.confirmBtn.TabIndex = 0;
             this.confirmBtn.Text = "Bevestigen";
             this.confirmBtn.UseVisualStyleBackColor = true;
@@ -55,16 +56,18 @@
             // 
             // titleTbx
             // 
-            this.titleTbx.Location = new System.Drawing.Point(137, 12);
+            this.titleTbx.Location = new System.Drawing.Point(183, 15);
+            this.titleTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.titleTbx.Name = "titleTbx";
-            this.titleTbx.Size = new System.Drawing.Size(475, 20);
+            this.titleTbx.Size = new System.Drawing.Size(632, 22);
             this.titleTbx.TabIndex = 1;
             // 
             // descriptionTbx
             // 
-            this.descriptionTbx.Location = new System.Drawing.Point(137, 46);
+            this.descriptionTbx.Location = new System.Drawing.Point(183, 57);
+            this.descriptionTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.descriptionTbx.Name = "descriptionTbx";
-            this.descriptionTbx.Size = new System.Drawing.Size(475, 168);
+            this.descriptionTbx.Size = new System.Drawing.Size(632, 206);
             this.descriptionTbx.TabIndex = 2;
             this.descriptionTbx.Text = "";
             // 
@@ -72,9 +75,10 @@
             // 
             this.titleLbl.AutoSize = true;
             this.titleLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.titleLbl.Location = new System.Drawing.Point(12, 15);
+            this.titleLbl.Location = new System.Drawing.Point(16, 18);
+            this.titleLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(30, 13);
+            this.titleLbl.Size = new System.Drawing.Size(39, 17);
             this.titleLbl.TabIndex = 3;
             this.titleLbl.Text = "Titel:";
             // 
@@ -82,9 +86,10 @@
             // 
             this.descriptionLbl.AutoSize = true;
             this.descriptionLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.descriptionLbl.Location = new System.Drawing.Point(12, 49);
+            this.descriptionLbl.Location = new System.Drawing.Point(16, 60);
+            this.descriptionLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.descriptionLbl.Name = "descriptionLbl";
-            this.descriptionLbl.Size = new System.Drawing.Size(70, 13);
+            this.descriptionLbl.Size = new System.Drawing.Size(92, 17);
             this.descriptionLbl.TabIndex = 4;
             this.descriptionLbl.Text = "Beschrijving: ";
             // 
@@ -92,26 +97,29 @@
             // 
             this.perksLbl.AutoSize = true;
             this.perksLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.perksLbl.Location = new System.Drawing.Point(12, 228);
+            this.perksLbl.Location = new System.Drawing.Point(16, 281);
+            this.perksLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.perksLbl.Name = "perksLbl";
-            this.perksLbl.Size = new System.Drawing.Size(34, 13);
+            this.perksLbl.Size = new System.Drawing.Size(44, 17);
             this.perksLbl.TabIndex = 5;
             this.perksLbl.Text = "Extra:";
             // 
             // dateDtp
             // 
-            this.dateDtp.Location = new System.Drawing.Point(137, 273);
+            this.dateDtp.Location = new System.Drawing.Point(183, 336);
+            this.dateDtp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dateDtp.Name = "dateDtp";
-            this.dateDtp.Size = new System.Drawing.Size(200, 20);
+            this.dateDtp.Size = new System.Drawing.Size(265, 22);
             this.dateDtp.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.Info;
-            this.label1.Location = new System.Drawing.Point(11, 278);
+            this.label1.Location = new System.Drawing.Point(15, 342);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 13);
+            this.label1.Size = new System.Drawing.Size(164, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Gewenste datum en tijd: ";
             // 
@@ -119,51 +127,57 @@
             // 
             this.urgencyLbl.AutoSize = true;
             this.urgencyLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.urgencyLbl.Location = new System.Drawing.Point(11, 335);
+            this.urgencyLbl.Location = new System.Drawing.Point(15, 412);
+            this.urgencyLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.urgencyLbl.Name = "urgencyLbl";
-            this.urgencyLbl.Size = new System.Drawing.Size(50, 13);
+            this.urgencyLbl.Size = new System.Drawing.Size(66, 17);
             this.urgencyLbl.TabIndex = 11;
             this.urgencyLbl.Text = "Urgentie:";
             // 
             // urgencyLbx
             // 
             this.urgencyLbx.FormattingEnabled = true;
-            this.urgencyLbx.Location = new System.Drawing.Point(137, 333);
+            this.urgencyLbx.ItemHeight = 16;
+            this.urgencyLbx.Location = new System.Drawing.Point(183, 410);
+            this.urgencyLbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.urgencyLbx.Name = "urgencyLbx";
-            this.urgencyLbx.Size = new System.Drawing.Size(200, 56);
+            this.urgencyLbx.Size = new System.Drawing.Size(265, 68);
             this.urgencyLbx.TabIndex = 12;
             // 
             // perksClb
             // 
             this.perksClb.FormattingEnabled = true;
-            this.perksClb.Location = new System.Drawing.Point(137, 228);
+            this.perksClb.Location = new System.Drawing.Point(183, 281);
+            this.perksClb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.perksClb.Name = "perksClb";
-            this.perksClb.Size = new System.Drawing.Size(120, 34);
+            this.perksClb.Size = new System.Drawing.Size(159, 38);
             this.perksClb.TabIndex = 13;
             // 
             // locationLbl
             // 
             this.locationLbl.AutoSize = true;
             this.locationLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.locationLbl.Location = new System.Drawing.Point(12, 306);
+            this.locationLbl.Location = new System.Drawing.Point(16, 377);
+            this.locationLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.locationLbl.Name = "locationLbl";
-            this.locationLbl.Size = new System.Drawing.Size(67, 13);
+            this.locationLbl.Size = new System.Drawing.Size(87, 17);
             this.locationLbl.TabIndex = 14;
             this.locationLbl.Text = "Woonplaats:";
             // 
             // locationTbx
             // 
-            this.locationTbx.Location = new System.Drawing.Point(137, 302);
+            this.locationTbx.Location = new System.Drawing.Point(183, 372);
+            this.locationTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.locationTbx.Name = "locationTbx";
-            this.locationTbx.Size = new System.Drawing.Size(200, 20);
+            this.locationTbx.Size = new System.Drawing.Size(265, 22);
             this.locationTbx.TabIndex = 15;
             // 
-            // Request
+            // RequestForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(832, 543);
             this.Controls.Add(this.locationTbx);
             this.Controls.Add(this.locationLbl);
             this.Controls.Add(this.perksClb);
@@ -177,7 +191,9 @@
             this.Controls.Add(this.descriptionTbx);
             this.Controls.Add(this.titleTbx);
             this.Controls.Add(this.confirmBtn);
-            this.Name = "Request";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "RequestForm";
+            this.Text = "Hulpvraag Maken";
             this.ResumeLayout(false);
             this.PerformLayout();
 

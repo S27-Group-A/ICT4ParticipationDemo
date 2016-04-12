@@ -14,9 +14,12 @@ namespace UI
 {
     public partial class RequestForm : Form
     {
-        HPSLogic hpsLogic;
-        //TODO HPS.1 Impliment below
-        //Patient patient = currentUser;
+        //TODO Implement User from log in
+        private User _loggedInUser = LoggedInUser;
+
+        //TODO Implement hpslogic
+        HPSLogic _hpsLogic = new HPSLogic();
+
         public RequestForm()
         {
             InitializeComponent();
@@ -45,11 +48,13 @@ namespace UI
             {
                 var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value, (int)urgencyLbx.SelectedItem);
                 MessageBox.Show("Test: \n" + request.ToString());
+
+                //TODO Implement logic
+                _hpsLogic.AddRequest(_loggedInUser, request);
             }
 
 
-            //TODO HPS.1 including below
-            //hpsLogic.AddRequest(patient, request);
+
         }
     }
 }
