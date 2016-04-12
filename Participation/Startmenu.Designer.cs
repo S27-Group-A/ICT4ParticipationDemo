@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.startMenuLogInBtn = new System.Windows.Forms.Button();
+            this.logInBtn = new System.Windows.Forms.Button();
             this.startMenuRegisterBtn = new System.Windows.Forms.Button();
             this.passwordTbx = new System.Windows.Forms.TextBox();
             this.emailTbx = new System.Windows.Forms.TextBox();
@@ -37,18 +37,18 @@
             this.instructionsLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // startMenuLogInBtn
+            // logInBtn
             // 
-            this.startMenuLogInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startMenuLogInBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.startMenuLogInBtn.Location = new System.Drawing.Point(30, 96);
-            this.startMenuLogInBtn.Margin = new System.Windows.Forms.Padding(4);
-            this.startMenuLogInBtn.Name = "startMenuLogInBtn";
-            this.startMenuLogInBtn.Size = new System.Drawing.Size(166, 36);
-            this.startMenuLogInBtn.TabIndex = 0;
-            this.startMenuLogInBtn.Text = "Inloggen";
-            this.startMenuLogInBtn.UseVisualStyleBackColor = true;
-            this.startMenuLogInBtn.Click += new System.EventHandler(this.startMenuLogInBtn_Click);
+            this.logInBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logInBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.logInBtn.Location = new System.Drawing.Point(30, 96);
+            this.logInBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.logInBtn.Name = "logInBtn";
+            this.logInBtn.Size = new System.Drawing.Size(166, 36);
+            this.logInBtn.TabIndex = 0;
+            this.logInBtn.Text = "Inloggen";
+            this.logInBtn.UseVisualStyleBackColor = true;
+            this.logInBtn.Click += new System.EventHandler(this.startMenuLogInBtn_Click);
             // 
             // startMenuRegisterBtn
             // 
@@ -59,7 +59,7 @@
             this.startMenuRegisterBtn.Name = "startMenuRegisterBtn";
             this.startMenuRegisterBtn.Size = new System.Drawing.Size(159, 36);
             this.startMenuRegisterBtn.TabIndex = 1;
-            this.startMenuRegisterBtn.Text = "Registreren";
+            this.startMenuRegisterBtn.Text = "registerBtn";
             this.startMenuRegisterBtn.UseVisualStyleBackColor = true;
             this.startMenuRegisterBtn.Click += new System.EventHandler(this.startMenuRegisterBtn_Click);
             // 
@@ -124,7 +124,7 @@
             this.Controls.Add(this.emailTbx);
             this.Controls.Add(this.passwordTbx);
             this.Controls.Add(this.startMenuRegisterBtn);
-            this.Controls.Add(this.startMenuLogInBtn);
+            this.Controls.Add(this.logInBtn);
             this.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -138,7 +138,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button startMenuLogInBtn;
+        private System.Windows.Forms.Button logInBtn;
         private System.Windows.Forms.Button startMenuRegisterBtn;
         private System.Windows.Forms.TextBox passwordTbx;
         private System.Windows.Forms.TextBox emailTbx;
