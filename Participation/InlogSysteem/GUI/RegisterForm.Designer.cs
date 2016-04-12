@@ -89,7 +89,7 @@
             // emailTbx
             // 
             this.emailTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTbx.Location = new System.Drawing.Point(238, 93);
+            this.emailTbx.Location = new System.Drawing.Point(256, 93);
             this.emailTbx.Name = "emailTbx";
             this.emailTbx.Size = new System.Drawing.Size(208, 27);
             this.emailTbx.TabIndex = 10;
@@ -97,7 +97,7 @@
             // passwordTbx
             // 
             this.passwordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTbx.Location = new System.Drawing.Point(238, 126);
+            this.passwordTbx.Location = new System.Drawing.Point(256, 126);
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.Size = new System.Drawing.Size(208, 27);
             this.passwordTbx.TabIndex = 9;
@@ -184,14 +184,14 @@
             // repeatPasswordTbx
             // 
             this.repeatPasswordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repeatPasswordTbx.Location = new System.Drawing.Point(238, 160);
+            this.repeatPasswordTbx.Location = new System.Drawing.Point(256, 160);
             this.repeatPasswordTbx.Name = "repeatPasswordTbx";
             this.repeatPasswordTbx.Size = new System.Drawing.Size(208, 27);
             this.repeatPasswordTbx.TabIndex = 19;
             // 
             // birthdateDtp
             // 
-            this.birthdateDtp.Location = new System.Drawing.Point(238, 194);
+            this.birthdateDtp.Location = new System.Drawing.Point(256, 194);
             this.birthdateDtp.Name = "birthdateDtp";
             this.birthdateDtp.Size = new System.Drawing.Size(208, 22);
             this.birthdateDtp.TabIndex = 20;
@@ -199,7 +199,7 @@
             // locationTbx
             // 
             this.locationTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locationTbx.Location = new System.Drawing.Point(238, 222);
+            this.locationTbx.Location = new System.Drawing.Point(256, 222);
             this.locationTbx.Name = "locationTbx";
             this.locationTbx.Size = new System.Drawing.Size(208, 27);
             this.locationTbx.TabIndex = 21;
@@ -207,7 +207,7 @@
             // telephonenumberTbx
             // 
             this.telephonenumberTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.telephonenumberTbx.Location = new System.Drawing.Point(238, 255);
+            this.telephonenumberTbx.Location = new System.Drawing.Point(256, 255);
             this.telephonenumberTbx.Name = "telephonenumberTbx";
             this.telephonenumberTbx.Size = new System.Drawing.Size(208, 27);
             this.telephonenumberTbx.TabIndex = 22;
@@ -215,7 +215,7 @@
             // profilePictureUrlTbx
             // 
             this.profilePictureUrlTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profilePictureUrlTbx.Location = new System.Drawing.Point(238, 315);
+            this.profilePictureUrlTbx.Location = new System.Drawing.Point(256, 315);
             this.profilePictureUrlTbx.Name = "profilePictureUrlTbx";
             this.profilePictureUrlTbx.Size = new System.Drawing.Size(208, 27);
             this.profilePictureUrlTbx.TabIndex = 24;
@@ -224,7 +224,7 @@
             // 
             this.maleRbt.AutoSize = true;
             this.maleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.maleRbt.Location = new System.Drawing.Point(238, 288);
+            this.maleRbt.Location = new System.Drawing.Point(256, 288);
             this.maleRbt.Name = "maleRbt";
             this.maleRbt.Size = new System.Drawing.Size(56, 21);
             this.maleRbt.TabIndex = 25;
@@ -236,7 +236,7 @@
             // 
             this.femaleRbt.AutoSize = true;
             this.femaleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.femaleRbt.Location = new System.Drawing.Point(300, 288);
+            this.femaleRbt.Location = new System.Drawing.Point(318, 288);
             this.femaleRbt.Name = "femaleRbt";
             this.femaleRbt.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.femaleRbt.Size = new System.Drawing.Size(68, 21);
@@ -288,20 +288,21 @@
             // 
             this.browseProfilePictureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.browseProfilePictureBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.browseProfilePictureBtn.Location = new System.Drawing.Point(453, 315);
+            this.browseProfilePictureBtn.Location = new System.Drawing.Point(470, 316);
             this.browseProfilePictureBtn.Margin = new System.Windows.Forms.Padding(4);
             this.browseProfilePictureBtn.Name = "browseProfilePictureBtn";
             this.browseProfilePictureBtn.Size = new System.Drawing.Size(99, 27);
             this.browseProfilePictureBtn.TabIndex = 30;
             this.browseProfilePictureBtn.Text = "Bladeren...";
             this.browseProfilePictureBtn.UseVisualStyleBackColor = true;
+            this.browseProfilePictureBtn.Click += new System.EventHandler(this.browseProfilePictureBtn_Click);
             // 
             // allowedPictureFormatsLbl
             // 
             this.allowedPictureFormatsLbl.AutoSize = true;
             this.allowedPictureFormatsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.allowedPictureFormatsLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.allowedPictureFormatsLbl.Location = new System.Drawing.Point(234, 345);
+            this.allowedPictureFormatsLbl.Location = new System.Drawing.Point(252, 345);
             this.allowedPictureFormatsLbl.Name = "allowedPictureFormatsLbl";
             this.allowedPictureFormatsLbl.Size = new System.Drawing.Size(266, 17);
             this.allowedPictureFormatsLbl.TabIndex = 31;
@@ -322,20 +323,21 @@
             // 
             this.browseVogUrlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.browseVogUrlBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.browseVogUrlBtn.Location = new System.Drawing.Point(441, 34);
+            this.browseVogUrlBtn.Location = new System.Drawing.Point(458, 34);
             this.browseVogUrlBtn.Margin = new System.Windows.Forms.Padding(4);
             this.browseVogUrlBtn.Name = "browseVogUrlBtn";
             this.browseVogUrlBtn.Size = new System.Drawing.Size(99, 27);
             this.browseVogUrlBtn.TabIndex = 34;
             this.browseVogUrlBtn.Text = "Bladeren...";
             this.browseVogUrlBtn.UseVisualStyleBackColor = true;
+            this.browseVogUrlBtn.Click += new System.EventHandler(this.browseVogUrlBtn_Click);
             // 
             // vogUrlTbx
             // 
             this.vogUrlTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vogUrlTbx.Location = new System.Drawing.Point(19, 34);
             this.vogUrlTbx.Name = "vogUrlTbx";
-            this.vogUrlTbx.Size = new System.Drawing.Size(415, 27);
+            this.vogUrlTbx.Size = new System.Drawing.Size(432, 27);
             this.vogUrlTbx.TabIndex = 33;
             // 
             // vogGbx
@@ -357,20 +359,21 @@
             this.perkTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.perkTbx.Location = new System.Drawing.Point(19, 35);
             this.perkTbx.Name = "perkTbx";
-            this.perkTbx.Size = new System.Drawing.Size(415, 27);
+            this.perkTbx.Size = new System.Drawing.Size(432, 27);
             this.perkTbx.TabIndex = 36;
             // 
             // addPerkTbx
             // 
             this.addPerkTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPerkTbx.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.addPerkTbx.Location = new System.Drawing.Point(441, 36);
+            this.addPerkTbx.Location = new System.Drawing.Point(458, 36);
             this.addPerkTbx.Margin = new System.Windows.Forms.Padding(4);
             this.addPerkTbx.Name = "addPerkTbx";
             this.addPerkTbx.Size = new System.Drawing.Size(99, 27);
             this.addPerkTbx.TabIndex = 36;
             this.addPerkTbx.Text = "Toevoegen";
             this.addPerkTbx.UseVisualStyleBackColor = true;
+            this.addPerkTbx.Click += new System.EventHandler(this.addPerkTbx_Click);
             // 
             // listPerksLbl
             // 

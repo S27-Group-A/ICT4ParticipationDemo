@@ -58,8 +58,27 @@ namespace Participation.InlogSysteem.GUI
         {
             if (CheckFields())
             {
-                MessageBox.Show("Test");
+                //TODO Add user and give feedback
+                //TODO Add files to server
             }
+        }
+
+        private void browseProfilePictureBtn_Click(object sender, EventArgs e)
+        {
+            //TODO Implement
+            throw new NotImplementedException();
+        }
+
+        private void browseVogUrlBtn_Click(object sender, EventArgs e)
+        {
+            //TODO Implement
+            throw new NotImplementedException();
+        }
+
+        private void addPerkTbx_Click(object sender, EventArgs e)
+        {
+            //TODO Implement
+            throw new NotImplementedException();
         }
     }
 }
