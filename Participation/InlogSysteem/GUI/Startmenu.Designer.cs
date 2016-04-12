@@ -139,7 +139,6 @@
             this.rfidGbx.TabIndex = 18;
             this.rfidGbx.TabStop = false;
             this.rfidGbx.Text = "RFID Code";
-            this.rfidGbx.Visible = false;
             // 
             // rfidTbx
             // 
