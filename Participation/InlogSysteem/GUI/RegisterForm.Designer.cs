@@ -55,7 +55,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // passwordLbl
@@ -313,7 +318,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(454, 35);
+            this.button2.Location = new System.Drawing.Point(441, 34);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 27);
@@ -326,7 +331,7 @@
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(19, 34);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(428, 27);
+            this.textBox4.Size = new System.Drawing.Size(415, 27);
             this.textBox4.TabIndex = 33;
             // 
             // groupBox1
@@ -341,13 +346,59 @@
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
+            this.groupBox1.Visible = false;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox6.Location = new System.Drawing.Point(19, 35);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(415, 27);
+            this.textBox6.TabIndex = 36;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button3.Location = new System.Drawing.Point(441, 36);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 27);
+            this.button3.TabIndex = 36;
+            this.button3.Text = "Toevoegen";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label11.Location = new System.Drawing.Point(19, 65);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(521, 60);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "Vaardigheden: ";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox2.Location = new System.Drawing.Point(12, 515);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(578, 145);
+            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Extra vaardigheden: ";
+            this.groupBox2.Visible = false;
             // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(619, 539);
+            this.ClientSize = new System.Drawing.Size(619, 672);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
@@ -376,6 +427,8 @@
             this.Text = "Register";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,5 +462,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
