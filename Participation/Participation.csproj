@@ -57,11 +57,11 @@
     <Compile Include="Startmenu.Designer.cs">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="HulpSysteem\GUI\Hulpvragen.cs">
+    <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HulpSysteem\GUI\Hulpvragen.designer.cs">
-      <DependentUpon>Hulpvragen.cs</DependentUpon>
+    <Compile Include="HulpSysteem\GUI\RequestForm.designer.cs">
+      <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="Program.cs" />
@@ -87,8 +87,8 @@
     <EmbeddedResource Include="Startmenu.resx">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HulpSysteem\GUI\Hulpvragen.resx">
-      <DependentUpon>Hulpvragen.cs</DependentUpon>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

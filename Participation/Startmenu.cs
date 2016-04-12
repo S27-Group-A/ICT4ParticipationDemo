@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.InlogSysteem.GUI;
 using Participation.VrijwilligersSysteem;
 using Participation.SharedModels;
 using UI;
@@ -19,9 +20,10 @@ namespace Participation
     {
         //TODO Suggestions to where this should go in the program architecture im open to
         private User _loggedInUser = new User();
+        private LISLogic _listLogic = new LISLogic();
+        private Register
 
 
-        LISLogic _listLogic = new LISLogic();
         public Startmenu()
         {
             InitializeComponent();
