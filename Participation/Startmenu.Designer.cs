@@ -66,7 +66,7 @@
             // passwordTbx
             // 
             this.passwordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTbx.Location = new System.Drawing.Point(164, 59);
+            this.passwordTbx.Location = new System.Drawing.Point(163, 53);
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.Size = new System.Drawing.Size(208, 27);
             this.passwordTbx.TabIndex = 2;
@@ -95,7 +95,7 @@
             this.passwordLbl.AutoSize = true;
             this.passwordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.passwordLbl.Location = new System.Drawing.Point(40, 62);
+            this.passwordLbl.Location = new System.Drawing.Point(39, 56);
             this.passwordLbl.Name = "passwordLbl";
             this.passwordLbl.Size = new System.Drawing.Size(112, 20);
             this.passwordLbl.TabIndex = 5;

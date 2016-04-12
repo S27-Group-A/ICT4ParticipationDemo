@@ -16,12 +16,12 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
-        
+
         public Startmenu()
         {
             InitializeComponent();
-            
-            
+
+
 
             VolunteerForm test = new VolunteerForm();
             RequestForm reqtest = new RequestForm();
@@ -37,7 +37,28 @@ namespace Participation
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
+            if (checkFields())
+            {
+                var user = new User(emailTbx.Text, passwordTbx.Text);
+                
+            }
 
+        }
+
+        private bool checkFields()
+        {
+            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
+                return true;
+            return false;
+        }
+
+        private void clearFields()
+        {
+            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
+            {
+                emailTbx.Clear();
+                passwordTbx.Clear();
+            }
         }
     }
 }

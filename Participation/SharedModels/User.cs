@@ -17,20 +17,28 @@ namespace Participation.SharedModels
         public string Location { get; set; }
         private string _phoneNumber { get; set; }
         public GenderEnum Gender { get; set; }
+        public string Password { get; set; }
         private List<Meeting> _meetings { get; set; }
 
         //constructors
-        public User(string name, string email, string despription, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender)
+        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings)
         {
-            this.Name = name;
-            this._email = email;
-            this.Description = despription;
-            this.Birthday = birthday;
-            this.ProfilePicture = profilePicture;
-            this.Location = location;
-            this._phoneNumber = phoneNumber;
-            this.Gender = gender;
-            _meetings = new List<Meeting>();
+            Name = name;
+            _email = email;
+            Description = description;
+            Birthday = birthday;
+            ProfilePicture = profilePicture;
+            Location = location;
+            _phoneNumber = phoneNumber;
+            Gender = gender;
+            Password = password;
+            _meetings = meetings;
+        }
+
+        public User(string email, string password)
+        {
+            _email = email;
+            Password = password;
         }
 
         //methods

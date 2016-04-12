@@ -13,11 +13,16 @@ namespace Participation.SharedModels
         public List<Request> requests { get; set; }
 
         //constructors
-        public Patient(string name, string email, string despription, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender)
-            : base(name, email, despription, birthday, profilePicture, location, phoneNumber, gender)
+        public Patient(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password, meetings)
         {
             requests = new List<Request>();
         }
+
+        public Patient(string email, string password) : base(email, password)
+        {
+            requests = new List<Request>();
+        }
+
 
         //Methods
         private void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
