@@ -43,5 +43,23 @@ namespace Participation.InlogSysteem.GUI
             perksGbx.Hide();
             vogGbx.Hide();
         }
+
+        private bool CheckFields()
+        {
+            if (!string.IsNullOrEmpty(emailTbx.Text) || !string.IsNullOrEmpty(passwordTbx.Text)
+                || !string.IsNullOrEmpty(repeatPasswordTbx.Text) || birthdateDtp.Value != DateTime.Now
+                || !string.IsNullOrEmpty(locationTbx.Text))
+                return true;
+            else
+                return false;
+        }
+
+        private void registerBtn_Click(object sender, EventArgs e)
+        {
+            if (CheckFields())
+            {
+                MessageBox.Show("Test");
+            }
+        }
     }
 }
