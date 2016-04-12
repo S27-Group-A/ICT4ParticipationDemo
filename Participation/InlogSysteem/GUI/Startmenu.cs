@@ -21,8 +21,7 @@ namespace Participation
         //TODO Suggestions to where this should go in the program architecture im open to
         private User _loggedInUser = new User();
 
-        private LISLogic _listLogic = new LISLogic();
-        private RegisterForm _registerForm;
+        private readonly LISLogic _listLogic = new LISLogic();
 
 
         public Startmenu()
@@ -59,9 +58,13 @@ namespace Participation
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
-            _registerForm = new RegisterForm();
-            _registerForm.Show();
-            this.Hide();
+            //_registerForm = new RegisterForm();
+            //_registerForm.Show();
+            //this.Hide();
+
+            //_registerForm = new RegisterForm();
+            FormProvider.RegisterForm.Show();
+            FormProvider.StartMenu.Hide();
             /*
             if (checkFields())
             {
@@ -99,7 +102,7 @@ namespace Participation
                 !string.IsNullOrEmpty(_loggedInUser.Name))
             {
                 //TODO Pull out next form
-                this.Hide();
+                FormProvider.StartMenu.Hide();
             }
             
         }

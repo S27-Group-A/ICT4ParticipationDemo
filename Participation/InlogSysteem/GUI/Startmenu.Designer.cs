@@ -131,7 +131,6 @@
             // rfidGbx
             // 
             this.rfidGbx.Controls.Add(this.rfidTbx);
-            this.rfidGbx.Enabled = false;
             this.rfidGbx.Location = new System.Drawing.Point(414, 2);
             this.rfidGbx.Margin = new System.Windows.Forms.Padding(4);
             this.rfidGbx.Name = "rfidGbx";

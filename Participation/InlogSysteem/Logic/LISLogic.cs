@@ -12,14 +12,14 @@ namespace Participation
         {
             //TODO Add database context to add user to database
 
-            return false;  
+            return true;  
         }
 
         public bool AddUser(Volunteer volunteer)
         {
             //TODO Add database context to add user to database
 
-            return false;
+            return true;
         }
 
         public User GetUser(string email)

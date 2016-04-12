@@ -51,10 +51,11 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
-    <Compile Include="Startmenu.cs">
+    <Compile Include="SharedModels\FormProvider.cs" />
+    <Compile Include="InlogSysteem\GUI\Startmenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Startmenu.Designer.cs">
+    <Compile Include="InlogSysteem\GUI\Startmenu.Designer.cs">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </Compile>
     <Compile Include="HulpSysteem\GUI\RequestForm.cs">
@@ -84,7 +85,7 @@
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Startmenu.resx">
+    <EmbeddedResource Include="InlogSysteem\GUI\Startmenu.resx">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">

@@ -13,18 +13,25 @@ namespace Participation.InlogSysteem.GUI
 {
     public partial class RegisterForm : Form
     {
-        private LISLogic _lisLogic = new LISLogic(); 
+        private readonly LISLogic _lisLogic = new LISLogic(); 
 
         private List<string> _perks = new List<string>(); 
 
         public RegisterForm()
         {
             InitializeComponent();
+            ControlBox = false;
+            if (!needHelpRbt.Checked && !canHelpRbt.Checked)
+            {
+                formPnl.Hide();
+            }
         }
+
 
         private void needHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
-            if(needHelpRbt.Checked)
+            formPnl.Show();
+            if (needHelpRbt.Checked)
                 HideVogAndPerks();
             else if(canHelpRbt.Checked)
                 ShowVogAndPerks();
@@ -32,6 +39,7 @@ namespace Participation.InlogSysteem.GUI
 
         private void canHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
+            formPnl.Show();
             if (needHelpRbt.Checked)
                 HideVogAndPerks();
             else if (canHelpRbt.Checked)
@@ -73,6 +81,7 @@ namespace Participation.InlogSysteem.GUI
                         if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
                             profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, "m", passwordTbx.Text)))
                             MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
+                        else MessageBox.Show("Something went wrong...");
                     }
                     if (femaleRbt.Checked)
                     {
@@ -118,6 +127,12 @@ namespace Participation.InlogSysteem.GUI
                 listPerksLbl.Text += " " + perkTbx.Text;
                 perkTbx.Clear();
             }
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            FormProvider.StartMenu.Show();
+            FormProvider.RegisterForm.Hide();
         }
     }
 }
