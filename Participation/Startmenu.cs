@@ -17,6 +17,7 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
+        public User LoggedInUser = new User();
         LISLogic _listLogic = new LISLogic();
         public Startmenu()
         {
@@ -33,7 +34,10 @@ namespace Participation
 
         private void startMenuLogInBtn_Click(object sender, EventArgs e)
         {
-            
+            var user =_listLogic.GetUser(emailTbx.Text);
+            if(user.Password == passwordTbx.Text)
+                LogIn(user);
+
         }
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
@@ -62,6 +66,12 @@ namespace Participation
                 emailTbx.Clear();
                 passwordTbx.Clear();
             }
+        }
+
+        private void LogIn(User user)
+        {
+            LoggedInUser = user;
+            //TODO Next form after login
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Participation.SharedModels
     {
         //Properties
         public string Name { get; set; }
-        private string _email { get; set; }
+        public string Email { get; set; }
         public string Description { get; set; }
         public DateTime Birthday { get; set; }
         public string ProfilePicture { get; set; }
@@ -21,10 +21,14 @@ namespace Participation.SharedModels
         private List<Meeting> _meetings { get; set; }
 
         //constructors
+        public User()
+        {
+        }
+
         public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings)
         {
             Name = name;
-            _email = email;
+            Email = email;
             Description = description;
             Birthday = birthday;
             ProfilePicture = profilePicture;
@@ -37,7 +41,7 @@ namespace Participation.SharedModels
 
         public User(string email, string password)
         {
-            _email = email;
+            Email = email;
             Password = password;
         }
 
