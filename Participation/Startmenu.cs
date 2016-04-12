@@ -18,7 +18,7 @@ namespace Participation
     public partial class Startmenu : Form
     {
         //TODO Suggestions to where this should go in the program architecture im open to
-        public User LoggedInUser = new User();
+        private User _loggedInUser = new User();
 
 
         LISLogic _listLogic = new LISLogic();
@@ -30,6 +30,10 @@ namespace Participation
 
             VolunteerForm test = new VolunteerForm();
             RequestForm reqtest = new RequestForm();
+
+
+
+
             test.Show();
             reqtest.Show();
             this.Hide();
@@ -45,13 +49,17 @@ namespace Participation
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
+            /*
             if (checkFields())
             {
+                
                 var user = new User(emailTbx.Text, passwordTbx.Text);
                 if (_listLogic.AddUser(user))
                     clearFields();
                 else throw new Exception("LISLogic.AddUser() returned false");
+                
             }
+            */
 
         }
 
@@ -73,8 +81,14 @@ namespace Participation
 
         private void LogIn(User user)
         {
-            LoggedInUser = user;
-            //TODO Next form after login
+            _loggedInUser = user;
+            if (_loggedInUser.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(_loggedInUser.Location) ||
+                !string.IsNullOrEmpty(_loggedInUser.Name))
+            {
+                //TODO Pull out next form
+                this.Hide();
+            }
+            
         }
     }
 }

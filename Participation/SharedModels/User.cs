@@ -43,6 +43,7 @@ namespace Participation.SharedModels
         {
             Email = email;
             Password = password;
+            Birthday = new DateTime();
         }
 
         //methods

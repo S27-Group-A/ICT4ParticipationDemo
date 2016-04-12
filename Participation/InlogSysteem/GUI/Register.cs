@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Participation
+namespace Participation.InlogSysteem.GUI
 {
-    public partial class Inloggen : Form
+    public partial class Register : Form
     {
-        public Inloggen()
+        public Register()
         {
             InitializeComponent();
         }

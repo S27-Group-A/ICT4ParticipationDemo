@@ -23,6 +23,7 @@ namespace Participation
                     return user;
             }
             //Testing
+            //TODO Dont forget to remove this later and make it a error pop-up instead
             var testUser = new User("test@testmail.com", "test");
             return testUser;
         }
