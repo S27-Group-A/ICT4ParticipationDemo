@@ -15,17 +15,17 @@ namespace Participation.SharedModels
         public DateTime Birthday { get; set; }
         public string ProfilePicture { get; set; }
         public string Location { get; set; }
-        private string _phoneNumber { get; set; }
-        public GenderEnum Gender { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Gender { get; set; }
         public string Password { get; set; }
-        private List<Meeting> _meetings { get; set; }
+        public List<Meeting> meetings { get; set; }
 
         //constructors
         public User()
         {
         }
 
-        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings)
+        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, string gender, string password)
         {
             Name = name;
             Email = email;
@@ -33,17 +33,64 @@ namespace Participation.SharedModels
             Birthday = birthday;
             ProfilePicture = profilePicture;
             Location = location;
-            _phoneNumber = phoneNumber;
+            PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            _meetings = meetings;
+            meetings = new List<Meeting>();
         }
+
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber)
+        {
+            Name = name;
+            Email = email;
+            Birthday = birthday;
+            Location = location;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            meetings = new List<Meeting>();
+        }
+
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, string gender)
+        {
+            Name = name;
+            Email = email;
+            Birthday = birthday;
+            Location = location;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Gender = gender;
+            meetings = new List<Meeting>();
+        }
+
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, string gender, string profilePicture)
+        {
+            Name = name;
+            Email = email;
+            Birthday = birthday;
+            Location = location;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Gender = gender;
+            ProfilePicture = profilePicture;
+            meetings = new List<Meeting>();
+        }
+
 
         public User(string email, string password)
         {
             Email = email;
             Password = password;
             Birthday = new DateTime();
+        }
+
+        public User(string name, string email, DateTime birthday, string location, string password)
+        {
+            Name = name;
+            Email = email;
+            Birthday = birthday;
+            Location = location;
+            Password = password;
+            meetings = new List<Meeting>();
         }
 
         //methods

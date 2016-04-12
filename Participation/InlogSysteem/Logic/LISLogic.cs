@@ -8,11 +8,18 @@ namespace Participation
 {
     public class LISLogic
     {
-        public bool AddUser(User user)
+        public bool AddUser(Patient patient)
         {
             //TODO Add database context to add user to database
 
             return false;  
+        }
+
+        public bool AddUser(Volunteer volunteer)
+        {
+            //TODO Add database context to add user to database
+
+            return false;
         }
 
         public User GetUser(string email)

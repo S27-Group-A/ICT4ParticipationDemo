@@ -42,7 +42,7 @@
             this.repeatPasswordTbx = new System.Windows.Forms.TextBox();
             this.birthdateDtp = new System.Windows.Forms.DateTimePicker();
             this.locationTbx = new System.Windows.Forms.TextBox();
-            this.telephonenumberTbx = new System.Windows.Forms.TextBox();
+            this.phonenumberTbx = new System.Windows.Forms.TextBox();
             this.profilePictureUrlTbx = new System.Windows.Forms.TextBox();
             this.maleRbt = new System.Windows.Forms.RadioButton();
             this.femaleRbt = new System.Windows.Forms.RadioButton();
@@ -60,6 +60,8 @@
             this.listPerksLbl = new System.Windows.Forms.Label();
             this.perksGbx = new System.Windows.Forms.GroupBox();
             this.backBtn = new System.Windows.Forms.Button();
+            this.nameLbl = new System.Windows.Forms.Label();
+            this.nameTbx = new System.Windows.Forms.TextBox();
             this.vogGbx.SuspendLayout();
             this.perksGbx.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +71,7 @@
             this.passwordLbl.AutoSize = true;
             this.passwordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.passwordLbl.Location = new System.Drawing.Point(27, 129);
+            this.passwordLbl.Location = new System.Drawing.Point(27, 152);
             this.passwordLbl.Name = "passwordLbl";
             this.passwordLbl.Size = new System.Drawing.Size(123, 20);
             this.passwordLbl.TabIndex = 12;
@@ -80,7 +82,7 @@
             this.emailLbl.AutoSize = true;
             this.emailLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.emailLbl.Location = new System.Drawing.Point(27, 96);
+            this.emailLbl.Location = new System.Drawing.Point(27, 119);
             this.emailLbl.Name = "emailLbl";
             this.emailLbl.Size = new System.Drawing.Size(120, 20);
             this.emailLbl.TabIndex = 11;
@@ -89,7 +91,7 @@
             // emailTbx
             // 
             this.emailTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTbx.Location = new System.Drawing.Point(256, 93);
+            this.emailTbx.Location = new System.Drawing.Point(256, 116);
             this.emailTbx.Name = "emailTbx";
             this.emailTbx.Size = new System.Drawing.Size(208, 27);
             this.emailTbx.TabIndex = 10;
@@ -97,7 +99,7 @@
             // passwordTbx
             // 
             this.passwordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordTbx.Location = new System.Drawing.Point(256, 126);
+            this.passwordTbx.Location = new System.Drawing.Point(256, 149);
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.Size = new System.Drawing.Size(208, 27);
             this.passwordTbx.TabIndex = 9;
@@ -106,7 +108,7 @@
             // 
             this.registerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.registerBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.registerBtn.Location = new System.Drawing.Point(180, 644);
+            this.registerBtn.Location = new System.Drawing.Point(180, 667);
             this.registerBtn.Margin = new System.Windows.Forms.Padding(4);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(410, 36);
@@ -120,7 +122,7 @@
             this.birthdateLbl.AutoSize = true;
             this.birthdateLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.birthdateLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.birthdateLbl.Location = new System.Drawing.Point(28, 196);
+            this.birthdateLbl.Location = new System.Drawing.Point(28, 219);
             this.birthdateLbl.Name = "birthdateLbl";
             this.birthdateLbl.Size = new System.Drawing.Size(140, 20);
             this.birthdateLbl.TabIndex = 13;
@@ -131,7 +133,7 @@
             this.locationLbl.AutoSize = true;
             this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.locationLbl.Location = new System.Drawing.Point(28, 225);
+            this.locationLbl.Location = new System.Drawing.Point(28, 248);
             this.locationLbl.Name = "locationLbl";
             this.locationLbl.Size = new System.Drawing.Size(113, 20);
             this.locationLbl.TabIndex = 14;
@@ -142,7 +144,7 @@
             this.telephonenumberLbl.AutoSize = true;
             this.telephonenumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.telephonenumberLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.telephonenumberLbl.Location = new System.Drawing.Point(27, 258);
+            this.telephonenumberLbl.Location = new System.Drawing.Point(27, 281);
             this.telephonenumberLbl.Name = "telephonenumberLbl";
             this.telephonenumberLbl.Size = new System.Drawing.Size(139, 20);
             this.telephonenumberLbl.TabIndex = 15;
@@ -153,7 +155,7 @@
             this.genderLbl.AutoSize = true;
             this.genderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genderLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.genderLbl.Location = new System.Drawing.Point(27, 287);
+            this.genderLbl.Location = new System.Drawing.Point(27, 310);
             this.genderLbl.Name = "genderLbl";
             this.genderLbl.Size = new System.Drawing.Size(86, 20);
             this.genderLbl.TabIndex = 16;
@@ -164,7 +166,7 @@
             this.profilePictureLbl.AutoSize = true;
             this.profilePictureLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profilePictureLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.profilePictureLbl.Location = new System.Drawing.Point(27, 318);
+            this.profilePictureLbl.Location = new System.Drawing.Point(27, 341);
             this.profilePictureLbl.Name = "profilePictureLbl";
             this.profilePictureLbl.Size = new System.Drawing.Size(90, 20);
             this.profilePictureLbl.TabIndex = 17;
@@ -175,7 +177,7 @@
             this.repeatPasswordLbl.AutoSize = true;
             this.repeatPasswordLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repeatPasswordLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.repeatPasswordLbl.Location = new System.Drawing.Point(27, 164);
+            this.repeatPasswordLbl.Location = new System.Drawing.Point(27, 187);
             this.repeatPasswordLbl.Name = "repeatPasswordLbl";
             this.repeatPasswordLbl.Size = new System.Drawing.Size(212, 20);
             this.repeatPasswordLbl.TabIndex = 18;
@@ -184,14 +186,14 @@
             // repeatPasswordTbx
             // 
             this.repeatPasswordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repeatPasswordTbx.Location = new System.Drawing.Point(256, 160);
+            this.repeatPasswordTbx.Location = new System.Drawing.Point(256, 183);
             this.repeatPasswordTbx.Name = "repeatPasswordTbx";
             this.repeatPasswordTbx.Size = new System.Drawing.Size(208, 27);
             this.repeatPasswordTbx.TabIndex = 19;
             // 
             // birthdateDtp
             // 
-            this.birthdateDtp.Location = new System.Drawing.Point(256, 194);
+            this.birthdateDtp.Location = new System.Drawing.Point(256, 217);
             this.birthdateDtp.Name = "birthdateDtp";
             this.birthdateDtp.Size = new System.Drawing.Size(208, 22);
             this.birthdateDtp.TabIndex = 20;
@@ -199,23 +201,23 @@
             // locationTbx
             // 
             this.locationTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locationTbx.Location = new System.Drawing.Point(256, 222);
+            this.locationTbx.Location = new System.Drawing.Point(256, 245);
             this.locationTbx.Name = "locationTbx";
             this.locationTbx.Size = new System.Drawing.Size(208, 27);
             this.locationTbx.TabIndex = 21;
             // 
-            // telephonenumberTbx
+            // phonenumberTbx
             // 
-            this.telephonenumberTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.telephonenumberTbx.Location = new System.Drawing.Point(256, 255);
-            this.telephonenumberTbx.Name = "telephonenumberTbx";
-            this.telephonenumberTbx.Size = new System.Drawing.Size(208, 27);
-            this.telephonenumberTbx.TabIndex = 22;
+            this.phonenumberTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phonenumberTbx.Location = new System.Drawing.Point(256, 278);
+            this.phonenumberTbx.Name = "phonenumberTbx";
+            this.phonenumberTbx.Size = new System.Drawing.Size(208, 27);
+            this.phonenumberTbx.TabIndex = 22;
             // 
             // profilePictureUrlTbx
             // 
             this.profilePictureUrlTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profilePictureUrlTbx.Location = new System.Drawing.Point(256, 315);
+            this.profilePictureUrlTbx.Location = new System.Drawing.Point(256, 338);
             this.profilePictureUrlTbx.Name = "profilePictureUrlTbx";
             this.profilePictureUrlTbx.Size = new System.Drawing.Size(208, 27);
             this.profilePictureUrlTbx.TabIndex = 24;
@@ -224,7 +226,7 @@
             // 
             this.maleRbt.AutoSize = true;
             this.maleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.maleRbt.Location = new System.Drawing.Point(256, 288);
+            this.maleRbt.Location = new System.Drawing.Point(256, 311);
             this.maleRbt.Name = "maleRbt";
             this.maleRbt.Size = new System.Drawing.Size(56, 21);
             this.maleRbt.TabIndex = 25;
@@ -236,7 +238,7 @@
             // 
             this.femaleRbt.AutoSize = true;
             this.femaleRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.femaleRbt.Location = new System.Drawing.Point(318, 288);
+            this.femaleRbt.Location = new System.Drawing.Point(318, 311);
             this.femaleRbt.Name = "femaleRbt";
             this.femaleRbt.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.femaleRbt.Size = new System.Drawing.Size(68, 21);
@@ -250,7 +252,7 @@
             this.needHelpRbt.AutoSize = true;
             this.needHelpRbt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.needHelpRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.needHelpRbt.Location = new System.Drawing.Point(32, 48);
+            this.needHelpRbt.Location = new System.Drawing.Point(31, 42);
             this.needHelpRbt.Name = "needHelpRbt";
             this.needHelpRbt.Size = new System.Drawing.Size(295, 33);
             this.needHelpRbt.TabIndex = 27;
@@ -264,7 +266,7 @@
             this.canHelpRbt.AutoSize = true;
             this.canHelpRbt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.canHelpRbt.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.canHelpRbt.Location = new System.Drawing.Point(384, 48);
+            this.canHelpRbt.Location = new System.Drawing.Point(384, 42);
             this.canHelpRbt.Name = "canHelpRbt";
             this.canHelpRbt.Size = new System.Drawing.Size(168, 33);
             this.canHelpRbt.TabIndex = 28;
@@ -288,7 +290,7 @@
             // 
             this.browseProfilePictureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.browseProfilePictureBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.browseProfilePictureBtn.Location = new System.Drawing.Point(470, 316);
+            this.browseProfilePictureBtn.Location = new System.Drawing.Point(470, 339);
             this.browseProfilePictureBtn.Margin = new System.Windows.Forms.Padding(4);
             this.browseProfilePictureBtn.Name = "browseProfilePictureBtn";
             this.browseProfilePictureBtn.Size = new System.Drawing.Size(99, 27);
@@ -302,7 +304,7 @@
             this.allowedPictureFormatsLbl.AutoSize = true;
             this.allowedPictureFormatsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.allowedPictureFormatsLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.allowedPictureFormatsLbl.Location = new System.Drawing.Point(252, 345);
+            this.allowedPictureFormatsLbl.Location = new System.Drawing.Point(252, 368);
             this.allowedPictureFormatsLbl.Name = "allowedPictureFormatsLbl";
             this.allowedPictureFormatsLbl.Size = new System.Drawing.Size(266, 17);
             this.allowedPictureFormatsLbl.TabIndex = 31;
@@ -346,7 +348,7 @@
             this.vogGbx.Controls.Add(this.allowedVogFormatsLbl);
             this.vogGbx.Controls.Add(this.browseVogUrlBtn);
             this.vogGbx.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.vogGbx.Location = new System.Drawing.Point(12, 376);
+            this.vogGbx.Location = new System.Drawing.Point(12, 399);
             this.vogGbx.Name = "vogGbx";
             this.vogGbx.Size = new System.Drawing.Size(578, 100);
             this.vogGbx.TabIndex = 36;
@@ -391,7 +393,7 @@
             this.perksGbx.Controls.Add(this.addPerkTbx);
             this.perksGbx.Controls.Add(this.listPerksLbl);
             this.perksGbx.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.perksGbx.Location = new System.Drawing.Point(12, 482);
+            this.perksGbx.Location = new System.Drawing.Point(12, 505);
             this.perksGbx.Name = "perksGbx";
             this.perksGbx.Size = new System.Drawing.Size(578, 145);
             this.perksGbx.TabIndex = 39;
@@ -403,7 +405,7 @@
             // 
             this.backBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.backBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.backBtn.Location = new System.Drawing.Point(13, 644);
+            this.backBtn.Location = new System.Drawing.Point(13, 667);
             this.backBtn.Margin = new System.Windows.Forms.Padding(4);
             this.backBtn.Name = "backBtn";
             this.backBtn.Size = new System.Drawing.Size(159, 36);
@@ -411,12 +413,33 @@
             this.backBtn.Text = "Terug";
             this.backBtn.UseVisualStyleBackColor = true;
             // 
+            // nameLbl
+            // 
+            this.nameLbl.AutoSize = true;
+            this.nameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.nameLbl.Location = new System.Drawing.Point(27, 84);
+            this.nameLbl.Name = "nameLbl";
+            this.nameLbl.Size = new System.Drawing.Size(69, 20);
+            this.nameLbl.TabIndex = 41;
+            this.nameLbl.Text = "Naam: *";
+            // 
+            // nameTbx
+            // 
+            this.nameTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameTbx.Location = new System.Drawing.Point(255, 81);
+            this.nameTbx.Name = "nameTbx";
+            this.nameTbx.Size = new System.Drawing.Size(208, 27);
+            this.nameTbx.TabIndex = 42;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(619, 699);
+            this.ClientSize = new System.Drawing.Size(619, 799);
+            this.Controls.Add(this.nameTbx);
+            this.Controls.Add(this.nameLbl);
             this.Controls.Add(this.backBtn);
             this.Controls.Add(this.perksGbx);
             this.Controls.Add(this.vogGbx);
@@ -428,7 +451,7 @@
             this.Controls.Add(this.femaleRbt);
             this.Controls.Add(this.maleRbt);
             this.Controls.Add(this.profilePictureUrlTbx);
-            this.Controls.Add(this.telephonenumberTbx);
+            this.Controls.Add(this.phonenumberTbx);
             this.Controls.Add(this.locationTbx);
             this.Controls.Add(this.birthdateDtp);
             this.Controls.Add(this.repeatPasswordTbx);
@@ -469,7 +492,7 @@
         private System.Windows.Forms.TextBox repeatPasswordTbx;
         private System.Windows.Forms.DateTimePicker birthdateDtp;
         private System.Windows.Forms.TextBox locationTbx;
-        private System.Windows.Forms.TextBox telephonenumberTbx;
+        private System.Windows.Forms.TextBox phonenumberTbx;
         private System.Windows.Forms.TextBox profilePictureUrlTbx;
         private System.Windows.Forms.RadioButton maleRbt;
         private System.Windows.Forms.RadioButton femaleRbt;
@@ -487,5 +510,7 @@
         private System.Windows.Forms.Label listPerksLbl;
         private System.Windows.Forms.GroupBox perksGbx;
         private System.Windows.Forms.Button backBtn;
+        private System.Windows.Forms.Label nameLbl;
+        private System.Windows.Forms.TextBox nameTbx;
     }
 }
