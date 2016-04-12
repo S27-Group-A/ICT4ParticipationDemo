@@ -20,6 +20,7 @@ namespace Participation
     {
         //TODO Suggestions to where this should go in the program architecture im open to
         private User _loggedInUser = new User();
+
         private LISLogic _listLogic = new LISLogic();
         private RegisterForm _registerForm;
 
@@ -30,22 +31,29 @@ namespace Participation
 
 
 
-            VolunteerForm test = new VolunteerForm();
-            RequestForm reqtest = new RequestForm();
+            //VolunteerForm test = new VolunteerForm();
+            //RequestForm reqtest = new RequestForm();
 
 
 
 
-            test.Show();
-            reqtest.Show();
+            //test.Show();
+            //reqtest.Show();
             this.Hide();
         }
 
         private void startMenuLogInBtn_Click(object sender, EventArgs e)
         {
-            var user =_listLogic.GetUser(emailTbx.Text);
-            if(user.Password == passwordTbx.Text)
-                LogIn(user);
+            if (checkFields())
+            {
+                var user = _listLogic.GetUser(emailTbx.Text);
+                if (user.Password == passwordTbx.Text)
+                    LogIn(user);
+            }
+            else
+            {
+                MessageBox.Show("Vul uw e-mail adres en wachtwoord in");
+            }
 
         }
 
