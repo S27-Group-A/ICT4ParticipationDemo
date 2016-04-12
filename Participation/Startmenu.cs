@@ -17,7 +17,10 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
+        //TODO Suggestions to where this should go in the program architecture im open to
         public User LoggedInUser = new User();
+
+
         LISLogic _listLogic = new LISLogic();
         public Startmenu()
         {
