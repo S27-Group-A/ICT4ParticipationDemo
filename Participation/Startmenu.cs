@@ -20,11 +20,24 @@ namespace Participation
         public Startmenu()
         {
             InitializeComponent();
+            
+            
+
             VolunteerForm test = new VolunteerForm();
             RequestForm reqtest = new RequestForm();
             test.Show();
             reqtest.Show();
             this.Hide();
+        }
+
+        private void startMenuLogInBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void startMenuRegisterBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -45,8 +45,9 @@
             // 
             // confirmBtn
             // 
-            this.confirmBtn.Location = new System.Drawing.Point(183, 500);
-            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmBtn.Location = new System.Drawing.Point(214, 503);
+            this.confirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(100, 28);
             this.confirmBtn.TabIndex = 0;
@@ -56,16 +57,18 @@
             // 
             // titleTbx
             // 
-            this.titleTbx.Location = new System.Drawing.Point(183, 15);
-            this.titleTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.titleTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleTbx.Location = new System.Drawing.Point(214, 18);
+            this.titleTbx.Margin = new System.Windows.Forms.Padding(4);
             this.titleTbx.Name = "titleTbx";
-            this.titleTbx.Size = new System.Drawing.Size(632, 22);
+            this.titleTbx.Size = new System.Drawing.Size(632, 27);
             this.titleTbx.TabIndex = 1;
             // 
             // descriptionTbx
             // 
-            this.descriptionTbx.Location = new System.Drawing.Point(183, 57);
-            this.descriptionTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.descriptionTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionTbx.Location = new System.Drawing.Point(214, 60);
+            this.descriptionTbx.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionTbx.Name = "descriptionTbx";
             this.descriptionTbx.Size = new System.Drawing.Size(632, 206);
             this.descriptionTbx.TabIndex = 2;
@@ -74,81 +77,89 @@
             // titleLbl
             // 
             this.titleLbl.AutoSize = true;
+            this.titleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLbl.ForeColor = System.Drawing.SystemColors.Info;
             this.titleLbl.Location = new System.Drawing.Point(16, 18);
             this.titleLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.titleLbl.Name = "titleLbl";
-            this.titleLbl.Size = new System.Drawing.Size(39, 17);
+            this.titleLbl.Size = new System.Drawing.Size(46, 20);
             this.titleLbl.TabIndex = 3;
             this.titleLbl.Text = "Titel:";
             // 
             // descriptionLbl
             // 
             this.descriptionLbl.AutoSize = true;
+            this.descriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionLbl.ForeColor = System.Drawing.SystemColors.Info;
             this.descriptionLbl.Location = new System.Drawing.Point(16, 60);
             this.descriptionLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.descriptionLbl.Name = "descriptionLbl";
-            this.descriptionLbl.Size = new System.Drawing.Size(92, 17);
+            this.descriptionLbl.Size = new System.Drawing.Size(111, 20);
             this.descriptionLbl.TabIndex = 4;
             this.descriptionLbl.Text = "Beschrijving: ";
             // 
             // perksLbl
             // 
             this.perksLbl.AutoSize = true;
+            this.perksLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.perksLbl.ForeColor = System.Drawing.SystemColors.Info;
             this.perksLbl.Location = new System.Drawing.Point(16, 281);
             this.perksLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.perksLbl.Name = "perksLbl";
-            this.perksLbl.Size = new System.Drawing.Size(44, 17);
+            this.perksLbl.Size = new System.Drawing.Size(53, 20);
             this.perksLbl.TabIndex = 5;
             this.perksLbl.Text = "Extra:";
             // 
             // dateDtp
             // 
-            this.dateDtp.Location = new System.Drawing.Point(183, 336);
-            this.dateDtp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateDtp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDtp.Location = new System.Drawing.Point(214, 339);
+            this.dateDtp.Margin = new System.Windows.Forms.Padding(4);
             this.dateDtp.Name = "dateDtp";
-            this.dateDtp.Size = new System.Drawing.Size(265, 22);
+            this.dateDtp.Size = new System.Drawing.Size(265, 27);
             this.dateDtp.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Info;
             this.label1.Location = new System.Drawing.Point(15, 342);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 17);
+            this.label1.Size = new System.Drawing.Size(195, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Gewenste datum en tijd: ";
             // 
             // urgencyLbl
             // 
             this.urgencyLbl.AutoSize = true;
+            this.urgencyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urgencyLbl.ForeColor = System.Drawing.SystemColors.Info;
             this.urgencyLbl.Location = new System.Drawing.Point(15, 412);
             this.urgencyLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.urgencyLbl.Name = "urgencyLbl";
-            this.urgencyLbl.Size = new System.Drawing.Size(66, 17);
+            this.urgencyLbl.Size = new System.Drawing.Size(77, 20);
             this.urgencyLbl.TabIndex = 11;
             this.urgencyLbl.Text = "Urgentie:";
             // 
             // urgencyLbx
             // 
+            this.urgencyLbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urgencyLbx.FormattingEnabled = true;
-            this.urgencyLbx.ItemHeight = 16;
-            this.urgencyLbx.Location = new System.Drawing.Point(183, 410);
-            this.urgencyLbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.urgencyLbx.ItemHeight = 20;
+            this.urgencyLbx.Location = new System.Drawing.Point(214, 413);
+            this.urgencyLbx.Margin = new System.Windows.Forms.Padding(4);
             this.urgencyLbx.Name = "urgencyLbx";
-            this.urgencyLbx.Size = new System.Drawing.Size(265, 68);
+            this.urgencyLbx.Size = new System.Drawing.Size(265, 64);
             this.urgencyLbx.TabIndex = 12;
             // 
             // perksClb
             // 
+            this.perksClb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.perksClb.FormattingEnabled = true;
-            this.perksClb.Location = new System.Drawing.Point(183, 281);
-            this.perksClb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.perksClb.Location = new System.Drawing.Point(214, 284);
+            this.perksClb.Margin = new System.Windows.Forms.Padding(4);
             this.perksClb.Name = "perksClb";
             this.perksClb.Size = new System.Drawing.Size(159, 38);
             this.perksClb.TabIndex = 13;
@@ -156,20 +167,22 @@
             // locationLbl
             // 
             this.locationLbl.AutoSize = true;
+            this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationLbl.ForeColor = System.Drawing.SystemColors.Info;
             this.locationLbl.Location = new System.Drawing.Point(16, 377);
             this.locationLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.locationLbl.Name = "locationLbl";
-            this.locationLbl.Size = new System.Drawing.Size(87, 17);
+            this.locationLbl.Size = new System.Drawing.Size(102, 20);
             this.locationLbl.TabIndex = 14;
             this.locationLbl.Text = "Woonplaats:";
             // 
             // locationTbx
             // 
-            this.locationTbx.Location = new System.Drawing.Point(183, 372);
-            this.locationTbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.locationTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.locationTbx.Location = new System.Drawing.Point(214, 375);
+            this.locationTbx.Margin = new System.Windows.Forms.Padding(4);
             this.locationTbx.Name = "locationTbx";
-            this.locationTbx.Size = new System.Drawing.Size(265, 22);
+            this.locationTbx.Size = new System.Drawing.Size(265, 27);
             this.locationTbx.TabIndex = 15;
             // 
             // RequestForm
@@ -177,7 +190,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(832, 543);
+            this.ClientSize = new System.Drawing.Size(1116, 543);
             this.Controls.Add(this.locationTbx);
             this.Controls.Add(this.locationLbl);
             this.Controls.Add(this.perksClb);
@@ -191,7 +204,7 @@
             this.Controls.Add(this.descriptionTbx);
             this.Controls.Add(this.titleTbx);
             this.Controls.Add(this.confirmBtn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RequestForm";
             this.Text = "Hulpvraag Maken";
             this.ResumeLayout(false);

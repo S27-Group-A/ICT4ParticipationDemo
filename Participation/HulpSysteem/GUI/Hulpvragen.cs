@@ -15,7 +15,7 @@ namespace UI
     public partial class RequestForm : Form
     {
         //TODO Implement User from log in
-        private User _loggedInUser = LoggedInUser;
+        //private User _loggedInUser = LoggedInUser;
 
         //TODO Implement hpslogic
         HPSLogic _hpsLogic = new HPSLogic();
@@ -46,15 +46,13 @@ namespace UI
                 MessageBox.Show("Vul een geldige datum in");
             else
             {
-                var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value, (int)urgencyLbx.SelectedItem);
+                var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value,
+                    (int) urgencyLbx.SelectedItem);
                 MessageBox.Show("Test: \n" + request.ToString());
 
                 //TODO Implement logic
-                _hpsLogic.AddRequest(_loggedInUser, request);
+                //_hpsLogic.AddRequest(_loggedInUser, request);
             }
-
-
-
         }
     }
 }
