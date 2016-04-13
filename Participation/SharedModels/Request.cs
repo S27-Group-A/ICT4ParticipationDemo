@@ -8,13 +8,21 @@ namespace Participation.SharedModels
 {
     public class Request
     {
-        private string _title, _text, _location;
+        private string _title;
+        private string _text;
+        private string _location;
         private int _urgency;
         private DateTime _date;
         private List<string> _perks = new List<string>();
 
-
-        Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public Request(
+            string title, 
+            string text, 
+            List<string> perks, 
+            string location, 
+            DateTime date, 
+            int urgency
+            )
         {
             _title = title;
             _text = text;
@@ -24,11 +32,22 @@ namespace Participation.SharedModels
             _urgency = urgency;
         }
 
-        Request(string title, string text, string location)
+        public Request(string title, string text, string location)
         {
             _title = title;
             _text = text;
             _location = location;
+        }
+
+        public Request()
+        {
+        }
+
+        public override string ToString()
+        {
+            //TODO Optionally return perks per perk as string
+            var returnString = _title + " " + _text + " " + _location + " " + _urgency + " " + _date.ToString() + " " + _perks.ToString();
+            return returnString;
         }
     }
 }

@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Participation.InlogSysteem.GUI;
+
+namespace Participation.SharedModels
+{
+    class FormProvider
+    {
+        public static Startmenu StartMenu
+        {
+            get
+            {
+                if (_startmenu == null)
+                {
+                    _startmenu = new Startmenu();
+                }
+                return _startmenu;
+            }
+        }
+        private static Startmenu _startmenu;
+
+        public static RegisterForm RegisterForm
+        {
+
+            get
+            {
+                if (_registerForm == null)
+                {
+                    _registerForm = new RegisterForm();
+                }
+                return _registerForm;
+            }
+        }
+        private static RegisterForm _registerForm;
+    }
+}
+
