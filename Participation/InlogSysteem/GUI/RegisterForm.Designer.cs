@@ -164,9 +164,9 @@
             this.genderLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.genderLbl.Location = new System.Drawing.Point(4, 226);
             this.genderLbl.Name = "genderLbl";
-            this.genderLbl.Size = new System.Drawing.Size(86, 20);
+            this.genderLbl.Size = new System.Drawing.Size(92, 20);
             this.genderLbl.TabIndex = 16;
-            this.genderLbl.Text = "Geslacht: ";
+            this.genderLbl.Text = "Geslacht: *";
             // 
             // profilePictureLbl
             // 
