@@ -144,7 +144,5 @@ namespace Participation.InlogSysteem.GUI
         {
             FormProvider.StartMenu.Show();
         }
-
-
     }
 }
