@@ -14,7 +14,7 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
 
         //constructors
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, string gender, string password, List<Meeting> meetings, List<string> perks)
+        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
             : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
@@ -22,7 +22,8 @@ namespace Participation.SharedModels
             _verklaringPdf = null;
         }
 
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, string gender, string password, List<string> perks, string verklaringPdf) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum
+            gender, string password, List<string> perks, string verklaringPdf) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
             _perks = perks;

@@ -16,7 +16,7 @@ namespace Participation.SharedModels
         public string ProfilePicture { get; set; }
         public string Location { get; set; }
         public string PhoneNumber { get; set; }
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public string Password { get; set; }
         public List<Meeting> meetings { get; set; }
 
@@ -25,7 +25,7 @@ namespace Participation.SharedModels
         {
         }
 
-        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, string gender, string password)
+        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password)
         {
             Name = name;
             Email = email;
@@ -50,7 +50,7 @@ namespace Participation.SharedModels
             meetings = new List<Meeting>();
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, string gender)
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender)
         {
             Name = name;
             Email = email;
@@ -62,7 +62,7 @@ namespace Participation.SharedModels
             meetings = new List<Meeting>();
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, string gender, string profilePicture)
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, string profilePicture)
         {
             Name = name;
             Email = email;

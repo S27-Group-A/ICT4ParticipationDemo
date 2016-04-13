@@ -81,14 +81,14 @@ namespace Participation.InlogSysteem.GUI
                     if (maleRbt.Checked)
                     {
                         if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, "m", passwordTbx.Text)))
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text,GenderEnum.Male , passwordTbx.Text)))
                             MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
                         else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
                     }
                     if (femaleRbt.Checked)
                     {
                         if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, "f", passwordTbx.Text)))
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text)))
                             MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
                         else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
                     }
@@ -97,13 +97,13 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (maleRbt.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, "m", passwordTbx.Text, new List<Meeting>(), _perks )))
+                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male, passwordTbx.Text, new List<Meeting>(), _perks )))
                             MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
                         else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
                     }
                     if (femaleRbt.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, "f", passwordTbx.Text, new List<Meeting>(), _perks)))
+                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text, new List<Meeting>(), _perks)))
                             MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
                         else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
                     }
