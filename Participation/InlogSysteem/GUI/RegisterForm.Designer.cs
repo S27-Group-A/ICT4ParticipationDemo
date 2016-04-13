@@ -502,6 +502,7 @@
             this.Controls.Add(this.registerBtn);
             this.Name = "RegisterForm";
             this.Text = "Register";
+            this.Closed += new System.EventHandler(this.RegisterForm_Closed);
             this.vogGbx.ResumeLayout(false);
             this.vogGbx.PerformLayout();
             this.perksGbx.ResumeLayout(false);

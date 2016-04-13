@@ -139,5 +139,12 @@ namespace Participation.InlogSysteem.GUI
             FormProvider.StartMenu.Show();
             FormProvider.RegisterForm.Hide();
         }
+
+        private void RegisterForm_Closed(object sender, EventArgs e)
+        {
+            FormProvider.StartMenu.Show();
+        }
+
+
     }
 }
