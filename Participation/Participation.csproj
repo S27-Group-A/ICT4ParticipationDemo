@@ -48,26 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aanmeldscherm.cs" />
-    <Compile Include="Aanmeldscherm.Designer.cs">
-      <DependentUpon>Aanmeldscherm.cs</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
-    <Compile Include="Form1.cs" />
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HulpSysteem\GUI\Hulpvragen.cs">
+    <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HulpSysteem\GUI\Hulpvragen.designer.cs">
-      <DependentUpon>Hulpvragen.cs</DependentUpon>
+    <Compile Include="HulpSysteem\GUI\RequestForm.designer.cs">
+      <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HulpSysteem\GUI\Logic\HPSLogic.cs" />
-    <Compile Include="Inloggen.cs" />
-    <Compile Include="Inloggen.Designer.cs">
-      <DependentUpon>Inloggen.cs</DependentUpon>
-    </Compile>
+    <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,17 +86,8 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
-    <EmbeddedResource Include="Aanmeldscherm.resx">
-      <DependentUpon>Aanmeldscherm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HulpSysteem\GUI\Hulpvragen.resx">
-      <DependentUpon>Hulpvragen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inloggen.resx">
-      <DependentUpon>Inloggen.cs</DependentUpon>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
