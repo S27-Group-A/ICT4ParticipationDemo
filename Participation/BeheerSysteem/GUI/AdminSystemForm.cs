@@ -23,8 +23,8 @@ namespace Participation.BeheerSysteem.GUI
 
         public void emptyProfileInformation()
         {
-            tbx_ProfileName.Text = "";
-            rtb_ProfileInformation.Text = "";
+            tbxProfileName.Text = "";
+            rtbProfileInformation.Text = "";
             //pbProfilePicture.Show = false;
         }
 
@@ -32,8 +32,8 @@ namespace Participation.BeheerSysteem.GUI
         {
             emptyProfileInformation();
 
-            tbx_ProfileName.Text = lbx_userList.SelectedItem.name.Text;
-            rtb_ProfileInformation.Text = lbx_userList.SelectedItem.description.Text;
+            tbxProfileName.Text = lbxUserList.SelectedItem.name.Text;
+            rtbProfileInformation.Text = lbxUserList.SelectedItem.description.Text;
             //pbProfilePicture.Image = lbx_userList.SelectedItem.ProfilePicture;
             //pbProfilePicture.Show = true;
 
@@ -41,29 +41,29 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btn_BanGebruiker_Click(object sender, EventArgs e)
         {
-            if (rbtn_Permanent.Checked == true)
+            if (rbtnPermanent.Checked == true)
             {
-                lbx_userList.SelectedItem.isBanned = true;
+                lbxUserList.SelectedItem.isBanned = true;
             }
-            if (rbtn_Temporary.Checked == true)
+            if (rbtnTemporary.Checked == true)
             {
                //don't forget to implement trycatch
                 int bandays = 0;
-                bandays = Convert.ToInt32(tb_daysUntillUnbanned.Text);
-                lbx_userList.SelectedItem.isBanned = true;
-                lbx_userList.SelectedItem.daysBanned = bandays;
+                bandays = Convert.ToInt32(tbxDaysUntillUnbanned.Text);
+                lbxUserList.SelectedItem.isBanned = true;
+                lbxUserList.SelectedItem.daysBanned = bandays;
             }
             emptyProfileInformation();
         }
 
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            lbx_Requests.SelectedItem.Remove;
+            lbxRequests.SelectedItem.Remove;
         }
 
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
         {
-            lbx_Reviews.SelectedItem.Remove;
+            lbxReviews.SelectedItem.Remove;
         }
         private void btn_Chat_Click(object sender, EventArgs e)
         {

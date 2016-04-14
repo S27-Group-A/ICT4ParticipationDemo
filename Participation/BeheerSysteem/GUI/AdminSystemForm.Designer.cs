@@ -29,78 +29,78 @@
         private void InitializeComponent()
         {
             this.gb_Form = new System.Windows.Forms.GroupBox();
-            this.btn_DeleteReviews = new System.Windows.Forms.Button();
-            this.btn_DeleteRequest = new System.Windows.Forms.Button();
+            this.btnDeleteReviews = new System.Windows.Forms.Button();
+            this.btnDeleteRequest = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbx_Reviews = new System.Windows.Forms.ListBox();
-            this.lbx_Requests = new System.Windows.Forms.ListBox();
-            this.gb_BanUser = new System.Windows.Forms.GroupBox();
-            this.btn_BanUser = new System.Windows.Forms.Button();
+            this.lbxReviews = new System.Windows.Forms.ListBox();
+            this.lbxRequests = new System.Windows.Forms.ListBox();
+            this.gbxBanUser = new System.Windows.Forms.GroupBox();
+            this.btnBanUser = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_daysUntillUnbanned = new System.Windows.Forms.TextBox();
-            this.rbtn_Temporary = new System.Windows.Forms.RadioButton();
-            this.rbtn_Permanent = new System.Windows.Forms.RadioButton();
-            this.gb_ProfileInformation = new System.Windows.Forms.GroupBox();
-            this.rtb_ProfileInformation = new System.Windows.Forms.RichTextBox();
-            this.tbx_ProfileName = new System.Windows.Forms.TextBox();
+            this.tbxDaysUntillUnbanned = new System.Windows.Forms.TextBox();
+            this.rbtnTemporary = new System.Windows.Forms.RadioButton();
+            this.rbtnPermanent = new System.Windows.Forms.RadioButton();
+            this.gbxProfileInformation = new System.Windows.Forms.GroupBox();
+            this.rtbProfileInformation = new System.Windows.Forms.RichTextBox();
+            this.tbxProfileName = new System.Windows.Forms.TextBox();
             this.pbProfilePicture = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbx_userList = new System.Windows.Forms.ListBox();
+            this.lbxUserList = new System.Windows.Forms.ListBox();
             this.btn_Profile = new System.Windows.Forms.Button();
-            this.btn_Helprequests = new System.Windows.Forms.Button();
-            this.btn_Elderly = new System.Windows.Forms.Button();
-            this.btn_Chat = new System.Windows.Forms.Button();
-            this.btn_Admin = new System.Windows.Forms.Button();
-            this.btn_Volunteers = new System.Windows.Forms.Button();
-            this.btn_LogOut = new System.Windows.Forms.Button();
+            this.btnHelprequests = new System.Windows.Forms.Button();
+            this.btnElderly = new System.Windows.Forms.Button();
+            this.btnChat = new System.Windows.Forms.Button();
+            this.btnAdmin = new System.Windows.Forms.Button();
+            this.btnVolunteers = new System.Windows.Forms.Button();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.gb_Form.SuspendLayout();
-            this.gb_BanUser.SuspendLayout();
-            this.gb_ProfileInformation.SuspendLayout();
+            this.gbxBanUser.SuspendLayout();
+            this.gbxProfileInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // gb_Form
             // 
             this.gb_Form.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gb_Form.Controls.Add(this.btn_DeleteReviews);
-            this.gb_Form.Controls.Add(this.btn_DeleteRequest);
+            this.gb_Form.Controls.Add(this.btnDeleteReviews);
+            this.gb_Form.Controls.Add(this.btnDeleteRequest);
             this.gb_Form.Controls.Add(this.label5);
             this.gb_Form.Controls.Add(this.label4);
-            this.gb_Form.Controls.Add(this.lbx_Reviews);
-            this.gb_Form.Controls.Add(this.lbx_Requests);
-            this.gb_Form.Controls.Add(this.gb_BanUser);
-            this.gb_Form.Controls.Add(this.gb_ProfileInformation);
+            this.gb_Form.Controls.Add(this.lbxReviews);
+            this.gb_Form.Controls.Add(this.lbxRequests);
+            this.gb_Form.Controls.Add(this.gbxBanUser);
+            this.gb_Form.Controls.Add(this.gbxProfileInformation);
             this.gb_Form.Controls.Add(this.label1);
-            this.gb_Form.Controls.Add(this.lbx_userList);
+            this.gb_Form.Controls.Add(this.lbxUserList);
             this.gb_Form.Location = new System.Drawing.Point(126, -8);
             this.gb_Form.Name = "gb_Form";
             this.gb_Form.Size = new System.Drawing.Size(885, 591);
             this.gb_Form.TabIndex = 0;
             this.gb_Form.TabStop = false;
             // 
-            // btn_DeleteReviews
+            // btnDeleteReviews
             // 
-            this.btn_DeleteReviews.ForeColor = System.Drawing.Color.DarkRed;
-            this.btn_DeleteReviews.Location = new System.Drawing.Point(461, 534);
-            this.btn_DeleteReviews.Name = "btn_DeleteReviews";
-            this.btn_DeleteReviews.Size = new System.Drawing.Size(92, 34);
-            this.btn_DeleteReviews.TabIndex = 9;
-            this.btn_DeleteReviews.Text = "Verwijder Recensies";
-            this.btn_DeleteReviews.UseVisualStyleBackColor = true;
-            this.btn_DeleteReviews.Click += new System.EventHandler(this.btn_VerwijderRecensies_Click);
+            this.btnDeleteReviews.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnDeleteReviews.Location = new System.Drawing.Point(461, 534);
+            this.btnDeleteReviews.Name = "btnDeleteReviews";
+            this.btnDeleteReviews.Size = new System.Drawing.Size(92, 34);
+            this.btnDeleteReviews.TabIndex = 9;
+            this.btnDeleteReviews.Text = "Verwijder Recensies";
+            this.btnDeleteReviews.UseVisualStyleBackColor = true;
+            this.btnDeleteReviews.Click += new System.EventHandler(this.btn_VerwijderRecensies_Click);
             // 
-            // btn_DeleteRequest
+            // btnDeleteRequest
             // 
-            this.btn_DeleteRequest.ForeColor = System.Drawing.Color.DarkRed;
-            this.btn_DeleteRequest.Location = new System.Drawing.Point(281, 533);
-            this.btn_DeleteRequest.Name = "btn_DeleteRequest";
-            this.btn_DeleteRequest.Size = new System.Drawing.Size(92, 34);
-            this.btn_DeleteRequest.TabIndex = 8;
-            this.btn_DeleteRequest.Text = "Verwijder Hulpvraag";
-            this.btn_DeleteRequest.UseVisualStyleBackColor = true;
-            this.btn_DeleteRequest.Click += new System.EventHandler(this.btn_VerwijderHulpvraag_Click);
+            this.btnDeleteRequest.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnDeleteRequest.Location = new System.Drawing.Point(281, 533);
+            this.btnDeleteRequest.Name = "btnDeleteRequest";
+            this.btnDeleteRequest.Size = new System.Drawing.Size(92, 34);
+            this.btnDeleteRequest.TabIndex = 8;
+            this.btnDeleteRequest.Text = "Verwijder Hulpvraag";
+            this.btnDeleteRequest.UseVisualStyleBackColor = true;
+            this.btnDeleteRequest.Click += new System.EventHandler(this.btn_VerwijderHulpvraag_Click);
             // 
             // label5
             // 
@@ -122,48 +122,48 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Lijst van hullpvragen:";
             // 
-            // lbx_Reviews
+            // lbxReviews
             // 
-            this.lbx_Reviews.FormattingEnabled = true;
-            this.lbx_Reviews.Location = new System.Drawing.Point(427, 264);
-            this.lbx_Reviews.Name = "lbx_Reviews";
-            this.lbx_Reviews.Size = new System.Drawing.Size(149, 264);
-            this.lbx_Reviews.TabIndex = 5;
+            this.lbxReviews.FormattingEnabled = true;
+            this.lbxReviews.Location = new System.Drawing.Point(427, 264);
+            this.lbxReviews.Name = "lbxReviews";
+            this.lbxReviews.Size = new System.Drawing.Size(149, 264);
+            this.lbxReviews.TabIndex = 5;
             // 
-            // lbx_Requests
+            // lbxRequests
             // 
-            this.lbx_Requests.FormattingEnabled = true;
-            this.lbx_Requests.Location = new System.Drawing.Point(251, 264);
-            this.lbx_Requests.Name = "lbx_Requests";
-            this.lbx_Requests.Size = new System.Drawing.Size(153, 264);
-            this.lbx_Requests.TabIndex = 4;
+            this.lbxRequests.FormattingEnabled = true;
+            this.lbxRequests.Location = new System.Drawing.Point(251, 264);
+            this.lbxRequests.Name = "lbxRequests";
+            this.lbxRequests.Size = new System.Drawing.Size(153, 264);
+            this.lbxRequests.TabIndex = 4;
             // 
-            // gb_BanUser
+            // gbxBanUser
             // 
-            this.gb_BanUser.Controls.Add(this.btn_BanUser);
-            this.gb_BanUser.Controls.Add(this.label3);
-            this.gb_BanUser.Controls.Add(this.label2);
-            this.gb_BanUser.Controls.Add(this.tb_daysUntillUnbanned);
-            this.gb_BanUser.Controls.Add(this.rbtn_Temporary);
-            this.gb_BanUser.Controls.Add(this.rbtn_Permanent);
-            this.gb_BanUser.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gb_BanUser.Location = new System.Drawing.Point(560, 21);
-            this.gb_BanUser.Name = "gb_BanUser";
-            this.gb_BanUser.Size = new System.Drawing.Size(162, 161);
-            this.gb_BanUser.TabIndex = 3;
-            this.gb_BanUser.TabStop = false;
-            this.gb_BanUser.Text = "Gebruiker Bannen";
+            this.gbxBanUser.Controls.Add(this.btnBanUser);
+            this.gbxBanUser.Controls.Add(this.label3);
+            this.gbxBanUser.Controls.Add(this.label2);
+            this.gbxBanUser.Controls.Add(this.tbxDaysUntillUnbanned);
+            this.gbxBanUser.Controls.Add(this.rbtnTemporary);
+            this.gbxBanUser.Controls.Add(this.rbtnPermanent);
+            this.gbxBanUser.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbxBanUser.Location = new System.Drawing.Point(560, 21);
+            this.gbxBanUser.Name = "gbxBanUser";
+            this.gbxBanUser.Size = new System.Drawing.Size(162, 161);
+            this.gbxBanUser.TabIndex = 3;
+            this.gbxBanUser.TabStop = false;
+            this.gbxBanUser.Text = "Gebruiker Bannen";
             // 
-            // btn_BanUser
+            // btnBanUser
             // 
-            this.btn_BanUser.ForeColor = System.Drawing.Color.DarkRed;
-            this.btn_BanUser.Location = new System.Drawing.Point(9, 117);
-            this.btn_BanUser.Name = "btn_BanUser";
-            this.btn_BanUser.Size = new System.Drawing.Size(98, 23);
-            this.btn_BanUser.TabIndex = 5;
-            this.btn_BanUser.Text = "Ban Gebruiker";
-            this.btn_BanUser.UseVisualStyleBackColor = true;
-            this.btn_BanUser.Click += new System.EventHandler(this.btn_BanGebruiker_Click);
+            this.btnBanUser.ForeColor = System.Drawing.Color.DarkRed;
+            this.btnBanUser.Location = new System.Drawing.Point(9, 117);
+            this.btnBanUser.Name = "btnBanUser";
+            this.btnBanUser.Size = new System.Drawing.Size(98, 23);
+            this.btnBanUser.TabIndex = 5;
+            this.btnBanUser.Text = "Ban Gebruiker";
+            this.btnBanUser.UseVisualStyleBackColor = true;
+            this.btnBanUser.Click += new System.EventHandler(this.btn_BanGebruiker_Click);
             // 
             // label3
             // 
@@ -183,62 +183,62 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Tijd tot onban:";
             // 
-            // tb_daysUntillUnbanned
+            // tbxDaysUntillUnbanned
             // 
-            this.tb_daysUntillUnbanned.Location = new System.Drawing.Point(7, 90);
-            this.tb_daysUntillUnbanned.Name = "tb_daysUntillUnbanned";
-            this.tb_daysUntillUnbanned.Size = new System.Drawing.Size(100, 20);
-            this.tb_daysUntillUnbanned.TabIndex = 2;
+            this.tbxDaysUntillUnbanned.Location = new System.Drawing.Point(7, 90);
+            this.tbxDaysUntillUnbanned.Name = "tbxDaysUntillUnbanned";
+            this.tbxDaysUntillUnbanned.Size = new System.Drawing.Size(100, 20);
+            this.tbxDaysUntillUnbanned.TabIndex = 2;
             // 
-            // rbtn_Temporary
+            // rbtnTemporary
             // 
-            this.rbtn_Temporary.AutoSize = true;
-            this.rbtn_Temporary.Location = new System.Drawing.Point(7, 42);
-            this.rbtn_Temporary.Name = "rbtn_Temporary";
-            this.rbtn_Temporary.Size = new System.Drawing.Size(60, 17);
-            this.rbtn_Temporary.TabIndex = 1;
-            this.rbtn_Temporary.TabStop = true;
-            this.rbtn_Temporary.Text = "Tijdelijk";
-            this.rbtn_Temporary.UseVisualStyleBackColor = true;
+            this.rbtnTemporary.AutoSize = true;
+            this.rbtnTemporary.Location = new System.Drawing.Point(7, 42);
+            this.rbtnTemporary.Name = "rbtnTemporary";
+            this.rbtnTemporary.Size = new System.Drawing.Size(60, 17);
+            this.rbtnTemporary.TabIndex = 1;
+            this.rbtnTemporary.TabStop = true;
+            this.rbtnTemporary.Text = "Tijdelijk";
+            this.rbtnTemporary.UseVisualStyleBackColor = true;
             // 
-            // rbtn_Permanent
+            // rbtnPermanent
             // 
-            this.rbtn_Permanent.AutoSize = true;
-            this.rbtn_Permanent.Location = new System.Drawing.Point(7, 18);
-            this.rbtn_Permanent.Name = "rbtn_Permanent";
-            this.rbtn_Permanent.Size = new System.Drawing.Size(76, 17);
-            this.rbtn_Permanent.TabIndex = 0;
-            this.rbtn_Permanent.TabStop = true;
-            this.rbtn_Permanent.Text = "Permanent";
-            this.rbtn_Permanent.UseVisualStyleBackColor = true;
+            this.rbtnPermanent.AutoSize = true;
+            this.rbtnPermanent.Location = new System.Drawing.Point(7, 18);
+            this.rbtnPermanent.Name = "rbtnPermanent";
+            this.rbtnPermanent.Size = new System.Drawing.Size(76, 17);
+            this.rbtnPermanent.TabIndex = 0;
+            this.rbtnPermanent.TabStop = true;
+            this.rbtnPermanent.Text = "Permanent";
+            this.rbtnPermanent.UseVisualStyleBackColor = true;
             // 
-            // gb_ProfileInformation
+            // gbxProfileInformation
             // 
-            this.gb_ProfileInformation.Controls.Add(this.rtb_ProfileInformation);
-            this.gb_ProfileInformation.Controls.Add(this.tbx_ProfileName);
-            this.gb_ProfileInformation.Controls.Add(this.pbProfilePicture);
-            this.gb_ProfileInformation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gb_ProfileInformation.Location = new System.Drawing.Point(251, 20);
-            this.gb_ProfileInformation.Name = "gb_ProfileInformation";
-            this.gb_ProfileInformation.Size = new System.Drawing.Size(302, 200);
-            this.gb_ProfileInformation.TabIndex = 2;
-            this.gb_ProfileInformation.TabStop = false;
-            this.gb_ProfileInformation.Text = "Profiel Informatie";
+            this.gbxProfileInformation.Controls.Add(this.rtbProfileInformation);
+            this.gbxProfileInformation.Controls.Add(this.tbxProfileName);
+            this.gbxProfileInformation.Controls.Add(this.pbProfilePicture);
+            this.gbxProfileInformation.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbxProfileInformation.Location = new System.Drawing.Point(251, 20);
+            this.gbxProfileInformation.Name = "gbxProfileInformation";
+            this.gbxProfileInformation.Size = new System.Drawing.Size(302, 200);
+            this.gbxProfileInformation.TabIndex = 2;
+            this.gbxProfileInformation.TabStop = false;
+            this.gbxProfileInformation.Text = "Profiel Informatie";
             // 
-            // rtb_ProfileInformation
+            // rtbProfileInformation
             // 
-            this.rtb_ProfileInformation.Location = new System.Drawing.Point(96, 46);
-            this.rtb_ProfileInformation.Name = "rtb_ProfileInformation";
-            this.rtb_ProfileInformation.Size = new System.Drawing.Size(189, 145);
-            this.rtb_ProfileInformation.TabIndex = 2;
-            this.rtb_ProfileInformation.Text = "";
+            this.rtbProfileInformation.Location = new System.Drawing.Point(96, 46);
+            this.rtbProfileInformation.Name = "rtbProfileInformation";
+            this.rtbProfileInformation.Size = new System.Drawing.Size(189, 145);
+            this.rtbProfileInformation.TabIndex = 2;
+            this.rtbProfileInformation.Text = "";
             // 
-            // tbx_ProfileName
+            // tbxProfileName
             // 
-            this.tbx_ProfileName.Location = new System.Drawing.Point(96, 20);
-            this.tbx_ProfileName.Name = "tbx_ProfileName";
-            this.tbx_ProfileName.Size = new System.Drawing.Size(189, 20);
-            this.tbx_ProfileName.TabIndex = 1;
+            this.tbxProfileName.Location = new System.Drawing.Point(96, 20);
+            this.tbxProfileName.Name = "tbxProfileName";
+            this.tbxProfileName.Size = new System.Drawing.Size(189, 20);
+            this.tbxProfileName.TabIndex = 1;
             // 
             // pbProfilePicture
             // 
@@ -260,14 +260,14 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Lijst van Gebruikers:";
             // 
-            // lbx_userList
+            // lbxUserList
             // 
-            this.lbx_userList.FormattingEnabled = true;
-            this.lbx_userList.Location = new System.Drawing.Point(16, 134);
-            this.lbx_userList.Name = "lbx_userList";
-            this.lbx_userList.Size = new System.Drawing.Size(187, 433);
-            this.lbx_userList.TabIndex = 0;
-            this.lbx_userList.SelectedIndexChanged += new System.EventHandler(this.lbx_userList_SelectedIndexChanged);
+            this.lbxUserList.FormattingEnabled = true;
+            this.lbxUserList.Location = new System.Drawing.Point(16, 134);
+            this.lbxUserList.Name = "lbxUserList";
+            this.lbxUserList.Size = new System.Drawing.Size(187, 433);
+            this.lbxUserList.TabIndex = 0;
+            this.lbxUserList.SelectedIndexChanged += new System.EventHandler(this.lbx_userList_SelectedIndexChanged);
             // 
             // btn_Profile
             // 
@@ -279,65 +279,65 @@
             this.btn_Profile.UseVisualStyleBackColor = true;
             this.btn_Profile.Click += new System.EventHandler(this.btn_Profiel_Click);
             // 
-            // btn_Helprequests
+            // btnHelprequests
             // 
-            this.btn_Helprequests.Location = new System.Drawing.Point(26, 64);
-            this.btn_Helprequests.Name = "btn_Helprequests";
-            this.btn_Helprequests.Size = new System.Drawing.Size(75, 23);
-            this.btn_Helprequests.TabIndex = 2;
-            this.btn_Helprequests.Text = "Hulpvragen";
-            this.btn_Helprequests.UseVisualStyleBackColor = true;
-            this.btn_Helprequests.Click += new System.EventHandler(this.btn_Hulpvragen_Click);
+            this.btnHelprequests.Location = new System.Drawing.Point(26, 64);
+            this.btnHelprequests.Name = "btnHelprequests";
+            this.btnHelprequests.Size = new System.Drawing.Size(75, 23);
+            this.btnHelprequests.TabIndex = 2;
+            this.btnHelprequests.Text = "Hulpvragen";
+            this.btnHelprequests.UseVisualStyleBackColor = true;
+            this.btnHelprequests.Click += new System.EventHandler(this.btn_Hulpvragen_Click);
             // 
-            // btn_Elderly
+            // btnElderly
             // 
-            this.btn_Elderly.Location = new System.Drawing.Point(26, 93);
-            this.btn_Elderly.Name = "btn_Elderly";
-            this.btn_Elderly.Size = new System.Drawing.Size(75, 23);
-            this.btn_Elderly.TabIndex = 3;
-            this.btn_Elderly.Text = "Ouderen";
-            this.btn_Elderly.UseVisualStyleBackColor = true;
-            this.btn_Elderly.Click += new System.EventHandler(this.btn_Ouderen_Click);
+            this.btnElderly.Location = new System.Drawing.Point(26, 93);
+            this.btnElderly.Name = "btnElderly";
+            this.btnElderly.Size = new System.Drawing.Size(75, 23);
+            this.btnElderly.TabIndex = 3;
+            this.btnElderly.Text = "Ouderen";
+            this.btnElderly.UseVisualStyleBackColor = true;
+            this.btnElderly.Click += new System.EventHandler(this.btn_Ouderen_Click);
             // 
-            // btn_Chat
+            // btnChat
             // 
-            this.btn_Chat.Location = new System.Drawing.Point(26, 151);
-            this.btn_Chat.Name = "btn_Chat";
-            this.btn_Chat.Size = new System.Drawing.Size(75, 23);
-            this.btn_Chat.TabIndex = 4;
-            this.btn_Chat.Text = "Chat";
-            this.btn_Chat.UseVisualStyleBackColor = true;
-            this.btn_Chat.Click += new System.EventHandler(this.btn_Chat_Click);
+            this.btnChat.Location = new System.Drawing.Point(26, 151);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(75, 23);
+            this.btnChat.TabIndex = 4;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btn_Chat_Click);
             // 
-            // btn_Admin
+            // btnAdmin
             // 
-            this.btn_Admin.Location = new System.Drawing.Point(26, 180);
-            this.btn_Admin.Name = "btn_Admin";
-            this.btn_Admin.Size = new System.Drawing.Size(75, 23);
-            this.btn_Admin.TabIndex = 5;
-            this.btn_Admin.Text = "Beheer";
-            this.btn_Admin.UseVisualStyleBackColor = true;
-            this.btn_Admin.Click += new System.EventHandler(this.btn_Beheer_Click);
+            this.btnAdmin.Location = new System.Drawing.Point(26, 180);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(75, 23);
+            this.btnAdmin.TabIndex = 5;
+            this.btnAdmin.Text = "Beheer";
+            this.btnAdmin.UseVisualStyleBackColor = true;
+            this.btnAdmin.Click += new System.EventHandler(this.btn_Beheer_Click);
             // 
-            // btn_Volunteers
+            // btnVolunteers
             // 
-            this.btn_Volunteers.Location = new System.Drawing.Point(26, 122);
-            this.btn_Volunteers.Name = "btn_Volunteers";
-            this.btn_Volunteers.Size = new System.Drawing.Size(75, 23);
-            this.btn_Volunteers.TabIndex = 6;
-            this.btn_Volunteers.Text = "Vrijwiligers";
-            this.btn_Volunteers.UseVisualStyleBackColor = true;
-            this.btn_Volunteers.Click += new System.EventHandler(this.btn_Vrijwilligers_Click);
+            this.btnVolunteers.Location = new System.Drawing.Point(26, 122);
+            this.btnVolunteers.Name = "btnVolunteers";
+            this.btnVolunteers.Size = new System.Drawing.Size(75, 23);
+            this.btnVolunteers.TabIndex = 6;
+            this.btnVolunteers.Text = "Vrijwiligers";
+            this.btnVolunteers.UseVisualStyleBackColor = true;
+            this.btnVolunteers.Click += new System.EventHandler(this.btn_Vrijwilligers_Click);
             // 
-            // btn_LogOut
+            // btnLogOut
             // 
-            this.btn_LogOut.Location = new System.Drawing.Point(26, 494);
-            this.btn_LogOut.Name = "btn_LogOut";
-            this.btn_LogOut.Size = new System.Drawing.Size(75, 23);
-            this.btn_LogOut.TabIndex = 7;
-            this.btn_LogOut.Text = "Log Uit";
-            this.btn_LogOut.UseVisualStyleBackColor = true;
-            this.btn_LogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
+            this.btnLogOut.Location = new System.Drawing.Point(26, 494);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(75, 23);
+            this.btnLogOut.TabIndex = 7;
+            this.btnLogOut.Text = "Log Uit";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
             // AdminSystemForm
             // 
@@ -345,22 +345,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(864, 571);
-            this.Controls.Add(this.btn_LogOut);
-            this.Controls.Add(this.btn_Volunteers);
-            this.Controls.Add(this.btn_Admin);
-            this.Controls.Add(this.btn_Chat);
-            this.Controls.Add(this.btn_Elderly);
-            this.Controls.Add(this.btn_Helprequests);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.btnVolunteers);
+            this.Controls.Add(this.btnAdmin);
+            this.Controls.Add(this.btnChat);
+            this.Controls.Add(this.btnElderly);
+            this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btn_Profile);
             this.Controls.Add(this.gb_Form);
             this.Name = "AdminSystemForm";
             this.Text = "BeheerSysteemForm";
             this.gb_Form.ResumeLayout(false);
             this.gb_Form.PerformLayout();
-            this.gb_BanUser.ResumeLayout(false);
-            this.gb_BanUser.PerformLayout();
-            this.gb_ProfileInformation.ResumeLayout(false);
-            this.gb_ProfileInformation.PerformLayout();
+            this.gbxBanUser.ResumeLayout(false);
+            this.gbxBanUser.PerformLayout();
+            this.gbxProfileInformation.ResumeLayout(false);
+            this.gbxProfileInformation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -370,30 +370,30 @@
 
         private System.Windows.Forms.GroupBox gb_Form;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbx_userList;
+        private System.Windows.Forms.ListBox lbxUserList;
         private System.Windows.Forms.Button btn_Profile;
-        private System.Windows.Forms.Button btn_Helprequests;
-        private System.Windows.Forms.Button btn_Elderly;
-        private System.Windows.Forms.Button btn_Chat;
-        private System.Windows.Forms.Button btn_Admin;
-        private System.Windows.Forms.Button btn_Volunteers;
-        private System.Windows.Forms.Button btn_LogOut;
-        private System.Windows.Forms.Button btn_DeleteReviews;
-        private System.Windows.Forms.Button btn_DeleteRequest;
+        private System.Windows.Forms.Button btnHelprequests;
+        private System.Windows.Forms.Button btnElderly;
+        private System.Windows.Forms.Button btnChat;
+        private System.Windows.Forms.Button btnAdmin;
+        private System.Windows.Forms.Button btnVolunteers;
+        private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Button btnDeleteReviews;
+        private System.Windows.Forms.Button btnDeleteRequest;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox lbx_Reviews;
-        private System.Windows.Forms.ListBox lbx_Requests;
-        private System.Windows.Forms.GroupBox gb_BanUser;
-        private System.Windows.Forms.Button btn_BanUser;
+        private System.Windows.Forms.ListBox lbxReviews;
+        private System.Windows.Forms.ListBox lbxRequests;
+        private System.Windows.Forms.GroupBox gbxBanUser;
+        private System.Windows.Forms.Button btnBanUser;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_daysUntillUnbanned;
-        private System.Windows.Forms.RadioButton rbtn_Temporary;
-        private System.Windows.Forms.RadioButton rbtn_Permanent;
-        private System.Windows.Forms.GroupBox gb_ProfileInformation;
-        private System.Windows.Forms.RichTextBox rtb_ProfileInformation;
-        private System.Windows.Forms.TextBox tbx_ProfileName;
+        private System.Windows.Forms.TextBox tbxDaysUntillUnbanned;
+        private System.Windows.Forms.RadioButton rbtnTemporary;
+        private System.Windows.Forms.RadioButton rbtnPermanent;
+        private System.Windows.Forms.GroupBox gbxProfileInformation;
+        private System.Windows.Forms.RichTextBox rtbProfileInformation;
+        private System.Windows.Forms.TextBox tbxProfileName;
         private System.Windows.Forms.PictureBox pbProfilePicture;
     }
 }
