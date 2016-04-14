@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
+using Participation.SharedModels;
 
 
 namespace Participation
@@ -69,11 +70,84 @@ namespace Participation
                 return null;
             }
         }
+
+        private static GenderEnum ToGender(string value)
+        {
+            GenderEnum gender;
+            if (value == "M")
+            {
+                gender = GenderEnum.Male;
+            }
+            if (value == "V")
+            {
+                gender = GenderEnum.Female;
+            }
+            else
+            {
+                throw new Exception("No gender assigned");
+            }
+
+            return gender;
+        }
         #endregion
 
 
-        #region Methods - AuthenticationSystem
 
+        #region Methods - AuthenticationSystem
+        
+        //Pulls the accountinformation from the database, and casts it into an user-object
+        public static User CreateUser(string Email)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE email = :Email");
+                command.Parameters.Add(":Email", Email);
+                OracleDataReader reader = ExecuteQuery(command);
+
+                string Name = reader["name"].ToString();
+                string EmailAdress = reader["email"].ToString();
+                string Description = reader["description"].ToString();
+                string dateTime = reader["dateOfBirth"].ToString();
+                       DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                string Location = reader["location"].ToString();
+                string PhoneNumber = reader["phone"].ToString();
+                GenderEnum Gender = ToGender(reader["gender"].ToString());
+                string Password = reader["password"].ToString();
+
+                string PersonType = reader["personType"].ToString();
+                if (PersonType == "Volunteer")
+                {
+                    return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+                if (PersonType == "Patient")
+                {
+                    return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+                if (PersonType == "Admin")
+                {
+                    return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+            }
+
+            catch
+            {
+                throw new Exception("Something went wrong");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+        //Creates a list of meetings and returns it to the user-creation method
+        public static List<Meeting> CreateMeetingList(int UserID)
+        {
+            OracleCommand command = CreateOracleCommand("SELECT * FROM Meeting WHERE volunteerID = :UserID OR patientID = :UserID");
+            command.Parameters.Add(":volunteerID", UserID);
+            command.Parameters.Add(":patientID", UserID);
+            OracleDataReader reader = ExecuteQuery(command);
+
+            return null;
+        }
         #endregion
 
         #region Methods - AdministrationSystem
@@ -92,6 +166,14 @@ namespace Participation
 
         #endregion
 
+
+
+        #region Example
+        /// <summary>
+        /// Example of a database query, casted to a specific return type
+        /// </summary>
+        /// <param name="sql_Values"></param>
+        /// <returns></returns>
         public static object Testquery(string sql_Values)
         {
             try
@@ -116,5 +198,6 @@ namespace Participation
                 _Connection.Close();
             }
         }
+        #endregion
     }
 }
