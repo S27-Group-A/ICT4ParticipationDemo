@@ -29,13 +29,13 @@ namespace Participation
             InitializeComponent();
 
 
-            //VolunteerForm test = new VolunteerForm();
+            VolunteerForm test = new VolunteerForm();
             //RequestForm reqtest = new RequestForm();
 
 
 
 
-            //test.Show();
+            test.Show();
             //reqtest.Show();
             this.Hide();
         }

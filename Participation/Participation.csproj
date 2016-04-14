@@ -86,7 +86,9 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
-    <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
+    <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>

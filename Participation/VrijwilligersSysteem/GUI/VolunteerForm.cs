@@ -11,7 +11,6 @@ using Participation.SharedModels;
 using Participation.VrijwilligersSysteem;
 using Participation.VrijwilligersSysteem.Logic;
 using Participation.VrijwilligersSysteem.GUI;
-using Participation.VrijwilligersSysteem.Logic;
 
 namespace Participation.VrijwilligersSysteem.GUI
 {
@@ -43,7 +42,7 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             if (tbResponse.Text.Length > 0)
             {
-                _selectedRequest.AddResponse(tbResponse.Text, DateTime.Now);
+                _selectedRequest.AddResponse(tbResponse.Text);
                 GetRequestInfo();
                 tbResponse.Text = "";
             }
@@ -71,7 +70,14 @@ namespace Participation.VrijwilligersSysteem.GUI
             lblName.Text = _volunteerSystem.GetPatientFromRequest(_selectedRequest).Name;
             lblDescription.Text = _selectedRequest.Text;
             lblLocation.Text = _selectedRequest.Location;
-            lblUrgency.Text = _selectedRequest.Urgency.ToString();
+            if (_selectedRequest.Urgency == 0)
+            {
+                lblUrgency.Text = "Niet belangrijk.";
+            }
+            else
+            {
+                lblUrgency.Text = "Belangrijk.";
+            }
             lblDate.Text = _selectedRequest.Date.ToString();
             if (_selectedRequest.Responses.Count > 0)
             {
