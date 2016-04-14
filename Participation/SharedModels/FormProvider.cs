@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Participation.InlogSysteem.GUI;
+//using Participation.HulpSysteem.GUI;
+using UI;
 
 namespace Participation.SharedModels
 {
@@ -35,6 +37,19 @@ namespace Participation.SharedModels
             }
         }
         private static RegisterForm _registerForm;
+
+        //public static RequestForm RequestForm
+        //{
+        //    get
+        //    {
+        //        if (_requestForm == null)
+        //        {
+        //            _requestForm = new RequestForm();
+        //        }
+        //        return _requestForm;
+        //    }
+        //}
+        //private static RegisterForm _requestForm;
     }
 }
 
