@@ -15,7 +15,7 @@ namespace Participation.HulpSysteem.Logic
 
         public void AddRequest(Patient patient, Request request)
         {
-            patient.requests.Add(request);
+            patient.Requests.Add(request);
             //TODO Add database context to add request to database
         }
     }
