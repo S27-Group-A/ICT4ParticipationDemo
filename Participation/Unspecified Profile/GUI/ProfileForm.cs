@@ -7,36 +7,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.SharedModels;
 
 namespace Participation.BeheerSysteem.GUI
 {
     public partial class ProfileForm : Form
     {
-        public ProfileForm()
+        private User _loggedInUser;
+
+        public ProfileForm(Volunteer loggedInUser)
         {
             InitializeComponent();
-            //load userlist
-            //load requests
-            //load reviews
+            _loggedInUser = loggedInUser;
         }
 
-       
+        public ProfileForm(Patient loggedInUser)
+        {
+            InitializeComponent();
+            _loggedInUser = loggedInUser;
+        }
+
+        private void ProfileForm_Load(object sender, EventArgs e)
+        {
+            RefreshInfo();
+            RefreshPic();
+            if (_loggedInUser.GetType() == typeof(Volunteer))
+            {
+                RefreshVogUrl();
+                RefreshPerks();
+            }
+
+
+        }
 
         private void btn_Chat_Click(object sender, EventArgs e)
         {
-            // Create a new instance of the Form2 class
-            //Chatform newchat = new Chatform();
 
-            // Show the settings form
-            //newchat.Show();
         }
+
         private void btn_Beheer_Click(object sender, EventArgs e)
         {
             MessageBox.Show("U bent al op de beheerderspagina!");
         }
+
         private void btn_LogUit_Click(object sender, EventArgs e)
         {
-            DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "", MessageBoxButtons.YesNo);
+            DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "",
+                MessageBoxButtons.YesNo);
             if (dialogresult == DialogResult.Yes)
             {
                 MessageBox.Show("U bent nu uitgelogd.");
@@ -46,6 +63,7 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
+
         private void btn_Profiel_Click(object sender, EventArgs e)
         {
 
@@ -56,15 +74,38 @@ namespace Participation.BeheerSysteem.GUI
 
         }
 
-        private void btn_Ouderen_Click(object sender, EventArgs e)
+        private void EditInfo_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btn_Vrijwilligers_Click(object sender, EventArgs e)
+        private void RefreshInfo()
         {
-
+            lblName.Text = _loggedInUser.Name;
+            lblEmail.Text = _loggedInUser.Email;
+            lblBirthdate.Text = _loggedInUser.Birthday.ToString();
+            lblLocation.Text = _loggedInUser.Location;
+            lblGender.Text = _loggedInUser.Gender.ToString();
         }
+
+        private void RefreshPic()
+        {
+            //TODO Implement
+            throw new NotImplementedException("RefreshPic is nog niet geimplementeerd");
+        }
+
+        private void RefreshVogUrl()
+        {
+            //TODO Implement
+            throw new NotImplementedException("RefreshVogUrl is nog niet geimplementeerd");
+        }
+
+        private void RefreshPerks()
+        {
+            //TODO Implement
+            throw new NotImplementedException("RefreshPerks is nog niet geimplementeerd");
+        }
+
 
     }
 }
