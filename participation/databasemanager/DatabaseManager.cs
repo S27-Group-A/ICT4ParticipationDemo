@@ -199,5 +199,24 @@ namespace Participation
             }
         }
         #endregion
+
+        //Returns list of users.
+        internal static List<User> GetUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Requests
+        internal static List<Request> GetRequests()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Reviews
+        internal static List<Review> GetReviews()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

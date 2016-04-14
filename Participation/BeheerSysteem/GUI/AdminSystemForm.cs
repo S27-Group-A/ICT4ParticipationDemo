@@ -7,20 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.SharedModels;
+using Participation.BeheerSysteem.Logic;
 
 namespace Participation.BeheerSysteem.GUI
 {
     public partial class AdminSystemForm : Form
     {
+        //Fields
+        private AdministrationSystem adminSystem;
+
+        //Constructor
         public AdminSystemForm()
         {
             InitializeComponent();
             emptyProfileInformation();
-            //load userlist
-            //load requests
-            //load reviews
+            this.adminSystem = new AdministrationSystem();
+            LoadUserList();
+            LoadRequestList();
+            LoadReviewList();
         }
 
+        //Empties all the textboxes in the Profile Information groupbox.
         public void emptyProfileInformation()
         {
             tbxProfileName.Text = "";
@@ -28,6 +36,26 @@ namespace Participation.BeheerSysteem.GUI
             //pbProfilePicture.Show = false;
         }
 
+        //Loads the listbox and fills it with users.
+        public void LoadUserList()
+        {
+            lbxUserList.DataSource = adminSystem.Users;
+            Refresh();
+        }
+
+        //Loads the listbox and fills it with requests.
+        public void LoadRequestList()
+        {
+            lbxRequests.DataSource = DatabaseManager.GetRequests();
+        }
+
+        //Loads the listbox and fills it with reviews.
+        public void LoadReviewList()
+        {
+            lbxReviews.DataSource = DatabaseManager.GetReviews();
+        }
+
+        //Changes the information displayed in the Profile Information groupbox.
         private void lbx_userList_SelectedIndexChanged(object sender, EventArgs e)
         {
             emptyProfileInformation();
@@ -38,6 +66,7 @@ namespace Participation.BeheerSysteem.GUI
             //pbProfilePicture.Show = true;
 
         }
+
 
         private void btn_BanGebruiker_Click(object sender, EventArgs e)
         {
@@ -105,6 +134,21 @@ namespace Participation.BeheerSysteem.GUI
         }
 
         private void btn_Vrijwilligers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnChangeRights_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnJudgeVolunteer_Click(object sender, EventArgs e)
         {
 
         }

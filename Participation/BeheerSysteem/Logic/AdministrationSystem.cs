@@ -9,6 +9,7 @@ namespace Participation.BeheerSysteem.Logic
 {
     class AdministrationSystem
     {
+
         public List<User> Users {get; set;}
         bool CreateAccount = false;
         
@@ -24,10 +25,8 @@ namespace Participation.BeheerSysteem.Logic
 
         public List<User> GetUsers()
         {
-           //connect to database
-            //querry select * from User
-
-            return Users;
+           return DatabaseManager.GetUsers();
+  
         }
 
         public void BanUser()
