@@ -60,11 +60,11 @@ namespace Participation.VrijwilligersSysteem.Logic
                 }
             }
         }
-
+        
         /// <summary>
         /// Gets the patient object from the request object
         /// </summary>
-        /// <param name="input request"></param>
+        /// <param name="request">Input request</param>
         /// <returns>The patient who the request belongs to</returns>
         public Patient GetPatientFromRequest(Request request)
         {
