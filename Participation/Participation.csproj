@@ -125,7 +125,6 @@
     <Folder Include="BeheerSysteem\" />
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
-    <Folder Include="UserInterface\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Logic\" />
   </ItemGroup>
