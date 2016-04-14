@@ -11,31 +11,31 @@ namespace Participation.SharedModels
     public class Patient : User
     {
         //properties
-        public List<Request> requests { get; set; }
+        public List<Request> Requests { get; set; }
 
         //constructors
         public Patient(string name, string email, string description, DateTime birthday, string profilePicture, 
             string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description, 
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
-            requests = new List<Request>();
+            Requests = new List<Request>();
         }
 
         public Patient(string email, string password) : base(email, password)
         {
-            requests = new List<Request>();
+            Requests = new List<Request>();
         }
 
         public Patient(string name, string email, DateTime birthday, string location, string password) 
             : base(name, email, birthday, location, password)
         {
-            requests = new List<Request>();
+            Requests = new List<Request>();
         }
 
         public Patient(string name, string email, DateTime birthday, string location, string password, string phoneNumber)
             : base(name, email, birthday, location, password, phoneNumber)
         {
-            requests = new List<Request>();
+            Requests = new List<Request>();
         }
 
 
