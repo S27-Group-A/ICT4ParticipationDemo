@@ -8,34 +8,49 @@ namespace Participation.SharedModels
 {
     public class Request
     {
-        private string _title, _text, _location;
-        private int _urgency;
-        private DateTime _date;
-        private List<string> _perks = new List<string>();
-        private string title;
-        private string text;
-        private List<string> perks;
-        private string location;
-        private DateTime date;
-        private int urgency;
 
-        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public string Title { get; set; }
+        public string Text { get; set; }
+        public string Location { get; set; }
+        public int Urgency { get; set; }
+        public DateTime Date { get; set; }
+        public List<string> Perks { get; set; }
+        public List<Response> Responses { get; set; }
+
+        public Request(
+            string title, 
+            string text, 
+            List<string> perks, 
+            string location, 
+            DateTime date, 
+            int urgency
+            )
         {
-            _title = title;
-            _text = text;
-            _perks = perks;
-            _location = location;
-            _date = date;
-            _urgency = urgency;
+            this.Title = title;
+            this.Text = text;
+            this.Perks = perks;
+            this.Location = location;
+            this.Date = date;
+            this.Urgency = urgency;
         }
 
         public Request(string title, string text, string location)
         {
-            _title = title;
-            _text = text;
-            _location = location;
+            this.Title = title;
+            this.Text = text;
+            this.Location = location;
         }
 
+        public override string ToString()
+        {
+            //TODO Optionally return perks per perk as string
+            var returnString = Title + " " + Text + " " + Location + " " + Urgency + " " + Date.ToString() + " " + Perks.ToString();
+            return returnString;
+        }
 
+        public void AddResponse(string text, DateTime date)
+        {
+            Responses.Add(new Response(text, date));
+        }
     }
 }

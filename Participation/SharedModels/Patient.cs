@@ -10,20 +10,20 @@ namespace Participation.SharedModels
     public class Patient : User
     {
         //properties
-        private List<Request> _requests { get; set; }
+        public List<Request> Requests { get; set; }
 
         //constructors
         public Patient(string name, string email, string despription, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender)
             : base(name, email, despription, birthday, profilePicture, location, phoneNumber, gender)
         {
-            _requests = new List<Request>();
+            Requests = new List<Request>();
         }
 
         //Methods
-        private void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             Request req = new Request(title, text, perks, location, date, urgency);
-
+            Requests.Add(req);
         }
 
         private void RemoveRequest()
