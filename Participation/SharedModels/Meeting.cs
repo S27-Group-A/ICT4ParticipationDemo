@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Participation.SharedModels
 {
-    class Meeting
+    public class Meeting
     {
     }
 }

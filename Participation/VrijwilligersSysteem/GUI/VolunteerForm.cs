@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Participation.SharedModels;
 using Participation.VrijwilligersSysteem;
 using Participation.VrijwilligersSysteem.Logic;
+using Participation.VrijwilligersSysteem.GUI;
+using Participation.VrijwilligersSysteem.Logic;
 
 namespace Participation.VrijwilligersSysteem.GUI
 {

@@ -14,13 +14,28 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
 
         //constructors
-        public Volunteer(string name, string email, string despription, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, List<string> perks)
-            : base(name, email, despription, birthday, profilePicture, location, phoneNumber, gender)
+        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
+            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
-            this._perks = perks;
+            _perks = perks;
             _verklaringPdf = null;
         }
+
+        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum
+            gender, string password, List<string> perks, string verklaringPdf) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+        {
+            _reviews = new List<Review>();
+            _perks = perks;
+            _verklaringPdf = verklaringPdf;
+        }
+
+        public Volunteer(string email, string password, List<string> perks) : base(email, password)
+        {
+            _reviews = new List<Review>();
+            _perks = perks;
+        }
+
 
         //methods
         public bool InviteToChat()

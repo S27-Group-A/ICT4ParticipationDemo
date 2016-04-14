@@ -20,7 +20,8 @@ namespace Participation.VrijwilligersSysteem.Logic
             Volunteers = new List<Volunteer>();
             Requests = new List<Request>();
             Patients = new List<Patient>();
-            Patient test1 = new Patient("Sven", "sven@spetter.nl", "Trotste golden retriever eigenaar", DateTime.Now, "-", "Grathem", "06123466789", GenderEnum.Male);
+            //TODO Herschrijf test1 of voeg een nieuwe constructor toe die test1 op de wijzen de regel hieronder wel kan aannemen
+            Patient test1 = new Patient("Sjeng", "sven@gmail.com", "Goeie hulpverlener enzo", DateTime.Now, "-", "Grathem", "06123456789", GenderEnum.Male, "pw");
             Patients.Add(test1);
             test1.AddRequest("Huiswerk", "Help me!!", null, "Grathem", DateTime.Now, 0);
             test1.AddRequest("Carnaval", "Die hoor je en die zie je overal.", null, "Grashoek", DateTime.Now, 0);

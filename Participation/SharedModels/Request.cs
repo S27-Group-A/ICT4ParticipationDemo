@@ -8,7 +8,6 @@ namespace Participation.SharedModels
 {
     public class Request
     {
-
         public string Title { get; set; }
         public string Text { get; set; }
         public string Location { get; set; }
@@ -33,6 +32,7 @@ namespace Participation.SharedModels
             this.Date = date;
             this.Urgency = urgency;
             Responses = new List<Response>();
+
         }
 
         public Request(string title, string text, string location)
@@ -42,16 +42,23 @@ namespace Participation.SharedModels
             this.Location = location;
         }
 
+
+        public void AddResponse(string text, DateTime date)
+        {
+            Responses.Add(new Response(text, date));
+            Text = text;
+            Date = date;
+        }
+
+        public Request()
+        {
+        }
+
         public override string ToString()
         {
             //TODO Optionally return perks per perk as string
             var returnString = Title + " " + Text + " " + Location + " " + Urgency + " " + Date.ToString() + " " + Perks.ToString();
             return returnString;
-        }
-
-        public void AddResponse(string text, DateTime date)
-        {
-            Responses.Add(new Response(text, date));
         }
     }
 }
