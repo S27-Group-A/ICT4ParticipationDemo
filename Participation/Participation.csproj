@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,20 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InlogSysteem\GUI\RegisterForm.Designer.cs">
-      <DependentUpon>RegisterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
-    <Compile Include="SharedModels\FormProvider.cs" />
-    <Compile Include="InlogSysteem\GUI\Startmenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InlogSysteem\GUI\Startmenu.Designer.cs">
-      <DependentUpon>Startmenu.cs</DependentUpon>
-    </Compile>
+    <Compile Include="DatabaseManager\DatabaseManager.cs" />
     <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,8 +56,22 @@
       <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
+    <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InlogSysteem\GUI\RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InlogSysteem\GUI\Startmenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InlogSysteem\GUI\Startmenu.Designer.cs">
+      <DependentUpon>Startmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharedModels\FormProvider.cs" />
     <Compile Include="SharedModels\GenderEnum.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
     <Compile Include="SharedModels\Patient.cs" />
@@ -81,15 +86,14 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
-    <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\Startmenu.resx">
       <DependentUpon>Startmenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
-      <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,7 +125,9 @@
     <Folder Include="BeheerSysteem\" />
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
+    <Folder Include="UserInterface\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
+    <Folder Include="VrijwilligersSysteem\Logic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
