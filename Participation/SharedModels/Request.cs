@@ -32,6 +32,7 @@ namespace Participation.SharedModels
             this.Location = location;
             this.Date = date;
             this.Urgency = urgency;
+            Responses = new List<Response>();
         }
 
         public Request(string title, string text, string location)

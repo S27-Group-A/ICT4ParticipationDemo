@@ -65,6 +65,14 @@ namespace Participation.VrijwilligersSysteem.GUI
             lblLocation.Text = _tempReq.Location;
             lblUrgency.Text = _tempReq.Urgency.ToString();
             lblDate.Text = _tempReq.Date.ToString();
+            if (_tempReq.Responses.Count > 0)
+            {
+                lbResponses.Items.Clear();
+                foreach (Response r in _tempReq.Responses)
+                {
+                    lbResponses.Items.Add(r.Text);
+                }
+            }
         }
 
         private void lbPatients_SelectedIndexChanged(object sender, EventArgs e)

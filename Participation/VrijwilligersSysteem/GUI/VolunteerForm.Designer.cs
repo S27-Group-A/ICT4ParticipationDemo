@@ -41,7 +41,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbResponses = new System.Windows.Forms.ListBox();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -138,7 +138,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.lbResponses);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(226, 292);
             this.groupBox1.Name = "groupBox1";
@@ -177,14 +177,14 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // listBox1
+            // lbResponses
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(7, 29);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(321, 100);
-            this.listBox1.TabIndex = 0;
+            this.lbResponses.FormattingEnabled = true;
+            this.lbResponses.ItemHeight = 24;
+            this.lbResponses.Location = new System.Drawing.Point(7, 29);
+            this.lbResponses.Name = "lbResponses";
+            this.lbResponses.Size = new System.Drawing.Size(321, 100);
+            this.lbResponses.TabIndex = 0;
             // 
             // VolunteerForm
             // 
@@ -226,6 +226,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbResponses;
     }
 }
