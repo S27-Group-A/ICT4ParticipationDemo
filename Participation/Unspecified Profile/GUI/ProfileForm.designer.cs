@@ -44,7 +44,6 @@
             this.btnAddPerk = new System.Windows.Forms.Button();
             this.lblListPerks = new System.Windows.Forms.Label();
             this.gbxVog = new System.Windows.Forms.GroupBox();
-            this.tbxVogUrl = new System.Windows.Forms.TextBox();
             this.lblAllowedVogFormats = new System.Windows.Forms.Label();
             this.btnBrowseVogUrl = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -54,6 +53,7 @@
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblPhonenumber = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
+            this.lblVogUrl = new System.Windows.Forms.LinkLabel();
             this.gbForm.SuspendLayout();
             this.formPnl.SuspendLayout();
             this.gbxPerks.SuspendLayout();
@@ -200,9 +200,9 @@
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblListPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxPerks.Location = new System.Drawing.Point(42, 334);
+            this.gbxPerks.Location = new System.Drawing.Point(42, 321);
             this.gbxPerks.Name = "gbxPerks";
-            this.gbxPerks.Size = new System.Drawing.Size(578, 358);
+            this.gbxPerks.Size = new System.Drawing.Size(578, 379);
             this.gbxPerks.TabIndex = 47;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
@@ -234,13 +234,13 @@
             this.lblListPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblListPerks.Location = new System.Drawing.Point(19, 65);
             this.lblListPerks.Name = "lblListPerks";
-            this.lblListPerks.Size = new System.Drawing.Size(521, 60);
+            this.lblListPerks.Size = new System.Drawing.Size(521, 277);
             this.lblListPerks.TabIndex = 38;
             this.lblListPerks.Text = "Vaardigheden: ";
             // 
             // gbxVog
             // 
-            this.gbxVog.Controls.Add(this.tbxVogUrl);
+            this.gbxVog.Controls.Add(this.lblVogUrl);
             this.gbxVog.Controls.Add(this.lblAllowedVogFormats);
             this.gbxVog.Controls.Add(this.btnBrowseVogUrl);
             this.gbxVog.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -251,14 +251,6 @@
             this.gbxVog.TabStop = false;
             this.gbxVog.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
             this.gbxVog.Visible = false;
-            // 
-            // tbxVogUrl
-            // 
-            this.tbxVogUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxVogUrl.Location = new System.Drawing.Point(19, 34);
-            this.tbxVogUrl.Name = "tbxVogUrl";
-            this.tbxVogUrl.Size = new System.Drawing.Size(432, 27);
-            this.tbxVogUrl.TabIndex = 33;
             // 
             // lblAllowedVogFormats
             // 
@@ -285,9 +277,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(776, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(797, 25);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.Size = new System.Drawing.Size(184, 184);
             this.pictureBox1.TabIndex = 50;
             this.pictureBox1.TabStop = false;
             // 
@@ -357,6 +349,16 @@
             this.lblGender.TabIndex = 47;
             this.lblGender.Text = "<geslacht>";
             // 
+            // lblVogUrl
+            // 
+            this.lblVogUrl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblVogUrl.Location = new System.Drawing.Point(16, 34);
+            this.lblVogUrl.Name = "lblVogUrl";
+            this.lblVogUrl.Size = new System.Drawing.Size(435, 23);
+            this.lblVogUrl.TabIndex = 36;
+            this.lblVogUrl.TabStop = true;
+            this.lblVogUrl.Text = "<download link van het huidige VOG>";
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -400,7 +402,6 @@
         private System.Windows.Forms.Button btnAddPerk;
         private System.Windows.Forms.Label lblListPerks;
         private System.Windows.Forms.GroupBox gbxVog;
-        private System.Windows.Forms.TextBox tbxVogUrl;
         private System.Windows.Forms.Label lblAllowedVogFormats;
         private System.Windows.Forms.Button btnBrowseVogUrl;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -410,5 +411,6 @@
         private System.Windows.Forms.Label lblBirthdate;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.LinkLabel lblVogUrl;
     }
 }
