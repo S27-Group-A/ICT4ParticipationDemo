@@ -13,7 +13,10 @@ namespace Participation.InlogSysteem.GUI
 {
     public partial class RegisterForm : Form
     {
-        private readonly LISLogic _lisLogic = new LISLogic(); 
+        private static readonly string _succesfullRegisterationMsg = "Uw account is geregistreerd u kunt nu inloggen";
+        private static readonly string _contactAdministratorMsg = "Er is iets misgegaan neem contact op met de administrator";
+
+        private LISLogic _lisLogic = new LISLogic(); 
 
         private List<string> _perks = new List<string>(); 
 
@@ -82,15 +85,15 @@ namespace Participation.InlogSysteem.GUI
                     {
                         if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
                             profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text,GenderEnum.Male , passwordTbx.Text)))
-                            MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
-                        else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
+                            MessageBox.Show(_succesfullRegisterationMsg);
+                        else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (femaleRbt.Checked)
                     {
                         if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
                             profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text)))
-                            MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
-                        else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
+                            MessageBox.Show(_succesfullRegisterationMsg);
+                        else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
                 if (canHelpRbt.Checked)
@@ -98,14 +101,14 @@ namespace Participation.InlogSysteem.GUI
                     if (maleRbt.Checked)
                     {
                         if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male, passwordTbx.Text, new List<Meeting>(), _perks )))
-                            MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
-                        else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
+                            MessageBox.Show(_succesfullRegisterationMsg);
+                        else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (femaleRbt.Checked)
                     {
                         if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text, new List<Meeting>(), _perks)))
-                            MessageBox.Show("Uw account is geregistreerd u kunt nu inloggen");
-                        else MessageBox.Show("Er is iets misgegaan neem contact op met de administrator");
+                            MessageBox.Show(_succesfullRegisterationMsg);
+                        else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
                 //TODO Add files (VOG and Profilepicture) to server
