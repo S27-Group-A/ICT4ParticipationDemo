@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
+using Participation.SharedModels;
 
 
 namespace Participation
@@ -115,6 +116,24 @@ namespace Participation
             {
                 _Connection.Close();
             }
+        }
+
+        //Returns list of users.
+        internal static List<User> GetUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Requests
+        internal static List<Request> GetRequests()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Reviews
+        internal static List<Review> GetReviews()
+        {
+            throw new NotImplementedException();
         }
     }
 }
