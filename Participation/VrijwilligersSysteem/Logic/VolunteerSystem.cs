@@ -12,7 +12,6 @@ namespace Participation.VrijwilligersSysteem.Logic
         //properties
         public List<Patient> Patients { get; set; }
         public List<Volunteer> Volunteers { get; set; }
-
         public List<Request> Requests { get; set; }
 
         //constructor

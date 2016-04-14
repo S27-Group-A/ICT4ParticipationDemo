@@ -38,8 +38,8 @@
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblUrgency = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tbResponse = new System.Windows.Forms.TextBox();
+            this.btnPostResponse = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbResponses = new System.Windows.Forms.ListBox();
             this.panel2.SuspendLayout();
@@ -147,25 +147,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reacties";
             // 
-            // textBox1
+            // tbResponse
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(566, 293);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 87);
-            this.textBox1.TabIndex = 7;
+            this.tbResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbResponse.Location = new System.Drawing.Point(566, 293);
+            this.tbResponse.Multiline = true;
+            this.tbResponse.Name = "tbResponse";
+            this.tbResponse.Size = new System.Drawing.Size(270, 87);
+            this.tbResponse.TabIndex = 7;
             // 
-            // button1
+            // btnPostResponse
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(566, 386);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 38);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Plaats Reactie";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnPostResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPostResponse.Location = new System.Drawing.Point(566, 386);
+            this.btnPostResponse.Name = "btnPostResponse";
+            this.btnPostResponse.Size = new System.Drawing.Size(270, 38);
+            this.btnPostResponse.TabIndex = 8;
+            this.btnPostResponse.Text = "Plaats Reactie";
+            this.btnPostResponse.UseVisualStyleBackColor = true;
+            this.btnPostResponse.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -192,8 +192,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 436);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnPostResponse);
+            this.Controls.Add(this.tbResponse);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblDescription);
@@ -223,8 +223,8 @@
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.Label lblUrgency;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbResponse;
+        private System.Windows.Forms.Button btnPostResponse;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListBox lbResponses;
     }
