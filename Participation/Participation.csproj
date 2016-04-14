@@ -96,6 +96,7 @@
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
     <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
+	  </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
