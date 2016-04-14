@@ -10,14 +10,22 @@ using System.Windows.Forms;
 
 namespace Participation.BeheerSysteem.GUI
 {
-    public partial class BeheerSysteemForm : Form
+    public partial class AdminSystemForm : Form
     {
-        public BeheerSysteemForm()
+        public AdminSystemForm()
         {
             InitializeComponent();
+            emptyProfileInformation();
             //load userlist
             //load requests
             //load reviews
+        }
+
+        public void emptyProfileInformation()
+        {
+            tbx_ProfileName.Text = "";
+            rtb_ProfileInformation.Text = "";
+            //pbProfilePicture.Show = false;
         }
 
         private void lbx_userList_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,16 +56,9 @@ namespace Participation.BeheerSysteem.GUI
             emptyProfileInformation();
         }
 
-        public void emptyProfileInformation()
-        {
-            tbx_ProfileName.Text = "";
-            rtb_ProfileInformation.Text = "";
-            //pbProfilePicture.Show = false;
-        }
-
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            lbx_requests.SelectedItem.Remove;
+            lbx_Requests.SelectedItem.Remove;
         }
 
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
@@ -67,10 +68,10 @@ namespace Participation.BeheerSysteem.GUI
         private void btn_Chat_Click(object sender, EventArgs e)
         {
             // Create a new instance of the Form2 class
-            Chatform newchat = new Chatform();
+            //Chatform newchat = new Chatform();
 
             // Show the settings form
-            newchat.Show();
+            //newchat.Show();
         }
         private void btn_Beheer_Click(object sender, EventArgs e)
         {

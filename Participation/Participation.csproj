@@ -44,19 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeheerSysteem\GUI\AdminSystemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
+      <DependentUpon>AdminSystemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
     <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InlogSysteem\GUI\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeheerSysteem\GUI\BeheerSysteemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BeheerSysteem\GUI\BeheerSysteemForm.Designer.cs">
-      <DependentUpon>BeheerSysteemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
     <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="SharedModels\FormProvider.cs" />
     <Compile Include="InlogSysteem\GUI\Startmenu.cs">
@@ -89,14 +89,12 @@
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
+    <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
+      <DependentUpon>AdminSystemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BeheerSysteem\GUI\BeheerSysteemForm.resx">
-      <DependentUpon>BeheerSysteemForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     <EmbeddedResource Include="InlogSysteem\GUI\Startmenu.resx">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,12 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BeheerSysteem\Data\" />
-    <Folder Include="BeheerSysteem\Logic\" />
-    <Folder Include="ChatSysteem\" />
-    <Folder Include="HulpSysteem\Data\" />
-    <Folder Include="HulpSysteem\Logic\" />
-    <Folder Include="InlogSysteem\" />
-    <Folder Include="BeheerSysteem\" />
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
