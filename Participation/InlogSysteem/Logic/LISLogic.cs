@@ -32,13 +32,11 @@ namespace Participation
                         if (user.GetType() == typeof(Patient))
                         {
                             _patients.Add(user as Patient);
-                            MessageBox.Show("Test: Succes");
                             return true;
                         }
                         if (user.GetType() == typeof(Volunteer))
                         {
                             _volunteers.Add(user as Volunteer);
-                            MessageBox.Show("Test: Succes");
                             return true;
                         }
 
@@ -50,17 +48,14 @@ namespace Participation
                 if (user.GetType() == typeof(Patient))
                 {
                     _patients.Add(user as Patient);
-                    MessageBox.Show("Test: Succes");
                     return true;
                 }
                 if (user.GetType() == typeof(Volunteer))
                 {
                     _volunteers.Add(user as Volunteer);
-                    MessageBox.Show("Test: Succes");
                     return true;
                 }
             }
-            MessageBox.Show("Test: Failed");
             return false;
 
 
