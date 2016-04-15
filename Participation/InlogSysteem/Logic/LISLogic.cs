@@ -29,13 +29,13 @@ namespace Participation
                 {
                     if (item != user)
                     {
-                        if (user.GetType() == typeof (Patient))
+                        if (user.GetType() == typeof(Patient))
                         {
                             _patients.Add(user as Patient);
                             MessageBox.Show("Test: Succes");
                             return true;
                         }
-                        else if (user.GetType() == typeof (Volunteer))
+                        if (user.GetType() == typeof(Volunteer))
                         {
                             _volunteers.Add(user as Volunteer);
                             MessageBox.Show("Test: Succes");
@@ -53,7 +53,7 @@ namespace Participation
                     MessageBox.Show("Test: Succes");
                     return true;
                 }
-                else if (user.GetType() == typeof(Volunteer))
+                if (user.GetType() == typeof(Volunteer))
                 {
                     _volunteers.Add(user as Volunteer);
                     MessageBox.Show("Test: Succes");
@@ -73,17 +73,29 @@ namespace Participation
         {
             #region Databaseless testing
 
+            #region debugging
+            if (GetUsers().Count <= 0)
+                MessageBox.Show("GetUsers() is empty");
+            else
+            {
+                foreach (var item in GetUsers())
+                {
+                    MessageBox.Show(item.ToString());
+                }
+            }
+            #endregion
+
+
             foreach (var user in GetUsers())
             {
                 if (user.Email == email)
                     return user;
             }
-            return null;
-
+            throw new Exception("No user was found with the email adres: " + email);
             #endregion
         }
 
-        private List<IUser> GetUsers()
+        public List<IUser> GetUsers()
         {
             #region Databaseless testing
 

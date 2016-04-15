@@ -83,9 +83,12 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (maleRbt.Checked)
                     {
-                        if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text,GenderEnum.Male , passwordTbx.Text)))
+                        if (_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
+                            passwordTbx.Text)))
+                        {
                             MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (femaleRbt.Checked)
@@ -93,9 +96,7 @@ namespace Participation.InlogSysteem.GUI
                         if (_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
                             profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
                             passwordTbx.Text)))
-                        {
                             MessageBox.Show(_succesfullRegisterationMsg);
-                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
