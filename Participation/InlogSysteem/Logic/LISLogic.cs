@@ -11,15 +11,7 @@ namespace Participation
     public class LISLogic
     {
         //INSERT Person Statement
-        public bool AddUser(Patient patient)
-        {
-            //TODO Add database context to add user to database
-
-            return true;
-        }
-
-        //INSERT Person Statement
-        public bool AddUser(Volunteer volunteer)
+        public bool AddUser(IUser user)
         {
             //TODO Add database context to add user to database
 
