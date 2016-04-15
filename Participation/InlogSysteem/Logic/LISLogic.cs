@@ -23,28 +23,47 @@ namespace Participation
 
             #region Databaseless testing
 
-            if (GetUsers().Exists(element => element != user))
+            if (GetUsers().Count > 0)
             {
-                try
+                foreach (var item in GetUsers())
                 {
-                    if (user.GetType() == typeof(Patient))
+                    if (item != user)
                     {
-                        _patients.Add(user as Patient);
+                        if (user.GetType() == typeof (Patient))
+                        {
+                            _patients.Add(user as Patient);
+                            MessageBox.Show("Test: Succes");
+                            return true;
+                        }
+                        else if (user.GetType() == typeof (Volunteer))
+                        {
+                            _volunteers.Add(user as Volunteer);
+                            MessageBox.Show("Test: Succes");
+                            return true;
+                        }
+
                     }
-                    else if (user.GetType() == typeof (Volunteer))
-                    {
-                        _volunteers.Add(user as Volunteer);
-                    }
+                }
+            }
+            else
+            {
+                if (user.GetType() == typeof(Patient))
+                {
+                    _patients.Add(user as Patient);
+                    MessageBox.Show("Test: Succes");
                     return true;
                 }
-                catch
+                else if (user.GetType() == typeof(Volunteer))
                 {
-                    throw new Exception("Failed to add: " + user.Name);
+                    _volunteers.Add(user as Volunteer);
+                    MessageBox.Show("Test: Succes");
+                    return true;
                 }
-
             }
-            MessageBox.Show("Failed to add user: User: " + user.Name + " already exists");
+            MessageBox.Show("Test: Failed");
             return false;
+
+
 
 
             #endregion
@@ -63,7 +82,7 @@ namespace Participation
 
             #endregion
         }
- 
+
         private List<IUser> GetUsers()
         {
             #region Databaseless testing
@@ -74,8 +93,8 @@ namespace Participation
             foreach (var patient in _patients)
                 getUsers.Add(patient);
             return getUsers;
-            
+
             #endregion
-        } 
+        }
     }
 }

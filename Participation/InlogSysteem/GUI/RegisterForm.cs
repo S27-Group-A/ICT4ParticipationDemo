@@ -90,9 +90,12 @@ namespace Participation.InlogSysteem.GUI
                     }
                     if (femaleRbt.Checked)
                     {
-                        if(_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text)))
+                        if (_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
+                            passwordTbx.Text)))
+                        {
                             MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }

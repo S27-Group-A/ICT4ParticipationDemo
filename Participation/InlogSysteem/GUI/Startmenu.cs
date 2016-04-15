@@ -19,10 +19,9 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
-        //TODO Suggestions to where this should go in the program architecture im open to
         private IUser _loggedInUser;
 
-        private readonly LISLogic _lisLogic = new LISLogic();
+        private LISLogic _lisLogic = new LISLogic();
 
 
         public Startmenu()
@@ -52,8 +51,6 @@ namespace Participation
 
             FormProvider.RegisterForm.Show();
             FormProvider.StartMenu.Hide();
-
-
         }
 
         private bool checkFields()
@@ -79,7 +76,6 @@ namespace Participation
             if (_loggedInUser.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(_loggedInUser.Location) ||
                 !string.IsNullOrEmpty(_loggedInUser.Name))
             {
-                //TODO Pull out next form
                 FormProvider.ProfileForm.Show();
                 FormProvider.StartMenu.Hide();
             }
