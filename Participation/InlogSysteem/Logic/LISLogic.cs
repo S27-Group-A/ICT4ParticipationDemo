@@ -12,7 +12,7 @@ namespace Participation
         {
             //TODO Add database context to add user to database
 
-            return true;  
+            return true;
         }
 
         public bool AddUser(Volunteer volunteer)
@@ -26,7 +26,7 @@ namespace Participation
         {
             foreach (var user in GetUsers())
             {
-                if(user.Email == email)
+                if (user.Email == email)
                     return user;
             }
             //Testing
