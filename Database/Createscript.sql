@@ -1,9 +1,11 @@
+SET SERVEROUTPUT ON;
+
 -- DROP TABLES --
-DROP TABLE Person CASCADE CONSTRAINTS;
-DROP TABLE Perk CASCADE CONSTRAINTS;
-DROP TABLE Review CASCADE CONSTRAINTS;
-DROP TABLE Meeting CASCADE CONSTRAINTS;
-DROP TABLE Request CASCADE CONSTRAINTS;
+DROP TABLE Person   CASCADE CONSTRAINTS;
+DROP TABLE Perk     CASCADE CONSTRAINTS;
+DROP TABLE Review   CASCADE CONSTRAINTS;
+DROP TABLE Meeting  CASCADE CONSTRAINTS;
+DROP TABLE Request  CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
 
 -- CREATE TABLES --
@@ -157,18 +159,72 @@ INSERT INTO Response(responderID, requestID, "date", description)
 VALUES(3, 5, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'same');
 
 -- DROP SEQUENCES --
-DROP SEQUENCE "SEQ_personID";
-DROP SEQUENCE "SEQ_reviewID";
-DROP SEQUENCE "SEQ_requestID";
-DROP SEQUENCE "SEQ_responseID";
+DROP SEQUENCE SEQ_personID;
+DROP SEQUENCE SEQ_reviewID;
+DROP SEQUENCE SEQ_requestID;
+DROP SEQUENCE SEQ_responseID;
 
 -- CREATE SEQUENCES --
-CREATE SEQUENCE "SEQ_personID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
-CREATE SEQUENCE "SEQ_reviewID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
-CREATE SEQUENCE "SEQ_requestID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
-CREATE SEQUENCE "SEQ_responseID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
+
+--CREATE SEQUENCE SEQ_personID
+DECLARE
+    I_personID INTEGER := 0;
+BEGIN
+   SELECT max(personID) + 1
+   INTO   I_personID
+   FROM   person;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_personID
+                       start with ' || I_personID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_reviewID
+DECLARE
+    I_reviewID INTEGER := 0;
+BEGIN
+   SELECT max(reviewID) + 1
+   INTO   I_reviewID
+   FROM   review;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_reviewID
+                       start with ' || I_reviewID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_requestID
+DECLARE
+    I_requestID INTEGER := 0;
+BEGIN
+   SELECT max(requestID) + 1
+   INTO   I_requestID
+   FROM   request;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_requestID
+                       start with ' || I_requestID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_responseID
+DECLARE
+  I_responderID INTEGER := 0;
+BEGIN
+   SELECT max(responderID) + 1
+   INTO   I_responderID
+   FROM   response;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_responseID
+                       start with ' || I_responderID ||
+                       ' increment by 1';
+END;
+/
 
 
+--Testing anonymous procedures
 
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
-VALUES(6, 'Patient', 'testnaam', 'testemail', 'Testdescription', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
+VALUES(SEQ_personID.NEXTVAL, 'Patient', 'RNG', 'testemail4', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
+
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
+VALUES(SEQ_personID.NEXTVAL, 'Patient', 'Joey', 'testemail3', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
+
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
+VALUES(SEQ_personID.NEXTVAL, 'Patient', 'Kevin', 'testemail2', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
+
+

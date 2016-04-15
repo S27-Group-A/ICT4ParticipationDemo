@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ using Oracle.DataAccess.Client;
 using Participation.SharedModels;
 using Participation.InlogSysteem.Interfaces;
 
+//TODO Fix everything...
 
 namespace Participation
 {
@@ -20,6 +22,9 @@ namespace Participation
         private static OracleConnection _Connection = new OracleConnection(_ConnectionString);
         //Temp data for connecting to the database; [Username], [Password], [server-IP]
         private const string _ConnectionId = "PTS29", _ConnectionPassword = "PTS29", _ConnectionAddress = "//192.168.20.29:1521/xe";
+
+        public static Patient patientIdentifier = new Patient();
+        public static Volunteer volunteerIdentifier = new Volunteer();
         #endregion
 
         #region Properties
@@ -29,7 +34,6 @@ namespace Participation
             get
             {
                 return string.Format("Data Source={0};Persist Security Info=True;User Id={1};Password={2}", _ConnectionAddress, _ConnectionId, _ConnectionPassword);
-
             }
         }
         #endregion
@@ -122,7 +126,7 @@ namespace Participation
 
 
         #region Methods - AuthenticationSystem
-        
+
         //Pulls the accountinformation from the database, and casts it into an user-object
         public static User CreateUser(string Email)
         {
@@ -136,7 +140,7 @@ namespace Participation
                 string EmailAdress = reader["email"].ToString();
                 string Description = reader["description"].ToString();
                 string dateTime = reader["dateOfBirth"].ToString();
-                       DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                DateTime DateOfBirth = Convert.ToDateTime(dateTime);
                 string Location = reader["location"].ToString();
                 string PhoneNumber = reader["phone"].ToString();
                 GenderEnum Gender = ToGender(reader["gender"].ToString());
@@ -172,7 +176,7 @@ namespace Participation
             OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
             OracleDataReader reader = ExecuteQuery(command);
 
-            
+
 
             return null;
         }
@@ -189,9 +193,9 @@ namespace Participation
 
                 List<User> UserList = new List<User>();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    try 
+                    try
                     {
                         string Name = reader["name"].ToString();
                         string EmailAdress = reader["email"].ToString();
@@ -270,19 +274,18 @@ namespace Participation
         {
             try
             {
-                var testP = new Patient();
-                var testV = new Volunteer();
+
                 OracleCommand command = CreateOracleCommand(
                     "INSERT INTO Person(" +
-                    "personType, name, email, " +"description, " +
-                    "dateOfBirth, profilePicture, location, " +"phone, gender, password) " +
+                    "personType, name, email, " + "description, " +
+                    "dateOfBirth, profilePicture, location, " + "phone, gender, password) " +
                     "VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
-                if (user.GetType() == testP.GetType())
+                if (user.GetType() == patientIdentifier.GetType())
                 {
                     command.Parameters.Add(":personType", "Patient");
                 }
-                if (user.GetType() == testV.GetType())
+                if (user.GetType() == volunteerIdentifier.GetType())
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
@@ -341,7 +344,7 @@ namespace Participation
                 return something;
                 //return parseDatatype(); creates an object (make a method for this)
 
-                
+
             }
             finally
             {
@@ -351,3 +354,4 @@ namespace Participation
         #endregion
     }
 }
+*/
