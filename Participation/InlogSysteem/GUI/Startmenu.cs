@@ -21,7 +21,7 @@ namespace Participation
         //TODO Suggestions to where this should go in the program architecture im open to
         private User _loggedInUser = new User();
 
-        private readonly LISLogic _listLogic = new LISLogic();
+        private readonly LISLogic _lisLogic = new LISLogic();
 
 
         public Startmenu()
@@ -44,7 +44,7 @@ namespace Participation
         {
             if (checkFields())
             {
-                var user = _listLogic.GetUser(emailTbx.Text);
+                var user = _lisLogic.GetUser(emailTbx.Text);
                 if (user.Password == passwordTbx.Text)
                     LogIn(user);
             }
@@ -69,7 +69,7 @@ namespace Participation
             {
                 
                 var user = new User(emailTbx.Text, passwordTbx.Text);
-                if (_listLogic.AddUser(user))
+                if (_lisLogic.AddUser(user))
                     clearFields();
                 else throw new Exception("LISLogic.AddUser() returned false");
                 
