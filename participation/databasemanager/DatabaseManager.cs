@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
+using Participation.SharedModels;
+using Participation.InlogSysteem.Interfaces;
 
 
 namespace Participation
@@ -69,15 +71,184 @@ namespace Participation
                 return null;
             }
         }
+
+        //Opens the connection with the database and inserts the given information, returns true if insert worked
+        private static bool ExecuteNonQuery(OracleCommand command)
+        {
+            try
+            {
+                if (_Connection.State == ConnectionState.Closed)
+                {
+                    try
+                    {
+                        _Connection.Open();
+                    }
+                    catch (OracleException exc)
+                    {
+                        Debug.WriteLine("Database connection failed!\n" + exc.Message);
+                        throw;
+                    }
+                }
+
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //Converts a string to a gender, returns GenderEnum
+        private static GenderEnum ToGender(string value)
+        {
+            GenderEnum gender;
+            if (value == "M")
+            {
+                gender = GenderEnum.Male;
+            }
+            if (value == "V")
+            {
+                gender = GenderEnum.Female;
+            }
+            else
+            {
+                throw new Exception("No gender assigned");
+            }
+
+            return gender;
+        }
         #endregion
 
 
         #region Methods - AuthenticationSystem
+        
+        //Pulls the accountinformation from the database, and casts it into an user-object
+        public static User CreateUser(string Email)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE email = :Email");
+                command.Parameters.Add(":Email", Email);
+                OracleDataReader reader = ExecuteQuery(command);
 
+                string Name = reader["name"].ToString();
+                string EmailAdress = reader["email"].ToString();
+                string Description = reader["description"].ToString();
+                string dateTime = reader["dateOfBirth"].ToString();
+                       DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                string Location = reader["location"].ToString();
+                string PhoneNumber = reader["phone"].ToString();
+                GenderEnum Gender = ToGender(reader["gender"].ToString());
+                string Password = reader["password"].ToString();
+
+                string PersonType = reader["personType"].ToString();
+                if (PersonType == "Volunteer")
+                {
+                    return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+                if (PersonType == "Patient")
+                {
+                    return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+                if (PersonType == "Admin")
+                {
+                    return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                }
+            }
+
+            catch
+            {
+                throw new Exception("Something went wrong");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+        //Creates a list of meetings and returns it to the user-creation method
+        public static List<Meeting> CreateMeetingList(int UserID)
+        {
+            OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+            OracleDataReader reader = ExecuteQuery(command);
+
+            
+
+            return null;
+        }
         #endregion
 
         #region Methods - AdministrationSystem
+        //Returns list of users.
+        internal static List<User> GetUsers()
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+                OracleDataReader reader = ExecuteQuery(command);
 
+                List<User> UserList = new List<User>();
+
+                while(reader.Read())
+                {
+                    try 
+                    {
+                        string Name = reader["name"].ToString();
+                        string EmailAdress = reader["email"].ToString();
+                        string Description = reader["description"].ToString();
+                        string dateTime = reader["dateOfBirth"].ToString();
+                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                        string Location = reader["location"].ToString();
+                        string PhoneNumber = reader["phone"].ToString();
+                        GenderEnum Gender = ToGender(reader["gender"].ToString());
+                        string Password = reader["password"].ToString();
+
+                        string PersonType = reader["personType"].ToString();
+                        if (PersonType == "Volunteer")
+                        {
+                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                        if (PersonType == "Patient")
+                        {
+                            UserList.Add(new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                        if (PersonType == "Admin")
+                        {
+                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                    }
+                    catch
+                    {
+                        throw new Exception("Something went wrong");
+                    }
+                    finally
+                    {
+                        _Connection.Close();
+                    }
+                }
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+
+        }
+
+        //Returns list of Requests
+        internal static List<Request> GetRequests()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Reviews
+        internal static List<Review> GetReviews()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Methods - PatientSystem
@@ -92,6 +263,61 @@ namespace Participation
 
         #endregion
 
+
+        #region Shared methods
+        //Inserts new userinformation into the database
+        internal static bool AddUser(IUser user)
+        {
+            try
+            {
+                var testP = new Patient();
+                var testV = new Volunteer();
+                OracleCommand command = CreateOracleCommand("INSERT INTO Person(personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+
+                if (user.GetType() == testP.GetType())
+                {
+                    command.Parameters.Add(":personType", "Patient");
+                }
+                if (user.GetType() == testV.GetType())
+                {
+                    command.Parameters.Add(":personType", "Volunteer");
+                }
+
+                command.Parameters.Add(":name", user.Name);
+                command.Parameters.Add(":email", user.Email);
+                command.Parameters.Add(":description", user.Description);
+                command.Parameters.Add(":dateOfBirth", user.Birthday); //Dont know if this is formatted right
+                command.Parameters.Add(":profilePicture", user.ProfilePicture);
+                command.Parameters.Add(":location", user.Location);
+                command.Parameters.Add(":phone", user.PhoneNumber);
+                command.Parameters.Add(":gender", user.Gender.ToString());
+                command.Parameters.Add(":password", user.Password);
+
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                throw new Exception("Sometthing went wrong");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
+        internal static User Getuser()
+        {
+
+        }
+        #endregion
+
+
+        #region Example
+        /// <summary>
+        /// Example of a database query, casted to a specific return type
+        /// </summary>
+        /// <param name="sql_Values"></param>
+        /// <returns></returns>
         public static object Testquery(string sql_Values)
         {
             try
@@ -118,6 +344,6 @@ namespace Participation
                 _Connection.Close();
             }
         }
-
+        #endregion
     }
 }
