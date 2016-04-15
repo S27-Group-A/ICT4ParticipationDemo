@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.SharedModels
 {
-    public class User
+    public abstract class User : IUser
     {
         //Properties
         public string Name { get; set; }

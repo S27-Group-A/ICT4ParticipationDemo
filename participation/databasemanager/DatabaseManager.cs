@@ -276,12 +276,18 @@ namespace Participation
                 object something = new object(); //Not in code
                 return something;
                 //return parseDatatype(); creates an object (make a method for this)
+
+                
             }
             finally
             {
                 _Connection.Close();
             }
         }
+<<<<<<< HEAD
         #endregion
+=======
+
+>>>>>>> refs/remotes/origin/TomBranchAbstract
     }
 }

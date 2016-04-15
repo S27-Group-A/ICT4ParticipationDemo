@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms.VisualStyles;
+using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
 
 namespace Participation
 {
     public class LISLogic
     {
+        //INSERT Person Statement
         public bool AddUser(Patient patient)
         {
             //TODO Add database context to add user to database
@@ -15,6 +18,7 @@ namespace Participation
             return true;
         }
 
+        //INSERT Person Statement
         public bool AddUser(Volunteer volunteer)
         {
             //TODO Add database context to add user to database
@@ -22,7 +26,8 @@ namespace Participation
             return true;
         }
 
-        public User GetUser(string email)
+        //SELECT Person where string email
+        public IUser GetUser(string email)
         {
             foreach (var user in GetUsers())
             {
@@ -31,14 +36,14 @@ namespace Participation
             }
             //Testing
             //TODO Dont forget to remove this later and make it a error pop-up instead
-            var testUser = new User("test@testmail.com", "test");
+            var testUser = new Patient("test@testmail.com", "test");
             return testUser;
         }
 
-        private List<User> GetUsers()
+        //Select Person 
+        private List<IUser> GetUsers()
         {
-            //TODO Get all users from database
             throw new NotImplementedException();
-        }
+        } 
     }
 }
