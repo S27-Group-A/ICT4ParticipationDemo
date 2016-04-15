@@ -231,6 +231,21 @@ namespace Participation
 
         #endregion
 
+        #region Shared methods
+        internal static bool AddUser(IUser user)
+        {
+            if (user.getType() ==)
+            OracleCommand command = CreateOracleCommand("INSERT INTO Person VALUES(:naam)");
+            command.Parameters.Add(":Email", Email);
+            command.Parameters.Add(":Email", user.Email);
+            OracleDataReader reader = ExecuteQuery(command);
+
+        }
+
+
+        internal static 
+        #endregion
+
         #region Methods - ChatSystem
 
         #endregion
