@@ -90,6 +90,7 @@ namespace Participation
             #endregion
         }
 
+        //TODO Unstaticfy when database connection has been made
         public static List<IUser> GetUsers()
         {
             #region Databaseless testing
