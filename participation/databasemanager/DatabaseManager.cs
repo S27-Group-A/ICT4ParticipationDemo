@@ -72,6 +72,34 @@ namespace Participation
             }
         }
 
+        //Opens the connection with the database and inserts the given information, returns true if insert worked
+        private static bool ExecuteNonQuery(OracleCommand command)
+        {
+            try
+            {
+                if (_Connection.State == ConnectionState.Closed)
+                {
+                    try
+                    {
+                        _Connection.Open();
+                    }
+                    catch (OracleException exc)
+                    {
+                        Debug.WriteLine("Database connection failed!\n" + exc.Message);
+                        throw;
+                    }
+                }
+
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        //Converts a string to a gender, returns GenderEnum
         private static GenderEnum ToGender(string value)
         {
             GenderEnum gender;
@@ -91,7 +119,6 @@ namespace Participation
             return gender;
         }
         #endregion
-
 
 
         #region Methods - AuthenticationSystem
@@ -232,34 +259,57 @@ namespace Participation
 
         #endregion
 
-        #region Shared methods
-        internal static bool AddUser(IUser user)
-        {
-            var testP = new Patient();
-            var testV = new Volunteer();
-            if (user.GetType() == testP.GetType())
-            {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Person VALUES(:)");
-                command.Parameters.Add(":Email", Email);
-                command.Parameters.Add(":Email", user.Email);
-                OracleDataReader reader = ExecuteQuery(command);
-            }
-            if (user.GetType() == testV.GetType())
-            {
-
-            }
-            
-
-        }
-
-
-        internal static 
-        #endregion
-
         #region Methods - ChatSystem
 
         #endregion
 
+
+        #region Shared methods
+        //Inserts new userinformation into the database
+        internal static bool AddUser(IUser user)
+        {
+            try
+            {
+                var testP = new Patient();
+                var testV = new Volunteer();
+                OracleCommand command = CreateOracleCommand("INSERT INTO Person(personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+
+                if (user.GetType() == testP.GetType())
+                {
+                    command.Parameters.Add(":personType", "Patient");
+                }
+                if (user.GetType() == testV.GetType())
+                {
+                    command.Parameters.Add(":personType", "Volunteer");
+                }
+
+                command.Parameters.Add(":name", user.Name);
+                command.Parameters.Add(":email", user.Email);
+                command.Parameters.Add(":description", user.Description);
+                command.Parameters.Add(":dateOfBirth", user.Birthday); //Dont know if this is formatted right
+                command.Parameters.Add(":profilePicture", user.ProfilePicture);
+                command.Parameters.Add(":location", user.Location);
+                command.Parameters.Add(":phone", user.PhoneNumber);
+                command.Parameters.Add(":gender", user.Gender.ToString());
+                command.Parameters.Add(":password", user.Password);
+
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                throw new Exception("Sometthing went wrong");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
+        internal static User Getuser()
+        {
+
+        }
+        #endregion
 
 
         #region Example
