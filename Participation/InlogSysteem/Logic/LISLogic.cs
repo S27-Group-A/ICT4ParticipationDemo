@@ -13,8 +13,8 @@ namespace Participation
     public class LISLogic
     {
         #region Databaseless testing
-        private List<Patient> _patients = new List<Patient>();
-        private List<Volunteer> _volunteers = new List<Volunteer>();
+        private static List<Patient> _patients = new List<Patient>();
+        private static List<Volunteer> _volunteers = new List<Volunteer>();
         #endregion
 
         public bool AddUser(IUser user)
@@ -95,7 +95,7 @@ namespace Participation
             #endregion
         }
 
-        public List<IUser> GetUsers()
+        public static List<IUser> GetUsers()
         {
             #region Databaseless testing
 
