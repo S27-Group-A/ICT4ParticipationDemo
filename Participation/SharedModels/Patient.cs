@@ -14,6 +14,9 @@ namespace Participation.SharedModels
         public List<Request> Requests { get; set; }
 
         //constructors
+        public Patient()
+        { }
+
         public Patient(string name, string email, string description, DateTime birthday, string profilePicture, 
             string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description, 
                 birthday, profilePicture, location, phoneNumber, gender, password)

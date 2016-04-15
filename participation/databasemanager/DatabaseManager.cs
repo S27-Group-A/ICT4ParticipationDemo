@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Oracle.DataAccess;
 using Oracle.DataAccess.Client;
 using Participation.SharedModels;
+using Participation.InlogSysteem.Interfaces;
 
 
 namespace Participation
@@ -234,11 +235,20 @@ namespace Participation
         #region Shared methods
         internal static bool AddUser(IUser user)
         {
-            if (user.getType() ==)
-            OracleCommand command = CreateOracleCommand("INSERT INTO Person VALUES(:naam)");
-            command.Parameters.Add(":Email", Email);
-            command.Parameters.Add(":Email", user.Email);
-            OracleDataReader reader = ExecuteQuery(command);
+            var testP = new Patient();
+            var testV = new Volunteer();
+            if (user.GetType() == testP.GetType())
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO Person VALUES(:)");
+                command.Parameters.Add(":Email", Email);
+                command.Parameters.Add(":Email", user.Email);
+                OracleDataReader reader = ExecuteQuery(command);
+            }
+            if (user.GetType() == testV.GetType())
+            {
+
+            }
+            
 
         }
 
@@ -284,10 +294,6 @@ namespace Participation
                 _Connection.Close();
             }
         }
-<<<<<<< HEAD
         #endregion
-=======
-
->>>>>>> refs/remotes/origin/TomBranchAbstract
     }
 }
