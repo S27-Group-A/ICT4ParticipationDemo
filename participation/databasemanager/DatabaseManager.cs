@@ -272,7 +272,11 @@ namespace Participation
             {
                 var testP = new Patient();
                 var testV = new Volunteer();
-                OracleCommand command = CreateOracleCommand("INSERT INTO Person(personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+                OracleCommand command = CreateOracleCommand(
+                    "INSERT INTO Person(" +
+                    "personType, name, email, " +"description, " +
+                    "dateOfBirth, profilePicture, location, " +"phone, gender, password) " +
+                    "VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
                 if (user.GetType() == testP.GetType())
                 {
