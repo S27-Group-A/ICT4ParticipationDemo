@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.InlogSysteem.GUI;
+using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem;
 using Participation.SharedModels;
 using UI;
@@ -19,7 +20,7 @@ namespace Participation
     public partial class Startmenu : Form
     {
         //TODO Suggestions to where this should go in the program architecture im open to
-        private User _loggedInUser = new User();
+        private IUser _loggedInUser;
 
         private readonly LISLogic _lisLogic = new LISLogic();
 
@@ -27,16 +28,6 @@ namespace Participation
         public Startmenu()
         {
             InitializeComponent();
-
-
-            //VolunteerForm test = new VolunteerForm();
-            //RequestForm reqtest = new RequestForm();
-
-
-
-
-            //test.Show();
-            //reqtest.Show();
             this.Hide();
         }
 
@@ -50,31 +41,18 @@ namespace Participation
             }
             else
             {
-                MessageBox.Show("Vul uw e-mail adres en wachtwoord in");
+                ClearFields();
+                MessageBox.Show("Uw e-mail adres of wachtwoord was incorrect vul uw gegevens opnieuw in");
             }
 
         }
 
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
-            //_registerForm = new RegisterForm();
-            //_registerForm.Show();
-            //this.Hide();
 
-            //_registerForm = new RegisterForm();
             FormProvider.RegisterForm.Show();
             FormProvider.StartMenu.Hide();
-            /*
-            if (checkFields())
-            {
-                
-                var user = new User(emailTbx.Text, passwordTbx.Text);
-                if (_lisLogic.AddUser(user))
-                    clearFields();
-                else throw new Exception("LISLogic.AddUser() returned false");
-                
-            }
-            */
+
 
         }
 
@@ -85,7 +63,7 @@ namespace Participation
             return false;
         }
 
-        private void clearFields()
+        private void ClearFields()
         {
             if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
             {
@@ -94,16 +72,18 @@ namespace Participation
             }
         }
 
-        private void LogIn(User user)
+        private void LogIn(IUser user)
         {
+            
             _loggedInUser = user;
             if (_loggedInUser.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(_loggedInUser.Location) ||
                 !string.IsNullOrEmpty(_loggedInUser.Name))
             {
                 //TODO Pull out next form
+                FormProvider.ProfileForm.Show();
                 FormProvider.StartMenu.Hide();
             }
-
+            
         }
     }
 }

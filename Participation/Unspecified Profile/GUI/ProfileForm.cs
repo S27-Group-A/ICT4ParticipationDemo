@@ -15,16 +15,9 @@ namespace Participation.BeheerSysteem.GUI
     {
         private User _loggedInUser;
 
-        public ProfileForm(Volunteer loggedInUser)
+        public ProfileForm()
         {
             InitializeComponent();
-            _loggedInUser = loggedInUser;
-        }
-
-        public ProfileForm(Patient loggedInUser)
-        {
-            InitializeComponent();
-            _loggedInUser = loggedInUser;
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
