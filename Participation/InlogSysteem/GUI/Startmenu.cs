@@ -103,7 +103,7 @@ namespace Participation
                 //TODO Pull out next form
                 FormProvider.StartMenu.Hide();
             }
-            
+
         }
     }
 }
