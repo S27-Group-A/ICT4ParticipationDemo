@@ -141,17 +141,86 @@ namespace Participation
         //Creates a list of meetings and returns it to the user-creation method
         public static List<Meeting> CreateMeetingList(int UserID)
         {
-            OracleCommand command = CreateOracleCommand("SELECT * FROM Meeting WHERE volunteerID = :UserID OR patientID = :UserID");
-            command.Parameters.Add(":volunteerID", UserID);
-            command.Parameters.Add(":patientID", UserID);
+            OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
             OracleDataReader reader = ExecuteQuery(command);
+
+            
 
             return null;
         }
         #endregion
 
         #region Methods - AdministrationSystem
+        //Returns list of users.
+        internal static List<User> GetUsers()
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+                OracleDataReader reader = ExecuteQuery(command);
 
+                List<User> UserList = new List<User>();
+
+                while(reader.Read())
+                {
+                    try 
+                    {
+                        string Name = reader["name"].ToString();
+                        string EmailAdress = reader["email"].ToString();
+                        string Description = reader["description"].ToString();
+                        string dateTime = reader["dateOfBirth"].ToString();
+                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                        string Location = reader["location"].ToString();
+                        string PhoneNumber = reader["phone"].ToString();
+                        GenderEnum Gender = ToGender(reader["gender"].ToString());
+                        string Password = reader["password"].ToString();
+
+                        string PersonType = reader["personType"].ToString();
+                        if (PersonType == "Volunteer")
+                        {
+                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                        if (PersonType == "Patient")
+                        {
+                            UserList.Add(new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                        if (PersonType == "Admin")
+                        {
+                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                        }
+                    }
+                    catch
+                    {
+                        throw new Exception("Something went wrong");
+                    }
+                    finally
+                    {
+                        _Connection.Close();
+                    }
+                }
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+
+        }
+
+        //Returns list of Requests
+        internal static List<Request> GetRequests()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Returns list of Reviews
+        internal static List<Review> GetReviews()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region Methods - PatientSystem
@@ -199,24 +268,5 @@ namespace Participation
             }
         }
         #endregion
-
-        //Returns list of users.
-        internal static List<User> GetUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        //Returns list of Requests
-        internal static List<Request> GetRequests()
-        {
-            throw new NotImplementedException();
-        }
-
-        //Returns list of Reviews
-        internal static List<Review> GetReviews()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }
