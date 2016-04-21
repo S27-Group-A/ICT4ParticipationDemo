@@ -117,7 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condimentum, massa eu tristique pretium, nisi eros egestas metus, eu feugiat diam ligula a magna. Curabitur lacinia purus leo, ac finibus lacus convallis nec. Mauris diam lorem, maximus ac laoreet id, faucibus malesuada tortor. Ut a tempus velit. Duis tellus nibh, rutrum et ligula et, blandit hendrerit sapien. Donec lobortis facilisis maximus. Cras interdum, dui non lobortis rutrum, nunc nibh tincidunt turpis, a luctus velit eros suscipit justo. Vivamus egestas dolor ut eros consectetur sagittis.</value>
-  </data>
 </root>

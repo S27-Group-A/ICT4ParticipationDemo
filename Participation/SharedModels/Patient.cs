@@ -43,10 +43,10 @@ namespace Participation.SharedModels
 
 
         //Methods
-        private void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             Request req = new Request(title, text, perks, location, date, urgency);
-
+            Requests.Add(req);
         }
 
         private void RemoveRequest()
