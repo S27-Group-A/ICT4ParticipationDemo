@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Participation.BeheerSysteem.GUI;
 using Participation.InlogSysteem.GUI;
+using Participation.VrijwilligersSysteem.GUI;
 //using Participation.HulpSysteem.GUI;
 using UI;
 
@@ -38,18 +40,33 @@ namespace Participation.SharedModels
         }
         private static RegisterForm _registerForm;
 
-        //public static RequestForm RequestForm
-        //{
-        //    get
-        //    {
-        //        if (_requestForm == null)
-        //        {
-        //            _requestForm = new RequestForm();
-        //        }
-        //        return _requestForm;
-        //    }
-        //}
-        //private static RegisterForm _requestForm;
+        public static ProfileForm ProfileForm
+        {
+
+            get
+            {
+                if (_profileForm == null)
+                {
+                    _profileForm = new ProfileForm();
+                }
+                return _profileForm;
+            }
+        }
+        private static ProfileForm _profileForm;
+
+        public static VolunteerForm VolunteerForm
+        {
+
+            get
+            {
+                if (_volunteer == null)
+                {
+                    _volunteer = new VolunteerForm();
+                }
+                return _volunteer;
+            }
+        }
+        private static VolunteerForm _volunteer;
     }
 }
 

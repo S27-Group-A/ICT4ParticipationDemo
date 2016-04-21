@@ -14,6 +14,8 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
 
         //constructors
+        public Volunteer() { }
+
         public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
             : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {

@@ -68,17 +68,32 @@
     <Compile Include="InlogSysteem\GUI\Startmenu.Designer.cs">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="InlogSysteem\Interfaces\IUser.cs" />
     <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedModels\FormProvider.cs" />
     <Compile Include="SharedModels\GenderEnum.cs" />
+    <Compile Include="SharedModels\LoggedInUser.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
     <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\Response.cs" />
     <Compile Include="SharedModels\Review.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="SharedModels\Volunteer.cs" />
+
+    <Compile Include="Unspecified Profile\GUI\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unspecified Profile\GUI\ProfileForm.designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.Designer.cs">
+      <DependentUpon>MeetingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +101,9 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
+    <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +123,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+
+    <EmbeddedResource Include="Unspecified Profile\GUI\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligersSysteem\GUI\MeetingForm.resx">
+      <DependentUpon>MeetingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\VolunteerForm.resx">
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,7 +151,6 @@
     <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
-    <Folder Include="VrijwilligersSysteem\Logic\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
