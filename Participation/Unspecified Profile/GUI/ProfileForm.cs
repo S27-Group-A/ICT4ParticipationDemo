@@ -24,12 +24,13 @@ namespace Participation.BeheerSysteem.GUI
         private void ProfileForm_Load(object sender, EventArgs e)
         {
             RefreshInfo();
+            //TODO Implement once fileserver is in place
             //RefreshPic();
-            //if (_loggedInUser.GetType() == typeof(Volunteer))
-            //{
-            //    RefreshVogUrl();
-            //    RefreshPerks();
-            //}
+            if (_loggedInUser.GetType() == typeof(Volunteer))
+            {
+                RefreshVogUrl();
+                RefreshPerks();
+            }
 
 
         }
