@@ -12,7 +12,7 @@
     public class Request
     {
         // properties
-
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
         public string Location { get; set; }
@@ -30,8 +30,9 @@
 
         // constructors
 
-        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        public Request(int id, string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
+            this.Id = id;
             this.Title = title;
             this.Text = text;
             this.Perks = perks;
