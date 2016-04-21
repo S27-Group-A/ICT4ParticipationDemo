@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Participation.BeheerSysteem.GUI;
+using Participation.HulpSysteem.GUI;
 using Participation.InlogSysteem.GUI;
 using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem.GUI;
@@ -70,7 +71,19 @@ namespace Participation.SharedModels
         }
         private static VolunteerForm _volunteer;
 
-       
+        public static RequestsViewForm RequestsViewForm
+        {
+            get
+            {
+                if (_requestsViewForm == null)
+                {
+                    _requestsViewForm = new RequestsViewForm(LoggedInUser);
+                }
+                return _requestsViewForm;
+            }
+        }
+        private static RequestsViewForm _requestsViewForm;
+
     }
 }
 

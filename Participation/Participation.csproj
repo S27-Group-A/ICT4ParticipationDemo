@@ -111,6 +111,9 @@
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestsViewForm.resx">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
