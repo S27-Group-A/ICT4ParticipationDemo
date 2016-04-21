@@ -7,8 +7,8 @@
 
     public class Meeting
     {
-        private bool _volunteerAccepted = false;
-        private bool _patientAccepted = false;
+        //private bool _volunteerAccepted = false;
+        //private bool _patientAccepted = false;
 
         // constructor
         public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
@@ -19,7 +19,7 @@
             this.Location = location;
         }
 
-        
+
 
         // Properties
 
@@ -44,7 +44,7 @@
         public string Location { get; private set; }
 
         // Methods
-
+        /*
         public bool AcceptMeeting(Patient patient)
         {
             if (patient == this.Patient)
@@ -54,7 +54,8 @@
             }
             return false;
         }
-
+        */
+        /*
         public bool AcceptMeeting(Volunteer volunteer)
         {
             if (volunteer == this.Volunteer)
@@ -64,7 +65,9 @@
             }
             return false;
         }
+        */
 
+        /*
         public bool CheckAccepeted()
         {
             if (_volunteerAccepted && _patientAccepted)
@@ -73,5 +76,6 @@
             }
             return false;
         }
+        */
     }
 }
