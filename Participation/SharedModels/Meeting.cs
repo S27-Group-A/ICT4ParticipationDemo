@@ -10,14 +10,16 @@
         //private bool _volunteerAccepted = false;
         //private bool _patientAccepted = false;
         // Properties
+        public int Id { get; set; }
         public Volunteer Volunteer { get; set; }
         public Patient Patient { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
 
         // constructor
-        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        public Meeting(int Id, Volunteer volunteer, Patient patient, DateTime date, string location)
         {
+            this.Id = Id;
             this.Volunteer = volunteer;
             this.Patient = patient;
             this.Date = date;
