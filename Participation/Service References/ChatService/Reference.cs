@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Client.ChatService {
+namespace Participation.ChatSysteem.ChatService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.ISendChatService", CallbackContract=typeof(Client.ChatService.ISendChatServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName = "ChatService.ISendChatService", CallbackContract = typeof(Participation.ChatSysteem.ChatService.ISendChatServiceCallback))]
     public interface ISendChatService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
@@ -45,12 +45,14 @@ namespace Client.ChatService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ISendChatServiceChannel : Client.ChatService.ISendChatService, System.ServiceModel.IClientChannel {
+    public interface ISendChatServiceChannel : Participation.ChatSysteem.ChatService.ISendChatService, System.ServiceModel.IClientChannel
+    {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class SendChatServiceClient : System.ServiceModel.DuplexClientBase<Client.ChatService.ISendChatService>, Client.ChatService.ISendChatService {
+    public partial class SendChatServiceClient : System.ServiceModel.DuplexClientBase<Participation.ChatSysteem.ChatService.ISendChatService>, Participation.ChatSysteem.ChatService.ISendChatService
+    {
         
         public SendChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using Participation.SharedModels;
+using Participation.InlogSysteem.Interfaces;
 
-namespace Client
+namespace Participation.ChatSysteem
 {
     public delegate void ReceivedMessage(string sender, string message);
     public delegate void GotNames(object sender, List<string> names);
 
-    class ReceiveClient : ChatService.ISendChatServiceCallback
+    public class ReceiveClient : ChatService.ISendChatServiceCallback
     {
         public event ReceivedMessage ReceiveMsg;
         public event GotNames NewNames;
@@ -17,17 +19,17 @@ namespace Client
         InstanceContext inst = null;
         ChatService.SendChatServiceClient chatClient = null;
 
-        public void Start(ReceiveClient rc,string name)
+        public void Start(ReceiveClient rc, IUser user)
         {
             inst = new InstanceContext(rc);
             chatClient = new ChatService.SendChatServiceClient(inst);
-            if(name == "Volunteer")
+            if(user == typeof(Volunteer))
             {
-                chatClient.StartVolunteer(name);
+                chatClient.StartVolunteer(user.Name);
             }
-            else if(name == "Elder")
+            else if(user == typeof(Patient))
             {
-                chatClient.StartElder(name);
+                chatClient.StartElder(user.Name);
             }
             else
             {
@@ -41,16 +43,16 @@ namespace Client
             chatClient.SendMessage(msg, sender,receiver);
         }
 
-        public void Stop(string name)
+        public void Stop(IUser user)
         {
 
-            if(name == "Volunteer")
+            if(user == typeof(Volunteer))
             {
-                chatClient.StopVolunteer(name);
+                chatClient.StopVolunteer(user.Name);
             }
-            else if(name == "Elder")
+            else if (user == typeof(Volunteer))
             {
-                chatClient.StopElder(name);
+                chatClient.StopElder(user.Name);
             }
             else
             {
