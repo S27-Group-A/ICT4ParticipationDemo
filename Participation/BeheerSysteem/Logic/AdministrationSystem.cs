@@ -10,9 +10,9 @@ namespace Participation.BeheerSysteem.Logic
     class AdministrationSystem
     {
 
-        public List<User> Users {get; set;}
+        public List<User> Users { get; set; }
         bool CreateAccount = false;
-        
+
         public AdministrationSystem()
         {
             this.Users = GetUsers();
@@ -20,18 +20,58 @@ namespace Participation.BeheerSysteem.Logic
 
         public void CreateNewAccount()
         {
-            
+            //nog in te vullen.
         }
 
         public List<User> GetUsers()
         {
-           return DatabaseManager.GetUsers();
-  
+            return DatabaseManager.GetUsers();
+
         }
 
-        public void BanUser()
+        //not finished yet.
+        public void BanUser(User user)
         {
+            List<User> tempusers = GetUsers();
+            User u = new User();
+            user = u;
+            foreach (User tempuser in tempusers)
+            {
+                if (tempusers.ToString() == tempuser.ToString())
+                {
+                    u = tempuser;
+                    break;
+                }
+            }
+            //Update the user.
+        }
 
+        public void DeleteAcount(User user)
+        {
+            List<User> tempusers = GetUsers();
+            User u = new User();
+            user = u;
+            foreach (User tempuser in tempusers)
+            {
+                if (tempusers.ToString() == tempuser.ToString())
+                {
+                    u = tempuser;
+                    break;
+                }
+            }
+            Users.Remove(u);
+        }
+
+        public void DetectSelecterdUser()
+        {
+            foreach (User tempuser in tempusers)
+            {
+                if (tempusers.ToString() == tempuser.ToString())
+                {
+                    u = tempuser;
+                    break;
+                }
+            }
         }
     }
 }

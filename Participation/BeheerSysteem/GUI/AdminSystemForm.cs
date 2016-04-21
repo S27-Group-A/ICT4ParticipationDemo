@@ -60,8 +60,8 @@ namespace Participation.BeheerSysteem.GUI
         {
             emptyProfileInformation();
 
-            tbxProfileName.Text = lbxUserList.SelectedItem.name.Text;
-            rtbProfileInformation.Text = lbxUserList.SelectedItem.description.Text;
+            //tbxProfileName.Text = lbxUserList.SelectedItem.name.Text;
+            //rtbProfileInformation.Text = lbxUserList.SelectedItem.description.Text;
             //pbProfilePicture.Image = lbx_userList.SelectedItem.ProfilePicture;
             //pbProfilePicture.Show = true;
 
@@ -72,27 +72,27 @@ namespace Participation.BeheerSysteem.GUI
         {
             if (rbtnPermanent.Checked == true)
             {
-                lbxUserList.SelectedItem.isBanned = true;
+               // lbxUserList.SelectedItem.isBanned = true;
             }
             if (rbtnTemporary.Checked == true)
             {
                //don't forget to implement trycatch
                 int bandays = 0;
                 bandays = Convert.ToInt32(tbxDaysUntillUnbanned.Text);
-                lbxUserList.SelectedItem.isBanned = true;
-                lbxUserList.SelectedItem.daysBanned = bandays;
+                //lbxUserList.SelectedItem.isBanned = true;
+               // lbxUserList.SelectedItem.daysBanned = bandays;
             }
             emptyProfileInformation();
         }
 
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            lbxRequests.SelectedItem.Remove;
+            //lbxRequests.SelectedItem.Remove();
         }
 
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
         {
-            lbxReviews.SelectedItem.Remove;
+            //lbxReviews.SelectedItem.Remove();
         }
         private void btn_Chat_Click(object sender, EventArgs e)
         {
@@ -145,7 +145,7 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btnChangeRights_Click(object sender, EventArgs e)
         {
-
+            User tempuser = adminSystem.Users[lbxUserList.SelectedIndex];
         }
 
         private void btnJudgeVolunteer_Click(object sender, EventArgs e)

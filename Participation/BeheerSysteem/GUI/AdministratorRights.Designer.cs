@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbtHasRights = new System.Windows.Forms.RadioButton();
+            this.rbtnDoesntHaveRights = new System.Windows.Forms.RadioButton();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblRightsDescription = new System.Windows.Forms.Label();
             this.btnCommitAdminRights = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // rbtHasRights
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton1.Location = new System.Drawing.Point(13, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(180, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Heeft geen Administratorrechten.";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbtHasRights.AutoSize = true;
+            this.rbtHasRights.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rbtHasRights.Location = new System.Drawing.Point(13, 13);
+            this.rbtHasRights.Name = "rbtHasRights";
+            this.rbtHasRights.Size = new System.Drawing.Size(180, 17);
+            this.rbtHasRights.TabIndex = 0;
+            this.rbtHasRights.TabStop = true;
+            this.rbtHasRights.Text = "Heeft geen Administratorrechten.";
+            this.rbtHasRights.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbtnDoesntHaveRights
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radioButton2.Location = new System.Drawing.Point(13, 37);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(153, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Heeft Administratorrechten.";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbtnDoesntHaveRights.AutoSize = true;
+            this.rbtnDoesntHaveRights.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rbtnDoesntHaveRights.Location = new System.Drawing.Point(13, 37);
+            this.rbtnDoesntHaveRights.Name = "rbtnDoesntHaveRights";
+            this.rbtnDoesntHaveRights.Size = new System.Drawing.Size(153, 17);
+            this.rbtnDoesntHaveRights.TabIndex = 1;
+            this.rbtnDoesntHaveRights.TabStop = true;
+            this.rbtnDoesntHaveRights.Text = "Heeft Administratorrechten.";
+            this.rbtnDoesntHaveRights.UseVisualStyleBackColor = true;
             // 
             // lblUserName
             // 
@@ -69,15 +69,15 @@
             this.lblUserName.TabIndex = 2;
             this.lblUserName.Text = "Naam Naamsen";
             // 
-            // label1
+            // lblRightsDescription
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(13, 92);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(313, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Deze gebruiker heeft momenteen wel/geen administratorrechten!";
+            this.lblRightsDescription.AutoSize = true;
+            this.lblRightsDescription.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblRightsDescription.Location = new System.Drawing.Point(13, 92);
+            this.lblRightsDescription.Name = "lblRightsDescription";
+            this.lblRightsDescription.Size = new System.Drawing.Size(313, 13);
+            this.lblRightsDescription.TabIndex = 3;
+            this.lblRightsDescription.Text = "Deze gebruiker heeft momenteen wel/geen administratorrechten!";
             // 
             // btnCommitAdminRights
             // 
@@ -87,6 +87,7 @@
             this.btnCommitAdminRights.TabIndex = 4;
             this.btnCommitAdminRights.Text = "Bevestig";
             this.btnCommitAdminRights.UseVisualStyleBackColor = true;
+            this.btnCommitAdminRights.Click += new System.EventHandler(this.btnCommitAdminRights_Click);
             // 
             // AdministratorRights
             // 
@@ -95,10 +96,10 @@
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(357, 113);
             this.Controls.Add(this.btnCommitAdminRights);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblRightsDescription);
             this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbtnDoesntHaveRights);
+            this.Controls.Add(this.rbtHasRights);
             this.Name = "AdministratorRights";
             this.Text = "Verander rechten";
             this.ResumeLayout(false);
@@ -108,10 +109,10 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbtHasRights;
+        private System.Windows.Forms.RadioButton rbtnDoesntHaveRights;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRightsDescription;
         private System.Windows.Forms.Button btnCommitAdminRights;
     }
 }
