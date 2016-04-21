@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Participation
+namespace Participation.VrijwilligersSysteem.GUI
 {
-    public partial class Inloggen : Form
+    public partial class MeetingForm : Form
     {
-        public Inloggen()
+        public MeetingForm()
         {
             InitializeComponent();
+        }
+
+        private void btnPlannen_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
