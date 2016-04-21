@@ -10,7 +10,7 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 CREATE TABLE Person
 (
 	personID 			    NUMBER(10) 		    PRIMARY KEY,
-	personType 		    	VARCHAR2(32) 	    CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin')NOT NULL,
+	personType 		    	VARCHAR2(32) 	    NOT NULL,
 	name  			      	VARCHAR2(32) 	    NOT NULL,
 	email 			      	VARCHAR2(64) 	    UNIQUE NOT NULL,
 	description 	    	VARCHAR2(256),
@@ -18,8 +18,19 @@ CREATE TABLE Person
 	profilePicture 	  		VARCHAR2(256), 					        -- Fileserver
 	location 		      	VARCHAR2(256)	    NOT NULL,
 	phone 			      	VARCHAR2(32),
-	gender 			      	VARCHAR2(1) 	    CHECK(gender = 'M' OR gender = 'V') NOT NULL,
-  password          		VARCHAR(64)       	NOT NULL
+	gender 			      	VARCHAR2(1) 	    NOT NULL,
+	password          		VARCHAR(64)       	NOT NULL,
+	
+	rfid					VARCHAR(64)			UNIQUE,
+	vog						VARCHAR(255)    UNIQUE,                 -- Fileserver
+	
+	banned					NUMBER(1)			NOT NULL,
+	unban					DATE,
+	
+	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
+	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
+	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2)
+	-- 0 = not banned, 1 = banned until X, 2 = permanent banned
 );
 
 CREATE TABLE Perk
@@ -41,6 +52,7 @@ CREATE TABLE Review
 	CONSTRAINT c_rating CHECK(rating >0 OR rating <5)
 
 );
+
 
 CREATE TABLE Meeting
 (
@@ -89,16 +101,16 @@ ALTER TABLE Response ADD FOREIGN KEY(responderID) REFERENCES Person(personID);
 ALTER TABLE Response ADD FOREIGN KEY(requestID) REFERENCES Request(requestID);
 
 -- INSERT DATA --
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 1, 'file1', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', 2, 'file2', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 3, 'file3', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 'file4', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
 
 INSERT INTO Perk(personID, perk)
 VALUES(1, 'Auto');
@@ -155,6 +167,7 @@ VALUES(3, 1, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'k');
 INSERT INTO Response(responderID, requestID, "date", description)
 VALUES(3, 5, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'same');
 
+/*
 -- DROP SEQUENCES --
 DROP SEQUENCE "SEQ_personID";
 DROP SEQUENCE "SEQ_reviewID";
@@ -166,8 +179,67 @@ CREATE SEQUENCE "SEQ_personID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 STA
 CREATE SEQUENCE "SEQ_reviewID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
 CREATE SEQUENCE "SEQ_requestID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
 CREATE SEQUENCE "SEQ_responseID" MINVALUE 1 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 5 CACHE 20 NOORDER NOCYCLE;
+*/
+
+-- DROP SEQUENCES --
+DROP SEQUENCE SEQ_personID;
+DROP SEQUENCE SEQ_reviewID;
+DROP SEQUENCE SEQ_requestID;
+DROP SEQUENCE SEQ_responseID;
+
+-- CREATE SEQUENCES --
 
 
+--CREATE SEQUENCE SEQ_personID
+DECLARE
+    I_personID INTEGER := 0;
+BEGIN
+   SELECT max(personID) + 1
+   INTO   I_personID
+   FROM   Person;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_personID
+                       start with ' || I_personID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_reviewID
+DECLARE
+    I_reviewID INTEGER := 0;
+BEGIN
+   SELECT max(reviewID) + 1
+   INTO   I_reviewID
+   FROM   Review;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_reviewID
+                       start with ' || I_reviewID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_requestID
+DECLARE
+    I_requestID INTEGER := 0;
+BEGIN
+   SELECT max(requestID) + 1
+   INTO   I_requestID
+   FROM   Request;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_requestID
+                       start with ' || I_requestID ||
+                       ' increment by 1';
+END;
+/
+--CREATE SEQUENCE SEQ_responseID
+DECLARE
+  I_responderID INTEGER := 0;
+BEGIN
+   SELECT max(responderID) + 1
+   INTO   I_responderID
+   FROM   Response;
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_responseID
+                       start with ' || I_responderID ||
+                       ' increment by 1';
+END;
+/
 
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
-VALUES(6, 'Patient', 'testnaam', 'testemail', 'Testdescription', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
+
+--Queries
+
+

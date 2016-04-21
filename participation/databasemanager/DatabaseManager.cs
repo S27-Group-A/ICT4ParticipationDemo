@@ -19,7 +19,7 @@ namespace Participation
         //Database connection; uses Connectionstring
         private static OracleConnection _Connection = new OracleConnection(_ConnectionString);
         //Temp data for connecting to the database; [Username], [Password], [server-IP]
-        private const string _ConnectionId = "SYSTEM", _ConnectionPassword = "", _ConnectionAddress = "//localhost:1521/xe";
+        private const string ConnectionId = "dbi330810", ConnectionPassword = " Jm3AQLBVXo", _ConnectionAddress = "//fhictora01.fhict.local/fhictora";
         #endregion
 
         #region Properties
@@ -137,7 +137,7 @@ namespace Participation
                 string EmailAdress = reader["email"].ToString();
                 string Description = reader["description"].ToString();
                 string dateTime = reader["dateOfBirth"].ToString();
-                       DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                DateTime DateOfBirth = Convert.ToDateTime(dateTime);
                 string Location = reader["location"].ToString();
                 string PhoneNumber = reader["phone"].ToString();
                 GenderEnum Gender = ToGender(reader["gender"].ToString());
@@ -167,10 +167,10 @@ namespace Participation
                 _Connection.Close();
             }
         }
-        //Creates a list of meetings and returns it to the user-creation method
+        //Creates a list of meetings
         public static List<Meeting> CreateMeetingList(int UserID)
         {
-            OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+            OracleCommand command = CreateOracleCommand("SELECT * FROM Meeting;");
             OracleDataReader reader = ExecuteQuery(command);
 
             
@@ -285,6 +285,43 @@ namespace Participation
                 _Connection.Close();
             }
             return ReviewList;
+        }
+
+        public static bool BanUserTemp(User user, int unban)
+        {
+            DateTime unbandate = DateTime.Now.AddDays(unban);
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE Person SET banned = 1, unban = :Date WHERE email = :Email");
+                command.Parameters.Add(":Email", user.Email);
+                command.Parameters.Add(":Date", user.Email);
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
+        public static bool BanUserPerm(User user)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE Person SET banned = 2");
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
         }
         #endregion
 
