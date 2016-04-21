@@ -1,0 +1,39 @@
+//Meetings
+Meeting GetMeeting(int volunteer, int patient);
+bool AddMeeting(int volunteer, int patient, Meeting meeting);
+List<Meetings> MeetingsByUser(int user);
+
+//Request
+Request GetRequest(int patient);
+List<Requests> Requests();
+bool AddRequest(Request request, int patient);
+List<Request> RequestsByPatient(int patient);
+bool RemoveRequest(int patient);
+
+
+//IUser
+IUser GetPatient(int request); -> request.personid //WEL GEWOON PATIENT RETURNEN PLS
+IUser GetUser(int user);
+IUser AddUser(IUser user);
+List<IUser> GetAllUsers();
+bool RemoveUser(IUser user);
+bool BanUser(IUser user, bool temp)
+bool ChangePermissions(IUser user, string rights) <-- should always be 'Admin' or 'Patient' or 'Volunteer'
+bool AddPerks(List<string> perks, Volunteer volunteer)
+bool AddPerk(string perk, Volunteer volunteer)
+bool RemovePerk(string perk, Volunteer volunteer)
+
+
+//Response
+List<Responses> GetResponse(int request, int patient, int volunteer);
+bool AddResponse(int patient, int patient, Response response);
+
+//Review
+List<Review> GetReviews(int volunteer);
+bool AddReview(int volunteer, int patient, Review review);
+bool RemoveReviews(int volunteer, int patient, Review review);
+ 
+
+
+
+

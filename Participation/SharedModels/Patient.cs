@@ -14,8 +14,8 @@ namespace Participation.SharedModels
         public List<Request> Requests { get; set; }
 
         //constructors
-        public Patient(string name, string email, string description, DateTime birthday, string profilePicture, 
-            string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description, 
+        public Patient(string name, string email, string description, DateTime birthday, string profilePicture,
+            string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description,
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
             Requests = new List<Request>();
@@ -24,6 +24,7 @@ namespace Participation.SharedModels
 
 
         //Methods
+        //TODO Move this to logic layer plox
         public void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             Request req = new Request(title, text, perks, location, date, urgency);

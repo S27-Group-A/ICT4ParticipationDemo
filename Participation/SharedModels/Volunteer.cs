@@ -24,10 +24,6 @@ namespace Participation.SharedModels
             _verklaringPdf = "";
         }
 
-
-        
-
-
         //methods
         public bool InviteToChat()
         {

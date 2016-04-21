@@ -19,6 +19,8 @@
             this.Location = location;
         }
 
+        
+
         // Properties
 
         /// <summary>

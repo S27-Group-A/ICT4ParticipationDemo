@@ -11,27 +11,6 @@
     /// </summary>
     public class Request
     {
-        // constructors
-
-        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
-        {
-            this.Title = title;
-            this.Text = text;
-            this.Perks = perks;
-            this.Location = location;
-            this.Date = date;
-            this.Urgency = urgency;
-            this.Responses = new List<Response>();
-
-        }
-
-        public Request(string title, string text, string location)
-        {
-            this.Title = title;
-            this.Text = text;
-            this.Location = location;
-        }
-
         // properties
 
         /// <summary>
@@ -85,6 +64,24 @@
         /// Gives the request object in a single string
         /// </summary>
         /// <returns>Returns the string</returns>
+
+        // constructors
+
+        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        {
+            this.Title = title;
+            this.Text = text;
+            this.Perks = perks;
+            this.Location = location;
+            this.Date = date;
+            this.Urgency = urgency;
+            this.Responses = new List<Response>();
+
+        }
+
+
+
+       
         public override string ToString()
         {
             // TODO Optionally return perks per perk as string
