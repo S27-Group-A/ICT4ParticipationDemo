@@ -13,6 +13,7 @@ namespace Participation.BeheerSysteem.Logic
         public List<User> Users { get; set; }
         public List<Request> Requests { get; set; }
         public List<Review> Reviews { get; set; }
+        public List<Volunteer> Volunteers { get; set; }
 
         public AdministrationSystem()
         {
@@ -42,8 +43,8 @@ namespace Participation.BeheerSysteem.Logic
             return DatabaseManager.GetReviews();
         }
 
-        //not finished yet.
-        public bool BanUser(User user)
+        //Bans Users permanently
+        public bool BanUserPermanent(User user)
         {
             List<User> tempusers = GetUsers();
             User u = new User();
@@ -53,13 +54,31 @@ namespace Participation.BeheerSysteem.Logic
                 if (tempusers.ToString() == tempuser.ToString())
                 {
                     u = tempuser;
-                    //ban user
+                    tempuser.Ban = 2;
                     return true;
                 }
             }
             return false;
         }
-
+        // Bans users temporary
+        public bool BanUserTemporary(User user, int bantime)
+        {
+            List<User> tempusers = GetUsers();
+            User u = new User();
+            user = u;
+            foreach (User tempuser in tempusers)
+            {
+                if (tempusers.ToString() == tempuser.ToString())
+                {
+                    u = tempuser;
+                    tempuser.Ban = 1;
+                    tempuser.BantimeinDays = bantime;
+                    return true;
+                }
+            }
+            return false;
+        }
+        //Deletes an account
         public bool DeleteAcount(User user)
         {
             List<User> tempusers = GetUsers();
@@ -76,7 +95,7 @@ namespace Participation.BeheerSysteem.Logic
             }
             return false;
         }
-
+        //Deletes a Request
         public bool DeleteRequest(Request request)
         {
             List<Request> temprequests = GetRequests();
@@ -93,7 +112,7 @@ namespace Participation.BeheerSysteem.Logic
             }
             return false;
         }
-
+        //Deletes a review
         public bool DeleteReview(Review review)
         {
             List<Review> tempreviews = GetReviews();
@@ -110,5 +129,24 @@ namespace Participation.BeheerSysteem.Logic
             }
             return false;
         }
+
+        public bool ChangeAdminRights(User user)
+        {
+            List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
+            Volunteer V = new Volunteer();
+            V = null;
+            foreach (Volunteer tempvolunteer in Volunteers)
+            {
+                if (Volunteers.ToString() == tempvolunteer.ToString())
+                {
+                    V = tempvolunteer;
+                    V.Adminrights = true;
+                    return true;
+                }
+            }
+            V.Adminrights = false;
+            return false;
+        }
+
     }
 }

@@ -19,13 +19,15 @@ namespace Participation.SharedModels
         public GenderEnum Gender { get; set; }
         public string Password { get; set; }
         public List<Meeting> meetings { get; set; }
+        public int Ban { get; set; }
+        public int BantimeinDays { get; set; }
 
         //constructors
         public User()
         {
         }
 
-        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password)
+        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, int ban, int bantimeindays)
         {
             Name = name;
             Email = email;
@@ -37,9 +39,11 @@ namespace Participation.SharedModels
             Gender = gender;
             Password = password;
             meetings = new List<Meeting>();
+            Ban = ban;
+            BantimeinDays = bantimeindays;
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber)
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, int ban, int bantimeindays)
         {
             Name = name;
             Email = email;
@@ -48,9 +52,11 @@ namespace Participation.SharedModels
             Password = password;
             PhoneNumber = phoneNumber;
             meetings = new List<Meeting>();
+            Ban = ban;
+            BantimeinDays = bantimeindays;
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender)
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, int ban, int bantimeindays)
         {
             Name = name;
             Email = email;
@@ -60,9 +66,11 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             meetings = new List<Meeting>();
+            Ban = ban;
+            BantimeinDays = bantimeindays;
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, string profilePicture)
+        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, string profilePicture, int ban, int bantimeindays)
         {
             Name = name;
             Email = email;
@@ -73,6 +81,8 @@ namespace Participation.SharedModels
             Gender = gender;
             ProfilePicture = profilePicture;
             meetings = new List<Meeting>();
+            Ban = ban;
+            BantimeinDays = bantimeindays;
         }
 
 

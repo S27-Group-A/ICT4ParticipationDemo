@@ -135,5 +135,11 @@ namespace Participation
         {
             throw new NotImplementedException();
         }
+
+        //Returns list of Volunteers
+        internal static List<Volunteer> GetVolunteer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
