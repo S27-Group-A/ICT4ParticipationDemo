@@ -5,43 +5,35 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
 
 namespace Participation.BeheerSysteem.GUI
 {
     public partial class ProfileForm : Form
     {
-        private User _loggedInUser;
+        private IUser _loggedInUser;
 
-        public ProfileForm()
+        public ProfileForm(IUser loggedInUser)
         {
             InitializeComponent();
+            _loggedInUser = loggedInUser;
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
             RefreshInfo();
-            RefreshPic();
-            if (_loggedInUser.GetType() == typeof(Volunteer))
-            {
-                RefreshVogUrl();
-                RefreshPerks();
-            }
+            //RefreshPic();
+            //if (_loggedInUser.GetType() == typeof(Volunteer))
+            //{
+            //    RefreshVogUrl();
+            //    RefreshPerks();
+            //}
 
 
         }
 
-        private void btn_Chat_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Beheer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("U bent al op de beheerderspagina!");
-        }
 
         private void btn_LogUit_Click(object sender, EventArgs e)
         {

@@ -74,14 +74,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedModels\FormProvider.cs" />
     <Compile Include="SharedModels\GenderEnum.cs" />
-    <Compile Include="SharedModels\LoggedInUser.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
     <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\Response.cs" />
     <Compile Include="SharedModels\Review.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="SharedModels\Volunteer.cs" />
-
     <Compile Include="Unspecified Profile\GUI\ProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,7 +121,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-
     <EmbeddedResource Include="Unspecified Profile\GUI\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -19,7 +19,6 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
-        private IUser _loggedInUser;
 
         private LISLogic _lisLogic = new LISLogic();
 
@@ -71,15 +70,15 @@ namespace Participation
 
         private void LogIn(IUser user)
         {
-            
-            _loggedInUser = user;
-            if (_loggedInUser.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(_loggedInUser.Location) ||
-                !string.IsNullOrEmpty(_loggedInUser.Name))
+
+            if (user.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(user.Location) ||
+                !string.IsNullOrEmpty(user.Name))
             {
+                FormProvider.LoggedInUser = user;
                 FormProvider.ProfileForm.Show();
                 FormProvider.StartMenu.Hide();
             }
-            
+
         }
     }
 }
