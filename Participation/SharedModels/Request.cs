@@ -13,52 +13,15 @@
     {
         // properties
 
-        /// <summary>
-        /// Gets or sets the title of the request
-        /// </summary>
         public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or sets the text or description or the request
-        /// </summary>
         public string Text { get; set; }
-
-        /// <summary>
-        /// Gets or sets the location or city of the request
-        /// </summary>
         public string Location { get; set; }
-
-        /// <summary>
-        /// Gets or sets the urgency of the request
-        /// </summary>
         public int Urgency { get; set; }
-
-        /// <summary>
-        /// Gets or sets the date of the request
-        /// </summary>
         public DateTime Date { get; set; }
-
-        /// <summary>
-        /// Gets the perks of the request
-        /// </summary>
         public List<string> Perks { get; private set; }
-
-        /// <summary>
-        /// Gets the responses of the request
-        /// </summary>
         public List<Response> Responses { get; private set; }
 
-        // methods
 
-        /// <summary>
-        /// Add a response to the list of the request
-        /// </summary>
-        /// <param name="The text of the response"></param>
-        /// <param name="The date it got posted"></param>
-        public void AddResponse(string text)
-        {
-            this.Responses.Add(new Response(text, DateTime.Now));
-        }
 
         /// <summary>
         /// Gives the request object in a single string
@@ -79,9 +42,19 @@
 
         }
 
+        // methods
+        //TODO Shoul go into the logic layer
+        /// <summary>
+        /// Add a response to the list of the request
+        /// </summary>
+        /// <param name="The text of the response"></param>
+        /// <param name="The date it got posted"></param>
+        public void AddResponse(string text)
+        {
+            this.Responses.Add(new Response(text, DateTime.Now));
+        }
 
 
-       
         public override string ToString()
         {
             // TODO Optionally return perks per perk as string
