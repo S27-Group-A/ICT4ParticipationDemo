@@ -71,7 +71,7 @@ namespace Participation.InlogSysteem.GUI
 
         private bool CheckFields()
         {
-            
+
             if (passwordTbx.Text != repeatPasswordTbx.Text)
                 MessageBox.Show("Het herhaalde wachtwoord komt niet overheen met het originele wachtwoord");
             if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(passwordTbx.Text)
@@ -115,6 +115,7 @@ namespace Participation.InlogSysteem.GUI
                     if (maleRbt.Checked)
                     {
                         if (
+                            //TODO Constructor herschrijven
                             _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
                                 profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
                                 passwordTbx.Text, new List<Meeting>(), _perks)))
