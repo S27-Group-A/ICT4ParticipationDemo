@@ -10,6 +10,7 @@ namespace Participation.SharedModels
     public abstract class User : IUser
     {
         //Properties
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
@@ -23,10 +24,11 @@ namespace Participation.SharedModels
 
         //constructors
 
-        public User(string name, string email, string description,
+        public User(int Id, string name, string email, string description,
             DateTime birthday, string profilePicture, string location,
             string phoneNumber, GenderEnum gender, string password)
         {
+            this.Id = Id;
             Name = name;
             Email = email;
             Description = description;
