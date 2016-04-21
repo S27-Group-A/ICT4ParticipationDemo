@@ -52,17 +52,17 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btn_Profiel_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void btn_Hulpvragen_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void EditInfo_Click(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void RefreshInfo()

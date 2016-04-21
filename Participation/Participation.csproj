@@ -55,6 +55,12 @@
     <Compile Include="HulpSysteem\GUI\RequestForm.designer.cs">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.Designer.cs">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
       <SubType>Form</SubType>
