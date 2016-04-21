@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Participation.BeheerSysteem.GUI;
 using Participation.InlogSysteem.GUI;
+using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem.GUI;
-//using Participation.HulpSysteem.GUI;
 using UI;
 
 namespace Participation.SharedModels
 {
     class FormProvider
     {
+        public static IUser LoggedInUser;
+
         public static Startmenu StartMenu
         {
             get
@@ -47,7 +49,7 @@ namespace Participation.SharedModels
             {
                 if (_profileForm == null)
                 {
-                    _profileForm = new ProfileForm();
+                    _profileForm = new ProfileForm(LoggedInUser);
                 }
                 return _profileForm;
             }
@@ -67,6 +69,8 @@ namespace Participation.SharedModels
             }
         }
         private static VolunteerForm _volunteer;
+
+       
     }
 }
 

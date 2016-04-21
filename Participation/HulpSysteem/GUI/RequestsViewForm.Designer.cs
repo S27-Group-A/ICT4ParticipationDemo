@@ -1,6 +1,6 @@
-﻿namespace Participation.BeheerSysteem.GUI
+﻿namespace Participation.HulpSysteem.GUI
 {
-    partial class ProfileForm
+    partial class RequestsViewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -19,6 +19,7 @@
             }
             base.Dispose(disposing);
         }
+
 
         #region Windows Form Designer generated code
 
@@ -111,8 +112,7 @@
             this.btnEditInfo.TabIndex = 37;
             this.btnEditInfo.Text = "Wijzigen";
             this.btnEditInfo.UseVisualStyleBackColor = true;
-            this.btnEditInfo.Click += new System.EventHandler(this.EditInfo_Click);
-            // 
+            
             // lblPreName
             // 
             this.lblPreName.AutoSize = true;
@@ -353,7 +353,6 @@
             this.btnProfile.TabIndex = 1;
             this.btnProfile.Text = "Profiel";
             this.btnProfile.UseVisualStyleBackColor = true;
-            this.btnProfile.Click += new System.EventHandler(this.btn_Profiel_Click);
             // 
             // btnHelprequests
             // 
@@ -364,7 +363,6 @@
             this.btnHelprequests.TabIndex = 2;
             this.btnHelprequests.Text = "Hulp Vragen";
             this.btnHelprequests.UseVisualStyleBackColor = true;
-            this.btnHelprequests.Click += new System.EventHandler(this.btn_Hulpvragen_Click);
             // 
             // btnLogOut
             // 
@@ -375,7 +373,6 @@
             this.btnLogOut.TabIndex = 7;
             this.btnLogOut.Text = "Log Uit";
             this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
             // ProfileForm
             // 
@@ -390,7 +387,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProfileForm";
             this.Text = "Profiel";
-            this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.gbForm.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

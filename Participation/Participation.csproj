@@ -75,6 +75,12 @@
     <Compile Include="HulpSysteem\GUI\RequestForm.designer.cs">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.Designer.cs">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
       <SubType>Form</SubType>
@@ -94,7 +100,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedModels\FormProvider.cs" />
     <Compile Include="SharedModels\GenderEnum.cs" />
-    <Compile Include="SharedModels\LoggedInUser.cs" />
     <Compile Include="SharedModels\Meeting.cs" />
     <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\Response.cs" />
