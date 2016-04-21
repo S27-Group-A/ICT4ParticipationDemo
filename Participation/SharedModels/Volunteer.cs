@@ -21,17 +21,11 @@ namespace Participation.SharedModels
         {
             _reviews = new List<Review>();
             _perks = new List<string>();
-            _verklaringPdf = null;
+            _verklaringPdf = "";
         }
 
 
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
-            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
-        {
-            _reviews = new List<Review>();
-            _perks = perks;
-            _verklaringPdf = null;
-        }
+        
 
 
         //methods
