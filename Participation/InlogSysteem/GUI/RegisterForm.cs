@@ -8,22 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.SharedModels;
+using Phidgets;
+using Phidgets.Events;
+using S21M_RailB;
 
 namespace Participation.InlogSysteem.GUI
 {
     public partial class RegisterForm : Form
     {
         private static readonly string _succesfullRegisterationMsg = "Uw account is geregistreerd u kunt nu inloggen";
-        private static readonly string _contactAdministratorMsg = "Er is iets misgegaan neem contact op met de administrator";
 
-        private LISLogic _lisLogic = new LISLogic(); 
+        private static readonly string _contactAdministratorMsg =
+            "Er is iets misgegaan neem contact op met de administrator";
 
-        private List<string> _perks = new List<string>(); 
+        private LISLogic _lisLogic = new LISLogic();
+
+        private List<string> _perks = new List<string>();
+
+        private RFIDManager rfidManager;
 
         public RegisterForm()
         {
             InitializeComponent();
             ControlBox = false;
+            rfidManager = new RFIDManager();
             if (!needHelpRbt.Checked && !canHelpRbt.Checked)
             {
                 formPnl.Hide();
@@ -36,7 +44,7 @@ namespace Participation.InlogSysteem.GUI
             formPnl.Show();
             if (needHelpRbt.Checked)
                 HideVogAndPerks();
-            else if(canHelpRbt.Checked)
+            else if (canHelpRbt.Checked)
                 ShowVogAndPerks();
         }
 
@@ -54,6 +62,7 @@ namespace Participation.InlogSysteem.GUI
             perksGbx.Show();
             vogGbx.Show();
         }
+
         private void HideVogAndPerks()
         {
             perksGbx.Hide();
@@ -62,10 +71,11 @@ namespace Participation.InlogSysteem.GUI
 
         private bool CheckFields()
         {
-            if(passwordTbx.Text != repeatPasswordTbx.Text)
+            
+            if (passwordTbx.Text != repeatPasswordTbx.Text)
                 MessageBox.Show("Het herhaalde wachtwoord komt niet overheen met het originele wachtwoord");
             if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(passwordTbx.Text)
-                && !string.IsNullOrEmpty(repeatPasswordTbx.Text) && !string.IsNullOrEmpty(locationTbx.Text) 
+                && !string.IsNullOrEmpty(repeatPasswordTbx.Text) && !string.IsNullOrEmpty(locationTbx.Text)
                 && passwordTbx.Text == repeatPasswordTbx.Text && !string.IsNullOrEmpty(nameTbx.Text))
             {
                 if ((canHelpRbt.Checked && !string.IsNullOrEmpty(vogUrlTbx.Text)) || needHelpRbt.Checked)
@@ -104,18 +114,28 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (maleRbt.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male, passwordTbx.Text, new List<Meeting>(), _perks )))
+                        if (
+                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
+                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
+                                passwordTbx.Text, new List<Meeting>(), _perks)))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (femaleRbt.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female, passwordTbx.Text, new List<Meeting>(), _perks)))
+                        if (
+                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
+                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
+                                passwordTbx.Text, new List<Meeting>(), _perks)))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
                 //TODO Add files (VOG and Profilepicture) to server
+            }
+            else
+            {
+                MessageBox.Show("U heeft niet alle gegevens goed toegevoegd.", "Foutmelding", MessageBoxButtons.OK);
             }
         }
 
@@ -150,6 +170,21 @@ namespace Participation.InlogSysteem.GUI
         private void RegisterForm_Closed(object sender, EventArgs e)
         {
             FormProvider.StartMenu.Show();
+        }
+
+        private void femaleRbt_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
