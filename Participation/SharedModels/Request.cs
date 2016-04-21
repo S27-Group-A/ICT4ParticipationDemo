@@ -76,9 +76,9 @@
         /// </summary>
         /// <param name="The text of the response"></param>
         /// <param name="The date it got posted"></param>
-        public void AddResponse(string text)
+        public void AddResponse(string text, Volunteer responder)
         {
-            this.Responses.Add(new Response(text, DateTime.Now));
+            this.Responses.Add(new Response(text, DateTime.Now, responder));
         }
 
         /// <summary>

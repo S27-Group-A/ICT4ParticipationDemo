@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
 using Participation.VrijwilligersSysteem;
 using Participation.VrijwilligersSysteem.Logic;
@@ -18,6 +19,7 @@ namespace Participation.VrijwilligersSysteem.GUI
     {
         VolunteerSystem _volunteerSystem;
         Request _selectedRequest;
+        private IUser _loggedInUser = FormProvider.LoggedInUser;
 
         public VolunteerForm()
         {
@@ -40,9 +42,9 @@ namespace Participation.VrijwilligersSysteem.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tbResponse.Text.Length > 0)
+            if (tbResponse.Text.Length > 0 && _loggedInUser is Volunteer)
             {
-                _selectedRequest.AddResponse(tbResponse.Text);
+                _selectedRequest.AddResponse(tbResponse.Text, _loggedInUser as Volunteer);
                 GetRequestInfo();
                 tbResponse.Text = "";
             }
