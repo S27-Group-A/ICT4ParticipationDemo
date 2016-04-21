@@ -21,6 +21,15 @@
         public List<string> Perks { get; private set; }
         public List<Response> Responses { get; private set; }
 
+        /// <summary>
+        /// Add a response to the list of the request
+        /// </summary>
+        /// <param name="The text of the response"></param>
+        /// <param name="The date it got posted"></param>
+        public void AddResponse(string text, Volunteer responder)
+        {
+            this.Responses.Add(new Response(text, DateTime.Now, responder));
+        }
 
 
         /// <summary>
