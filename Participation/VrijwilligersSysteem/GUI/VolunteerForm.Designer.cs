@@ -38,10 +38,11 @@
             this.lblLocation = new System.Windows.Forms.Label();
             this.lblUrgency = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbResponses = new System.Windows.Forms.ListBox();
             this.tbResponse = new System.Windows.Forms.TextBox();
             this.btnPostResponse = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbResponses = new System.Windows.Forms.ListBox();
+            this.btnMeeting = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -100,7 +101,7 @@
             this.panel2.Controls.Add(this.lblDate);
             this.panel2.Controls.Add(this.lblLocation);
             this.panel2.Controls.Add(this.lblUrgency);
-            this.panel2.Location = new System.Drawing.Point(613, 44);
+            this.panel2.Location = new System.Drawing.Point(636, 44);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 5;
@@ -147,6 +148,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reacties";
             // 
+            // lbResponses
+            // 
+            this.lbResponses.FormattingEnabled = true;
+            this.lbResponses.ItemHeight = 24;
+            this.lbResponses.Location = new System.Drawing.Point(7, 29);
+            this.lbResponses.Name = "lbResponses";
+            this.lbResponses.Size = new System.Drawing.Size(321, 100);
+            this.lbResponses.TabIndex = 0;
+            // 
             // tbResponse
             // 
             this.tbResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -177,20 +187,22 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // lbResponses
+            // btnMeeting
             // 
-            this.lbResponses.FormattingEnabled = true;
-            this.lbResponses.ItemHeight = 24;
-            this.lbResponses.Location = new System.Drawing.Point(7, 29);
-            this.lbResponses.Name = "lbResponses";
-            this.lbResponses.Size = new System.Drawing.Size(321, 100);
-            this.lbResponses.TabIndex = 0;
+            this.btnMeeting.Location = new System.Drawing.Point(725, 12);
+            this.btnMeeting.Name = "btnMeeting";
+            this.btnMeeting.Size = new System.Drawing.Size(111, 26);
+            this.btnMeeting.TabIndex = 10;
+            this.btnMeeting.Text = "Afspraak maken";
+            this.btnMeeting.UseVisualStyleBackColor = true;
+            this.btnMeeting.Click += new System.EventHandler(this.btnMeeting_Click);
             // 
             // VolunteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 436);
+            this.Controls.Add(this.btnMeeting);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnPostResponse);
             this.Controls.Add(this.tbResponse);
@@ -227,5 +239,6 @@
         private System.Windows.Forms.Button btnPostResponse;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListBox lbResponses;
+        private System.Windows.Forms.Button btnMeeting;
     }
 }

@@ -103,5 +103,10 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             GetRequestInfo();
         }
+
+        private void btnMeeting_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
