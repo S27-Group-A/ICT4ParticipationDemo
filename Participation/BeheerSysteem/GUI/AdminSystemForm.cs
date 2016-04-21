@@ -60,39 +60,50 @@ namespace Participation.BeheerSysteem.GUI
         {
             emptyProfileInformation();
 
-            //tbxProfileName.Text = lbxUserList.SelectedItem.name.Text;
-            //rtbProfileInformation.Text = lbxUserList.SelectedItem.description.Text;
-            //pbProfilePicture.Image = lbx_userList.SelectedItem.ProfilePicture;
-            //pbProfilePicture.Show = true;
+            tbxProfileName.Text = adminSystem.Users[lbxUserList.SelectedIndex].Name;
+            rtbProfileInformation.Text = adminSystem.Users[lbxUserList.SelectedIndex].Description;
+            //pbProfilePicture.Image = adminSystem.Users[lbxUserList.SelectedIndex].ProfilePicture;
+            //pbProfilePicture.Visible = true;
 
         }
 
 
         private void btn_BanGebruiker_Click(object sender, EventArgs e)
         {
-            if (rbtnPermanent.Checked == true)
+            if (adminSystem.DeleteAcount(adminSystem.Users[lbxUserList.SelectedIndex]))
             {
-               // lbxUserList.SelectedItem.isBanned = true;
+                emptyProfileInformation();
             }
-            if (rbtnTemporary.Checked == true)
+            else
             {
-               //don't forget to implement trycatch
-                int bandays = 0;
-                bandays = Convert.ToInt32(tbxDaysUntillUnbanned.Text);
-                //lbxUserList.SelectedItem.isBanned = true;
-               // lbxUserList.SelectedItem.daysBanned = bandays;
+                MessageBox.Show("Kon het account niet bannen.");
             }
-            emptyProfileInformation();
         }
 
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            //lbxRequests.SelectedItem.Remove();
+            if (adminSystem.DeleteRequest(adminSystem.Requests[lbxRequests.SelectedIndex]))
+            {
+                LoadRequestList();
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Deze hulpvraag kon helaas niet verwijderd worden!");
+            }
         }
 
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
         {
-            //lbxReviews.SelectedItem.Remove();
+            if (adminSystem.DeleteReview(adminSystem.Reviews[lbxReviews.SelectedIndex]))
+            {
+                LoadReviewList();
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Deze hulpvraag kon helaas niet verwijderd worden!");
+            }
         }
         private void btn_Chat_Click(object sender, EventArgs e)
         {
@@ -101,6 +112,19 @@ namespace Participation.BeheerSysteem.GUI
 
             // Show the settings form
             //newchat.Show();
+        }
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        {
+           if(adminSystem.DeleteAcount(adminSystem.Users[lbxUserList.SelectedIndex]))
+           {
+               LoadUserList();
+               Refresh();
+           }
+            else
+           {
+               MessageBox.Show("Kon het account niet verwijderen.");
+           }
+           
         }
         private void btn_Beheer_Click(object sender, EventArgs e)
         {
@@ -118,40 +142,48 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
+
+        private void btnJudgeVolunteer_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogresult = MessageBox.Show("Heeft deze gebruiker een goedgekeurde VOG?", "", MessageBoxButtons.YesNoCancel);
+            if (dialogresult == DialogResult.Yes)
+            {
+                MessageBox.Show("Deze vrijwilliger is nu goedgekeurd om te beginnen!");
+
+            }
+            if (dialogresult == DialogResult.No)
+            {
+                MessageBox.Show("Sorry, maar een vrijwilliger staat pas op actief als zijn VOG goedgekeurd is.");
+            }
+            if (dialogresult == DialogResult.Cancel)
+            {
+            }
+        }
+        private void btnChangeRights_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "", MessageBoxButtons.YesNoCancel);
+            if (dialogresult == DialogResult.Yes) { }
+            if (dialogresult == DialogResult.No) { }
+            if (dialogresult == DialogResult.Cancel) { }
+        }
         private void btn_Profiel_Click(object sender, EventArgs e)
         {
-
+            // open profielpagina
         }
 
         private void btn_Hulpvragen_Click(object sender, EventArgs e)
         {
-
+            //open request pagina
         }
 
         private void btn_Ouderen_Click(object sender, EventArgs e)
         {
-
+            //open ouderen pagina
         }
 
         private void btn_Vrijwilligers_Click(object sender, EventArgs e)
         {
-
+            //open vrijwilligers pagina
         }
-
-        private void btnDeleteAccount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnChangeRights_Click(object sender, EventArgs e)
-        {
-            User tempuser = adminSystem.Users[lbxUserList.SelectedIndex];
-        }
-
-        private void btnJudgeVolunteer_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

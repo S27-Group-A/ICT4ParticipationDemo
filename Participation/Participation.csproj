@@ -48,23 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BeheerSysteem\GUI\AcceptVolunteer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BeheerSysteem\GUI\AcceptVolunteer.Designer.cs">
-      <DependentUpon>AcceptVolunteer.cs</DependentUpon>
-    </Compile>
     <Compile Include="BeheerSysteem\GUI\AdminSystemForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BeheerSysteem\GUI\AdministratorRights.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BeheerSysteem\GUI\AdministratorRights.Designer.cs">
-      <DependentUpon>AdministratorRights.cs</DependentUpon>
     </Compile>
     <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
@@ -106,14 +94,8 @@
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
-    <EmbeddedResource Include="BeheerSysteem\GUI\AcceptVolunteer.resx">
-      <DependentUpon>AcceptVolunteer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BeheerSysteem\GUI\AdministratorRights.resx">
-      <DependentUpon>AdministratorRights.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>

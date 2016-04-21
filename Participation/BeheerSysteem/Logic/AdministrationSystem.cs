@@ -11,11 +11,14 @@ namespace Participation.BeheerSysteem.Logic
     {
 
         public List<User> Users { get; set; }
-        bool CreateAccount = false;
+        public List<Request> Requests { get; set; }
+        public List<Review> Reviews { get; set; }
 
         public AdministrationSystem()
         {
             this.Users = GetUsers();
+            this.Requests = GetRequests();
+            this.Reviews = GetReviews();
         }
 
         public void CreateNewAccount()
@@ -29,8 +32,18 @@ namespace Participation.BeheerSysteem.Logic
 
         }
 
+        public List<Request> GetRequests()
+        {
+            return DatabaseManager.GetRequests();
+        }
+
+        public List<Review> GetReviews()
+        {
+            return DatabaseManager.GetReviews();
+        }
+
         //not finished yet.
-        public void BanUser(User user)
+        public bool BanUser(User user)
         {
             List<User> tempusers = GetUsers();
             User u = new User();
@@ -40,13 +53,14 @@ namespace Participation.BeheerSysteem.Logic
                 if (tempusers.ToString() == tempuser.ToString())
                 {
                     u = tempuser;
-                    break;
+                    //ban user
+                    return true;
                 }
             }
-            //Update the user.
+            return false;
         }
 
-        public void DeleteAcount(User user)
+        public bool DeleteAcount(User user)
         {
             List<User> tempusers = GetUsers();
             User u = new User();
@@ -56,22 +70,45 @@ namespace Participation.BeheerSysteem.Logic
                 if (tempusers.ToString() == tempuser.ToString())
                 {
                     u = tempuser;
-                    break;
+                    Users.Remove(u);
+                    return true;
                 }
             }
-            Users.Remove(u);
+            return false;
         }
 
-        public void DetectSelecterdUser()
+        public bool DeleteRequest(Request request)
         {
-            foreach (User tempuser in tempusers)
+            List<Request> temprequests = GetRequests();
+            Request r = new Request();
+            request = r;
+            foreach (Request temprequest in Requests)
             {
-                if (tempusers.ToString() == tempuser.ToString())
+                if (temprequests.ToString() == temprequest.ToString())
                 {
-                    u = tempuser;
-                    break;
+                    r = temprequest;
+                    Requests.Remove(r);
+                    return true;
                 }
             }
+            return false;
+        }
+
+        public bool DeleteReview(Review review)
+        {
+            List<Review> tempreviews = GetReviews();
+            Review r = new Review();
+            review = r;
+            foreach (Review tempreview in Reviews)
+            {
+                if (tempreviews.ToString() == tempreview.ToString())
+                {
+                    r = tempreview;
+                    Reviews.Remove(r);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
