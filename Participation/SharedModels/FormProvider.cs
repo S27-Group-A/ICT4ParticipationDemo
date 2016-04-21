@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Participation.BeheerSysteem.GUI;
 using Participation.InlogSysteem.GUI;
+using Participation.VrijwilligersSysteem.GUI;
 //using Participation.HulpSysteem.GUI;
 using UI;
 
@@ -51,20 +52,21 @@ namespace Participation.SharedModels
                 return _profileForm;
             }
         }
-        private static ProfileForm _profileForm; 
+        private static ProfileForm _profileForm;
 
-        //public static RequestForm RequestForm
-        //{
-        //    get
-        //    {
-        //        if (_requestForm == null)
-        //        {
-        //            _requestForm = new RequestForm();
-        //        }
-        //        return _requestForm;
-        //    }
-        //}
-        //private static RegisterForm _requestForm;
+        public static VolunteerForm VolunteerForm
+        {
+
+            get
+            {
+                if (_volunteer == null)
+                {
+                    _volunteer = new VolunteerForm();
+                }
+                return _volunteer;
+            }
+        }
+        private static VolunteerForm _volunteer;
     }
 }
 
