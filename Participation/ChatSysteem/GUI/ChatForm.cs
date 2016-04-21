@@ -11,12 +11,12 @@ using Client.ChatService;
 
 namespace Client
 {
-    public partial class frmClient : Form
+    public partial class ClientForm : Form
     {
         ReceiveClient rc = null;
         string myName;
        
-        public frmClient()
+        public ClientForm()
         {
             InitializeComponent();
             this.FormClosing+=new FormClosingEventHandler(frmClient_FormClosing);
@@ -29,8 +29,10 @@ namespace Client
             int keyValue = (int)e.KeyChar;
 
             if (keyValue == 13)
+            {
                 SendMessage();
-            
+                txtSend.Clear();
+            }
         }
 
         private void frmClient_FormClosing(object sender, EventArgs e)
