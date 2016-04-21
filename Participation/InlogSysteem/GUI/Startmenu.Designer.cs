@@ -73,6 +73,7 @@
             this.passwordTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordTbx.Location = new System.Drawing.Point(163, 53);
             this.passwordTbx.Name = "passwordTbx";
+            this.passwordTbx.PasswordChar = '*';
             this.passwordTbx.Size = new System.Drawing.Size(208, 27);
             this.passwordTbx.TabIndex = 2;
             // 
