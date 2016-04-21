@@ -15,14 +15,17 @@ namespace Participation.HulpSysteem.GUI
     public partial class RequestsViewForm : Form
     {
         public HPSLogic _hpsLogic = new HPSLogic();
-        
+
         public RequestsViewForm(IUser LoggedInUser)
         {
             InitializeComponent();
+            //TODO Implement this
+            /*
             foreach (var request in _hpsLogic.GetRequests())
             {
                 
             }
+            */
         }
 
 

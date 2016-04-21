@@ -23,7 +23,9 @@ namespace Participation.SharedModels
 
         //constructors
 
-        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password)
+        public User(string name, string email, string description,
+            DateTime birthday, string profilePicture, string location,
+            string phoneNumber, GenderEnum gender, string password)
         {
             Name = name;
             Email = email;

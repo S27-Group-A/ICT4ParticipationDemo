@@ -20,16 +20,21 @@ namespace Participation.HulpSysteem.Logic
             //TODO Add database context to add request to database
         }
 
-        public List<Request> GetRequestsByUser(IUser user)
-        {
-            //TODO Add database context
+        //TODO Implement this
+        /*
+    public List<Request> GetRequestsByUser(IUser user)
+    {
+        //TODO Add database context
 
-            #region databaseless testing
-            var requests = new List<Request>();
-            requests.Add(new Request("Wandeling in het park", "Ik wil graag een wandeling in het park gaan maken.", new List<Perks>(), "Eindhove"));
-            #endregion
+        #region databaseless testing
+
+        var requests = new List<Request>();
+        requests.Add(new Request("Wandeling in het park", "Ik wil graag een wandeling in het park gaan maken.", new List<string>(), "Eindhove"));
+        
+        #endregion
 
 
-        }
     }
+    */
+}
 }
