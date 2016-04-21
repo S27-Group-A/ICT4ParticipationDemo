@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.SharedModels;
 
 namespace Participation
 {
@@ -16,7 +17,7 @@ namespace Participation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Startmenu());
+            Application.Run(FormProvider.StartMenu);
             //Application.Run(new Inloggen());
         }
     }
