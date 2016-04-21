@@ -9,6 +9,27 @@
     {
         //private bool _volunteerAccepted = false;
         //private bool _patientAccepted = false;
+        // Properties
+
+        /// <summary>
+        /// Gets the volunteer from meeting
+        /// </summary>
+        public Volunteer Volunteer { get; set; }
+
+        /// <summary>
+        /// Gets the Patient from meeting
+        /// </summary>
+        public Patient Patient { get; set; }
+
+        /// <summary>
+        /// Gets the date and time when the meeting is planned
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Gets the location of the meeting
+        /// </summary>
+        public string Location { get; set; }
 
         // constructor
         public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
@@ -21,27 +42,7 @@
 
 
 
-        // Properties
 
-        /// <summary>
-        /// Gets the volunteer from meeting
-        /// </summary>
-        public Volunteer Volunteer { get; private set; }
-
-        /// <summary>
-        /// Gets the Patient from meeting
-        /// </summary>
-        public Patient Patient { get; private set; }
-
-        /// <summary>
-        /// Gets the date and time when the meeting is planned
-        /// </summary>
-        public DateTime Date { get; private set; }
-
-        /// <summary>
-        /// Gets the location of the meeting
-        /// </summary>
-        public string Location { get; private set; }
 
         // Methods
         /*
