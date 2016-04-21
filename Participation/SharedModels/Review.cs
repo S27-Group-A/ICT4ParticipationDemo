@@ -10,5 +10,12 @@ namespace Participation.SharedModels
         public int Id { get; set; }
         public double Rating { get; set; }
         public string Text { get; set; }
+
+        public Review(int Id, double Rating, string Text)
+        {
+            this.Id = Id;
+            this.Rating = Rating;
+            this.Text = Text;
+        }
     }
 }
