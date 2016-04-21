@@ -10,33 +10,33 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 CREATE TABLE Person
 (
 	personID 			    NUMBER(10) 		    PRIMARY KEY,
-	personType 		    VARCHAR2(32) 	    CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin' )NOT NULL,
-	name  			      VARCHAR2(32) 	    NOT NULL,
-	email 			      VARCHAR2(64) 	    UNIQUE NOT NULL,
-	description 	    VARCHAR2(256),
-	dateOfBirth 	    DATE 			        NOT NULL,
-	profilePicture 	  VARCHAR2(256), 					        -- Fileserver
-	location 		      VARCHAR2(256)	    NOT NULL,
-	phone 			      VARCHAR2(32),
-	gender 			      VARCHAR2(1) 	    CHECK(gender = 'M' OR gender = 'V') NOT NULL,
-  password          VARCHAR(64)       NOT NULL
+	personType 		    	VARCHAR2(32) 	    CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin')NOT NULL,
+	name  			      	VARCHAR2(32) 	    NOT NULL,
+	email 			      	VARCHAR2(64) 	    UNIQUE NOT NULL,
+	description 	    	VARCHAR2(256),
+	dateOfBirth 	    	DATE 			    NOT NULL,
+	profilePicture 	  		VARCHAR2(256), 					        -- Fileserver
+	location 		      	VARCHAR2(256)	    NOT NULL,
+	phone 			      	VARCHAR2(32),
+	gender 			      	VARCHAR2(1) 	    CHECK(gender = 'M' OR gender = 'V') NOT NULL,
+  password          		VARCHAR(64)       	NOT NULL
 );
 
 CREATE TABLE Perk
 (
-	personID 			    NUMBER(10)        NOT NULL,
-	perk 			        VARCHAR2(256) 	  NOT NULL,
+	personID 			    NUMBER(10)        	NOT NULL,
+	perk 			        VARCHAR2(256) 	  	NOT NULL,
 	
 	CONSTRAINT pk_Perk PRIMARY KEY (personID, perk)
 );
 
 CREATE TABLE Review
 (
-	reviewID 		      NUMBER 			      PRIMARY KEY,
-	reviewerID 		    NUMBER 			      NOT NULL,
-	revieweeID 		    NUMBER 			      NOT NULL,
-	rating 			      NUMBER 			      NOT NULL,
-	description 	    VARCHAR2(256) 	  NOT NULL,
+	reviewID 		      	NUMBER 			    PRIMARY KEY,
+	reviewerID 		    	NUMBER 			    NOT NULL,
+	revieweeID 		    	NUMBER 			    NOT NULL,
+	rating 			      	NUMBER 			    NOT NULL,
+	description 	    	VARCHAR2(256) 	  	NOT NULL,
 	
 	CONSTRAINT c_rating CHECK(rating >0 OR rating <5)
 
@@ -44,11 +44,11 @@ CREATE TABLE Review
 
 CREATE TABLE Meeting
 (
-	volunteerID 	    NUMBER 			      NOT NULL,
-	patientID 		    NUMBER 			      NOT NULL,
-	"location" 		    VARCHAR2(256),
-	"date"			      DATE	            NOT NULL,
-	status 			      NUMBER 			      NOT NULL,
+	volunteerID 	    	NUMBER 			   	NOT NULL,
+	patientID 		    	NUMBER 			    NOT NULL,
+	"location" 		    	VARCHAR2(256),
+	"date"			      	DATE	            NOT NULL,
+	status 			      	NUMBER 			    NOT NULL,
 	
 	CONSTRAINT pk_Meeting PRIMARY KEY(volunteerID, patientID, "location", "date"),
 	CONSTRAINT c_status CHECK(status = 0 OR status = 1)
@@ -56,25 +56,24 @@ CREATE TABLE Meeting
 
 CREATE TABLE Request
 (
-	requestID 		  NUMBER 			        PRIMARY KEY,
-	personID 			  NUMBER 			        NOT NULL,
-	title 			    VARCHAR2(64) 	      NOT NULL,
-	description 	  VARCHAR2(256) 	    NOT NULL,
-	perks 			    VARCHAR2(256),
-	"location" 		  VARCHAR2(256) 	    NOT NULL,
-	"date" 			    DATE     		        NOT NULL,
-	urgency 		    NUMBER 			        DEFAULT 0 NOT NULL,
+	requestID 		  		NUMBER 			    PRIMARY KEY,
+	personID 			  	NUMBER 			    NOT NULL,
+	title 			    	VARCHAR2(64) 	    NOT NULL,
+	description 	  		VARCHAR2(256) 	    NOT NULL,
+	perks 			    	VARCHAR2(256),
+	"location" 		  		VARCHAR2(256) 	    NOT NULL,
+	"date" 			    	DATE     		    NOT NULL,
+	urgency 		    	NUMBER 			    DEFAULT 0 NOT NULL,
 	
-	CONSTRAINT c_urgency CHECK(urgency = 0 OR urgency = 1)
-
+	CONSTRAINT c_urgency CHECK(urgency >= 0 OR urgency <= 5)
 );
 
 CREATE TABLE Response
 (
-	responderID 	  NUMBER 			        NOT NULL,
-	requestID 		  NUMBER 			        NOT NULL,
-	"date" 			    DATE 			          NOT NULL,
-	description 	  VARCHAR2(256) 	    NOT NULL,
+	responderID 	  		NUMBER 			    NOT NULL,
+	requestID 		  		NUMBER 			    NOT NULL,
+	"date" 			    	DATE 			    NOT NULL,
+	description 	  		VARCHAR2(256) 	    NOT NULL,
 	
 	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID)
 );

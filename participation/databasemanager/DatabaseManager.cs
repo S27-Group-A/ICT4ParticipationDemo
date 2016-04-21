@@ -19,7 +19,7 @@ namespace Participation
         //Database connection; uses Connectionstring
         private static OracleConnection _Connection = new OracleConnection(_ConnectionString);
         //Temp data for connecting to the database; [Username], [Password], [server-IP]
-        private const string _ConnectionId = "PTS29", _ConnectionPassword = "PTS29", _ConnectionAddress = "//192.168.20.29:1521/xe";
+        private const string _ConnectionId = "SYSTEM", _ConnectionPassword = "", _ConnectionAddress = "//localhost:1521/xe";
         #endregion
 
         #region Properties
@@ -121,6 +121,7 @@ namespace Participation
         #endregion
 
 
+
         #region Methods - AuthenticationSystem
         
         //Pulls the accountinformation from the database, and casts it into an user-object
@@ -182,72 +183,108 @@ namespace Participation
         //Returns list of users.
         internal static List<User> GetUsers()
         {
+            List<User> UserList = new List<User>();
             try
             {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person;");
                 OracleDataReader reader = ExecuteQuery(command);
 
-                List<User> UserList = new List<User>();
-
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    try 
-                    {
-                        string Name = reader["name"].ToString();
-                        string EmailAdress = reader["email"].ToString();
-                        string Description = reader["description"].ToString();
-                        string dateTime = reader["dateOfBirth"].ToString();
-                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
-                        string Location = reader["location"].ToString();
-                        string PhoneNumber = reader["phone"].ToString();
-                        GenderEnum Gender = ToGender(reader["gender"].ToString());
-                        string Password = reader["password"].ToString();
+                    string Name = reader["name"].ToString();
+                    string EmailAdress = reader["email"].ToString();
+                    string Description = reader["description"].ToString();
+                    DateTime DateOfBirth = Convert.ToDateTime(reader["dateOfBirth"].ToString());
+                    string Location = reader["location"].ToString();
+                    string PhoneNumber = reader["phone"].ToString();
+                    GenderEnum Gender = ToGender(reader["gender"].ToString());
+                    string Password = reader["password"].ToString();
+                    string PersonType = reader["personType"].ToString(); //Needs to be added in the constructor
 
-                        string PersonType = reader["personType"].ToString();
-                        if (PersonType == "Volunteer")
-                        {
-                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
-                        }
-                        if (PersonType == "Patient")
-                        {
-                            UserList.Add(new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
-                        }
-                        if (PersonType == "Admin")
-                        {
-                            UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
-                        }
-                    }
-                    catch
+                    if (PersonType == "Volunteer")
                     {
-                        throw new Exception("Something went wrong");
+                        //UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
                     }
-                    finally
+                    if (PersonType == "Patient")
                     {
-                        _Connection.Close();
+                        //UserList.Add(new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
+                    }
+                    if (PersonType == "Admin")
+                    {
+                        //UserList.Add(new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password));
                     }
                 }
             }
             catch
             {
-                throw new NotImplementedException();
+                throw new Exception("Something went wrong in the database!");
             }
             finally
             {
                 _Connection.Close();
             }
-
+            return UserList;
         }
 
         //Returns list of Requests
         internal static List<Request> GetRequests()
         {
-            throw new NotImplementedException();
+            List<Request> RequestList = new List<Request>();
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Request;");
+                OracleDataReader reader = ExecuteQuery(command);
+
+                while(reader.Read())
+                {
+                    string title = reader["title"].ToString();
+                    string description = reader["description"].ToString(); ;
+                    string perks = reader["perks"].ToString();
+                    string location = reader["location"].ToString();
+                    DateTime date = Convert.ToDateTime(reader["date"].ToString());
+                    int urgency = Convert.ToInt32(reader["name"].ToString());
+
+                    //RequestList.Add(new Request(title, description, perks, location, date, urgency));
+                }
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+            return RequestList;         
         }
 
         //Returns list of Reviews
         internal static List<Review> GetReviews()
         {
-            throw new NotImplementedException();
+            List<Review> ReviewList = new List<Review>();
+
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Review;");
+                OracleDataReader reader = ExecuteQuery(command);
+
+                while (reader.Read())
+                {
+                    int rating = Convert.ToInt32(reader["rating"].ToString());
+                    string description = reader["description"].ToString();
+
+                    //ReviewList.Add(new Review(rating, description));
+                }
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+            return ReviewList;
         }
         #endregion
 
@@ -262,6 +299,7 @@ namespace Participation
         #region Methods - ChatSystem
 
         #endregion
+
 
 
         #region Shared methods
@@ -304,13 +342,7 @@ namespace Participation
                 _Connection.Close();
             }
         }
-
-        internal static User Getuser()
-        {
-
-        }
         #endregion
-
 
         #region Example
         /// <summary>
