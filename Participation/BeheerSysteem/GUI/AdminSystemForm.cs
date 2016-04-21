@@ -165,12 +165,12 @@ namespace Participation.BeheerSysteem.GUI
                 }
                 else
                 {
-                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor "+ adminSystem.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?")
+                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + adminSystem.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
                 }
             }
             if (dialogresult == DialogResult.No) 
-            { 
-             
+            {
+                MessageBox.Show("De rechten zijn niet aangepast.");
             }
             if (dialogresult == DialogResult.Cancel) { }
         }

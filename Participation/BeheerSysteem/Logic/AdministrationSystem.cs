@@ -130,6 +130,7 @@ namespace Participation.BeheerSysteem.Logic
             return false;
         }
 
+        //Changes Admin Rights
         public bool ChangeAdminRights(User user)
         {
             List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();

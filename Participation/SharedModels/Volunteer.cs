@@ -16,7 +16,7 @@ namespace Participation.SharedModels
 
         //constructors
         public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks, bool adminrights)
-            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password, ban, bantimeindays)
         {
             _reviews = new List<Review>();
             _perks = perks;
