@@ -23,8 +23,6 @@ namespace Participation
         //Temp data for connecting to the database; [Username], [Password], [server-IP]
         private const string _ConnectionId = "PTS29", _ConnectionPassword = "PTS29", _ConnectionAddress = "//192.168.20.29:1521/xe";
 
-        public static Patient patientIdentifier = new Patient();
-        public static Volunteer volunteerIdentifier = new Volunteer();
         #endregion
 
         #region Properties
@@ -281,11 +279,11 @@ namespace Participation
                     "dateOfBirth, profilePicture, location, " + "phone, gender, password) " +
                     "VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
-                if (user.GetType() == patientIdentifier.GetType())
+                if (user.GetType() == typeof(Patient))
                 {
                     command.Parameters.Add(":personType", "Patient");
                 }
-                if (user.GetType() == volunteerIdentifier.GetType())
+                if (user.GetType() == typeof(Volunteer))
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
