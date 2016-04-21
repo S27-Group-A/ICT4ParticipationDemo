@@ -68,25 +68,12 @@ namespace Participation
         {
             #region Databaseless testing
 
-            #region debugging
-            if (GetUsers().Count <= 0)
-                MessageBox.Show("GetUsers() is empty");
-            else
-            {
-                foreach (var item in GetUsers())
-                {
-                    MessageBox.Show(item.ToString());
-                }
-            }
-            #endregion
-
-
             foreach (var user in GetUsers())
             {
                 if (user.Email == email)
                     return user;
             }
-            throw new Exception("No user was found with the email adres: " + email);
+            throw new Exception("Het e-mail adres: " + email + " heeft geen geldig account controleer uw inloggegevens");
             #endregion
         }
 

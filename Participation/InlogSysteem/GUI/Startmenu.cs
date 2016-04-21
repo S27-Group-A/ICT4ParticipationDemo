@@ -33,14 +33,30 @@ namespace Participation
         {
             if (checkFields())
             {
-                var user = _lisLogic.GetUser(emailTbx.Text);
-                if (user.Password == passwordTbx.Text)
-                    LogIn(user);
+                IUser user;
+                try
+                {
+                    user = _lisLogic.GetUser(emailTbx.Text);
+                    if (user.Password == passwordTbx.Text)
+                        LogIn(user);
+                    else
+                    {
+                        MessageBox.Show("Het ingevulde wachtwoord was onjuist, probeer het nogmaals");
+                        ClearFields();
+                    }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                    ClearFields();
+                }
+                
+
             }
             else
             {
                 ClearFields();
-                MessageBox.Show("Uw e-mail adres of wachtwoord was incorrect vul uw gegevens opnieuw in");
+                MessageBox.Show("Vul uw gegevens opnieuw in");
             }
 
         }
