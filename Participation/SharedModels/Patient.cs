@@ -14,8 +14,6 @@ namespace Participation.SharedModels
         public List<Request> Requests { get; set; }
 
         //constructors
-        public Patient()
-        { }
 
         public Patient(string name, string email, string description, DateTime birthday, string profilePicture, 
             string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description, 
@@ -24,22 +22,6 @@ namespace Participation.SharedModels
             Requests = new List<Request>();
         }
 
-        public Patient(string email, string password) : base(email, password)
-        {
-            Requests = new List<Request>();
-        }
-
-        public Patient(string name, string email, DateTime birthday, string location, string password) 
-            : base(name, email, birthday, location, password)
-        {
-            Requests = new List<Request>();
-        }
-
-        public Patient(string name, string email, DateTime birthday, string location, string password, string phoneNumber)
-            : base(name, email, birthday, location, password, phoneNumber)
-        {
-            Requests = new List<Request>();
-        }
 
 
         //Methods
