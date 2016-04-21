@@ -32,7 +32,7 @@ namespace Participation.ChatSysteem
             lstClients.Items.Clear();
             foreach (string name in names)
             {
-                if (name != myName)
+                if (name != FormProvider.LoggedInUser.Name)
                     lstClients.Items.Add(name);
             }
         }
