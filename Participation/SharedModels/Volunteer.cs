@@ -16,6 +16,17 @@ namespace Participation.SharedModels
         //constructors
         public Volunteer() { }
 
+        public Volunteer(string name, string email, string description,
+            DateTime birthday, string profilePicure, string location,
+            string phoneNumber, GenderEnum gender, string password)
+            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+        {
+            _reviews = new List<Review>();
+            _perks = new List<string>();
+            _verklaringPdf = null;
+        }
+
+
         public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
             : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {
@@ -23,6 +34,7 @@ namespace Participation.SharedModels
             _perks = perks;
             _verklaringPdf = null;
         }
+
 
         public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum
             gender, string password, List<string> perks, string verklaringPdf) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
@@ -37,6 +49,8 @@ namespace Participation.SharedModels
             _reviews = new List<Review>();
             _perks = perks;
         }
+
+
 
 
         //methods

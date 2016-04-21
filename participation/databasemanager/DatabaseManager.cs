@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -149,7 +149,7 @@ namespace Participation
                 string PersonType = reader["personType"].ToString();
                 if (PersonType == "Volunteer")
                 {
-                    return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                    return new Volunteer( );
                 }
                 if (PersonType == "Patient")
                 {
@@ -354,4 +354,3 @@ namespace Participation
         #endregion
     }
 }
-*/
