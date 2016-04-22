@@ -85,19 +85,23 @@ namespace Participation.BeheerSysteem.GUI
 
         private void RefreshVogUrl()
         {
+            gbxVog.Visible = true;
             Volunteer tempV = _loggedInUser as Volunteer;
             lblVogUrl.Text = tempV._verklaringPdf;
+            pbVog.Image = Image.FromFile(tempV._verklaringPdf);
         }
 
         private void RefreshPerks()
         {
+
+            gbxPerks.Visible = true;
             Volunteer tempV = _loggedInUser as Volunteer;
-            string perks =  "";
-            foreach (string s in tempV.GetPerks())
+            List<string> tempListPerks = tempV.GetPerks();
+            lbPerks.Items.Clear();
+            foreach (string s in tempListPerks)
             {
-                perks += perks + " " + s;
+                lbPerks.Items.Add(s);
             }
-            lblListPerks.Text = perks;
         }
 
         private void btnBrowseVogUrl_Click(object sender, EventArgs e)
@@ -107,10 +111,21 @@ namespace Participation.BeheerSysteem.GUI
                 ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string sourceFile = ofd.FileName;
-                    lblVogUrl.Text = ofd.FileName;
+                    Volunteer tempVolunteer = _loggedInUser as Volunteer;
+                    tempVolunteer.AddVerklaring(ofd.FileName);
+                    RefreshVogUrl();
                 }
 
+            }
+        }
+
+        private void btnAddPerk_Click(object sender, EventArgs e)
+        {
+            if (tbxPerk.Text.Length > 0)
+            {
+                Volunteer tempV = _loggedInUser as Volunteer;
+                tempV.AddPerk(tbxPerk.Text);
+                RefreshPerks();
             }
         }
 

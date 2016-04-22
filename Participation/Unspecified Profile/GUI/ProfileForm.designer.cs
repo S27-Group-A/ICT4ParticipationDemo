@@ -56,16 +56,20 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.lbPerks = new System.Windows.Forms.ListBox();
+            this.pbVog = new System.Windows.Forms.PictureBox();
             this.gbForm.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
             this.gbxVog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.SuspendLayout();
             // 
             // gbForm
             // 
             this.gbForm.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gbForm.Controls.Add(this.pbVog);
             this.gbForm.Controls.Add(this.groupBox2);
             this.gbForm.Controls.Add(this.pbxProfilePicture);
             this.gbForm.Controls.Add(this.gbxPerks);
@@ -93,9 +97,9 @@
             this.groupBox2.Controls.Add(this.lblName);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(32, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(434, 175);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
@@ -263,7 +267,7 @@
             // 
             this.pbxProfilePicture.Image = ((System.Drawing.Image)(resources.GetObject("pbxProfilePicture.Image")));
             this.pbxProfilePicture.Location = new System.Drawing.Point(476, 24);
-            this.pbxProfilePicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbxProfilePicture.Margin = new System.Windows.Forms.Padding(2);
             this.pbxProfilePicture.Name = "pbxProfilePicture";
             this.pbxProfilePicture.Size = new System.Drawing.Size(142, 154);
             this.pbxProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -272,14 +276,15 @@
             // 
             // gbxPerks
             // 
+            this.gbxPerks.Controls.Add(this.lbPerks);
             this.gbxPerks.Controls.Add(this.tbxPerk);
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblListPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.gbxPerks.Location = new System.Drawing.Point(32, 284);
-            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2);
             this.gbxPerks.Name = "gbxPerks";
-            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2);
             this.gbxPerks.Size = new System.Drawing.Size(434, 276);
             this.gbxPerks.TabIndex = 47;
             this.gbxPerks.TabStop = false;
@@ -290,7 +295,7 @@
             // 
             this.tbxPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxPerk.Location = new System.Drawing.Point(14, 28);
-            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPerk.Name = "tbxPerk";
             this.tbxPerk.Size = new System.Drawing.Size(325, 23);
             this.tbxPerk.TabIndex = 36;
@@ -305,15 +310,16 @@
             this.btnAddPerk.TabIndex = 36;
             this.btnAddPerk.Text = "Toevoegen";
             this.btnAddPerk.UseVisualStyleBackColor = true;
+            this.btnAddPerk.Click += new System.EventHandler(this.btnAddPerk_Click);
             // 
             // lblListPerks
             // 
             this.lblListPerks.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblListPerks.Location = new System.Drawing.Point(14, 53);
+            this.lblListPerks.Location = new System.Drawing.Point(14, 54);
             this.lblListPerks.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblListPerks.Name = "lblListPerks";
-            this.lblListPerks.Size = new System.Drawing.Size(391, 193);
+            this.lblListPerks.Size = new System.Drawing.Size(391, 18);
             this.lblListPerks.TabIndex = 38;
             this.lblListPerks.Text = "Vaardigheden: ";
             // 
@@ -324,9 +330,9 @@
             this.gbxVog.Controls.Add(this.btnBrowseVogUrl);
             this.gbxVog.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.gbxVog.Location = new System.Drawing.Point(32, 197);
-            this.gbxVog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxVog.Margin = new System.Windows.Forms.Padding(2);
             this.gbxVog.Name = "gbxVog";
-            this.gbxVog.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxVog.Padding = new System.Windows.Forms.Padding(2);
             this.gbxVog.Size = new System.Drawing.Size(434, 81);
             this.gbxVog.TabIndex = 46;
             this.gbxVog.TabStop = false;
@@ -398,12 +404,29 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
+            // lbPerks
+            // 
+            this.lbPerks.FormattingEnabled = true;
+            this.lbPerks.Location = new System.Drawing.Point(14, 76);
+            this.lbPerks.Name = "lbPerks";
+            this.lbPerks.Size = new System.Drawing.Size(404, 186);
+            this.lbPerks.TabIndex = 39;
+            // 
+            // pbVog
+            // 
+            this.pbVog.Location = new System.Drawing.Point(624, 24);
+            this.pbVog.Name = "pbVog";
+            this.pbVog.Size = new System.Drawing.Size(252, 346);
+            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbVog.TabIndex = 51;
+            this.pbVog.TabStop = false;
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(758, 571);
+            this.ClientSize = new System.Drawing.Size(1032, 571);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -419,6 +442,7 @@
             this.gbxPerks.PerformLayout();
             this.gbxVog.ResumeLayout(false);
             this.gbxVog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,5 +476,7 @@
         private System.Windows.Forms.LinkLabel lblVogUrl;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnEditInfo;
+        private System.Windows.Forms.ListBox lbPerks;
+        private System.Windows.Forms.PictureBox pbVog;
     }
 }

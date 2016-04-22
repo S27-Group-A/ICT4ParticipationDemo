@@ -134,8 +134,8 @@ namespace Participation.InlogSysteem.GUI
                                 {
                                     foreach (var perk in perks)
                                     {
-
-                                        _lisLogic.AddPerk(newVolunteer, perk);
+                                        if(perk != "")
+                                            _lisLogic.AddPerk(newVolunteer, perk);
                                     }
                                 }
                             }

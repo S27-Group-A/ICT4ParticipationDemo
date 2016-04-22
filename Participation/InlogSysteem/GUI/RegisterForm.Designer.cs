@@ -60,6 +60,7 @@
             this.btnAddPerk = new System.Windows.Forms.Button();
             this.lblPerks = new System.Windows.Forms.Label();
             this.gbxPerks = new System.Windows.Forms.GroupBox();
+            this.lblSkills = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
@@ -69,7 +70,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlHasRfid = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblSkills = new System.Windows.Forms.Label();
             this.gbxVOG.SuspendLayout();
             this.gbxPerks.SuspendLayout();
             this.helpGbx.SuspendLayout();
@@ -106,7 +106,7 @@
             // 
             this.tbxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxEmail.Location = new System.Drawing.Point(184, 26);
-            this.tbxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxEmail.Margin = new System.Windows.Forms.Padding(2);
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(157, 23);
             this.tbxEmail.TabIndex = 10;
@@ -115,7 +115,7 @@
             // 
             this.tbxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxPassword.Location = new System.Drawing.Point(184, 53);
-            this.tbxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
             this.tbxPassword.Size = new System.Drawing.Size(157, 23);
@@ -209,7 +209,7 @@
             // 
             this.tbxRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxRepeatPassword.Location = new System.Drawing.Point(184, 80);
-            this.tbxRepeatPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxRepeatPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbxRepeatPassword.Name = "tbxRepeatPassword";
             this.tbxRepeatPassword.PasswordChar = '*';
             this.tbxRepeatPassword.Size = new System.Drawing.Size(157, 23);
@@ -218,7 +218,7 @@
             // dtpBirthdate
             // 
             this.dtpBirthdate.Location = new System.Drawing.Point(184, 108);
-            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(2);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.Size = new System.Drawing.Size(157, 20);
             this.dtpBirthdate.TabIndex = 20;
@@ -227,7 +227,7 @@
             // 
             this.tbxLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxLocation.Location = new System.Drawing.Point(184, 131);
-            this.tbxLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxLocation.Margin = new System.Windows.Forms.Padding(2);
             this.tbxLocation.Name = "tbxLocation";
             this.tbxLocation.Size = new System.Drawing.Size(157, 23);
             this.tbxLocation.TabIndex = 21;
@@ -236,7 +236,7 @@
             // 
             this.tbxPhonenumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxPhonenumber.Location = new System.Drawing.Point(184, 158);
-            this.tbxPhonenumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxPhonenumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPhonenumber.Name = "tbxPhonenumber";
             this.tbxPhonenumber.Size = new System.Drawing.Size(157, 23);
             this.tbxPhonenumber.TabIndex = 22;
@@ -245,7 +245,7 @@
             // 
             this.tbxProfilePictureUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxProfilePictureUrl.Location = new System.Drawing.Point(184, 207);
-            this.tbxProfilePictureUrl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxProfilePictureUrl.Margin = new System.Windows.Forms.Padding(2);
             this.tbxProfilePictureUrl.Name = "tbxProfilePictureUrl";
             this.tbxProfilePictureUrl.Size = new System.Drawing.Size(157, 23);
             this.tbxProfilePictureUrl.TabIndex = 24;
@@ -255,7 +255,7 @@
             this.rbtMale.AutoSize = true;
             this.rbtMale.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.rbtMale.Location = new System.Drawing.Point(12, 1);
-            this.rbtMale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtMale.Margin = new System.Windows.Forms.Padding(2);
             this.rbtMale.Name = "rbtMale";
             this.rbtMale.Size = new System.Drawing.Size(46, 17);
             this.rbtMale.TabIndex = 25;
@@ -268,7 +268,7 @@
             this.rbtFemale.AutoSize = true;
             this.rbtFemale.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.rbtFemale.Location = new System.Drawing.Point(58, 2);
-            this.rbtFemale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtFemale.Margin = new System.Windows.Forms.Padding(2);
             this.rbtFemale.Name = "rbtFemale";
             this.rbtFemale.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rbtFemale.Size = new System.Drawing.Size(55, 17);
@@ -284,7 +284,7 @@
             this.rbtNeedHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtNeedHelp.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.rbtNeedHelp.Location = new System.Drawing.Point(16, 8);
-            this.rbtNeedHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtNeedHelp.Margin = new System.Windows.Forms.Padding(2);
             this.rbtNeedHelp.Name = "rbtNeedHelp";
             this.rbtNeedHelp.Size = new System.Drawing.Size(235, 28);
             this.rbtNeedHelp.TabIndex = 27;
@@ -299,7 +299,7 @@
             this.rbtCanHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtCanHelp.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.rbtCanHelp.Location = new System.Drawing.Point(280, 8);
-            this.rbtCanHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbtCanHelp.Margin = new System.Windows.Forms.Padding(2);
             this.rbtCanHelp.Name = "rbtCanHelp";
             this.rbtCanHelp.Size = new System.Drawing.Size(132, 28);
             this.rbtCanHelp.TabIndex = 28;
@@ -372,7 +372,7 @@
             // 
             this.tbxVOGUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxVOGUrl.Location = new System.Drawing.Point(14, 28);
-            this.tbxVOGUrl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxVOGUrl.Margin = new System.Windows.Forms.Padding(2);
             this.tbxVOGUrl.Name = "tbxVOGUrl";
             this.tbxVOGUrl.Size = new System.Drawing.Size(325, 23);
             this.tbxVOGUrl.TabIndex = 33;
@@ -384,9 +384,9 @@
             this.gbxVOG.Controls.Add(this.btnBrowseVOG);
             this.gbxVOG.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.gbxVOG.Location = new System.Drawing.Point(10, 330);
-            this.gbxVOG.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxVOG.Margin = new System.Windows.Forms.Padding(2);
             this.gbxVOG.Name = "gbxVOG";
-            this.gbxVOG.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxVOG.Padding = new System.Windows.Forms.Padding(2);
             this.gbxVOG.Size = new System.Drawing.Size(434, 81);
             this.gbxVOG.TabIndex = 36;
             this.gbxVOG.TabStop = false;
@@ -397,7 +397,7 @@
             // 
             this.tbxPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxPerk.Location = new System.Drawing.Point(14, 28);
-            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2);
             this.tbxPerk.Name = "tbxPerk";
             this.tbxPerk.Size = new System.Drawing.Size(325, 23);
             this.tbxPerk.TabIndex = 36;
@@ -418,10 +418,10 @@
             // 
             this.lblPerks.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPerks.Location = new System.Drawing.Point(14, 53);
+            this.lblPerks.Location = new System.Drawing.Point(14, 74);
             this.lblPerks.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPerks.Name = "lblPerks";
-            this.lblPerks.Size = new System.Drawing.Size(391, 49);
+            this.lblPerks.Size = new System.Drawing.Size(391, 42);
             this.lblPerks.TabIndex = 38;
             // 
             // gbxPerks
@@ -432,14 +432,25 @@
             this.gbxPerks.Controls.Add(this.lblPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.gbxPerks.Location = new System.Drawing.Point(10, 416);
-            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2);
             this.gbxPerks.Name = "gbxPerks";
-            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2);
             this.gbxPerks.Size = new System.Drawing.Size(434, 127);
             this.gbxPerks.TabIndex = 39;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
             this.gbxPerks.Visible = false;
+            // 
+            // lblSkills
+            // 
+            this.lblSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkills.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSkills.Location = new System.Drawing.Point(12, 54);
+            this.lblSkills.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSkills.Name = "lblSkills";
+            this.lblSkills.Size = new System.Drawing.Size(76, 20);
+            this.lblSkills.TabIndex = 39;
+            this.lblSkills.Text = "Vaardigheden: ";
             // 
             // btnBack
             // 
@@ -469,7 +480,7 @@
             // 
             this.tbxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxName.Location = new System.Drawing.Point(184, -2);
-            this.tbxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(157, 23);
             this.tbxName.TabIndex = 42;
@@ -479,9 +490,9 @@
             this.helpGbx.Controls.Add(this.rbtNeedHelp);
             this.helpGbx.Controls.Add(this.rbtCanHelp);
             this.helpGbx.Location = new System.Drawing.Point(10, 26);
-            this.helpGbx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.helpGbx.Margin = new System.Windows.Forms.Padding(2);
             this.helpGbx.Name = "helpGbx";
-            this.helpGbx.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.helpGbx.Padding = new System.Windows.Forms.Padding(2);
             this.helpGbx.Size = new System.Drawing.Size(433, 40);
             this.helpGbx.TabIndex = 44;
             this.helpGbx.TabStop = false;
@@ -512,7 +523,7 @@
             this.pnlInformation.Controls.Add(this.tbxLocation);
             this.pnlInformation.Controls.Add(this.dtpBirthdate);
             this.pnlInformation.Location = new System.Drawing.Point(10, 71);
-            this.pnlInformation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlInformation.Margin = new System.Windows.Forms.Padding(2);
             this.pnlInformation.Name = "pnlInformation";
             this.pnlInformation.Size = new System.Drawing.Size(433, 254);
             this.pnlInformation.TabIndex = 45;
@@ -521,7 +532,7 @@
             // 
             this.pbProfilePic.Image = ((System.Drawing.Image)(resources.GetObject("pbProfilePic.Image")));
             this.pbProfilePic.Location = new System.Drawing.Point(348, 2);
-            this.pbProfilePic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbProfilePic.Margin = new System.Windows.Forms.Padding(2);
             this.pbProfilePic.Name = "pbProfilePic";
             this.pbProfilePic.Size = new System.Drawing.Size(75, 81);
             this.pbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -553,21 +564,10 @@
             this.panel1.Controls.Add(this.rbtFemale);
             this.panel1.Controls.Add(this.rbtMale);
             this.panel1.Location = new System.Drawing.Point(184, 184);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(119, 16);
             this.panel1.TabIndex = 44;
-            // 
-            // lblSkills
-            // 
-            this.lblSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSkills.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblSkills.Location = new System.Drawing.Point(12, 54);
-            this.lblSkills.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblSkills.Name = "lblSkills";
-            this.lblSkills.Size = new System.Drawing.Size(76, 20);
-            this.lblSkills.TabIndex = 39;
-            this.lblSkills.Text = "Vaardigheden: ";
             // 
             // RegisterForm
             // 
@@ -582,7 +582,7 @@
             this.Controls.Add(this.gbxVOG);
             this.Controls.Add(this.lblObliged);
             this.Controls.Add(this.btnRegister);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RegisterForm";
             this.Text = "Register";
             this.Closed += new System.EventHandler(this.RegisterForm_Closed);

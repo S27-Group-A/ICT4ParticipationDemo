@@ -44,15 +44,7 @@ namespace Participation.SharedModels
             System.IO.File.Copy(profilePicure, Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png");
             ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
 
-            while (
-                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() +
-                                      ".png"))
-            {
-                fileNameCountVerklaring++;
-            }
-
-            System.IO.File.Copy(verklaringPdf, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png");
-            _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
+            AddVerklaring(verklaringPdf);
         }
 
         //methods
@@ -68,7 +60,23 @@ namespace Participation.SharedModels
 
         public void AddPerk(string perk)
         {
-            this._perks.Add(perk);
+            if (perk != "" || perk != " ")
+            {
+                this._perks.Add(perk);
+            }
+        }
+
+        public void AddVerklaring(string path)
+        {
+            while (
+                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() +
+                                      ".png"))
+            {
+                fileNameCountVerklaring++;
+            }
+
+            System.IO.File.Copy(path, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png");
+            _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
         }
 
     }
