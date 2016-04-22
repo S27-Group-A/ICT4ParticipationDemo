@@ -85,14 +85,33 @@ namespace Participation.BeheerSysteem.GUI
 
         private void RefreshVogUrl()
         {
-            //TODO Implement
-            throw new NotImplementedException("RefreshVogUrl is nog niet geimplementeerd");
+            Volunteer tempV = _loggedInUser as Volunteer;
+            lblVogUrl.Text = tempV._verklaringPdf;
         }
 
         private void RefreshPerks()
         {
-            //TODO Implement
-            throw new NotImplementedException("RefreshPerks is nog niet geimplementeerd");
+            Volunteer tempV = _loggedInUser as Volunteer;
+            string perks =  "";
+            foreach (string s in tempV.GetPerks())
+            {
+                perks += perks + " " + s;
+            }
+            lblListPerks.Text = perks;
+        }
+
+        private void btnBrowseVogUrl_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string sourceFile = ofd.FileName;
+                    lblVogUrl.Text = ofd.FileName;
+                }
+
+            }
         }
 
 

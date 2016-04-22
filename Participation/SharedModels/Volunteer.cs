@@ -12,7 +12,7 @@ namespace Participation.SharedModels
         //properties
         private List<Review> _reviews { get; set; }
         private List<string> _perks { get; set; }
-        private string _verklaringPdf { get; set; }
+        public string _verklaringPdf { get; set; }
         private static int fileNameCountVerklaring = 0;
         private static int fileNameCountProfilePic = 0;
 
@@ -45,7 +45,7 @@ namespace Participation.SharedModels
             ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
 
             while (
-                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountProfilePic.ToString() +
+                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() +
                                       ".png"))
             {
                 fileNameCountVerklaring++;
@@ -60,6 +60,11 @@ namespace Participation.SharedModels
         {
             return false;
         }
+
+        public List<string> GetPerks()
+        {
+            return _perks;
+        } 
 
     }
 }

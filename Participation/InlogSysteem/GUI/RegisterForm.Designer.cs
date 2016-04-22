@@ -69,6 +69,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlHasRfid = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSkills = new System.Windows.Forms.Label();
             this.gbxVOG.SuspendLayout();
             this.gbxPerks.SuspendLayout();
             this.helpGbx.SuspendLayout();
@@ -422,10 +423,10 @@
             this.lblPerks.Name = "lblPerks";
             this.lblPerks.Size = new System.Drawing.Size(391, 49);
             this.lblPerks.TabIndex = 38;
-            this.lblPerks.Text = "Vaardigheden: ";
             // 
             // gbxPerks
             // 
+            this.gbxPerks.Controls.Add(this.lblSkills);
             this.gbxPerks.Controls.Add(this.tbxPerk);
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblPerks);
@@ -557,6 +558,17 @@
             this.panel1.Size = new System.Drawing.Size(119, 16);
             this.panel1.TabIndex = 44;
             // 
+            // lblSkills
+            // 
+            this.lblSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkills.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSkills.Location = new System.Drawing.Point(12, 54);
+            this.lblSkills.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSkills.Name = "lblSkills";
+            this.lblSkills.Size = new System.Drawing.Size(76, 20);
+            this.lblSkills.TabIndex = 39;
+            this.lblSkills.Text = "Vaardigheden: ";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,5 +643,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlHasRfid;
         private System.Windows.Forms.PictureBox pbProfilePic;
+        private System.Windows.Forms.Label lblSkills;
     }
 }
