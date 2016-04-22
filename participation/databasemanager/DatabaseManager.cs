@@ -102,7 +102,7 @@ namespace Participation
                 command.ExecuteNonQuery();
                 return true;
             }
-            catch
+            catch (OracleException)
             {
                 return false;
             }
@@ -145,7 +145,7 @@ namespace Participation
             {
                 OracleCommand command =
                     CreateOracleCommand(
-                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(SEQ_PERSON.NextVAL, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(SEQ_PERSONID.NextVal, :personType, :name, :email, :description,:dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
                 if (user.GetType() == typeof(Patient))
                 {
@@ -155,6 +155,20 @@ namespace Participation
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
+
+                switch (user.Gender)
+                {
+                    case GenderEnum.Male:
+                    {
+                        command.Parameters.Add(":gender", "M");
+                        break;
+                    }
+                        case GenderEnum.Female:
+                    {
+                        command.Parameters.Add(":gender", "V");
+                        break;
+                    }
+                }
                 command.Parameters.Add(":name", user.Name);
                 command.Parameters.Add(":email", user.Email);
                 command.Parameters.Add(":description", user.Description);
@@ -162,10 +176,9 @@ namespace Participation
                 command.Parameters.Add(":profilePicture", user.ProfilePicture);
                 command.Parameters.Add(":location", user.Location);
                 command.Parameters.Add(":phone", user.PhoneNumber);
-                command.Parameters.Add(":gender", user.Gender.ToString());
                 command.Parameters.Add(":password", user.Password);
 
-                if(ExecuteNonQuery(command))
+                if (ExecuteNonQuery(command))
                 {
                     command = CreateOracleCommand("SELECT MAX(ID) FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
@@ -191,7 +204,7 @@ namespace Participation
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Perk(perkID, perktext) VALUES (SEQ_PERKID.NEXTVAL, :perktext)");
+                OracleCommand command = CreateOracleCommand("INSERT INTO Perk(perkID, perktext) VALUES (SEQ_PERKID, :perktext)");
 
                 if (ExecuteNonQuery(command))
                 {
@@ -257,7 +270,7 @@ namespace Participation
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO REQUEST(RequestID, personID, title, description, place, placingdate, urgency) VALUES (SEQ_RequestID.NextVal, :personID, :title, :description, :place, :placingdate, :urgency)");
+                OracleCommand command = CreateOracleCommand("INSERT INTO REQUEST(RequestID, personID, title, description, place, placingdate, urgency) VALUES (SEQ_RequestID , :personID, :title, :description, :place, :placingdate, :urgency)");
                 command.Parameters.Add(":personID", Patient.Id);
                 command.Parameters.Add(":title", request.Title);
                 command.Parameters.Add(":description", request.Text);
@@ -763,7 +776,7 @@ namespace Participation
             try
             {
 
-                if(patient.GetType() == typeof(Patient))
+                if (patient.GetType() == typeof(Patient))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
                     command.Parameters.Add(":userID", patient.Id);
