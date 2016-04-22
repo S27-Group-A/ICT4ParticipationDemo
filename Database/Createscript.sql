@@ -91,9 +91,9 @@ CREATE TABLE Response
 CREATE TABLE Perk_Request
 (
 	requestID				NUMBER 				NOT NULL,
-	perkID					NUMBER 				NOT NULL
+	perkID					NUMBER 				NOT NULL,
 	
-	CONSTRAINT pk_Perk_Request PRIMARY KEY(requestID, perkID);
+	CONSTRAINT pk_Perk_Request PRIMARY KEY(requestID, perkID)
 );
 
 
