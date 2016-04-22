@@ -174,29 +174,6 @@ namespace Participation.BeheerSysteem.GUI
             }
             if (dialogresult == DialogResult.Cancel) { }
         }
-
-        //Go to profile.
-        private void btn_Profiel_Click(object sender, EventArgs e)
-        {
-            // open profielpagina
-        }
-
-        //Go to Requests.
-        private void btn_Hulpvragen_Click(object sender, EventArgs e)
-        {
-            //open request pagina
-        }
-
-        //Go to elderly.
-        private void btn_Ouderen_Click(object sender, EventArgs e)
-        {
-            //open ouderen pagina
-        }
-        //Go to admin page.
-        private void btn_Beheer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("U bent al op de beheerderspagina!");
-        }
         //Log Out.
         private void btn_LogUit_Click(object sender, EventArgs e)
         {
@@ -210,19 +187,6 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
-        //Go to volunteers.
-        private void btn_Vrijwilligers_Click(object sender, EventArgs e)
-        {
-            //open vrijwilligers pagina
-        }
-        //Go to chat.
-        private void btn_Chat_Click(object sender, EventArgs e)
-        {
-            // Create a new instance of the Form2 class
-            //Chatform newchat = new Chatform();
-
-            // Show the settings form
-            //newchat.Show();
         }
     }
 }
