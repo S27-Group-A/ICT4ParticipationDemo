@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.HulpSysteem.Logic
@@ -18,6 +19,23 @@ namespace Participation.HulpSysteem.Logic
         {
             patient.Requests.Add(request);
             //TODO Add database context to add request to database
+        }
+
+        public List<Request> GetRequests(IUser patient)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch
+            {
+                MessageBox.Show("Database context not implement");
+                return new List<Request>()
+                {
+                    (new Request("Boswandeling", "Ik wil graag een boswandeling maken door het bos", new List<string>(),
+                        "Eindhoven", DateTime.Now, 1))
+                };
+            }
         }
 
         //TODO Implement this
@@ -36,5 +54,5 @@ namespace Participation.HulpSysteem.Logic
 
     }
     */
-}
+    }
 }

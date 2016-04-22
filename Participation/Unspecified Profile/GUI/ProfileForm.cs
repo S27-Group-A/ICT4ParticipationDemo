@@ -57,7 +57,8 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btn_Hulpvragen_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            FormProvider.ProfileForm.Hide();
+            FormProvider.RequestsViewForm.Show();
         }
 
         private void EditInfo_Click(object sender, EventArgs e)
@@ -71,6 +72,7 @@ namespace Participation.BeheerSysteem.GUI
             lblEmail.Text = _loggedInUser.Email;
             lblBirthdate.Text = _loggedInUser.Birthday.ToString();
             lblLocation.Text = _loggedInUser.Location;
+            lblPhonenumber.Text = _loggedInUser.PhoneNumber;
             lblGender.Text = _loggedInUser.Gender.ToString();
         }
 

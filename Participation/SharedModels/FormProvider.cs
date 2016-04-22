@@ -78,7 +78,7 @@ namespace Participation.SharedModels
             {
                 if (_requestsViewForm == null)
                 {
-                    _requestsViewForm = new RequestsViewForm(LoggedInUser);
+                    _requestsViewForm = new RequestsViewForm();
                 }
                 return _requestsViewForm;
             }

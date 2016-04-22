@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEditInfo = new System.Windows.Forms.Button();
@@ -102,6 +103,7 @@
             // 
             // btnEditInfo
             // 
+            this.btnEditInfo.Enabled = false;
             this.btnEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditInfo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnEditInfo.Location = new System.Drawing.Point(458, 176);
@@ -111,6 +113,7 @@
             this.btnEditInfo.TabIndex = 37;
             this.btnEditInfo.Text = "Wijzigen";
             this.btnEditInfo.UseVisualStyleBackColor = true;
+            this.btnEditInfo.Visible = false;
             this.btnEditInfo.Click += new System.EventHandler(this.EditInfo_Click);
             // 
             // lblPreName
@@ -131,9 +134,9 @@
             this.lblGender.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblGender.Location = new System.Drawing.Point(241, 178);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(92, 20);
+            this.lblGender.Size = new System.Drawing.Size(21, 20);
             this.lblGender.TabIndex = 47;
-            this.lblGender.Text = "<geslacht>";
+            this.lblGender.Text = "...";
             // 
             // lblPreGender
             // 
@@ -153,9 +156,9 @@
             this.lblPhonenumber.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblPhonenumber.Location = new System.Drawing.Point(241, 149);
             this.lblPhonenumber.Name = "lblPhonenumber";
-            this.lblPhonenumber.Size = new System.Drawing.Size(149, 20);
+            this.lblPhonenumber.Size = new System.Drawing.Size(21, 20);
             this.lblPhonenumber.TabIndex = 46;
-            this.lblPhonenumber.Text = "<telefoonnummer>";
+            this.lblPhonenumber.Text = "...";
             // 
             // lblPrePhonenumber
             // 
@@ -175,9 +178,9 @@
             this.lblLocation.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblLocation.Location = new System.Drawing.Point(241, 116);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(113, 20);
+            this.lblLocation.Size = new System.Drawing.Size(21, 20);
             this.lblLocation.TabIndex = 45;
-            this.lblLocation.Text = "<woonplaats>";
+            this.lblLocation.Text = "...";
             // 
             // locationLbl
             // 
@@ -197,9 +200,9 @@
             this.lblBirthdate.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblBirthdate.Location = new System.Drawing.Point(240, 87);
             this.lblBirthdate.Name = "lblBirthdate";
-            this.lblBirthdate.Size = new System.Drawing.Size(140, 20);
+            this.lblBirthdate.Size = new System.Drawing.Size(21, 20);
             this.lblBirthdate.TabIndex = 44;
-            this.lblBirthdate.Text = "<geboortedatum>";
+            this.lblBirthdate.Text = "...";
             // 
             // lblPreBirthdate
             // 
@@ -219,9 +222,9 @@
             this.lblEmail.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblEmail.Location = new System.Drawing.Point(241, 55);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(116, 20);
+            this.lblEmail.Size = new System.Drawing.Size(21, 20);
             this.lblEmail.TabIndex = 43;
-            this.lblEmail.Text = "<email adres>";
+            this.lblEmail.Text = "...";
             // 
             // lblPreEmail
             // 
@@ -241,15 +244,17 @@
             this.lblName.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblName.Location = new System.Drawing.Point(241, 24);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(70, 20);
+            this.lblName.Size = new System.Drawing.Size(21, 20);
             this.lblName.TabIndex = 42;
-            this.lblName.Text = "<naam>";
+            this.lblName.Text = "...";
             // 
             // pbxProfilePicture
             // 
+            this.pbxProfilePicture.Image = ((System.Drawing.Image)(resources.GetObject("pbxProfilePicture.Image")));
             this.pbxProfilePicture.Location = new System.Drawing.Point(635, 29);
             this.pbxProfilePicture.Name = "pbxProfilePicture";
             this.pbxProfilePicture.Size = new System.Drawing.Size(190, 190);
+            this.pbxProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxProfilePicture.TabIndex = 50;
             this.pbxProfilePicture.TabStop = false;
             // 
