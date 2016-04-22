@@ -246,6 +246,25 @@ namespace Participation
 
         #region Request
 
+        internal static bool AddRequest(IUser Patient, Request request)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO REQUEST(RequestID, personID, title, description, place, placingdate, urgency) VALUES (SEQ_RequestID.NextVal, :personID, :title, :description, :place, :placingdate, :urgency)");
+                command.Parameters.Add(":personID", Patient.Id);
+                command.Parameters.Add(":title", request.Title);
+                command.Parameters.Add(":description", request.Text);
+                command.Parameters.Add(":place", request.Location);
+                command.Parameters.Add(":placingdate", request.Date);
+                command.Parameters.Add(":urgency", request.Urgency);
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         #region Response
@@ -734,7 +753,7 @@ namespace Participation
             List<Request> RequestList = new List<Request>();
             try
             {
-                if(patient.GetType() == typeof(Volunteer))
+                if(patient.GetType() == typeof(Patient))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
                     command.Parameters.Add(":userID", patient.Id);
