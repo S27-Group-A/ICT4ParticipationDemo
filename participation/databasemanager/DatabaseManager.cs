@@ -145,11 +145,7 @@ namespace Participation
             {
                 OracleCommand command =
                     CreateOracleCommand(
-                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personID, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
-
-                command.Parameters.Add(":personID", user.Id);
-
-                #region personType
+                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(SEQ_PERSON.NextVAL, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
                 if (user.GetType() == typeof(Patient))
                 {
@@ -169,11 +165,18 @@ namespace Participation
                 command.Parameters.Add(":gender", user.Gender.ToString());
                 command.Parameters.Add(":password", user.Password);
 
-                return ExecuteNonQuery(command);
+                if(ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("SELECT MAX(ID) FROM PERSON");
+                    OracleDataReader reader = ExecuteQuery(command);
+                    user.Id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
+                    return true;
+                }
+
             }
             catch
             {
-                throw new Exception("Sometthing went wrong");
+                return false;
             }
             finally
             {
