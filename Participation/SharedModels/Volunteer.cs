@@ -15,6 +15,7 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
         private static int fileNameCountVerklaring = 0;
         private static int fileNameCountProfilePic = 0;
+        private bool _isAdmin { get; set; }
 
         //constructors
         public Volunteer(int id, string name, string email, string description,
@@ -29,7 +30,7 @@ namespace Participation.SharedModels
 
         public Volunteer(int id, string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
-            string phoneNumber, GenderEnum gender, string password, string verklaringPdf)
+            string phoneNumber, GenderEnum gender, string password, string verklaringPdf, bool isAdmin)
             : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();

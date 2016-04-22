@@ -112,20 +112,20 @@ namespace Participation
         private static GenderEnum ToGender(string value)
         {
             GenderEnum gender;
-            if (value == "M")
+            if (value == "Male" || value == "M" )
             {
                 gender = GenderEnum.Male;
+                return gender;
             }
-            if (value == "V")
+            if (value == "Female" || value == "V")
             {
                 gender = GenderEnum.Female;
+                return gender;
             }
             else
             {
                 throw new Exception("No gender assigned");
             }
-
-            return gender;
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace Participation
         #region User
 
         //Pulls the accountinformation from the database, and casts it into an user-object
-        public static User CreateUser(string Email)
+        public static IUser CreateUser(string Email)
         {
             try
             {
@@ -270,28 +270,31 @@ namespace Participation
                 command.Parameters.Add(":Email", Email);
                 OracleDataReader reader = ExecuteQuery(command);
 
+                int id = Convert.ToInt32(("personid").ToString());
                 string Name = reader["name"].ToString();
                 string EmailAdress = reader["email"].ToString();
                 string Description = reader["description"].ToString();
                 string dateTime = reader["dateOfBirth"].ToString();
+                string Picture = reader["ProfilePicture"].ToString();
                 DateTime DateOfBirth = Convert.ToDateTime(dateTime);
                 string Location = reader["location"].ToString();
                 string PhoneNumber = reader["phone"].ToString();
                 GenderEnum Gender = ToGender(reader["gender"].ToString());
                 string Password = reader["password"].ToString();
+                string VOG = reader["VOG"].ToString();
 
                 string PersonType = reader["personType"].ToString();
                 if (PersonType == "Volunteer")
                 {
-                    //return new Volunteer( );
+                    return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
                 }
                 if (PersonType == "Patient")
                 {
-                    //return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                    return new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
                 }
                 if (PersonType == "Admin")
                 {
-                    //return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                    new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true);
                 }
             }
             catch (Exception exception)
@@ -320,16 +323,67 @@ namespace Participation
 
             try
             {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Review;");
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Review");
                 OracleDataReader reader = ExecuteQuery(command);
 
                 while (reader.Read())
                 {
+                    int id = Convert.ToInt32(reader["reviewID"].ToString());
                     int rating = Convert.ToInt32(reader["rating"].ToString());
                     string description = reader["description"].ToString();
 
-                    //ReviewList.Add(new Review(rating, description));
+                    ReviewList.Add(new Review(id, rating, description));
                 }
+                foreach (Review R in ReviewList)
+                {
+                    OracleCommand patientCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWERID FROM REVIEW WHERE REVIEWID = :reviewID)");
+                    patientCommand.Parameters.Add(":reviewID", R.Id);
+                    OracleCommand volunteerCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWEEID FROM REVIEW WHERE REVIEWID = :reviewID)");
+                    volunteerCommand.Parameters.Add(":reviewID", R.Id);
+
+                    OracleDataReader patientReader = ExecuteQuery(patientCommand);
+                    IUser patient;
+                    IUser volunteer;
+                    while (patientReader.Read())
+                    {
+                        int id = Convert.ToInt32(patientReader["PERSONID"].ToString());
+                        string Name = patientReader["NAME"].ToString();
+                        string EmailAdress = patientReader["email"].ToString();
+                        string Description = patientReader["description"].ToString();
+                        string dateTime = patientReader["dateOfBirth"].ToString();
+                        string Picture = patientReader["ProfilePicture"].ToString();
+                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                        string Location = patientReader["location"].ToString();
+                        string PhoneNumber = patientReader["phone"].ToString();
+                        GenderEnum Gender = ToGender(patientReader["gender"].ToString());
+                        string Password = patientReader["password"].ToString();
+
+                        patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
+                        R.Patient = patient;
+                    }
+                    OracleDataReader volunteerReader = ExecuteQuery(volunteerCommand);
+
+                    while (volunteerReader.Read())
+                    {
+                        int id = Convert.ToInt32(volunteerReader["PERSONID"].ToString());
+                        string Name = volunteerReader["name"].ToString();
+                        string EmailAdress = volunteerReader["email"].ToString();
+                        string Description = volunteerReader["description"].ToString();
+                        string dateTime = volunteerReader["dateOfBirth"].ToString();
+                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                        string Picture = volunteerReader["ProfilePicture"].ToString();
+                        string Location = volunteerReader["location"].ToString();
+                        string PhoneNumber = volunteerReader["phone"].ToString();
+                        GenderEnum Gender = ToGender(volunteerReader["gender"].ToString());
+                        string Password = volunteerReader["password"].ToString();
+                        string VOG = volunteerReader["vog"].ToString();
+
+                        volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
+                        R.Volunteer = volunteer;
+                    }
+                }
+
+                return ReviewList;
             }
             catch
             {
@@ -339,7 +393,7 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return ReviewList;
+
         }
 
         internal static List<Review> GetReviews(IUser Volunteer)
@@ -356,17 +410,18 @@ namespace Participation
 
                     while (reader.Read())
                     {
+                        int id = Convert.ToInt32(reader["reviewID"].ToString());
                         int rating = Convert.ToInt32(reader["rating"].ToString());
                         string description = reader["description"].ToString();
 
-                            ReviewList.Add(new Review(rating, description));
+                            ReviewList.Add(new Review(id, rating, description));
                     }
 
                     foreach(Review R in ReviewList)
                     {
-                        OracleCommand patientCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWERID FROM REVIEW WHERE REVIEWID = :reviewID");
+                        OracleCommand patientCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWERID FROM REVIEW WHERE REVIEWID = :reviewID)");
                         patientCommand.Parameters.Add(":reviewID", R.Id);
-                        OracleCommand volunteerCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWEEID FROM REVIEW WHERE REVIEWID = :reviewID");
+                        OracleCommand volunteerCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWEEID FROM REVIEW WHERE REVIEWID = :reviewID)");
                         volunteerCommand.Parameters.Add(":reviewID", R.Id);
 
                         OracleDataReader patientReader = ExecuteQuery(patientCommand);
@@ -374,45 +429,47 @@ namespace Participation
                         IUser volunteer;
                         while (patientReader.Read())
                         {
-                            int id = Convert.ToInt32(reader["personid"].ToString());
-                            string place = reader["place"].ToString();
-                            string dateTime = reader["placingdate"].ToString();
+                            int id = Convert.ToInt32(patientReader["personid"].ToString());
+                            string place = patientReader["place"].ToString();
+                            string dateTime = patientReader["placingdate"].ToString();
                             DateTime DateOfMeeting = Convert.ToDateTime(dateTime);
-                            int status = Convert.ToInt32(reader["status"].ToString());
-                            string Name = reader["name"].ToString();
-                            string EmailAdress = reader["email"].ToString();
-                            string Description = reader["description"].ToString();
-                            dateTime = reader["dateOfBirth"].ToString();
+                            int status = Convert.ToInt32(patientReader["status"].ToString());
+                            string Name = patientReader["name"].ToString();
+                            string EmailAdress = patientReader["email"].ToString();
+                            string Picture = patientReader["ProfilePicture"].ToString();
+                            string Description = patientReader["description"].ToString();
+                            dateTime = patientReader["dateOfBirth"].ToString();
                             DateTime DateOfBirth = Convert.ToDateTime(dateTime);
-                            string Location = reader["location"].ToString();
-                            string PhoneNumber = reader["phone"].ToString();
-                            GenderEnum Gender = ToGender(reader["gender"].ToString());
-                            string Password = reader["password"].ToString();
+                            string Location = patientReader["location"].ToString();
+                            string PhoneNumber = patientReader["phone"].ToString();
+                            GenderEnum Gender = ToGender(patientReader["gender"].ToString());
+                            string Password = patientReader["password"].ToString();
 
-                            patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password);
+                            patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
                             R.Patient = patient;
                         }
-                        OracleDataReader volunterReader = ExecuteQuery(volunteerCommand);
+                        OracleDataReader volunteerReader = ExecuteQuery(volunteerCommand);
 
-                        while(volunterReader.Read())
+                        while(volunteerReader.Read())
                         {
-                            int id = Convert.ToInt32(reader["personid"].ToString());
-                            string place = reader["place"].ToString();
-                            string dateTime = reader["placingdate"].ToString();
+                            int id = Convert.ToInt32(volunteerReader["personid"].ToString());
+                            string place = volunteerReader["place"].ToString();
+                            string dateTime = volunteerReader["placingdate"].ToString();
                             DateTime DateOfMeeting = Convert.ToDateTime(dateTime);
-                            int status = Convert.ToInt32(reader["status"].ToString());
-                            string Name = reader["name"].ToString();
-                            string EmailAdress = reader["email"].ToString();
-                            string Description = reader["description"].ToString();
-                            dateTime = reader["dateOfBirth"].ToString();
+                            int status = Convert.ToInt32(volunteerReader["status"].ToString());
+                            string Name = volunteerReader["name"].ToString();
+                            string EmailAdress = volunteerReader["email"].ToString();
+                            string Description = volunteerReader["description"].ToString();
+                            string Picture = volunteerReader["ProfilePicture"].ToString();
+                            dateTime = volunteerReader["dateOfBirth"].ToString();
                             DateTime DateOfBirth = Convert.ToDateTime(dateTime);
-                            string Location = reader["location"].ToString();
-                            string PhoneNumber = reader["phone"].ToString();
-                            GenderEnum Gender = ToGender(reader["gender"].ToString());
-                            string Password = reader["password"].ToString();
-                            string VOG = reader["vog"].ToString();
+                            string Location = volunteerReader["location"].ToString();
+                            string PhoneNumber = volunteerReader["phone"].ToString();
+                            GenderEnum Gender = ToGender(volunteerReader["gender"].ToString());
+                            string Password = volunteerReader["password"].ToString();
+                            string VOG = volunteerReader["vog"].ToString();
 
-                            volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password, VOG);
+                            volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
                             R.Volunteer = volunteer;
                         }
                     }
@@ -468,6 +525,7 @@ namespace Participation
                         string Name = reader["name"].ToString();
                         string EmailAdress = reader["email"].ToString();
                         string Description = reader["description"].ToString();
+                        string Picture = reader["ProfilePicture"].ToString();
                         dateTime = reader["dateOfBirth"].ToString();
                         DateTime DateOfBirth = Convert.ToDateTime(dateTime);
                         string Location = reader["location"].ToString();
@@ -479,6 +537,7 @@ namespace Participation
                         string Name_Other = reader["name_1"].ToString();
                         string EmailAdress_Other = reader["email_1"].ToString();
                         string Description_Other = reader["description_1"].ToString();
+                        string Picture_Other = reader["ProfilePicture"].ToString();
                         dateTime = reader["dateOfBirth_1"].ToString();
                         DateTime DateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string Location_Other = reader["location_1"].ToString();
@@ -487,8 +546,8 @@ namespace Participation
                         string Password_Other = reader["password_1"].ToString();
                         string VOG_Other = reader["vog_1"].ToString();
 
-                        IUser Patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password);
-                        IUser Volunteer = new Volunteer(id_other, Name_Other, EmailAdress_Other, Description_Other, DateOfBirth_Other, null, Location_Other, PhoneNumber_Other, Gender_Other, Password_Other, VOG_Other);
+                        IUser Patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
+                        IUser Volunteer = new Volunteer(id_other, Name_Other, EmailAdress_Other, Description_Other, DateOfBirth_Other, Picture_Other, Location_Other, PhoneNumber_Other, Gender_Other, Password_Other, VOG_Other, false);
 
                         MeetingList.Add(new Meeting(Volunteer, Patient, DateOfMeeting, place));
                     }
@@ -505,6 +564,7 @@ namespace Participation
                         string Name = reader["name"].ToString();
                         string EmailAdress = reader["email"].ToString();
                         string Description = reader["description"].ToString();
+                        string Picture = reader["ProfilePicture"].ToString();
                         dateTime = reader["dateOfBirth"].ToString();
                         DateTime DateOfBirth = Convert.ToDateTime(dateTime);
                         string Location = reader["location"].ToString();
@@ -517,6 +577,7 @@ namespace Participation
                         string Name_Other = reader["name_1"].ToString();
                         string EmailAdress_Other = reader["email_1"].ToString();
                         string Description_Other = reader["description_1"].ToString();
+                        string Picture_Other = reader["ProfilePicture"].ToString();
                         dateTime = reader["dateOfBirth_1"].ToString();
                         DateTime DateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string Location_Other = reader["location_1"].ToString();
@@ -524,8 +585,8 @@ namespace Participation
                         GenderEnum Gender_Other = ToGender(reader["gender_1"].ToString());
                         string Password_Other = reader["password_1"].ToString();
 
-                        IUser Volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password, VOG);
-                        IUser Patient = new Patient(id_other, Name_Other, EmailAdress_Other, Description_Other, DateOfBirth_Other, null, Location_Other, PhoneNumber_Other, Gender_Other, Password_Other);
+                        IUser Volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
+                        IUser Patient = new Patient(id_other, Name_Other, EmailAdress_Other, Description_Other, DateOfBirth_Other, Picture_Other, Location_Other, PhoneNumber_Other, Gender_Other, Password_Other);
 
                         MeetingList.Add(new Meeting(Volunteer, Patient, DateOfMeeting, place));
                     }
@@ -600,7 +661,7 @@ namespace Participation
             List<Request> RequestList = new List<Request>();
             try
             {
-                if(patient == typeof(Volunteer))
+                if(patient.GetType() == typeof(Volunteer))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
                     command.Parameters.Add(":userID", patient.Id);
