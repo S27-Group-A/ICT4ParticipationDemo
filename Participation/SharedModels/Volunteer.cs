@@ -27,6 +27,16 @@ namespace Participation.SharedModels
             System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
         }
 
+        public Volunteer(int id, string name, string email, string description,
+            DateTime birthday, string profilePicure, string location,
+            string phoneNumber, GenderEnum gender, string password, string verklaringPdf)
+            : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
+        {
+            _reviews = new List<Review>();
+            _perks = new List<string>();
+            System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
+        }
+
         public Volunteer(string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
             string phoneNumber, GenderEnum gender, string password, string verklaringPdf)

@@ -4,22 +4,21 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Participation.InlogSysteem.Interfaces;
 
     public class Meeting
     {
         //private bool _volunteerAccepted = false;
         //private bool _patientAccepted = false;
         // Properties
-        public int Id { get; set; }
-        public Volunteer Volunteer { get; set; }
-        public Patient Patient { get; set; }
+        public IUser Volunteer { get; set; }
+        public IUser Patient { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
 
         // constructor
-        public Meeting(int Id, Volunteer volunteer, Patient patient, DateTime date, string location)
+        public Meeting(IUser volunteer, IUser patient, DateTime date, string location)
         {
-            this.Id = Id;
             this.Volunteer = volunteer;
             this.Patient = patient;
             this.Date = date;
