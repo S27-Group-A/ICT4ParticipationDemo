@@ -3,10 +3,12 @@ SET SERVEROUTPUT ON;
 -- DROP TABLES --
 DROP TABLE Person CASCADE CONSTRAINTS;
 DROP TABLE Perk CASCADE CONSTRAINTS;
+DROP TABLE PERK_PERSON CASCADE CONSTRAINTS;
 DROP TABLE Review CASCADE CONSTRAINTS;
 DROP TABLE Meeting CASCADE CONSTRAINTS;
 DROP TABLE Request CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
+DROP TABLE Perk_Request CASCADE CONSTRAINTS;
 
 
 -- CREATE TABLES --
@@ -39,9 +41,16 @@ CREATE TABLE Person
 
 CREATE TABLE Perk
 (
-	perkID					NUMBER				PRIMARY KEY,
-	personID 			    NUMBER(10)        	NOT NULL,
+	perkID					NUMBER				        PRIMARY KEY,
 	perktext 			    VARCHAR2(256) 	  	NOT NULL
+);
+
+Create TABLE PERK_PERSON
+(
+perkID            NUMBER(10)            NOT NULL,
+personID          NUMBER(10)            NOT NULL,
+
+CONSTRAINT pk_Perk_Person PRIMARY KEY(perkID, personID)
 );
 
 CREATE TABLE Review
@@ -99,7 +108,8 @@ CREATE TABLE Perk_Request
 
 
 -- FOREIGN KEYS --
-ALTER TABLE Perk 			ADD FOREIGN KEY(personID) 		REFERENCES Person(personID);
+ALTER TABLE PERK_PERSON ADD FOREIGN KEY(personID)     REFERENCES Person(PersonID);
+ALTER TABLE PERK_PERSON ADD FOREIGN KEY(perkID)       REFERENCES PERK(perkID);
 ALTER TABLE Review 			ADD FOREIGN KEY(reviewerID) 	REFERENCES Person(personID);
 ALTER TABLE Review 			ADD FOREIGN KEY(revieweeID) 	REFERENCES Person(personID);
 ALTER TABLE Meeting 		ADD FOREIGN KEY(volunteerID) 	REFERENCES Person(personID);
@@ -123,16 +133,22 @@ VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is 
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
 VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
 
-INSERT INTO Perk(personID, perk)
-VALUES(1, 1, 'Auto');
-INSERT INTO Perk(personID, perk)
-VALUES(2, 2, 'Fiets');
-INSERT INTO Perk(personID, perk)
-VALUES(3, 2, 'Auto');
-INSERT INTO Perk(personID, perk)
-VALUES(4, 4, 'Vrije tijd');
-INSERT INTO Perk(personID, perk)
-VALUES(5, 4, 'Fiets');
+INSERT INTO Perk(perkID, perktext)
+VALUES(1, 'Auto');
+INSERT INTO Perk(perkID, perktext)
+VALUES(2, 'Fiets');
+INSERT INTO Perk(perkID, perktext)
+VALUES(3, 'Auto');
+INSERT INTO Perk(perkID, perktext)
+VALUES(4, 'Vrije tijd');
+INSERT INTO Perk(perkID, perktext)
+VALUES(5, 'Fiets');
+
+INSERT INTO PERK_PERSON(perkID, personID) VALUES(1, 1);
+INSERT INTO PERK_PERSON(perkID, personID) VALUES(2, 2);
+INSERT INTO PERK_PERSON(perkID, personID) VALUES(3, 2);
+INSERT INTO PERK_PERSON(perkID, personID) VALUES(4, 4);
+INSERT INTO PERK_PERSON(perkID, personID) VALUES(5, 4);
 
 INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
 VALUES(1, 1, 3, 5, 'Leuke knul');
@@ -195,6 +211,7 @@ DROP SEQUENCE SEQ_personID;
 DROP SEQUENCE SEQ_reviewID;
 DROP SEQUENCE SEQ_requestID;
 DROP SEQUENCE SEQ_responseID;
+DROP SEQUENCE SEQ_PerkID;
 
 -- CREATE SEQUENCES --
 
@@ -234,6 +251,7 @@ BEGIN
                        ' increment by 1';
 END;
 /
+
 --CREATE SEQUENCE SEQ_responseID
 DECLARE
   I_responderID INTEGER := 0;
@@ -246,13 +264,14 @@ BEGIN
                        ' increment by 1';
 END;
 /
+
 --CREATE SEQUENCE SEQ_PerkID
 DECLARE
   I_PerkID INTEGER := 0;
 BEGIN
-   SELECT max(PerkID) + 1
+   SELECT max(perkID) + 1
    INTO   I_PerkID
-   FROM   Perk
+   FROM   perk;
    EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_PerkID
                        start with ' || I_PerkID ||
                        ' increment by 1';
@@ -261,5 +280,3 @@ END;
 
 
 COMMIT;
-
-

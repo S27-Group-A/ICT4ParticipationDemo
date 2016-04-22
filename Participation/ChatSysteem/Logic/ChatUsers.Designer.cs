@@ -44,9 +44,9 @@
             // 
             // btnStartChat
             // 
-            this.btnStartChat.Location = new System.Drawing.Point(234, 194);
+            this.btnStartChat.Location = new System.Drawing.Point(219, 175);
             this.btnStartChat.Name = "btnStartChat";
-            this.btnStartChat.Size = new System.Drawing.Size(85, 23);
+            this.btnStartChat.Size = new System.Drawing.Size(125, 71);
             this.btnStartChat.TabIndex = 2;
             this.btnStartChat.Text = "Start chat";
             this.btnStartChat.UseVisualStyleBackColor = true;
