@@ -159,7 +159,6 @@ namespace Participation
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
-
                 command.Parameters.Add(":name", user.Name);
                 command.Parameters.Add(":email", user.Email);
                 command.Parameters.Add(":description", user.Description);
@@ -181,7 +180,34 @@ namespace Participation
                 _Connection.Close();
             }
         }
+        internal static bool AddPerk(IUser user, string perk)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO Perk(perkID, perktext) VALUES (SEQ_PERKID.NEXTVAL, :perktext)");
 
+                if (ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("SELECT max(perkID) FROM perk");
+                    OracleDataReader reader = ExecuteQuery(command);
+
+                    command = CreateOracleCommand("INSERT INTO PERK_PERSON(perkID, PersonID) VALUES (:perkID, :PersonID)");
+                    command.Parameters.Add(":perkID", Convert.ToInt32(reader["perkid"].ToString()));
+                    command.Parameters.Add(":userID", user.Id);
+
+                    return ExecuteNonQuery(command);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
         #endregion
 
         #region Review
@@ -294,8 +320,9 @@ namespace Participation
                 }
                 if (PersonType == "Admin")
                 {
-                    new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true);
+                    return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true);
                 }
+                return null;
             }
             catch (Exception exception)
             {
@@ -305,7 +332,54 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return null;
+        }
+
+        public static List<IUser> GetUsers()
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+                OracleDataReader reader = ExecuteQuery(command);
+                List<IUser> Users = new List<IUser>();
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(("personid").ToString());
+                    string Name = reader["name"].ToString();
+                    string EmailAdress = reader["email"].ToString();
+                    string Description = reader["description"].ToString();
+                    string dateTime = reader["dateOfBirth"].ToString();
+                    string Picture = reader["ProfilePicture"].ToString();
+                    DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                    string Location = reader["location"].ToString();
+                    string PhoneNumber = reader["phone"].ToString();
+                    GenderEnum Gender = ToGender(reader["gender"].ToString());
+                    string Password = reader["password"].ToString();
+                    string VOG = reader["VOG"].ToString();
+
+                    string PersonType = reader["personType"].ToString();
+                    if (PersonType == "Volunteer")
+                    {
+                        Users.Add(new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false));
+                    }
+                    if (PersonType == "Patient")
+                    {
+                        Users.Add(new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password));
+                    }
+                    if (PersonType == "Admin")
+                    {
+                        Users.Add(new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true));
+                    }
+                }
+                return Users;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Something went wrong: " + exception.Message);
+            }
+            finally
+            {
+                _Connection.Close();
+            }
         }
 
 
@@ -399,7 +473,7 @@ namespace Participation
 
             try
             {
-                if (Volunteer == typeof(Volunteer))
+                if (Volunteer.GetType() == typeof(Volunteer))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM Review WHERE REVIEWEEID = :userid");
                     command.Parameters.Add(":userid", Volunteer.Id);
@@ -653,7 +727,7 @@ namespace Participation
             return RequestList;
         }
 
-        internal static List<Request> GetRequest(IUser patient)
+        internal static List<Request> GetRequests(IUser patient)
         {
             List<Request> RequestList = new List<Request>();
             try

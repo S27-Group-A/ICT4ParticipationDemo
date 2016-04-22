@@ -103,7 +103,7 @@ namespace Participation
 
         public bool AddPerk(Volunteer newVolunteer, string perk)
         {
-            DatabaseManager.AddPerk(DatabaseManager.GetUser(newVolunteer), perk);
+            return DatabaseManager.AddPerk(DatabaseManager.GetUser(newVolunteer.Email), perk);
             //newVolunteer.AddPerk(perk);
         }
     }
