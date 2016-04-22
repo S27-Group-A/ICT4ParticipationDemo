@@ -426,7 +426,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1032, 571);
+            this.ClientSize = new System.Drawing.Size(1006, 571);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
