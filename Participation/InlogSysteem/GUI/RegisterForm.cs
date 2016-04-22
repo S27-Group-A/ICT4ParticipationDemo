@@ -122,8 +122,14 @@ namespace Participation.InlogSysteem.GUI
                             tbxPassword.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
-                            //TODO Add Perks
-                           MessageBox.Show(_succesfullRegisterationMsg);
+                            //Add Perks
+                            var perks = lblPerks.Text.Split( ' ' ).ToList();
+                            foreach (var perk in perks)
+                            {
+                                _lisLogic.AddPerk(newVolunteer, perk);
+                            }
+
+                            MessageBox.Show(_succesfullRegisterationMsg);
                         }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
@@ -134,7 +140,13 @@ namespace Participation.InlogSysteem.GUI
                             tbxPassword.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
-                            //TODO Add Perks
+                            //Add Perks
+                            var perks = lblPerks.Text.Split(' ').ToList();
+                            foreach (var perk in perks)
+                            {
+                                _lisLogic.AddPerk(newVolunteer, perk);
+                            }
+
                             MessageBox.Show(_succesfullRegisterationMsg);
                         }
                         else MessageBox.Show(_contactAdministratorMsg);
