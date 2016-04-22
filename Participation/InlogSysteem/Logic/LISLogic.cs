@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Net.Sockets;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using Participation.InlogSysteem.Interfaces;
-using Participation.SharedModels;
-
-namespace Participation
+﻿namespace Participation
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Net.Sockets;
+    using System.Security.Cryptography.X509Certificates;
+    using System.Windows.Forms;
+    using System.Windows.Forms.VisualStyles;
+    using Participation.InlogSysteem.Interfaces;
+    using Participation.SharedModels;
+
     public class LISLogic
     {
         #region Databaseless testing
@@ -17,6 +17,11 @@ namespace Participation
         private static List<Volunteer> _volunteers = new List<Volunteer>();
         #endregion
 
+        /// <summary>
+        /// Adds the user to the general system can be volunteer or patient
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public bool AddUser(IUser user)
         {
             return DatabaseManager.AddUser(user);
@@ -27,7 +32,7 @@ namespace Participation
             {
                 foreach (var item in GetUsers())
                 {
-                    if (item != user)
+                    if (item != user && item.Email != user.Email)
                     {
                         if (user.GetType() == typeof(Patient))
                         {
@@ -65,6 +70,11 @@ namespace Participation
             */
         }
 
+        /// <summary>
+        /// Gets the user from email
+        /// </summary>
+        /// <param name="email">can be only one email</param>
+        /// <returns>the IUser object</returns>
         public IUser GetUser(string email)
         {
             return DatabaseManager.GetUser(email);
@@ -100,6 +110,7 @@ namespace Participation
             #endregion
             */
         }
+
 
         public bool AddPerk(Volunteer newVolunteer, string perk)
         {

@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using Participation.InlogSysteem.Interfaces;
-using Participation.SharedModels;
-
-namespace Participation.BeheerSysteem.GUI
+﻿namespace Participation.BeheerSysteem.GUI
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using Participation.InlogSysteem.Interfaces;
+    using Participation.SharedModels;
+    using Participation.Unspecified_Profile.GUI;
+
     public partial class ProfileForm : Form
     {
         private IUser _loggedInUser;
@@ -35,7 +36,11 @@ namespace Participation.BeheerSysteem.GUI
 
         }
 
-
+        /// <summary>
+        /// Button which makes you go back to login form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_LogUit_Click(object sender, EventArgs e)
         {
             DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "",
@@ -43,18 +48,30 @@ namespace Participation.BeheerSysteem.GUI
             if (dialogresult == DialogResult.Yes)
             {
                 MessageBox.Show("U bent nu uitgelogd.");
+                FormProvider.StartMenu.Show();
                 this.Close();
+
             }
             else if (dialogresult == DialogResult.No)
             {
             }
         }
-
+        
+        /// <summary>
+        /// Non used button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Profiel_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Sends you to form of requests
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Hulpvragen_Click(object sender, EventArgs e)
         {
             FormProvider.ProfileForm.Hide();
@@ -63,9 +80,12 @@ namespace Participation.BeheerSysteem.GUI
 
         private void EditInfo_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Puts all the information on the screen from the logged in user
+        /// </summary>
         private void RefreshInfo()
         {
             lblName.Text = _loggedInUser.Name;
@@ -83,6 +103,9 @@ namespace Participation.BeheerSysteem.GUI
             throw new NotImplementedException("RefreshPic is nog niet geimplementeerd");
         }
 
+        /// <summary>
+        /// Gets the vog url and displays it
+        /// </summary>
         private void RefreshVogUrl()
         {
             gbxVog.Visible = true;
@@ -91,6 +114,9 @@ namespace Participation.BeheerSysteem.GUI
             pbVog.Image = Image.FromFile(tempV._verklaringPdf);
         }
 
+        /// <summary>
+        /// Gets all the perks from the user and displays it
+        /// </summary>
         private void RefreshPerks()
         {
 
@@ -104,6 +130,11 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
+        /// <summary>
+        /// Set an new updated vog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBrowseVogUrl_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -119,6 +150,11 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
+        /// <summary>
+        /// Add more perks to your existing profile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddPerk_Click(object sender, EventArgs e)
         {
             if (tbxPerk.Text.Length > 0)
@@ -127,6 +163,17 @@ namespace Participation.BeheerSysteem.GUI
                 tempV.AddPerk(tbxPerk.Text);
                 RefreshPerks();
             }
+        }
+
+        /// <summary>
+        /// Show your vog on the big form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblVogUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewVog vv = new ViewVog();
+            vv.Show();
         }
 
 

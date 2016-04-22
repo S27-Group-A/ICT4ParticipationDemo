@@ -32,7 +32,6 @@
             this.gbForm = new System.Windows.Forms.GroupBox();
             this.pbVog = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnEditInfo = new System.Windows.Forms.Button();
             this.lblPreName = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
             this.lblPreGender = new System.Windows.Forms.Label();
@@ -91,7 +90,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnEditInfo);
             this.groupBox2.Controls.Add(this.lblPreName);
             this.groupBox2.Controls.Add(this.lblGender);
             this.groupBox2.Controls.Add(this.lblPreGender);
@@ -113,20 +111,6 @@
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profiel Informatie";
-            // 
-            // btnEditInfo
-            // 
-            this.btnEditInfo.Enabled = false;
-            this.btnEditInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditInfo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEditInfo.Location = new System.Drawing.Point(344, 143);
-            this.btnEditInfo.Name = "btnEditInfo";
-            this.btnEditInfo.Size = new System.Drawing.Size(74, 22);
-            this.btnEditInfo.TabIndex = 37;
-            this.btnEditInfo.Text = "Wijzigen";
-            this.btnEditInfo.UseVisualStyleBackColor = true;
-            this.btnEditInfo.Visible = false;
-            this.btnEditInfo.Click += new System.EventHandler(this.EditInfo_Click);
             // 
             // lblPreName
             // 
@@ -366,6 +350,7 @@
             this.lblVogUrl.TabIndex = 36;
             this.lblVogUrl.TabStop = true;
             this.lblVogUrl.Text = "<download link van het huidige VOG>";
+            this.lblVogUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVogUrl_LinkClicked);
             // 
             // lblAllowedVogFormats
             // 
@@ -475,7 +460,6 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.LinkLabel lblVogUrl;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnEditInfo;
         private System.Windows.Forms.ListBox lbPerks;
         private System.Windows.Forms.PictureBox pbVog;
     }
