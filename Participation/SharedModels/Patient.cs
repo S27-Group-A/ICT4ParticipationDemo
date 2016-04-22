@@ -14,36 +14,29 @@ namespace Participation.SharedModels
         public List<Request> Requests { get; set; }
 
         //constructors
-        public Patient(string name, string email, string description, DateTime birthday, string profilePicture, 
-            string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description, 
+        public Patient(int id, string name, string email, string description, DateTime birthday, string profilePicture,
+            string location, string phoneNumber, GenderEnum gender, string password) : base(id, name, email, description,
+                birthday, profilePicture, location, phoneNumber, gender, password)
+        {
+            //TODO set id maybe? Not sure if needed in child
+            Requests = new List<Request>();
+        }
+
+        public Patient(string name, string email, string description, DateTime birthday, string profilePicture,
+            string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description,
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
             Requests = new List<Request>();
         }
 
-        public Patient(string email, string password) : base(email, password)
-        {
-            Requests = new List<Request>();
-        }
-
-        public Patient(string name, string email, DateTime birthday, string location, string password) 
-            : base(name, email, birthday, location, password)
-        {
-            Requests = new List<Request>();
-        }
-
-        public Patient(string name, string email, DateTime birthday, string location, string password, string phoneNumber)
-            : base(name, email, birthday, location, password, phoneNumber)
-        {
-            Requests = new List<Request>();
-        }
 
 
         //Methods
-        private void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        //TODO Move this to logic layer and add id to your parameters
+        public void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             Request req = new Request(title, text, perks, location, date, urgency);
-
+            Requests.Add(req);
         }
 
         private void RemoveRequest()
