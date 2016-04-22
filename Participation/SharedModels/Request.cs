@@ -74,8 +74,8 @@ namespace Participation.SharedModels
         /// <param name="The date it got posted"></param>
         public void AddResponse(string text)
         {
-            
-            this.Responses.Add(new Response(text, DateTime.Now));
+            throw new InvalidConstraintException("Constructor not properly supported");
+            //this.Responses.Add(new Response(text, DateTime.Now));
         }
 
 
