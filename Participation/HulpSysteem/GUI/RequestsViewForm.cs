@@ -30,6 +30,10 @@ namespace Participation.HulpSysteem.GUI
 
         }
 
-
+        private void btnAddRequest_Click(object sender, EventArgs e)
+        {
+            FormProvider.RequestsViewForm.Hide();
+            FormProvider.RequestForm.Show();
+        }
     }
 }
