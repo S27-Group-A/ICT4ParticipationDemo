@@ -25,7 +25,8 @@ namespace Participation.SharedModels
             _reviews = new List<Review>();
             _perks = perks;
             _verklaringPdf = null;
-            Adminrights = adminrights;
+            _isAdmin = adminrights;
+        }
 
         public Volunteer(int id, string name, string email, string description,
             DateTime birthday, string profilePicure, string location,

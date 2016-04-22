@@ -187,6 +187,7 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
-        }
+        
     }
+    
 }

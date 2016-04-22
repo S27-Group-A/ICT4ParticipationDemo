@@ -72,14 +72,13 @@ namespace Participation.SharedModels
             BantimeinDays = bantimeindays;
         }
 
-        public User(string name, string email, DateTime birthday,string profile Pifcture string location, string password, string phoneNumber, GenderEnum gender, string profilePicture, int ban, int bantimeindays)
+        public User(string name, string email, DateTime birthday, string description, string profilePicture, string location, string password, string phoneNumber, GenderEnum gender, int ban, int bantimeindays)
         {
             //this.Id = Id; TODO set id
             Name = name;
             Email = email;
             Description = description;
             Birthday = birthday;
-            ProfilePicture = profilePicture;
             Location = location;
             PhoneNumber = phoneNumber;
             Gender = gender;
