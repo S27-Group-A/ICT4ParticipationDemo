@@ -537,7 +537,7 @@
             this.pnlHasRfid.Location = new System.Drawing.Point(464, 161);
             this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHasRfid.Name = "pnlHasRfid";
-            this.pnlHasRfid.Size = new System.Drawing.Size(95, 60);
+            this.pnlHasRfid.Size = new System.Drawing.Size(100, 60);
             this.pnlHasRfid.TabIndex = 45;
             // 
             // panel1
