@@ -18,6 +18,14 @@ namespace Participation.SharedModels
             string location, string phoneNumber, GenderEnum gender, string password) : base(id, name, email, description,
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
+            //TODO set id maybe? Not sure if needed in child
+            Requests = new List<Request>();
+        }
+
+        public Patient(string name, string email, string description, DateTime birthday, string profilePicture,
+            string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description,
+                birthday, profilePicture, location, phoneNumber, gender, password)
+        {
             Requests = new List<Request>();
         }
 

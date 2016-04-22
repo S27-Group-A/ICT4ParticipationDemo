@@ -25,7 +25,15 @@ namespace Participation.SharedModels
             this.Date = date;
         }
 
+        public Response(string text, DateTime date, Volunteer responder)
+        {
+            //this.Id = Id; TODO Set id
+            this.Responder = responder;
+            this.Text = text;
+            this.Date = date;
+        }
+
 
     }
 }
-}
+

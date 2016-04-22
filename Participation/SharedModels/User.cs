@@ -41,6 +41,23 @@ namespace Participation.SharedModels
             meetings = new List<Meeting>();
         }
 
+        public User(string name, string email, string description,
+            DateTime birthday, string profilePicture, string location,
+            string phoneNumber, GenderEnum gender, string password)
+        {
+            //this.Id = Id; TODO set id
+            Name = name;
+            Email = email;
+            Description = description;
+            Birthday = birthday;
+            ProfilePicture = profilePicture;
+            Location = location;
+            PhoneNumber = phoneNumber;
+            Gender = gender;
+            Password = password;
+            meetings = new List<Meeting>();
+        }
+
         //methods
 
         /// <summary>

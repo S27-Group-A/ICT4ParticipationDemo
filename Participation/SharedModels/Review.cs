@@ -17,5 +17,12 @@ namespace Participation.SharedModels
             this.Rating = Rating;
             this.Text = Text;
         }
+
+        public Review(double Rating, string Text)
+        {
+            //this.Id = Id; TODO set id
+            this.Rating = Rating;
+            this.Text = Text;
+        }
     }
 }

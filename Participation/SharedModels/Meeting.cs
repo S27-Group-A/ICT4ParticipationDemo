@@ -26,6 +26,15 @@
             this.Location = location;
         }
 
+        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        {
+            //this.Id = Id; --TODO Get id 
+            this.Volunteer = volunteer;
+            this.Patient = patient;
+            this.Date = date;
+            this.Location = location;
+        }
+
 
 
 

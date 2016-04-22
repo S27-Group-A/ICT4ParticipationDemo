@@ -1,4 +1,6 @@
-﻿namespace Participation.SharedModels
+﻿using System.Data;
+
+namespace Participation.SharedModels
 {
     using System;
     using System.Collections.Generic;
@@ -38,13 +40,24 @@
         /// <returns>Returns the string</returns>
 
         // constructors
-
         public Request(int id, string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             this.Id = id;
             this.Title = title;
             this.Text = text;
-            this.Perks = perks;
+            this.Perks = new List<string>();
+            this.Location = location;
+            this.Date = date;
+            this.Urgency = urgency;
+            this.Responses = new List<Response>();
+
+        }
+
+        public Request(string title, string text, List<string> perks, string location, DateTime date, int urgency)
+        {
+            this.Title = title;
+            this.Text = text;
+            this.Perks = new List<string>();
             this.Location = location;
             this.Date = date;
             this.Urgency = urgency;
@@ -61,6 +74,7 @@
         /// <param name="The date it got posted"></param>
         public void AddResponse(string text)
         {
+            
             this.Responses.Add(new Response(text, DateTime.Now));
         }
 
