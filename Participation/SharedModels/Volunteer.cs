@@ -14,30 +14,26 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
 
         //constructors
-        public Volunteer() { }
-
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks)
-            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+        public Volunteer(int id, string name, string email, string description,
+            DateTime birthday, string profilePicure, string location,
+            string phoneNumber, GenderEnum gender, string password)
+            : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
-            _perks = perks;
-            _verklaringPdf = null;
+            _perks = new List<string>();
+            _verklaringPdf = "";
         }
 
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum
-            gender, string password, List<string> perks, string verklaringPdf) : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
+        public Volunteer(string name, string email, string description,
+            DateTime birthday, string profilePicure, string location,
+            string phoneNumber, GenderEnum gender, string password)
+            : base(name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
+            //TODO set id maybe not sure if needed in child class
             _reviews = new List<Review>();
-            _perks = perks;
-            _verklaringPdf = verklaringPdf;
+            _perks = new List<string>();
+            _verklaringPdf = "";
         }
-
-        public Volunteer(string email, string password, List<string> perks) : base(email, password)
-        {
-            _reviews = new List<Review>();
-            _perks = perks;
-        }
-
 
         //methods
         public bool InviteToChat()

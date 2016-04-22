@@ -1,56 +1,66 @@
 SET SERVEROUTPUT ON;
 
 -- DROP TABLES --
-DROP TABLE Person   CASCADE CONSTRAINTS;
-DROP TABLE Perk     CASCADE CONSTRAINTS;
-DROP TABLE Review   CASCADE CONSTRAINTS;
-DROP TABLE Meeting  CASCADE CONSTRAINTS;
-DROP TABLE Request  CASCADE CONSTRAINTS;
+DROP TABLE Person CASCADE CONSTRAINTS;
+DROP TABLE Perk CASCADE CONSTRAINTS;
+DROP TABLE Review CASCADE CONSTRAINTS;
+DROP TABLE Meeting CASCADE CONSTRAINTS;
+DROP TABLE Request CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
 
 -- CREATE TABLES --
 CREATE TABLE Person
 (
-	personID 			    NUMBER(10) 		    PRIMARY KEY,
-	personType 		    VARCHAR2(32) 	    CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin' )NOT NULL,
-	name  			      VARCHAR2(32) 	    NOT NULL,
-	email 			      VARCHAR2(64) 	    UNIQUE NOT NULL,
-	description 	    VARCHAR2(256),
-	dateOfBirth 	    DATE 			        NOT NULL,
-	profilePicture 	  VARCHAR2(256), 					        -- Fileserver
-	location 		      VARCHAR2(256)	    NOT NULL,
-	phone 			      VARCHAR2(32),
-	gender 			      VARCHAR2(1) 	    CHECK(gender = 'M' OR gender = 'V') NOT NULL,
-  password          VARCHAR(64)       NOT NULL
+	personID 			      NUMBER(10) 		    PRIMARY KEY,
+	personType 		    	VARCHAR2(32) 	    NOT NULL,
+	name  			      	VARCHAR2(32) 	    NOT NULL,
+	email 			      	VARCHAR2(64) 	    UNIQUE NOT NULL,
+	description 	    	VARCHAR2(256),
+	dateOfBirth 	    	DATE 			        NOT NULL,
+	profilePicture 	  	VARCHAR2(256), 					        -- Fileserver
+	location 		      	VARCHAR2(256)	    NOT NULL,
+	phone 			      	VARCHAR2(32),
+	gender 			      	VARCHAR2(1) 	    NOT NULL,
+	password          	VARCHAR(64)       NOT NULL,
+	rfid					      VARCHAR(64)			  UNIQUE,
+	vog						      VARCHAR(255)      UNIQUE,       -- Fileserver
+	banned					    NUMBER(1)			    NOT NULL,
+	unban					      DATE,
+	
+	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
+	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
+	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2)
+	-- 0 = not banned, 1 = banned until X, 2 = permanent banned
 );
 
 CREATE TABLE Perk
 (
 	personID 			    NUMBER(10)        NOT NULL,
 	perk 			        VARCHAR2(256) 	  NOT NULL,
-	
+
 	CONSTRAINT pk_Perk PRIMARY KEY (personID, perk)
 );
 
 CREATE TABLE Review
 (
-	reviewID 		      NUMBER 			      PRIMARY KEY,
-	reviewerID 		    NUMBER 			      NOT NULL,
-	revieweeID 		    NUMBER 			      NOT NULL,
-	rating 			      NUMBER 			      NOT NULL,
-	description 	    VARCHAR2(256) 	  NOT NULL,
+	reviewID 		      	NUMBER 			    PRIMARY KEY,
+	reviewerID 		    	NUMBER 			    NOT NULL,
+	revieweeID 		    	NUMBER 			    NOT NULL,
+	rating 			      	NUMBER 			    NOT NULL,
+	description 	    	VARCHAR2(256) 	NOT NULL,
 	
 	CONSTRAINT c_rating CHECK(rating >0 OR rating <5)
-
 );
+
+
 
 CREATE TABLE Meeting
 (
-	volunteerID 	    NUMBER 			      NOT NULL,
-	patientID 		    NUMBER 			      NOT NULL,
-	"location" 		    VARCHAR2(256),
-	"date"			      DATE	            NOT NULL,
-	status 			      NUMBER 			      NOT NULL,
+	volunteerID 	    	NUMBER 			   	NOT NULL,
+	patientID 		    	NUMBER 			    NOT NULL,
+	"location" 		    	VARCHAR2(256),
+	"date"			      	DATE	          NOT NULL,
+	status 			      	NUMBER 			    NOT NULL,
 	
 	CONSTRAINT pk_Meeting PRIMARY KEY(volunteerID, patientID, "location", "date"),
 	CONSTRAINT c_status CHECK(status = 0 OR status = 1)
@@ -58,17 +68,16 @@ CREATE TABLE Meeting
 
 CREATE TABLE Request
 (
-	requestID 		  NUMBER 			        PRIMARY KEY,
-	personID 			  NUMBER 			        NOT NULL,
-	title 			    VARCHAR2(64) 	      NOT NULL,
-	description 	  VARCHAR2(256) 	    NOT NULL,
-	perks 			    VARCHAR2(256),
-	"location" 		  VARCHAR2(256) 	    NOT NULL,
-	"date" 			    DATE     		        NOT NULL,
-	urgency 		    NUMBER 			        DEFAULT 0 NOT NULL,
+	requestID 		  	NUMBER 			    PRIMARY KEY,
+	personID 			  	NUMBER 			    NOT NULL,
+	title 			    	VARCHAR2(64) 	  NOT NULL,
+	description 	  	VARCHAR2(256) 	NOT NULL,
+	perks 			    	VARCHAR2(256),
+	"location" 		  	VARCHAR2(256) 	NOT NULL,
+	"date" 			    	DATE     		    NOT NULL,
+	urgency 		    	NUMBER 			    DEFAULT 0 NOT NULL,
 	
-	CONSTRAINT c_urgency CHECK(urgency = 0 OR urgency = 1)
-
+	CONSTRAINT c_urgency CHECK(urgency >= 0 OR urgency <= 5)
 );
 
 CREATE TABLE Response
@@ -77,7 +86,7 @@ CREATE TABLE Response
 	requestID 		  NUMBER 			        NOT NULL,
 	"date" 			    DATE 			          NOT NULL,
 	description 	  VARCHAR2(256) 	    NOT NULL,
-	
+
 	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID)
 );
 
@@ -92,16 +101,16 @@ ALTER TABLE Response ADD FOREIGN KEY(responderID) REFERENCES Person(personID);
 ALTER TABLE Response ADD FOREIGN KEY(requestID) REFERENCES Request(requestID);
 
 -- INSERT DATA --
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord');
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password)
-VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord');
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 1, 'file1', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', 2, 'file2', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 3, 'file3', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 'file4', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
+VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
 
 INSERT INTO Perk(personID, perk)
 VALUES(1, 'Auto');
@@ -216,15 +225,5 @@ END;
 /
 
 
---Testing anonymous procedures
-
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
-VALUES(SEQ_personID.NEXTVAL, 'Patient', 'RNG', 'testemail4', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
-
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
-VALUES(SEQ_personID.NEXTVAL, 'Patient', 'Joey', 'testemail3', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
-
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) 
-VALUES(SEQ_personID.NEXTVAL, 'Patient', 'Kevin', 'testemail2', 'Testdescription', to_date(SYSDATE, 'dd/mm/yyyy mi:ss'), 'Testurl', 'Testlocation', 'textphone', 'M', 'pw');
 
 

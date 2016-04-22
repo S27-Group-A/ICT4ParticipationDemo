@@ -39,8 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Oracle.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="ServerWcfService">
-      <HintPath>DLL\ServerWcfService.dll</HintPath>
+    <Reference Include="Phidget21.NET, Version=2.1.8.243, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Downloads\Phidget21-windevel_2.1.8.20160222\phidget21-windevel\Phidget21.NET.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -110,6 +111,7 @@
     <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\Response.cs" />
     <Compile Include="SharedModels\Review.cs" />
+    <Compile Include="SharedModels\RFIDManager.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="SharedModels\Volunteer.cs" />
     <Compile Include="Unspecified Profile\GUI\ProfileForm.cs">
@@ -142,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestsViewForm.resx">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -221,6 +226,20 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="InlogSysteem\Resources\empty_profile.jpg" />
+  </ItemGroup>
+  <!--
+    <COMReference Include="Phidget21COM">
+      <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+ -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

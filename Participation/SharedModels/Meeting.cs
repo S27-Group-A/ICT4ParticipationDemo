@@ -7,42 +7,40 @@
 
     public class Meeting
     {
-        private bool _volunteerAccepted = false;
-        private bool _patientAccepted = false;
+        //private bool _volunteerAccepted = false;
+        //private bool _patientAccepted = false;
+        // Properties
+        public int Id { get; set; }
+        public Volunteer Volunteer { get; set; }
+        public Patient Patient { get; set; }
+        public DateTime Date { get; set; }
+        public string Location { get; set; }
 
         // constructor
-        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        public Meeting(int Id, Volunteer volunteer, Patient patient, DateTime date, string location)
         {
+            this.Id = Id;
             this.Volunteer = volunteer;
             this.Patient = patient;
             this.Date = date;
             this.Location = location;
         }
 
-        // Properties
+        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        {
+            //this.Id = Id; --TODO Get id 
+            this.Volunteer = volunteer;
+            this.Patient = patient;
+            this.Date = date;
+            this.Location = location;
+        }
 
-        /// <summary>
-        /// Gets the volunteer from meeting
-        /// </summary>
-        public Volunteer Volunteer { get; private set; }
 
-        /// <summary>
-        /// Gets the Patient from meeting
-        /// </summary>
-        public Patient Patient { get; private set; }
 
-        /// <summary>
-        /// Gets the date and time when the meeting is planned
-        /// </summary>
-        public DateTime Date { get; private set; }
 
-        /// <summary>
-        /// Gets the location of the meeting
-        /// </summary>
-        public string Location { get; private set; }
 
         // Methods
-
+        /*
         public bool AcceptMeeting(Patient patient)
         {
             if (patient == this.Patient)
@@ -52,7 +50,8 @@
             }
             return false;
         }
-
+        */
+        /*
         public bool AcceptMeeting(Volunteer volunteer)
         {
             if (volunteer == this.Volunteer)
@@ -62,7 +61,9 @@
             }
             return false;
         }
+        */
 
+        /*
         public bool CheckAccepeted()
         {
             if (_volunteerAccepted && _patientAccepted)
@@ -71,5 +72,6 @@
             }
             return false;
         }
+        */
     }
 }
