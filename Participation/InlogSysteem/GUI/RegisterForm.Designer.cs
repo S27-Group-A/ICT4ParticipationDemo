@@ -269,7 +269,6 @@
             this.rbtFemale.TabStop = true;
             this.rbtFemale.Text = "Vrouw";
             this.rbtFemale.UseVisualStyleBackColor = true;
-            this.rbtFemale.CheckedChanged += new System.EventHandler(this.femaleRbt_CheckedChanged);
             // 
             // rbtNeedHelp
             // 
@@ -540,7 +539,6 @@
             this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 46;
             this.label1.Text = "RFID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnlHasRfid
             // 

@@ -78,38 +78,12 @@
         public IUser GetUser(string email)
         {
             return DatabaseManager.GetUser(email);
-            /*
-            #region Databaseless testing
-
-            foreach (var user in GetUsers())
-            {
-                if (user.Email == email)
-                    return user;
-            }
-            throw new Exception("Het e-mail adres: "
-                + email + " heeft geen geldig account " +
-                "controleer uw inloggegevens");
-            #endregion
-            */
         }
 
-        //TODO Unstaticfy when database connection has been made
         public List<IUser> GetUsers()
         {
             return DatabaseManager.GetUsers();
-            /*
-            #region Databaseless testing
-
-            var getUsers = new List<IUser>();
-            foreach (var volunteer in _volunteers)
-                getUsers.Add(volunteer);
-            foreach (var patient in _patients)
-                getUsers.Add(patient);
-            return getUsers;
-
-            #endregion
-            */
-        }
+            }
 
 
         public bool AddPerk(Volunteer newVolunteer, string perk)

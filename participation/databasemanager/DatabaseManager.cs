@@ -75,7 +75,7 @@ namespace Participation
 
                 return reader;
             }
-            catch (OracleException exc)
+            catch (OracleException)
             {
                 return null;
             }
