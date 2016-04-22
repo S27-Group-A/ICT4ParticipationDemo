@@ -172,6 +172,10 @@ namespace Participation
                     user.Id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
 
             }
             catch
@@ -318,32 +322,36 @@ namespace Participation
                 command.Parameters.Add(":Email", Email);
                 OracleDataReader reader = ExecuteQuery(command);
 
-                int id = Convert.ToInt32(("personid").ToString());
-                string Name = reader["name"].ToString();
-                string EmailAdress = reader["email"].ToString();
-                string Description = reader["description"].ToString();
-                string dateTime = reader["dateOfBirth"].ToString();
-                string Picture = reader["ProfilePicture"].ToString();
-                DateTime DateOfBirth = Convert.ToDateTime(dateTime);
-                string Location = reader["location"].ToString();
-                string PhoneNumber = reader["phone"].ToString();
-                GenderEnum Gender = ToGender(reader["gender"].ToString());
-                string Password = reader["password"].ToString();
-                string VOG = reader["VOG"].ToString();
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["personid"].ToString());
+                    string Name = reader["name"].ToString();
+                    string EmailAdress = reader["email"].ToString();
+                    string Description = reader["description"].ToString();
+                    string dateTime = reader["dateOfBirth"].ToString();
+                    string Picture = reader["ProfilePicture"].ToString();
+                    DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                    string Location = reader["location"].ToString();
+                    string PhoneNumber = reader["phone"].ToString();
+                    GenderEnum Gender = ToGender(reader["gender"].ToString());
+                    string Password = reader["password"].ToString();
+                    string VOG = reader["VOG"].ToString();
 
-                string PersonType = reader["personType"].ToString();
-                if (PersonType == "Volunteer")
-                {
-                    return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
+                    string PersonType = reader["personType"].ToString();
+                    if (PersonType == "Volunteer")
+                    {
+                        return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, false);
+                    }
+                    if (PersonType == "Patient")
+                    {
+                        return new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
+                    }
+                    if (PersonType == "Admin")
+                    {
+                        return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true);
+                    }
                 }
-                if (PersonType == "Patient")
-                {
-                    return new Patient(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password);
-                }
-                if (PersonType == "Admin")
-                {
-                    return new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, Picture, Location, PhoneNumber, Gender, Password, VOG, true);
-                }
+
                 return null;
             }
             catch (Exception exception)
@@ -927,8 +935,6 @@ namespace Participation
             #endregion
 
             #region Response
-
-            #endregion
 
             #endregion
 
