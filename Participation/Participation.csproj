@@ -62,7 +62,7 @@
 	<Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </Compile>
-	
+	<Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
     <Compile Include="ChatSysteem\Logic\ChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,7 +72,6 @@
     <Compile Include="ChatSysteem\Logic\ChatUsers.Designer.cs">
       <DependentUpon>ChatUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,6 +194,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BeheerSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
   </ItemGroup>
