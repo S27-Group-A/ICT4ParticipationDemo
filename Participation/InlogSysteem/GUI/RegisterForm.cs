@@ -1,20 +1,14 @@
-﻿namespace Participation.InlogSysteem.GUI
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-    using System.Windows.Forms;
-    using Participation.SharedModels;
-    using Phidgets;
-    using Phidgets.Events;
-    using S21M_RailB;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using Participation.SharedModels;
+using S21M_RailB;
 
+namespace Participation.InlogSysteem.GUI
+{
     public partial class RegisterForm : Form
     {
         private static readonly string _succesfullRegisterationMsg = "Uw account is geregistreerd u kunt nu inloggen";
@@ -22,9 +16,9 @@
         private static readonly string _contactAdministratorMsg =
             "Er is iets misgegaan neem contact op met de administrator";
 
-        private LISLogic _lisLogic = new LISLogic();
+        private readonly LISLogic _lisLogic = new LISLogic();
 
-        private List<string> _perks = new List<string>();
+        private readonly List<string> _perks = new List<string>();
 
         private RFIDManager rfidManager;
 
@@ -43,7 +37,7 @@
         }
 
         /// <summary>
-        /// Sets the radiobutton to patient
+        ///     Sets the radiobutton to patient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +51,7 @@
         }
 
         /// <summary>
-        /// Sets the radiobutton to volunteer
+        ///     Sets the radiobutton to volunteer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,16 +65,16 @@
         }
 
         /// <summary>
-        /// Volunteer only boxes
+        ///     Volunteer only boxes
         /// </summary>
         private void ShowVogAndPerks()
         {
             gbxPerks.Show();
             gbxVOG.Show();
         }
-        
+
         /// <summary>
-        /// Patient only boxes
+        ///     Patient only boxes
         /// </summary>
         private void HideVogAndPerks()
         {
@@ -89,7 +83,7 @@
         }
 
         /// <summary>
-        /// Checks all the textboxes if they are empty
+        ///     Checks all the textboxes if they are empty
         /// </summary>
         /// <returns></returns>
         private bool CheckFields()
@@ -109,7 +103,7 @@
         }
 
         /// <summary>
-        /// This method checks if the email that's been provided is valid.
+        ///     This method checks if the email that's been provided is valid.
         /// </summary>
         /// <param name="email">The email parameter has the email string from the form</param>
         /// <returns>Value indicating whether the email is valid or not.</returns>
@@ -119,15 +113,15 @@
             {
                 return false;
             }
-            else
-            {
-                // Return true if strIn is in valid e-mail format.
-                return Regex.IsMatch(email, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$", RegexOptions.IgnoreCase);
-            }
+            // Return true if strIn is in valid e-mail format.
+            return Regex.IsMatch(email,
+                @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
+                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$",
+                RegexOptions.IgnoreCase);
         }
 
         /// <summary>
-        /// Checks all the input and if it is correct creates an new volunteer or patient
+        ///     Checks all the input and if it is correct creates an new volunteer or patient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -139,7 +133,9 @@
                 {
                     if (rbtMale.Checked)
                     {
-                        var newPatient = new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male, tbxPassword.Text);
+                        var newPatient = new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
+                            tbxPassword.Text);
                         if (_lisLogic.AddUser(newPatient))
                         {
                             MessageBox.Show(_succesfullRegisterationMsg);
@@ -149,7 +145,8 @@
                     if (rbtFemale.Checked)
                     {
                         var newPatient =
-                            new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female, tbxPassword.Text);
+                            new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, tbxProfilePictureUrl.Text,
+                                tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female, tbxPassword.Text);
                         if (_lisLogic.AddUser(newPatient))
                         {
                             MessageBox.Show(_succesfullRegisterationMsg);
@@ -165,7 +162,9 @@
                 {
                     if (rbtMale.Checked)
                     {
-                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male, tbxPassword.Text, tbxVOGUrl.Text);
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add Perks
@@ -180,7 +179,6 @@
                                         {
                                             _lisLogic.AddPerk(newVolunteer, perk);
                                         }
-                                            
                                     }
                                 }
                             }
@@ -193,7 +191,9 @@
                     }
                     if (rbtFemale.Checked)
                     {
-                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female, tbxPassword.Text, tbxVOGUrl.Text);
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add perk
@@ -204,7 +204,6 @@
                                 {
                                     foreach (var perk in perks)
                                     {
-
                                         _lisLogic.AddPerk(newVolunteer, perk);
                                     }
                                 }
@@ -223,7 +222,7 @@
         }
 
         /// <summary>
-        /// Clears all the textboxes from their input
+        ///     Clears all the textboxes from their input
         /// </summary>
         private void ClearTextBoxes()
         {
@@ -241,46 +240,44 @@
 
 
         /// <summary>
-        /// Get an image from your local pc and set it as profilepicture
+        ///     Get an image from your local pc and set it as profilepicture
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void browseProfilePictureBtn_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Image Files | *.jpg; *.png; *.bmp ";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string sourceFile = ofd.FileName;
+                    var sourceFile = ofd.FileName;
                     tbxProfilePictureUrl.Text = ofd.FileName;
                     pbProfilePic.Image = Image.FromFile(sourceFile);
                 }
-
             }
         }
 
         /// <summary>
-        /// get an image from your local pc and set it as vog
+        ///     get an image from your local pc and set it as vog
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void browseVogUrlBtn_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new OpenFileDialog())
             {
                 ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    string sourceFile = ofd.FileName;
+                    var sourceFile = ofd.FileName;
                     tbxVOGUrl.Text = ofd.FileName;
                 }
-
             }
         }
 
         /// <summary>
-        /// Able to add perks to your perk list
+        ///     Able to add perks to your perk list
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -295,7 +292,7 @@
         }
 
         /// <summary>
-        /// sends you back to the loginform
+        ///     sends you back to the loginform
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -310,19 +307,6 @@
             FormProvider.StartMenu.Show();
         }
 
-        private void femaleRbt_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            //
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
