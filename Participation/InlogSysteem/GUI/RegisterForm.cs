@@ -122,7 +122,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //TODO Add Perks
@@ -134,7 +134,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //TODO Add Perks
@@ -160,6 +160,7 @@ namespace Participation.InlogSysteem.GUI
                 {
                     string sourceFile = ofd.FileName;
                     tbxProfilePictureUrl.Text = ofd.FileName;
+                    pbProfilePic.Image = Image.FromFile(sourceFile);
                 }
 
             }
