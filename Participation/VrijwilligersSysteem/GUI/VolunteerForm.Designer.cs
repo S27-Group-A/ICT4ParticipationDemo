@@ -29,138 +29,153 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VolunteerForm));
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbPatients = new System.Windows.Forms.ListBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblRequestTitle = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.lblUrgency = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lbResponses = new System.Windows.Forms.ListBox();
+            this.tbResponse = new System.Windows.Forms.TextBox();
+            this.btnPostResponse = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMeeting = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox1
+            // lbPatients
             // 
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Items.AddRange(new object[] {
+            this.lbPatients.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPatients.FormattingEnabled = true;
+            this.lbPatients.ItemHeight = 20;
+            this.lbPatients.Items.AddRange(new object[] {
             "Henk",
             "Jan",
             "Smit"});
-            this.listBox1.Location = new System.Drawing.Point(12, 44);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(196, 384);
-            this.listBox1.TabIndex = 0;
+            this.lbPatients.Location = new System.Drawing.Point(12, 44);
+            this.lbPatients.Name = "lbPatients";
+            this.lbPatients.Size = new System.Drawing.Size(196, 384);
+            this.lbPatients.TabIndex = 0;
+            this.lbPatients.SelectedIndexChanged += new System.EventHandler(this.lbPatients_SelectedIndexChanged_1);
             // 
-            // label1
+            // lblName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(341, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 29);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Name Patient";
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(341, 47);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(158, 29);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Name Patient";
             // 
-            // label2
+            // lblRequestTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(341, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Hulpvraag titel";
+            this.lblRequestTitle.AutoSize = true;
+            this.lblRequestTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequestTitle.Location = new System.Drawing.Point(341, 112);
+            this.lblRequestTitle.Name = "lblRequestTitle";
+            this.lblRequestTitle.Size = new System.Drawing.Size(128, 24);
+            this.lblRequestTitle.TabIndex = 3;
+            this.lblRequestTitle.Text = "Hulpvraag titel";
             // 
-            // label3
+            // lblDescription
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(222, 149);
-            this.label3.MaximumSize = new System.Drawing.Size(600, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(598, 140);
-            this.label3.TabIndex = 4;
-            this.label3.Text = resources.GetString("label3.Text");
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(222, 149);
+            this.lblDescription.MaximumSize = new System.Drawing.Size(600, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(598, 140);
+            this.lblDescription.TabIndex = 4;
+            this.lblDescription.Text = resources.GetString("lblDescription.Text");
+            this.lblDescription.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(613, 44);
+            this.panel2.Controls.Add(this.lblDate);
+            this.panel2.Controls.Add(this.lblLocation);
+            this.panel2.Controls.Add(this.lblUrgency);
+            this.panel2.Location = new System.Drawing.Point(636, 44);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 100);
             this.panel2.TabIndex = 5;
             // 
-            // label6
+            // lblDate
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 54);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 22);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Date";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(13, 54);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(48, 22);
+            this.lblDate.TabIndex = 2;
+            this.lblDate.Text = "Date";
+            this.lblDate.Click += new System.EventHandler(this.label6_Click);
             // 
-            // label5
+            // lblLocation
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(13, 32);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 22);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Location";
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(13, 32);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(78, 22);
+            this.lblLocation.TabIndex = 1;
+            this.lblLocation.Text = "Location";
             // 
-            // label4
+            // lblUrgency
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 22);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Urgency";
+            this.lblUrgency.AutoSize = true;
+            this.lblUrgency.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrgency.Location = new System.Drawing.Point(13, 10);
+            this.lblUrgency.Name = "lblUrgency";
+            this.lblUrgency.Size = new System.Drawing.Size(77, 22);
+            this.lblUrgency.TabIndex = 0;
+            this.lblUrgency.Text = "Urgency";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbResponses);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(226, 293);
+            this.groupBox1.Location = new System.Drawing.Point(226, 292);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(334, 131);
+            this.groupBox1.Size = new System.Drawing.Size(334, 132);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reacties";
             // 
-            // textBox1
+            // lbResponses
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(566, 293);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(270, 87);
-            this.textBox1.TabIndex = 7;
+            this.lbResponses.FormattingEnabled = true;
+            this.lbResponses.ItemHeight = 24;
+            this.lbResponses.Location = new System.Drawing.Point(7, 29);
+            this.lbResponses.Name = "lbResponses";
+            this.lbResponses.Size = new System.Drawing.Size(321, 100);
+            this.lbResponses.TabIndex = 0;
             // 
-            // button1
+            // tbResponse
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(566, 386);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 38);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Plaats Reactie";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tbResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbResponse.Location = new System.Drawing.Point(566, 293);
+            this.tbResponse.Multiline = true;
+            this.tbResponse.Name = "tbResponse";
+            this.tbResponse.Size = new System.Drawing.Size(270, 87);
+            this.tbResponse.TabIndex = 7;
+            // 
+            // btnPostResponse
+            // 
+            this.btnPostResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPostResponse.Location = new System.Drawing.Point(566, 386);
+            this.btnPostResponse.Name = "btnPostResponse";
+            this.btnPostResponse.Size = new System.Drawing.Size(270, 38);
+            this.btnPostResponse.TabIndex = 8;
+            this.btnPostResponse.Text = "Plaats Reactie";
+            this.btnPostResponse.UseVisualStyleBackColor = true;
+            this.btnPostResponse.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -172,25 +187,37 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
+            // btnMeeting
+            // 
+            this.btnMeeting.Location = new System.Drawing.Point(725, 12);
+            this.btnMeeting.Name = "btnMeeting";
+            this.btnMeeting.Size = new System.Drawing.Size(111, 26);
+            this.btnMeeting.TabIndex = 10;
+            this.btnMeeting.Text = "Afspraak maken";
+            this.btnMeeting.UseVisualStyleBackColor = true;
+            this.btnMeeting.Click += new System.EventHandler(this.btnMeeting_Click);
+            // 
             // VolunteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 436);
+            this.Controls.Add(this.btnMeeting);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnPostResponse);
+            this.Controls.Add(this.tbResponse);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.lblRequestTitle);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.lbPatients);
             this.Name = "VolunteerForm";
             this.Text = "VolunteerForm";
             this.Load += new System.EventHandler(this.VolunteerForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -199,17 +226,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox lbPatients;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblRequestTitle;
+        private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblLocation;
+        private System.Windows.Forms.Label lblUrgency;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbResponse;
+        private System.Windows.Forms.Button btnPostResponse;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ListBox lbResponses;
+        private System.Windows.Forms.Button btnMeeting;
     }
 }

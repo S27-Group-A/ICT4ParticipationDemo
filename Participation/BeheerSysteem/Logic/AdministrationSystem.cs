@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Participation.SharedModels;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.BeheerSysteem.Logic
 {
     class AdministrationSystem
     {
 
-        public List<User> Users { get; set; }
+        public List<IUser> Users { get; set; }
         public List<Request> Requests { get; set; }
         public List<Review> Reviews { get; set; }
         public List<Volunteer> Volunteers { get; set; }
@@ -27,7 +28,7 @@ namespace Participation.BeheerSysteem.Logic
             //nog in te vullen.
         }
 
-        public List<User> GetUsers()
+        public List<IUser> GetUsers()
         {
             return DatabaseManager.GetUsers();
 
@@ -44,12 +45,12 @@ namespace Participation.BeheerSysteem.Logic
         }
 
         //Bans Users permanently
-        public bool BanUserPermanent(User user)
+        public bool BanUserPermanent(IUser user)
         {
-            List<User> tempusers = GetUsers();
-            User u = new User();
+            List<IUser> tempusers = GetUsers();
+            IUser u = new IUser();
             user = u;
-            foreach (User tempuser in tempusers)
+            foreach (IUser tempuser in tempusers)
             {
                 if (tempusers.ToString() == tempuser.ToString())
                 {
@@ -61,10 +62,10 @@ namespace Participation.BeheerSysteem.Logic
             return false;
         }
         // Bans users temporary
-        public bool BanUserTemporary(User user, int bantime)
+        public bool BanUserTemporary(IUser user, int bantime)
         {
-            List<User> tempusers = GetUsers();
-            User u = new User();
+            List<IUser> tempusers = GetUsers();
+            User u = new IUser();
             user = u;
             foreach (User tempuser in tempusers)
             {
@@ -79,12 +80,12 @@ namespace Participation.BeheerSysteem.Logic
             return false;
         }
         //Deletes an account
-        public bool DeleteAcount(User user)
+        public bool DeleteAcount(IUser user)
         {
-            List<User> tempusers = GetUsers();
-            User u = new User();
+            List<IUser> tempusers = GetUsers();
+            User u = new IUser();
             user = u;
-            foreach (User tempuser in tempusers)
+            foreach (IUser tempuser in tempusers)
             {
                 if (tempusers.ToString() == tempuser.ToString())
                 {
@@ -130,8 +131,8 @@ namespace Participation.BeheerSysteem.Logic
             return false;
         }
 
-        //Changes Admin Rights
-        public bool ChangeAdminRights(User user)
+        //Changes Admin Rights <- moet worden aangepast na update van database methodes.
+        public bool ChangeAdminRights(IUser user)
         {
             List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
             Volunteer V = new Volunteer();

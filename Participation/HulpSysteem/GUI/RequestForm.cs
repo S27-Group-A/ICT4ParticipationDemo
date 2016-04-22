@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.InlogSysteem.Interfaces;
 
 namespace UI
 {
     public partial class RequestForm : Form
     {
         //TODO Implement User from log in
-        //private User _loggedInUser = LoggedInUser;
+        private IUser _loggedInUser = FormProvider.LoggedInUser;
 
         //TODO Implement hpslogic
         HPSLogic _hpsLogic = new HPSLogic();
