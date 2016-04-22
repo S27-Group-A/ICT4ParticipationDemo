@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -18,26 +17,33 @@ namespace Participation
     public static class DatabaseManager
     {
         #region Fields
+
         //Database connection; uses Connectionstring
         private static OracleConnection _Connection = new OracleConnection(_ConnectionString);
         //Temp data for connecting to the database; [Username], [Password], [server-IP]
 
-        private const string _ConnectionId = "dbi330810", _ConnectionPassword = " Jm3AQLBVXo", _ConnectionAddress = "//fhictora01.fhict.local/fhictora";
+        private const string _ConnectionId = "dbi330810",
+            _ConnectionPassword = " Jm3AQLBVXo",
+            _ConnectionAddress = "//fhictora01.fhict.local/fhictora";
 
         #endregion
 
         #region Properties
+
         private static string _ConnectionString
         {
             //Data used to create the database connection
             get
             {
-                return string.Format("Data Source={0};Persist Security Info=True;User Id={1};Password={2}", _ConnectionAddress, _ConnectionId, _ConnectionPassword);
+                return string.Format("Data Source={0};Persist Security Info=True;User Id={1};Password={2}",
+                    _ConnectionAddress, _ConnectionId, _ConnectionPassword);
             }
         }
+
         #endregion
 
         #region Methods - Background Processes
+
         //Creates the command with sql query and database connection information
         private static OracleCommand CreateOracleCommand(string sql)
         {
@@ -121,6 +127,7 @@ namespace Participation
 
             return gender;
         }
+
         #endregion
 
 
@@ -128,30 +135,27 @@ namespace Participation
         #region Queries
 
         #region Insert
+
         #region User
+
         //Adds a new user into the database
         internal static bool AddUser(IUser user)
         {
             try
             {
-<<<<<<< HEAD
-                
-                OracleCommand command = CreateOracleCommand("INSERT INTO Person(personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+                OracleCommand command =
+                    CreateOracleCommand(
+                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personID, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+
+                command.Parameters.Add(":personID", user.Id);
+
+                #region personType
 
                 if (user.GetType() == typeof(Patient))
-=======
-                var testP = new Patient();
-                var testV = new Volunteer();
-                OracleCommand command = CreateOracleCommand("INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(:personID, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
-
-                command.Parameters.Add(":personID", user.ID);
-                #region personType
-                if (user.GetType() == testP.GetType())
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
                 {
                     command.Parameters.Add(":personType", "Patient");
                 }
-                if (user.GetType() == typeof(Volunteer))
+                if (user.GetType() == typeof (Volunteer))
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
@@ -177,33 +181,24 @@ namespace Participation
                 _Connection.Close();
             }
         }
+
         #endregion
 
         #region Review
-<<<<<<< HEAD
-        internal static bool AddReview(Review review)
-=======
+
         //Adds a review to the database
         internal static bool AddReview(Volunteer volunteer, Patient patient, Review review)
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description) VALUES(:reviewID, :reviewerID, :revieweeID, :rating, :description)");
-
-<<<<<<< HEAD
-                //command.Parameters.Add(":reviewID", review.reviewID);
-                //command.Parameters.Add(":reviewerID", review.reviewer.ID); 
-                //command.Parameters.Add(":revieweeID", review.Reviewee.ID);
-                //command.Parameters.Add(":rating", review.rating);
-                //command.Parameters.Add(":description", review.description);
-=======
-                command.Parameters.Add(":reviewID", review.ID);
-                command.Parameters.Add(":reviewerID", patient.ID);
-                command.Parameters.Add(":revieweeID", volunteer.ID);
-                command.Parameters.Add(":rating", review.rating);
-                command.Parameters.Add(":description", review.description);
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
+                OracleCommand command =
+                    CreateOracleCommand(
+                        "INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description) VALUES(:reviewID, :reviewerID, :revieweeID, :rating, :description)");
+                command.Parameters.Add(":reviewID", review.Id);
+                command.Parameters.Add(":reviewerID", patient.Id);
+                command.Parameters.Add(":revieweeID", volunteer.Id);
+                command.Parameters.Add(":rating", review.Rating);
+                command.Parameters.Add(":description", review.Text);
 
                 return ExecuteNonQuery(command);
             }
@@ -216,6 +211,7 @@ namespace Participation
                 _Connection.Close();
             }
         }
+
         #endregion
 
         #region Meeting
@@ -227,53 +223,42 @@ namespace Participation
         #endregion
 
         #region Response
-<<<<<<< HEAD
 
-=======
         //Adds a response to the database
         internal static bool AddResponse(Volunteer volunteer, Request request, Response response)
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Response(responderID, requestID, placingdate, description) VALUES(:responderID, :requestID, :placingdate, :description)");
-                command.Parameters.Add(":responderID", volunteer.ID);
-                command.Parameters.Add(":requestID", request.ID);
+                OracleCommand command =
+                    CreateOracleCommand(
+                        "INSERT INTO Response(responderID, requestID, placingdate, description) VALUES(:responderID, :requestID, :placingdate, :description)");
+                command.Parameters.Add(":responderID", volunteer.Id);
+                command.Parameters.Add(":requestID", request.Id);
                 command.Parameters.Add(":placingdate", response.Date);
                 command.Parameters.Add(":description", response.Text);
 
-                string PersonType = reader["personType"].ToString();
-                if (PersonType == "Volunteer")
-                {
-                    //return new Volunteer( );
-                }
-                if (PersonType == "Patient")
-                {
-                   //return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
-                }
-                if (PersonType == "Admin")
-                {
-                    //return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
-                }
+                
                 return ExecuteNonQuery(command);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception("Something went wrong: " + exception.Message);
             }
             finally
             {
-                
-               
+
+
                 _Connection.Close();
-                
+
             }
-            return null;
         }
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
-        #endregion     
+
+        #endregion
+
         #endregion
 
         #region Get
+
         #region User
 
         //Pulls the accountinformation from the database, and casts it into an user-object
@@ -302,54 +287,32 @@ namespace Participation
                 }
                 if (PersonType == "Patient")
                 {
-                   //return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
+                    //return new Patient(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
                 }
                 if (PersonType == "Admin")
                 {
                     //return new Volunteer(Name, EmailAdress, Description, DateOfBirth, Location, PhoneNumber, Gender, Password);
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 throw new Exception("Something went wrong: " + exception.Message);
             }
             finally
             {
-                
-               
+
+
                 _Connection.Close();
-                
+
             }
             return null;
         }
 
-<<<<<<< HEAD
-=======
-        //Returns a patient, based on request
-        //internal static Patient GetPatientByRequest(Request request)
-        //{
-        //    try
-        //    {
-        //        //OracleCommand command = CreateOracleCommand("SELECT * FROM Person INNER JOIN Request ON Person.personID = Request.personID WHERE ");
-        //    }
-        //    catch
-        //    {
-        //        throw new Exception("Something went wrong");
-        //    }
-        //    finally
-        //    {
-        //        _Connection.Close();
-        //    }
-        //}
 
-        #endregion
-
-        #region Perk
-
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
         #endregion
 
         #region Review
+
         //Returns list of Reviews
         internal static List<Review> GetReviews()
         {
@@ -378,40 +341,66 @@ namespace Participation
             }
             return ReviewList;
         }
+
         #endregion
 
         #region Meeting
+
         //Creates a list of meetings
-        public static List<Meeting> CreateMeetingList(int UserID)
+        public static List<Meeting> GetMeetingList(IUser user)
         {
-<<<<<<< HEAD
-            //OracleCommand command = CreateOracleCommand("SELECT * FROM Meeting;");
-            //OracleDataReader reader = ExecuteQuery(command);
-=======
             try
             {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Meeting WHERE volunteerID = :userID OR patientID = :userID;");
-                command.Parameters.Add(":userID", user.ID);
+                OracleCommand command = new OracleCommand();
+                if (user.GetType() == typeof(Patient))
+                {
+                    command =
+                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID;");
+                }
+                if (user.GetType() == typeof (Volunter))
+                {
+                    command =
+                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID;");
+                }
+
+                command.Parameters.Add(":userID", user.Id);
 
                 OracleDataReader reader = ExecuteQuery(command);
 
                 List<Meeting> MeetingList = new List<Meeting>();
-                while(reader.Read())
+
+                if (user.GetType() == typeof (Patient))
                 {
-                    string place = reader["place"].ToString();
-                    string dateTime = reader["placingdate"].ToString();
-                    DateTime DateOfBirth = Convert.ToDateTime(dateTime);
-                    int status = Convert.ToInt32(reader["status"].ToString());
+                    while (reader.Read())
+                    {
+                        string place = reader["place"].ToString();
+                        string dateTime = reader["placingdate"].ToString();
+                        DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                        int status = Convert.ToInt32(reader["status"].ToString());
 
-                    MeetingList.Add(new Meeting(place, dateTime, status));
+
+
+
+                        MeetingList.Add(new Meeting());
+                    }
                 }
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
-
+                if (user.GetType() == typeof (Volunteer))
+                {
+                    
+                }
+                
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
             return null;
         }
+
         #endregion
 
         #region Request
+
         //Returns list of Requests
         internal static List<Request> GetRequests()
         {
@@ -424,7 +413,8 @@ namespace Participation
                 while (reader.Read())
                 {
                     string title = reader["title"].ToString();
-                    string description = reader["description"].ToString(); ;
+                    string description = reader["description"].ToString();
+                    ;
                     string perks = reader["perks"].ToString();
                     string location = reader["location"].ToString();
                     DateTime date = Convert.ToDateTime(reader["date"].ToString());
@@ -443,22 +433,27 @@ namespace Participation
             }
             return RequestList;
         }
+
         #endregion
 
         #region Response
 
         #endregion
+
         #endregion
 
         #region Update
+
         #region User
+
         //Temporarily bans a user from the application
         public static bool BanUserTemp(User user, int unban)
         {
             DateTime unbandate = DateTime.Now.AddDays(unban);
             try
             {
-                OracleCommand command = CreateOracleCommand("UPDATE Person SET banned = 1, unban = :Date WHERE email = :Email");
+                OracleCommand command =
+                    CreateOracleCommand("UPDATE Person SET banned = 1, unban = :Date WHERE email = :Email");
                 command.Parameters.Add(":Email", user.Email);
                 command.Parameters.Add(":Date", user.Email);
                 return ExecuteNonQuery(command);
@@ -509,25 +504,26 @@ namespace Participation
         #region Response
 
         #endregion
+
         #endregion
 
 
         #region Delete
+
         #region User
 
         #endregion
 
         #region Review
-        //Deletes a review from the database
-<<<<<<< HEAD
 
-=======
+        //Deletes a review from the database
+
         public static bool DeleteReview(Review review)
         {
             try
             {
                 OracleCommand command = CreateOracleCommand("DELETE FROM Review WHERE reviewID = :reviewID");
-                command.Parameters.Add(":reviewID", review.ID);
+                command.Parameters.Add(":reviewID", review.Id);
 
                 return ExecuteNonQuery(command);
             }
@@ -540,26 +536,14 @@ namespace Participation
                 _Connection.Close();
             }
         }
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
-        #endregion
 
-        #region Meeting
-
-
-        #region Example
-
-        #endregion
-
-        #region Request
-<<<<<<< HEAD
-=======
         //Deletes a request from the database
         public static bool DeleteRequest(Request request)
         {
             try
             {
                 OracleCommand command = CreateOracleCommand("DELETE FROM Request WHERE requestID = :requestID");
-                command.Parameters.Add(":requestID", request.ID);
+                command.Parameters.Add(":requestID", request.Id);
 
                 return ExecuteNonQuery(command);
             }
@@ -571,17 +555,19 @@ namespace Participation
             {
                 _Connection.Close();
             }
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
 
-        #endregion
 
-        #region Response
+            #endregion
 
-        #endregion
-        #endregion
+            #region Response
 
-        #endregion
+            #endregion
 
-        #endregion
+            #endregion
+
+            #endregion
+
+            #endregion
+        }
     }
 }

@@ -8,6 +8,7 @@ using Participation.InlogSysteem.GUI;
 using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem.GUI;
 using Participation.ChatSysteem;
+using Participation.HulpSysteem.GUI;
 using UI;
 
 namespace Participation.SharedModels
@@ -71,7 +72,7 @@ namespace Participation.SharedModels
         }
         private static VolunteerForm _volunteer;
 
-<<<<<<< HEAD
+
         public static RequestsViewForm RequestsViewForm
         {
             get
@@ -101,8 +102,6 @@ namespace Participation.SharedModels
 
 
 
-=======
->>>>>>> refs/remotes/origin/Sander-Tom-Sven-MergeBranch
         public static ChatUsers ChatUsersForm
         {
             get
