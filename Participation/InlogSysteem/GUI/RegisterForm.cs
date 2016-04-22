@@ -123,7 +123,7 @@ namespace Participation.InlogSysteem.GUI
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //Add Perks
-                            var perks = lblPerks.Text.Split( ' ' ).ToList();
+                            var perks = lblPerks.Text.Split('+').ToList();
                             foreach (var perk in perks)
                             {
                                 _lisLogic.AddPerk(newVolunteer, perk);
@@ -141,7 +141,7 @@ namespace Participation.InlogSysteem.GUI
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //Add Perks
-                            var perks = lblPerks.Text.Split(' ').ToList();
+                            var perks = lblPerks.Text.Split('+').ToList();
                             foreach (var perk in perks)
                             {
                                 _lisLogic.AddPerk(newVolunteer, perk);
@@ -177,7 +177,7 @@ namespace Participation.InlogSysteem.GUI
             if (!string.IsNullOrEmpty(tbxPerk.Text))
             {
                 _perks.Add(tbxPerk.Text);
-                lblPerks.Text += " " + tbxPerk.Text;
+                lblPerks.Text += "+" + tbxPerk.Text;
                 tbxPerk.Clear();
             }
         }
