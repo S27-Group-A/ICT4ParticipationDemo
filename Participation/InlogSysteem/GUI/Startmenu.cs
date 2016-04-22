@@ -19,7 +19,6 @@ namespace Participation
 {
     public partial class Startmenu : Form
     {
-        private IUser _loggedInUser;
 
         private LISLogic _lisLogic = new LISLogic();
 
@@ -34,14 +33,30 @@ namespace Participation
         {
             if (checkFields())
             {
-                var user = _lisLogic.GetUser(emailTbx.Text);
-                if (user.Password == passwordTbx.Text)
-                    LogIn(user);
+                IUser user;
+                try
+                {
+                    user = _lisLogic.GetUser(emailTbx.Text);
+                    if (user.Password == passwordTbx.Text)
+                        LogIn(user);
+                    else
+                    {
+                        MessageBox.Show("Het ingevulde wachtwoord was onjuist, probeer het nogmaals");
+                        ClearFields();
+                    }
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                    ClearFields();
+                }
+                
+
             }
             else
             {
                 ClearFields();
-                MessageBox.Show("Uw e-mail adres of wachtwoord was incorrect vul uw gegevens opnieuw in");
+                MessageBox.Show("Vul uw gegevens opnieuw in");
             }
 
         }
@@ -71,15 +86,15 @@ namespace Participation
 
         private void LogIn(IUser user)
         {
-            
-            _loggedInUser = user;
-            if (_loggedInUser.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(_loggedInUser.Location) ||
-                !string.IsNullOrEmpty(_loggedInUser.Name))
+
+            if (user.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(user.Location) ||
+                !string.IsNullOrEmpty(user.Name))
             {
+                FormProvider.LoggedInUser = user;
                 FormProvider.ProfileForm.Show();
                 FormProvider.StartMenu.Hide();
             }
-            
+
         }
     }
 }

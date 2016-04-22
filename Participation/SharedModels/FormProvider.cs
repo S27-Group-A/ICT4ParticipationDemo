@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Participation.BeheerSysteem.GUI;
 using Participation.InlogSysteem.GUI;
+using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem.GUI;
-//using Participation.HulpSysteem.GUI;
+using Participation.ChatSysteem;
 using UI;
 
 namespace Participation.SharedModels
 {
     class FormProvider
     {
+        public static IUser LoggedInUser;
+
         public static Startmenu StartMenu
         {
             get
@@ -47,7 +50,7 @@ namespace Participation.SharedModels
             {
                 if (_profileForm == null)
                 {
-                    _profileForm = new ProfileForm();
+                    _profileForm = new ProfileForm(LoggedInUser);
                 }
                 return _profileForm;
             }
@@ -67,6 +70,32 @@ namespace Participation.SharedModels
             }
         }
         private static VolunteerForm _volunteer;
+
+        public static ChatUsers ChatUsersForm
+        {
+            get
+            {
+                if (_chatuserform == null)
+                {
+                    _chatuserform = new ChatUsers();
+                }
+                return _chatuserform;
+            }
+        }
+
+        private static ChatUsers _chatuserform;
+
+        public static ChatForm ChatForm(ReceiveClient recieveClient)
+        {
+            _chatform = new ChatForm(recieveClient);
+
+            return _chatform;
+        }
+
+        private static ChatForm _chatform;
+
     }
 }
+
+       
 

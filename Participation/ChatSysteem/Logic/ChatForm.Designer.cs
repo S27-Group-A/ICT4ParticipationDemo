@@ -1,6 +1,6 @@
-﻿namespace Client
+﻿namespace Participation.ChatSysteem
 {
-    partial class frmClient
+    partial class ChatForm
     {
         /// <summary>
         /// Required designer variable.

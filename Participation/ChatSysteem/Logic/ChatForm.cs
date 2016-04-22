@@ -7,20 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.ServiceModel;
-using Client.ChatService;
+using Participation.ChatSysteem.ChatService;
+using Participation.SharedModels;
 
-namespace Client
+namespace Participation.ChatSysteem
 {
-    public partial class frmClient : Form
+    public partial class ChatForm : Form
     {
-        ReceiveClient rc = null;
+        ReceiveClient RecieveClient;
         string myName;
        
-        public frmClient()
+        public ChatForm(ReceiveClient recieveClient)
         {
             InitializeComponent();
             this.FormClosing+=new FormClosingEventHandler(frmClient_FormClosing);
             this.txtSend.KeyPress += new KeyPressEventHandler(txtSend_KeyPress);
+            this.RecieveClient = recieveClient;
             
         }
 
@@ -29,13 +31,15 @@ namespace Client
             int keyValue = (int)e.KeyChar;
 
             if (keyValue == 13)
+            {
                 SendMessage();
-            
+                txtSend.Clear();
+            }
         }
 
         private void frmClient_FormClosing(object sender, EventArgs e)
         {
-            rc.Stop(myName);
+            RecieveClient.Stop(FormProvider.LoggedInUser);
         }
 
         private void frmClient_Load(object sender, EventArgs e)
@@ -72,10 +76,10 @@ namespace Client
             {
                 txtMsgs.Text += Environment.NewLine + myName + ">" + txtSend.Text;
                 if (lstClients.SelectedItems.Count == 0)
-                    rc.SendMessage(txtSend.Text, myName, lstClients.Items[0].ToString());
+                    RecieveClient.SendMessage(txtSend.Text, myName, lstClients.Items[0].ToString());
                 else
                     if (!string.IsNullOrEmpty(lstClients.SelectedItem.ToString()))
-                        rc.SendMessage(txtSend.Text, myName, lstClients.SelectedItem.ToString());
+                        RecieveClient.SendMessage(txtSend.Text, myName, lstClients.SelectedItem.ToString());
 
                 txtSend.Clear();
             }
@@ -91,11 +95,11 @@ namespace Client
 
                 myName = txtUserName.Text.Trim();
 
-                rc = new ReceiveClient();
-                rc.Start(rc, myName);
+                RecieveClient = new ReceiveClient();
+                RecieveClient.Start(RecieveClient, FormProvider.LoggedInUser);
 
-                rc.NewNames += new GotNames(rc_NewNames);
-                rc.ReceiveMsg += new ReceivedMessage(rc_ReceiveMsg);
+                RecieveClient.NewNames += new GotNames(rc_NewNames);
+                RecieveClient.ReceiveMsg += new ReceivedMessage(rc_ReceiveMsg);
             }
             else
             {
