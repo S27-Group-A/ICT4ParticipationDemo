@@ -127,10 +127,19 @@ namespace Participation.InlogSysteem.GUI
                         {
                             //Add Perks
                             var perks = lblPerks.Text.Split('+').ToList();
-                            foreach (var perk in perks)
+                            if (perks.Count > 0)
                             {
-                                _lisLogic.AddPerk(newVolunteer, perk);
+
+                                if (perks.Count > 0)
+                                {
+                                    foreach (var perk in perks)
+                                    {
+                                        if(perk != "")
+                                            _lisLogic.AddPerk(newVolunteer, perk);
+                                    }
+                                }
                             }
+
 
                             MessageBox.Show(_succesfullRegisterationMsg);
                         }
@@ -143,11 +152,20 @@ namespace Participation.InlogSysteem.GUI
                             tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
-                            //Add Perks
+
+                            //Add perk
                             var perks = lblPerks.Text.Split('+').ToList();
-                            foreach (var perk in perks)
+                            if (perks.Count > 0)
                             {
-                                _lisLogic.AddPerk(newVolunteer, perk);
+
+                                if (perks.Count > 0)
+                                {
+                                    foreach (var perk in perks)
+                                    {
+
+                                        _lisLogic.AddPerk(newVolunteer, perk);
+                                    }
+                                }
                             }
 
                             MessageBox.Show(_succesfullRegisterationMsg);
