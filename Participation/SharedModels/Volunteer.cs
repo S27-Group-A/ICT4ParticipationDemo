@@ -15,7 +15,7 @@ namespace Participation.SharedModels
         public string _verklaringPdf { get; set; }
         private static int fileNameCountVerklaring = 0;
         private static int fileNameCountProfilePic = 0;
-        private bool _isAdmin { get; set; }
+        public bool _isAdmin { get; set; }
 
         //constructors
 
