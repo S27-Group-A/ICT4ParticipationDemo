@@ -39,12 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Oracle.DataAccess.dll</HintPath>
     </Reference>
-
-
     <Reference Include="Phidget21.NET, Version=2.1.8.243, Culture=neutral, PublicKeyToken=c2b1f2a3594bce52, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Downloads\Phidget21-windevel_2.1.8.20160222\phidget21-windevel\Phidget21.NET.dll</HintPath>
-
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -229,6 +226,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="InlogSysteem\Resources\empty_profile.jpg" />
+  </ItemGroup>
   <!--
     <COMReference Include="Phidget21COM">
       <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
@@ -240,8 +240,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
  -->
-
-  
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
