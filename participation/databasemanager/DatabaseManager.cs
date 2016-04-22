@@ -172,6 +172,10 @@ namespace Participation
                     user.Id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
 
             }
             catch
@@ -934,7 +938,6 @@ namespace Participation
 
             #endregion
 
-            #endregion
         }
     }
 }
