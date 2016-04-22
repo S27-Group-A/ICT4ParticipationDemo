@@ -47,6 +47,7 @@ namespace Participation.VrijwilligersSysteem.Logic
         /// <summary>
         /// Gets all the requests from all the patients and stores them in the list
         /// </summary>
+        /// TODO This is a get use a return List<Requests>();
         public void GetAllRequests()
         {
             foreach (Patient p in this.Patients)

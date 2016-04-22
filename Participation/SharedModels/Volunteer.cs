@@ -14,11 +14,22 @@ namespace Participation.SharedModels
         private string _verklaringPdf { get; set; }
 
         //constructors
+        public Volunteer(int id, string name, string email, string description,
+            DateTime birthday, string profilePicure, string location,
+            string phoneNumber, GenderEnum gender, string password)
+            : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
+        {
+            _reviews = new List<Review>();
+            _perks = new List<string>();
+            _verklaringPdf = "";
+        }
+
         public Volunteer(string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
             string phoneNumber, GenderEnum gender, string password)
             : base(name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
+            //TODO set id maybe not sure if needed in child class
             _reviews = new List<Review>();
             _perks = new List<string>();
             _verklaringPdf = "";

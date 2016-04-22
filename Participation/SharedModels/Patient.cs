@@ -14,6 +14,14 @@ namespace Participation.SharedModels
         public List<Request> Requests { get; set; }
 
         //constructors
+        public Patient(int id, string name, string email, string description, DateTime birthday, string profilePicture,
+            string location, string phoneNumber, GenderEnum gender, string password) : base(id, name, email, description,
+                birthday, profilePicture, location, phoneNumber, gender, password)
+        {
+            //TODO set id maybe? Not sure if needed in child
+            Requests = new List<Request>();
+        }
+
         public Patient(string name, string email, string description, DateTime birthday, string profilePicture,
             string location, string phoneNumber, GenderEnum gender, string password) : base(name, email, description,
                 birthday, profilePicture, location, phoneNumber, gender, password)
@@ -24,7 +32,7 @@ namespace Participation.SharedModels
 
 
         //Methods
-        //TODO Move this to logic layer plox
+        //TODO Move this to logic layer and add id to your parameters
         public void AddRequest(string title, string text, List<string> perks, string location, DateTime date, int urgency)
         {
             Request req = new Request(title, text, perks, location, date, urgency);

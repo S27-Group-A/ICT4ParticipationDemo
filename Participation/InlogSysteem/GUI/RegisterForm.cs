@@ -32,53 +32,54 @@ namespace Participation.InlogSysteem.GUI
             InitializeComponent();
             ControlBox = false;
             rfidManager = new RFIDManager();
-            if (!needHelpRbt.Checked && !canHelpRbt.Checked)
+            if (!rbtNeedHelp.Checked && !rbtCanHelp.Checked)
             {
-                formPnl.Hide();
+                pnlInformation.Hide();
             }
         }
 
 
         private void needHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
-            formPnl.Show();
-            if (needHelpRbt.Checked)
+            pnlInformation.Show();
+            if (rbtNeedHelp.Checked)
                 HideVogAndPerks();
-            else if (canHelpRbt.Checked)
+            else if (rbtCanHelp.Checked)
                 ShowVogAndPerks();
         }
 
         private void canHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
-            formPnl.Show();
-            if (needHelpRbt.Checked)
+            pnlInformation.Show();
+            if (rbtNeedHelp.Checked)
                 HideVogAndPerks();
-            else if (canHelpRbt.Checked)
+            else if (rbtCanHelp.Checked)
                 ShowVogAndPerks();
         }
 
         private void ShowVogAndPerks()
         {
-            perksGbx.Show();
-            vogGbx.Show();
+            gbxPerks.Show();
+            gbxVOG.Show();
         }
 
         private void HideVogAndPerks()
         {
-            perksGbx.Hide();
-            vogGbx.Hide();
+            gbxPerks.Hide();
+            gbxVOG.Hide();
         }
 
         private bool CheckFields()
         {
 
-            if (passwordTbx.Text != repeatPasswordTbx.Text)
+
+            if (tbxPassword.Text != tbxRepeatPassword.Text)
                 MessageBox.Show("Het herhaalde wachtwoord komt niet overheen met het originele wachtwoord");
-            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(passwordTbx.Text)
-                && !string.IsNullOrEmpty(repeatPasswordTbx.Text) && !string.IsNullOrEmpty(locationTbx.Text)
-                && passwordTbx.Text == repeatPasswordTbx.Text && !string.IsNullOrEmpty(nameTbx.Text))
+            if (!string.IsNullOrEmpty(tbxEmail.Text) && !string.IsNullOrEmpty(tbxPassword.Text)
+                && !string.IsNullOrEmpty(tbxRepeatPassword.Text) && !string.IsNullOrEmpty(tbxLocation.Text)
+                && tbxPassword.Text == tbxRepeatPassword.Text && !string.IsNullOrEmpty(tbxName.Text))
             {
-                if ((canHelpRbt.Checked && !string.IsNullOrEmpty(vogUrlTbx.Text)) || needHelpRbt.Checked)
+                if ((rbtCanHelp.Checked && !string.IsNullOrEmpty(tbxVOGUrl.Text)) || rbtNeedHelp.Checked)
                     return true;
                 return false;
             }
@@ -89,46 +90,54 @@ namespace Participation.InlogSysteem.GUI
         {
             if (CheckFields())
             {
-                if (needHelpRbt.Checked)
+                if (rbtNeedHelp.Checked)
                 {
-                    if (maleRbt.Checked)
+                    if (rbtMale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
-                            passwordTbx.Text)))
+                        var newPatient = new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newPatient))
                         {
                             MessageBox.Show(_succesfullRegisterationMsg);
                         }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
-                    if (femaleRbt.Checked)
+                    if (rbtFemale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Patient(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
-                            passwordTbx.Text)))
+                        var newPatient =
+                            new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newPatient))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
-                if (canHelpRbt.Checked)
+                if (rbtCanHelp.Checked)
                 {
-                    if (maleRbt.Checked)
+                    if (rbtMale.Checked)
                     {
-                        if (
-                            //TODO Constructor herschrijven
-                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
-                                passwordTbx.Text, new List<Meeting>(), _perks)))
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newVolunteer))
+                        {
+                            //TODO Add Perks
                             MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
-                    if (femaleRbt.Checked)
+                    if (rbtFemale.Checked)
                     {
-                        if (
-                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
-                                passwordTbx.Text, new List<Meeting>(), _perks)))
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newVolunteer))
+                        {
+                            //TODO Add Perks
                             MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
@@ -154,11 +163,11 @@ namespace Participation.InlogSysteem.GUI
 
         private void addPerkTbx_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(perkTbx.Text))
+            if (!string.IsNullOrEmpty(tbxPerk.Text))
             {
-                _perks.Add(perkTbx.Text);
-                listPerksLbl.Text += " " + perkTbx.Text;
-                perkTbx.Clear();
+                _perks.Add(tbxPerk.Text);
+                lblPerks.Text += " " + tbxPerk.Text;
+                tbxPerk.Clear();
             }
         }
 
