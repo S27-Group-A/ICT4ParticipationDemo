@@ -83,6 +83,7 @@ CREATE TABLE Request
 
 CREATE TABLE Response
 (
+
 	responderID 	  		NUMBER 			    NOT NULL,
 	requestID 		  		NUMBER 			    NOT NULL,
 	placingDate			    DATE 			    NOT NULL,
@@ -260,3 +261,5 @@ END;
 
 
 COMMIT;
+
+
