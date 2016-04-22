@@ -32,6 +32,9 @@ namespace Participation.InlogSysteem.GUI
             InitializeComponent();
             ControlBox = false;
             rfidManager = new RFIDManager();
+
+            tbxProfilePictureUrl.Enabled = false;
+            tbxVOGUrl.Enabled = false;
             if (!rbtNeedHelp.Checked && !rbtCanHelp.Checked)
             {
                 pnlInformation.Hide();
@@ -119,7 +122,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //Add Perks
@@ -137,7 +140,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             //Add Perks
@@ -162,14 +165,31 @@ namespace Participation.InlogSysteem.GUI
 
         private void browseProfilePictureBtn_Click(object sender, EventArgs e)
         {
-            //TODO Implement
-            throw new NotImplementedException();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp ";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string sourceFile = ofd.FileName;
+                    tbxProfilePictureUrl.Text = ofd.FileName;
+                    pbProfilePic.Image = Image.FromFile(sourceFile);
+                }
+
+            }
         }
 
         private void browseVogUrlBtn_Click(object sender, EventArgs e)
         {
-            //TODO Implement
-            throw new NotImplementedException();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string sourceFile = ofd.FileName;
+                    tbxVOGUrl.Text = ofd.FileName;
+                }
+
+            }
         }
 
         private void addPerkTbx_Click(object sender, EventArgs e)
