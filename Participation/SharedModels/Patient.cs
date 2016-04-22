@@ -12,6 +12,7 @@ namespace Participation.SharedModels
     {
         //properties
         public List<Request> Requests { get; set; }
+        private static int fileNameCountProfilePic = 0;
 
         //constructors
         public Patient(int id, string name, string email, string description, DateTime birthday, string profilePicture,
@@ -27,6 +28,14 @@ namespace Participation.SharedModels
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
             Requests = new List<Request>();
+            while (
+                System.IO.File.Exists(Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() +
+                                      ".png"))
+            {
+                fileNameCountProfilePic++;
+            }
+            System.IO.File.Copy(profilePicture, Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png");
+            ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
         }
 
 

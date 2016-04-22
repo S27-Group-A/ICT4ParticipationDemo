@@ -29,6 +29,7 @@ CREATE TABLE Person
 	
 	banned					NUMBER(1)			DEFAULT 0,
 	unban					DATE,
+
 	
 	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
 	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
@@ -177,6 +178,7 @@ VALUES(3, 1, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'k');
 INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(3, 5, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'same');
 
+
 INSERT INTO Perk_Request(requestID, perkID)
 VALUES(1, 1);
 INSERT INTO Perk_Request(requestID, perkID)
@@ -257,5 +259,7 @@ BEGIN
 END;
 /
 
+
 COMMIT;
+
 
