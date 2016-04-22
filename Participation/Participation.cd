@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Participation.ChatSysteem.ReceiveClient" BaseTypeListCollapsed="true">
+    <Position X="17.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAABACACAAAAAAACAAAAAAAABAAAIAIAQAAAAAAAQ=</HashCode>
+      <FileName>ChatSysteem\GUI\ReceiveClient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Participation.DatabaseManager">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KBBAECAAAAAAAAAAAQAIAEAAAQAgQAGgEEAAEAAASBA=</HashCode>
+      <FileName>DatabaseManager\DatabaseManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Participation.LISLogic">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <AssociationLine Name="_patients" Type="Participation.SharedModels.Patient" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="5.75" />
+        <Point X="6.5" Y="5.079" />
+        <Point X="8.781" Y="5.079" />
+        <Point X="8.781" Y="4.04" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="_volunteers" Type="Participation.SharedModels.Volunteer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.625" Y="5.75" />
+        <Point X="5.625" Y="5.023" />
+        <Point X="4.536" Y="5.023" />
+        <Point X="4.536" Y="4.5" />
+        <Point X="4" Y="4.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.597" Y="-0.305" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEQAAAAABCAA=</HashCode>
+      <FileName>InlogSysteem\Logic\LISLogic.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_patients" />
+      <Field Name="_volunteers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Participation.HulpSysteem.Logic.HPSLogic">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>HulpSysteem\Logic\HPSLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Participation.ChatSysteem.ChatService.SendChatServiceClient" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAACAAAAACAgAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Service References\ChatService\Reference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Participation.SharedModels.FormProvider">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAEAAAAAgAUAAAEEAAAAMAgABACABAAAAgAQQCAA=</HashCode>
+      <FileName>SharedModels\FormProvider.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="LoggedInUser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Participation.SharedModels.Meeting">
+    <Position X="13.5" Y="5.5" Width="1.5" />
+    <AssociationLine Name="Patient" Type="Participation.InlogSysteem.Interfaces.IUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="6" />
+        <Point X="10.938" Y="6" />
+        <Point X="10.938" Y="3.526" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Volunteer" Type="Participation.InlogSysteem.Interfaces.IUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.812" Y="5.5" />
+        <Point X="13.812" Y="5.125" />
+        <Point X="11.875" Y="5.125" />
+        <Point X="11.875" Y="3.526" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.049" Y="0.389" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAAAAAAACAA=</HashCode>
+      <FileName>SharedModels\Meeting.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Patient" />
+      <Property Name="Volunteer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Participation.SharedModels.Patient">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAEAAACAAAAABAAAAAAAAAAAAQAAAAAAAAEBAAAAA=</HashCode>
+      <FileName>SharedModels\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Participation.SharedModels.Request">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAABAAEAEAAIAAAAAACAAAAABAAAACAACAAA=</HashCode>
+      <FileName>SharedModels\Request.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Responses" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Participation.SharedModels.Response">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAAAAAAAAAAAAAAAAAAAAAABAAAACAAAAAA=</HashCode>
+      <FileName>SharedModels\Response.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Responder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Participation.SharedModels.Review">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <AssociationLine Name="Volunteer" Type="Participation.InlogSysteem.Interfaces.IUser" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="3.263" />
+        <Point X="13.125" Y="3.263" />
+        <Point X="13.125" Y="3.375" />
+        <Point X="12" Y="3.375" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAACAAACAA=</HashCode>
+      <FileName>SharedModels\Review.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Volunteer" />
+      <Property Name="Patient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Participation.SharedModels.User">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAiAgAACAAAIAQAQAAAAIAAAiBAAAAAAAAAA=</HashCode>
+      <FileName>SharedModels\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Participation.SharedModels.Volunteer">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAAgAAAAEAAAAAAECAAAAQAAAQEEAAAAAACAA=</HashCode>
+      <FileName>SharedModels\Volunteer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="S21M_RailB.RFIDManager">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAIAAAAAAEABAAAAIIASAAAAAAAACAAAA=</HashCode>
+      <FileName>SharedModels\RFIDManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Participation.VrijwilligersSysteem.Logic.VolunteerSystem">
+    <Position X="5.25" Y="8.25" Width="1.5" />
+    <AssociationLine Name="Volunteers" Type="Participation.SharedModels.Volunteer" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="8.562" />
+        <Point X="3.688" Y="8.562" />
+        <Point X="3.688" Y="4.752" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Patients" Type="Participation.SharedModels.Patient">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0" Y="1.231" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAIAAAAAAAABAgAABAAAAA=</HashCode>
+      <FileName>VrijwilligersSysteem\Logic\VolunteerSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Requests" />
+      <Property Name="Volunteers" />
+      <Property Name="Patients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="Participation.InlogSysteem.Interfaces.IUser">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAgAACAAAIAQAQAAAAIAAAiBAAAAAAAAAA=</HashCode>
+      <FileName>InlogSysteem\Interfaces\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Participation.ChatSysteem.ChatService.ISendChatService" Collapsed="true">
+    <Position X="19.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAACAAAAACAgAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Service References\ChatService\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Participation.ChatSysteem.ChatService.ISendChatServiceCallback">
+    <Position X="21.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAACAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Service References\ChatService\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Participation.ChatSysteem.ChatService.ISendChatServiceChannel" Collapsed="true">
+    <Position X="19.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service References\ChatService\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Participation.SharedModels.GenderEnum">
+    <Position X="10" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>SharedModels\GenderEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Participation.ChatSysteem.ReceivedMessage">
+    <Position X="15.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ChatSysteem\GUI\ReceiveClient.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Participation.ChatSysteem.GotNames">
+    <Position X="15.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>ChatSysteem\GUI\ReceiveClient.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
