@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.pbVog = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnEditInfo = new System.Windows.Forms.Button();
             this.lblPreName = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.pbxProfilePicture = new System.Windows.Forms.PictureBox();
             this.gbxPerks = new System.Windows.Forms.GroupBox();
+            this.lbPerks = new System.Windows.Forms.ListBox();
             this.tbxPerk = new System.Windows.Forms.TextBox();
             this.btnAddPerk = new System.Windows.Forms.Button();
             this.lblListPerks = new System.Windows.Forms.Label();
@@ -56,14 +58,12 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.lbPerks = new System.Windows.Forms.ListBox();
-            this.pbVog = new System.Windows.Forms.PictureBox();
             this.gbForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
             this.gbxVog.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.SuspendLayout();
             // 
             // gbForm
@@ -79,6 +79,15 @@
             this.gbForm.Size = new System.Drawing.Size(899, 591);
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
+            // 
+            // pbVog
+            // 
+            this.pbVog.Location = new System.Drawing.Point(624, 24);
+            this.pbVog.Name = "pbVog";
+            this.pbVog.Size = new System.Drawing.Size(252, 346);
+            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbVog.TabIndex = 51;
+            this.pbVog.TabStop = false;
             // 
             // groupBox2
             // 
@@ -291,6 +300,14 @@
             this.gbxPerks.Text = "Extra vaardigheden: ";
             this.gbxPerks.Visible = false;
             // 
+            // lbPerks
+            // 
+            this.lbPerks.FormattingEnabled = true;
+            this.lbPerks.Location = new System.Drawing.Point(14, 76);
+            this.lbPerks.Name = "lbPerks";
+            this.lbPerks.Size = new System.Drawing.Size(404, 186);
+            this.lbPerks.TabIndex = 39;
+            // 
             // tbxPerk
             // 
             this.tbxPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -404,29 +421,12 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
-            // lbPerks
-            // 
-            this.lbPerks.FormattingEnabled = true;
-            this.lbPerks.Location = new System.Drawing.Point(14, 76);
-            this.lbPerks.Name = "lbPerks";
-            this.lbPerks.Size = new System.Drawing.Size(404, 186);
-            this.lbPerks.TabIndex = 39;
-            // 
-            // pbVog
-            // 
-            this.pbVog.Location = new System.Drawing.Point(624, 24);
-            this.pbVog.Name = "pbVog";
-            this.pbVog.Size = new System.Drawing.Size(252, 346);
-            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbVog.TabIndex = 51;
-            this.pbVog.TabStop = false;
-            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1006, 571);
+            this.ClientSize = new System.Drawing.Size(736, 571);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -435,6 +435,7 @@
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.gbForm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
@@ -442,7 +443,6 @@
             this.gbxPerks.PerformLayout();
             this.gbxVog.ResumeLayout(false);
             this.gbxVog.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.ResumeLayout(false);
 
         }

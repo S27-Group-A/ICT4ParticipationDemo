@@ -79,5 +79,9 @@ namespace Participation.SharedModels
             _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
         }
 
+        public string GetFileNameVog()
+        {
+
+        }
     }
 }
