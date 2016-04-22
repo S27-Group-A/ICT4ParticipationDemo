@@ -96,14 +96,7 @@ namespace Participation
 
         internal void AddPerk(Volunteer newVolunteer, string perk)
         {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (NotImplementedException NotImplementedException)
-            {
-                MessageBox.Show("Not implemented exception triggered: " + NotImplementedException.Message);
-            }
+            newVolunteer.AddPerk(perk);
         }
     }
 }

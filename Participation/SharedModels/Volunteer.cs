@@ -64,7 +64,12 @@ namespace Participation.SharedModels
         public List<string> GetPerks()
         {
             return _perks;
-        } 
+        }
+
+        public void AddPerk(string perk)
+        {
+            this._perks.Add(perk);
+        }
 
     }
 }
