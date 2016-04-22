@@ -23,14 +23,15 @@ CREATE TABLE Person
 	password          		VARCHAR(64)       	NOT NULL,
 	
 	rfid					VARCHAR(64)			UNIQUE,
-	vog						VARCHAR(255)    	UNIQUE,              -- Fileserver
+	vog						NUMBER    			DEFAULT 0,              
 	
 	banned					NUMBER(1)			DEFAULT 0,
 	unban					DATE,
 	
 	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
 	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
-	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2)
+	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2),
+	CONSTRAINT c_vog CHECK (vog = 0 OR vog = 1)
 	-- 0 = not banned, 1 = banned until X, 2 = permanent banned
 );
 
@@ -81,7 +82,7 @@ CREATE TABLE Response
 (
 	responderID 	  		NUMBER 			    NOT NULL,
 	requestID 		  		NUMBER 			    NOT NULL,
-	placingDate			    DATE 			    NOT NULL,
+	placingdate			    DATE 			    NOT NULL,
 	description 	  		VARCHAR2(256) 	    NOT NULL,
 	
 	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID)
@@ -90,7 +91,9 @@ CREATE TABLE Response
 CREATE TABLE Perk_Request
 (
 	requestID				NUMBER 				NOT NULL,
-	perkID					NUMBER 				NOT NULL					
+	perkID					NUMBER 				NOT NULL
+	
+	CONSTRAINT pk_Perk_Request PRIMARY KEY(requestID, perkID);
 );
 
 
