@@ -78,12 +78,28 @@ namespace Participation.SharedModels
             {
                 if (_requestsViewForm == null)
                 {
-                    _requestsViewForm = new RequestsViewForm(LoggedInUser);
+                    _requestsViewForm = new RequestsViewForm();
                 }
                 return _requestsViewForm;
             }
         }
         private static RequestsViewForm _requestsViewForm;
+
+
+        public static RequestForm RequestForm
+        {
+            get
+            {
+                if (_requestForm == null)
+                {
+                    _requestForm = new RequestForm();
+                }
+                return _requestForm;
+            }
+        }
+        private static RequestForm _requestForm;
+
+
 
         public static ChatUsers ChatUsersForm
         {
@@ -110,5 +126,5 @@ namespace Participation.SharedModels
     }
 }
 
-       
+
 

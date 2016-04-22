@@ -8,6 +8,7 @@ DROP TABLE Meeting CASCADE CONSTRAINTS;
 DROP TABLE Request CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
 
+
 -- CREATE TABLES --
 CREATE TABLE Person
 (
@@ -21,11 +22,14 @@ CREATE TABLE Person
 	location 		      	VARCHAR2(256)	    NOT NULL,
 	phone 			      	VARCHAR2(32),
 	gender 			      	VARCHAR2(1) 	    NOT NULL,
-	password          	VARCHAR(64)       NOT NULL,
-	rfid					      VARCHAR(64)			  UNIQUE,
-	vog						      VARCHAR(255)      UNIQUE,       -- Fileserver
-	banned					    NUMBER(1)			    NOT NULL,
-	unban					      DATE,
+	password          		VARCHAR(64)       	NOT NULL,
+	
+	rfid					VARCHAR(64)			UNIQUE,
+	vog						VARCHAR(255)    	UNIQUE,              -- Fileserver
+	
+	banned					NUMBER(1)			DEFAULT 0,
+	unban					DATE,
+
 	
 	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
 	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
@@ -35,10 +39,9 @@ CREATE TABLE Person
 
 CREATE TABLE Perk
 (
-	personID 			    NUMBER(10)        NOT NULL,
-	perk 			        VARCHAR2(256) 	  NOT NULL,
-
-	CONSTRAINT pk_Perk PRIMARY KEY (personID, perk)
+	perkID					NUMBER				PRIMARY KEY,
+	personID 			    NUMBER(10)        	NOT NULL,
+	perktext 			    VARCHAR2(256) 	  	NOT NULL
 );
 
 CREATE TABLE Review
@@ -53,16 +56,15 @@ CREATE TABLE Review
 );
 
 
-
 CREATE TABLE Meeting
 (
 	volunteerID 	    	NUMBER 			   	NOT NULL,
 	patientID 		    	NUMBER 			    NOT NULL,
-	"location" 		    	VARCHAR2(256),
-	"date"			      	DATE	          NOT NULL,
+	place 		    		VARCHAR2(256),
+	placingdate			  	DATE	            NOT NULL,
 	status 			      	NUMBER 			    NOT NULL,
 	
-	CONSTRAINT pk_Meeting PRIMARY KEY(volunteerID, patientID, "location", "date"),
+	CONSTRAINT pk_Meeting PRIMARY KEY(volunteerID, patientID, place, placingdate),
 	CONSTRAINT c_status CHECK(status = 0 OR status = 1)
 );
 
@@ -70,11 +72,10 @@ CREATE TABLE Request
 (
 	requestID 		  	NUMBER 			    PRIMARY KEY,
 	personID 			  	NUMBER 			    NOT NULL,
-	title 			    	VARCHAR2(64) 	  NOT NULL,
-	description 	  	VARCHAR2(256) 	NOT NULL,
-	perks 			    	VARCHAR2(256),
-	"location" 		  	VARCHAR2(256) 	NOT NULL,
-	"date" 			    	DATE     		    NOT NULL,
+	title 			    	VARCHAR2(64) 	    NOT NULL,
+	description 	  		VARCHAR2(256) 	    NOT NULL,
+	place 		  			VARCHAR2(256) 	    NOT NULL,
+	placingdate			    DATE     		    NOT NULL,
 	urgency 		    	NUMBER 			    DEFAULT 0 NOT NULL,
 	
 	CONSTRAINT c_urgency CHECK(urgency >= 0 OR urgency <= 5)
@@ -82,23 +83,32 @@ CREATE TABLE Request
 
 CREATE TABLE Response
 (
-	responderID 	  NUMBER 			        NOT NULL,
-	requestID 		  NUMBER 			        NOT NULL,
-	"date" 			    DATE 			          NOT NULL,
-	description 	  VARCHAR2(256) 	    NOT NULL,
-
+	responderID 	  		NUMBER 			    NOT NULL,
+	requestID 		  		NUMBER 			    NOT NULL,
+	placingDate			    DATE 			    NOT NULL,
+	description 	  		VARCHAR2(256) 	    NOT NULL,
 	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID)
 );
 
--- FOREING KEYS --
-ALTER TABLE Perk ADD FOREIGN KEY(personID) REFERENCES Person(personID);
-ALTER TABLE Review ADD FOREIGN KEY(reviewerID) REFERENCES Person(personID);
-ALTER TABLE Review ADD FOREIGN KEY(revieweeID) REFERENCES Person(personID);
-ALTER TABLE Meeting ADD FOREIGN KEY(volunteerID) REFERENCES Person(personID);
-ALTER TABLE Meeting ADD FOREIGN KEY(patientID) REFERENCES Person(personID);
-ALTER TABLE Request ADD FOREIGN KEY(personID) REFERENCES Person(personID);
-ALTER TABLE Response ADD FOREIGN KEY(responderID) REFERENCES Person(personID);
-ALTER TABLE Response ADD FOREIGN KEY(requestID) REFERENCES Request(requestID);
+CREATE TABLE Perk_Request
+(
+	requestID				NUMBER 				NOT NULL,
+	perkID					NUMBER 				NOT NULL					
+);
+
+
+-- FOREIGN KEYS --
+ALTER TABLE Perk 			ADD FOREIGN KEY(personID) 		REFERENCES Person(personID);
+ALTER TABLE Review 			ADD FOREIGN KEY(reviewerID) 	REFERENCES Person(personID);
+ALTER TABLE Review 			ADD FOREIGN KEY(revieweeID) 	REFERENCES Person(personID);
+ALTER TABLE Meeting 		ADD FOREIGN KEY(volunteerID) 	REFERENCES Person(personID);
+ALTER TABLE Meeting 		ADD FOREIGN KEY(patientID) 		REFERENCES Person(personID);
+ALTER TABLE Request 		ADD FOREIGN KEY(personID) 		REFERENCES Person(personID);
+ALTER TABLE Response 		ADD FOREIGN KEY(responderID) 	REFERENCES Person(personID);
+ALTER TABLE Response 		ADD FOREIGN KEY(requestID) 		REFERENCES Request(requestID);
+ALTER TABLE Perk_Request	ADD FOREIGN KEY(requestID)		REFERENCES Request(requestID);
+ALTER TABLE Perk_Request	ADD FOREIGN KEY(perkID)			REFERENCES Perk(perkID);
+
 
 -- INSERT DATA --
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
@@ -113,15 +123,15 @@ INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, 
 VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
 
 INSERT INTO Perk(personID, perk)
-VALUES(1, 'Auto');
+VALUES(1, 1, 'Auto');
 INSERT INTO Perk(personID, perk)
-VALUES(2, 'Fiets');
+VALUES(2, 2, 'Fiets');
 INSERT INTO Perk(personID, perk)
-VALUES(2, 'Auto');
+VALUES(3, 2, 'Auto');
 INSERT INTO Perk(personID, perk)
-VALUES(4, 'Vrije tijd');
+VALUES(4, 4, 'Vrije tijd');
 INSERT INTO Perk(personID, perk)
-VALUES(4, 'Fiets');
+VALUES(5, 4, 'Fiets');
 
 INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
 VALUES(1, 1, 3, 5, 'Leuke knul');
@@ -134,38 +144,50 @@ VALUES(4, 1, 3, 2, 'was wel okay');
 INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
 VALUES(5, 1, 3, 1, 'Deed het niet goed, kwam niet spontaan over');
 
-INSERT INTO Meeting(volunteerID, patientID, "location", "date", status)
+INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(3, 1, 'Uit eten', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
-INSERT INTO Meeting(volunteerID, patientID, "location", "date", status)
+INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(4, 2, 'Naar de kerk', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
-INSERT INTO Meeting(volunteerID, patientID, "location", "date", status)
+INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(4, 1, 'Fontys Rachelsmolen', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
-INSERT INTO Meeting(volunteerID, patientID, "location", "date", status)
+INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(3, 2, 'Naar school', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
-INSERT INTO Meeting(volunteerID, patientID, "location", "date", status)
+INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(5, 1, 'Etentje', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
 
-INSERT INTO Request(requestID, personID, title, description, perks, "location", "date", urgency)
-VALUES(1, 1, 'Pet me dog', 'pleas pet dog', 'Dog', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
-INSERT INTO Request(requestID, personID, title, description, perks, "location", "date", urgency)
-VALUES(2, 1, 'Laat mijn hond uit', 'Ik ben niet meer zo goed te been, maar mijn hond moet wel uitgelaten worden', 'Goed te been', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
-INSERT INTO Request(requestID, personID, title, description, perks, "location", "date", urgency)
-VALUES(3, 1, 'Was mijn hond', 'Mijn hond moet gewassen worden, maar ik heb er geen tijd voor', 'Badkuip', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
-INSERT INTO Request(requestID, personID, title, description, perks, "location", "date", urgency)
-VALUES(4, 1, 'Breng mijn kinderen naar school', 'Ik heb moeite om in de ochtend op tijd klaar te zijn om mijn zoon en dochter naar school te brengen', 'auto', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
-INSERT INTO Request(requestID, personID, title, description, perks, "location", "date", urgency)
-VALUES(5, 2, 'Ik wil naar de kerk gebracht worden', 'Ik moet naar een kerkmis een paar dorpen verderop, maar ik heb geen auto', 'auto', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
+INSERT INTO Request(requestID, personID, title, description, place, placingdate, urgency)
+VALUES(1, 1, 'Pet me dog', 'pleas pet dog', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
+INSERT INTO Request(requestID, personID, title, description, place, placingdate, urgency)
+VALUES(2, 1, 'Laat mijn hond uit', 'Ik ben niet meer zo goed te been, maar mijn hond moet wel uitgelaten worden', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
+INSERT INTO Request(requestID, personID, title, description, place, placingdate, urgency)
+VALUES(3, 1, 'Was mijn hond', 'Mijn hond moet gewassen worden, maar ik heb er geen tijd voor', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
+INSERT INTO Request(requestID, personID, title, description, place, placingdate, urgency)
+VALUES(4, 1, 'Breng mijn kinderen naar school', 'Ik heb moeite om in de ochtend op tijd klaar te zijn om mijn zoon en dochter naar school te brengen', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
+INSERT INTO Request(requestID, personID, title, description, place, placingdate, urgency)
+VALUES(5, 2, 'Ik wil naar de kerk gebracht worden', 'Ik moet naar een kerkmis een paar dorpen verderop, maar ik heb geen auto', 'Rachelsmolen 1, Eindhoven', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 1);
 
-INSERT INTO Response(responderID, requestID, "date", description)
+INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(3, 2, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'Is goed');
-INSERT INTO Response(responderID, requestID, "date", description)
+INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(4, 3, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'Klinkt goed!');
-INSERT INTO Response(responderID, requestID, "date", description)
+INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(4, 2, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'Lijkt me leuk');
-INSERT INTO Response(responderID, requestID, "date", description)
+INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(3, 1, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'k');
-INSERT INTO Response(responderID, requestID, "date", description)
+INSERT INTO Response(responderID, requestID, placingdate, description)
 VALUES(3, 5, to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 'same');
+
+
+INSERT INTO Perk_Request(requestID, perkID)
+VALUES(1, 1);
+INSERT INTO Perk_Request(requestID, perkID)
+VALUES(2, 1);
+INSERT INTO Perk_Request(requestID, perkID)
+VALUES(2, 2);
+INSERT INTO Perk_Request(requestID, perkID)
+VALUES(4, 3);
+INSERT INTO Perk_Request(requestID, perkID)
+VALUES(2, 3);
 
 -- DROP SEQUENCES --
 DROP SEQUENCE SEQ_personID;
@@ -223,7 +245,18 @@ BEGIN
                        ' increment by 1';
 END;
 /
+--CREATE SEQUENCE SEQ_PerkID
+DECLARE
+  I_PerkID INTEGER := 0;
+BEGIN
+   SELECT max(PerkID) + 1
+   INTO   I_PerkID
+   FROM   Perk
+   EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_PerkID
+                       start with ' || I_PerkID ||
+                       ' increment by 1';
+END;
+/
 
 
-
-
+COMMIT;

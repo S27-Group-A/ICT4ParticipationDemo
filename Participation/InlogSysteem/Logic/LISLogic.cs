@@ -73,7 +73,7 @@ namespace Participation
                 if (user.Email == email)
                     return user;
             }
-            throw new Exception("Het e-mail adres: " 
+            throw new Exception("Het e-mail adres: "
                 + email + " heeft geen geldig account " +
                 "controleer uw inloggegevens");
             #endregion
@@ -92,6 +92,18 @@ namespace Participation
             return getUsers;
 
             #endregion
+        }
+
+        internal void AddPerk(Volunteer newVolunteer, string perk)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (NotImplementedException NotImplementedException)
+            {
+                MessageBox.Show("Not implemented exception triggered: " + NotImplementedException.Message);
+            }
         }
     }
 }

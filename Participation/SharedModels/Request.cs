@@ -82,7 +82,7 @@ namespace Participation.SharedModels
         public override string ToString()
         {
             // TODO Optionally return perks per perk as string
-            var returnString = this.Title + " " + this.Text + " " + this.Location + " " + this.Urgency + " " + this.Date.ToString() + " " + this.Perks.ToString();
+            var returnString = this.Title;
             return returnString;
         }
     }
