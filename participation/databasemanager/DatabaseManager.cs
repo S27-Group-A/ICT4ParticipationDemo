@@ -342,6 +342,94 @@ namespace Participation
             return ReviewList;
         }
 
+        internal static List<Review> GetReviews(IUser Volunteer)
+        {
+            List<Review> ReviewList = new List<Review>();
+
+            try
+            {
+                if(Volunteer == typeof(Volunteer))
+                {
+                    OracleCommand command = CreateOracleCommand("SELECT * FROM Review WHERE REVIEWEEID = :userid");
+                    command.Parameters.Add(":userid", Volunteer.Id);
+                    OracleDataReader reader = ExecuteQuery(command);
+
+                    while (reader.Read())
+                    {
+                        int rating = Convert.ToInt32(reader["rating"].ToString());
+                        string description = reader["description"].ToString();
+
+                            ReviewList.Add(new Review(rating, description));
+                    }
+
+                    foreach(Review R in ReviewList)
+                    {
+                        OracleCommand patientCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWERID FROM REVIEW WHERE REVIEWID = :reviewID");
+                        patientCommand.Parameters.Add(":reviewID", R.Id);
+                        OracleCommand volunteerCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWEEID FROM REVIEW WHERE REVIEWID = :reviewID");
+                        volunteerCommand.Parameters.Add(":reviewID", R.Id);
+
+                        OracleDataReader patientReader = ExecuteQuery(patientCommand);
+                        IUser patient;
+                        IUser volunteer;
+                        while (patientReader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["personid"].ToString());
+                            string place = reader["place"].ToString();
+                            string dateTime = reader["placingdate"].ToString();
+                            DateTime DateOfMeeting = Convert.ToDateTime(dateTime);
+                            int status = Convert.ToInt32(reader["status"].ToString());
+                            string Name = reader["name"].ToString();
+                            string EmailAdress = reader["email"].ToString();
+                            string Description = reader["description"].ToString();
+                            dateTime = reader["dateOfBirth"].ToString();
+                            DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                            string Location = reader["location"].ToString();
+                            string PhoneNumber = reader["phone"].ToString();
+                            GenderEnum Gender = ToGender(reader["gender"].ToString());
+                            string Password = reader["password"].ToString();
+
+                            patient = new Patient(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password);
+                            R.Patient = patient;
+                        }
+                        OracleDataReader volunterReader = ExecuteQuery(volunteerCommand);
+
+                        while(volunterReader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["personid"].ToString());
+                            string place = reader["place"].ToString();
+                            string dateTime = reader["placingdate"].ToString();
+                            DateTime DateOfMeeting = Convert.ToDateTime(dateTime);
+                            int status = Convert.ToInt32(reader["status"].ToString());
+                            string Name = reader["name"].ToString();
+                            string EmailAdress = reader["email"].ToString();
+                            string Description = reader["description"].ToString();
+                            dateTime = reader["dateOfBirth"].ToString();
+                            DateTime DateOfBirth = Convert.ToDateTime(dateTime);
+                            string Location = reader["location"].ToString();
+                            string PhoneNumber = reader["phone"].ToString();
+                            GenderEnum Gender = ToGender(reader["gender"].ToString());
+                            string Password = reader["password"].ToString();
+                            string VOG = reader["vog"].ToString();
+
+                            volunteer = new Volunteer(id, Name, EmailAdress, Description, DateOfBirth, null, Location, PhoneNumber, Gender, Password, VOG);
+                            R.Volunteer = volunteer;
+                        }
+                    }
+                }
+                return ReviewList;
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+
+        }
+
         #endregion
 
         #region Meeting
@@ -356,12 +444,12 @@ namespace Participation
                 if (user.GetType() == typeof(Patient))
                 {
                     command =
-                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID;");
+                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID");
                 }
                 if (user.GetType() == typeof(Volunteer))
                 {
                     command =
-                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID;");
+                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID");
                 }
 
                 command.Parameters.Add(":userID", user.Id);
@@ -495,6 +583,57 @@ namespace Participation
                     }
                     r.Perks = perks;
                 }
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+            return RequestList;
+        }
+
+        internal static List<Request> GetRequest(IUser patient)
+        {
+            List<Request> RequestList = new List<Request>();
+            try
+            {
+                if(patient == typeof(Volunteer))
+                {
+                    OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
+                    command.Parameters.Add(":userID", patient.Id);
+                    OracleDataReader reader = ExecuteQuery(command);
+
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["RequestID"].ToString());
+                        string title = reader["title"].ToString();
+                        string description = reader["description"].ToString();
+                        string location = reader["place"].ToString();
+                        DateTime date = Convert.ToDateTime(reader["placingdate"].ToString());
+                        int urgency = Convert.ToInt32(reader["urgency"].ToString());
+
+                        RequestList.Add(new Request(id, title, description, null, location, date, urgency));
+                    }
+
+                    foreach (Request r in RequestList)
+                    {
+                        List<string> perks = new List<string>();
+                        OracleCommand perkcommand = CreateOracleCommand("Select * from Perk Where PERKID IN (Select PERKID from PERK_REQUEST WHERE REQUESTID = :RequestID)");
+                        perkcommand.Parameters.Add(":RequestID", r.Id);
+
+                        OracleDataReader perkReader = ExecuteQuery(perkcommand);
+
+                        while (perkReader.Read())
+                        {
+                            perks.Add(perkReader["perktext"].ToString());
+                        }
+                        r.Perks = perks;
+                    }
+                }
+                
             }
             catch
             {
