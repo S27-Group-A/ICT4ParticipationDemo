@@ -114,19 +114,17 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (maleRbt.Checked)
                     {
-                        if (
-                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male,
-                                passwordTbx.Text, new List<Meeting>(), _perks)))
+                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value, 
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Male, 
+                            passwordTbx.Text )))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (femaleRbt.Checked)
                     {
-                        if (
-                            _lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
-                                profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
-                                passwordTbx.Text, new List<Meeting>(), _perks)))
+                        if (_lisLogic.AddUser(new Volunteer(nameTbx.Text, emailTbx.Text, "", birthdateDtp.Value,
+                            profilePictureUrlTbx.Text, locationTbx.Text, phonenumberTbx.Text, GenderEnum.Female,
+                            passwordTbx.Text)))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
