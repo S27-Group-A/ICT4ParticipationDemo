@@ -32,6 +32,8 @@ namespace Participation.InlogSysteem.GUI
             InitializeComponent();
             ControlBox = false;
             rfidManager = new RFIDManager();
+            profilePictureUrlTbx.Enabled = false;
+            vogUrlTbx.Enabled = false;
             if (!needHelpRbt.Checked && !canHelpRbt.Checked)
             {
                 formPnl.Hide();
@@ -141,14 +143,30 @@ namespace Participation.InlogSysteem.GUI
 
         private void browseProfilePictureBtn_Click(object sender, EventArgs e)
         {
-            //TODO Implement
-            throw new NotImplementedException();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp ";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string sourceFile = ofd.FileName;
+                    profilePictureUrlTbx.Text = ofd.SafeFileName;
+                }
+
+            }
         }
 
         private void browseVogUrlBtn_Click(object sender, EventArgs e)
         {
-            //TODO Implement
-            throw new NotImplementedException();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string sourceFile = ofd.FileName;
+                    vogUrlTbx.Text = ofd.SafeFileName;
+                }
+
+            }
         }
 
         private void addPerkTbx_Click(object sender, EventArgs e)

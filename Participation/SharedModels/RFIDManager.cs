@@ -22,7 +22,7 @@ namespace S21M_RailB
         /// <summary>
         /// An instance of the RFID class.
         /// </summary>
-        private RFID rfid;
+        private RFID rfid;                                                                                                                                           
         #endregion Fields
 
         #region Properties
