@@ -20,7 +20,7 @@ namespace Participation.SharedModels
         public string Location { get; set; }
         public int Urgency { get; set; }
         public DateTime Date { get; set; }
-        public List<string> Perks { get; private set; }
+        public List<string> Perks { get; set; }
         public List<Response> Responses { get; private set; }
 
         /// <summary>
