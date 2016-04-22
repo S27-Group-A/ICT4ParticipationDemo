@@ -59,17 +59,17 @@
     <Compile Include="BeheerSysteem\GUI\AdminSystemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-	<Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
+    <Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </Compile>
-	<Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
-    <Compile Include="ChatSysteem\Logic\ChatForm.cs">
+    <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
+    <Compile Include="ChatSysteem\GUI\ChatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChatSysteem\Logic\ChatUsers.cs">
+    <Compile Include="ChatSysteem\GUI\ChatUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChatSysteem\Logic\ChatUsers.Designer.cs">
+    <Compile Include="ChatSysteem\GUI\ChatUsers.Designer.cs">
       <DependentUpon>ChatUsers.cs</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -78,11 +78,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ChatSysteem\Logic\ChatForm.Designer.cs">
+    <Compile Include="ChatSysteem\GUI\ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="ChatSysteem\GUI\ReceiveClient.cs" />
+    <Compile Include="ChatSysteem\Logic\ReceiveClient.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
     <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
@@ -151,10 +151,10 @@
     <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChatSysteem\Logic\ChatForm.resx">
+    <EmbeddedResource Include="ChatSysteem\GUI\ChatForm.resx">
       <DependentUpon>ChatForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChatSysteem\Logic\ChatUsers.resx">
+    <EmbeddedResource Include="ChatSysteem\GUI\ChatUsers.resx">
       <DependentUpon>ChatUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
@@ -206,7 +206,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BeheerSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
   </ItemGroup>
