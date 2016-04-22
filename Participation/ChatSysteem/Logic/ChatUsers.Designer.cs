@@ -41,6 +41,7 @@
             this.lbxClients.Name = "lbxClients";
             this.lbxClients.Size = new System.Drawing.Size(199, 420);
             this.lbxClients.TabIndex = 1;
+            this.lbxClients.SelectedIndexChanged += new System.EventHandler(this.lbxClients_SelectedIndexChanged);
             // 
             // btnStartChat
             // 

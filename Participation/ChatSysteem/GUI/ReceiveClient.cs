@@ -1,82 +1,143 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ServiceModel;
-using Participation.SharedModels;
-using Participation.InlogSysteem.Interfaces;
-
+﻿// <copyright file="VolunteerSystem.cs" company="S27A">
+//      Copyright (c) ICT4Participation. All rights reserved.
+// </copyright>
+// <author>Sander Koch</author>
 namespace Participation.ChatSysteem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.ServiceModel;
+    using System.Text;
+    using Participation.SharedModels;
+    using Participation.InlogSysteem.Interfaces;
+
+    /// <summary>
+    /// A delegate of a server method, used to get information from the server.
+    /// </summary>
+    /// <param name="sender">Person who send the message.</param>
+    /// <param name="message">The chat message.</param>
     public delegate void ReceivedMessage(string sender, string message);
+
+    /// <summary>
+    /// A delegate of a server method, used to get information from the server.
+    /// </summary>
+    /// <param name="sender">Person who send the message.</param>
+    /// <param name="names">The chat usernames.</param>
     public delegate void GotNames(object sender, List<string> names);
 
+ /// <summary>
+ /// A instance of the Receive client class, this class is used to communicatie with the Chat service interface and services to
+ /// communicate with the server and other clients.
+ /// </summary>
     public class ReceiveClient : ChatService.ISendChatServiceCallback
     {
+        /// <summary>
+        /// Used in conjunction with the delegate version of this field.
+        /// </summary>
         public event ReceivedMessage ReceiveMsg;
+
+        /// <summary>
+        /// Used in conjunction with the delegate version of this field.
+        /// </summary>
         public event GotNames NewNames;
 
-        InstanceContext inst = null;
-        ChatService.SendChatServiceClient chatClient = null;
+        /// <summary>
+        /// A instance of the instance context from service model.
+        /// </summary>
+        private InstanceContext inst = null;
 
+        /// <summary>
+        /// A new null instance of the Chat service called chat client.
+        /// </summary>
+        private ChatService.SendChatServiceClient chatClient = null;
+
+        /// <summary>
+        /// Starts a new ReceiveClient instance and enables chatting. Also checks which kind of user, the user is.
+        /// </summary>
+        /// <param name="rc">A instance of the Receive client class</param>
+        /// <param name="user">A instance of the user object which is currently logged in.</param>
         public void Start(ReceiveClient rc, IUser user)
         {
-            inst = new InstanceContext(rc);
-            chatClient = new ChatService.SendChatServiceClient(inst);
-            if(user == typeof(Volunteer))
+            this.inst = new InstanceContext(rc);
+            this.chatClient = new ChatService.SendChatServiceClient(this.inst);
+            if (user.GetType() == typeof(Volunteer))
             {
-                chatClient.StartVolunteer(user.Name);
+                this.chatClient.StartVolunteer(user.Name);
             }
-            else if(user == typeof(Patient))
+            else if (user.GetType() == typeof(Patient))
             {
-                chatClient.StartElder(user.Name);
+                this.chatClient.StartElder(user.Name);
             }
             else
             {
                 throw new Exception("Couldn't log into chat system.");
             }
-
         }
 
-        public void SendMessage(string msg, string sender,string receiver)
+        /// <summary>
+        /// Sends a message to another user.
+        /// </summary>
+        /// <param name="msg">The chat message.</param>
+        /// <param name="sender">Who sends the message.</param>
+        /// <param name="receiver">Who receives the message.</param>
+        public void SendMessage(string msg, string sender, string receiver)
         {
-            chatClient.SendMessage(msg, sender,receiver);
+            this.chatClient.SendMessage(msg, sender, receiver);
         }
 
+        /// <summary>
+        /// Stops the chat, and removes the user from the list depending on which user.
+        /// </summary>
+        /// <param name="user">The current logged in user object.</param>
         public void Stop(IUser user)
         {
-
-            if(user == typeof(Volunteer))
+            if (user.GetType() == typeof(Volunteer))
             {
-                chatClient.StopVolunteer(user.Name);
+                this.chatClient.StopVolunteer(user.Name);
             }
-            else if (user == typeof(Volunteer))
+            else if (user.GetType() == typeof(Volunteer))
             {
-                chatClient.StopElder(user.Name);
-            }
-            else
-            {
-
+                this.chatClient.StopElder(user.Name);
             }
 
         }
         
+        /// <summary>
+        /// When a message is received from the server, this method will be triggered to show the new chat message.
+        /// </summary>
+        /// <param name="msg">This contains the chat message.</param>
+        /// <param name="receiver">Who the message is ment for.</param>
         void ChatService.ISendChatServiceCallback.ReceiveMessage(string msg, string receiver)
         {
-            if (ReceiveMsg != null)
-                ReceiveMsg(receiver,msg);
+            if (this.ReceiveMsg != null)
+            {
+                this.ReceiveMsg(receiver, msg);
+            }
         }
 
+        /// <summary>
+        /// Gets all the volunteer usernames who are logged in, gives it to logged in Elders.
+        /// </summary>
+        /// <param name="names">The list of Volunteer names.</param>
         public void SendVolunteerNames(string[] names)
             {
-            if (NewNames != null)
-                NewNames(this, names.ToList());
+                if (this.NewNames != null)
+                {
+                    this.NewNames(this, names.ToList());
+                }
         }
 
-        public void SendElderNames(string [] names)
+        /// <summary>
+        /// Gets all the elder usernames who are logged in, gives it to logged in volunteers.
+        /// </summary>
+        /// <param name="names">The list of elder names.</param>
+        public void SendElderNames(string[] names)
         {
-            if (NewNames != null)
-                NewNames(this, names.ToList());
+            if (this.NewNames != null)
+            {
+                this.NewNames(this, names.ToList());
+            }
         }
     }
 }

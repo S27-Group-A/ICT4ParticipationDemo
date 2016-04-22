@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="ChatSysteem\Logic\ChatUsers.Designer.cs">
       <DependentUpon>ChatUsers.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +73,7 @@
     </Compile>
     <Compile Include="ChatSysteem\Logic\ChatForm.Designer.cs">
       <DependentUpon>ChatForm.cs</DependentUpon>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="ChatSysteem\GUI\ReceiveClient.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
@@ -181,6 +183,7 @@
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\VolunteerForm.resx">
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Participation.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
