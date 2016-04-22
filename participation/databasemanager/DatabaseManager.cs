@@ -184,7 +184,27 @@ namespace Participation
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Perk(perkID, personID, perktext) VALUES (SEQ_PERKID.NEXTVAL, :personid, :perktext)");
+                OracleCommand command = CreateOracleCommand("INSERT INTO Perk(perkID, perktext) VALUES (SEQ_PERKID.NEXTVAL, :perktext)");
+
+                if(ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("SELECT max(perkID) FROM perk");
+                    OracleDataReader reader = ExecuteQuery(command);
+
+                    command = CreateOracleCommand("INSERT INTO PERK_PERSON(perkID, PersonID) VALUES (:perkID, :PersonID)");
+                    command.Parameters.Add(":perkID", Convert.ToInt32(reader["perkid"].ToString()));
+                    command.Parameters.Add(":userID", user.Id);
+
+                    return ExecuteNonQuery(command);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
                 
         }
