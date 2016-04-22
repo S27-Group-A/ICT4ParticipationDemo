@@ -28,21 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstClients = new System.Windows.Forms.ListBox();
             this.txtSend = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.tbxMessage = new System.Windows.Forms.TextBox();
+            this.tbxName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // lstClients
-            // 
-            this.lstClients.FormattingEnabled = true;
-            this.lstClients.ItemHeight = 16;
-            this.lstClients.Location = new System.Drawing.Point(453, 38);
-            this.lstClients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lstClients.Name = "lstClients";
-            this.lstClients.Size = new System.Drawing.Size(159, 244);
-            this.lstClients.TabIndex = 0;
             // 
             // txtSend
             // 
@@ -70,21 +60,29 @@
             this.tbxMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxMessage.Multiline = true;
             this.tbxMessage.Name = "tbxMessage";
-            this.tbxMessage.Size = new System.Drawing.Size(443, 244);
+            this.tbxMessage.Size = new System.Drawing.Size(611, 244);
             this.tbxMessage.TabIndex = 3;
+            // 
+            // tbxName
+            // 
+            this.tbxName.Location = new System.Drawing.Point(1, 9);
+            this.tbxName.Name = "tbxName";
+            this.tbxName.ReadOnly = true;
+            this.tbxName.Size = new System.Drawing.Size(611, 22);
+            this.tbxName.TabIndex = 4;
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(619, 368);
+            this.Controls.Add(this.tbxName);
             this.Controls.Add(this.tbxMessage);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtSend);
-            this.Controls.Add(this.lstClients);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ChatForm";
-            this.Text = "Client";
+            this.Text = "Chat";
             this.Load += new System.EventHandler(this.frmClient_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -93,10 +91,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstClients;
         private System.Windows.Forms.TextBox txtSend;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox tbxMessage;
+        private System.Windows.Forms.TextBox tbxName;
     }
 }
 

@@ -40,12 +40,19 @@ namespace Participation.ChatSysteem
 
         private void btnStartChat_Click(object sender, EventArgs e)
         {
-            FormProvider.ChatForm(this.rc, lbx)
+            this.Hide();
+            ChatForm CF = FormProvider.ChatForm(this.rc, lbxClients.SelectedItem.ToString());
+            CF.ShowDialog();
+            this.Show();
+
         }
 
         private void rc_ReceiveMessage(string sender, string msg)
         {
-            FormProvider.ChatForm(this.rc, sender, msg);
+            this.Hide();
+            ChatForm CF = FormProvider.ChatForm(this.rc, sender, msg);
+            CF.ShowDialog();
+            this.Show();
         }
     }
 }

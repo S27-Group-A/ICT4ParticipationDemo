@@ -23,6 +23,7 @@ namespace Participation.ChatSysteem
             this.FormClosing+=new FormClosingEventHandler(frmClient_FormClosing);
             this.txtSend.KeyPress += new KeyPressEventHandler(txtSend_KeyPress);
             this.RecieveClient = recieveClient;
+            this.tbxName.Text = target;
             
         }
 
@@ -32,8 +33,9 @@ namespace Participation.ChatSysteem
             this.FormClosing += new FormClosingEventHandler(frmClient_FormClosing);
             this.txtSend.KeyPress += new KeyPressEventHandler(txtSend_KeyPress);
             this.RecieveClient = recieveClient;
-            if (msg.Length > 0)
-                tbxMessage.Text += Environment.NewLine + sender + ">" + msg;
+            if (message.Length > 0)
+                tbxMessage.Text += Environment.NewLine + sender + ">" + message;
+            this.tbxName.Text = sender;
 
         }
 
@@ -66,16 +68,6 @@ namespace Participation.ChatSysteem
                 tbxMessage.Text +=Environment.NewLine + sender +">"+ msg;
         }
 
-        void rc_NewNames(object sender, List<string> names)
-        {
-            lstClients.Items.Clear();
-            foreach (string name in names)
-            {
-                if (name!=myName)
-                    lstClients.Items.Add(name);
-            }
-        }
-
         private void btnSend_Click(object sender, EventArgs e)
         {
             SendMessage();
@@ -83,15 +75,10 @@ namespace Participation.ChatSysteem
 
         private void SendMessage()
         {
-            if (lstClients.Items.Count != 0)
+            if (tbxName.Text != string.Empty)
             {
-                tbxMessage.Text += Environment.NewLine + myName + ">" + txtSend.Text;
-                if (lstClients.SelectedItems.Count == 0)
-                    RecieveClient.SendMessage(txtSend.Text, myName, lstClients.Items[0].ToString());
-                else
-                    if (!string.IsNullOrEmpty(lstClients.SelectedItem.ToString()))
-                        RecieveClient.SendMessage(txtSend.Text, myName, lstClients.SelectedItem.ToString());
-
+                tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ">" + txtSend.Text;
+                RecieveClient.SendMessage(txtSend.Text, myName, tbxName.Text);
                 txtSend.Clear();
             }
         }
