@@ -25,21 +25,27 @@ namespace Participation.ChatSysteem
             rc.Start(rc, FormProvider.LoggedInUser);
 
             rc.NewNames += new GotNames(rc_NewNames);
+            rc.ReceiveMsg += new ReceivedMessage(rc_ReceiveMessage);
         }
 
         private void rc_NewNames(object sender, List<string> names)
         {
-            lstClients.Items.Clear();
+            lbxClients.Items.Clear();
             foreach (string name in names)
             {
                 if (name != FormProvider.LoggedInUser.Name)
-                    lstClients.Items.Add(name);
+                    lbxClients.Items.Add(name);
             }
         }
 
         private void btnStartChat_Click(object sender, EventArgs e)
         {
+            FormProvider.ChatForm(this.rc, lbx)
+        }
 
+        private void rc_ReceiveMessage(string sender, string msg)
+        {
+            FormProvider.ChatForm(this.rc, sender, msg);
         }
     }
 }
