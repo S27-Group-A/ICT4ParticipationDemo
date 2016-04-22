@@ -71,7 +71,7 @@ namespace Participation.InlogSysteem.GUI
 
         private bool CheckFields()
         {
-            
+
             if (tbxPassword.Text != tbxRepeatPassword.Text)
                 MessageBox.Show("Het herhaalde wachtwoord komt niet overheen met het originele wachtwoord");
             if (!string.IsNullOrEmpty(tbxEmail.Text) && !string.IsNullOrEmpty(tbxPassword.Text)
@@ -93,9 +93,10 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (rbtMale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                        var newPatient = new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text)))
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newPatient))
                         {
                             MessageBox.Show(_succesfullRegisterationMsg);
                         }
@@ -103,9 +104,11 @@ namespace Participation.InlogSysteem.GUI
                     }
                     if (rbtFemale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                        var newPatient =
+                            new Patient(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text)))
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newPatient))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
@@ -114,17 +117,19 @@ namespace Participation.InlogSysteem.GUI
                 {
                     if (rbtMale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value, 
-                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male, 
-                            tbxPassword.Text )))
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                            tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newVolunteer))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (rbtFemale.Checked)
                     {
-                        if (_lisLogic.AddUser(new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
+                        var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text)))
+                            tbxPassword.Text);
+                        if (_lisLogic.AddUser(newVolunteer))
                             MessageBox.Show(_succesfullRegisterationMsg);
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
