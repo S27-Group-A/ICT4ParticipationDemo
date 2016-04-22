@@ -7,6 +7,7 @@ DROP TABLE Review CASCADE CONSTRAINTS;
 DROP TABLE Meeting CASCADE CONSTRAINTS;
 DROP TABLE Request CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
+DROP TABLE Perk_Request CASCADE CONSTRAINTS;
 
 
 -- CREATE TABLES --
@@ -39,7 +40,7 @@ CREATE TABLE Person
 
 CREATE TABLE Perk
 (
-	perkID					NUMBER				PRIMARY KEY,
+	perkID					NUMBER				        PRIMARY KEY,
 	personID 			    NUMBER(10)        	NOT NULL,
 	perktext 			    VARCHAR2(256) 	  	NOT NULL
 );
@@ -123,15 +124,15 @@ VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is 
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
 VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
 
-INSERT INTO Perk(personID, perk)
+INSERT INTO Perk(perkID, personID, perktext)
 VALUES(1, 1, 'Auto');
-INSERT INTO Perk(personID, perk)
+INSERT INTO Perk(perkID, personID, perktext)
 VALUES(2, 2, 'Fiets');
-INSERT INTO Perk(personID, perk)
+INSERT INTO Perk(perkID, personID, perktext)
 VALUES(3, 2, 'Auto');
-INSERT INTO Perk(personID, perk)
+INSERT INTO Perk(perkID, personID, perktext)
 VALUES(4, 4, 'Vrije tijd');
-INSERT INTO Perk(personID, perk)
+INSERT INTO Perk(perkID, personID, perktext)
 VALUES(5, 4, 'Fiets');
 
 INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
@@ -195,6 +196,7 @@ DROP SEQUENCE SEQ_personID;
 DROP SEQUENCE SEQ_reviewID;
 DROP SEQUENCE SEQ_requestID;
 DROP SEQUENCE SEQ_responseID;
+DROP SEQUENCE SEQ_PerkID;
 
 -- CREATE SEQUENCES --
 
@@ -234,6 +236,7 @@ BEGIN
                        ' increment by 1';
 END;
 /
+
 --CREATE SEQUENCE SEQ_responseID
 DECLARE
   I_responderID INTEGER := 0;
@@ -246,13 +249,14 @@ BEGIN
                        ' increment by 1';
 END;
 /
+
 --CREATE SEQUENCE SEQ_PerkID
 DECLARE
   I_PerkID INTEGER := 0;
 BEGIN
-   SELECT max(PerkID) + 1
+   SELECT max(perkID) + 1
    INTO   I_PerkID
-   FROM   Perk
+   FROM   perk;
    EXECUTE IMMEDIATE 'CREATE SEQUENCE SEQ_PerkID
                        start with ' || I_PerkID ||
                        ' increment by 1';
@@ -262,4 +266,19 @@ END;
 
 COMMIT;
 
+--Queries
+SELECT * 
+FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = 1;
 
+SELECT * 
+FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = 2;
+
+
+SELECT r.requestid, r.title, r.description, r.place, r.placingdate, r.urgency, p.PERKTEXT
+FROM Request r INNER JOIN Perk_Request pr ON pr.REQUESTID = r.REQUESTID INNER JOIN Perk p ON pr.PerkID = p.PerkID WHERE r.RequestID = 2;
+
+SELECT DISTINCT(r.requestid), r.title, r.description, r.place, r.placingdate, r.urgency, p.PERKTEXT From Perk p RIGHT JOIN Perk_Request PR ON p.PerkID = PR.PerkID RIGHT JOIN Request r ON Pr.RequestID = r.RequestID WHERE r.RequestID = 2;
+Select * from perk where perkid IN (select perkid from Perk_request where RequestID = 2);
+
+
+Select * from Perk
