@@ -92,7 +92,7 @@ namespace Participation.SharedModels
 
         public string GetFileNameVog()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
