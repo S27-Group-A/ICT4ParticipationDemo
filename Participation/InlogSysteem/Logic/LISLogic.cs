@@ -27,7 +27,7 @@ namespace Participation
             {
                 foreach (var item in GetUsers())
                 {
-                    if (item != user)
+                    if (item != user && item.Email != user.Email)
                     {
                         if (user.GetType() == typeof(Patient))
                         {

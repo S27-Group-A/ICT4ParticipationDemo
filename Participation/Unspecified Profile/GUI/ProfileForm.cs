@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
+using Participation.Unspecified_Profile.GUI;
 
 namespace Participation.BeheerSysteem.GUI
 {
@@ -43,7 +44,9 @@ namespace Participation.BeheerSysteem.GUI
             if (dialogresult == DialogResult.Yes)
             {
                 MessageBox.Show("U bent nu uitgelogd.");
+                FormProvider.StartMenu.Show();
                 this.Close();
+
             }
             else if (dialogresult == DialogResult.No)
             {
@@ -127,6 +130,12 @@ namespace Participation.BeheerSysteem.GUI
                 tempV.AddPerk(tbxPerk.Text);
                 RefreshPerks();
             }
+        }
+
+        private void lblVogUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ViewVog vv = new ViewVog();
+            vv.Show();
         }
 
 

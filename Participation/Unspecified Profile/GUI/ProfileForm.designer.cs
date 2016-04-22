@@ -366,6 +366,7 @@
             this.lblVogUrl.TabIndex = 36;
             this.lblVogUrl.TabStop = true;
             this.lblVogUrl.Text = "<download link van het huidige VOG>";
+            this.lblVogUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVogUrl_LinkClicked);
             // 
             // lblAllowedVogFormats
             // 

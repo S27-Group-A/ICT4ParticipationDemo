@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.SharedModels;
@@ -77,15 +78,34 @@ namespace Participation.InlogSysteem.GUI
 
             if (tbxPassword.Text != tbxRepeatPassword.Text)
                 MessageBox.Show("Het herhaalde wachtwoord komt niet overheen met het originele wachtwoord");
-            if (!string.IsNullOrEmpty(tbxEmail.Text) && !string.IsNullOrEmpty(tbxPassword.Text)
+            if (IsValidEmail(tbxEmail.Text) && !string.IsNullOrEmpty(tbxPassword.Text)
                 && !string.IsNullOrEmpty(tbxRepeatPassword.Text) && !string.IsNullOrEmpty(tbxLocation.Text)
-                && tbxPassword.Text == tbxRepeatPassword.Text && !string.IsNullOrEmpty(tbxName.Text))
+                && tbxPassword.Text == tbxRepeatPassword.Text && !string.IsNullOrEmpty(tbxName.Text)
+                && !string.IsNullOrEmpty(tbxProfilePictureUrl.Text))
             {
                 if ((rbtCanHelp.Checked && !string.IsNullOrEmpty(tbxVOGUrl.Text)) || rbtNeedHelp.Checked)
                     return true;
                 return false;
             }
             return false;
+        }
+
+        /// <summary>
+        /// This method checks if the email that's been provided is valid.
+        /// </summary>
+        /// <param name="email">The email parameter has the email string from the form</param>
+        /// <returns>Value indicating whether the email is valid or not.</returns>
+        public bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+            else
+            {
+                // Return true if strIn is in valid e-mail format.
+                return Regex.IsMatch(email, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" + @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$", RegexOptions.IgnoreCase);
+            }
         }
 
         private void registerBtn_Click(object sender, EventArgs e)
@@ -112,8 +132,14 @@ namespace Participation.InlogSysteem.GUI
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
                             tbxPassword.Text);
                         if (_lisLogic.AddUser(newPatient))
+                        {
                             MessageBox.Show(_succesfullRegisterationMsg);
-                        else MessageBox.Show(_contactAdministratorMsg);
+                            ClearTextBoxes();
+                        }
+                        else
+                        {
+                            MessageBox.Show(_contactAdministratorMsg);
+                        }
                     }
                 }
                 if (rbtCanHelp.Checked)
@@ -142,6 +168,7 @@ namespace Participation.InlogSysteem.GUI
 
 
                             MessageBox.Show(_succesfullRegisterationMsg);
+                            ClearTextBoxes();
                         }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
@@ -179,6 +206,20 @@ namespace Participation.InlogSysteem.GUI
             {
                 MessageBox.Show("U heeft niet alle gegevens goed toegevoegd.", "Foutmelding", MessageBoxButtons.OK);
             }
+        }
+
+        private void ClearTextBoxes()
+        {
+            tbxEmail.Text = "";
+            tbxProfilePictureUrl.Text = "";
+            tbxVOGUrl.Text = "";
+            tbxLocation.Text = "";
+            tbxName.Text = "";
+            tbxPassword.Text = "";
+            tbxRepeatPassword.Text = "";
+            tbxPerk.Text = "";
+            lblPerks.Text = "";
+            tbxPhonenumber.Text = "";
         }
 
         private void browseProfilePictureBtn_Click(object sender, EventArgs e)

@@ -78,10 +78,5 @@ namespace Participation.SharedModels
             System.IO.File.Copy(path, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png");
             _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
         }
-
-        public string GetFileNameVog()
-        {
-
-        }
     }
 }
