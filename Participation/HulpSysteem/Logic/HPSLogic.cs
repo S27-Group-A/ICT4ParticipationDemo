@@ -15,28 +15,31 @@ namespace Participation.HulpSysteem.Logic
         {
         }
 
-        public void AddRequest(Patient patient, Request request)
+        public bool AddRequest(Patient patient, Request request)
         {
+            return DatabaseManager.AddRequest(patient, request);
+            /*
             patient.Requests.Add(request);
             MessageBox.Show(request.Title + "is toegevoegd!");
-            //TODO Add database context to add request to database
+            */
         }
 
         public List<Request> GetRequests(IUser patient)
         {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch
-            {
-                MessageBox.Show("Database context not implement");
-                return new List<Request>()
-                {
-                    (new Request("Boswandeling", "Ik wil graag een boswandeling maken door het bos", new List<string>(),
-                        "Eindhoven", DateTime.Now, 1))
-                };
-            }
+            return DatabaseManager.GetRequests(patient);
+            //try
+            //{
+            //    throw new NotImplementedException();
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Database context not implement");
+            //    return new List<Request>()
+            //    {
+            //        (new Request("Boswandeling", "Ik wil graag een boswandeling maken door het bos", new List<string>(),
+            //            "Eindhoven", DateTime.Now, 1))
+            //    };
+            //}
         }
 
         //TODO Implement this

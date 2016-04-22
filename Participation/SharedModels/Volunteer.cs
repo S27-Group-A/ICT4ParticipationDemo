@@ -12,7 +12,7 @@ namespace Participation.SharedModels
         //properties
         private List<Review> _reviews { get; set; }
         private List<string> _perks { get; set; }
-        private string _verklaringPdf { get; set; }
+        public string _verklaringPdf { get; set; }
         private static int fileNameCountVerklaring = 0;
         private static int fileNameCountProfilePic = 0;
         private bool _isAdmin { get; set; }
@@ -55,15 +55,7 @@ namespace Participation.SharedModels
             System.IO.File.Copy(profilePicure, Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png");
             ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
 
-            while (
-                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountProfilePic.ToString() +
-                                      ".png"))
-            {
-                fileNameCountVerklaring++;
-            }
-
-            System.IO.File.Copy(verklaringPdf, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png");
-            _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
+            AddVerklaring(verklaringPdf);
         }
 
         //methods
@@ -72,5 +64,35 @@ namespace Participation.SharedModels
             return false;
         }
 
+        public List<string> GetPerks()
+        {
+            return _perks;
+        }
+
+        public void AddPerk(string perk)
+        {
+            if (perk != "" || perk != " ")
+            {
+                this._perks.Add(perk);
+            }
+        }
+
+        public void AddVerklaring(string path)
+        {
+            while (
+                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() +
+                                      ".png"))
+            {
+                fileNameCountVerklaring++;
+            }
+
+            System.IO.File.Copy(path, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png");
+            _verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring.ToString() + ".png";
+        }
+
+        public string GetFileNameVog()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
