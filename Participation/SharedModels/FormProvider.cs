@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Participation.BeheerSysteem.GUI;
+using Participation.HulpSysteem.GUI;
 using Participation.InlogSysteem.GUI;
 using Participation.InlogSysteem.Interfaces;
 using Participation.VrijwilligersSysteem.GUI;
+using Participation.ChatSysteem;
 using UI;
 
 namespace Participation.SharedModels
@@ -70,7 +72,43 @@ namespace Participation.SharedModels
         }
         private static VolunteerForm _volunteer;
 
-       
+        public static RequestsViewForm RequestsViewForm
+        {
+            get
+            {
+                if (_requestsViewForm == null)
+                {
+                    _requestsViewForm = new RequestsViewForm(LoggedInUser);
+                }
+                return _requestsViewForm;
+            }
+        }
+        private static RequestsViewForm _requestsViewForm;
+
+        public static ChatUsers ChatUsersForm
+        {
+            get
+            {
+                if (_chatuserform == null)
+                {
+                    _chatuserform = new ChatUsers();
+                }
+                return _chatuserform;
+            }
+        }
+
+        private static ChatUsers _chatuserform;
+
+        public static ChatForm ChatForm(ReceiveClient recieveClient)
+        {
+            _chatform = new ChatForm(recieveClient);
+
+            return _chatform;
+        }
+
+        private static ChatForm _chatform;
     }
 }
+
+       
 

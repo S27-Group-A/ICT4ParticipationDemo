@@ -73,7 +73,9 @@ namespace Participation
                 if (user.Email == email)
                     return user;
             }
-            throw new Exception("Het e-mail adres: " + email + " heeft geen geldig account controleer uw inloggegevens");
+            throw new Exception("Het e-mail adres: " 
+                + email + " heeft geen geldig account " +
+                "controleer uw inloggegevens");
             #endregion
         }
 

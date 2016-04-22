@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChatLibrary">
+      <HintPath>DLL\ChatLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Oracle.DataAccess.dll</HintPath>
@@ -42,6 +45,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +57,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatSysteem\Logic\ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatUsers.Designer.cs">
+      <DependentUpon>ChatUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ChatService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatSysteem\GUI\ReceiveClient.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
     <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
@@ -113,8 +136,17 @@
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <EmbeddedResource Include="ChatSysteem\Logic\ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatSysteem\Logic\ChatUsers.resx">
+      <DependentUpon>ChatUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestsViewForm.resx">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -156,7 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BeheerSysteem\" />
-    <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
   </ItemGroup>
@@ -164,6 +195,41 @@
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ChatService\Arrays1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service1.wsdl" />
+    <None Include="Service References\ChatService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration91.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InlogSysteem\Resources\empty_profile.jpg" />
+  </ItemGroup>
+  <!--
     <COMReference Include="Phidget21COM">
       <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
       <VersionMajor>2</VersionMajor>
@@ -173,7 +239,7 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
+ -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
