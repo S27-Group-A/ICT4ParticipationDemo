@@ -19,8 +19,8 @@ namespace Participation
 
         public bool AddUser(IUser user)
         {
-            //TODO Add database context to add user to database
-
+            return DatabaseManager.AddUser(user);
+            /*
             #region Databaseless testing
 
             if (GetUsers().Count > 0)
@@ -62,10 +62,13 @@ namespace Participation
 
 
             #endregion
+            */
         }
 
         public IUser GetUser(string email)
         {
+            return DatabaseManager.GetUser(email);
+            /*
             #region Databaseless testing
 
             foreach (var user in GetUsers())
@@ -77,11 +80,14 @@ namespace Participation
                 + email + " heeft geen geldig account " +
                 "controleer uw inloggegevens");
             #endregion
+            */
         }
 
         //TODO Unstaticfy when database connection has been made
-        public static List<IUser> GetUsers()
+        public List<IUser> GetUsers()
         {
+            return DatabaseManager.GetUsers();
+            /*
             #region Databaseless testing
 
             var getUsers = new List<IUser>();
@@ -92,11 +98,13 @@ namespace Participation
             return getUsers;
 
             #endregion
+            */
         }
 
-        internal void AddPerk(Volunteer newVolunteer, string perk)
+        public bool AddPerk(Volunteer newVolunteer, string perk)
         {
-            newVolunteer.AddPerk(perk);
+            DatabaseManager.AddPerk(DatabaseManager.GetUser(newVolunteer), perk);
+            //newVolunteer.AddPerk(perk);
         }
     }
 }

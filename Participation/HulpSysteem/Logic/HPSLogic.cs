@@ -15,11 +15,13 @@ namespace Participation.HulpSysteem.Logic
         {
         }
 
-        public void AddRequest(Patient patient, Request request)
+        public bool AddRequest(Patient patient, Request request)
         {
+            DatabaseManager.AddRequest();
+            /*
             patient.Requests.Add(request);
             MessageBox.Show(request.Title + "is toegevoegd!");
-            //TODO Add database context to add request to database
+            */
         }
 
         public List<Request> GetRequests(IUser patient)

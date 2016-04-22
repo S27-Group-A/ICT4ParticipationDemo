@@ -75,7 +75,7 @@ namespace Participation
 
                 return reader;
             }
-            catch(OracleException exc)
+            catch (OracleException exc)
             {
                 return null;
             }
@@ -112,7 +112,7 @@ namespace Participation
         private static GenderEnum ToGender(string value)
         {
             GenderEnum gender;
-            if (value == "Male" || value == "M" )
+            if (value == "Male" || value == "M")
             {
                 gender = GenderEnum.Male;
                 return gender;
@@ -155,7 +155,7 @@ namespace Participation
                 {
                     command.Parameters.Add(":personType", "Patient");
                 }
-                if (user.GetType() == typeof (Volunteer))
+                if (user.GetType() == typeof(Volunteer))
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
@@ -237,7 +237,7 @@ namespace Participation
                 command.Parameters.Add(":placingdate", response.Date);
                 command.Parameters.Add(":description", response.Text);
 
-                
+
                 return ExecuteNonQuery(command);
             }
             catch (Exception exception)
@@ -262,7 +262,7 @@ namespace Participation
         #region User
 
         //Pulls the accountinformation from the database, and casts it into an user-object
-        public static IUser CreateUser(string Email)
+        public static IUser GetUser(string Email)
         {
             try
             {
@@ -303,10 +303,7 @@ namespace Participation
             }
             finally
             {
-
-
                 _Connection.Close();
-
             }
             return null;
         }
@@ -402,7 +399,7 @@ namespace Participation
 
             try
             {
-                if(Volunteer == typeof(Volunteer))
+                if (Volunteer == typeof(Volunteer))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM Review WHERE REVIEWEEID = :userid");
                     command.Parameters.Add(":userid", Volunteer.Id);
@@ -414,10 +411,10 @@ namespace Participation
                         int rating = Convert.ToInt32(reader["rating"].ToString());
                         string description = reader["description"].ToString();
 
-                            ReviewList.Add(new Review(id, rating, description));
+                        ReviewList.Add(new Review(id, rating, description));
                     }
 
-                    foreach(Review R in ReviewList)
+                    foreach (Review R in ReviewList)
                     {
                         OracleCommand patientCommand = CreateOracleCommand("SELECT * FROM PERSON WHERE PERSONID = (SELECT REVIEWERID FROM REVIEW WHERE REVIEWID = :reviewID)");
                         patientCommand.Parameters.Add(":reviewID", R.Id);
@@ -450,7 +447,7 @@ namespace Participation
                         }
                         OracleDataReader volunteerReader = ExecuteQuery(volunteerCommand);
 
-                        while(volunteerReader.Read())
+                        while (volunteerReader.Read())
                         {
                             int id = Convert.ToInt32(volunteerReader["personid"].ToString());
                             string place = volunteerReader["place"].ToString();
@@ -630,7 +627,7 @@ namespace Participation
                     RequestList.Add(new Request(id, title, description, null, location, date, urgency));
                 }
 
-                foreach(Request r in RequestList)
+                foreach (Request r in RequestList)
                 {
                     List<string> perks = new List<string>();
                     OracleCommand perkcommand = CreateOracleCommand("Select * from Perk Where PERKID IN (Select PERKID from PERK_REQUEST WHERE REQUESTID = :RequestID)");
@@ -661,7 +658,7 @@ namespace Participation
             List<Request> RequestList = new List<Request>();
             try
             {
-                if(patient.GetType() == typeof(Volunteer))
+                if (patient.GetType() == typeof(Volunteer))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
                     command.Parameters.Add(":userID", patient.Id);
@@ -694,7 +691,7 @@ namespace Participation
                         r.Perks = perks;
                     }
                 }
-                
+
             }
             catch
             {
