@@ -32,12 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChatLibrary">
+      <HintPath>DLL\ChatLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.DataAccess, Version=4.112.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\Oracle.DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="Phidget21.NET">
+      <HintPath>DLL\Phidget21.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,16 +59,41 @@
     <Compile Include="BeheerSysteem\GUI\AdminSystemForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
+	<Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </Compile>
+	
+    <Compile Include="ChatSysteem\Logic\ChatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatUsers.Designer.cs">
+      <DependentUpon>ChatUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
+    <Compile Include="Service References\ChatService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="ChatSysteem\Logic\ChatForm.Designer.cs">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatSysteem\GUI\ReceiveClient.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
     <Compile Include="HulpSysteem\GUI\RequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HulpSysteem\GUI\RequestForm.designer.cs">
       <DependentUpon>RequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\RequestsViewForm.Designer.cs">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HulpSysteem\Logic\HPSLogic.cs" />
     <Compile Include="InlogSysteem\GUI\RegisterForm.cs">
@@ -75,6 +108,7 @@
     <Compile Include="InlogSysteem\GUI\Startmenu.Designer.cs">
       <DependentUpon>Startmenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="InlogSysteem\Interfaces\IUser.cs" />
     <Compile Include="InlogSysteem\Logic\LISLogic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +118,21 @@
     <Compile Include="SharedModels\Patient.cs" />
     <Compile Include="SharedModels\Response.cs" />
     <Compile Include="SharedModels\Review.cs" />
+    <Compile Include="SharedModels\RFIDManager.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="SharedModels\Volunteer.cs" />
+    <Compile Include="Unspecified Profile\GUI\ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Unspecified Profile\GUI\ProfileForm.designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.Designer.cs">
+      <DependentUpon>MeetingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +144,17 @@
     <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChatSysteem\Logic\ChatForm.resx">
+      <DependentUpon>ChatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatSysteem\Logic\ChatUsers.resx">
+      <DependentUpon>ChatUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\RequestsViewForm.resx">
+      <DependentUpon>RequestsViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -116,6 +172,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Unspecified Profile\GUI\ProfileForm.resx">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligersSysteem\GUI\MeetingForm.resx">
+      <DependentUpon>MeetingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\VolunteerForm.resx">
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,14 +195,58 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BeheerSysteem\Data\" />
-    <Folder Include="ChatSysteem\" />
     <Folder Include="HulpSysteem\Data\" />
     <Folder Include="VrijwilligersSysteem\Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="VrijwilligersSysteem\Img\Oude_vrouw_met_hoed.JPG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\Arrays1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service1.wsdl" />
+    <None Include="Service References\ChatService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration91.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InlogSysteem\Resources\empty_profile.jpg" />
+  </ItemGroup>
+  <!--
+    <COMReference Include="Phidget21COM">
+      <Guid>{50484945-4745-5453-0000-000000000000}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+ -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
