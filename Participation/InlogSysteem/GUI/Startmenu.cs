@@ -27,7 +27,6 @@ namespace Participation
         {
             InitializeComponent();
             this.Hide();
-            DatabaseManager.GetRequests();
         }
 
         private void startMenuLogInBtn_Click(object sender, EventArgs e)
