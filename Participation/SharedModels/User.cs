@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.SharedModels
 {
-    public class User
+    public abstract class User : IUser
     {
         //Properties
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
@@ -23,12 +25,12 @@ namespace Participation.SharedModels
         public int BantimeinDays { get; set; }
 
         //constructors
-        public User()
-        {
-        }
 
-        public User(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, int ban, int bantimeindays)
+        public User(int Id, string name, string email, string description,
+            DateTime birthday, string profilePicture, string location,
+            string phoneNumber, GenderEnum gender, string password, int ban, int bantimeindays)
         {
+            this.Id = Id;
             Name = name;
             Email = email;
             Description = description;
@@ -70,13 +72,15 @@ namespace Participation.SharedModels
             BantimeinDays = bantimeindays;
         }
 
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, string profilePicture, int ban, int bantimeindays)
+        public User(string name, string email, DateTime birthday,string profile Pifcture string location, string password, string phoneNumber, GenderEnum gender, string profilePicture, int ban, int bantimeindays)
         {
+            //this.Id = Id; TODO set id
             Name = name;
             Email = email;
+            Description = description;
             Birthday = birthday;
+            ProfilePicture = profilePicture;
             Location = location;
-            Password = password;
             PhoneNumber = phoneNumber;
             Gender = gender;
             ProfilePicture = profilePicture;
