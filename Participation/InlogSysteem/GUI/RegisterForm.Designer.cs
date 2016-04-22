@@ -83,10 +83,9 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPassword.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPassword.Location = new System.Drawing.Point(2, 55);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPassword.Location = new System.Drawing.Point(3, 68);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(103, 17);
+            this.lblPassword.Size = new System.Drawing.Size(123, 20);
             this.lblPassword.TabIndex = 12;
             this.lblPassword.Text = "Wachtwoord: * ";
             // 
@@ -95,39 +94,39 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblEmail.Location = new System.Drawing.Point(2, 28);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEmail.Location = new System.Drawing.Point(3, 34);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(100, 17);
+            this.lblEmail.Size = new System.Drawing.Size(120, 20);
             this.lblEmail.TabIndex = 11;
             this.lblEmail.Text = "E-mail adres: *";
             // 
             // tbxEmail
             // 
             this.tbxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxEmail.Location = new System.Drawing.Point(184, 26);
-            this.tbxEmail.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxEmail.Location = new System.Drawing.Point(245, 32);
+            this.tbxEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxEmail.Name = "tbxEmail";
-            this.tbxEmail.Size = new System.Drawing.Size(157, 23);
+            this.tbxEmail.Size = new System.Drawing.Size(208, 27);
             this.tbxEmail.TabIndex = 10;
             // 
             // tbxPassword
             // 
             this.tbxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxPassword.Location = new System.Drawing.Point(184, 53);
-            this.tbxPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxPassword.Location = new System.Drawing.Point(245, 65);
+            this.tbxPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
-            this.tbxPassword.Size = new System.Drawing.Size(157, 23);
+            this.tbxPassword.Size = new System.Drawing.Size(208, 27);
             this.tbxPassword.TabIndex = 9;
             // 
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegister.Location = new System.Drawing.Point(136, 548);
+            this.btnRegister.Location = new System.Drawing.Point(181, 674);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(308, 29);
+            this.btnRegister.Size = new System.Drawing.Size(411, 36);
             this.btnRegister.TabIndex = 8;
             this.btnRegister.Text = "Registreren";
             this.btnRegister.UseVisualStyleBackColor = true;
@@ -138,10 +137,9 @@
             this.lblBirthdate.AutoSize = true;
             this.lblBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBirthdate.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblBirthdate.Location = new System.Drawing.Point(3, 110);
-            this.lblBirthdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBirthdate.Location = new System.Drawing.Point(4, 135);
             this.lblBirthdate.Name = "lblBirthdate";
-            this.lblBirthdate.Size = new System.Drawing.Size(120, 17);
+            this.lblBirthdate.Size = new System.Drawing.Size(140, 20);
             this.lblBirthdate.TabIndex = 13;
             this.lblBirthdate.Text = "Geboortedatum: *";
             // 
@@ -150,10 +148,9 @@
             this.lblLocation.AutoSize = true;
             this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocation.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblLocation.Location = new System.Drawing.Point(3, 133);
-            this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLocation.Location = new System.Drawing.Point(4, 164);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(96, 17);
+            this.lblLocation.Size = new System.Drawing.Size(113, 20);
             this.lblLocation.TabIndex = 14;
             this.lblLocation.Text = "Woonplaats: *";
             // 
@@ -162,10 +159,9 @@
             this.lblPhonenumber.AutoSize = true;
             this.lblPhonenumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhonenumber.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPhonenumber.Location = new System.Drawing.Point(2, 160);
-            this.lblPhonenumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPhonenumber.Location = new System.Drawing.Point(3, 197);
             this.lblPhonenumber.Name = "lblPhonenumber";
-            this.lblPhonenumber.Size = new System.Drawing.Size(119, 17);
+            this.lblPhonenumber.Size = new System.Drawing.Size(139, 20);
             this.lblPhonenumber.TabIndex = 15;
             this.lblPhonenumber.Text = "Telefoonnummer:";
             // 
@@ -174,10 +170,9 @@
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGender.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblGender.Location = new System.Drawing.Point(3, 184);
-            this.lblGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGender.Location = new System.Drawing.Point(4, 226);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(77, 17);
+            this.lblGender.Size = new System.Drawing.Size(92, 20);
             this.lblGender.TabIndex = 16;
             this.lblGender.Text = "Geslacht: *";
             // 
@@ -186,78 +181,76 @@
             this.lblProfilePicture.AutoSize = true;
             this.lblProfilePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProfilePicture.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblProfilePicture.Location = new System.Drawing.Point(2, 210);
-            this.lblProfilePicture.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProfilePicture.Location = new System.Drawing.Point(3, 258);
             this.lblProfilePicture.Name = "lblProfilePicture";
-            this.lblProfilePicture.Size = new System.Drawing.Size(76, 17);
+            this.lblProfilePicture.Size = new System.Drawing.Size(101, 20);
             this.lblProfilePicture.TabIndex = 17;
-            this.lblProfilePicture.Text = "Profielfoto:";
+            this.lblProfilePicture.Text = "Profielfoto: *";
             // 
             // lblRepeatPassword
             // 
             this.lblRepeatPassword.AutoSize = true;
             this.lblRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRepeatPassword.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblRepeatPassword.Location = new System.Drawing.Point(2, 84);
-            this.lblRepeatPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRepeatPassword.Location = new System.Drawing.Point(3, 103);
             this.lblRepeatPassword.Name = "lblRepeatPassword";
-            this.lblRepeatPassword.Size = new System.Drawing.Size(178, 17);
+            this.lblRepeatPassword.Size = new System.Drawing.Size(212, 20);
             this.lblRepeatPassword.TabIndex = 18;
             this.lblRepeatPassword.Text = "(Herhaling) Wachtwoord: * ";
             // 
             // tbxRepeatPassword
             // 
             this.tbxRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxRepeatPassword.Location = new System.Drawing.Point(184, 80);
-            this.tbxRepeatPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxRepeatPassword.Location = new System.Drawing.Point(245, 98);
+            this.tbxRepeatPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxRepeatPassword.Name = "tbxRepeatPassword";
             this.tbxRepeatPassword.PasswordChar = '*';
-            this.tbxRepeatPassword.Size = new System.Drawing.Size(157, 23);
+            this.tbxRepeatPassword.Size = new System.Drawing.Size(208, 27);
             this.tbxRepeatPassword.TabIndex = 19;
             // 
             // dtpBirthdate
             // 
-            this.dtpBirthdate.Location = new System.Drawing.Point(184, 108);
-            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpBirthdate.Location = new System.Drawing.Point(245, 133);
+            this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpBirthdate.Name = "dtpBirthdate";
-            this.dtpBirthdate.Size = new System.Drawing.Size(157, 20);
+            this.dtpBirthdate.Size = new System.Drawing.Size(208, 22);
             this.dtpBirthdate.TabIndex = 20;
             // 
             // tbxLocation
             // 
             this.tbxLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxLocation.Location = new System.Drawing.Point(184, 131);
-            this.tbxLocation.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxLocation.Location = new System.Drawing.Point(245, 161);
+            this.tbxLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxLocation.Name = "tbxLocation";
-            this.tbxLocation.Size = new System.Drawing.Size(157, 23);
+            this.tbxLocation.Size = new System.Drawing.Size(208, 27);
             this.tbxLocation.TabIndex = 21;
             // 
             // tbxPhonenumber
             // 
             this.tbxPhonenumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxPhonenumber.Location = new System.Drawing.Point(184, 158);
-            this.tbxPhonenumber.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxPhonenumber.Location = new System.Drawing.Point(245, 194);
+            this.tbxPhonenumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPhonenumber.Name = "tbxPhonenumber";
-            this.tbxPhonenumber.Size = new System.Drawing.Size(157, 23);
+            this.tbxPhonenumber.Size = new System.Drawing.Size(208, 27);
             this.tbxPhonenumber.TabIndex = 22;
             // 
             // tbxProfilePictureUrl
             // 
             this.tbxProfilePictureUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxProfilePictureUrl.Location = new System.Drawing.Point(184, 207);
-            this.tbxProfilePictureUrl.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxProfilePictureUrl.Location = new System.Drawing.Point(245, 255);
+            this.tbxProfilePictureUrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxProfilePictureUrl.Name = "tbxProfilePictureUrl";
-            this.tbxProfilePictureUrl.Size = new System.Drawing.Size(157, 23);
+            this.tbxProfilePictureUrl.Size = new System.Drawing.Size(208, 27);
             this.tbxProfilePictureUrl.TabIndex = 24;
             // 
             // rbtMale
             // 
             this.rbtMale.AutoSize = true;
             this.rbtMale.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rbtMale.Location = new System.Drawing.Point(12, 1);
-            this.rbtMale.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtMale.Location = new System.Drawing.Point(16, 1);
+            this.rbtMale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtMale.Name = "rbtMale";
-            this.rbtMale.Size = new System.Drawing.Size(46, 17);
+            this.rbtMale.Size = new System.Drawing.Size(56, 21);
             this.rbtMale.TabIndex = 25;
             this.rbtMale.TabStop = true;
             this.rbtMale.Text = "Man";
@@ -267,11 +260,11 @@
             // 
             this.rbtFemale.AutoSize = true;
             this.rbtFemale.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rbtFemale.Location = new System.Drawing.Point(58, 2);
-            this.rbtFemale.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtFemale.Location = new System.Drawing.Point(77, 2);
+            this.rbtFemale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtFemale.Name = "rbtFemale";
             this.rbtFemale.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rbtFemale.Size = new System.Drawing.Size(55, 17);
+            this.rbtFemale.Size = new System.Drawing.Size(68, 21);
             this.rbtFemale.TabIndex = 26;
             this.rbtFemale.TabStop = true;
             this.rbtFemale.Text = "Vrouw";
@@ -283,10 +276,10 @@
             this.rbtNeedHelp.AutoSize = true;
             this.rbtNeedHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtNeedHelp.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rbtNeedHelp.Location = new System.Drawing.Point(16, 8);
-            this.rbtNeedHelp.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtNeedHelp.Location = new System.Drawing.Point(21, 10);
+            this.rbtNeedHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtNeedHelp.Name = "rbtNeedHelp";
-            this.rbtNeedHelp.Size = new System.Drawing.Size(235, 28);
+            this.rbtNeedHelp.Size = new System.Drawing.Size(295, 33);
             this.rbtNeedHelp.TabIndex = 27;
             this.rbtNeedHelp.TabStop = true;
             this.rbtNeedHelp.Text = "Ik ben op zoek naar hulp";
@@ -298,10 +291,10 @@
             this.rbtCanHelp.AutoSize = true;
             this.rbtCanHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtCanHelp.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.rbtCanHelp.Location = new System.Drawing.Point(280, 8);
-            this.rbtCanHelp.Margin = new System.Windows.Forms.Padding(2);
+            this.rbtCanHelp.Location = new System.Drawing.Point(373, 10);
+            this.rbtCanHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtCanHelp.Name = "rbtCanHelp";
-            this.rbtCanHelp.Size = new System.Drawing.Size(132, 28);
+            this.rbtCanHelp.Size = new System.Drawing.Size(168, 33);
             this.rbtCanHelp.TabIndex = 28;
             this.rbtCanHelp.TabStop = true;
             this.rbtCanHelp.Text = "Ik wil helpen";
@@ -313,10 +306,9 @@
             this.lblObliged.AutoSize = true;
             this.lblObliged.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObliged.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblObliged.Location = new System.Drawing.Point(22, 7);
-            this.lblObliged.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblObliged.Location = new System.Drawing.Point(29, 9);
             this.lblObliged.Name = "lblObliged";
-            this.lblObliged.Size = new System.Drawing.Size(242, 17);
+            this.lblObliged.Size = new System.Drawing.Size(288, 20);
             this.lblObliged.TabIndex = 29;
             this.lblObliged.Text = "Velden met * zijn verplicht in te vullen";
             // 
@@ -324,9 +316,10 @@
             // 
             this.btnBrowseProfilePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseProfilePicture.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBrowseProfilePicture.Location = new System.Drawing.Point(345, 208);
+            this.btnBrowseProfilePicture.Location = new System.Drawing.Point(460, 256);
+            this.btnBrowseProfilePicture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowseProfilePicture.Name = "btnBrowseProfilePicture";
-            this.btnBrowseProfilePicture.Size = new System.Drawing.Size(74, 22);
+            this.btnBrowseProfilePicture.Size = new System.Drawing.Size(99, 27);
             this.btnBrowseProfilePicture.TabIndex = 30;
             this.btnBrowseProfilePicture.Text = "Bladeren...";
             this.btnBrowseProfilePicture.UseVisualStyleBackColor = true;
@@ -337,10 +330,9 @@
             this.lblAllowedProfilePictureFormats.AutoSize = true;
             this.lblAllowedProfilePictureFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAllowedProfilePictureFormats.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblAllowedProfilePictureFormats.Location = new System.Drawing.Point(182, 233);
-            this.lblAllowedProfilePictureFormats.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAllowedProfilePictureFormats.Location = new System.Drawing.Point(243, 287);
             this.lblAllowedProfilePictureFormats.Name = "lblAllowedProfilePictureFormats";
-            this.lblAllowedProfilePictureFormats.Size = new System.Drawing.Size(199, 13);
+            this.lblAllowedProfilePictureFormats.Size = new System.Drawing.Size(266, 17);
             this.lblAllowedProfilePictureFormats.TabIndex = 31;
             this.lblAllowedProfilePictureFormats.Text = "Toegestaande formaten: .jpeg, png, bmp";
             // 
@@ -349,10 +341,9 @@
             this.lblAllowedVOGFormats.AutoSize = true;
             this.lblAllowedVOGFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAllowedVOGFormats.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblAllowedVOGFormats.Location = new System.Drawing.Point(12, 52);
-            this.lblAllowedVOGFormats.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAllowedVOGFormats.Location = new System.Drawing.Point(16, 64);
             this.lblAllowedVOGFormats.Name = "lblAllowedVOGFormats";
-            this.lblAllowedVOGFormats.Size = new System.Drawing.Size(249, 13);
+            this.lblAllowedVOGFormats.Size = new System.Drawing.Size(331, 17);
             this.lblAllowedVOGFormats.TabIndex = 35;
             this.lblAllowedVOGFormats.Text = "Toegestaande formaten: .jpeg, png, bmp, pdf, docx";
             // 
@@ -360,9 +351,10 @@
             // 
             this.btnBrowseVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseVOG.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBrowseVOG.Location = new System.Drawing.Point(344, 28);
+            this.btnBrowseVOG.Location = new System.Drawing.Point(459, 34);
+            this.btnBrowseVOG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowseVOG.Name = "btnBrowseVOG";
-            this.btnBrowseVOG.Size = new System.Drawing.Size(74, 22);
+            this.btnBrowseVOG.Size = new System.Drawing.Size(99, 27);
             this.btnBrowseVOG.TabIndex = 34;
             this.btnBrowseVOG.Text = "Bladeren...";
             this.btnBrowseVOG.UseVisualStyleBackColor = true;
@@ -371,10 +363,10 @@
             // tbxVOGUrl
             // 
             this.tbxVOGUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxVOGUrl.Location = new System.Drawing.Point(14, 28);
-            this.tbxVOGUrl.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxVOGUrl.Location = new System.Drawing.Point(19, 34);
+            this.tbxVOGUrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxVOGUrl.Name = "tbxVOGUrl";
-            this.tbxVOGUrl.Size = new System.Drawing.Size(325, 23);
+            this.tbxVOGUrl.Size = new System.Drawing.Size(432, 27);
             this.tbxVOGUrl.TabIndex = 33;
             // 
             // gbxVOG
@@ -383,11 +375,11 @@
             this.gbxVOG.Controls.Add(this.lblAllowedVOGFormats);
             this.gbxVOG.Controls.Add(this.btnBrowseVOG);
             this.gbxVOG.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxVOG.Location = new System.Drawing.Point(10, 330);
-            this.gbxVOG.Margin = new System.Windows.Forms.Padding(2);
+            this.gbxVOG.Location = new System.Drawing.Point(13, 406);
+            this.gbxVOG.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxVOG.Name = "gbxVOG";
-            this.gbxVOG.Padding = new System.Windows.Forms.Padding(2);
-            this.gbxVOG.Size = new System.Drawing.Size(434, 81);
+            this.gbxVOG.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbxVOG.Size = new System.Drawing.Size(579, 100);
             this.gbxVOG.TabIndex = 36;
             this.gbxVOG.TabStop = false;
             this.gbxVOG.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
@@ -396,19 +388,20 @@
             // tbxPerk
             // 
             this.tbxPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxPerk.Location = new System.Drawing.Point(14, 28);
-            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxPerk.Location = new System.Drawing.Point(19, 34);
+            this.tbxPerk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPerk.Name = "tbxPerk";
-            this.tbxPerk.Size = new System.Drawing.Size(325, 23);
+            this.tbxPerk.Size = new System.Drawing.Size(432, 27);
             this.tbxPerk.TabIndex = 36;
             // 
             // btnAddPerk
             // 
             this.btnAddPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPerk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAddPerk.Location = new System.Drawing.Point(344, 29);
+            this.btnAddPerk.Location = new System.Drawing.Point(459, 36);
+            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddPerk.Name = "btnAddPerk";
-            this.btnAddPerk.Size = new System.Drawing.Size(74, 22);
+            this.btnAddPerk.Size = new System.Drawing.Size(99, 27);
             this.btnAddPerk.TabIndex = 36;
             this.btnAddPerk.Text = "Toevoegen";
             this.btnAddPerk.UseVisualStyleBackColor = true;
@@ -418,10 +411,9 @@
             // 
             this.lblPerks.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPerks.Location = new System.Drawing.Point(14, 74);
-            this.lblPerks.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPerks.Location = new System.Drawing.Point(19, 91);
             this.lblPerks.Name = "lblPerks";
-            this.lblPerks.Size = new System.Drawing.Size(391, 42);
+            this.lblPerks.Size = new System.Drawing.Size(521, 52);
             this.lblPerks.TabIndex = 38;
             // 
             // gbxPerks
@@ -431,11 +423,11 @@
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxPerks.Location = new System.Drawing.Point(10, 416);
-            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2);
+            this.gbxPerks.Location = new System.Drawing.Point(13, 512);
+            this.gbxPerks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxPerks.Name = "gbxPerks";
-            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2);
-            this.gbxPerks.Size = new System.Drawing.Size(434, 127);
+            this.gbxPerks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbxPerks.Size = new System.Drawing.Size(579, 156);
             this.gbxPerks.TabIndex = 39;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
@@ -445,10 +437,9 @@
             // 
             this.lblSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkills.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblSkills.Location = new System.Drawing.Point(12, 54);
-            this.lblSkills.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSkills.Location = new System.Drawing.Point(16, 66);
             this.lblSkills.Name = "lblSkills";
-            this.lblSkills.Size = new System.Drawing.Size(76, 20);
+            this.lblSkills.Size = new System.Drawing.Size(101, 25);
             this.lblSkills.TabIndex = 39;
             this.lblSkills.Text = "Vaardigheden: ";
             // 
@@ -456,9 +447,10 @@
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBack.Location = new System.Drawing.Point(10, 548);
+            this.btnBack.Location = new System.Drawing.Point(13, 674);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(119, 29);
+            this.btnBack.Size = new System.Drawing.Size(159, 36);
             this.btnBack.TabIndex = 40;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -469,31 +461,30 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblName.Location = new System.Drawing.Point(2, 0);
-            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Location = new System.Drawing.Point(3, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(58, 17);
+            this.lblName.Size = new System.Drawing.Size(69, 20);
             this.lblName.TabIndex = 41;
             this.lblName.Text = "Naam: *";
             // 
             // tbxName
             // 
             this.tbxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxName.Location = new System.Drawing.Point(184, -2);
-            this.tbxName.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxName.Location = new System.Drawing.Point(245, -2);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxName.Name = "tbxName";
-            this.tbxName.Size = new System.Drawing.Size(157, 23);
+            this.tbxName.Size = new System.Drawing.Size(208, 27);
             this.tbxName.TabIndex = 42;
             // 
             // helpGbx
             // 
             this.helpGbx.Controls.Add(this.rbtNeedHelp);
             this.helpGbx.Controls.Add(this.rbtCanHelp);
-            this.helpGbx.Location = new System.Drawing.Point(10, 26);
-            this.helpGbx.Margin = new System.Windows.Forms.Padding(2);
+            this.helpGbx.Location = new System.Drawing.Point(13, 32);
+            this.helpGbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.helpGbx.Name = "helpGbx";
-            this.helpGbx.Padding = new System.Windows.Forms.Padding(2);
-            this.helpGbx.Size = new System.Drawing.Size(433, 40);
+            this.helpGbx.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.helpGbx.Size = new System.Drawing.Size(577, 49);
             this.helpGbx.TabIndex = 44;
             this.helpGbx.TabStop = false;
             // 
@@ -522,19 +513,19 @@
             this.pnlInformation.Controls.Add(this.tbxRepeatPassword);
             this.pnlInformation.Controls.Add(this.tbxLocation);
             this.pnlInformation.Controls.Add(this.dtpBirthdate);
-            this.pnlInformation.Location = new System.Drawing.Point(10, 71);
-            this.pnlInformation.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlInformation.Location = new System.Drawing.Point(13, 87);
+            this.pnlInformation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlInformation.Name = "pnlInformation";
-            this.pnlInformation.Size = new System.Drawing.Size(433, 254);
+            this.pnlInformation.Size = new System.Drawing.Size(577, 313);
             this.pnlInformation.TabIndex = 45;
             // 
             // pbProfilePic
             // 
             this.pbProfilePic.Image = ((System.Drawing.Image)(resources.GetObject("pbProfilePic.Image")));
-            this.pbProfilePic.Location = new System.Drawing.Point(348, 2);
-            this.pbProfilePic.Margin = new System.Windows.Forms.Padding(2);
+            this.pbProfilePic.Location = new System.Drawing.Point(464, 2);
+            this.pbProfilePic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbProfilePic.Name = "pbProfilePic";
-            this.pbProfilePic.Size = new System.Drawing.Size(75, 81);
+            this.pbProfilePic.Size = new System.Drawing.Size(100, 100);
             this.pbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfilePic.TabIndex = 47;
             this.pbProfilePic.TabStop = false;
@@ -543,9 +534,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(347, 108);
+            this.label1.Location = new System.Drawing.Point(463, 133);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 46;
             this.label1.Text = "RFID";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -554,27 +546,28 @@
             // 
             this.pnlHasRfid.BackColor = System.Drawing.Color.Red;
             this.pnlHasRfid.ForeColor = System.Drawing.SystemColors.Menu;
-            this.pnlHasRfid.Location = new System.Drawing.Point(348, 131);
+            this.pnlHasRfid.Location = new System.Drawing.Point(464, 161);
+            this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlHasRfid.Name = "pnlHasRfid";
-            this.pnlHasRfid.Size = new System.Drawing.Size(75, 49);
+            this.pnlHasRfid.Size = new System.Drawing.Size(100, 60);
             this.pnlHasRfid.TabIndex = 45;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.rbtFemale);
             this.panel1.Controls.Add(this.rbtMale);
-            this.panel1.Location = new System.Drawing.Point(184, 184);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(245, 226);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(119, 16);
+            this.panel1.Size = new System.Drawing.Size(159, 20);
             this.panel1.TabIndex = 44;
             // 
             // RegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(464, 590);
+            this.ClientSize = new System.Drawing.Size(619, 726);
             this.Controls.Add(this.pnlInformation);
             this.Controls.Add(this.helpGbx);
             this.Controls.Add(this.btnBack);
@@ -582,7 +575,7 @@
             this.Controls.Add(this.gbxVOG);
             this.Controls.Add(this.lblObliged);
             this.Controls.Add(this.btnRegister);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "RegisterForm";
             this.Text = "Register";
             this.Closed += new System.EventHandler(this.RegisterForm_Closed);
