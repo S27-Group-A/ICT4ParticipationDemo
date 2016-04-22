@@ -600,7 +600,7 @@ namespace Participation
             List<Request> RequestList = new List<Request>();
             try
             {
-                if(patient == typeof(Volunteer))
+                if(patient.GetType() == typeof(Volunteer))
                 {
                     OracleCommand command = CreateOracleCommand("SELECT * FROM REQUEST WHERE PERSONID = :userid");
                     command.Parameters.Add(":userID", patient.Id);
