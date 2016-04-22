@@ -149,7 +149,7 @@ namespace Participation.InlogSysteem.GUI
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     string sourceFile = ofd.FileName;
-                    profilePictureUrlTbx.Text = ofd.SafeFileName;
+                    profilePictureUrlTbx.Text = ofd.FileName;
                 }
 
             }
@@ -163,7 +163,7 @@ namespace Participation.InlogSysteem.GUI
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     string sourceFile = ofd.FileName;
-                    vogUrlTbx.Text = ofd.SafeFileName;
+                    vogUrlTbx.Text = ofd.FileName;
                 }
 
             }
