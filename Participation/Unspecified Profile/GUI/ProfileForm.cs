@@ -74,6 +74,7 @@ namespace Participation.BeheerSysteem.GUI
             lblLocation.Text = _loggedInUser.Location;
             lblPhonenumber.Text = _loggedInUser.PhoneNumber;
             lblGender.Text = _loggedInUser.Gender.ToString();
+            pbxProfilePicture.Image = Image.FromFile(_loggedInUser.ProfilePicture);
         }
 
         private void RefreshPic()
