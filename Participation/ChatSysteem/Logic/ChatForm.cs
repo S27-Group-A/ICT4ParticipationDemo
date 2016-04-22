@@ -18,8 +18,9 @@ namespace Participation.ChatSysteem
     public partial class ChatForm : Form
     {
         ReceiveClient RecieveClient;
-       
+
         public ChatForm(ReceiveClient recieveClient, string target)
+
         {
             InitializeComponent();
             this.FormClosing+=new FormClosingEventHandler(frmClient_FormClosing);
@@ -84,7 +85,6 @@ namespace Participation.ChatSysteem
                 txtSend.Clear();
             }
         }
-
     }
    
 }

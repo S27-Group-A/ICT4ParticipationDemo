@@ -1,0 +1,44 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/DennisBranch' into DeliveryMergeBranch
+
+# Conflicts:
+#	Database/Createscript.sql
+#	Participation/ChatSysteem/Logic/ChatForm.cs
+#	Participation/SharedModels/FormProvider.cs
+#	Participation/SharedModels/Volunteer.cs
+#	participation/databasemanager/DatabaseManager.cs
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch DeliveryMergeBranch
+# Your branch is up-to-date with 'origin/DeliveryMergeBranch'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	new file:   0ao55hyn.hx3.txt
+#	modified:   Database/Createscript.sql
+#	deleted:    Participation/BeheerSysteem/GUI/AcceptVolunteer.Designer.cs
+#	deleted:    Participation/BeheerSysteem/GUI/AcceptVolunteer.cs
+#	deleted:    Participation/BeheerSysteem/GUI/AcceptVolunteer.resx
+#	modified:   Participation/BeheerSysteem/GUI/AdminSystemForm.Designer.cs
+#	modified:   Participation/BeheerSysteem/GUI/AdminSystemForm.cs
+#	deleted:    Participation/BeheerSysteem/GUI/AdministratorRights.Designer.cs
+#	deleted:    Participation/BeheerSysteem/GUI/AdministratorRights.cs
+#	deleted:    Participation/BeheerSysteem/GUI/AdministratorRights.resx
+#	modified:   Participation/BeheerSysteem/Logic/AdministrationSystem.cs
+#	modified:   Participation/ChatSysteem/Logic/ChatForm.Designer.cs
+#	modified:   Participation/ChatSysteem/Logic/ChatForm.cs
+#	modified:   Participation/Participation.csproj
+#	modified:   Participation/SharedModels/FormProvider.cs
+#	modified:   Participation/SharedModels/User.cs
+#	modified:   Participation/SharedModels/Volunteer.cs
+#	new file:   jb5iikse.1zx.txt
+#
+
