@@ -121,7 +121,10 @@ namespace Participation.InlogSysteem.GUI
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
                             tbxPassword.Text);
                         if (_lisLogic.AddUser(newVolunteer))
-                            MessageBox.Show(_succesfullRegisterationMsg);
+                        {
+                            //TODO Add Perks
+                           MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                     if (rbtFemale.Checked)
@@ -130,7 +133,10 @@ namespace Participation.InlogSysteem.GUI
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
                             tbxPassword.Text);
                         if (_lisLogic.AddUser(newVolunteer))
+                        {
+                            //TODO Add Perks
                             MessageBox.Show(_succesfullRegisterationMsg);
+                        }
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
