@@ -204,7 +204,10 @@
                 {
                     command = CreateOracleCommand("SELECT MAX(PERSONID) FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
-                    int id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
+                    while (reader.Read())
+                    {
+                        user.Id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
+                    }
                     return true;
                 }
                 else
