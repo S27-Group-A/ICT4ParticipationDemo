@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using Oracle.DataAccess;
     using Oracle.DataAccess.Client;
+    using Oracle.DataAccess.Types;
     using Participation.InlogSysteem.Interfaces;
     using Participation.SharedModels;
 
@@ -163,7 +164,7 @@
             {
                 OracleCommand command =
                     CreateOracleCommand(
-                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(SEQ_PERSONID.NextVal, :personType, :name, :email, :description,:dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
+                        "INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password) VALUES(seq_PersonID.NextVal, :personType, :name, :email, :description, :dateOfBirth, :profilePicture, :location, :phone, :gender, :password)");
 
                 if (user.GetType() == typeof(Patient))
                 {
@@ -173,7 +174,7 @@
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
-
+       
                 switch (user.Gender)
                 {
                     case GenderEnum.Male:
@@ -188,6 +189,7 @@
                     }
                 }
 
+                OracleDate oDate = (OracleDate)user.Birthday;
                 command.Parameters.Add(":name", user.Name);
                 command.Parameters.Add(":email", user.Email);
                 command.Parameters.Add(":description", user.Description);
@@ -196,12 +198,13 @@
                 command.Parameters.Add(":location", user.Location);
                 command.Parameters.Add(":phone", user.PhoneNumber);
                 command.Parameters.Add(":password", user.Password);
+                command.BindByName = true;
 
                 if (ExecuteNonQuery(command))
                 {
-                    command = CreateOracleCommand("SELECT MAX(ID) FROM PERSON");
+                    command = CreateOracleCommand("SELECT MAX(PERSONID) FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
-                    user.Id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
+                    int id = Convert.ToInt32(reader["MAX(PERSONID)"].ToString());
                     return true;
                 }
                 else
