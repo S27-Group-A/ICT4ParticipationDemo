@@ -35,7 +35,7 @@ namespace Participation.SharedModels
         {
             _reviews = new List<Review>();
             _perks = new List<string>();
-            System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
+            //stem.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
         }
 
         public Volunteer(string name, string email, string description,

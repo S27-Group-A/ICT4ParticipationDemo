@@ -29,7 +29,7 @@
             //RefreshPic();
             if (_loggedInUser.GetType() == typeof(Volunteer))
             {
-                RefreshVogUrl();
+                //RefreshVogUrl(); obsolete
                 RefreshPerks();
             }
 
