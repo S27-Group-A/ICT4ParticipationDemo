@@ -36,11 +36,6 @@ namespace Participation.InlogSysteem.GUI
             }
         }
 
-        /// <summary>
-        ///     Sets the radiobutton to patient
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void needHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
             pnlInformation.Show();
@@ -50,11 +45,6 @@ namespace Participation.InlogSysteem.GUI
                 ShowVogAndPerks();
         }
 
-        /// <summary>
-        ///     Sets the radiobutton to volunteer
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void canHelpRbt_CheckedChanged(object sender, EventArgs e)
         {
             pnlInformation.Show();
@@ -64,18 +54,12 @@ namespace Participation.InlogSysteem.GUI
                 ShowVogAndPerks();
         }
 
-        /// <summary>
-        ///     Volunteer only boxes
-        /// </summary>
         private void ShowVogAndPerks()
         {
             gbxPerks.Show();
             gbxVOG.Show();
         }
 
-        /// <summary>
-        ///     Patient only boxes
-        /// </summary>
         private void HideVogAndPerks()
         {
             gbxPerks.Hide();
@@ -164,7 +148,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text, tbxVOGUrl.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text, false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add Perks
@@ -193,7 +177,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text, tbxVOGUrl.Text);
+                            tbxPassword.Text, tbxVOGUrl.Text, false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add perk

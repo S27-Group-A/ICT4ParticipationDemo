@@ -20,13 +20,15 @@ namespace Participation.SharedModels
         public string PhoneNumber { get; set; }
         public GenderEnum Gender { get; set; }
         public string Password { get; set; }
-        public List<Meeting> meetings { get; set; }
+        public List<Meeting> Meetings { get; set; }
+        public int Ban { get; set; }
+        public DateTime Unban { get; set; }
 
         //constructors
 
         public User(int Id, string name, string email, string description,
-            DateTime birthday, string profilePicture, string location,
-            string phoneNumber, GenderEnum gender, string password)
+    DateTime birthday, string profilePicture, string location,
+    string phoneNumber, GenderEnum gender, string password)
         {
             this.Id = Id;
             Name = name;
@@ -38,7 +40,8 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            meetings = new List<Meeting>();
+            Meetings = null;
+            Ban = 0;
         }
 
         public User(string name, string email, string description,
@@ -55,17 +58,13 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            meetings = new List<Meeting>();
+            Meetings = null;
+            Ban = 0;
         }
 
-        //methods
-
-        /// <summary>
-        /// Profiel gegevens aanpassen
-        /// </summary>
-        private void EditProfile()
+        public override string ToString()
         {
-
+            return Name;
         }
     }
 }

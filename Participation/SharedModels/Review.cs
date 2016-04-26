@@ -28,5 +28,10 @@ namespace Participation.SharedModels
             this.Rating = Rating;
             this.Text = Text;
         }
+
+        public override string ToString()
+        {
+            return Patient.Name + " - " + Volunteer.Name + " - " + Text.Substring(0, 5) + "...";
+        }
     }
 }

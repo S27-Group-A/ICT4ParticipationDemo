@@ -45,10 +45,9 @@ namespace UI
             else
             {
                 var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value,
-                    (int) urgencyLbx.SelectedItem);
+                    (int)urgencyLbx.SelectedItem);
                 MessageBox.Show("Test: \n" + request);
 
-                //TODO Implement logic
                 _hpsLogic.AddRequest(FormProvider.LoggedInUser as Patient, request);
             }
         }

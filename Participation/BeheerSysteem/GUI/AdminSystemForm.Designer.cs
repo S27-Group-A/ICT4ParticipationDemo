@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.gb_Form = new System.Windows.Forms.GroupBox();
+            this.btnJudgeVolunteer = new System.Windows.Forms.Button();
+            this.btnDeleteAccount = new System.Windows.Forms.Button();
+            this.btnChangeRights = new System.Windows.Forms.Button();
             this.btnDeleteReviews = new System.Windows.Forms.Button();
             this.btnDeleteRequest = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,16 +51,7 @@
             this.pbProfilePicture = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lbxUserList = new System.Windows.Forms.ListBox();
-            this.btn_Profile = new System.Windows.Forms.Button();
-            this.btnHelprequests = new System.Windows.Forms.Button();
-            this.btnElderly = new System.Windows.Forms.Button();
-            this.btnChat = new System.Windows.Forms.Button();
-            this.btnAdmin = new System.Windows.Forms.Button();
-            this.btnVolunteers = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.btnChangeRights = new System.Windows.Forms.Button();
-            this.btnDeleteAccount = new System.Windows.Forms.Button();
-            this.btnJudgeVolunteer = new System.Windows.Forms.Button();
             this.gb_Form.SuspendLayout();
             this.gbxBanUser.SuspendLayout();
             this.gbxProfileInformation.SuspendLayout();
@@ -85,6 +79,36 @@
             this.gb_Form.Size = new System.Drawing.Size(885, 591);
             this.gb_Form.TabIndex = 0;
             this.gb_Form.TabStop = false;
+            // 
+            // btnJudgeVolunteer
+            // 
+            this.btnJudgeVolunteer.Location = new System.Drawing.Point(7, 35);
+            this.btnJudgeVolunteer.Name = "btnJudgeVolunteer";
+            this.btnJudgeVolunteer.Size = new System.Drawing.Size(66, 60);
+            this.btnJudgeVolunteer.TabIndex = 12;
+            this.btnJudgeVolunteer.Text = "Keur Vrijwilliger";
+            this.btnJudgeVolunteer.UseVisualStyleBackColor = true;
+            this.btnJudgeVolunteer.Click += new System.EventHandler(this.btnJudgeVolunteer_Click);
+            // 
+            // btnDeleteAccount
+            // 
+            this.btnDeleteAccount.Location = new System.Drawing.Point(79, 35);
+            this.btnDeleteAccount.Name = "btnDeleteAccount";
+            this.btnDeleteAccount.Size = new System.Drawing.Size(62, 60);
+            this.btnDeleteAccount.TabIndex = 11;
+            this.btnDeleteAccount.Text = "Verwijder Account";
+            this.btnDeleteAccount.UseVisualStyleBackColor = true;
+            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
+            // 
+            // btnChangeRights
+            // 
+            this.btnChangeRights.Location = new System.Drawing.Point(147, 35);
+            this.btnChangeRights.Name = "btnChangeRights";
+            this.btnChangeRights.Size = new System.Drawing.Size(59, 60);
+            this.btnChangeRights.TabIndex = 10;
+            this.btnChangeRights.Text = "Pas Rechten Aan";
+            this.btnChangeRights.UseVisualStyleBackColor = true;
+            this.btnChangeRights.Click += new System.EventHandler(this.btnChangeRights_Click);
             // 
             // btnDeleteReviews
             // 
@@ -275,66 +299,6 @@
             this.lbxUserList.TabIndex = 0;
             this.lbxUserList.SelectedIndexChanged += new System.EventHandler(this.lbx_userList_SelectedIndexChanged);
             // 
-            // btn_Profile
-            // 
-            this.btn_Profile.Location = new System.Drawing.Point(26, 35);
-            this.btn_Profile.Name = "btn_Profile";
-            this.btn_Profile.Size = new System.Drawing.Size(75, 23);
-            this.btn_Profile.TabIndex = 1;
-            this.btn_Profile.Text = "Profiel";
-            this.btn_Profile.UseVisualStyleBackColor = true;
-            this.btn_Profile.Click += new System.EventHandler(this.btn_Profiel_Click);
-            // 
-            // btnHelprequests
-            // 
-            this.btnHelprequests.Location = new System.Drawing.Point(26, 64);
-            this.btnHelprequests.Name = "btnHelprequests";
-            this.btnHelprequests.Size = new System.Drawing.Size(75, 23);
-            this.btnHelprequests.TabIndex = 2;
-            this.btnHelprequests.Text = "Hulpvragen";
-            this.btnHelprequests.UseVisualStyleBackColor = true;
-            this.btnHelprequests.Click += new System.EventHandler(this.btn_Hulpvragen_Click);
-            // 
-            // btnElderly
-            // 
-            this.btnElderly.Location = new System.Drawing.Point(26, 93);
-            this.btnElderly.Name = "btnElderly";
-            this.btnElderly.Size = new System.Drawing.Size(75, 23);
-            this.btnElderly.TabIndex = 3;
-            this.btnElderly.Text = "Ouderen";
-            this.btnElderly.UseVisualStyleBackColor = true;
-            this.btnElderly.Click += new System.EventHandler(this.btn_Ouderen_Click);
-            // 
-            // btnChat
-            // 
-            this.btnChat.Location = new System.Drawing.Point(26, 151);
-            this.btnChat.Name = "btnChat";
-            this.btnChat.Size = new System.Drawing.Size(75, 23);
-            this.btnChat.TabIndex = 4;
-            this.btnChat.Text = "Chat";
-            this.btnChat.UseVisualStyleBackColor = true;
-            this.btnChat.Click += new System.EventHandler(this.btn_Chat_Click);
-            // 
-            // btnAdmin
-            // 
-            this.btnAdmin.Location = new System.Drawing.Point(26, 180);
-            this.btnAdmin.Name = "btnAdmin";
-            this.btnAdmin.Size = new System.Drawing.Size(75, 23);
-            this.btnAdmin.TabIndex = 5;
-            this.btnAdmin.Text = "Beheer";
-            this.btnAdmin.UseVisualStyleBackColor = true;
-            this.btnAdmin.Click += new System.EventHandler(this.btn_Beheer_Click);
-            // 
-            // btnVolunteers
-            // 
-            this.btnVolunteers.Location = new System.Drawing.Point(26, 122);
-            this.btnVolunteers.Name = "btnVolunteers";
-            this.btnVolunteers.Size = new System.Drawing.Size(75, 23);
-            this.btnVolunteers.TabIndex = 6;
-            this.btnVolunteers.Text = "Vrijwiligers";
-            this.btnVolunteers.UseVisualStyleBackColor = true;
-            this.btnVolunteers.Click += new System.EventHandler(this.btn_Vrijwilligers_Click);
-            // 
             // btnLogOut
             // 
             this.btnLogOut.Location = new System.Drawing.Point(26, 494);
@@ -345,36 +309,6 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
-            // btnChangeRights
-            // 
-            this.btnChangeRights.Location = new System.Drawing.Point(147, 35);
-            this.btnChangeRights.Name = "btnChangeRights";
-            this.btnChangeRights.Size = new System.Drawing.Size(59, 60);
-            this.btnChangeRights.TabIndex = 10;
-            this.btnChangeRights.Text = "Pas Rechten Aan";
-            this.btnChangeRights.UseVisualStyleBackColor = true;
-            this.btnChangeRights.Click += new System.EventHandler(this.btnChangeRights_Click);
-            // 
-            // btnDeleteAccount
-            // 
-            this.btnDeleteAccount.Location = new System.Drawing.Point(79, 35);
-            this.btnDeleteAccount.Name = "btnDeleteAccount";
-            this.btnDeleteAccount.Size = new System.Drawing.Size(62, 60);
-            this.btnDeleteAccount.TabIndex = 11;
-            this.btnDeleteAccount.Text = "Verwijder Account";
-            this.btnDeleteAccount.UseVisualStyleBackColor = true;
-            this.btnDeleteAccount.Click += new System.EventHandler(this.btnDeleteAccount_Click);
-            // 
-            // btnJudgeVolunteer
-            // 
-            this.btnJudgeVolunteer.Location = new System.Drawing.Point(7, 35);
-            this.btnJudgeVolunteer.Name = "btnJudgeVolunteer";
-            this.btnJudgeVolunteer.Size = new System.Drawing.Size(66, 60);
-            this.btnJudgeVolunteer.TabIndex = 12;
-            this.btnJudgeVolunteer.Text = "Keur Vrijwilliger";
-            this.btnJudgeVolunteer.UseVisualStyleBackColor = true;
-            this.btnJudgeVolunteer.Click += new System.EventHandler(this.btnJudgeVolunteer_Click);
-            // 
             // AdminSystemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -382,12 +316,6 @@
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(864, 571);
             this.Controls.Add(this.btnLogOut);
-            this.Controls.Add(this.btnVolunteers);
-            this.Controls.Add(this.btnAdmin);
-            this.Controls.Add(this.btnChat);
-            this.Controls.Add(this.btnElderly);
-            this.Controls.Add(this.btnHelprequests);
-            this.Controls.Add(this.btn_Profile);
             this.Controls.Add(this.gb_Form);
             this.Name = "AdminSystemForm";
             this.Text = "BeheerSysteemForm";
@@ -407,12 +335,6 @@
         private System.Windows.Forms.GroupBox gb_Form;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbxUserList;
-        private System.Windows.Forms.Button btn_Profile;
-        private System.Windows.Forms.Button btnHelprequests;
-        private System.Windows.Forms.Button btnElderly;
-        private System.Windows.Forms.Button btnChat;
-        private System.Windows.Forms.Button btnAdmin;
-        private System.Windows.Forms.Button btnVolunteers;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btnDeleteReviews;
         private System.Windows.Forms.Button btnDeleteRequest;

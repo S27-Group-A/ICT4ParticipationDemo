@@ -49,6 +49,7 @@
             {
                 MessageBox.Show("U bent nu uitgelogd.");
                 FormProvider.StartMenu.Show();
+                FormProvider.LoggedInUser = null;
                 this.Close();
 
             }
@@ -56,7 +57,7 @@
             {
             }
         }
-        
+
         /// <summary>
         /// Non used button
         /// </summary>
@@ -64,7 +65,7 @@
         /// <param name="e"></param>
         private void btn_Profiel_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            RefreshInfo();
         }
 
         /// <summary>
@@ -110,8 +111,8 @@
         {
             gbxVog.Visible = true;
             Volunteer tempV = _loggedInUser as Volunteer;
-            lblVogUrl.Text = tempV._verklaringPdf;
-            pbVog.Image = Image.FromFile(tempV._verklaringPdf);
+            lblVogUrl.Text = tempV.verklaringPdf;
+            pbVog.Image = Image.FromFile(tempV.verklaringPdf);
         }
 
         /// <summary>

@@ -11,6 +11,8 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 DROP TABLE Perk_Request CASCADE CONSTRAINTS;
 
 
+
+
 -- CREATE TABLES --
 CREATE TABLE Person
 (
@@ -25,10 +27,8 @@ CREATE TABLE Person
 	phone 			      	VARCHAR2(32),
 	gender 			      	VARCHAR2(1) 	    NOT NULL,
 	password          		VARCHAR(64)       	NOT NULL,
-	
 	rfid					VARCHAR(64)			UNIQUE,
 	vog						VARCHAR(255)    	UNIQUE,              -- Fileserver
-	
 	banned					NUMBER(1)			DEFAULT 0,
 	unban					DATE,
 	enabled					NUMBER(1)			DEFAULT 1,
@@ -43,6 +43,7 @@ CREATE TABLE Person
 
 CREATE TABLE Perk
 (
+
 	perkID					NUMBER				        PRIMARY KEY,
 	perktext 			    VARCHAR2(256) 	  	NOT NULL
 );
@@ -94,7 +95,6 @@ CREATE TABLE Request
 
 CREATE TABLE Response
 (
-
 	responderID 	  		NUMBER 			    NOT NULL,
 	requestID 		  		NUMBER 			    NOT NULL,
 	placingDate			    DATE 			    NOT NULL,
@@ -162,6 +162,7 @@ INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
 VALUES(4, 1, 3, 2, 'was wel okay');
 INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description)
 VALUES(5, 1, 3, 1, 'Deed het niet goed, kwam niet spontaan over');
+
 
 INSERT INTO Meeting(volunteerID, patientID, place, placingdate, status)
 VALUES(3, 1, 'Uit eten', to_date('10/09/2015 12:15', 'dd/mm/yyyy mi:ss'), 0);
@@ -279,6 +280,7 @@ BEGIN
                        ' increment by 1';
 END;
 /
+
 
 
 COMMIT;

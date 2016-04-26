@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ServiceModel;
-using System.Reflection;
-
-
+﻿
 namespace Server
 {
-
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.ServiceModel;
+    using System.Reflection;
 
     public delegate void ListOfElder(List<string> ElderNames, object sender);
 
@@ -33,7 +31,7 @@ namespace Server
     public interface IReceiveChatService
     {
         [OperationContract(IsOneWay = true)]
-        void ReceiveMessage(string msg,string receiver);
+        void ReceiveMessage(string msg, string receiver);
         [OperationContract(IsOneWay = true)]
         void SendVolunteerNames(List<string> names);
         [OperationContract(IsOneWay = true)]
@@ -44,7 +42,7 @@ namespace Server
     public class ChatService : ISendChatService 
     {
         Dictionary<string, IReceiveChatService> ElderNames = new Dictionary<string, IReceiveChatService>();
-        Dictionary<string, IReceiveChatService> VolunteerNames = new Dictionary<string,IReceiveChatService>();
+        Dictionary<string, IReceiveChatService> VolunteerNames = new Dictionary<string, IReceiveChatService>();
         
         public static event ListOfElder ChatListOfElderNames;
 
@@ -56,21 +54,21 @@ namespace Server
 
         public void Close()
         {
-            callback = null;
-            ElderNames.Clear();
-            VolunteerNames.Clear();
+            this.callback = null;
+            this.ElderNames.Clear();
+            this.VolunteerNames.Clear();
         }
 
         public void StartVolunteer(string Name)
         {
             try
             {
-                if (!VolunteerNames.ContainsKey(Name))
+                if (!this.VolunteerNames.ContainsKey(Name))
                 {
-                    callback = OperationContext.Current.GetCallbackChannel<IReceiveChatService>();
-                    AddVolunteerUser(Name, callback);
-                    SendElderNames();
-                    SendVolunteerNames();
+                    this.callback = OperationContext.Current.GetCallbackChannel<IReceiveChatService>();
+                    this.AddVolunteerUser(Name, this.callback);
+                    this.SendElderNames();
+                    this.SendVolunteerNames();
                 }
             }
             catch (Exception ex)
@@ -83,12 +81,12 @@ namespace Server
         {
             try
             {
-                if (!ElderNames.ContainsKey(Name))
+                if (!this.ElderNames.ContainsKey(Name))
                 {
-                    callback = OperationContext.Current.GetCallbackChannel<IReceiveChatService>();
-                    AddElderUser(Name, callback);
-                    SendElderNames();
-                    SendVolunteerNames();
+                    this.callback = OperationContext.Current.GetCallbackChannel<IReceiveChatService>();
+                    this.AddElderUser(Name, this.callback);
+                    this.SendElderNames();
+                    this.SendVolunteerNames();
 
                 }
             }
@@ -101,11 +99,11 @@ namespace Server
         {
             try
             {
-                if (VolunteerNames.ContainsKey(Name))
+                if (this.VolunteerNames.ContainsKey(Name))
                 {
-                    VolunteerNames.Remove(Name);
-                    SendVolunteerNames();
-                    SendElderNames();
+                    this.VolunteerNames.Remove(Name);
+                    this.SendVolunteerNames();
+                    this.SendElderNames();
                  }
             }
             catch (Exception ex)
@@ -117,11 +115,11 @@ namespace Server
         {
             try
             {
-                if (ElderNames.ContainsKey(Name))
+                if (this.ElderNames.ContainsKey(Name))
                 {
-                    ElderNames.Remove(Name);
-                    SendElderNames();
-                    SendVolunteerNames();
+                    this.ElderNames.Remove(Name);
+                    this.SendElderNames();
+                    this.SendVolunteerNames();
                 }
             }
             catch (Exception ex)
@@ -131,55 +129,55 @@ namespace Server
         }
         void SendVolunteerNames()
         {
-             foreach (KeyValuePair<string, IReceiveChatService> name in ElderNames)
+            foreach (KeyValuePair<string, IReceiveChatService> name in this.ElderNames)
             {
                 IReceiveChatService proxy = name.Value;
-                proxy.SendVolunteerNames(VolunteerNames.Keys.ToList());
+                proxy.SendVolunteerNames(this.VolunteerNames.Keys.ToList());
             }
 
             if (ChatListOfVolunteerNames != null)
-                ChatListOfVolunteerNames(VolunteerNames.Keys.ToList(), this);
+                ChatListOfVolunteerNames(this.VolunteerNames.Keys.ToList(), this);
         }
 
         void SendElderNames()
         {
-            foreach (KeyValuePair<string, IReceiveChatService> name in VolunteerNames)
+            foreach (KeyValuePair<string, IReceiveChatService> name in this.VolunteerNames)
             {
                 IReceiveChatService proxy = name.Value;
-                proxy.SendElderNames(ElderNames.Keys.ToList());
+                proxy.SendElderNames(this.ElderNames.Keys.ToList());
             }
 
             if (ChatListOfElderNames != null)
-                ChatListOfElderNames(ElderNames.Keys.ToList(), this);
+                ChatListOfElderNames(this.ElderNames.Keys.ToList(), this);
         }
 
-        void ISendChatService.SendMessage(string msg,string sender, string receiver)
+        void ISendChatService.SendMessage(string msg, string sender, string receiver)
         {
-            if (ElderNames.ContainsKey(receiver))
+            if (this.ElderNames.ContainsKey(receiver))
             {
-                callback = ElderNames[receiver];
-                callback.ReceiveMessage(msg, sender);
+                this.callback = this.ElderNames[receiver];
+                this.callback.ReceiveMessage(msg, sender);
            }
 
-            if (VolunteerNames.ContainsKey(receiver))
+            if (this.VolunteerNames.ContainsKey(receiver))
             {
-                callback = VolunteerNames[receiver];
-                callback.ReceiveMessage(msg, sender);
+                this.callback = this.VolunteerNames[receiver];
+                this.callback.ReceiveMessage(msg, sender);
             }
         }
 
-        private void AddElderUser(string name,IReceiveChatService callback)
+        private void AddElderUser(string name, IReceiveChatService callback)
         {
-            ElderNames.Add(name, callback);
-            if (ChatListOfElderNames !=null)
-                ChatListOfElderNames(ElderNames.Keys.ToList(), this);
+            this.ElderNames.Add(name, callback);
+            if (ChatListOfElderNames != null)
+                ChatListOfElderNames(this.ElderNames.Keys.ToList(), this);
             
         }
         private void AddVolunteerUser(string name, IReceiveChatService callback)
         {
-            VolunteerNames.Add(name, callback);
+            this.VolunteerNames.Add(name, callback);
             if (ChatListOfVolunteerNames != null)
-                ChatListOfVolunteerNames(VolunteerNames.Keys.ToList(), this);
+                ChatListOfVolunteerNames(this.VolunteerNames.Keys.ToList(), this);
 
         }
     }

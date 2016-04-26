@@ -23,7 +23,7 @@ namespace Participation.Unspecified_Profile.GUI
             width = 0;
             height = 0;
             Volunteer tempV = FormProvider.LoggedInUser as Volunteer;
-            pbVog.Image = Image.FromFile(tempV._verklaringPdf);
+            pbVog.Image = Image.FromFile(tempV.verklaringPdf);
         }
 
         private void ViewVog_Load(object sender, EventArgs e)
