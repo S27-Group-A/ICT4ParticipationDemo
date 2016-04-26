@@ -8,7 +8,7 @@ namespace Participation.HulpSysteem.GUI
     public partial class RequestsViewForm : Form
     {
         /// <summary>
-        ///     Create a new instance of HPSLogic
+        ///     Create a new instance of HPSLogic.
         /// </summary>
         public HPSLogic _hpsLogic = new HPSLogic();
 
@@ -23,7 +23,7 @@ namespace Participation.HulpSysteem.GUI
         }
 
         /// <summary>
-        ///     Adds request on click event
+        ///     Adds request on click event.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
