@@ -918,16 +918,17 @@
         /// <returns></returns>
         public static bool BanUser(IUser user)
         {
-            if(user.GetType() == typeof(Volunteer))
+            if (user.GetType() == typeof(Volunteer))
             {
                 Volunteer v = user as Volunteer;
-                if(v.isAdmin == true)
+                if (v.isAdmin == true)
                 {
                     throw new Exception("You can not ban another Administrator.");
                 }
             }
             try
             {
+                user.Ban = 2; //Set user ban to 2 for perma ban
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :ban WHERE personID = :personID");
                 command.Parameters.Add(":ban", user.Ban);
@@ -956,6 +957,8 @@
             }
             try
             {
+                user.Ban = 1; //Set user ban to 1 for temp ban
+                user.Unban = unbanDate; //Set user unban to the unbanDate
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :ban, unban = :date WHERE personID = :personID");
                 command.Parameters.Add(":ban", user.Ban);

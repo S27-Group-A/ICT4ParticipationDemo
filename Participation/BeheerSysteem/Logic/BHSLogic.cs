@@ -53,7 +53,7 @@ namespace Participation.BeheerSysteem.Logic
         {
             foreach (var u in GetUsers())
             {
-                if (u == user)
+                if (u.Id == user.Id)
                 {
                     return DatabaseManager.BanUser(user);
                 }
@@ -66,7 +66,7 @@ namespace Participation.BeheerSysteem.Logic
         {
             foreach (var u in GetUsers())
             {
-                if (u == user)
+                if (u.Id == user.Id)
                 {
                     return DatabaseManager.BanUser(user, unbanDate);
                 }

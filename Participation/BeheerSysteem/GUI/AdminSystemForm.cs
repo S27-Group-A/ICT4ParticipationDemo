@@ -75,6 +75,7 @@ namespace Participation.BeheerSysteem.GUI
                 if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {
                     emptyProfileInformation();
+                    LoadUserList();
                 }
                 else
                 {
@@ -83,9 +84,10 @@ namespace Participation.BeheerSysteem.GUI
             }
             if (rbtnTemporary.Checked)
             {
-                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex], DateTime.Now.AddDays(Convert.ToInt32(tbxDaysUntillUnbanned))))
+                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex], DateTime.Now.AddDays(Convert.ToInt32(tbxDaysUntillUnbanned.Text))))
                 {
                     emptyProfileInformation();
+                    LoadUserList();
                 }
                 else
                 {
@@ -135,6 +137,7 @@ namespace Participation.BeheerSysteem.GUI
                 MessageBox.Show("Kon het account niet verwijderen.");
             }
         }
+
         //Judge a volunteer to see if he is qualified to be a volunteer.
         private void btnJudgeVolunteer_Click(object sender, EventArgs e)
         {
