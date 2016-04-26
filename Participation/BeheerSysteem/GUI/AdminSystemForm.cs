@@ -121,6 +121,7 @@ namespace Participation.BeheerSysteem.GUI
                 MessageBox.Show("Deze hulpvraag kon helaas niet verwijderd worden!");
             }
         }
+
         //Deletes an account.
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
