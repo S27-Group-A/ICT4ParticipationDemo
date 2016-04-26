@@ -874,6 +874,32 @@
 
         #endregion
 
+        #region Perk
+
+        public static List<string> GetPerks()
+        {
+            try
+            {
+                List<string> perks = new List<string>();
+                OracleCommand command = CreateOracleCommand("Select * from Perk");
+                OracleDataReader reader = ExecuteQuery(command);
+                while (reader.Read())
+                {
+                    perks.Add(reader["perktext"].ToString());
+                }
+                return perks;
+            }
+            catch
+            {
+                throw new Exception("Could not get perks from the database.");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+        #endregion
+
         #region Response
 
         #endregion
@@ -889,15 +915,22 @@
         /// <param name="user"></param>
         /// <param name="unban"></param>
         /// <returns></returns>
-        public static bool BanUserTemp(User user, int unban)
+        public static bool BanUser(IUser user)
         {
-            DateTime unbandate = DateTime.Now.AddDays(unban);
+            if(user.GetType() == typeof(Volunteer))
+            {
+                Volunteer v = user as Volunteer;
+                if(v.isAdmin == true)
+                {
+                    throw new Exception("You can not ban another Administrator.");
+                }
+            }
             try
             {
                 OracleCommand command =
-                    CreateOracleCommand("UPDATE Person SET banned = 1, unban = :Date WHERE email = :Email");
-                command.Parameters.Add(":Email", user.Email);
-                command.Parameters.Add(":Date", user.Email);
+                    CreateOracleCommand("UPDATE Person SET banned = :ban WHERE personID = :personID");
+                command.Parameters.Add(":ban", user.Ban);
+                command.Parameters.Add(":personID", user.Id);
                 return ExecuteNonQuery(command);
             }
             catch
@@ -910,21 +943,63 @@
             }
         }
 
-        /// <summary>
-        /// Permanently bans a user from the application
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public static bool BanUserPerm(User user)
+        public static bool BanUser(IUser user, DateTime unbanDate)
         {
+            if (user.GetType() == typeof(Volunteer))
+            {
+                Volunteer v = user as Volunteer;
+                if (v.isAdmin == true)
+                {
+                    throw new Exception("You can not ban another Administrator.");
+                }
+            }
             try
             {
-                OracleCommand command = CreateOracleCommand("UPDATE Person SET banned = 2");
+                OracleCommand command =
+                    CreateOracleCommand("UPDATE Person SET banned = :ban, unban = :date WHERE personID = :personID");
+                command.Parameters.Add(":ban", user.Ban);
+                command.Parameters.Add(":date", user.Unban);
+                command.Parameters.Add(":personID", user.Id);
+                command.BindByName = true;
                 return ExecuteNonQuery(command);
             }
             catch
             {
                 throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
+        public static bool ChangePermission(IUser user)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE PERSON SET PERSONTYPE = :persontype WHERE PersonID = :personID");
+                command.Parameters.Add(":personID", user.Id);
+
+                Volunteer v = user as Volunteer;
+                switch (v.isAdmin)
+                {
+                    case true:
+                        {
+                            command.Parameters.Add(":persontype", "Admin");
+                            break;
+                        }
+                    case false:
+                        {
+                            command.Parameters.Add(":persontype", "Volunteer");
+                            break;
+                        }
+
+                }
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
             }
             finally
             {
@@ -966,6 +1041,10 @@
             catch
             {
                 return false;
+            }
+            finally
+            {
+                _Connection.Close();
             }
         }
 
