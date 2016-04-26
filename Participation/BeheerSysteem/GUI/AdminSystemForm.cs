@@ -70,9 +70,9 @@ namespace Participation.BeheerSysteem.GUI
         //Bans a user, checks if it has to be permanently or temporary. If temporary, also sends for how long user will be banned.
         private void btn_BanGebruiker_Click(object sender, EventArgs e)
         {
-            if (rbtnPermanent.Checked == true)
+            if (rbtnPermanent.Checked)
             {
-                if (_BHSLogic.BanUserPermanent(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {
                     emptyProfileInformation();
                 }
@@ -81,9 +81,9 @@ namespace Participation.BeheerSysteem.GUI
                     MessageBox.Show("Kon het account niet bannen.");
                 }
             }
-            if (rbtnTemporary.Checked == true)
+            if (rbtnTemporary.Checked)
             {
-                if (_BHSLogic.BanUserTemporary(_BHSLogic.Users[lbxUserList.SelectedIndex], Convert.ToInt32(tbxDaysUntillUnbanned)))
+                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex], DateTime.Now.AddDays(Convert.ToInt32(tbxDaysUntillUnbanned))))
                 {
                     emptyProfileInformation();
                 }
