@@ -110,8 +110,8 @@
         {
             gbxVog.Visible = true;
             Volunteer tempV = _loggedInUser as Volunteer;
-            lblVogUrl.Text = tempV._verklaringPdf;
-            pbVog.Image = Image.FromFile(tempV._verklaringPdf);
+            lblVogUrl.Text = tempV.verklaringPdf;
+            pbVog.Image = Image.FromFile(tempV.verklaringPdf);
         }
 
         /// <summary>
