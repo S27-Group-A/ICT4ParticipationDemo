@@ -15,14 +15,14 @@ namespace Participation.BeheerSysteem.GUI
     public partial class AdminSystemForm : Form
     {
         //Fields
-        private AdministrationSystem adminSystem;
+        private BHSLogic _BHSLogic;
 
         //Constructor
         public AdminSystemForm()
         {
             InitializeComponent();
             emptyProfileInformation();
-            this.adminSystem = new AdministrationSystem();
+            this._BHSLogic = new BHSLogic();
             LoadUserList();
             LoadRequestList();
             LoadReviewList();
@@ -39,20 +39,20 @@ namespace Participation.BeheerSysteem.GUI
         //Loads the listbox and fills it with users.
         public void LoadUserList()
         {
-            lbxUserList.DataSource = adminSystem.Users;
+            lbxUserList.DataSource = _BHSLogic.GetUsers();
             Refresh();
         }
 
         //Loads the listbox and fills it with requests.
         public void LoadRequestList()
         {
-            lbxRequests.DataSource = DatabaseManager.GetRequests();
+            lbxRequests.DataSource = _BHSLogic.GetRequests();
         }
 
         //Loads the listbox and fills it with reviews.
         public void LoadReviewList()
         {
-            lbxReviews.DataSource = DatabaseManager.GetReviews();
+            lbxReviews.DataSource = _BHSLogic.GetReviews();
         }
 
         //Changes the information displayed in the Profile Information groupbox.
@@ -60,52 +60,122 @@ namespace Participation.BeheerSysteem.GUI
         {
             emptyProfileInformation();
 
-            tbxProfileName.Text = lbxUserList.SelectedItem.name.Text;
-            rtbProfileInformation.Text = lbxUserList.SelectedItem.description.Text;
-            //pbProfilePicture.Image = lbx_userList.SelectedItem.ProfilePicture;
-            //pbProfilePicture.Show = true;
+            tbxProfileName.Text = _BHSLogic.Users[lbxUserList.SelectedIndex].Name;
+            rtbProfileInformation.Text = _BHSLogic.Users[lbxUserList.SelectedIndex].Description;
+            //pbProfilePicture.Image = _BHSLogic.Users[lbxUserList.SelectedIndex].ProfilePicture;
+            //pbProfilePicture.Visible = true;
 
         }
 
-
+        //Bans a user, checks if it has to be permanently or temporary. If temporary, also sends for how long user will be banned.
         private void btn_BanGebruiker_Click(object sender, EventArgs e)
         {
             if (rbtnPermanent.Checked == true)
             {
-                lbxUserList.SelectedItem.isBanned = true;
+                if (_BHSLogic.BanUserPermanent(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+                {
+                    emptyProfileInformation();
+                }
+                else
+                {
+                    MessageBox.Show("Kon het account niet bannen.");
+                }
             }
             if (rbtnTemporary.Checked == true)
             {
-               //don't forget to implement trycatch
-                int bandays = 0;
-                bandays = Convert.ToInt32(tbxDaysUntillUnbanned.Text);
-                lbxUserList.SelectedItem.isBanned = true;
-                lbxUserList.SelectedItem.daysBanned = bandays;
+                if (_BHSLogic.BanUserTemporary(_BHSLogic.Users[lbxUserList.SelectedIndex], Convert.ToInt32(tbxDaysUntillUnbanned)))
+                {
+                    emptyProfileInformation();
+                }
+                else
+                {
+                    MessageBox.Show("Kon het account niet bannen.");
+                }
             }
-            emptyProfileInformation();
         }
 
+        //Deletes the request.
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            lbxRequests.SelectedItem.Remove;
+            if (_BHSLogic.DeleteRequest(_BHSLogic.Requests[lbxRequests.SelectedIndex]))
+            {
+                LoadRequestList();
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Deze hulpvraag kon helaas niet verwijderd worden!");
+            }
         }
 
+        //Deletes Review.
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
         {
-            lbxReviews.SelectedItem.Remove;
+            if (_BHSLogic.DeleteReview(_BHSLogic.Reviews[lbxReviews.SelectedIndex]))
+            {
+                LoadReviewList();
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Deze hulpvraag kon helaas niet verwijderd worden!");
+            }
         }
-        private void btn_Chat_Click(object sender, EventArgs e)
-        {
-            // Create a new instance of the Form2 class
-            //Chatform newchat = new Chatform();
 
-            // Show the settings form
-            //newchat.Show();
-        }
-        private void btn_Beheer_Click(object sender, EventArgs e)
+        //Deletes an account.
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("U bent al op de beheerderspagina!");
+            if (_BHSLogic.DeleteAcount(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+            {
+                LoadUserList();
+                Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Kon het account niet verwijderen.");
+            }
         }
+        //Judge a volunteer to see if he is qualified to be a volunteer.
+        private void btnJudgeVolunteer_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogresult = MessageBox.Show("Heeft deze gebruiker een goedgekeurde VOG?", "", MessageBoxButtons.YesNoCancel);
+            if (dialogresult == DialogResult.Yes)
+            {
+                MessageBox.Show("Deze vrijwilliger is nu goedgekeurd om te beginnen!");
+
+            }
+            if (dialogresult == DialogResult.No)
+            {
+                MessageBox.Show("Sorry, maar een vrijwilliger staat pas op actief als zijn VOG goedgekeurd is.");
+            }
+            if (dialogresult == DialogResult.Cancel)
+            {
+            }
+        }
+
+        //Changes the rights of a user to give him admin rights.
+        private void btnChangeRights_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "", MessageBoxButtons.YesNoCancel);
+            if (dialogresult == DialogResult.Yes)
+            {
+                if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+                {
+                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
+                    emptyProfileInformation();
+                }
+                else
+                {
+                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + _BHSLogic.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
+                }
+            }
+            if (dialogresult == DialogResult.No)
+            {
+                MessageBox.Show("De rechten zijn niet aangepast.");
+            }
+            if (dialogresult == DialogResult.Cancel) { }
+        }
+        //Log Out.
         private void btn_LogUit_Click(object sender, EventArgs e)
         {
             DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "", MessageBoxButtons.YesNo);
@@ -118,40 +188,7 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
-        private void btn_Profiel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Hulpvragen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Ouderen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_Vrijwilligers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDeleteAccount_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnChangeRights_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnJudgeVolunteer_Click(object sender, EventArgs e)
-        {
-
-        }
 
     }
+
 }

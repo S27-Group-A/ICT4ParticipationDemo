@@ -30,11 +30,11 @@
         private void InitializeComponent()
         {
             this.gbForm = new System.Windows.Forms.GroupBox();
+            this.btnAddRequest = new System.Windows.Forms.Button();
+            this.lbxRequests = new System.Windows.Forms.ListBox();
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.lbxRequests = new System.Windows.Forms.ListBox();
-            this.btnAddRequest = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +51,25 @@
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
             // 
+            // btnAddRequest
+            // 
+            this.btnAddRequest.Location = new System.Drawing.Point(194, 545);
+            this.btnAddRequest.Name = "btnAddRequest";
+            this.btnAddRequest.Size = new System.Drawing.Size(415, 30);
+            this.btnAddRequest.TabIndex = 1;
+            this.btnAddRequest.Text = "Hulp Vragen";
+            this.btnAddRequest.UseVisualStyleBackColor = true;
+            this.btnAddRequest.Click += new System.EventHandler(this.btnAddRequest_Click);
+            // 
+            // lbxRequests
+            // 
+            this.lbxRequests.FormattingEnabled = true;
+            this.lbxRequests.ItemHeight = 16;
+            this.lbxRequests.Location = new System.Drawing.Point(194, 87);
+            this.lbxRequests.Name = "lbxRequests";
+            this.lbxRequests.Size = new System.Drawing.Size(415, 452);
+            this.lbxRequests.TabIndex = 0;
+            // 
             // btnProfile
             // 
             this.btnProfile.Location = new System.Drawing.Point(13, 15);
@@ -60,6 +79,7 @@
             this.btnProfile.TabIndex = 1;
             this.btnProfile.Text = "Profiel";
             this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // btnHelprequests
             // 
@@ -80,24 +100,6 @@
             this.btnLogOut.TabIndex = 7;
             this.btnLogOut.Text = "Log Uit";
             this.btnLogOut.UseVisualStyleBackColor = true;
-            // 
-            // lbxRequests
-            // 
-            this.lbxRequests.FormattingEnabled = true;
-            this.lbxRequests.ItemHeight = 16;
-            this.lbxRequests.Location = new System.Drawing.Point(194, 87);
-            this.lbxRequests.Name = "lbxRequests";
-            this.lbxRequests.Size = new System.Drawing.Size(415, 452);
-            this.lbxRequests.TabIndex = 0;
-            // 
-            // btnAddRequest
-            // 
-            this.btnAddRequest.Location = new System.Drawing.Point(194, 545);
-            this.btnAddRequest.Name = "btnAddRequest";
-            this.btnAddRequest.Size = new System.Drawing.Size(415, 30);
-            this.btnAddRequest.TabIndex = 1;
-            this.btnAddRequest.Text = "Hulp Vragen";
-            this.btnAddRequest.UseVisualStyleBackColor = true;
             // 
             // RequestsViewForm
             // 

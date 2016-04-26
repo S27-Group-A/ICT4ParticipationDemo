@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lstClients = new System.Windows.Forms.ListBox();
+            this.lbxClients = new System.Windows.Forms.ListBox();
             this.btnStartChat = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lstClients
+            // lbxClients
             // 
-            this.lstClients.FormattingEnabled = true;
-            this.lstClients.ItemHeight = 16;
-            this.lstClients.Location = new System.Drawing.Point(13, 13);
-            this.lstClients.Margin = new System.Windows.Forms.Padding(4);
-            this.lstClients.Name = "lstClients";
-            this.lstClients.Size = new System.Drawing.Size(199, 420);
-            this.lstClients.TabIndex = 1;
+            this.lbxClients.FormattingEnabled = true;
+            this.lbxClients.ItemHeight = 16;
+            this.lbxClients.Location = new System.Drawing.Point(13, 13);
+            this.lbxClients.Margin = new System.Windows.Forms.Padding(4);
+            this.lbxClients.Name = "lbxClients";
+            this.lbxClients.Size = new System.Drawing.Size(199, 420);
+            this.lbxClients.TabIndex = 1;
+            this.lbxClients.SelectedIndexChanged += new System.EventHandler(this.lbxClients_SelectedIndexChanged);
             // 
             // btnStartChat
             // 
-            this.btnStartChat.Location = new System.Drawing.Point(234, 194);
+            this.btnStartChat.Location = new System.Drawing.Point(219, 175);
             this.btnStartChat.Name = "btnStartChat";
-            this.btnStartChat.Size = new System.Drawing.Size(85, 23);
+            this.btnStartChat.Size = new System.Drawing.Size(125, 71);
             this.btnStartChat.TabIndex = 2;
             this.btnStartChat.Text = "Start chat";
             this.btnStartChat.UseVisualStyleBackColor = true;
@@ -58,7 +59,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(346, 450);
             this.Controls.Add(this.btnStartChat);
-            this.Controls.Add(this.lstClients);
+            this.Controls.Add(this.lbxClients);
             this.Name = "ChatUsers";
             this.Text = "ChatUsers";
             this.ResumeLayout(false);
@@ -67,7 +68,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstClients;
+        private System.Windows.Forms.ListBox lbxClients;
         private System.Windows.Forms.Button btnStartChat;
     }
 }

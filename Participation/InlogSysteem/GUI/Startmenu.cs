@@ -1,34 +1,25 @@
-﻿using Participation.VrijwilligersSysteem.GUI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
-using Participation.InlogSysteem.GUI;
 using Participation.InlogSysteem.Interfaces;
-using Participation.VrijwilligersSysteem;
 using Participation.SharedModels;
-using UI;
 
 namespace Participation
 {
     public partial class Startmenu : Form
     {
-
-        private LISLogic _lisLogic = new LISLogic();
+        private readonly LISLogic _lisLogic = new LISLogic();
 
 
         public Startmenu()
         {
             InitializeComponent();
-            this.Hide();
+            Hide();
         }
-
+        /// <summary>
+        /// Logs-in on click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startMenuLogInBtn_Click(object sender, EventArgs e)
         {
             if (checkFields())
@@ -50,24 +41,29 @@ namespace Participation
                     MessageBox.Show(exc.Message);
                     ClearFields();
                 }
-                
-
             }
             else
             {
                 ClearFields();
                 MessageBox.Show("Vul uw gegevens opnieuw in");
             }
-
         }
 
+        /// <summary>
+        /// Register on click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startMenuRegisterBtn_Click(object sender, EventArgs e)
         {
-
             FormProvider.RegisterForm.Show();
             FormProvider.StartMenu.Hide();
         }
 
+        /// <summary>
+        /// Checks fields
+        /// </summary>
+        /// <returns></returns>
         private bool checkFields()
         {
             if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
@@ -75,6 +71,9 @@ namespace Participation
             return false;
         }
 
+        /// <summary>
+        /// Clears fields
+        /// </summary>
         private void ClearFields()
         {
             if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
@@ -84,17 +83,39 @@ namespace Participation
             }
         }
 
+        /// <summary>
+        /// Logs in the user
+        /// </summary>
+        /// <param name="user"></param>
         private void LogIn(IUser user)
         {
-
             if (user.Birthday != DateTime.MinValue || !string.IsNullOrEmpty(user.Location) ||
                 !string.IsNullOrEmpty(user.Name))
             {
-                FormProvider.LoggedInUser = user;
-                FormProvider.ProfileForm.Show();
-                FormProvider.StartMenu.Hide();
+                if (typeof(Volunteer) == user.GetType())
+                {
+                    var admin = user as Volunteer;
+                    //MessageBox.Show(admin.isAdmin.ToString());
+                    if (admin.isAdmin)
+                    {
+                        FormProvider.LoggedInUser = admin;
+                        FormProvider.AdminSystemForm.Show();
+                        FormProvider.StartMenu.Hide();
+                    }
+                    else if (!admin.isAdmin)
+                    {
+                        FormProvider.LoggedInUser = user;
+                        FormProvider.ProfileForm.Show();
+                        FormProvider.StartMenu.Hide();
+                    }
+                }
+                if (typeof(Patient) == user.GetType())
+                {
+                    FormProvider.LoggedInUser = user;
+                    FormProvider.ProfileForm.Show();
+                    FormProvider.StartMenu.Hide();
+                }
             }
-
         }
     }
 }

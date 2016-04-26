@@ -60,12 +60,13 @@
             this.btnAddPerk = new System.Windows.Forms.Button();
             this.lblPerks = new System.Windows.Forms.Label();
             this.gbxPerks = new System.Windows.Forms.GroupBox();
+            this.lblSkills = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.helpGbx = new System.Windows.Forms.GroupBox();
             this.pnlInformation = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbProfilePic = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlHasRfid = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -73,7 +74,7 @@
             this.gbxPerks.SuspendLayout();
             this.helpGbx.SuspendLayout();
             this.pnlInformation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfilePic)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +124,7 @@
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRegister.Location = new System.Drawing.Point(181, 674);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(411, 36);
             this.btnRegister.TabIndex = 8;
@@ -182,9 +183,9 @@
             this.lblProfilePicture.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.lblProfilePicture.Location = new System.Drawing.Point(3, 258);
             this.lblProfilePicture.Name = "lblProfilePicture";
-            this.lblProfilePicture.Size = new System.Drawing.Size(90, 20);
+            this.lblProfilePicture.Size = new System.Drawing.Size(101, 20);
             this.lblProfilePicture.TabIndex = 17;
-            this.lblProfilePicture.Text = "Profielfoto:";
+            this.lblProfilePicture.Text = "Profielfoto: *";
             // 
             // lblRepeatPassword
             // 
@@ -268,7 +269,6 @@
             this.rbtFemale.TabStop = true;
             this.rbtFemale.Text = "Vrouw";
             this.rbtFemale.UseVisualStyleBackColor = true;
-            this.rbtFemale.CheckedChanged += new System.EventHandler(this.femaleRbt_CheckedChanged);
             // 
             // rbtNeedHelp
             // 
@@ -316,7 +316,7 @@
             this.btnBrowseProfilePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseProfilePicture.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBrowseProfilePicture.Location = new System.Drawing.Point(460, 256);
-            this.btnBrowseProfilePicture.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowseProfilePicture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowseProfilePicture.Name = "btnBrowseProfilePicture";
             this.btnBrowseProfilePicture.Size = new System.Drawing.Size(99, 27);
             this.btnBrowseProfilePicture.TabIndex = 30;
@@ -351,7 +351,7 @@
             this.btnBrowseVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseVOG.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBrowseVOG.Location = new System.Drawing.Point(459, 34);
-            this.btnBrowseVOG.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBrowseVOG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowseVOG.Name = "btnBrowseVOG";
             this.btnBrowseVOG.Size = new System.Drawing.Size(99, 27);
             this.btnBrowseVOG.TabIndex = 34;
@@ -398,7 +398,7 @@
             this.btnAddPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPerk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddPerk.Location = new System.Drawing.Point(459, 36);
-            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddPerk.Name = "btnAddPerk";
             this.btnAddPerk.Size = new System.Drawing.Size(99, 27);
             this.btnAddPerk.TabIndex = 36;
@@ -410,14 +410,14 @@
             // 
             this.lblPerks.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPerks.Location = new System.Drawing.Point(19, 65);
+            this.lblPerks.Location = new System.Drawing.Point(19, 91);
             this.lblPerks.Name = "lblPerks";
-            this.lblPerks.Size = new System.Drawing.Size(521, 60);
+            this.lblPerks.Size = new System.Drawing.Size(521, 52);
             this.lblPerks.TabIndex = 38;
-            this.lblPerks.Text = "Vaardigheden: ";
             // 
             // gbxPerks
             // 
+            this.gbxPerks.Controls.Add(this.lblSkills);
             this.gbxPerks.Controls.Add(this.tbxPerk);
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblPerks);
@@ -432,12 +432,22 @@
             this.gbxPerks.Text = "Extra vaardigheden: ";
             this.gbxPerks.Visible = false;
             // 
+            // lblSkills
+            // 
+            this.lblSkills.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkills.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSkills.Location = new System.Drawing.Point(16, 66);
+            this.lblSkills.Name = "lblSkills";
+            this.lblSkills.Size = new System.Drawing.Size(101, 25);
+            this.lblSkills.TabIndex = 39;
+            this.lblSkills.Text = "Vaardigheden: ";
+            // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBack.Location = new System.Drawing.Point(13, 674);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(159, 36);
             this.btnBack.TabIndex = 40;
@@ -479,7 +489,7 @@
             // 
             // pnlInformation
             // 
-            this.pnlInformation.Controls.Add(this.pictureBox1);
+            this.pnlInformation.Controls.Add(this.pbProfilePic);
             this.pnlInformation.Controls.Add(this.label1);
             this.pnlInformation.Controls.Add(this.pnlHasRfid);
             this.pnlInformation.Controls.Add(this.panel1);
@@ -508,15 +518,16 @@
             this.pnlInformation.Size = new System.Drawing.Size(577, 313);
             this.pnlInformation.TabIndex = 45;
             // 
-            // pictureBox1
+            // pbProfilePic
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(464, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 47;
-            this.pictureBox1.TabStop = false;
+            this.pbProfilePic.Image = ((System.Drawing.Image)(resources.GetObject("pbProfilePic.Image")));
+            this.pbProfilePic.Location = new System.Drawing.Point(464, 2);
+            this.pbProfilePic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbProfilePic.Name = "pbProfilePic";
+            this.pbProfilePic.Size = new System.Drawing.Size(100, 100);
+            this.pbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProfilePic.TabIndex = 47;
+            this.pbProfilePic.TabStop = false;
             // 
             // label1
             // 
@@ -528,14 +539,13 @@
             this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 46;
             this.label1.Text = "RFID";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnlHasRfid
             // 
             this.pnlHasRfid.BackColor = System.Drawing.Color.Red;
             this.pnlHasRfid.ForeColor = System.Drawing.SystemColors.Menu;
             this.pnlHasRfid.Location = new System.Drawing.Point(464, 161);
-            this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlHasRfid.Name = "pnlHasRfid";
             this.pnlHasRfid.Size = new System.Drawing.Size(100, 60);
             this.pnlHasRfid.TabIndex = 45;
@@ -575,7 +585,7 @@
             this.helpGbx.PerformLayout();
             this.pnlInformation.ResumeLayout(false);
             this.pnlInformation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfilePic)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -623,6 +633,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlHasRfid;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbProfilePic;
+        private System.Windows.Forms.Label lblSkills;
     }
 }

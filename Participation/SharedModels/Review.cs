@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.SharedModels
 {
@@ -11,6 +12,9 @@ namespace Participation.SharedModels
         public double Rating { get; set; }
         public string Text { get; set; }
 
+        public IUser Patient { get; set; }
+
+        public IUser Volunteer { get; set; }
         public Review(int Id, double Rating, string Text)
         {
             this.Id = Id;
@@ -23,6 +27,11 @@ namespace Participation.SharedModels
             //this.Id = Id; TODO set id
             this.Rating = Rating;
             this.Text = Text;
+        }
+
+        public override string ToString()
+        {
+            return Patient.Name + " - " + Volunteer.Name + " - " + Text.Substring(0, 5) + "...";
         }
     }
 }

@@ -1,35 +1,32 @@
-﻿using Participation.HulpSysteem.Logic;
-using Participation.SharedModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Participation.InlogSysteem.Interfaces;
+using Participation.HulpSysteem.Logic;
+using Participation.SharedModels;
 
 namespace UI
 {
     public partial class RequestForm : Form
     {
-        //TODO Implement User from log in
-        private IUser _loggedInUser = FormProvider.LoggedInUser;
-
-        //TODO Implement hpslogic
-        HPSLogic _hpsLogic = new HPSLogic();
+        /// <summary>
+        /// Creates a new instance of HPSLogic
+        /// </summary>
+        private readonly HPSLogic _hpsLogic = new HPSLogic();
 
         public RequestForm()
         {
             InitializeComponent();
-            for (int i = 0; i <= 5; i++)
+            for (var i = 0; i <= 5; i++)
             {
                 urgencyLbx.Items.Add(i);
             }
         }
 
+        /// <summary>
+        /// Confirms on click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void confirmBtn_Click(object sender, EventArgs e)
         {
             var perks = new List<string>();
@@ -48,11 +45,10 @@ namespace UI
             else
             {
                 var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value,
-                    (int) urgencyLbx.SelectedItem);
-                MessageBox.Show("Test: \n" + request.ToString());
+                    (int)urgencyLbx.SelectedItem);
+                MessageBox.Show("Test: \n" + request);
 
-                //TODO Implement logic
-                //_hpsLogic.AddRequest(_loggedInUser, request);
+                _hpsLogic.AddRequest(FormProvider.LoggedInUser as Patient, request);
             }
         }
     }

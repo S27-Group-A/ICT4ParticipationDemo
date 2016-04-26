@@ -1,0 +1,135 @@
+﻿Merge remote-tracking branch 'refs/remotes/origin/PsuedoMasterEx' into DennisBranch
+
+# Conflicts:
+#	Participation/Participation.csproj
+#	Participation/SharedModels/User.cs
+#	Participation/SharedModels/Volunteer.cs
+#	participation/databasemanager/DatabaseManager.cs
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch DennisBranch
+# Your branch is up-to-date with 'origin/DennisBranch'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   ChatLibrary/ChatClass.cs
+#	new file:   ChatLibrary/ChatLibrary.csproj
+#	new file:   ChatLibrary/Properties/AssemblyInfo.cs
+#	new file:   ChatServer/ChatLibrary/ChatClass.cs
+#	new file:   ChatServer/ChatLibrary/ChatLibrary.csproj
+#	new file:   ChatServer/ChatLibrary/Properties/AssemblyInfo.cs
+#	new file:   ChatServer/Client/Client.csproj
+#	new file:   ChatServer/Client/Client.sln
+#	new file:   ChatServer/Client/Form1.Designer.cs
+#	new file:   ChatServer/Client/Form1.cs
+#	new file:   ChatServer/Client/Form1.resx
+#	new file:   ChatServer/Client/Program.cs
+#	new file:   ChatServer/Client/Properties/AssemblyInfo.cs
+#	new file:   ChatServer/Client/Properties/Resources.Designer.cs
+#	new file:   ChatServer/Client/Properties/Resources.resx
+#	new file:   ChatServer/Client/Properties/Settings.Designer.cs
+#	new file:   ChatServer/Client/Properties/Settings.settings
+#	new file:   ChatServer/Client/ReceiveClient.cs
+#	new file:   ChatServer/Client/Service References/ChatService/Arrays1.xsd
+#	new file:   ChatServer/Client/Service References/ChatService/Reference.cs
+#	new file:   ChatServer/Client/Service References/ChatService/Reference.svcmap
+#	new file:   ChatServer/Client/Service References/ChatService/configuration.svcinfo
+#	new file:   ChatServer/Client/Service References/ChatService/configuration91.svcinfo
+#	new file:   ChatServer/Client/Service References/ChatService/service1.wsdl
+#	new file:   ChatServer/Client/Service References/ChatService/service2.xsd
+#	new file:   ChatServer/Client/Service References/ChatService/service21.xsd
+#	new file:   ChatServer/Client/app.config
+#	new file:   ChatServer/Server/App.config
+#	new file:   ChatServer/Server/Form1.Designer.cs
+#	new file:   ChatServer/Server/Form1.cs
+#	new file:   ChatServer/Server/Form1.resx
+#	new file:   ChatServer/Server/Program.cs
+#	new file:   ChatServer/Server/Properties/AssemblyInfo.cs
+#	new file:   ChatServer/Server/Properties/Resources.Designer.cs
+#	new file:   ChatServer/Server/Properties/Resources.resx
+#	new file:   ChatServer/Server/Properties/Settings.Designer.cs
+#	new file:   ChatServer/Server/Properties/Settings.settings
+#	new file:   ChatServer/Server/Server.csproj
+#	new file:   ChatServer/Server/Server.sln
+#	copied:     Participation/SharedModels/Meeting.cs -> ChatServer/Server/ServerManager.cs
+#	new file:   Database/Createscript.sql
+#	modified:   Participation.sln
+#	modified:   Participation/App.config
+#	new file:   Participation/BeheerSysteem/AdministrationSystem.cs
+#	modified:   Participation/BeheerSysteem/Logic/AdministrationSystem.cs
+#	new file:   Participation/ChatSysteem/GUI/ReceiveClient.cs
+#	new file:   Participation/ChatSysteem/Logic/ChatForm.Designer.cs
+#	new file:   Participation/ChatSysteem/Logic/ChatForm.cs
+#	new file:   Participation/ChatSysteem/Logic/ChatForm.resx
+#	new file:   Participation/ChatSysteem/Logic/ChatUsers.Designer.cs
+#	new file:   Participation/ChatSysteem/Logic/ChatUsers.cs
+#	new file:   Participation/ChatSysteem/Logic/ChatUsers.resx
+#	new file:   Participation/DLL/ChatLibrary.dll
+#	new file:   Participation/DLL/Phidget21.NET.dll
+#	new file:   Participation/DLL/ServerWcfService.dll
+#	modified:   Participation/HulpSysteem/GUI/RequestForm.cs
+#	new file:   Participation/HulpSysteem/GUI/RequestsViewForm.Designer.cs
+#	new file:   Participation/HulpSysteem/GUI/RequestsViewForm.cs
+#	new file:   Participation/HulpSysteem/GUI/RequestsViewForm.resx
+#	modified:   Participation/HulpSysteem/Logic/HPSLogic.cs
+#	modified:   Participation/InlogSysteem/GUI/RegisterForm.Designer.cs
+#	modified:   Participation/InlogSysteem/GUI/RegisterForm.cs
+#	modified:   Participation/InlogSysteem/GUI/RegisterForm.resx
+#	modified:   Participation/InlogSysteem/GUI/Startmenu.Designer.cs
+#	modified:   Participation/InlogSysteem/GUI/Startmenu.cs
+#	new file:   Participation/InlogSysteem/Interfaces/IUser.cs
+#	modified:   Participation/InlogSysteem/Logic/LISLogic.cs
+#	new file:   Participation/InlogSysteem/Resources/empty_profile.jpg
+#	modified:   Participation/Participation.csproj
+#	new file:   Participation/Service References/ChatService/Arrays1.xsd
+#	new file:   Participation/Service References/ChatService/Reference.cs
+#	new file:   Participation/Service References/ChatService/Reference.svcmap
+#	new file:   Participation/Service References/ChatService/configuration.svcinfo
+#	new file:   Participation/Service References/ChatService/configuration91.svcinfo
+#	new file:   Participation/Service References/ChatService/service1.wsdl
+#	new file:   Participation/Service References/ChatService/service2.xsd
+#	new file:   Participation/Service References/ChatService/service21.xsd
+#	modified:   Participation/SharedModels/FormProvider.cs
+#	modified:   Participation/SharedModels/Meeting.cs
+#	modified:   Participation/SharedModels/Patient.cs
+#	new file:   Participation/SharedModels/RFIDManager.cs
+#	modified:   Participation/SharedModels/Request.cs
+#	modified:   Participation/SharedModels/Response.cs
+#	modified:   Participation/SharedModels/Review.cs
+#	modified:   Participation/SharedModels/User.cs
+#	modified:   Participation/SharedModels/Volunteer.cs
+#	new file:   Participation/Unspecified Profile/GUI/ProfileForm.cs
+#	new file:   Participation/Unspecified Profile/GUI/ProfileForm.designer.cs
+#	new file:   Participation/Unspecified Profile/GUI/ProfileForm.resx
+#	new file:   Participation/VrijwilligersSysteem/GUI/MeetingForm.Designer.cs
+#	new file:   Participation/VrijwilligersSysteem/GUI/MeetingForm.cs
+#	new file:   Participation/VrijwilligersSysteem/GUI/MeetingForm.resx
+#	modified:   Participation/VrijwilligersSysteem/GUI/VolunteerForm.Designer.cs
+#	modified:   Participation/VrijwilligersSysteem/GUI/VolunteerForm.cs
+#	modified:   Participation/VrijwilligersSysteem/GUI/VolunteerForm.resx
+#	modified:   Participation/VrijwilligersSysteem/Logic/VolunteerSystem.cs
+#	new file:   Query eisen.txt
+#	new file:   Server/App.config
+#	new file:   Server/DLL/ChatLibrary.dll
+#	new file:   Server/Form1.Designer.cs
+#	new file:   Server/Form1.cs
+#	new file:   Server/Form1.resx
+#	new file:   Server/Program.cs
+#	new file:   Server/Properties/AssemblyInfo.cs
+#	new file:   Server/Properties/Resources.Designer.cs
+#	new file:   Server/Properties/Resources.resx
+#	new file:   Server/Properties/Settings.Designer.cs
+#	new file:   Server/Properties/Settings.settings
+#	new file:   Server/Server.csproj
+#	new file:   Server/Server.sln
+#	new file:   Server/ServerManager.cs
+#
+

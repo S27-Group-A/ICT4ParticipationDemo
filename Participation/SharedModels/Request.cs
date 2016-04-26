@@ -20,7 +20,7 @@ namespace Participation.SharedModels
         public string Location { get; set; }
         public int Urgency { get; set; }
         public DateTime Date { get; set; }
-        public List<string> Perks { get; private set; }
+        public List<string> Perks { get; set; }
         public List<Response> Responses { get; private set; }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Participation.SharedModels
 
         public override string ToString()
         {
-            // TODO Optionally return perks per perk as string
-            var returnString = this.Title + " " + this.Text + " " + this.Location + " " + this.Urgency + " " + this.Date.ToString() + " " + this.Perks.ToString();
+            // TODO Optionally return Perks per perk as string
+            var returnString = this.Title;
             return returnString;
         }
     }
