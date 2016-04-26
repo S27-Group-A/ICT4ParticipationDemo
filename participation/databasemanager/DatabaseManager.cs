@@ -308,13 +308,14 @@
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO REQUEST(RequestID, personID, title, description, place, placingdate, urgency) VALUES (SEQ_RequestID , :personID, :title, :description, :place, :placingdate, :urgency)");
+                OracleCommand command = CreateOracleCommand("INSERT INTO REQUEST(RequestID, personID, title, description, place, placingdate, urgency) VALUES (SEQ_RequestID.NextVal , :personID, :title, :description, :place, :placingdate, :urgency)");
                 command.Parameters.Add(":personID", patient.Id);
                 command.Parameters.Add(":title", request.Title);
                 command.Parameters.Add(":description", request.Text);
                 command.Parameters.Add(":place", request.Location);
                 command.Parameters.Add(":placingdate", request.Date);
                 command.Parameters.Add(":urgency", request.Urgency);
+                command.BindByName = true;
                 return ExecuteNonQuery(command);
             }
             catch
