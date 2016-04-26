@@ -25,7 +25,7 @@ namespace Participation.SharedModels
         {
             _reviews = new List<Review>();
             _perks = new List<string>();
-            System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
+            //System.IO.File.Copy(profilePicure, Environment.CurrentDirectory); obsolete
         }
 
         public Volunteer(int id, string name, string email, string description,
@@ -35,7 +35,7 @@ namespace Participation.SharedModels
         {
             _reviews = new List<Review>();
             _perks = new List<string>();
-            //stem.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
+            //system.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
         }
 
         public Volunteer(string name, string email, string description,
