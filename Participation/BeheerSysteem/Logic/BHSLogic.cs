@@ -23,10 +23,13 @@ namespace Participation.BeheerSysteem.Logic
             this.Reviews = GetReviews();
         }
 
+        //Methode vervalt
+        /*
         public void CreateNewAccount()
         {
             //nog in te vullen.
         }
+        */
 
         public List<IUser> GetUsers()
         {

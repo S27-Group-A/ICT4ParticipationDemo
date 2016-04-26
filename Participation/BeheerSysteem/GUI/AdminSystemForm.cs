@@ -46,13 +46,13 @@ namespace Participation.BeheerSysteem.GUI
         //Loads the listbox and fills it with requests.
         public void LoadRequestList()
         {
-            lbxRequests.DataSource = DatabaseManager.GetRequests();
+            lbxRequests.DataSource = _BHSLogic.GetRequests();
         }
 
         //Loads the listbox and fills it with reviews.
         public void LoadReviewList()
         {
-            lbxReviews.DataSource = DatabaseManager.GetReviews();
+            lbxReviews.DataSource = _BHSLogic.GetReviews();
         }
 
         //Changes the information displayed in the Profile Information groupbox.
