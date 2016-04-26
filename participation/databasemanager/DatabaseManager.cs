@@ -174,19 +174,19 @@
                 {
                     command.Parameters.Add(":personType", "Volunteer");
                 }
-       
+
                 switch (user.Gender)
                 {
                     case GenderEnum.Male:
-                    {
-                        command.Parameters.Add(":gender", "M");
-                        break;
-                    }
+                        {
+                            command.Parameters.Add(":gender", "M");
+                            break;
+                        }
                     case GenderEnum.Female:
-                    {
-                        command.Parameters.Add(":gender", "V");
-                        break;
-                    }
+                        {
+                            command.Parameters.Add(":gender", "V");
+                            break;
+                        }
                 }
 
                 OracleDate oDate = (OracleDate)user.Birthday;
@@ -434,7 +434,7 @@
                     string emailAdress = reader["email"].ToString();
                     string description = reader["description"].ToString();
                     string dateTime = reader["dateOfBirth"].ToString();
-                        DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                    DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                     string picture = reader["ProfilePicture"].ToString();
                     string location = reader["location"].ToString();
                     string phoneNumber = reader["phone"].ToString();
@@ -507,7 +507,7 @@
                         string emailAdress = patientReader["email"].ToString();
                         string description = patientReader["description"].ToString();
                         string dateTime = patientReader["dateOfBirth"].ToString();
-                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                        DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                         string picture = patientReader["ProfilePicture"].ToString();
                         string location = patientReader["location"].ToString();
                         string phoneNumber = patientReader["phone"].ToString();
@@ -526,7 +526,7 @@
                         string emailAdress = volunteerReader["email"].ToString();
                         string description = volunteerReader["description"].ToString();
                         string dateTime = volunteerReader["dateOfBirth"].ToString();
-                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                        DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                         string picture = volunteerReader["ProfilePicture"].ToString();
                         string location = volunteerReader["location"].ToString();
                         string phoneNumber = volunteerReader["phone"].ToString();
@@ -591,14 +591,14 @@
                             int id = Convert.ToInt32(patientReader["personid"].ToString());
                             string place = patientReader["place"].ToString();
                             string dateTime = patientReader["placingdate"].ToString();
-                                DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
+                            DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
                             int status = Convert.ToInt32(patientReader["status"].ToString());
                             string name = patientReader["name"].ToString();
                             string emailAdress = patientReader["email"].ToString();
                             string picture = patientReader["ProfilePicture"].ToString();
                             string description = patientReader["description"].ToString();
-                                   dateTime = patientReader["dateOfBirth"].ToString();
-                                DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                            dateTime = patientReader["dateOfBirth"].ToString();
+                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                             string location = patientReader["location"].ToString();
                             string phoneNumber = patientReader["phone"].ToString();
                             GenderEnum gender = ToGender(patientReader["gender"].ToString());
@@ -614,14 +614,14 @@
                             int id = Convert.ToInt32(volunteerReader["personid"].ToString());
                             string place = volunteerReader["place"].ToString();
                             string dateTime = volunteerReader["placingdate"].ToString();
-                                DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
+                            DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
                             int status = Convert.ToInt32(volunteerReader["status"].ToString());
                             string name = volunteerReader["name"].ToString();
                             string emailAdress = volunteerReader["email"].ToString();
                             string description = volunteerReader["description"].ToString();
                             string picture = volunteerReader["ProfilePicture"].ToString();
-                                   dateTime = volunteerReader["dateOfBirth"].ToString();
-                                DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                            dateTime = volunteerReader["dateOfBirth"].ToString();
+                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                             string location = volunteerReader["location"].ToString();
                             string phoneNumber = volunteerReader["phone"].ToString();
                             GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
@@ -680,14 +680,14 @@
                         int id = Convert.ToInt32(reader["personid"].ToString());
                         string place = reader["place"].ToString();
                         string dateTime = reader["placingdate"].ToString();
-                            DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
+                        DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
                         int status = Convert.ToInt32(reader["status"].ToString());
                         string name = reader["name"].ToString();
                         string emailAdress = reader["email"].ToString();
                         string description = reader["description"].ToString();
                         string picture = reader["ProfilePicture"].ToString();
-                               dateTime = reader["dateOfBirth"].ToString();
-                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                        dateTime = reader["dateOfBirth"].ToString();
+                        DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                         string location = reader["location"].ToString();
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
@@ -698,8 +698,8 @@
                         string emailAdress_Other = reader["email_1"].ToString();
                         string description_Other = reader["description_1"].ToString();
                         string picture_Other = reader["ProfilePicture"].ToString();
-                               dateTime = reader["dateOfBirth_1"].ToString();
-                            DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
+                        dateTime = reader["dateOfBirth_1"].ToString();
+                        DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string location_Other = reader["location_1"].ToString();
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
@@ -719,14 +719,14 @@
                         int id = Convert.ToInt32(reader["personid"].ToString());
                         string place = reader["place"].ToString();
                         string dateTime = reader["placingdate"].ToString();
-                            DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
+                        DateTime dateOfMeeting = Convert.ToDateTime(dateTime);
                         int status = Convert.ToInt32(reader["status"].ToString());
                         string name = reader["name"].ToString();
                         string emailAdress = reader["email"].ToString();
                         string description = reader["description"].ToString();
                         string picture = reader["ProfilePicture"].ToString();
-                               dateTime = reader["dateOfBirth"].ToString();
-                            DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                        dateTime = reader["dateOfBirth"].ToString();
+                        DateTime dateOfBirth = Convert.ToDateTime(dateTime);
                         string location = reader["location"].ToString();
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
@@ -738,8 +738,8 @@
                         string emailAdress_Other = reader["email_1"].ToString();
                         string description_Other = reader["description_1"].ToString();
                         string picture_Other = reader["ProfilePicture"].ToString();
-                               dateTime = reader["dateOfBirth_1"].ToString();
-                            DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
+                        dateTime = reader["dateOfBirth_1"].ToString();
+                        DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string location_Other = reader["location_1"].ToString();
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());

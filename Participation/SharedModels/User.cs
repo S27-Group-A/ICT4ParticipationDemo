@@ -61,5 +61,10 @@ namespace Participation.SharedModels
             Meetings = null;
             Ban = 0;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

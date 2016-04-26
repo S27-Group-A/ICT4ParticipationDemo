@@ -31,7 +31,7 @@ namespace Participation.SharedModels
             this.perks = new List<string>();
             this.verklaringPdf = verklaringPdf;
             this.isAdmin = isAdmin;
-            if (!string.IsNullOrEmpty(verklaringPdf))
+            if (string.IsNullOrEmpty(profilePicure))
                 System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
         }
 
@@ -44,7 +44,7 @@ namespace Participation.SharedModels
             this.perks = new List<string>();
             this.verklaringPdf = verklaringPdf;
             this.isAdmin = isAdmin;
-            if (!string.IsNullOrEmpty(verklaringPdf))
+            if (string.IsNullOrEmpty(profilePicure))
                 System.IO.File.Copy(profilePicure, Environment.CurrentDirectory);
         }
 

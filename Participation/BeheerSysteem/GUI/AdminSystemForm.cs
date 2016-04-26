@@ -15,14 +15,14 @@ namespace Participation.BeheerSysteem.GUI
     public partial class AdminSystemForm : Form
     {
         //Fields
-        private BHSLogic adminSystem;
+        private BHSLogic _BHSLogic;
 
         //Constructor
         public AdminSystemForm()
         {
             InitializeComponent();
             emptyProfileInformation();
-            this.adminSystem = new BHSLogic();
+            this._BHSLogic = new BHSLogic();
             LoadUserList();
             LoadRequestList();
             LoadReviewList();
@@ -39,7 +39,7 @@ namespace Participation.BeheerSysteem.GUI
         //Loads the listbox and fills it with users.
         public void LoadUserList()
         {
-            lbxUserList.DataSource = adminSystem.Users;
+            lbxUserList.DataSource = _BHSLogic.GetUsers();
             Refresh();
         }
 
@@ -60,9 +60,9 @@ namespace Participation.BeheerSysteem.GUI
         {
             emptyProfileInformation();
 
-            tbxProfileName.Text = adminSystem.Users[lbxUserList.SelectedIndex].Name;
-            rtbProfileInformation.Text = adminSystem.Users[lbxUserList.SelectedIndex].Description;
-            //pbProfilePicture.Image = adminSystem.Users[lbxUserList.SelectedIndex].ProfilePicture;
+            tbxProfileName.Text = _BHSLogic.Users[lbxUserList.SelectedIndex].Name;
+            rtbProfileInformation.Text = _BHSLogic.Users[lbxUserList.SelectedIndex].Description;
+            //pbProfilePicture.Image = _BHSLogic.Users[lbxUserList.SelectedIndex].ProfilePicture;
             //pbProfilePicture.Visible = true;
 
         }
@@ -72,7 +72,7 @@ namespace Participation.BeheerSysteem.GUI
         {
             if (rbtnPermanent.Checked == true)
             {
-                if (adminSystem.BanUserPermanent(adminSystem.Users[lbxUserList.SelectedIndex]))
+                if (_BHSLogic.BanUserPermanent(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {
                     emptyProfileInformation();
                 }
@@ -83,7 +83,7 @@ namespace Participation.BeheerSysteem.GUI
             }
             if (rbtnTemporary.Checked == true)
             {
-                if (adminSystem.BanUserTemporary(adminSystem.Users[lbxUserList.SelectedIndex], Convert.ToInt32(tbxDaysUntillUnbanned)))
+                if (_BHSLogic.BanUserTemporary(_BHSLogic.Users[lbxUserList.SelectedIndex], Convert.ToInt32(tbxDaysUntillUnbanned)))
                 {
                     emptyProfileInformation();
                 }
@@ -97,7 +97,7 @@ namespace Participation.BeheerSysteem.GUI
         //Deletes the request.
         private void btn_VerwijderHulpvraag_Click(object sender, EventArgs e)
         {
-            if (adminSystem.DeleteRequest(adminSystem.Requests[lbxRequests.SelectedIndex]))
+            if (_BHSLogic.DeleteRequest(_BHSLogic.Requests[lbxRequests.SelectedIndex]))
             {
                 LoadRequestList();
                 Refresh();
@@ -111,7 +111,7 @@ namespace Participation.BeheerSysteem.GUI
         //Deletes Review.
         private void btn_VerwijderRecensies_Click(object sender, EventArgs e)
         {
-            if (adminSystem.DeleteReview(adminSystem.Reviews[lbxReviews.SelectedIndex]))
+            if (_BHSLogic.DeleteReview(_BHSLogic.Reviews[lbxReviews.SelectedIndex]))
             {
                 LoadReviewList();
                 Refresh();
@@ -124,7 +124,7 @@ namespace Participation.BeheerSysteem.GUI
         //Deletes an account.
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
-           if(adminSystem.DeleteAcount(adminSystem.Users[lbxUserList.SelectedIndex]))
+           if(_BHSLogic.DeleteAcount(_BHSLogic.Users[lbxUserList.SelectedIndex]))
            {
                LoadUserList();
                Refresh();
@@ -158,14 +158,14 @@ namespace Participation.BeheerSysteem.GUI
             DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "", MessageBoxButtons.YesNoCancel);
             if (dialogresult == DialogResult.Yes) 
             {
-                if (adminSystem.ChangeAdminRights(adminSystem.Users[lbxUserList.SelectedIndex]))
+                if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {   
-                    MessageBox.Show(adminSystem.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
+                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
                     emptyProfileInformation();
                 }
                 else
                 {
-                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + adminSystem.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
+                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + _BHSLogic.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
                 }
             }
             if (dialogresult == DialogResult.No) 
