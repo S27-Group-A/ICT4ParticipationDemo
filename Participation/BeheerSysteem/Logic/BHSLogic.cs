@@ -92,15 +92,9 @@ namespace Participation.BeheerSysteem.Logic
         public bool DeleteAcount(IUser user)
         {
             foreach (var u in GetUsers())
-            {
                 if (u == user)
-                {
-                    if (DatabaseManager.RemoveUser(user))
-                        return true;
-                    return false;
-                }
-                return false;
-            }
+                    return (DatabaseManager.RemoveUser(user));
+            return false;
 
             /*
             List<IUser> tempusers = GetUsers();
@@ -122,22 +116,10 @@ namespace Participation.BeheerSysteem.Logic
         //Deletes a Request
         public bool DeleteRequest(Request request)
         {
-            /*
-            List<Request> temprequests = GetRequests();
-            Request r = new Request();
-            request = r;
-            foreach (Request temprequest in Requests)
-            {
-                if (temprequests.ToString() == temprequest.ToString())
-                {
-                    r = temprequest;
-                    Requests.Remove(r);
-                    return true;
-                }
-            }
+            foreach (Request req in GetRequests())
+                if (req == request)
+                    return DatabaseManager.DeleteRequest(request);
             return false;
-            */
-            throw new NotImplementedException();
         }
         //Deletes a review
         public bool DeleteReview(Review review)
