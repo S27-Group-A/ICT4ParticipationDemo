@@ -125,7 +125,7 @@ namespace Participation.BeheerSysteem.Logic
         public bool DeleteRequest(Request request)
         {
             foreach (Request req in GetRequests())
-                if (req == request)
+                if (req.Id == request.Id)
                     return DatabaseManager.DeleteRequest(request);
             return false;
         }
