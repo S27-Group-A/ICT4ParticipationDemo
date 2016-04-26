@@ -79,6 +79,7 @@
             this.btnProfile.TabIndex = 1;
             this.btnProfile.Text = "Profiel";
             this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
             // 
             // btnHelprequests
             // 
