@@ -959,7 +959,7 @@
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("Update user SET enabled = 0 Where personid = :personid");
+                OracleCommand command = CreateOracleCommand("Update PERSON SET enabled = 0 Where personid = :personid");
                 command.Parameters.Add(":personid", user.Id);
                 return ExecuteNonQuery(command);
             }
