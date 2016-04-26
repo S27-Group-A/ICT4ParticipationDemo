@@ -127,24 +127,7 @@ namespace Participation.BeheerSysteem.Logic
             foreach (var u in GetUsers())
                 if (u.Id == user.Id)
                     throw new NotImplementedException("DatabaseManager.ModAdmin() not implemented");
-
-            /*
-            List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
-            Volunteer V = new Volunteer();
-            V = null;
-            foreach (Volunteer tempvolunteer in Volunteers)
-            {
-                if (Volunteers.ToString() == tempvolunteer.ToString())
-                {
-                    V = tempvolunteer;
-                    V.Adminrights = true;
-                    return true;
-                }
-            }
-            V.Adminrights = false;
             return false;
-            */
-            throw new NotImplementedException();
         }
 
     }
