@@ -102,24 +102,6 @@ namespace Participation.BeheerSysteem.Logic
             }
             MessageBox.Show("Je kunt niet jezelf verwijderen!");
             return false;
-
-
-            /*
-            List<IUser> tempusers = GetUsers();
-            User u = new IUser();
-            user = u;
-            foreach (IUser tempuser in tempusers)
-            {
-                if (tempusers.ToString() == tempuser.ToString())
-                {
-                    u = tempuser;
-                    Users.Remove(u);
-                    return true;
-                }
-            }
-            return false;
-            */
-            throw new NotImplementedException();
         }
         //Deletes a Request
         public bool DeleteRequest(Request request)
@@ -142,6 +124,10 @@ namespace Participation.BeheerSysteem.Logic
         //Changes Admin Rights <- moet worden aangepast na update van database methodes.
         public bool ChangeAdminRights(IUser user)
         {
+            foreach (var u in GetUsers())
+                if (u.Id == user.Id)
+                    throw new NotImplementedException("DatabaseManager.ModAdmin() not implemented");
+
             /*
             List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
             Volunteer V = new Volunteer();
