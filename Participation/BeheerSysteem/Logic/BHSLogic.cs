@@ -132,22 +132,11 @@ namespace Participation.BeheerSysteem.Logic
         //Deletes a review
         public bool DeleteReview(Review review)
         {
-            /*
-            List<Review> tempreviews = GetReviews();
-            Review r = new Review();
-            review = r;
-            foreach (Review tempreview in Reviews)
-            {
-                if (tempreviews.ToString() == tempreview.ToString())
-                {
-                    r = tempreview;
-                    Reviews.Remove(r);
-                    return true;
-                }
-            }
+
+            foreach (var r in GetReviews())
+                if (r.Id == review.Id)
+                    return DatabaseManager.DeleteReview(review);
             return false;
-            */
-            throw new NotImplementedException();
         }
 
         //Changes Admin Rights <- moet worden aangepast na update van database methodes.
