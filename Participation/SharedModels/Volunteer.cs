@@ -13,14 +13,16 @@ namespace Participation.SharedModels
         public List<Review> _reviews { get; set; }
         public List<string> _perks { get; set; }
         public string _verklaringPdf { get; set; }
+        public bool _isAdmin { get; set; }
         //public static int fileNameCountVerklaring = 0;
         //public static int fileNameCountProfilePic = 0;
-        public bool _isAdmin { get; set; }
+
 
         //constructors
-
-        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks, bool adminrights)
-            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password, ban, bantimeindays)
+        public Volunteer(string name, string email, string description, DateTime birthday,
+            string profilePicture, string location, string phoneNumber, GenderEnum gender,
+            string password, int ban, List<string> perks, bool adminrights)
+            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
             _perks = perks;
@@ -28,9 +30,10 @@ namespace Participation.SharedModels
             _isAdmin = adminrights;
         }
 
+
         public Volunteer(int id, string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
-            string phoneNumber, GenderEnum gender, string password)
+            string phoneNumber, GenderEnum gender, string password, int ban)
             : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
             _reviews = new List<Review>();
