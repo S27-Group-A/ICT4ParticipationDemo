@@ -8,7 +8,7 @@ using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.BeheerSysteem.Logic
 {
-    class AdministrationSystem
+    class BHSLogic
     {
 
         public List<IUser> Users { get; set; }
@@ -16,7 +16,7 @@ namespace Participation.BeheerSysteem.Logic
         public List<Review> Reviews { get; set; }
         public List<Volunteer> Volunteers { get; set; }
 
-        public AdministrationSystem()
+        public BHSLogic()
         {
             this.Users = GetUsers();
             this.Requests = GetRequests();
@@ -47,6 +47,7 @@ namespace Participation.BeheerSysteem.Logic
         //Bans Users permanently
         public bool BanUserPermanent(IUser user)
         {
+            /*
             List<IUser> tempusers = GetUsers();
             IUser u = new IUser();
             user = u;
@@ -60,10 +61,13 @@ namespace Participation.BeheerSysteem.Logic
                 }
             }
             return false;
+            */
+            throw new NotImplementedException();
         }
         // Bans users temporary
         public bool BanUserTemporary(IUser user, int bantime)
         {
+            /*
             List<IUser> tempusers = GetUsers();
             User u = new IUser();
             user = u;
@@ -78,10 +82,13 @@ namespace Participation.BeheerSysteem.Logic
                 }
             }
             return false;
+            */
+            throw new NotImplementedException();
         }
         //Deletes an account
         public bool DeleteAcount(IUser user)
         {
+            /*
             List<IUser> tempusers = GetUsers();
             User u = new IUser();
             user = u;
@@ -95,10 +102,13 @@ namespace Participation.BeheerSysteem.Logic
                 }
             }
             return false;
+            */
+            throw new NotImplementedException();
         }
         //Deletes a Request
         public bool DeleteRequest(Request request)
         {
+            /*
             List<Request> temprequests = GetRequests();
             Request r = new Request();
             request = r;
@@ -112,10 +122,13 @@ namespace Participation.BeheerSysteem.Logic
                 }
             }
             return false;
+            */
+            throw new NotImplementedException();
         }
         //Deletes a review
         public bool DeleteReview(Review review)
         {
+            /*
             List<Review> tempreviews = GetReviews();
             Review r = new Review();
             review = r;
@@ -129,11 +142,14 @@ namespace Participation.BeheerSysteem.Logic
                 }
             }
             return false;
+            */
+            throw new NotImplementedException();
         }
 
         //Changes Admin Rights <- moet worden aangepast na update van database methodes.
         public bool ChangeAdminRights(IUser user)
         {
+            /*
             List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
             Volunteer V = new Volunteer();
             V = null;
@@ -148,6 +164,8 @@ namespace Participation.BeheerSysteem.Logic
             }
             V.Adminrights = false;
             return false;
+            */
+            throw new NotImplementedException();
         }
 
     }
