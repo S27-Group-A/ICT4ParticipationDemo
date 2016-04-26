@@ -91,6 +91,16 @@ namespace Participation.BeheerSysteem.Logic
         //Deletes an account
         public bool DeleteAcount(IUser user)
         {
+
+            List<IUser> tempusers = GetUsers();
+            foreach (var u in tempusers)
+            {
+                if (u == user)
+                {
+                    DatabaseManager.RemoveUser(user);
+                }
+            }
+
             /*
             List<IUser> tempusers = GetUsers();
             User u = new IUser();
