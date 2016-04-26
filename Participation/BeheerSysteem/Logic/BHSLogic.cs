@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Participation.SharedModels;
 using Participation.InlogSysteem.Interfaces;
 
@@ -91,10 +92,17 @@ namespace Participation.BeheerSysteem.Logic
         //Deletes an account
         public bool DeleteAcount(IUser user)
         {
-            foreach (var u in GetUsers())
-                if (u == user)
-                    return (DatabaseManager.RemoveUser(user));
+            if (user.Id != FormProvider.LoggedInUser.Id)
+            {
+
+                foreach (var u in GetUsers())
+                    if (u.Id == user.Id)
+                        return (DatabaseManager.RemoveUser(user));
+                return false;
+            }
+            MessageBox.Show("Je kunt niet jezelf verwijderen!");
             return false;
+
 
             /*
             List<IUser> tempusers = GetUsers();
