@@ -140,11 +140,11 @@ VALUES(1, 'Auto');
 INSERT INTO Perk(perkID, perktext)
 VALUES(2, 'Fiets');
 INSERT INTO Perk(perkID, perktext)
-VALUES(3, 'Auto');
+VALUES(3, 'Brommer');
 INSERT INTO Perk(perkID, perktext)
 VALUES(4, 'Vrije tijd');
 INSERT INTO Perk(perkID, perktext)
-VALUES(5, 'Fiets');
+VALUES(5, 'Computervaardig');
 
 INSERT INTO PERK_PERSON(perkID, personID) VALUES(1, 1);
 INSERT INTO PERK_PERSON(perkID, personID) VALUES(2, 2);
