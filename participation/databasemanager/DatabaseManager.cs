@@ -372,7 +372,7 @@
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE email = :Email");
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE email = :Email and enabled = 1");
                 command.Parameters.Add(":Email", email);
                 OracleDataReader reader = ExecuteQuery(command);
 
@@ -425,7 +425,7 @@
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Person");
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE enabled = 1");
                 OracleDataReader reader = ExecuteQuery(command);
                 List<IUser> Users = new List<IUser>();
                 while (reader.Read())
@@ -955,6 +955,19 @@
         #region Delete
 
         #region User
+        public static bool RemoveUser(IUser user)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("Update user SET enabled = 0 Where personid = :personid");
+                command.Parameters.Add(":personid", user.Id);
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         #endregion
 

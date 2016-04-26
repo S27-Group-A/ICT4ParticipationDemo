@@ -31,11 +31,13 @@ CREATE TABLE Person
 	
 	banned					NUMBER(1)			DEFAULT 0,
 	unban					DATE,
+	enabled					NUMBER(1)			DEFAULT 1,
 
 	
 	CONSTRAINT c_personType CHECK (personType = 'Volunteer' OR personType = 'Patient' OR personType = 'Admin'),
 	CONSTRAINT c_gender CHECK(gender = 'M' OR gender = 'V'),
-	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2)
+	CONSTRAINT c_banned CHECK(banned = 0 OR  banned = 1 OR banned = 2),
+	CONSTRAINT c_enabled CHECK(enabled = 0 or enabled = 1)
 	-- 0 = not banned, 1 = banned until X, 2 = permanent banned
 );
 
@@ -122,16 +124,16 @@ ALTER TABLE Perk_Request	ADD FOREIGN KEY(perkID)			REFERENCES Perk(perkID);
 
 
 -- INSERT DATA --
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
-VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 1, 'file1', 0);
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
-VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', 2, 'file2', 0);
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
-VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 3, 'file3', 0);
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
-VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 'file4', 0);
-INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned)
-VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
+VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 1, 'file1', 0, 1);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
+VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', 2, 'file2', 0, 1);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
+VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 3, 'file3', 0, 1);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
+VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 'file4', 0, 1);
+INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
+VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'filepath', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 'file5', 0, 1);
 
 INSERT INTO Perk(perkID, perktext)
 VALUES(1, 'Auto');
