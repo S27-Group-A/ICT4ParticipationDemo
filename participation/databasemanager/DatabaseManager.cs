@@ -1005,10 +1005,27 @@
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("DELETE FROM Request WHERE requestID = :requestID");
+                OracleCommand command = CreateOracleCommand("DELETE FROM PERK_REQUEST Where requestid = :requestID");
                 command.Parameters.Add(":requestID", request.Id);
+                if(ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("DELETE FROM RESPONSE WHERE requestid = :requestID");
+                    command.Parameters.Add(":requestID", request.Id);
+                    if(ExecuteNonQuery(command))
+                    {
+                        command = CreateOracleCommand("DELETE FROM Request WHERE requestID = :requestID");
+                        command.Parameters.Add(":requestID", request.Id);
 
-                return ExecuteNonQuery(command);
+                        return ExecuteNonQuery(command);
+
+                    }
+                    return false;
+
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
