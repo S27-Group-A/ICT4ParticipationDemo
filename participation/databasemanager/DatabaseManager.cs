@@ -41,6 +41,7 @@
                 return string.Format("Data Source={0};Persist Security Info=True;User Id={1};Password={2}", _ConnectionAddress, _ConnectionId, _ConnectionPassword);
             }
         }
+
         #endregion
 
         #region Methods - Background Processes
@@ -1007,11 +1008,11 @@
             {
                 OracleCommand command = CreateOracleCommand("DELETE FROM PERK_REQUEST Where requestid = :requestID");
                 command.Parameters.Add(":requestID", request.Id);
-                if(ExecuteNonQuery(command))
+                if (ExecuteNonQuery(command))
                 {
                     command = CreateOracleCommand("DELETE FROM RESPONSE WHERE requestid = :requestID");
                     command.Parameters.Add(":requestID", request.Id);
-                    if(ExecuteNonQuery(command))
+                    if (ExecuteNonQuery(command))
                     {
                         command = CreateOracleCommand("DELETE FROM Request WHERE requestID = :requestID");
                         command.Parameters.Add(":requestID", request.Id);

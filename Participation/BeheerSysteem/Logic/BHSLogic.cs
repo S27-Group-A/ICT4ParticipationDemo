@@ -24,7 +24,7 @@ namespace Participation.BeheerSysteem.Logic
             this.Reviews = GetReviews();
         }
 
-        //Methode vervalt
+        //TODO Methode vervalt
         /*
         public void CreateNewAccount()
         {
@@ -49,46 +49,31 @@ namespace Participation.BeheerSysteem.Logic
         }
 
         //Bans Users permanently
-        public bool BanUserPermanent(IUser user)
+        public bool BanUser(IUser user)
         {
-            /*
-            List<IUser> tempusers = GetUsers();
-            IUser u = new IUser();
-            user = u;
-            foreach (IUser tempuser in tempusers)
+            foreach (var u in GetUsers())
             {
-                if (tempusers.ToString() == tempuser.ToString())
+                if (u == user)
                 {
-                    u = tempuser;
-                    tempuser.Ban = 2;
-                    return true;
+                    return DatabaseManager.BanUser(user);
                 }
             }
             return false;
-            */
-            throw new NotImplementedException();
+
         }
-        // Bans users temporary
-        public bool BanUserTemporary(IUser user, int bantime)
+
+        public bool BanUser(IUser user, DateTime unbanDate)
         {
-            /*
-            List<IUser> tempusers = GetUsers();
-            User u = new IUser();
-            user = u;
-            foreach (User tempuser in tempusers)
+            foreach (var u in GetUsers())
             {
-                if (tempusers.ToString() == tempuser.ToString())
+                if (u == user)
                 {
-                    u = tempuser;
-                    tempuser.Ban = 1;
-                    tempuser.BantimeinDays = bantime;
-                    return true;
+                    return DatabaseManager.BanUser(user, unbanDate);
                 }
             }
             return false;
-            */
-            throw new NotImplementedException();
         }
+
         //Deletes an account
         public bool DeleteAcount(IUser user)
         {
