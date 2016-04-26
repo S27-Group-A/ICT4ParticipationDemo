@@ -125,15 +125,15 @@ namespace Participation.BeheerSysteem.GUI
         //Deletes an account.
         private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
-           if(_BHSLogic.DeleteAcount(_BHSLogic.Users[lbxUserList.SelectedIndex]))
-           {
-               LoadUserList();
-               Refresh();
-           }
+            if (_BHSLogic.DeleteAcount(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+            {
+                LoadUserList();
+                Refresh();
+            }
             else
-           {
-               MessageBox.Show("Kon het account niet verwijderen.");
-           }
+            {
+                MessageBox.Show("Kon het account niet verwijderen.");
+            }
         }
         //Judge a volunteer to see if he is qualified to be a volunteer.
         private void btnJudgeVolunteer_Click(object sender, EventArgs e)
@@ -157,10 +157,10 @@ namespace Participation.BeheerSysteem.GUI
         private void btnChangeRights_Click(object sender, EventArgs e)
         {
             DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "", MessageBoxButtons.YesNoCancel);
-            if (dialogresult == DialogResult.Yes) 
+            if (dialogresult == DialogResult.Yes)
             {
                 if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
-                {   
+                {
                     MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
                     emptyProfileInformation();
                 }
@@ -169,7 +169,7 @@ namespace Participation.BeheerSysteem.GUI
                     MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + _BHSLogic.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
                 }
             }
-            if (dialogresult == DialogResult.No) 
+            if (dialogresult == DialogResult.No)
             {
                 MessageBox.Show("De rechten zijn niet aangepast.");
             }
@@ -188,7 +188,7 @@ namespace Participation.BeheerSysteem.GUI
             {
             }
         }
-        
+
     }
-    
+
 }
