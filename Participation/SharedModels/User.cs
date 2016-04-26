@@ -22,7 +22,7 @@ namespace Participation.SharedModels
         public string Password { get; set; }
         public List<Meeting> Meetings { get; set; }
         public int Ban { get; set; }
-        public int BantimeinDays { get; set; }
+        public DateTime Unban { get; set; }
 
         //constructors
 
@@ -40,7 +40,8 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            Meetings = new List<Meeting>();
+            Meetings = null;
+            Ban = 0;
         }
 
         public User(string name, string email, string description,
@@ -57,7 +58,8 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            Meetings = new List<Meeting>();
+            Meetings = null;
+            Ban = 0;
         }
     }
 }
