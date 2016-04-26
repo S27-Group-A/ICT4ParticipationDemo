@@ -62,7 +62,7 @@
     <Compile Include="BeheerSysteem\GUI\AdminSystemForm.Designer.cs">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BeheerSysteem\Logic\AdministrationSystem.cs" />
+    <Compile Include="BeheerSysteem\Logic\BHSLogic.cs" />
     <Compile Include="ChatSysteem\GUI\ChatForm.cs">
       <SubType>Form</SubType>
     </Compile>

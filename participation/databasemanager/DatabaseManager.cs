@@ -648,7 +648,7 @@
 
         #region Meeting
         /// <summary>
-        /// Creates a list of meetings
+        /// Creates a list of Meetings
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>

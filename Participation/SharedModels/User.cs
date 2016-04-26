@@ -20,7 +20,7 @@ namespace Participation.SharedModels
         public string PhoneNumber { get; set; }
         public GenderEnum Gender { get; set; }
         public string Password { get; set; }
-        public List<Meeting> meetings { get; set; }
+        public List<Meeting> Meetings { get; set; }
         public int Ban { get; set; }
         public int BantimeinDays { get; set; }
 
@@ -40,7 +40,7 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            meetings = new List<Meeting>();
+            Meetings = new List<Meeting>();
         }
 
         public User(string name, string email, string description,
@@ -57,96 +57,7 @@ namespace Participation.SharedModels
             PhoneNumber = phoneNumber;
             Gender = gender;
             Password = password;
-            meetings = new List<Meeting>();
-        }
-        public User(int Id, string name, string email, string description,
-            DateTime birthday, string profilePicture, string location,
-            string phoneNumber, GenderEnum gender, string password, int ban, int bantimeindays)
-        {
-            this.Id = Id;
-            Name = name;
-            Email = email;
-            Description = description;
-            Birthday = birthday;
-            ProfilePicture = profilePicture;
-            Location = location;
-            PhoneNumber = phoneNumber;
-            Gender = gender;
-            Password = password;
-            meetings = new List<Meeting>();
-            Ban = ban;
-            BantimeinDays = bantimeindays;
-        }
-
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, int ban, int bantimeindays)
-        {
-            Name = name;
-            Email = email;
-            Birthday = birthday;
-            Location = location;
-            Password = password;
-            PhoneNumber = phoneNumber;
-            meetings = new List<Meeting>();
-            Ban = ban;
-            BantimeinDays = bantimeindays;
-        }
-
-        public User(string name, string email, DateTime birthday, string location, string password, string phoneNumber, GenderEnum gender, int ban, int bantimeindays)
-        {
-            Name = name;
-            Email = email;
-            Birthday = birthday;
-            Location = location;
-            Password = password;
-            PhoneNumber = phoneNumber;
-            Gender = gender;
-            meetings = new List<Meeting>();
-            Ban = ban;
-            BantimeinDays = bantimeindays;
-        }
-
-        public User(string name, string email, DateTime birthday, string description, string profilePicture, string location, string password, string phoneNumber, GenderEnum gender, int ban, int bantimeindays)
-        {
-            //this.Id = Id; TODO set id
-            Name = name;
-            Email = email;
-            Description = description;
-            Birthday = birthday;
-            Location = location;
-            PhoneNumber = phoneNumber;
-            Gender = gender;
-            ProfilePicture = profilePicture;
-            meetings = new List<Meeting>();
-            Ban = ban;
-            BantimeinDays = bantimeindays;
-        }
-
-
-        public User(string email, string password)
-        {
-            Email = email;
-            Password = password;
-            Birthday = new DateTime();
-        }
-
-        public User(string name, string email, DateTime birthday, string location, string password)
-        {
-            Name = name;
-            Email = email;
-            Birthday = birthday;
-            Location = location;
-            Password = password;
-            meetings = new List<Meeting>();
-        }
-
-        //methods
-
-        /// <summary>
-        /// Profiel gegevens aanpassen
-        /// </summary>
-        private void EditProfile()
-        {
-
+            Meetings = new List<Meeting>();
         }
     }
 }

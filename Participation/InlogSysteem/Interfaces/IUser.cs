@@ -16,6 +16,9 @@ namespace Participation.InlogSysteem.Interfaces
         string PhoneNumber { get; set; }
         GenderEnum Gender { get; set; }
         string Password { get; set; }
-        List<Meeting> meetings { get; set; }
+        List<Meeting> Meetings { get; set; }
+        int Ban { get; set; }
+        DateTime Unban { get; set; }
+
     }
 }

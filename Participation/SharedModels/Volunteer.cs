@@ -10,11 +10,11 @@ namespace Participation.SharedModels
     public class Volunteer : User
     {
         //properties
-        private List<Review> _reviews { get; set; }
-        private List<string> _perks { get; set; }
+        public List<Review> _reviews { get; set; }
+        public List<string> _perks { get; set; }
         public string _verklaringPdf { get; set; }
-        private static int fileNameCountVerklaring = 0;
-        private static int fileNameCountProfilePic = 0;
+        //public static int fileNameCountVerklaring = 0;
+        //public static int fileNameCountProfilePic = 0;
         public bool _isAdmin { get; set; }
 
         //constructors

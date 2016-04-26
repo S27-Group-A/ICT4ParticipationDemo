@@ -15,14 +15,14 @@ namespace Participation.BeheerSysteem.GUI
     public partial class AdminSystemForm : Form
     {
         //Fields
-        private AdministrationSystem adminSystem;
+        private BHSLogic adminSystem;
 
         //Constructor
         public AdminSystemForm()
         {
             InitializeComponent();
             emptyProfileInformation();
-            this.adminSystem = new AdministrationSystem();
+            this.adminSystem = new BHSLogic();
             LoadUserList();
             LoadRequestList();
             LoadReviewList();
