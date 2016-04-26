@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Participation.SharedModels;
-
+﻿// <copyright file="ChatUsers.cs" company="S27A">
+//      Copyright (c) ICT4Participation. All rights reserved.
+// </copyright>
+// <author>Sander Koch</author>
 namespace Participation.ChatSysteem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using Participation.SharedModels;
     public partial class ChatUsers : Form
     {
         ReceiveClient rc = null;
         public ChatUsers()
         {
             InitializeComponent();
+            btnStartChat.Enabled = false;
         }
 
         public void Login()
@@ -53,6 +57,11 @@ namespace Participation.ChatSysteem
             ChatForm CF = FormProvider.ChatForm(this.rc, sender, msg);
             CF.ShowDialog();
             this.Show();
+        }
+
+        private void lbxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnStartChat.Enabled = true;
         }
     }
 }

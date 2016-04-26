@@ -1,3 +1,8 @@
+﻿﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 ﻿using Participation.BeheerSysteem.GUI;
 using Participation.ChatSysteem;
 using Participation.HulpSysteem.GUI;
@@ -75,19 +80,17 @@ namespace Participation.SharedModels
             }
         }
 
-
         public static RequestsViewForm RequestsViewForm
         {
             get
             {
                 if (_requestsViewForm == null)
                 {
-                    _requestsViewForm = new RequestsViewForm();
+                    _requestsViewForm = new RequestsViewForm(LoggedInUser);
                 }
                 return _requestsViewForm;
             }
         }
-
 
         public static RequestForm RequestForm
         {
@@ -101,6 +104,7 @@ namespace Participation.SharedModels
             }
         }
 
+        private static RequestForm _requestForm;
 
         public static ChatUsers ChatUsersForm
         {

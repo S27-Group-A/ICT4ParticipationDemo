@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.ServiceModel;
-using Participation.ChatSysteem.ChatService;
-using Participation.SharedModels;
-
+﻿// <copyright file="ChatForm.cs" company="S27A">
+//      Copyright (c) ICT4Participation. All rights reserved.
+// </copyright>
+// <author>Sander Koch</author>
 namespace Participation.ChatSysteem
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using System.ServiceModel;
+    using Participation.ChatSysteem.ChatService;
+    using Participation.SharedModels;
     public partial class ChatForm : Form
     {
         ReceiveClient RecieveClient;
-        string myName;
-       
+
         public ChatForm(ReceiveClient recieveClient, string target)
+
         {
             InitializeComponent();
             this.FormClosing+=new FormClosingEventHandler(frmClient_FormClosing);
@@ -78,11 +81,10 @@ namespace Participation.ChatSysteem
             if (tbxName.Text != string.Empty)
             {
                 tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ">" + txtSend.Text;
-                RecieveClient.SendMessage(txtSend.Text, myName, tbxName.Text);
+                RecieveClient.SendMessage(txtSend.Text, FormProvider.LoggedInUser.Name, tbxName.Text );
                 txtSend.Clear();
             }
         }
-
     }
    
 }

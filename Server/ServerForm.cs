@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.ServiceModel;
-
+﻿// <copyright file="ServerForm.cs" company="S27A">
+//      Copyright (c) ICT4Participation. All rights reserved.
+// </copyright>
+// <author>Sander Koch</author>
 namespace Server
 {
-    public partial class Form1 : Form
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Text;
+    using System.Windows.Forms;
+    using System.ServiceModel;
+    public partial class ServerForm : Form
     {
         bool blnStartStop;
         ServiceHost host;
@@ -18,7 +21,7 @@ namespace Server
         ServerManager serverManager = new ServerManager();
         
 
-        public Form1()
+        public ServerForm()
         {
             InitializeComponent();
             blnStartStop = true;

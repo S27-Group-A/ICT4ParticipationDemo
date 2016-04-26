@@ -41,6 +41,7 @@
             this.txtSend.Multiline = true;
             this.txtSend.Name = "txtSend";
             this.txtSend.Size = new System.Drawing.Size(500, 62);
+
             this.txtSend.TabIndex = 1;
             // 
             // btnSend

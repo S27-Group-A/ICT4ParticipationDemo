@@ -15,9 +15,19 @@ namespace Participation.SharedModels
         public string _verklaringPdf { get; set; }
         private static int fileNameCountVerklaring = 0;
         private static int fileNameCountProfilePic = 0;
-        private bool _isAdmin { get; set; }
+        public bool _isAdmin { get; set; }
 
         //constructors
+
+        public Volunteer(string name, string email, string description, DateTime birthday, string profilePicture, string location, string phoneNumber, GenderEnum gender, string password, List<Meeting> meetings, List<string> perks, bool adminrights)
+            : base(name, email, description, birthday, profilePicture, location, phoneNumber, gender, password, ban, bantimeindays)
+        {
+            _reviews = new List<Review>();
+            _perks = perks;
+            _verklaringPdf = null;
+            _isAdmin = adminrights;
+        }
+
         public Volunteer(int id, string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
             string phoneNumber, GenderEnum gender, string password)
