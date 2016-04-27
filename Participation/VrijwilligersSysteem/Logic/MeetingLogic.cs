@@ -58,7 +58,7 @@ namespace Participation.VrijwilligersSysteem.Logic
 
         public bool AcceptMeeting(Meeting meeting)
         {
-            return 0;
+            return false;
         }
     }
 }
