@@ -570,10 +570,14 @@ namespace Participation
                         string phoneNumber = volunteerReader["phone"].ToString();
                         GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                         string password = volunteerReader["password"].ToString();
-                        string vog = volunteerReader["vog"].ToString();
+                        int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                        volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
-                        i.Volunteer = volunteer;
+                        if(vog != 0 )
+                        {
+                            volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                            i.Volunteer = volunteer;
+                        }
+                        
                     }
                 }
 
@@ -666,7 +670,7 @@ namespace Participation
                             string password = volunteerReader["password"].ToString();
                             string vog = volunteerReader["vog"].ToString();
 
-                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             i.Volunteer = castvolunteer;
                         }
                     }
@@ -742,12 +746,14 @@ namespace Participation
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
-                        string vog_Other = reader["vog_1"].ToString();
+                        int vog_Other = Convert.ToInt32(reader["vog_1"].ToString());
 
                         IUser patient = new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
-                        IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, vog_Other, false);
-
-                        MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        if(vog_Other != 0)
+                        {
+                            IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, true, false);
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        }
                     }
                 }
                 if (user.GetType() == typeof(Volunteer))
@@ -769,7 +775,7 @@ namespace Participation
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
                         string password = reader["password"].ToString();
-                        string vog = reader["vog"].ToString();
+                        int vog = Convert.ToInt32(reader["vog"].ToString());
 
                         int id_other = Convert.ToInt32(reader["personid_1"].ToString());
                         string name_Other = reader["name_1"].ToString();
@@ -783,10 +789,15 @@ namespace Participation
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
 
-                        IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
-                        IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
+                        if(vog != 0)
+                        {
+                            IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                            IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
-                        MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        }
+                        
+
                     }
                 }
                 return MeetingList;
