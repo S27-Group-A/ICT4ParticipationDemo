@@ -13,9 +13,9 @@ namespace Participation.SharedModels
         //properties
         public List<Review> reviews { get; set; }
         public List<string> perks { get; set; }
-        private static int fileNameCountVerklaring = 0;
-        private static int fileNameCountProfilePic = 0;
-        public string verklaringPdf { get; set; }
+        //private static int fileNameCountVerklaring = 0;
+        //private static int fileNameCountProfilePic = 0;
+        public bool verklaringPdf { get; set; }
         public bool isAdmin { get; set; }
         //public static int fileNameCountVerklaring = 0;
         //public static int fileNameCountProfilePic = 0;
@@ -24,7 +24,7 @@ namespace Participation.SharedModels
         //constructors
         public Volunteer(int id, string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
-            string phoneNumber, GenderEnum gender, string password, string verklaringPdf, bool isAdmin)
+            string phoneNumber, GenderEnum gender, string password, bool verklaringPdf, bool isAdmin)
             : base(id, name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
             this.reviews = new List<Review>();
@@ -37,7 +37,7 @@ namespace Participation.SharedModels
 
         public Volunteer(string name, string email, string description,
             DateTime birthday, string profilePicure, string location,
-            string phoneNumber, GenderEnum gender, string password, string verklaringPdf, bool isAdmin)
+            string phoneNumber, GenderEnum gender, string password, bool verklaringPdf, bool isAdmin)
             : base(name, email, description, birthday, profilePicure, location, phoneNumber, gender, password)
         {
             this.reviews = new List<Review>();
@@ -93,18 +93,18 @@ namespace Participation.SharedModels
             }
         }
 
-        public void AddVerklaring(string path)
-        {
-            while (
-                System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring +
-                                      ".png"))
-            {
-                fileNameCountVerklaring++;
-            }
+        //public void AddVerklaring(string path)
+        //{
+        //    while (
+        //        System.IO.File.Exists(Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring +
+        //                              ".png"))
+        //    {
+        //        fileNameCountVerklaring++;
+        //    }
 
-            System.IO.File.Copy(path, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring + ".png");
-            verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring + ".png";
-        }
+        //    System.IO.File.Copy(path, Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring + ".png");
+        //    verklaringPdf = Environment.CurrentDirectory + @"\\vog" + fileNameCountVerklaring + ".png";
+        //}
 
         public string GetFileNameVog()
         {

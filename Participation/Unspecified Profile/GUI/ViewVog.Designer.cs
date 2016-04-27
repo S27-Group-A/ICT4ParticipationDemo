@@ -40,7 +40,7 @@
             this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbVog.TabIndex = 0;
             this.pbVog.TabStop = false;
-            this.pbVog.SizeChanged += new System.EventHandler(this.sizeChanged);
+            //this.pbVog.SizeChanged += new System.EventHandler(this.sizeChanged);
             // 
             // ViewVog
             // 
@@ -50,7 +50,7 @@
             this.Controls.Add(this.pbVog);
             this.Name = "ViewVog";
             this.Text = "ViewVog";
-            this.Load += new System.EventHandler(this.ViewVog_Load);
+            //this.Load += new System.EventHandler(this.ViewVog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.ResumeLayout(false);
 

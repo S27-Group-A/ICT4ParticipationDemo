@@ -164,7 +164,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text, tbxVOGUrl.Text, false);
+                            tbxPassword.Text, true, false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add Perks
@@ -193,7 +193,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text, tbxVOGUrl.Text, false);
+                            tbxPassword.Text, true, false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add perk
@@ -213,7 +213,6 @@ namespace Participation.InlogSysteem.GUI
                         else MessageBox.Show(_contactAdministratorMsg);
                     }
                 }
-                // TODO Add files (VOG and Profilepicture) to server
             }
             else
             {

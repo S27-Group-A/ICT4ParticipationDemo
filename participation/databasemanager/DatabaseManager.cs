@@ -265,6 +265,31 @@ namespace Participation
                 return false;
             }
         }
+
+        public static bool SetAvailability(IUser user, List<string> times)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (:personID, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)");
+                command.Parameters.Add(":personID", user.Id);
+                command.Parameters.Add(":monday", times[0]);
+                command.Parameters.Add(":tuesday", times[1]);
+                command.Parameters.Add(":wednesday", times[2]);
+                command.Parameters.Add(":thursday", times[3]);
+                command.Parameters.Add(":friday", times[4]);
+                command.Parameters.Add(":saturday", times[5]);
+                command.Parameters.Add(":sunday", times[6]);
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
         #endregion
 
         #region Review
@@ -348,6 +373,10 @@ namespace Participation
             {
                 return false;
             }
+            finally
+            {
+                _Connection.Close();
+            }
         }
 
         #endregion
@@ -416,12 +445,20 @@ namespace Participation
                     string phoneNumber = reader["phone"].ToString();
                     GenderEnum gender = ToGender(reader["gender"].ToString());
                     string password = reader["password"].ToString();
-                    string vog = reader["VOG"].ToString();
+                    int vog = Convert.ToInt32(reader["VOG"].ToString());
 
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                        if (vog != 0)
+                        {
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
+
                     }
                     if (personType == "Patient")
                     {
@@ -429,7 +466,14 @@ namespace Participation
                     }
                     if (personType == "Admin")
                     {
-                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, true);
+                        if (vog != 0)
+                        {
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, true);
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
                     }
                 }
                 return null;
@@ -517,20 +561,35 @@ namespace Participation
                     string phoneNumber = reader["phone"].ToString();
                     GenderEnum gender = ToGender(reader["gender"].ToString());
                     string password = reader["password"].ToString();
-                    string vog = reader["VOG"].ToString();
+                    int vog = Convert.ToInt32(reader["VOG"].ToString());
 
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false));
+                        if (vog != 0)
+                        {
+; 
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
+
                     }
                     if (personType == "Patient")
                     {
-                        Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
+                       Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
                     }
                     if (personType == "Admin")
                     {
-                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, true));
+                        if (vog != 0)
+                        {
+                            Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false));
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
                     }
                 }
                 return Users;
@@ -542,6 +601,32 @@ namespace Participation
             finally
             {
                 _Connection.Close();
+            }
+        }
+        
+        public static List<string> GetAvailability(IUser user)
+        {
+            try
+            {
+                List<string> times = new List<string>();
+                OracleCommand command = CreateOracleCommand("Select * from Availability WHERE PersonID = :personID");
+                command.Parameters.Add(":personID", user.Id);
+                OracleDataReader reader = ExecuteQuery(command);
+                while (reader.Read())
+                {
+                    times.Add(reader["Monday"].ToString());
+                    times.Add(reader["Tuesday"].ToString());
+                    times.Add(reader["Wednesday"].ToString());
+                    times.Add(reader["Thursday"].ToString());
+                    times.Add(reader["Friday"].ToString());
+                    times.Add(reader["Saturday"].ToString());
+                    times.Add(reader["Sunday"].ToString());
+                }
+                return times;
+            }
+            catch
+            {
+                throw new Exception("Could not get availability of volunteer out of the database.");
             }
         }
         #endregion
@@ -609,10 +694,14 @@ namespace Participation
                         string phoneNumber = volunteerReader["phone"].ToString();
                         GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                         string password = volunteerReader["password"].ToString();
-                        string vog = volunteerReader["vog"].ToString();
+                        int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                        volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
-                        i.Volunteer = volunteer;
+                        if(vog != 0 )
+                        {
+                            volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                            i.Volunteer = volunteer;
+                        }
+                        
                     }
                 }
 
@@ -705,7 +794,7 @@ namespace Participation
                             string password = volunteerReader["password"].ToString();
                             string vog = volunteerReader["vog"].ToString();
 
-                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             i.Volunteer = castvolunteer;
                         }
                     }
@@ -781,12 +870,14 @@ namespace Participation
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
-                        string vog_Other = reader["vog_1"].ToString();
+                        int vog_Other = Convert.ToInt32(reader["vog_1"].ToString());
 
                         IUser patient = new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
-                        IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, vog_Other, false);
-
-                        MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        if(vog_Other != 0)
+                        {
+                            IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, true, false);
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        }
                     }
                 }
                 if (user.GetType() == typeof(Volunteer))
@@ -808,7 +899,7 @@ namespace Participation
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
                         string password = reader["password"].ToString();
-                        string vog = reader["vog"].ToString();
+                        int vog = Convert.ToInt32(reader["vog"].ToString());
 
                         int id_other = Convert.ToInt32(reader["personid_1"].ToString());
                         string name_Other = reader["name_1"].ToString();
@@ -822,10 +913,15 @@ namespace Participation
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
 
-                        IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
-                        IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
+                        if(vog != 0)
+                        {
+                            IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                            IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
-                        MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                        }
+                        
+
                     }
                 }
                 return MeetingList;
@@ -881,6 +977,7 @@ namespace Participation
                     }
                     r.Perks = perks;
                 }
+                return RequestList;
             }
             catch
             {
@@ -890,7 +987,7 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return RequestList;
+
         }
 
         /// <summary>
@@ -936,6 +1033,7 @@ namespace Participation
                         r.Perks = perks;
                     }
                 }
+                return RequestList;
             }
             catch
             {
@@ -945,7 +1043,7 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return RequestList;
+
         }
 
         #endregion
@@ -1100,7 +1198,7 @@ namespace Participation
             {
                 OracleCommand command = CreateOracleCommand("UPDATE PERSON SET PERSONTYPE = :persontype WHERE PersonID = :personID");
                 command.Parameters.Add(":personID", user.Id);
-
+                command.BindByName = true;
                 Volunteer v = user as Volunteer;
                 switch (v.isAdmin)
                 {
@@ -1117,6 +1215,32 @@ namespace Participation
 
                 }
                 return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+        
+        public static bool UpdateAvailability(IUser user, List<string> times)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE availability SET Monday = :monday, Tuesday = :tuesday, Wednesday = :wednesday, Thursday = :thursday, Friday = :friday, Saturday = :saturday, Sunday = :sunday WHERE PersonID = :personID ");
+                command.Parameters.Add(":personID", user.Id);
+                command.Parameters.Add(":monday", times[0]);
+                command.Parameters.Add(":tuesday", times[1]);
+                command.Parameters.Add(":wednesday", times[2]);
+                command.Parameters.Add(":thursday", times[3]);
+                command.Parameters.Add(":friday", times[4]);
+                command.Parameters.Add(":saturday", times[5]);
+                command.Parameters.Add(":sunday", times[6]);
+                return ExecuteNonQuery(command);
+
             }
             catch
             {

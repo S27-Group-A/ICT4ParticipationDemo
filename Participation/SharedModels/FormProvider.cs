@@ -63,11 +63,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                if (_profileForm == null)
-                {
-                    _profileForm = new ProfileForm(LoggedInUser);
-                }
-                return _profileForm;
+                return _profileForm = new ProfileForm(LoggedInUser);
             }
         }
 
@@ -131,11 +127,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                if (_chatuserform == null)
-                {
-                    _chatuserform = new ChatUsers();
-                }
-                return _chatuserform;
+                return _chatuserform = new ChatUsers();
             }
         }
 

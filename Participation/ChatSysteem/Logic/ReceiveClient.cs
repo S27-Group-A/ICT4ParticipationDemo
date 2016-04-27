@@ -26,6 +26,8 @@ namespace Participation.ChatSysteem
     /// <param name="names">The chat usernames.</param>
     public delegate void GotNames(object sender, List<string> names);
 
+    public delegate void NewChat(string msg, string sender, string receiver);
+
  /// <summary>
  /// A instance of the Receive client class, this class is used to communicatie with the Chat service interface and services to
  /// communicate with the server and other clients.
@@ -41,6 +43,8 @@ namespace Participation.ChatSysteem
         /// Used in conjunction with the delegate version of this field.
         /// </summary>
         public event GotNames NewNames;
+
+        public event NewChat ChatStart;
 
         /// <summary>
         /// A instance of the instance context from service model.
@@ -86,6 +90,11 @@ namespace Participation.ChatSysteem
             this.chatClient.SendMessage(msg, sender, receiver);
         }
 
+        public void StartChat(string msg, string sender, string receiver)
+        {
+            this.chatClient.StartChat(msg, sender, receiver);
+        }
+
         /// <summary>
         /// Stops the chat, and removes the user from the list depending on which user.
         /// </summary>
@@ -113,6 +122,14 @@ namespace Participation.ChatSysteem
             if (this.ReceiveMsg != null)
             {
                 this.ReceiveMsg(receiver, msg);
+            }
+        }
+
+        void ChatService.ISendChatServiceCallback.NewChat(string msg, string sender, string receiver)
+        {
+            if(this.ChatStart != null)
+            {
+                this.ChatStart(msg, sender, receiver);
             }
         }
 

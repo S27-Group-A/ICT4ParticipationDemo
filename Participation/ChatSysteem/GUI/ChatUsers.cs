@@ -21,15 +21,22 @@ namespace Participation.ChatSysteem
         {
             InitializeComponent();
             btnStartChat.Enabled = false;
+            Login();
         }
 
         public void Login()
         {
             rc = new ReceiveClient();
             rc.Start(rc, FormProvider.LoggedInUser);
-
+            this.FormClosing += new FormClosingEventHandler(ChatUsers_Closing);
             rc.NewNames += new GotNames(rc_NewNames);
-            rc.ReceiveMsg += new ReceivedMessage(rc_ReceiveMessage);
+            //rc.ReceiveMsg += new ReceivedMessage(rc_ReceiveMessage);
+            rc.ChatStart += new NewChat(rc_NewChat);
+        }
+
+        private void ChatUsers_Closing(object sender, EventArgs e)
+        {
+            rc.Stop(FormProvider.LoggedInUser);
         }
 
         private void rc_NewNames(object sender, List<string> names)
@@ -49,6 +56,14 @@ namespace Participation.ChatSysteem
             CF.ShowDialog();
             this.Show();
 
+        }
+
+        private void rc_NewChat(string msg, string sender, string receiver)
+        {
+            this.Hide();
+            ChatForm CF = FormProvider.ChatForm(this.rc, sender, msg);
+            CF.ShowDialog();
+            this.Show();
         }
 
         private void rc_ReceiveMessage(string sender, string msg)
