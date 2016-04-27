@@ -956,8 +956,8 @@
             try
             {
                 OracleCommand command =
-                    CreateOracleCommand("UPDATE Person SET banned = :ban, unban = :date WHERE personID = :personID");
-                command.Parameters.Add(":ban", user.Ban);
+                    CreateOracleCommand("UPDATE Person SET banned = :banned, unban = :unban WHERE personID = :personID");
+                command.Parameters.Add(":banned", user.Ban);
                 command.Parameters.Add(":date", user.Unban);
                 command.Parameters.Add(":personID", user.Id);
                 command.BindByName = true;
