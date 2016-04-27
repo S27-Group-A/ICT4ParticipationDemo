@@ -1115,6 +1115,32 @@ namespace Participation
                 _Connection.Close();
             }
         }
+        
+        public static bool UpdateAvailability(IUser user, List<string> times)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE availability SET Monday = :monday, Tuesday = :tuesday, Wednesday = :wednesday, Thursday = :thursday, Friday = :friday, Saturday = :saturday, Sunday = :sunday WHERE PersonID = :personID ");
+                command.Parameters.Add(":personID", user.Id);
+                command.Parameters.Add(":monday", times[0]);
+                command.Parameters.Add(":tuesday", times[1]);
+                command.Parameters.Add(":wednesday", times[2]);
+                command.Parameters.Add(":thursday", times[3]);
+                command.Parameters.Add(":friday", times[4]);
+                command.Parameters.Add(":saturday", times[5]);
+                command.Parameters.Add(":sunday", times[6]);
+                return ExecuteNonQuery(command);
+
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
 
         #endregion
 
