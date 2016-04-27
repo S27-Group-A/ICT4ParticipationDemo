@@ -81,7 +81,6 @@
             this.btnLogOut = new System.Windows.Forms.Button();
 
             this.btnVolunteer = new System.Windows.Forms.Button();
-            this.pbVog = new System.Windows.Forms.PictureBox();
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
 
@@ -96,7 +95,6 @@
             this.gbxPerks.SuspendLayout();
 
             //this.gbxVog.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
 
             this.SuspendLayout();
             // 
@@ -683,15 +681,6 @@
             this.btnVolunteer.UseVisualStyleBackColor = true;
             this.btnVolunteer.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pbVog
-            // 
-            this.pbVog.Location = new System.Drawing.Point(624, 24);
-            this.pbVog.Name = "pbVog";
-            this.pbVog.Size = new System.Drawing.Size(252, 346);
-            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbVog.TabIndex = 51;
-            this.pbVog.TabStop = false;
-            // 
             // btnAddMeeting
             // 
             this.btnAddMeeting.Location = new System.Drawing.Point(10, 115);
@@ -759,8 +748,6 @@
 
             //this.gbxVog.ResumeLayout(false);
             //this.gbxVog.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
-
 
             this.ResumeLayout(false);
 
@@ -794,7 +781,6 @@
         private System.Windows.Forms.Button btnVolunteer;
         private System.Windows.Forms.Button btnAddMeeting;
         private System.Windows.Forms.Button btnMeetingsVolunteers;
-        private System.Windows.Forms.Button btnChat;
         private System.Windows.Forms.Button btnChat;
         private System.Windows.Forms.GroupBox gbxWeekView;
         private System.Windows.Forms.Label lblEnd;
