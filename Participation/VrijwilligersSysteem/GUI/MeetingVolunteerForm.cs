@@ -50,21 +50,41 @@ namespace Participation.VrijwilligersSysteem.GUI
                 lblDate.Text = _selectedMeeting.Date.ToString();
                 lblPatientName.Text = _selectedMeeting.Patient.Name;
                 lblStatus.Text = _selectedMeeting.Status.ToString();
+                if (_selectedMeeting.Status == 1)
+                {
+                    btnAccept.Enabled = false;
+                }
+                else
+                {
+                    btnAccept.Enabled = true;
+                }
             }
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (lbNotAccepted.SelectedIndex >= 0)
+            if (_selectedMeeting != null)
             {
-                
+                if (_meetingLogic.AcceptMeeting(_selectedMeeting))
+                {
+                    MessageBox.Show("Geaccepteerd");
+                    RefreshUI();
+                }
+                else
+                {
+                    MessageBox.Show("Iets is fout gegaan.");
+                }
             }
         }
 
         private void lbNotAccepted_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _selectedMeeting = GetMeetingNotAccepted();
-            RefreshUI();
+            if (lbNotAccepted.SelectedIndex >= 0)
+            {
+                _selectedMeeting = GetMeetingNotAccepted();
+                RefreshUI();
+            }
+            
         }
 
         private Meeting GetMeetingNotAccepted()
@@ -72,7 +92,7 @@ namespace Participation.VrijwilligersSysteem.GUI
             List<Meeting> tempMeetings = FormProvider.LoggedInUser.Meetings;
             foreach (Meeting m in tempMeetings)
             {
-                if (m.ToString() == lbNotAccepted.SelectedItem)
+                if (m.ToString() == lbNotAccepted.SelectedItem.ToString())
                 {
                     return m;
                 }
@@ -85,7 +105,7 @@ namespace Participation.VrijwilligersSysteem.GUI
             List<Meeting> tempMeetings = FormProvider.LoggedInUser.Meetings;
             foreach (Meeting m in tempMeetings)
             {
-                if (m.ToString() == lbAccepted.SelectedItem)
+                if (m.ToString() == lbAccepted.SelectedItem.ToString())
                 {
                     return m;
                 }
@@ -95,8 +115,12 @@ namespace Participation.VrijwilligersSysteem.GUI
 
         private void lbAccepted_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _selectedMeeting = GetMeetingAccepted();
-            RefreshUI();
+            if (lbAccepted.SelectedIndex >= 0)
+            {
+                _selectedMeeting = GetMeetingAccepted();
+                RefreshUI();
+            }
+            
         }
     }
 }
