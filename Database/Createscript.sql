@@ -41,6 +41,18 @@ CREATE TABLE Person
 	-- 0 = not banned, 1 = banned until X, 2 = permanent banned
 );
 
+CREATE TABLE Availability
+{
+personID		NUMBER(10)		PRIMARY KEY,
+Monday			VARCHAR(255)	NULL,
+Tuesday			VARCHAR(255)	NULL,
+Wednesday			VARCHAR(255)	NULL,
+Thursday			VARCHAR(255)	NULL,
+Friday			VARCHAR(255)	NULL,
+Saturday			VARCHAR(255)	NULL,
+Sunday			VARCHAR(255)	NULL
+};
+
 CREATE TABLE Perk
 (
 
@@ -110,6 +122,7 @@ CREATE TABLE Perk_Request
 
 
 -- FOREIGN KEYS --
+ALTER TABLE Availability	ADD FOREIGN KEY(personID)		REFERENCES Person(personID);
 ALTER TABLE PERK_PERSON ADD FOREIGN KEY(personID)     REFERENCES Person(PersonID);
 ALTER TABLE PERK_PERSON ADD FOREIGN KEY(perkID)       REFERENCES PERK(perkID);
 ALTER TABLE Review 			ADD FOREIGN KEY(reviewerID) 	REFERENCES Person(personID);
@@ -134,6 +147,10 @@ INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, 
 VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 1, 0, 1);
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
 VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 5, 1, 0, 1);
+
+INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (3, '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 13:00',  '9:00 - 13:00');
+INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (4, '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 13:00',  '9:00 - 13:00');
+INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (5, '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 13:00',  '9:00 - 13:00');
 
 INSERT INTO Perk(perkID, perktext)
 VALUES(1, 'Auto');
