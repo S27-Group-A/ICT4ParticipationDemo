@@ -14,29 +14,29 @@ namespace Participation.Unspecified_Profile.GUI
 {
     public partial class ViewVog : Form
     {
-        private int width;
-        private int height;
+        //private int width;
+        //private int height;
 
-        public ViewVog()
-        {
-            InitializeComponent();
-            width = 0;
-            height = 0;
-            Volunteer tempV = FormProvider.LoggedInUser as Volunteer;
-            pbVog.Image = Image.FromFile(tempV.verklaringPdf);
-        }
+        //public ViewVog()
+        //{
+        //    InitializeComponent();
+        //    width = 0;
+        //    height = 0;
+        //    Volunteer tempV = FormProvider.LoggedInUser as Volunteer;
+        //    pbVog.Image = Image.FromFile(tempV.verklaringPdf);
+        //}
 
-        private void ViewVog_Load(object sender, EventArgs e)
-        {
+        //private void ViewVog_Load(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void sizeChanged(object sender, EventArgs e)
-        {
-            this.Width = width;
-            this.Height = height;
-            pbVog.Width = width;
-            pbVog.Height = height;
-        }
+        //private void sizeChanged(object sender, EventArgs e)
+        //{
+        //    this.Width = width;
+        //    this.Height = height;
+        //    pbVog.Width = width;
+        //    pbVog.Height = height;
+        //}
     }
 }

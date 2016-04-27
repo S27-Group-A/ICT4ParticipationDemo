@@ -401,7 +401,7 @@ namespace Participation
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        if(vog != 0)
+                        if (vog != 0)
                         {
                             bool VOG = true;
                             return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, VOG, false);
@@ -410,7 +410,7 @@ namespace Participation
                         {
                             throw new Exception("Account is niet goedgekeurd.");
                         }
-                        
+
                     }
                     if (personType == "Patient")
                     {
@@ -418,14 +418,14 @@ namespace Participation
                     }
                     if (personType == "Admin")
                     {
-                        if(vog != 0)
+                        if (vog != 0)
                         {
                             bool VOG = true;
                             return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, VOG, true);
                         }
                         else
                         {
-                            throw new Exception("Account is niet goedgekeurd.")
+                            throw new Exception("Account is niet goedgekeurd.");
                         }
                     }
                 }

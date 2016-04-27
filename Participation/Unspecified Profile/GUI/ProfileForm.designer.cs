@@ -50,10 +50,6 @@
             this.tbxPerk = new System.Windows.Forms.TextBox();
             this.btnAddPerk = new System.Windows.Forms.Button();
             this.lblListPerks = new System.Windows.Forms.Label();
-            this.gbxVog = new System.Windows.Forms.GroupBox();
-            this.lblVogUrl = new System.Windows.Forms.LinkLabel();
-            this.lblAllowedVogFormats = new System.Windows.Forms.Label();
-            this.btnBrowseVogUrl = new System.Windows.Forms.Button();
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
@@ -63,7 +59,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
-            this.gbxVog.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbForm
@@ -73,11 +68,10 @@
             this.gbForm.Controls.Add(this.groupBox2);
             this.gbForm.Controls.Add(this.pbxProfilePicture);
             this.gbForm.Controls.Add(this.gbxPerks);
-            this.gbForm.Controls.Add(this.gbxVog);
             this.gbForm.Location = new System.Drawing.Point(149, -10);
-            this.gbForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbForm.Margin = new System.Windows.Forms.Padding(4);
             this.gbForm.Name = "gbForm";
-            this.gbForm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbForm.Padding = new System.Windows.Forms.Padding(4);
             this.gbForm.Size = new System.Drawing.Size(1199, 727);
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
@@ -85,7 +79,7 @@
             // pbVog
             // 
             this.pbVog.Location = new System.Drawing.Point(832, 30);
-            this.pbVog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbVog.Margin = new System.Windows.Forms.Padding(4);
             this.pbVog.Name = "pbVog";
             this.pbVog.Size = new System.Drawing.Size(336, 426);
             this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -266,11 +260,11 @@
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblListPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxPerks.Location = new System.Drawing.Point(43, 350);
+            this.gbxPerks.Location = new System.Drawing.Point(43, 251);
             this.gbxPerks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxPerks.Name = "gbxPerks";
             this.gbxPerks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbxPerks.Size = new System.Drawing.Size(579, 340);
+            this.gbxPerks.Size = new System.Drawing.Size(579, 449);
             this.gbxPerks.TabIndex = 47;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
@@ -281,9 +275,9 @@
             this.lbPerks.FormattingEnabled = true;
             this.lbPerks.ItemHeight = 16;
             this.lbPerks.Location = new System.Drawing.Point(19, 94);
-            this.lbPerks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbPerks.Margin = new System.Windows.Forms.Padding(4);
             this.lbPerks.Name = "lbPerks";
-            this.lbPerks.Size = new System.Drawing.Size(537, 228);
+            this.lbPerks.Size = new System.Drawing.Size(537, 340);
             this.lbPerks.TabIndex = 39;
             // 
             // tbxPerk
@@ -300,7 +294,7 @@
             this.btnAddPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPerk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddPerk.Location = new System.Drawing.Point(459, 36);
-            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddPerk.Name = "btnAddPerk";
             this.btnAddPerk.Size = new System.Drawing.Size(99, 27);
             this.btnAddPerk.TabIndex = 36;
@@ -318,61 +312,10 @@
             this.lblListPerks.TabIndex = 38;
             this.lblListPerks.Text = "Vaardigheden: ";
             // 
-            // gbxVog
-            // 
-            this.gbxVog.Controls.Add(this.lblVogUrl);
-            this.gbxVog.Controls.Add(this.lblAllowedVogFormats);
-            this.gbxVog.Controls.Add(this.btnBrowseVogUrl);
-            this.gbxVog.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxVog.Location = new System.Drawing.Point(43, 242);
-            this.gbxVog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbxVog.Name = "gbxVog";
-            this.gbxVog.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbxVog.Size = new System.Drawing.Size(579, 100);
-            this.gbxVog.TabIndex = 46;
-            this.gbxVog.TabStop = false;
-            this.gbxVog.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
-            this.gbxVog.Visible = false;
-            // 
-            // lblVogUrl
-            // 
-            this.lblVogUrl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblVogUrl.Location = new System.Drawing.Point(16, 34);
-            this.lblVogUrl.Name = "lblVogUrl";
-            this.lblVogUrl.Size = new System.Drawing.Size(435, 23);
-            this.lblVogUrl.TabIndex = 36;
-            this.lblVogUrl.TabStop = true;
-            this.lblVogUrl.Text = "<download link van het huidige VOG>";
-            this.lblVogUrl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVogUrl_LinkClicked);
-            // 
-            // lblAllowedVogFormats
-            // 
-            this.lblAllowedVogFormats.AutoSize = true;
-            this.lblAllowedVogFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAllowedVogFormats.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblAllowedVogFormats.Location = new System.Drawing.Point(16, 64);
-            this.lblAllowedVogFormats.Name = "lblAllowedVogFormats";
-            this.lblAllowedVogFormats.Size = new System.Drawing.Size(331, 17);
-            this.lblAllowedVogFormats.TabIndex = 35;
-            this.lblAllowedVogFormats.Text = "Toegestaande formaten: .jpeg, png, bmp, pdf, docx";
-            // 
-            // btnBrowseVogUrl
-            // 
-            this.btnBrowseVogUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowseVogUrl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBrowseVogUrl.Location = new System.Drawing.Point(459, 34);
-            this.btnBrowseVogUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnBrowseVogUrl.Name = "btnBrowseVogUrl";
-            this.btnBrowseVogUrl.Size = new System.Drawing.Size(99, 27);
-            this.btnBrowseVogUrl.TabIndex = 34;
-            this.btnBrowseVogUrl.Text = "Bladeren...";
-            this.btnBrowseVogUrl.UseVisualStyleBackColor = true;
-            this.btnBrowseVogUrl.Click += new System.EventHandler(this.btnBrowseVogUrl_Click);
-            // 
             // btnProfile
             // 
             this.btnProfile.Location = new System.Drawing.Point(13, 15);
-            this.btnProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProfile.Margin = new System.Windows.Forms.Padding(4);
             this.btnProfile.Name = "btnProfile";
             this.btnProfile.Size = new System.Drawing.Size(125, 28);
             this.btnProfile.TabIndex = 1;
@@ -383,7 +326,7 @@
             // btnHelprequests
             // 
             this.btnHelprequests.Location = new System.Drawing.Point(13, 49);
-            this.btnHelprequests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelprequests.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelprequests.Name = "btnHelprequests";
             this.btnHelprequests.Size = new System.Drawing.Size(125, 28);
             this.btnHelprequests.TabIndex = 2;
@@ -394,7 +337,7 @@
             // btnLogOut
             // 
             this.btnLogOut.Location = new System.Drawing.Point(13, 662);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(125, 28);
             this.btnLogOut.TabIndex = 7;
@@ -424,7 +367,7 @@
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.gbForm);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProfileForm";
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
@@ -435,8 +378,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
-            this.gbxVog.ResumeLayout(false);
-            this.gbxVog.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -457,9 +398,6 @@
         private System.Windows.Forms.TextBox tbxPerk;
         private System.Windows.Forms.Button btnAddPerk;
         private System.Windows.Forms.Label lblListPerks;
-        private System.Windows.Forms.GroupBox gbxVog;
-        private System.Windows.Forms.Label lblAllowedVogFormats;
-        private System.Windows.Forms.Button btnBrowseVogUrl;
         private System.Windows.Forms.PictureBox pbxProfilePicture;
         private System.Windows.Forms.Label lblGender;
         private System.Windows.Forms.Label lblPhonenumber;
@@ -467,7 +405,6 @@
         private System.Windows.Forms.Label lblBirthdate;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.LinkLabel lblVogUrl;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
         private System.Windows.Forms.PictureBox pbVog;
