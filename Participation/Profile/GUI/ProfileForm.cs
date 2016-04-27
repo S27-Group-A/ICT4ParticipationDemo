@@ -1,4 +1,6 @@
-﻿namespace Participation.BeheerSysteem.GUI
+﻿using Participation.Profile.Logic;
+
+namespace Participation.BeheerSysteem.GUI
 {
     using System;
     using System.Collections.Generic;
@@ -10,16 +12,18 @@
     using System.Windows.Forms;
     using Participation.InlogSysteem.Interfaces;
     using Participation.SharedModels;
-    using Participation.Unspecified_Profile.GUI;
+    using Participation.Profile;
 
     public partial class ProfileForm : Form
     {
         private IUser _loggedInUser;
+        private ProfileLogic _profileLogic;
 
         public ProfileForm(IUser loggedInUser)
         {
             InitializeComponent();
             _loggedInUser = loggedInUser;
+            _profileLogic = new ProfileLogic();
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
@@ -31,7 +35,11 @@
             {
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
+                RefreshWeek();
             }
+            
+            
+            
         }
 
         /// <summary>
@@ -164,17 +172,6 @@
             }
         }
 
-        /// <summary>
-        /// Show your vog on the big form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblVogUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ViewVog vv = new ViewVog();
-            vv.Show();
-        }
-
         private void btnChat_Click(object sender, EventArgs e)
         {
             try
@@ -202,6 +199,12 @@
 
         private void btnSaveWeek_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void RefreshWeek()
+        {
+            gbxWeekView.Visible = true;
 
         }
     }

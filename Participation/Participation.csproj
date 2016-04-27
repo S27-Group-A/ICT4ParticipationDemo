@@ -74,6 +74,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Debugging\Logger.cs" />
+    <Compile Include="Profile\Logic\ProfileLogic.cs" />
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -123,17 +124,11 @@
     <Compile Include="SharedModels\RFIDManager.cs" />
     <Compile Include="SharedModels\User.cs" />
     <Compile Include="SharedModels\Volunteer.cs" />
-    <Compile Include="Unspecified Profile\GUI\ProfileForm.cs">
+    <Compile Include="Profile\GUI\ProfileForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Unspecified Profile\GUI\ProfileForm.designer.cs">
+    <Compile Include="Profile\GUI\ProfileForm.designer.cs">
       <DependentUpon>ProfileForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Unspecified Profile\GUI\ViewVog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Unspecified Profile\GUI\ViewVog.Designer.cs">
-      <DependentUpon>ViewVog.cs</DependentUpon>
     </Compile>
     <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.cs">
       <SubType>Form</SubType>
@@ -180,11 +175,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Unspecified Profile\GUI\ProfileForm.resx">
+    <EmbeddedResource Include="Profile\GUI\ProfileForm.resx">
       <DependentUpon>ProfileForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Unspecified Profile\GUI\ViewVog.resx">
-      <DependentUpon>ViewVog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\MeetingForm.resx">
       <DependentUpon>MeetingForm.cs</DependentUpon>
