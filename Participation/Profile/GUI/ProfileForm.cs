@@ -1,4 +1,7 @@
-﻿using Participation.VrijwilligersSysteem.Logic;
+﻿﻿using Participation.VrijwilligersSysteem.Logic;
+﻿using System.Globalization;
+using System.Linq.Expressions;
+using Participation.Profile.Logic;
 
 namespace Participation.BeheerSysteem.GUI
 {
@@ -12,16 +15,18 @@ namespace Participation.BeheerSysteem.GUI
     using System.Windows.Forms;
     using Participation.InlogSysteem.Interfaces;
     using Participation.SharedModels;
-    using Participation.Unspecified_Profile.GUI;
+    using Participation.Profile;
 
     public partial class ProfileForm : Form
     {
         private IUser _loggedInUser;
+        private ProfileLogic _profileLogic;
 
         public ProfileForm(IUser loggedInUser)
         {
             InitializeComponent();
             _loggedInUser = loggedInUser;
+            _profileLogic = new ProfileLogic();
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)
@@ -35,7 +40,9 @@ namespace Participation.BeheerSysteem.GUI
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
                 btnVolunteer.Visible = true;
+                RefreshWeek();
             }
+
 
 
         }
@@ -170,17 +177,6 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
-        /// <summary>
-        /// Show your vog on the big form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lblVogUrl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ViewVog vv = new ViewVog();
-            vv.Show();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             FormProvider.VolunteerForm.Show();
@@ -203,6 +199,7 @@ namespace Participation.BeheerSysteem.GUI
                 FormProvider.MeetingVolunteerForm.Show();
             }
 	}
+
         private void btnChat_Click(object sender, EventArgs e)
         {
             try
@@ -220,15 +217,123 @@ namespace Participation.BeheerSysteem.GUI
                     MessageBox.Show("U bent gebanned van de chat tot: " + FormProvider.LoggedInUser.Unban.ToShortDateString());
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
-            
 
 
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //var comparer = false;
+            var times = new List<string>();
+            //var stringTimes = new List<DateTime>();
+            times.Add(dtpStartMo.Value.ToString("HH:mm") + "-" + dtpEndMo.Value.ToString("HH:mm"));
+            times.Add(dtpStartTu.Value.ToString("HH:mm") + "-" + dtpEndTu.Value.ToString("HH:mm"));
+            times.Add(dtpStartWe.Value.ToString("HH:mm") + "-" + dtpEndWe.Value.ToString("HH:mm"));
+            times.Add(dtpStartTh.Value.ToString("HH:mm") + "-" + dtpEndTh.Value.ToString("HH:mm"));
+            times.Add(dtpStartFr.Value.ToString("HH:mm") + "-" + dtpEndFr.Value.ToString("HH:mm"));
+            times.Add(dtpStartSa.Value.ToString("HH:mm") + "-" + dtpEndSa.Value.ToString("HH:mm"));
+            times.Add(dtpStartSu.Value.ToString("HH:mm") + "-" + dtpEndSu.Value.ToString("HH:mm"));
 
+            if (_profileLogic.GetAvailability(_loggedInUser).Count != 7)
+            {
+                if (!_profileLogic.SetAvailability(_loggedInUser, times))
+                {
+                    MessageBox.Show("Kon uw week overzicht niet toevoegen");
+                }
+                else
+                {
+                    MessageBox.Show("Uw tijden zijn opgeslagen");
+                }
+            }
+            else
+            {
+                if (!_profileLogic.UpdateAvailability(_loggedInUser, times))
+                {
+                    MessageBox.Show("Kon uw week overzicht niet toevoegen");
+                }
+                else
+                {
+                    MessageBox.Show("Uw tijden zijn opgeslagen");
+                }
+            }
+
+
+
+        }
+
+        private void RefreshWeek()
+        {
+            #region Set times interface
+            dtpStartMo.ShowUpDown = true;
+            dtpEndMo.ShowUpDown = true;
+            dtpStartTu.ShowUpDown = true;
+            dtpEndTu.ShowUpDown = true;
+            dtpStartWe.ShowUpDown = true;
+            dtpEndWe.ShowUpDown = true;
+            dtpStartTh.ShowUpDown = true;
+            dtpEndTh.ShowUpDown = true;
+            dtpStartFr.ShowUpDown = true;
+            dtpEndFr.ShowUpDown = true;
+            dtpStartSa.ShowUpDown = true;
+            dtpEndSa.ShowUpDown = true;
+            dtpStartSu.ShowUpDown = true;
+            dtpEndSu.ShowUpDown = true;
+
+            gbxWeekView.Visible = true;
+            #endregion
+            var times = new List<string>();
+            try
+            {
+                times = _profileLogic.GetAvailability(_loggedInUser);
+                if (times.Count != 7)
+                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: " + times.Count + " verwachte aantal: 7");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+            var splittedTimes = new List<string>();
+            foreach (string t in times)
+            {
+                var tempTimes = t.Split('-');
+                splittedTimes.AddRange(tempTimes);
+            }
+
+            var trueSplittedTimes = new List<DateTime>();
+            foreach (string t in splittedTimes)
+            {
+                trueSplittedTimes.Add(Convert.ToDateTime(t));
+            }
+            #region Set times in form
+
+            dtpStartMo.Value = trueSplittedTimes[0];
+            dtpEndMo.Value = trueSplittedTimes[1];
+            dtpStartTu.Value = trueSplittedTimes[2];
+            dtpEndTu.Value = trueSplittedTimes[3];
+            dtpStartWe.Value = trueSplittedTimes[4];
+            dtpEndWe.Value = trueSplittedTimes[5];
+            dtpStartTh.Value = trueSplittedTimes[6];
+            dtpEndTh.Value = trueSplittedTimes[7];
+            dtpStartFr.Value = trueSplittedTimes[8];
+            dtpEndFr.Value = trueSplittedTimes[9];
+            dtpStartSa.Value = trueSplittedTimes[10];
+            dtpEndSa.Value = trueSplittedTimes[11];
+            dtpStartSu.Value = trueSplittedTimes[12];
+            dtpEndSu.Value = trueSplittedTimes[13];
+
+            #endregion
+
+
+        }
+
+        private void btnAgain_Click(object sender, EventArgs e)
+        {
+            RefreshWeek();
+        }
     }
 }
