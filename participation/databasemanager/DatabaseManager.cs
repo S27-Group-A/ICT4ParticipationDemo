@@ -425,7 +425,7 @@ namespace Participation
                         }
                         else
                         {
-                            throw new Exception("Account is niet goedgekeurd.")
+                            throw new Exception("Account is niet goedgekeurd.");
                         }
                     }
                 }
