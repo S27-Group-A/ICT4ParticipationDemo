@@ -1,4 +1,6 @@
-﻿namespace Participation
+﻿using SharedModels.Debug;
+
+namespace Participation
 {
     using System;
     using System.Collections.Generic;
@@ -75,6 +77,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -84,8 +87,9 @@
 
                 return reader;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return null;
             }
         }
@@ -107,6 +111,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -115,8 +120,9 @@
                 command.ExecuteNonQuery();
                 return true;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return false;
             }
         }
@@ -1049,10 +1055,11 @@
             {
                 user.Ban = 1; //Set user ban to 1 for temp ban
                 user.Unban = unbanDate; //Set user unban to the unbanDate
+                OracleDate oDate = (OracleDate)user.Unban;
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :banned, unban = :unban WHERE personID = :personID");
                 command.Parameters.Add(":banned", user.Ban);
-                command.Parameters.Add(":date", user.Unban);
+                command.Parameters.Add(":unban", user.Unban);
                 command.Parameters.Add(":personID", user.Id);
                 command.BindByName = true;
                 return ExecuteNonQuery(command);

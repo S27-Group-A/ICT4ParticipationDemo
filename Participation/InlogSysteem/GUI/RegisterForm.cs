@@ -21,6 +21,7 @@ namespace Participation.InlogSysteem.GUI
         private readonly List<string> _perks = new List<string>();
 
         private RFIDManager rfidManager;
+        private string _alreadyExistingUserMsg = "Account bestaat al, probeer een ander e-mail adres";
 
         public RegisterForm()
         {
@@ -64,6 +65,21 @@ namespace Participation.InlogSysteem.GUI
         {
             gbxPerks.Hide();
             gbxVOG.Hide();
+        }
+
+        private bool CheckEmail()
+        {
+            foreach (var u in _lisLogic.GetUsers())
+            {
+                if (u.Email == tbxEmail.Text)
+                {
+                    MessageBox.Show(_alreadyExistingUserMsg);
+                    tbxEmail.Text = "";
+                    return false;
+                }
+            }
+            return true;
+
         }
 
         /// <summary>
@@ -111,7 +127,7 @@ namespace Participation.InlogSysteem.GUI
         /// <param name="e"></param>
         private void registerBtn_Click(object sender, EventArgs e)
         {
-            if (CheckFields())
+            if (CheckFields() && CheckEmail())
             {
                 if (rbtNeedHelp.Checked)
                 {
