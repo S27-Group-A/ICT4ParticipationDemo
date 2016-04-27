@@ -74,7 +74,7 @@
             this.passwordTbx.Location = new System.Drawing.Point(163, 53);
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.PasswordChar = '*';
-            this.passwordTbx.Size = new System.Drawing.Size(208, 27);
+            this.passwordTbx.Size = new System.Drawing.Size(213, 27);
             this.passwordTbx.TabIndex = 2;
             // 
             // emailTbx
@@ -82,7 +82,7 @@
             this.emailTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailTbx.Location = new System.Drawing.Point(164, 12);
             this.emailTbx.Name = "emailTbx";
-            this.emailTbx.Size = new System.Drawing.Size(208, 27);
+            this.emailTbx.Size = new System.Drawing.Size(212, 27);
             this.emailTbx.TabIndex = 1;
             // 
             // emailLbl
@@ -171,7 +171,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(860, 229);
+            this.ClientSize = new System.Drawing.Size(413, 201);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rfidGbx);
             this.Controls.Add(this.rfidBtn);
