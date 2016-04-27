@@ -177,6 +177,23 @@
             vv.Show();
         }
 
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            if (FormProvider.LoggedInUser.Ban == 0) 
+            {
+                FormProvider.ChatUsersForm.ShowDialog();
+            }
+            else if(FormProvider.LoggedInUser.Unban == null)
+            {
+                MessageBox.Show("U bent gebanned van de chat");
+            }
+            else
+            {
+                MessageBox.Show("U bent gebanned van de chat tot: " + FormProvider.LoggedInUser.Unban.ToShortDateString());
+            }
+
+        }
+
 
     }
 }

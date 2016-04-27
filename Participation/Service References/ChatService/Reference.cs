@@ -17,6 +17,9 @@ namespace Participation.ChatSysteem.ChatService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendMessage")]
         void SendMessage(string msg, string sender, string receiver);
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/StartChat")]
+        void StartChat(string msg, string sender, string receiver);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/StartVolunteer")]
         void StartVolunteer(string Name);
@@ -36,6 +39,9 @@ namespace Participation.ChatSysteem.ChatService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/ReceiveMessage")]
         void ReceiveMessage(string msg, string receiver);
+
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/ISendChatService/NewChat")]
+        void NewChat(string msg, string sender, string receiver);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendVolunteerNames")]
         void SendVolunteerNames(string[] names);
@@ -76,6 +82,11 @@ namespace Participation.ChatSysteem.ChatService {
         
         public void SendMessage(string msg, string sender, string receiver) {
             base.Channel.SendMessage(msg, sender, receiver);
+        }
+
+        public void StartChat(string msg, string sender, string receiver)
+        {
+            base.Channel.StartChat(msg, sender, receiver);
         }
 
         public void StartVolunteer(string Name)
