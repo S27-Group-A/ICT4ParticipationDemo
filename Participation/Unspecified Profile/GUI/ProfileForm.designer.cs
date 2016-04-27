@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             this.gbForm = new System.Windows.Forms.GroupBox();
-            this.pbVog = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblPreName = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
@@ -54,17 +53,44 @@
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnChat = new System.Windows.Forms.Button();
+            this.dtpStartMo = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndMo = new System.Windows.Forms.DateTimePicker();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMo = new System.Windows.Forms.Label();
+            this.lblTu = new System.Windows.Forms.Label();
+            this.dtpStartTu = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndTu = new System.Windows.Forms.DateTimePicker();
+            this.lblTh = new System.Windows.Forms.Label();
+            this.dtpStartTh = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndTh = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndWe = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartWe = new System.Windows.Forms.DateTimePicker();
+            this.lblWe = new System.Windows.Forms.Label();
+            this.lblSa = new System.Windows.Forms.Label();
+            this.dtpStartSa = new System.Windows.Forms.DateTimePicker();
+            this.lblSu = new System.Windows.Forms.Label();
+            this.dtpEndSa = new System.Windows.Forms.DateTimePicker();
+            this.dtpStartSu = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndSu = new System.Windows.Forms.DateTimePicker();
+            this.lblFr = new System.Windows.Forms.Label();
+            this.dtpStartFr = new System.Windows.Forms.DateTimePicker();
+            this.dtpEndFr = new System.Windows.Forms.DateTimePicker();
+            this.lblStart = new System.Windows.Forms.Label();
+            this.lblEnd = new System.Windows.Forms.Label();
+            this.weekView = new System.Windows.Forms.GroupBox();
+            this.btnSaveWeek = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.weekView.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbForm
             // 
             this.gbForm.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.gbForm.Controls.Add(this.pbVog);
+            this.gbForm.Controls.Add(this.weekView);
             this.gbForm.Controls.Add(this.groupBox2);
             this.gbForm.Controls.Add(this.pbxProfilePicture);
             this.gbForm.Controls.Add(this.gbxPerks);
@@ -72,19 +98,9 @@
             this.gbForm.Margin = new System.Windows.Forms.Padding(4);
             this.gbForm.Name = "gbForm";
             this.gbForm.Padding = new System.Windows.Forms.Padding(4);
-            this.gbForm.Size = new System.Drawing.Size(1199, 727);
+            this.gbForm.Size = new System.Drawing.Size(1105, 894);
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
-            // 
-            // pbVog
-            // 
-            this.pbVog.Location = new System.Drawing.Point(832, 30);
-            this.pbVog.Margin = new System.Windows.Forms.Padding(4);
-            this.pbVog.Name = "pbVog";
-            this.pbVog.Size = new System.Drawing.Size(336, 426);
-            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbVog.TabIndex = 51;
-            this.pbVog.TabStop = false;
             // 
             // groupBox2
             // 
@@ -105,7 +121,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(579, 215);
+            this.groupBox2.Size = new System.Drawing.Size(705, 215);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profiel Informatie";
@@ -245,7 +261,7 @@
             // pbxProfilePicture
             // 
             this.pbxProfilePicture.Image = ((System.Drawing.Image)(resources.GetObject("pbxProfilePicture.Image")));
-            this.pbxProfilePicture.Location = new System.Drawing.Point(635, 30);
+            this.pbxProfilePicture.Location = new System.Drawing.Point(777, 30);
             this.pbxProfilePicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbxProfilePicture.Name = "pbxProfilePicture";
             this.pbxProfilePicture.Size = new System.Drawing.Size(189, 190);
@@ -260,11 +276,11 @@
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblListPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxPerks.Location = new System.Drawing.Point(43, 251);
+            this.gbxPerks.Location = new System.Drawing.Point(43, 471);
             this.gbxPerks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxPerks.Name = "gbxPerks";
             this.gbxPerks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbxPerks.Size = new System.Drawing.Size(579, 449);
+            this.gbxPerks.Size = new System.Drawing.Size(578, 301);
             this.gbxPerks.TabIndex = 47;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
@@ -277,7 +293,7 @@
             this.lbPerks.Location = new System.Drawing.Point(19, 94);
             this.lbPerks.Margin = new System.Windows.Forms.Padding(4);
             this.lbPerks.Name = "lbPerks";
-            this.lbPerks.Size = new System.Drawing.Size(537, 340);
+            this.lbPerks.Size = new System.Drawing.Size(539, 180);
             this.lbPerks.TabIndex = 39;
             // 
             // tbxPerk
@@ -356,12 +372,281 @@
             this.btnChat.UseVisualStyleBackColor = true;
             this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
             // 
+            // dtpStartMo
+            // 
+            this.dtpStartMo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartMo.Location = new System.Drawing.Point(3, 41);
+            this.dtpStartMo.Name = "dtpStartMo";
+            this.dtpStartMo.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartMo.TabIndex = 53;
+            // 
+            // dtpEndMo
+            // 
+            this.dtpEndMo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndMo.Location = new System.Drawing.Point(3, 73);
+            this.dtpEndMo.Name = "dtpEndMo";
+            this.dtpEndMo.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndMo.TabIndex = 54;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSaveWeek);
+            this.panel1.Controls.Add(this.lblSa);
+            this.panel1.Controls.Add(this.dtpStartSa);
+            this.panel1.Controls.Add(this.lblSu);
+            this.panel1.Controls.Add(this.dtpEndSa);
+            this.panel1.Controls.Add(this.dtpStartSu);
+            this.panel1.Controls.Add(this.dtpEndSu);
+            this.panel1.Controls.Add(this.lblFr);
+            this.panel1.Controls.Add(this.dtpStartFr);
+            this.panel1.Controls.Add(this.dtpEndFr);
+            this.panel1.Controls.Add(this.lblWe);
+            this.panel1.Controls.Add(this.dtpStartWe);
+            this.panel1.Controls.Add(this.lblTh);
+            this.panel1.Controls.Add(this.dtpEndWe);
+            this.panel1.Controls.Add(this.dtpStartTh);
+            this.panel1.Controls.Add(this.dtpEndTh);
+            this.panel1.Controls.Add(this.lblTu);
+            this.panel1.Controls.Add(this.dtpStartTu);
+            this.panel1.Controls.Add(this.dtpEndTu);
+            this.panel1.Controls.Add(this.lblMo);
+            this.panel1.Controls.Add(this.dtpStartMo);
+            this.panel1.Controls.Add(this.dtpEndMo);
+            this.panel1.Location = new System.Drawing.Point(100, 20);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(793, 143);
+            this.panel1.TabIndex = 55;
+            // 
+            // lblMo
+            // 
+            this.lblMo.AutoSize = true;
+            this.lblMo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMo.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblMo.Location = new System.Drawing.Point(-4, 9);
+            this.lblMo.Name = "lblMo";
+            this.lblMo.Size = new System.Drawing.Size(87, 20);
+            this.lblMo.TabIndex = 56;
+            this.lblMo.Text = "Maandag: ";
+            // 
+            // lblTu
+            // 
+            this.lblTu.AutoSize = true;
+            this.lblTu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTu.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblTu.Location = new System.Drawing.Point(113, 9);
+            this.lblTu.Name = "lblTu";
+            this.lblTu.Size = new System.Drawing.Size(76, 20);
+            this.lblTu.TabIndex = 59;
+            this.lblTu.Text = "Dinsdag:";
+            // 
+            // dtpStartTu
+            // 
+            this.dtpStartTu.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartTu.Location = new System.Drawing.Point(117, 41);
+            this.dtpStartTu.Name = "dtpStartTu";
+            this.dtpStartTu.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartTu.TabIndex = 57;
+            // 
+            // dtpEndTu
+            // 
+            this.dtpEndTu.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndTu.Location = new System.Drawing.Point(117, 73);
+            this.dtpEndTu.Name = "dtpEndTu";
+            this.dtpEndTu.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndTu.TabIndex = 58;
+            // 
+            // lblTh
+            // 
+            this.lblTh.AutoSize = true;
+            this.lblTh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTh.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblTh.Location = new System.Drawing.Point(340, 9);
+            this.lblTh.Name = "lblTh";
+            this.lblTh.Size = new System.Drawing.Size(96, 20);
+            this.lblTh.TabIndex = 62;
+            this.lblTh.Text = "Donderdag:";
+            // 
+            // dtpStartTh
+            // 
+            this.dtpStartTh.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartTh.Location = new System.Drawing.Point(344, 41);
+            this.dtpStartTh.Name = "dtpStartTh";
+            this.dtpStartTh.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartTh.TabIndex = 60;
+            // 
+            // dtpEndTh
+            // 
+            this.dtpEndTh.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndTh.Location = new System.Drawing.Point(344, 73);
+            this.dtpEndTh.Name = "dtpEndTh";
+            this.dtpEndTh.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndTh.TabIndex = 61;
+            // 
+            // dtpEndWe
+            // 
+            this.dtpEndWe.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndWe.Location = new System.Drawing.Point(230, 73);
+            this.dtpEndWe.Name = "dtpEndWe";
+            this.dtpEndWe.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndWe.TabIndex = 61;
+            // 
+            // dtpStartWe
+            // 
+            this.dtpStartWe.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartWe.Location = new System.Drawing.Point(230, 41);
+            this.dtpStartWe.Name = "dtpStartWe";
+            this.dtpStartWe.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartWe.TabIndex = 60;
+            // 
+            // lblWe
+            // 
+            this.lblWe.AutoSize = true;
+            this.lblWe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWe.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblWe.Location = new System.Drawing.Point(226, 9);
+            this.lblWe.Name = "lblWe";
+            this.lblWe.Size = new System.Drawing.Size(93, 20);
+            this.lblWe.TabIndex = 62;
+            this.lblWe.Text = "Woensdag:";
+            // 
+            // lblSa
+            // 
+            this.lblSa.AutoSize = true;
+            this.lblSa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSa.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSa.Location = new System.Drawing.Point(564, 9);
+            this.lblSa.Name = "lblSa";
+            this.lblSa.Size = new System.Drawing.Size(84, 20);
+            this.lblSa.TabIndex = 70;
+            this.lblSa.Text = "Zaterdag: ";
+            // 
+            // dtpStartSa
+            // 
+            this.dtpStartSa.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartSa.Location = new System.Drawing.Point(568, 41);
+            this.dtpStartSa.Name = "dtpStartSa";
+            this.dtpStartSa.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartSa.TabIndex = 66;
+            // 
+            // lblSu
+            // 
+            this.lblSu.AutoSize = true;
+            this.lblSu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSu.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblSu.Location = new System.Drawing.Point(678, 9);
+            this.lblSu.Name = "lblSu";
+            this.lblSu.Size = new System.Drawing.Size(63, 20);
+            this.lblSu.TabIndex = 71;
+            this.lblSu.Text = "Zondag";
+            // 
+            // dtpEndSa
+            // 
+            this.dtpEndSa.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndSa.Location = new System.Drawing.Point(568, 73);
+            this.dtpEndSa.Name = "dtpEndSa";
+            this.dtpEndSa.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndSa.TabIndex = 68;
+            // 
+            // dtpStartSu
+            // 
+            this.dtpStartSu.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartSu.Location = new System.Drawing.Point(682, 41);
+            this.dtpStartSu.Name = "dtpStartSu";
+            this.dtpStartSu.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartSu.TabIndex = 67;
+            // 
+            // dtpEndSu
+            // 
+            this.dtpEndSu.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndSu.Location = new System.Drawing.Point(682, 73);
+            this.dtpEndSu.Name = "dtpEndSu";
+            this.dtpEndSu.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndSu.TabIndex = 69;
+            // 
+            // lblFr
+            // 
+            this.lblFr.AutoSize = true;
+            this.lblFr.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFr.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblFr.Location = new System.Drawing.Point(451, 9);
+            this.lblFr.Name = "lblFr";
+            this.lblFr.Size = new System.Drawing.Size(71, 20);
+            this.lblFr.TabIndex = 65;
+            this.lblFr.Text = "Vrijdag: ";
+            // 
+            // dtpStartFr
+            // 
+            this.dtpStartFr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpStartFr.Location = new System.Drawing.Point(455, 41);
+            this.dtpStartFr.Name = "dtpStartFr";
+            this.dtpStartFr.Size = new System.Drawing.Size(103, 22);
+            this.dtpStartFr.TabIndex = 63;
+            // 
+            // dtpEndFr
+            // 
+            this.dtpEndFr.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEndFr.Location = new System.Drawing.Point(455, 73);
+            this.dtpEndFr.Name = "dtpEndFr";
+            this.dtpEndFr.Size = new System.Drawing.Size(103, 22);
+            this.dtpEndFr.TabIndex = 64;
+            // 
+            // lblStart
+            // 
+            this.lblStart.AutoSize = true;
+            this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStart.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblStart.Location = new System.Drawing.Point(20, 63);
+            this.lblStart.Name = "lblStart";
+            this.lblStart.Size = new System.Drawing.Size(67, 20);
+            this.lblStart.TabIndex = 48;
+            this.lblStart.Text = "Starttijd";
+            // 
+            // lblEnd
+            // 
+            this.lblEnd.AutoSize = true;
+            this.lblEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnd.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lblEnd.Location = new System.Drawing.Point(20, 95);
+            this.lblEnd.Name = "lblEnd";
+            this.lblEnd.Size = new System.Drawing.Size(74, 20);
+            this.lblEnd.TabIndex = 56;
+            this.lblEnd.Text = "Eindttijd:";
+            // 
+            // weekView
+            // 
+            this.weekView.Controls.Add(this.lblEnd);
+            this.weekView.Controls.Add(this.panel1);
+            this.weekView.Controls.Add(this.lblStart);
+            this.weekView.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.weekView.Location = new System.Drawing.Point(43, 258);
+            this.weekView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.weekView.Name = "weekView";
+            this.weekView.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.weekView.Size = new System.Drawing.Size(923, 184);
+            this.weekView.TabIndex = 48;
+            this.weekView.TabStop = false;
+            this.weekView.Text = "Weekoverzicht";
+            this.weekView.Visible = false;
+            // 
+            // btnSaveWeek
+            // 
+            this.btnSaveWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveWeek.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSaveWeek.Location = new System.Drawing.Point(682, 102);
+            this.btnSaveWeek.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveWeek.Name = "btnSaveWeek";
+            this.btnSaveWeek.Size = new System.Drawing.Size(99, 27);
+            this.btnSaveWeek.TabIndex = 40;
+            this.btnSaveWeek.Text = "Opslaan";
+            this.btnSaveWeek.UseVisualStyleBackColor = true;
+            this.btnSaveWeek.Click += new System.EventHandler(this.btnSaveWeek_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(981, 703);
+            this.ClientSize = new System.Drawing.Size(1170, 838);
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
@@ -372,12 +657,15 @@
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.gbForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.weekView.ResumeLayout(false);
+            this.weekView.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -407,7 +695,32 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
-        private System.Windows.Forms.PictureBox pbVog;
         private System.Windows.Forms.Button btnChat;
+        private System.Windows.Forms.GroupBox weekView;
+        private System.Windows.Forms.Label lblEnd;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSaveWeek;
+        private System.Windows.Forms.Label lblSa;
+        private System.Windows.Forms.DateTimePicker dtpStartSa;
+        private System.Windows.Forms.Label lblSu;
+        private System.Windows.Forms.DateTimePicker dtpEndSa;
+        private System.Windows.Forms.DateTimePicker dtpStartSu;
+        private System.Windows.Forms.DateTimePicker dtpEndSu;
+        private System.Windows.Forms.Label lblFr;
+        private System.Windows.Forms.DateTimePicker dtpStartFr;
+        private System.Windows.Forms.DateTimePicker dtpEndFr;
+        private System.Windows.Forms.Label lblWe;
+        private System.Windows.Forms.DateTimePicker dtpStartWe;
+        private System.Windows.Forms.Label lblTh;
+        private System.Windows.Forms.DateTimePicker dtpEndWe;
+        private System.Windows.Forms.DateTimePicker dtpStartTh;
+        private System.Windows.Forms.DateTimePicker dtpEndTh;
+        private System.Windows.Forms.Label lblTu;
+        private System.Windows.Forms.DateTimePicker dtpStartTu;
+        private System.Windows.Forms.DateTimePicker dtpEndTu;
+        private System.Windows.Forms.Label lblMo;
+        private System.Windows.Forms.DateTimePicker dtpStartMo;
+        private System.Windows.Forms.DateTimePicker dtpEndMo;
+        private System.Windows.Forms.Label lblStart;
     }
 }
