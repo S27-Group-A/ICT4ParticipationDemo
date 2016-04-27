@@ -979,7 +979,7 @@
             {
                 OracleCommand command = CreateOracleCommand("UPDATE PERSON SET PERSONTYPE = :persontype WHERE PersonID = :personID");
                 command.Parameters.Add(":personID", user.Id);
-
+                command.BindByName = true;
                 Volunteer v = user as Volunteer;
                 switch (v.isAdmin)
                 {

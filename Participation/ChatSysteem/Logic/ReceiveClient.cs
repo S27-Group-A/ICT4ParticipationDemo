@@ -92,7 +92,7 @@ namespace Participation.ChatSysteem
 
         public void StartChat(string msg, string sender, string receiver)
         {
-            this.chatClient.SendMessage(msg, sender, receiver);
+            this.chatClient.StartChat(msg, sender, receiver);
         }
 
         /// <summary>
