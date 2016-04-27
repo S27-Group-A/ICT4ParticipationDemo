@@ -147,6 +147,29 @@
             }
         }
 
+        internal static bool TestConnection()
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT personID FROM Person WHERE personID = 1");
+                OracleDataReader reader = ExecuteQuery(command);
+
+                while (reader.Read())
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Something went wrong: " + exception.Message);
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
         #endregion
 
         #region Queries
