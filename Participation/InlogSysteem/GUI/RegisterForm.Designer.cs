@@ -532,6 +532,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Enabled = false;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(463, 133);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -539,16 +540,19 @@
             this.label1.Size = new System.Drawing.Size(39, 17);
             this.label1.TabIndex = 46;
             this.label1.Text = "RFID";
+            this.label1.Visible = false;
             // 
             // pnlHasRfid
             // 
             this.pnlHasRfid.BackColor = System.Drawing.Color.Red;
+            this.pnlHasRfid.Enabled = false;
             this.pnlHasRfid.ForeColor = System.Drawing.SystemColors.Menu;
             this.pnlHasRfid.Location = new System.Drawing.Point(464, 161);
             this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHasRfid.Name = "pnlHasRfid";
             this.pnlHasRfid.Size = new System.Drawing.Size(100, 60);
             this.pnlHasRfid.TabIndex = 45;
+            this.pnlHasRfid.Visible = false;
             // 
             // panel1
             // 
