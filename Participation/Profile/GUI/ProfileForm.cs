@@ -205,7 +205,7 @@ namespace Participation.BeheerSysteem.GUI
         private void RefreshWeek()
         {
             gbxWeekView.Visible = true;
-
+            var tijden = _profileLogic.GetAvailability(_loggedInUser);
         }
     }
 }
