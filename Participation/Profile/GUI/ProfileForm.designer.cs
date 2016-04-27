@@ -33,7 +33,8 @@
             this.gbxWeekView = new System.Windows.Forms.GroupBox();
             this.lblEnd = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSaveWeek = new System.Windows.Forms.Button();
+            this.btnAgain = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.lblSa = new System.Windows.Forms.Label();
             this.dtpStartSa = new System.Windows.Forms.DateTimePicker();
             this.lblSu = new System.Windows.Forms.Label();
@@ -131,7 +132,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnSaveWeek);
+            this.panel1.Controls.Add(this.btnAgain);
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.lblSa);
             this.panel1.Controls.Add(this.dtpStartSa);
             this.panel1.Controls.Add(this.lblSu);
@@ -158,18 +160,31 @@
             this.panel1.Size = new System.Drawing.Size(793, 143);
             this.panel1.TabIndex = 55;
             // 
-            // btnSaveWeek
+            // btnAgain
             // 
-            this.btnSaveWeek.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveWeek.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSaveWeek.Location = new System.Drawing.Point(682, 102);
-            this.btnSaveWeek.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSaveWeek.Name = "btnSaveWeek";
-            this.btnSaveWeek.Size = new System.Drawing.Size(99, 27);
-            this.btnSaveWeek.TabIndex = 40;
-            this.btnSaveWeek.Text = "Opslaan";
-            this.btnSaveWeek.UseVisualStyleBackColor = true;
-            this.btnSaveWeek.Click += new System.EventHandler(this.btnSaveWeek_Click);
+            this.btnAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgain.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAgain.Location = new System.Drawing.Point(568, 102);
+            this.btnAgain.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAgain.Name = "btnAgain";
+            this.btnAgain.Size = new System.Drawing.Size(106, 27);
+            this.btnAgain.TabIndex = 72;
+            this.btnAgain.Text = "Opnieuw";
+            this.btnAgain.UseVisualStyleBackColor = true;
+            this.btnAgain.Click += new System.EventHandler(this.btnAgain_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSave.Location = new System.Drawing.Point(682, 102);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(103, 27);
+            this.btnSave.TabIndex = 40;
+            this.btnSave.Text = "Opslaan";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblSa
             // 
@@ -699,7 +714,7 @@
         private System.Windows.Forms.GroupBox gbxWeekView;
         private System.Windows.Forms.Label lblEnd;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnSaveWeek;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblSa;
         private System.Windows.Forms.DateTimePicker dtpStartSa;
         private System.Windows.Forms.Label lblSu;
@@ -722,5 +737,6 @@
         private System.Windows.Forms.DateTimePicker dtpStartMo;
         private System.Windows.Forms.DateTimePicker dtpEndMo;
         private System.Windows.Forms.Label lblStart;
+        private System.Windows.Forms.Button btnAgain;
     }
 }

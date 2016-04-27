@@ -198,21 +198,38 @@ namespace Participation.BeheerSysteem.GUI
 
         }
 
-        private void btnSaveWeek_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
 
         }
 
         private void RefreshWeek()
         {
+            #region Set times interface
+            dtpStartMo.ShowUpDown = true;
+            dtpEndMo.ShowUpDown = true;
+            dtpStartTu.ShowUpDown = true;
+            dtpEndTu.ShowUpDown = true;
+            dtpStartWe.ShowUpDown = true;
+            dtpEndWe.ShowUpDown = true;
+            dtpStartTh.ShowUpDown = true;
+            dtpEndTh.ShowUpDown = true;
+            dtpStartFr.ShowUpDown = true;
+            dtpEndFr.ShowUpDown = true;
+            dtpStartSa.ShowUpDown = true;
+            dtpEndSa.ShowUpDown = true;
+            dtpStartSu.ShowUpDown = true;
+            dtpEndSu.ShowUpDown = true;
+
             gbxWeekView.Visible = true;
+            #endregion
             var times = new List<string>();
             try
             {
                 times = _profileLogic.GetAvailability(_loggedInUser);
-                if (times.Count != 7) 
-                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: " 
-                        + times.Count + " verwachte aantal: 7" );
+                if (times.Count != 7)
+                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: "
+                        + times.Count + " verwachte aantal: 7");
             }
             catch (Exception exception)
             {
@@ -252,6 +269,11 @@ namespace Participation.BeheerSysteem.GUI
             #endregion
 
 
+        }
+
+        private void btnAgain_Click(object sender, EventArgs e)
+        {
+            RefreshWeek();
         }
     }
 }
