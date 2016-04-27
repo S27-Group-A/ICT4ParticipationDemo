@@ -59,17 +59,17 @@ namespace ICT4ParticipationTest
             Assert.AreEqual(TestPatient1.Gender, GenderEnum.Male);
             Assert.AreEqual(TestPatient1.Password, "Testpassword");
 
-            //Tests the second Patient constructor
-            //Patient TestPatient2 = new Patient("Testname", "Test@email.com", "Test description", DateTime.Today, "Testprofilepicture", "TestLocation", "123456789", GenderEnum.Male, "Testpassword");
+            //Tests the second Patient constructor (doesn't work currently)
+            Patient TestPatient2 = new Patient("Testname", "Test@email.com", "Test description", DateTime.Today, "Testprofilepicture", "TestLocation", "123456789", GenderEnum.Male, "Testpassword");
 
-            //Assert.AreEqual(TestPatient2.Name, "Testname");
-            //Assert.AreEqual(TestPatient2.Description, "Test description");
-            //Assert.AreEqual(TestPatient2.Birthday, DateTime.Today);
-            //Assert.AreEqual(TestPatient2.ProfilePicture, "Testprofilepicture");
-            //Assert.AreEqual(TestPatient2.Location, "TestLocation");
-            //Assert.AreEqual(TestPatient2.PhoneNumber, "123456789");
-            //Assert.AreEqual(TestPatient2.Gender, GenderEnum.Male);
-            //Assert.AreEqual(TestPatient2.Password, "Testpassword");
+            Assert.AreEqual(TestPatient2.Name, "Testname");
+            Assert.AreEqual(TestPatient2.Description, "Test description");
+            Assert.AreEqual(TestPatient2.Birthday, DateTime.Today);
+            Assert.AreEqual(TestPatient2.ProfilePicture, "Testprofilepicture");
+            Assert.AreEqual(TestPatient2.Location, "TestLocation");
+            Assert.AreEqual(TestPatient2.PhoneNumber, "123456789");
+            Assert.AreEqual(TestPatient2.Gender, GenderEnum.Male);
+            Assert.AreEqual(TestPatient2.Password, "Testpassword");
         }
 
         [TestMethod]
