@@ -204,6 +204,7 @@
             this.dtpStartSa.Name = "dtpStartSa";
             this.dtpStartSa.Size = new System.Drawing.Size(103, 22);
             this.dtpStartSa.TabIndex = 66;
+            this.dtpStartSa.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblSu
             // 
@@ -223,6 +224,7 @@
             this.dtpEndSa.Name = "dtpEndSa";
             this.dtpEndSa.Size = new System.Drawing.Size(103, 22);
             this.dtpEndSa.TabIndex = 68;
+            this.dtpEndSa.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpStartSu
             // 
@@ -231,6 +233,7 @@
             this.dtpStartSu.Name = "dtpStartSu";
             this.dtpStartSu.Size = new System.Drawing.Size(103, 22);
             this.dtpStartSu.TabIndex = 67;
+            this.dtpStartSu.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpEndSu
             // 
@@ -239,6 +242,7 @@
             this.dtpEndSu.Name = "dtpEndSu";
             this.dtpEndSu.Size = new System.Drawing.Size(103, 22);
             this.dtpEndSu.TabIndex = 69;
+            this.dtpEndSu.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblFr
             // 
@@ -258,6 +262,7 @@
             this.dtpStartFr.Name = "dtpStartFr";
             this.dtpStartFr.Size = new System.Drawing.Size(103, 22);
             this.dtpStartFr.TabIndex = 63;
+            this.dtpStartFr.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpEndFr
             // 
@@ -266,6 +271,7 @@
             this.dtpEndFr.Name = "dtpEndFr";
             this.dtpEndFr.Size = new System.Drawing.Size(103, 22);
             this.dtpEndFr.TabIndex = 64;
+            this.dtpEndFr.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblWe
             // 
@@ -285,6 +291,7 @@
             this.dtpStartWe.Name = "dtpStartWe";
             this.dtpStartWe.Size = new System.Drawing.Size(103, 22);
             this.dtpStartWe.TabIndex = 60;
+            this.dtpStartWe.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblTh
             // 
@@ -304,6 +311,7 @@
             this.dtpEndWe.Name = "dtpEndWe";
             this.dtpEndWe.Size = new System.Drawing.Size(103, 22);
             this.dtpEndWe.TabIndex = 61;
+            this.dtpEndWe.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpStartTh
             // 
@@ -312,6 +320,7 @@
             this.dtpStartTh.Name = "dtpStartTh";
             this.dtpStartTh.Size = new System.Drawing.Size(103, 22);
             this.dtpStartTh.TabIndex = 60;
+            this.dtpStartTh.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpEndTh
             // 
@@ -320,6 +329,7 @@
             this.dtpEndTh.Name = "dtpEndTh";
             this.dtpEndTh.Size = new System.Drawing.Size(103, 22);
             this.dtpEndTh.TabIndex = 61;
+            this.dtpEndTh.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblTu
             // 
@@ -339,6 +349,7 @@
             this.dtpStartTu.Name = "dtpStartTu";
             this.dtpStartTu.Size = new System.Drawing.Size(103, 22);
             this.dtpStartTu.TabIndex = 57;
+            this.dtpStartTu.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpEndTu
             // 
@@ -347,6 +358,7 @@
             this.dtpEndTu.Name = "dtpEndTu";
             this.dtpEndTu.Size = new System.Drawing.Size(103, 22);
             this.dtpEndTu.TabIndex = 58;
+            this.dtpEndTu.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblMo
             // 
@@ -366,6 +378,7 @@
             this.dtpStartMo.Name = "dtpStartMo";
             this.dtpStartMo.Size = new System.Drawing.Size(103, 22);
             this.dtpStartMo.TabIndex = 53;
+            this.dtpStartMo.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // dtpEndMo
             // 
@@ -374,6 +387,7 @@
             this.dtpEndMo.Name = "dtpEndMo";
             this.dtpEndMo.Size = new System.Drawing.Size(103, 22);
             this.dtpEndMo.TabIndex = 54;
+            this.dtpEndMo.Value = new System.DateTime(2016, 4, 27, 0, 0, 0, 0);
             // 
             // lblStart
             // 

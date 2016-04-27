@@ -13,5 +13,15 @@ namespace Participation.Profile.Logic
         {
             return DatabaseManager.GetAvailability(user);
         }
+
+        public bool SetAvailability(IUser user, List<string> times)
+        {
+            return DatabaseManager.SetAvailability(user, times);
+        }
+
+        public bool UpdateAvailability(IUser user, List<string> times)
+        {
+            return DatabaseManager.UpdateAvailability(user, times);
+        }
     }
 }

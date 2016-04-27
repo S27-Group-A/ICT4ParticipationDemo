@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq.Expressions;
 using Participation.Profile.Logic;
 
 namespace Participation.BeheerSysteem.GUI
@@ -200,6 +201,40 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //var comparer = false;
+            var times = new List<string>();
+            //var stringTimes = new List<DateTime>();
+            times.Add(dtpStartMo.Value.ToString("HH:mm") + "-" + dtpEndMo.Value.ToString("HH:mm"));
+            times.Add(dtpStartTu.Value.ToString("HH:mm") + "-" + dtpEndTu.Value.ToString("HH:mm"));
+            times.Add(dtpStartWe.Value.ToString("HH:mm") + "-" + dtpEndWe.Value.ToString("HH:mm"));
+            times.Add(dtpStartTh.Value.ToString("HH:mm") + "-" + dtpEndTh.Value.ToString("HH:mm"));
+            times.Add(dtpStartFr.Value.ToString("HH:mm") + "-" + dtpEndFr.Value.ToString("HH:mm"));
+            times.Add(dtpStartSa.Value.ToString("HH:mm") + "-" + dtpEndSa.Value.ToString("HH:mm"));
+            times.Add(dtpStartSu.Value.ToString("HH:mm") + "-" + dtpEndSu.Value.ToString("HH:mm"));
+
+            if (_profileLogic.GetAvailability(_loggedInUser).Count != 7)
+            {
+                if (!_profileLogic.SetAvailability(_loggedInUser, times))
+                {
+                    MessageBox.Show("Kon uw week overzicht niet toevoegen");
+                }
+                else
+                {
+                    MessageBox.Show("Uw tijden zijn opgeslagen");
+                }
+            }
+            else
+            {
+                if (!_profileLogic.UpdateAvailability(_loggedInUser, times))
+                {
+                    MessageBox.Show("Kon uw week overzicht niet toevoegen");
+                }
+                else
+                {
+                    MessageBox.Show("Uw tijden zijn opgeslagen");
+                }
+            }
+
 
         }
 
@@ -228,8 +263,7 @@ namespace Participation.BeheerSysteem.GUI
             {
                 times = _profileLogic.GetAvailability(_loggedInUser);
                 if (times.Count != 7)
-                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: "
-                        + times.Count + " verwachte aantal: 7");
+                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: " + times.Count + " verwachte aantal: 7");
             }
             catch (Exception exception)
             {
@@ -248,7 +282,6 @@ namespace Participation.BeheerSysteem.GUI
             {
                 trueSplittedTimes.Add(Convert.ToDateTime(t));
             }
-
             #region Set times in form
 
             dtpStartMo.Value = trueSplittedTimes[0];
