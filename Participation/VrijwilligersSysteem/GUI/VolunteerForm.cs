@@ -44,9 +44,14 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             if (tbResponse.Text.Length > 0 && _loggedInUser is Volunteer)
             {
-                _selectedRequest.AddResponse(tbResponse.Text, _loggedInUser as Volunteer);
+                _volunteerSystem.AddNewResponse(_selectedRequest, FormProvider.LoggedInUser as Volunteer,
+                    tbResponse.Text);
                 GetRequestInfo();
                 tbResponse.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Vul een tekst in als reactie");
             }
         }
 
@@ -72,6 +77,7 @@ namespace Participation.VrijwilligersSysteem.GUI
             lblName.Text = _volunteerSystem.GetPatientFromRequest(_selectedRequest).Name;
             lblDescription.Text = _selectedRequest.Text;
             lblLocation.Text = _selectedRequest.Location;
+            pictureBox1.Image = Image.FromFile(_volunteerSystem.GetPatientFromRequest(_selectedRequest).ProfilePicture);
             if (_selectedRequest.Urgency == 0)
             {
                 lblUrgency.Text = "Niet belangrijk.";
@@ -108,7 +114,12 @@ namespace Participation.VrijwilligersSysteem.GUI
 
         private void btnMeeting_Click(object sender, EventArgs e)
         {
-
+            if (lbPatients.SelectedIndex >= 0)
+            {
+                InvitedPatient.PatientForInvite = _volunteerSystem.GetPatientFromRequest(_selectedRequest);
+                FormProvider.MeetingForm.Show();
+            }
+            
         }
     }
 }

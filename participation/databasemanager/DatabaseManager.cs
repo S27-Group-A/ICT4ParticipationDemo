@@ -780,12 +780,12 @@ namespace Participation
                 if (user.GetType() == typeof(Patient))
                 {
                     command =
-                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID");
+                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.dateofbirth, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p1.vog, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.dateofbirth as dateofbirth_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1, p2.vog as vog_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID");
                 }
                 if (user.GetType() == typeof(Volunteer))
                 {
                     command =
-                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID");
+                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.dateofbirth, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p1.vog, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.dateofbirth as dateofbirth_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1, p2.vog as vog_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID");
                 }
 
                 command.Parameters.Add(":userID", user.Id);
@@ -829,7 +829,7 @@ namespace Participation
                         if(vog_Other != 0)
                         {
                             IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, true, false);
-                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
                         }
                     }
                 }
@@ -871,7 +871,7 @@ namespace Participation
                             IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
-                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
                         }
                         
 
@@ -1249,6 +1249,27 @@ namespace Participation
         #endregion
 
         #region Meeting
+
+        public static bool ChangeStatusMeeting(Meeting meeting, int status)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE Meeting SET STATUS = :status WHERE VolunteerID = :volunteerID AND PatientID = :patientID");
+                command.Parameters.Add(":status", status);
+                command.Parameters.Add(":volunteerID", meeting.Volunteer.Id);
+                command.Parameters.Add(":patientID", meeting.Patient.Id);
+                command.BindByName = true;
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
 
         #endregion
 

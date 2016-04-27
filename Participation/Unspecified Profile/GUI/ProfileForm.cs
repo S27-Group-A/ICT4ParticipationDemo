@@ -1,4 +1,6 @@
-﻿namespace Participation.BeheerSysteem.GUI
+﻿using Participation.VrijwilligersSysteem.Logic;
+
+namespace Participation.BeheerSysteem.GUI
 {
     using System;
     using System.Collections.Generic;
@@ -27,10 +29,12 @@
             RefreshInfo();
             //TODO Implement once fileserver is in place
             //RefreshPic();
+            btnVolunteer.Visible = false;
             if (_loggedInUser.GetType() == typeof(Volunteer))
             {
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
+                btnVolunteer.Visible = true;
             }
 
 
@@ -177,6 +181,28 @@
             vv.Show();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormProvider.VolunteerForm.Show();
+            this.Hide();
+        }
+
+        private void btnAddMeeting_Click(object sender, EventArgs e)
+        {
+            if (FormProvider.LoggedInUser is Patient)
+            {
+                InvitedPatient.PatientForInvite = FormProvider.LoggedInUser as Patient;
+                FormProvider.MeetingForm.Show();
+            }
+        }
+
+        private void btnMeetingsVolunteers_Click(object sender, EventArgs e)
+        {
+            if (FormProvider.LoggedInUser is Volunteer)
+            {
+                FormProvider.MeetingVolunteerForm.Show();
+            }
+	}
         private void btnChat_Click(object sender, EventArgs e)
         {
             try
@@ -199,6 +225,7 @@
                 MessageBox.Show(exc.Message);
             }
             
+
 
         }
 

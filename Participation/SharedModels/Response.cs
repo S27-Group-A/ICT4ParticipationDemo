@@ -17,22 +17,12 @@ namespace Participation.SharedModels
         public Volunteer Responder { get; private set; }
 
         //constructors
-        public Response(int Id, string text, DateTime date, Volunteer responder)
-        {
-            this.Id = Id;
-            this.Responder = responder;
-            this.Text = text;
-            this.Date = date;
-        }
-
         public Response(string text, DateTime date, Volunteer responder)
         {
-            //this.Id = Id; TODO Set id
             this.Responder = responder;
             this.Text = text;
             this.Date = date;
         }
-
 
     }
 }

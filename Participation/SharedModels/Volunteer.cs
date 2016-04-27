@@ -111,6 +111,18 @@ namespace Participation.SharedModels
             throw new NotImplementedException();
         }
 
+        public List<Meeting> MeetingsWithStatus(int status)
+        {
+            List<Meeting> tempMeetings = null;
+            foreach (Meeting m in Meetings)
+            {
+                if (m.Status == status)
+                {
+                    tempMeetings.Add(m);
+                }
+            }
+            return tempMeetings;
+        } 
 
     }
 }

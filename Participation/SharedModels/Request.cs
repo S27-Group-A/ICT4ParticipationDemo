@@ -78,7 +78,6 @@ namespace Participation.SharedModels
             //this.Responses.Add(new Response(text, DateTime.Now));
         }
 
-
         public override string ToString()
         {
             // TODO Optionally return Perks per perk as string

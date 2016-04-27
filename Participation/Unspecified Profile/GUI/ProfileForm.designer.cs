@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             this.gbForm = new System.Windows.Forms.GroupBox();
-            this.pbVog = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblPreName = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
@@ -53,12 +52,22 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+
+            this.btnVolunteer = new System.Windows.Forms.Button();
+            this.pbVog = new System.Windows.Forms.PictureBox();
+            this.btnAddMeeting = new System.Windows.Forms.Button();
+            this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
+
             this.btnChat = new System.Windows.Forms.Button();
+
             this.gbForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
+
+            //this.gbxVog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
+
             this.SuspendLayout();
             // 
             // gbForm
@@ -76,6 +85,7 @@
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
             // 
+
             // pbVog
             // 
             this.pbVog.Location = new System.Drawing.Point(832, 30);
@@ -86,6 +96,7 @@
             this.pbVog.TabIndex = 51;
             this.pbVog.TabStop = false;
             // 
+
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblPreName);
@@ -345,6 +356,46 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
+
+            // btnVolunteer
+            // 
+            this.btnVolunteer.Location = new System.Drawing.Point(10, 69);
+            this.btnVolunteer.Name = "btnVolunteer";
+            this.btnVolunteer.Size = new System.Drawing.Size(94, 39);
+            this.btnVolunteer.TabIndex = 8;
+            this.btnVolunteer.Text = "Hulpvragen beantwoorden";
+            this.btnVolunteer.UseVisualStyleBackColor = true;
+            this.btnVolunteer.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pbVog
+            // 
+            this.pbVog.Location = new System.Drawing.Point(624, 24);
+            this.pbVog.Name = "pbVog";
+            this.pbVog.Size = new System.Drawing.Size(252, 346);
+            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbVog.TabIndex = 51;
+            this.pbVog.TabStop = false;
+            // 
+            // btnAddMeeting
+            // 
+            this.btnAddMeeting.Location = new System.Drawing.Point(10, 115);
+            this.btnAddMeeting.Name = "btnAddMeeting";
+            this.btnAddMeeting.Size = new System.Drawing.Size(94, 42);
+            this.btnAddMeeting.TabIndex = 9;
+            this.btnAddMeeting.Text = "Kennismakings gesprek";
+            this.btnAddMeeting.UseVisualStyleBackColor = true;
+            this.btnAddMeeting.Click += new System.EventHandler(this.btnAddMeeting_Click);
+            // 
+            // btnMeetingsVolunteers
+            // 
+            this.btnMeetingsVolunteers.Location = new System.Drawing.Point(10, 164);
+            this.btnMeetingsVolunteers.Name = "btnMeetingsVolunteers";
+            this.btnMeetingsVolunteers.Size = new System.Drawing.Size(94, 35);
+            this.btnMeetingsVolunteers.TabIndex = 10;
+            this.btnMeetingsVolunteers.Text = "Kennismakings gesprekken";
+            this.btnMeetingsVolunteers.UseVisualStyleBackColor = true;
+            this.btnMeetingsVolunteers.Click += new System.EventHandler(this.btnMeetingsVolunteers_Click);
+
             // btnChat
             // 
             this.btnChat.Location = new System.Drawing.Point(13, 85);
@@ -355,14 +406,22 @@
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = true;
             this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
+
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
+
+            this.ClientSize = new System.Drawing.Size(736, 571);
+            this.Controls.Add(this.btnMeetingsVolunteers);
+            this.Controls.Add(this.btnAddMeeting);
+            this.Controls.Add(this.btnVolunteer);
+
             this.ClientSize = new System.Drawing.Size(981, 703);
             this.Controls.Add(this.btnChat);
+
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -372,12 +431,17 @@
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.gbForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
+
+            //this.gbxVog.ResumeLayout(false);
+            //this.gbxVog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
+
+
             this.ResumeLayout(false);
 
         }
@@ -407,7 +471,13 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
+        private System.Windows.Forms.Button btnVolunteer;
         private System.Windows.Forms.PictureBox pbVog;
+
+        private System.Windows.Forms.Button btnAddMeeting;
+        private System.Windows.Forms.Button btnMeetingsVolunteers;
+
         private System.Windows.Forms.Button btnChat;
+
     }
 }
