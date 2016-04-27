@@ -499,7 +499,7 @@ namespace Participation
                     {
                         if (vog != 0)
                         {
-; 
+                            Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, false, false));
                         }
                         else
                         {
