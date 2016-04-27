@@ -470,7 +470,7 @@ namespace Participation
                     {
                         if (vog != 0)
                         {
-; 
+                            ;
                         }
                         else
                         {
@@ -480,7 +480,7 @@ namespace Participation
                     }
                     if (personType == "Patient")
                     {
-                       Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
+                        Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
                     }
                     if (personType == "Admin")
                     {
@@ -570,9 +570,26 @@ namespace Participation
                         string phoneNumber = volunteerReader["phone"].ToString();
                         GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                         string password = volunteerReader["password"].ToString();
-                        string vog = volunteerReader["vog"].ToString();
+                        int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
+                        
+                        bool bVog;
+                        if (vog == 1)
+                        {
+                            bVog = true;
+                        }
+                        else if (vog == 0)
+                        {
+                            bVog = false;
+                        }
+                        else
+                        {
+                            var message = "vog is incorrect, vog = " + vog;
+                            Logger.Write(message);
+                            throw new InvalidConstraintException( message); 
+                        }
 
-                        volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                        volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, 
+                            picture, location, phoneNumber, gender, password,bVog , false);
                         i.Volunteer = volunteer;
                     }
                 }
@@ -664,9 +681,25 @@ namespace Participation
                             string phoneNumber = volunteerReader["phone"].ToString();
                             GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                             string password = volunteerReader["password"].ToString();
-                            string vog = volunteerReader["vog"].ToString();
+                            int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                            bool bVog;
+                            if (vog == 1)
+                            {
+                                bVog = true;
+                            }
+                            else if (vog == 0)
+                            {
+                                bVog = false;
+                            }
+                            else
+                            {
+                                var message = "vog is incorrect, vog = " + vog;
+                                Logger.Write(message);
+                                throw new InvalidConstraintException(message);
+                            }
+
+                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, bVog, false);
                             i.Volunteer = castvolunteer;
                         }
                     }
@@ -742,10 +775,26 @@ namespace Participation
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
-                        string vog_Other = reader["vog_1"].ToString();
+                        int vog_Other = Convert.ToInt32(reader["vog_1"].ToString());
+
+                        bool bVog;
+                        if (vog_Other == 1)
+                        {
+                            bVog = true;
+                        }
+                        else if (vog_Other == 0)
+                        {
+                            bVog = false;
+                        }
+                        else
+                        {
+                            var message = "vog is incorrect, vog = " + vog_Other;
+                            Logger.Write(message);
+                            throw new InvalidConstraintException(message);
+                        }
 
                         IUser patient = new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
-                        IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, vog_Other, false);
+                        IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, bVog, false);
 
                         MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
                     }
@@ -769,7 +818,7 @@ namespace Participation
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
                         string password = reader["password"].ToString();
-                        string vog = reader["vog"].ToString();
+                        int vog = Convert.ToInt32(reader["vog"].ToString());
 
                         int id_other = Convert.ToInt32(reader["personid_1"].ToString());
                         string name_Other = reader["name_1"].ToString();
@@ -783,7 +832,23 @@ namespace Participation
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
 
-                        IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                        bool bVog;
+                        if (vog == 1)
+                        {
+                            bVog = true;
+                        }
+                        else if (vog == 0)
+                        {
+                            bVog = false;
+                        }
+                        else
+                        {
+                            var message = "vog is incorrect, vog = " + vog;
+                            Logger.Write(message);
+                            throw new InvalidConstraintException(message);
+                        }
+
+                        IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, bVog, false);
                         IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
                         MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
