@@ -44,9 +44,14 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             if (tbResponse.Text.Length > 0 && _loggedInUser is Volunteer)
             {
-                _volunteerSystem.AddNewResponse(_selectedRequest, FormProvider.LoggedInUser as Volunteer, tbResponse.Text);
+                _volunteerSystem.AddNewResponse(_selectedRequest, FormProvider.LoggedInUser as Volunteer,
+                    tbResponse.Text);
                 GetRequestInfo();
                 tbResponse.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Vul een tekst in als reactie");
             }
         }
 

@@ -27,10 +27,12 @@
             RefreshInfo();
             //TODO Implement once fileserver is in place
             //RefreshPic();
+            btnVolunteer.Visible = false;
             if (_loggedInUser.GetType() == typeof(Volunteer))
             {
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
+                btnVolunteer.Visible = true;
             }
 
 

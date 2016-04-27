@@ -114,11 +114,16 @@ namespace Participation.VrijwilligersSysteem.Logic
             return null;
         }
 
-        public void AddNewResponse(Request request, Volunteer volunteer, string text)
+        public bool AddNewResponse(Request request, Volunteer volunteer, string text)
         {
             Response tempResponse = new Response(text, DateTime.Now, volunteer);
-            DatabaseManager.AddResponse(volunteer, request, tempResponse);
-            request.Responses.Add(tempResponse);
+            if (DatabaseManager.AddResponse(volunteer, request, tempResponse))
+            {
+                request.Responses.Add(tempResponse);
+                return true;
+            }
+            return false;
+
         }
     }
 }
