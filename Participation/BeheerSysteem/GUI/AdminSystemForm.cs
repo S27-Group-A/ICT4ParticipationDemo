@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.SharedModels;
 using Participation.BeheerSysteem.Logic;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.BeheerSysteem.GUI
 {
@@ -84,7 +85,8 @@ namespace Participation.BeheerSysteem.GUI
             }
             if (rbtnTemporary.Checked)
             {
-                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex], DateTime.Now.AddDays(Convert.ToInt32(tbxDaysUntillUnbanned.Text))))
+                if (_BHSLogic.BanUser(_BHSLogic.Users[lbxUserList.SelectedIndex],
+                    DateTime.Now.AddDays(Convert.ToInt32(tbxDaysUntillUnbanned.Text))))
                 {
                     emptyProfileInformation();
                     LoadUserList();
@@ -141,7 +143,8 @@ namespace Participation.BeheerSysteem.GUI
         //Judge a volunteer to see if he is qualified to be a volunteer.
         private void btnJudgeVolunteer_Click(object sender, EventArgs e)
         {
-            DialogResult dialogresult = MessageBox.Show("Heeft deze gebruiker een goedgekeurde VOG?", "", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogresult = MessageBox.Show("Heeft deze gebruiker een goedgekeurde VOG?", "",
+                MessageBoxButtons.YesNoCancel);
             if (dialogresult == DialogResult.Yes)
             {
                 MessageBox.Show("Deze vrijwilliger is nu goedgekeurd om te beginnen!");
@@ -159,29 +162,36 @@ namespace Participation.BeheerSysteem.GUI
         //Changes the rights of a user to give him admin rights.
         private void btnChangeRights_Click(object sender, EventArgs e)
         {
-            DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogresult = MessageBox.Show("Wilt u de rechten van deze gebruiker aanpassen?", "",
+                MessageBoxButtons.YesNoCancel);
             if (dialogresult == DialogResult.Yes)
             {
                 if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {
-                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
+                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een " + ((_BHSLogic.Users[lbxUserList.SelectedIndex] as Volunteer).isAdmin ? "Admin" : "Volunteer"));
                     emptyProfileInformation();
                 }
                 else
                 {
-                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " + _BHSLogic.Users[lbxUserList.SelectedIndex].Name + "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
+                    MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " +
+                                    _BHSLogic.Users[lbxUserList.SelectedIndex].Name +
+                                    "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
                 }
             }
             if (dialogresult == DialogResult.No)
             {
                 MessageBox.Show("De rechten zijn niet aangepast.");
             }
-            if (dialogresult == DialogResult.Cancel) { }
+            if (dialogresult == DialogResult.Cancel)
+            {
+            }
         }
+
         //Log Out.
         private void btn_LogUit_Click(object sender, EventArgs e)
         {
-            DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "", MessageBoxButtons.YesNo);
+            DialogResult dialogresult = MessageBox.Show("Weet U zeker dat U uit wilt loggen?", "",
+                MessageBoxButtons.YesNo);
             if (dialogresult == DialogResult.Yes)
             {
                 MessageBox.Show("U bent nu uitgelogd.");
@@ -192,6 +202,20 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
-    }
+        private void tbxDaysUntillUnbanned_TextChanged(object sender, EventArgs e)
+        {
+            string tString = tbxDaysUntillUnbanned.Text;
+            if (tString.Trim() == "") return;
+            for (int i = 0; i < tString.Length; i++)
+            {
+                if (!char.IsNumber(tString[i]))
+                {
+                    MessageBox.Show("Dit veld kan alleen nummers bevatten");
+                    tbxDaysUntillUnbanned.Text = "";
+                    return;
+                }
+            }
+        }
 
+    }
 }

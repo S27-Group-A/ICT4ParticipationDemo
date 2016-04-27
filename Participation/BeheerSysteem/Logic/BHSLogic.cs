@@ -111,9 +111,13 @@ namespace Participation.BeheerSysteem.Logic
         {
             foreach (var u in GetUsers())
                 if (u.Id == user.Id)
-                    throw new NotImplementedException("DatabaseManager.ModAdmin() not implemented");
+                    return DatabaseManager.ChangePermission(user);
             return false;
         }
 
+        public IUser GetUser(IUser user)
+        {
+            return DatabaseManager.GetUser(user.Email);
+        }
     }
 }

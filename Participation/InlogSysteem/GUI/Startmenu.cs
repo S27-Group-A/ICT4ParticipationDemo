@@ -22,12 +22,13 @@ namespace Participation
         /// <param name="e"></param>
         private void startMenuLogInBtn_Click(object sender, EventArgs e)
         {
-            if (checkFields())
+            if (CheckFields())
             {
                 IUser user;
                 try
                 {
                     user = _lisLogic.GetUser(emailTbx.Text);
+
                     if (user.Password == passwordTbx.Text)
                         LogIn(user);
                     else
@@ -36,16 +37,17 @@ namespace Participation
                         ClearFields();
                     }
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
-                    MessageBox.Show(exc.Message);
+                    MessageBox.Show("Het ingevulde e-mail adres is niet gevonden of bestaat niet, neem contact op met de administrator en/of controleer uw gegevens");
                     ClearFields();
+                    MessageBox.Show("Vul uw gegevens opnieuw in");
                 }
             }
             else
             {
                 ClearFields();
-                MessageBox.Show("Vul uw gegevens opnieuw in");
+                MessageBox.Show("Vul uw e-mail adres en wachtwoord in");
             }
         }
 
@@ -64,9 +66,9 @@ namespace Participation
         /// Checks fields
         /// </summary>
         /// <returns></returns>
-        private bool checkFields()
+        private bool CheckFields()
         {
-            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
+            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(passwordTbx.Text))
                 return true;
             return false;
         }
@@ -76,7 +78,7 @@ namespace Participation
         /// </summary>
         private void ClearFields()
         {
-            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(emailLbl.Text))
+            if (!string.IsNullOrEmpty(emailTbx.Text) && !string.IsNullOrEmpty(passwordTbx.Text))
             {
                 emailTbx.Clear();
                 passwordTbx.Clear();
