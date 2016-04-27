@@ -79,23 +79,17 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-
             this.btnVolunteer = new System.Windows.Forms.Button();
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
-
             this.btnChat = new System.Windows.Forms.Button();
-
+            this.btnWriteReview = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
-
             this.gbxWeekView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
-
-            //this.gbxVog.SuspendLayout();
-
             this.SuspendLayout();
             // 
             // gbForm
@@ -410,7 +404,6 @@
             this.lblStart.TabIndex = 48;
             this.lblStart.Text = "Starttijd";
             // 
-
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblPreName);
@@ -670,7 +663,6 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
-
             // btnVolunteer
             // 
             this.btnVolunteer.Location = new System.Drawing.Point(10, 69);
@@ -700,7 +692,7 @@
             this.btnMeetingsVolunteers.Text = "Kennismakings gesprekken";
             this.btnMeetingsVolunteers.UseVisualStyleBackColor = true;
             this.btnMeetingsVolunteers.Click += new System.EventHandler(this.btnMeetingsVolunteers_Click);
-
+            // 
             // btnChat
             // 
             this.btnChat.Location = new System.Drawing.Point(13, 85);
@@ -711,22 +703,31 @@
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = true;
             this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
-
+            // 
+            // btnWriteReview
+            // 
+            this.btnWriteReview.Enabled = false;
+            this.btnWriteReview.Location = new System.Drawing.Point(13, 122);
+            this.btnWriteReview.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteReview.Name = "btnWriteReview";
+            this.btnWriteReview.Size = new System.Drawing.Size(125, 28);
+            this.btnWriteReview.TabIndex = 11;
+            this.btnWriteReview.Text = "Review Schrijven";
+            this.btnWriteReview.UseVisualStyleBackColor = true;
+            this.btnWriteReview.Visible = false;
+            this.btnWriteReview.Click += new System.EventHandler(this.btnWriteReview_Click);
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(736, 571);
+            this.ClientSize = new System.Drawing.Size(1170, 838);
+            this.Controls.Add(this.btnWriteReview);
             this.Controls.Add(this.btnMeetingsVolunteers);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.btnVolunteer);
-
-            this.ClientSize = new System.Drawing.Size(981, 703);
-            this.ClientSize = new System.Drawing.Size(1170, 838);
             this.Controls.Add(this.btnChat);
-
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -745,10 +746,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
-
-            //this.gbxVog.ResumeLayout(false);
-            //this.gbxVog.PerformLayout();
-
             this.ResumeLayout(false);
 
         }
@@ -809,5 +806,6 @@
         private System.Windows.Forms.DateTimePicker dtpEndMo;
         private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Button btnAgain;
+        private System.Windows.Forms.Button btnWriteReview;
     }
 }

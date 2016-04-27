@@ -232,7 +232,7 @@ namespace Participation
 
                 if (ExecuteNonQuery(command))
                 {
-                    command = CreateOracleCommand("SELECT MAX(PERSONID) FROM PERSON");
+                    command = CreateOracleCommand("SELECT MAX() FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
                     while (reader.Read())
                     {
@@ -328,13 +328,26 @@ namespace Participation
             try
             {
                 OracleCommand command = CreateOracleCommand("INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description) VALUES(:reviewID, :reviewerID, :revieweeID, :rating, :description)");
-                command.Parameters.Add(":reviewID", review.Id);
                 command.Parameters.Add(":reviewerID", patient.Id);
                 command.Parameters.Add(":revieweeID", volunteer.Id);
                 command.Parameters.Add(":rating", review.Rating);
                 command.Parameters.Add(":description", review.Text);
+                command.BindByName = true;
 
-                return ExecuteNonQuery(command);
+                if (ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("SELECT MAX(REVIEWID) FROM REVIEW");
+                    OracleDataReader reader = ExecuteQuery(command);
+                    while (reader.Read())
+                    {
+                        review.Id = Convert.ToInt32(reader["MAX(REVIEWID)"].ToString());
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {

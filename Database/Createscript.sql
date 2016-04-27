@@ -77,7 +77,7 @@ CREATE TABLE Review
 	rating 			      	NUMBER 			    NOT NULL,
 	description 	    	VARCHAR2(256) 	NOT NULL,
 	
-	CONSTRAINT c_rating CHECK(rating >0 OR rating <5)
+	CONSTRAINT c_rating CHECK(rating >0 OR rating <= 10)
 );
 
 

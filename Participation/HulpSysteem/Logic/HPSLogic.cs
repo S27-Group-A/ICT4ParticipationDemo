@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
 
@@ -22,9 +23,30 @@ namespace Participation.HulpSysteem.Logic
             */
         }
 
+        public bool AddReview(Volunteer volunteer, Patient patien, Review review)
+        {
+            return DatabaseManager.AddReview(volunteer, patien, review);
+        }
+
         public List<string> GetPerk()
         {
             return DatabaseManager.GetPerks();
+        }
+
+        public List<IUser> GetUsers()
+        {
+            return DatabaseManager.GetUsers();
+        }
+
+        public List<Volunteer> GetVolunteers()
+        {
+            var volunteers = new List<Volunteer>();
+            foreach (var v in GetUsers())
+            {
+                if (v.GetType() == typeof(Volunteer))
+                    volunteers.Add(v as Volunteer);
+            }
+            return volunteers;
         }
 
         /// <summary>

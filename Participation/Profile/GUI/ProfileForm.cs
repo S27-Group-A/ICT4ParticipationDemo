@@ -1,5 +1,5 @@
-﻿﻿using Participation.VrijwilligersSysteem.Logic;
-﻿using System.Globalization;
+﻿using Participation.VrijwilligersSysteem.Logic;
+using System.Globalization;
 using System.Linq.Expressions;
 using Participation.Profile.Logic;
 
@@ -31,6 +31,8 @@ namespace Participation.BeheerSysteem.GUI
 
         private void ProfileForm_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
+
             RefreshInfo();
             //TODO Implement once fileserver is in place
             //RefreshPic();
@@ -41,6 +43,11 @@ namespace Participation.BeheerSysteem.GUI
                 RefreshPerks();
                 btnVolunteer.Visible = true;
                 RefreshWeek();
+            }
+            if (_loggedInUser.GetType() == typeof(Patient))
+            {
+                btnWriteReview.Enabled = true;
+                btnWriteReview.Visible = true;
             }
 
 
@@ -198,7 +205,7 @@ namespace Participation.BeheerSysteem.GUI
             {
                 FormProvider.MeetingVolunteerForm.Show();
             }
-	}
+        }
 
         private void btnChat_Click(object sender, EventArgs e)
         {
@@ -334,6 +341,12 @@ namespace Participation.BeheerSysteem.GUI
         private void btnAgain_Click(object sender, EventArgs e)
         {
             RefreshWeek();
+        }
+
+        private void btnWriteReview_Click(object sender, EventArgs e)
+        {
+            FormProvider.ProfileForm.Hide();
+            FormProvider.ReviewForm.Show();
         }
     }
 }
