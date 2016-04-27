@@ -119,6 +119,7 @@
             // 
             // rfidBtn
             // 
+            this.rfidBtn.Enabled = false;
             this.rfidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rfidBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rfidBtn.Location = new System.Drawing.Point(413, 87);
@@ -128,10 +129,12 @@
             this.rfidBtn.TabIndex = 6;
             this.rfidBtn.Text = "Ik heb een RFID!";
             this.rfidBtn.UseVisualStyleBackColor = true;
+            this.rfidBtn.Visible = false;
             // 
             // rfidGbx
             // 
             this.rfidGbx.Controls.Add(this.rfidTbx);
+            this.rfidGbx.Enabled = false;
             this.rfidGbx.Location = new System.Drawing.Point(414, 2);
             this.rfidGbx.Margin = new System.Windows.Forms.Padding(4);
             this.rfidGbx.Name = "rfidGbx";
@@ -140,6 +143,7 @@
             this.rfidGbx.TabIndex = 18;
             this.rfidGbx.TabStop = false;
             this.rfidGbx.Text = "RFID Code";
+            this.rfidGbx.Visible = false;
             // 
             // rfidTbx
             // 
@@ -151,6 +155,7 @@
             // 
             // label1
             // 
+            this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.label1.Location = new System.Drawing.Point(409, 140);
@@ -159,6 +164,7 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "U kunt ook inloggen met uw pasje. Houdt u pasje voor de scanner en klik op de \"Ik" +
     " heb een RFID!\"-knop als het rfid code veld eenmaal is ingevuld.";
+            this.label1.Visible = false;
             // 
             // Startmenu
             // 
