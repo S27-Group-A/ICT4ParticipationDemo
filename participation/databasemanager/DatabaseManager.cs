@@ -768,10 +768,14 @@ namespace Participation
                             string phoneNumber = volunteerReader["phone"].ToString();
                             GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                             string password = volunteerReader["password"].ToString();
-                            string vog = volunteerReader["vog"].ToString();
+                            int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                            castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
-                            i.Volunteer = castvolunteer;
+                            if(vog != 0)
+                            {
+                                castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                                i.Volunteer = castvolunteer;
+                            }
+
                         }
                     }
                 }
