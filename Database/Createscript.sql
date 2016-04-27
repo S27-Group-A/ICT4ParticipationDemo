@@ -28,7 +28,7 @@ CREATE TABLE Person
 	gender 			      	VARCHAR2(1) 	    NOT NULL,
 	password          		VARCHAR(64)       	NOT NULL,
 	rfid					VARCHAR(64)			UNIQUE,
-	vog						VARCHAR(255)    	UNIQUE,              -- Fileserver
+	vog						NUMBER(1)   		DEFAULT 0,              -- Fileserver
 	banned					NUMBER(1)			DEFAULT 0,
 	unban					DATE,
 	enabled					NUMBER(1)			DEFAULT 1,
