@@ -542,30 +542,15 @@ namespace Participation
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        if (vog != 0)
-                        {
-                            Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, false, false));
-                        }
-                        else
-                        {
-                            throw new Exception("Account is niet goedgekeurd.");
-                        }
-
+                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, false, false));
                     }
                     if (personType == "Patient")
                     {
-                       Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
+                        Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
                     }
                     if (personType == "Admin")
                     {
-                        if (vog != 0)
-                        {
-                            Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false));
-                        }
-                        else
-                        {
-                            throw new Exception("Account is niet goedgekeurd.");
-                        }
+                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false));
                     }
                 }
                 return Users;
