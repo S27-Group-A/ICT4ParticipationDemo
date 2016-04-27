@@ -18,6 +18,9 @@ namespace Server
         [OperationContract(IsOneWay = true)]
         void SendMessage(string msg, string sender, string receiver);
         [OperationContract(IsOneWay = true)]
+        void StartChat(string msg, string sender, string receiver);
+
+        [OperationContract(IsOneWay = true)]
         void StartVolunteer(string Name);
         [OperationContract(IsOneWay = true)]
         void StopVolunteer(string Name);
@@ -32,6 +35,9 @@ namespace Server
     {
         [OperationContract(IsOneWay = true)]
         void ReceiveMessage(string msg, string receiver);
+        [OperationContract(IsOneWay = true)]
+        void NewChat(string msg, string sender, string receiver);
+
         [OperationContract(IsOneWay = true)]
         void SendVolunteerNames(List<string> names);
         [OperationContract(IsOneWay = true)]
@@ -163,6 +169,21 @@ namespace Server
             {
                 this.callback = this.VolunteerNames[receiver];
                 this.callback.ReceiveMessage(msg, sender);
+            }
+        }
+
+        void ISendChatService.StartChat(string msg, string sender, string receiver)
+        {
+            if (this.ElderNames.ContainsKey(receiver))
+            {
+                this.callback = this.ElderNames[receiver];
+                this.callback.NewChat(msg, sender, receiver);
+            }
+
+            if (this.VolunteerNames.ContainsKey(receiver))
+            {
+                this.callback = this.VolunteerNames[receiver];
+                this.callback.NewChat(msg, sender, receiver);
             }
         }
 

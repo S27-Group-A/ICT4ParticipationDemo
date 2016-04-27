@@ -57,6 +57,7 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnChat = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -73,17 +74,20 @@
             this.gbForm.Controls.Add(this.pbxProfilePicture);
             this.gbForm.Controls.Add(this.gbxPerks);
             this.gbForm.Controls.Add(this.gbxVog);
-            this.gbForm.Location = new System.Drawing.Point(112, -8);
+            this.gbForm.Location = new System.Drawing.Point(149, -10);
+            this.gbForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbForm.Name = "gbForm";
-            this.gbForm.Size = new System.Drawing.Size(899, 591);
+            this.gbForm.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbForm.Size = new System.Drawing.Size(1199, 727);
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
             // 
             // pbVog
             // 
-            this.pbVog.Location = new System.Drawing.Point(624, 24);
+            this.pbVog.Location = new System.Drawing.Point(832, 30);
+            this.pbVog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbVog.Name = "pbVog";
-            this.pbVog.Size = new System.Drawing.Size(252, 346);
+            this.pbVog.Size = new System.Drawing.Size(336, 426);
             this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbVog.TabIndex = 51;
             this.pbVog.TabStop = false;
@@ -103,11 +107,11 @@
             this.groupBox2.Controls.Add(this.lblPreEmail);
             this.groupBox2.Controls.Add(this.lblName);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(32, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(43, 22);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(434, 175);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(579, 215);
             this.groupBox2.TabIndex = 47;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profiel Informatie";
@@ -117,10 +121,9 @@
             this.lblPreName.AutoSize = true;
             this.lblPreName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPreName.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPreName.Location = new System.Drawing.Point(14, 20);
-            this.lblPreName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPreName.Location = new System.Drawing.Point(19, 25);
             this.lblPreName.Name = "lblPreName";
-            this.lblPreName.Size = new System.Drawing.Size(53, 17);
+            this.lblPreName.Size = new System.Drawing.Size(63, 20);
             this.lblPreName.TabIndex = 41;
             this.lblPreName.Text = "Naam: ";
             // 
@@ -129,10 +132,9 @@
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGender.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblGender.Location = new System.Drawing.Point(181, 145);
-            this.lblGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGender.Location = new System.Drawing.Point(241, 178);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(20, 17);
+            this.lblGender.Size = new System.Drawing.Size(21, 20);
             this.lblGender.TabIndex = 47;
             this.lblGender.Text = "...";
             // 
@@ -141,10 +143,9 @@
             this.lblPreGender.AutoSize = true;
             this.lblPreGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPreGender.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPreGender.Location = new System.Drawing.Point(14, 145);
-            this.lblPreGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPreGender.Location = new System.Drawing.Point(19, 178);
             this.lblPreGender.Name = "lblPreGender";
-            this.lblPreGender.Size = new System.Drawing.Size(72, 17);
+            this.lblPreGender.Size = new System.Drawing.Size(86, 20);
             this.lblPreGender.TabIndex = 16;
             this.lblPreGender.Text = "Geslacht: ";
             // 
@@ -153,10 +154,9 @@
             this.lblPhonenumber.AutoSize = true;
             this.lblPhonenumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhonenumber.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPhonenumber.Location = new System.Drawing.Point(181, 121);
-            this.lblPhonenumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPhonenumber.Location = new System.Drawing.Point(241, 149);
             this.lblPhonenumber.Name = "lblPhonenumber";
-            this.lblPhonenumber.Size = new System.Drawing.Size(20, 17);
+            this.lblPhonenumber.Size = new System.Drawing.Size(21, 20);
             this.lblPhonenumber.TabIndex = 46;
             this.lblPhonenumber.Text = "...";
             // 
@@ -165,10 +165,9 @@
             this.lblPrePhonenumber.AutoSize = true;
             this.lblPrePhonenumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrePhonenumber.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPrePhonenumber.Location = new System.Drawing.Point(14, 121);
-            this.lblPrePhonenumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrePhonenumber.Location = new System.Drawing.Point(19, 149);
             this.lblPrePhonenumber.Name = "lblPrePhonenumber";
-            this.lblPrePhonenumber.Size = new System.Drawing.Size(119, 17);
+            this.lblPrePhonenumber.Size = new System.Drawing.Size(139, 20);
             this.lblPrePhonenumber.TabIndex = 15;
             this.lblPrePhonenumber.Text = "Telefoonnummer:";
             // 
@@ -177,10 +176,9 @@
             this.lblLocation.AutoSize = true;
             this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocation.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblLocation.Location = new System.Drawing.Point(181, 94);
-            this.lblLocation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLocation.Location = new System.Drawing.Point(241, 116);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(20, 17);
+            this.lblLocation.Size = new System.Drawing.Size(21, 20);
             this.lblLocation.TabIndex = 45;
             this.lblLocation.Text = "...";
             // 
@@ -189,10 +187,9 @@
             this.locationLbl.AutoSize = true;
             this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationLbl.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.locationLbl.Location = new System.Drawing.Point(14, 94);
-            this.locationLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.locationLbl.Location = new System.Drawing.Point(19, 116);
             this.locationLbl.Name = "locationLbl";
-            this.locationLbl.Size = new System.Drawing.Size(91, 17);
+            this.locationLbl.Size = new System.Drawing.Size(107, 20);
             this.locationLbl.TabIndex = 14;
             this.locationLbl.Text = "Woonplaats: ";
             // 
@@ -201,10 +198,9 @@
             this.lblBirthdate.AutoSize = true;
             this.lblBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBirthdate.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblBirthdate.Location = new System.Drawing.Point(180, 71);
-            this.lblBirthdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBirthdate.Location = new System.Drawing.Point(240, 87);
             this.lblBirthdate.Name = "lblBirthdate";
-            this.lblBirthdate.Size = new System.Drawing.Size(20, 17);
+            this.lblBirthdate.Size = new System.Drawing.Size(21, 20);
             this.lblBirthdate.TabIndex = 44;
             this.lblBirthdate.Text = "...";
             // 
@@ -213,10 +209,9 @@
             this.lblPreBirthdate.AutoSize = true;
             this.lblPreBirthdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPreBirthdate.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPreBirthdate.Location = new System.Drawing.Point(14, 71);
-            this.lblPreBirthdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPreBirthdate.Location = new System.Drawing.Point(19, 87);
             this.lblPreBirthdate.Name = "lblPreBirthdate";
-            this.lblPreBirthdate.Size = new System.Drawing.Size(115, 17);
+            this.lblPreBirthdate.Size = new System.Drawing.Size(134, 20);
             this.lblPreBirthdate.TabIndex = 13;
             this.lblPreBirthdate.Text = "Geboortedatum: ";
             // 
@@ -225,10 +220,9 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblEmail.Location = new System.Drawing.Point(181, 45);
-            this.lblEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEmail.Location = new System.Drawing.Point(241, 55);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(20, 17);
+            this.lblEmail.Size = new System.Drawing.Size(21, 20);
             this.lblEmail.TabIndex = 43;
             this.lblEmail.Text = "...";
             // 
@@ -237,10 +231,9 @@
             this.lblPreEmail.AutoSize = true;
             this.lblPreEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPreEmail.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblPreEmail.Location = new System.Drawing.Point(14, 45);
-            this.lblPreEmail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPreEmail.Location = new System.Drawing.Point(19, 55);
             this.lblPreEmail.Name = "lblPreEmail";
-            this.lblPreEmail.Size = new System.Drawing.Size(95, 17);
+            this.lblPreEmail.Size = new System.Drawing.Size(114, 20);
             this.lblPreEmail.TabIndex = 11;
             this.lblPreEmail.Text = "E-mail adres: ";
             // 
@@ -249,20 +242,19 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblName.Location = new System.Drawing.Point(181, 20);
-            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Location = new System.Drawing.Point(241, 25);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(20, 17);
+            this.lblName.Size = new System.Drawing.Size(21, 20);
             this.lblName.TabIndex = 42;
             this.lblName.Text = "...";
             // 
             // pbxProfilePicture
             // 
             this.pbxProfilePicture.Image = ((System.Drawing.Image)(resources.GetObject("pbxProfilePicture.Image")));
-            this.pbxProfilePicture.Location = new System.Drawing.Point(476, 24);
-            this.pbxProfilePicture.Margin = new System.Windows.Forms.Padding(2);
+            this.pbxProfilePicture.Location = new System.Drawing.Point(635, 30);
+            this.pbxProfilePicture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbxProfilePicture.Name = "pbxProfilePicture";
-            this.pbxProfilePicture.Size = new System.Drawing.Size(142, 154);
+            this.pbxProfilePicture.Size = new System.Drawing.Size(189, 190);
             this.pbxProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxProfilePicture.TabIndex = 50;
             this.pbxProfilePicture.TabStop = false;
@@ -274,11 +266,11 @@
             this.gbxPerks.Controls.Add(this.btnAddPerk);
             this.gbxPerks.Controls.Add(this.lblListPerks);
             this.gbxPerks.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxPerks.Location = new System.Drawing.Point(32, 284);
-            this.gbxPerks.Margin = new System.Windows.Forms.Padding(2);
+            this.gbxPerks.Location = new System.Drawing.Point(43, 350);
+            this.gbxPerks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxPerks.Name = "gbxPerks";
-            this.gbxPerks.Padding = new System.Windows.Forms.Padding(2);
-            this.gbxPerks.Size = new System.Drawing.Size(434, 276);
+            this.gbxPerks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbxPerks.Size = new System.Drawing.Size(579, 340);
             this.gbxPerks.TabIndex = 47;
             this.gbxPerks.TabStop = false;
             this.gbxPerks.Text = "Extra vaardigheden: ";
@@ -287,27 +279,30 @@
             // lbPerks
             // 
             this.lbPerks.FormattingEnabled = true;
-            this.lbPerks.Location = new System.Drawing.Point(14, 76);
+            this.lbPerks.ItemHeight = 16;
+            this.lbPerks.Location = new System.Drawing.Point(19, 94);
+            this.lbPerks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbPerks.Name = "lbPerks";
-            this.lbPerks.Size = new System.Drawing.Size(404, 186);
+            this.lbPerks.Size = new System.Drawing.Size(537, 228);
             this.lbPerks.TabIndex = 39;
             // 
             // tbxPerk
             // 
             this.tbxPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxPerk.Location = new System.Drawing.Point(14, 28);
-            this.tbxPerk.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxPerk.Location = new System.Drawing.Point(19, 34);
+            this.tbxPerk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPerk.Name = "tbxPerk";
-            this.tbxPerk.Size = new System.Drawing.Size(325, 23);
+            this.tbxPerk.Size = new System.Drawing.Size(432, 27);
             this.tbxPerk.TabIndex = 36;
             // 
             // btnAddPerk
             // 
             this.btnAddPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPerk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnAddPerk.Location = new System.Drawing.Point(344, 29);
+            this.btnAddPerk.Location = new System.Drawing.Point(459, 36);
+            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddPerk.Name = "btnAddPerk";
-            this.btnAddPerk.Size = new System.Drawing.Size(74, 22);
+            this.btnAddPerk.Size = new System.Drawing.Size(99, 27);
             this.btnAddPerk.TabIndex = 36;
             this.btnAddPerk.Text = "Toevoegen";
             this.btnAddPerk.UseVisualStyleBackColor = true;
@@ -317,10 +312,9 @@
             // 
             this.lblListPerks.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblListPerks.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblListPerks.Location = new System.Drawing.Point(14, 54);
-            this.lblListPerks.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblListPerks.Location = new System.Drawing.Point(19, 66);
             this.lblListPerks.Name = "lblListPerks";
-            this.lblListPerks.Size = new System.Drawing.Size(391, 18);
+            this.lblListPerks.Size = new System.Drawing.Size(521, 22);
             this.lblListPerks.TabIndex = 38;
             this.lblListPerks.Text = "Vaardigheden: ";
             // 
@@ -330,11 +324,11 @@
             this.gbxVog.Controls.Add(this.lblAllowedVogFormats);
             this.gbxVog.Controls.Add(this.btnBrowseVogUrl);
             this.gbxVog.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbxVog.Location = new System.Drawing.Point(32, 197);
-            this.gbxVog.Margin = new System.Windows.Forms.Padding(2);
+            this.gbxVog.Location = new System.Drawing.Point(43, 242);
+            this.gbxVog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxVog.Name = "gbxVog";
-            this.gbxVog.Padding = new System.Windows.Forms.Padding(2);
-            this.gbxVog.Size = new System.Drawing.Size(434, 81);
+            this.gbxVog.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbxVog.Size = new System.Drawing.Size(579, 100);
             this.gbxVog.TabIndex = 46;
             this.gbxVog.TabStop = false;
             this.gbxVog.Text = "Verklaring Omtrent het Gedrag (VOG:) *";
@@ -343,10 +337,9 @@
             // lblVogUrl
             // 
             this.lblVogUrl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblVogUrl.Location = new System.Drawing.Point(12, 28);
-            this.lblVogUrl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVogUrl.Location = new System.Drawing.Point(16, 34);
             this.lblVogUrl.Name = "lblVogUrl";
-            this.lblVogUrl.Size = new System.Drawing.Size(326, 19);
+            this.lblVogUrl.Size = new System.Drawing.Size(435, 23);
             this.lblVogUrl.TabIndex = 36;
             this.lblVogUrl.TabStop = true;
             this.lblVogUrl.Text = "<download link van het huidige VOG>";
@@ -357,10 +350,9 @@
             this.lblAllowedVogFormats.AutoSize = true;
             this.lblAllowedVogFormats.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAllowedVogFormats.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lblAllowedVogFormats.Location = new System.Drawing.Point(12, 52);
-            this.lblAllowedVogFormats.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblAllowedVogFormats.Location = new System.Drawing.Point(16, 64);
             this.lblAllowedVogFormats.Name = "lblAllowedVogFormats";
-            this.lblAllowedVogFormats.Size = new System.Drawing.Size(249, 13);
+            this.lblAllowedVogFormats.Size = new System.Drawing.Size(331, 17);
             this.lblAllowedVogFormats.TabIndex = 35;
             this.lblAllowedVogFormats.Text = "Toegestaande formaten: .jpeg, png, bmp, pdf, docx";
             // 
@@ -368,9 +360,10 @@
             // 
             this.btnBrowseVogUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseVogUrl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnBrowseVogUrl.Location = new System.Drawing.Point(344, 28);
+            this.btnBrowseVogUrl.Location = new System.Drawing.Point(459, 34);
+            this.btnBrowseVogUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBrowseVogUrl.Name = "btnBrowseVogUrl";
-            this.btnBrowseVogUrl.Size = new System.Drawing.Size(74, 22);
+            this.btnBrowseVogUrl.Size = new System.Drawing.Size(99, 27);
             this.btnBrowseVogUrl.TabIndex = 34;
             this.btnBrowseVogUrl.Text = "Bladeren...";
             this.btnBrowseVogUrl.UseVisualStyleBackColor = true;
@@ -378,9 +371,10 @@
             // 
             // btnProfile
             // 
-            this.btnProfile.Location = new System.Drawing.Point(10, 12);
+            this.btnProfile.Location = new System.Drawing.Point(13, 15);
+            this.btnProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnProfile.Name = "btnProfile";
-            this.btnProfile.Size = new System.Drawing.Size(94, 23);
+            this.btnProfile.Size = new System.Drawing.Size(125, 28);
             this.btnProfile.TabIndex = 1;
             this.btnProfile.Text = "Profiel";
             this.btnProfile.UseVisualStyleBackColor = true;
@@ -388,9 +382,10 @@
             // 
             // btnHelprequests
             // 
-            this.btnHelprequests.Location = new System.Drawing.Point(10, 40);
+            this.btnHelprequests.Location = new System.Drawing.Point(13, 49);
+            this.btnHelprequests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHelprequests.Name = "btnHelprequests";
-            this.btnHelprequests.Size = new System.Drawing.Size(94, 23);
+            this.btnHelprequests.Size = new System.Drawing.Size(125, 28);
             this.btnHelprequests.TabIndex = 2;
             this.btnHelprequests.Text = "Hulp Vragen";
             this.btnHelprequests.UseVisualStyleBackColor = true;
@@ -398,24 +393,38 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Location = new System.Drawing.Point(10, 538);
+            this.btnLogOut.Location = new System.Drawing.Point(13, 662);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(94, 23);
+            this.btnLogOut.Size = new System.Drawing.Size(125, 28);
             this.btnLogOut.TabIndex = 7;
             this.btnLogOut.Text = "Log Uit";
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
+            // btnChat
+            // 
+            this.btnChat.Location = new System.Drawing.Point(13, 85);
+            this.btnChat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(125, 28);
+            this.btnChat.TabIndex = 8;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
+            // 
             // ProfileForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(736, 571);
+            this.ClientSize = new System.Drawing.Size(981, 703);
+            this.Controls.Add(this.btnChat);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.gbForm);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ProfileForm";
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
@@ -462,5 +471,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
         private System.Windows.Forms.PictureBox pbVog;
+        private System.Windows.Forms.Button btnChat;
     }
 }

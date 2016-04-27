@@ -121,11 +121,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                if (_chatuserform == null)
-                {
-                    _chatuserform = new ChatUsers();
-                }
-                return _chatuserform;
+                return _chatuserform = new ChatUsers();
             }
         }
 
