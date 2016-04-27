@@ -44,7 +44,7 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             if (tbResponse.Text.Length > 0 && _loggedInUser is Volunteer)
             {
-                _selectedRequest.AddResponse(tbResponse.Text, _loggedInUser as Volunteer);
+                _volunteerSystem.AddNewResponse(_selectedRequest, FormProvider.LoggedInUser as Volunteer, tbResponse.Text);
                 GetRequestInfo();
                 tbResponse.Text = "";
             }

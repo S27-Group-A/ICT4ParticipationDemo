@@ -3,6 +3,10 @@
 //     Company copyright tag.
 // </copyright>
 //-----------------------------------------------------------------------
+
+using System.Windows.Forms;
+using Participation.InlogSysteem.Interfaces;
+
 namespace Participation.VrijwilligersSysteem.Logic
 {
     using System;
@@ -20,10 +24,7 @@ namespace Participation.VrijwilligersSysteem.Logic
             this.Volunteers = new List<Volunteer>();
             this.Requests = new List<Request>();
             this.Patients = new List<Patient>();
-            Patient test1 = new Patient("Sjeng", "sven@gmail.com", "Goeie hulpverlener enzo", DateTime.Now, "-", "Grathem", "06123456789", GenderEnum.Male, "pw");
-            this.Patients.Add(test1);
-            test1.AddRequest("Huiswerk", "Help me!!", null, "Grathem", DateTime.Now, 0);
-            test1.AddRequest("Carnaval", "Die hoor je en die zie je overal.", null, "Grashoek", DateTime.Now, 1);
+            this.PutUsersInCorrectList(this.GetAllUsers());
             this.GetAllRequests();
         }
 
@@ -44,24 +45,54 @@ namespace Participation.VrijwilligersSysteem.Logic
         /// </summary>
         public List<Request> Requests { get; private set; }
 
+
+        public List<IUser> GetAllUsers()
+        {
+            return DatabaseManager.GetUsers();
+        }
+
+        public void PutUsersInCorrectList(List<IUser> users)
+        {
+            foreach (IUser iu in users)
+            {
+                if (iu is Volunteer)
+                {
+                    this.Volunteers.Add(iu as Volunteer);
+                }
+                if (iu is Patient)
+                {
+                    this.Patients.Add(iu as Patient);
+                }
+            }
+        }
         /// <summary>
         /// Gets all the requests from all the patients and stores them in the list
         /// </summary>
         /// TODO This is a get use a return List<Requests>();
         public void GetAllRequests()
         {
+            List<Request> tempR = null;
             foreach (Patient p in this.Patients)
             {
-                if (p.Requests.Count > 0)
+                tempR = DatabaseManager.GetRequests(p);
+                p.Requests = tempR;
+                foreach (Request r in tempR)
                 {
-                    foreach (Request r in p.Requests)
+                    Requests.Add(r);
+                    foreach (Response resp in GetAllResponses(r))
                     {
-                        this.Requests.Add(r);
+                        r.Responses.Add(resp);
                     }
                 }
+                
             }
         }
-        
+
+        public List<Response> GetAllResponses(Request req)
+        {
+            return DatabaseManager.GetResponsesFromRequest(req);
+        }
+
         /// <summary>
         /// Gets the patient object from the request object
         /// </summary>
@@ -81,6 +112,12 @@ namespace Participation.VrijwilligersSysteem.Logic
             }
 
             return null;
+        }
+
+        public void AddNewResponse(Request request, Volunteer volunteer, string text)
+        {
+            Response tempResponse = new Response(text, DateTime.Now, volunteer);
+            DatabaseManager.AddResponse(volunteer, request, tempResponse);
         }
     }
 }

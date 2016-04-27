@@ -57,6 +57,7 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnVolunteer = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -406,12 +407,23 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
+            // btnVolunteer
+            // 
+            this.btnVolunteer.Location = new System.Drawing.Point(10, 69);
+            this.btnVolunteer.Name = "btnVolunteer";
+            this.btnVolunteer.Size = new System.Drawing.Size(94, 39);
+            this.btnVolunteer.TabIndex = 8;
+            this.btnVolunteer.Text = "Hulpvragen beantwoorden";
+            this.btnVolunteer.UseVisualStyleBackColor = true;
+            this.btnVolunteer.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(736, 571);
+            this.Controls.Add(this.btnVolunteer);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -462,5 +474,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
         private System.Windows.Forms.PictureBox pbVog;
+        private System.Windows.Forms.Button btnVolunteer;
     }
 }

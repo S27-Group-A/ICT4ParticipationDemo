@@ -418,6 +418,55 @@
             }
         }
 
+        internal static IUser GetUserById(string invId)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE personid = :personid and enabled = 1");
+                command.Parameters.Add(":personid", invId);
+                OracleDataReader reader = ExecuteQuery(command);
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["personid"].ToString());
+                    string name = reader["name"].ToString();
+                    string emailAdress = reader["email"].ToString();
+                    string description = reader["description"].ToString();
+                    string dateTime = reader["dateOfBirth"].ToString();
+                    string picture = reader["ProfilePicture"].ToString();
+                    DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                    string location = reader["location"].ToString();
+                    string phoneNumber = reader["phone"].ToString();
+                    GenderEnum gender = ToGender(reader["gender"].ToString());
+                    string password = reader["password"].ToString();
+                    string vog = reader["VOG"].ToString();
+
+                    string personType = reader["personType"].ToString();
+                    if (personType == "Volunteer")
+                    {
+                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                    }
+                    if (personType == "Patient")
+                    {
+                        return new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
+                    }
+                    if (personType == "Admin")
+                    {
+                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, true);
+                    }
+                }
+                return null;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Something went wrong: " + exception.Message);
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
         /// <summary>
         /// Gets a list of all users from the database
         /// </summary>
@@ -902,7 +951,48 @@
         #endregion
 
         #region Response
+        internal static List<Response> GetResponsesFromRequest(Request request)
+        {
+            List<Response> ResponsesList = new List<Response>();
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM RESPONSE INNER JOIN PERSON ON RESPONDERID = PERSONID WHERE REQUESTID = :requestid");
+                command.Parameters.Add(":requestid", request.Id);
+                OracleDataReader reader = ExecuteQuery(command);
 
+                while (reader.Read())
+                {
+                    int responderid = Convert.ToInt32(reader["responderid"].ToString());
+                    string description_r = reader["description"].ToString();
+                    DateTime date = Convert.ToDateTime(reader["placingdate"].ToString());
+
+                    int id = Convert.ToInt32(reader["personid"].ToString());
+                    string name = reader["name"].ToString();
+                    string emailAdress = reader["email"].ToString();
+                    string dateTime = reader["dateOfBirth"].ToString();
+                    string picture = reader["ProfilePicture"].ToString();
+                    DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                    string location = reader["location"].ToString();
+                    string phoneNumber = reader["phone"].ToString();
+                    GenderEnum gender = ToGender(reader["gender"].ToString());
+                    string password = reader["password"].ToString();
+                    string vog = reader["VOG"].ToString();
+
+                    Volunteer poster = new Volunteer(id, name, emailAdress, "-", dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                    ResponsesList.Add(new Response(description_r, date, poster));
+               }
+                
+            }
+            catch
+            {
+                throw new Exception("Something went wrong in the database!");
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+            return ResponsesList;
+        }
         #endregion
 
         #endregion
