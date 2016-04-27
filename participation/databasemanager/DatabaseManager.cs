@@ -959,10 +959,11 @@
             {
                 user.Ban = 1; //Set user ban to 1 for temp ban
                 user.Unban = unbanDate; //Set user unban to the unbanDate
+                OracleDate oDate = (OracleDate)user.Unban;
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :banned, unban = :unban WHERE personID = :personID");
                 command.Parameters.Add(":banned", user.Ban);
-                command.Parameters.Add(":date", user.Unban);
+                command.Parameters.Add(":unban", user.Unban);
                 command.Parameters.Add(":personID", user.Id);
                 command.BindByName = true;
                 return ExecuteNonQuery(command);
