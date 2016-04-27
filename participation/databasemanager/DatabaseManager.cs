@@ -1082,6 +1082,39 @@ namespace Participation
             }
         }
 
+        public static bool ChangeVOG(IUser user)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE PERSON SET VOG = :vog WHERE PersonID = :personID");
+                command.Parameters.Add(":personID", user.Id);
+                command.BindByName = true;
+                Volunteer v = user as Volunteer;
+                switch (v.verklaringPdf)
+                {
+                    case true:
+                        {
+                            command.Parameters.Add(":vog", 1);
+                            break;
+                        }
+                    case false:
+                        {
+                            command.Parameters.Add(":vog", 2);
+                            break;
+                        }
+
+                }
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
         public static bool ChangePermission(IUser user)
         {
             try
