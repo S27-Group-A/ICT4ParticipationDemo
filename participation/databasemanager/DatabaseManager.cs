@@ -816,7 +816,7 @@ namespace Participation
                         string name_Other = reader["name_1"].ToString();
                         string emailAdress_Other = reader["email_1"].ToString();
                         string description_Other = reader["description_1"].ToString();
-                        string picture_Other = reader["ProfilePicture"].ToString();
+                        string picture_Other = reader["ProfilePicture_1"].ToString();
                         dateTime = reader["dateOfBirth_1"].ToString();
                         DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string location_Other = reader["location_1"].ToString();
@@ -858,7 +858,7 @@ namespace Participation
                         string name_Other = reader["name_1"].ToString();
                         string emailAdress_Other = reader["email_1"].ToString();
                         string description_Other = reader["description_1"].ToString();
-                        string picture_Other = reader["ProfilePicture"].ToString();
+                        string picture_Other = reader["ProfilePicture_1"].ToString();
                         dateTime = reader["dateOfBirth_1"].ToString();
                         DateTime dateOfBirth_Other = Convert.ToDateTime(dateTime);
                         string location_Other = reader["location_1"].ToString();
