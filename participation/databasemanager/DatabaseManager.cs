@@ -1,4 +1,6 @@
-﻿namespace Participation
+﻿using SharedModels.Debug;
+
+namespace Participation
 {
     using System;
     using System.Collections.Generic;
@@ -75,6 +77,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -84,8 +87,9 @@
 
                 return reader;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return null;
             }
         }
@@ -107,6 +111,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -115,8 +120,9 @@
                 command.ExecuteNonQuery();
                 return true;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return false;
             }
         }

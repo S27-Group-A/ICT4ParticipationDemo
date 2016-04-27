@@ -73,6 +73,7 @@
       <DependentUpon>ChatUsers.cs</DependentUpon>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Debug\Logger.cs" />
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -245,6 +246,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Debug\Log.txt">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Content>
     <Content Include="InlogSysteem\Resources\empty_profile.jpg" />
   </ItemGroup>
   <!--

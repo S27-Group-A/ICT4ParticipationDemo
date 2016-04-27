@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Participation.SharedModels;
 using Participation.BeheerSysteem.Logic;
+using Participation.InlogSysteem.Interfaces;
 
 namespace Participation.BeheerSysteem.GUI
 {
@@ -167,7 +168,7 @@ namespace Participation.BeheerSysteem.GUI
             {
                 if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
                 {
-                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een admin!");
+                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een " + ((_BHSLogic.Users[lbxUserList.SelectedIndex] as Volunteer).isAdmin ? "Admin" : "Volunteer"));
                     emptyProfileInformation();
                 }
                 else
