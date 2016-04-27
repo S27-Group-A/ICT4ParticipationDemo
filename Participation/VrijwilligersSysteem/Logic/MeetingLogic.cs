@@ -29,5 +29,19 @@ namespace Participation.VrijwilligersSysteem.Logic
             }
             return tempVolunteers;
         }
+
+        public bool AddMeeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        {
+            if (date >= DateTime.Today)
+            {
+                Meeting meeting = new Meeting(volunteer, patient, date, location);
+                volunteer.Meetings.Add(meeting);
+                patient.Meetings.Add(meeting);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

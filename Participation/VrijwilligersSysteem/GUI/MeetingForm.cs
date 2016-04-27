@@ -22,7 +22,11 @@ namespace Participation.VrijwilligersSysteem.GUI
 
         private void btnPlannen_Click(object sender, EventArgs e)
         {
-            
+            if (lbVolunteers.SelectedIndex >= 0 && tbLocation.Text.Length > 0)
+            {
+                _meetingLogic.AddMeeting(_meetingLogic.Volunteers[lbVolunteers.SelectedIndex],
+                    InvitedPatient.PatientForInvite, dtpDate.Value, tbLocation.Text);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
