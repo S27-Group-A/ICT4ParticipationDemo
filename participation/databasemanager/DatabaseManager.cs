@@ -570,14 +570,14 @@ namespace Participation
                         string phoneNumber = volunteerReader["phone"].ToString();
                         GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                         string password = volunteerReader["password"].ToString();
-                        int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
+                        string vog = volunteerReader["vog"].ToString();
                         
                         bool bVog;
-                        if (vog == 1)
+                        if (vog == "1")
                         {
                             bVog = true;
                         }
-                        else if (vog == 0)
+                        else if (vog == "0")
                         {
                             bVog = false;
                         }
@@ -681,14 +681,14 @@ namespace Participation
                             string phoneNumber = volunteerReader["phone"].ToString();
                             GenderEnum gender = ToGender(volunteerReader["gender"].ToString());
                             string password = volunteerReader["password"].ToString();
-                            int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
+                            string vog = volunteerReader["vog"].ToString();
 
                             bool bVog;
-                            if (vog == 1)
+                            if (vog == "1")
                             {
                                 bVog = true;
                             }
-                            else if (vog == 0)
+                            else if (vog == "0")
                             {
                                 bVog = false;
                             }
@@ -775,14 +775,14 @@ namespace Participation
                         string phoneNumber_Other = reader["phone_1"].ToString();
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
-                        int vog_Other = Convert.ToInt32(reader["vog_1"].ToString());
+                        string vog_Other = reader["vog_1"].ToString();
 
                         bool bVog;
-                        if (vog_Other == 1)
+                        if (vog_Other == "1")
                         {
                             bVog = true;
                         }
-                        else if (vog_Other == 0)
+                        else if (vog_Other == "0")
                         {
                             bVog = false;
                         }
@@ -818,7 +818,7 @@ namespace Participation
                         string phoneNumber = reader["phone"].ToString();
                         GenderEnum gender = ToGender(reader["gender"].ToString());
                         string password = reader["password"].ToString();
-                        int vog = Convert.ToInt32(reader["vog"].ToString());
+                        string vog = reader["vog"].ToString();
 
                         int id_other = Convert.ToInt32(reader["personid_1"].ToString());
                         string name_Other = reader["name_1"].ToString();
@@ -833,11 +833,11 @@ namespace Participation
                         string password_Other = reader["password_1"].ToString();
 
                         bool bVog;
-                        if (vog == 1)
+                        if (vog == "1")
                         {
                             bVog = true;
                         }
-                        else if (vog == 0)
+                        else if (vog == "0")
                         {
                             bVog = false;
                         }

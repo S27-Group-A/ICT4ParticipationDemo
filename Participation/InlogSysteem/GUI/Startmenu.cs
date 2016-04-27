@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
+using SharedModels.Debug;
 
 namespace Participation
 {
@@ -37,8 +38,9 @@ namespace Participation
                         ClearFields();
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
+                    Logger.Write(exception.Message);
                     MessageBox.Show("Het ingevulde e-mail adres is niet gevonden of bestaat niet, neem contact op met de administrator en/of controleer uw gegevens");
                     ClearFields();
                     MessageBox.Show("Vul uw gegevens opnieuw in");
