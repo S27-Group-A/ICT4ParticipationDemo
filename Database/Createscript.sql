@@ -99,7 +99,7 @@ CREATE TABLE Response
 	requestID 		  		NUMBER 			    NOT NULL,
 	placingDate			    DATE 			    NOT NULL,
 	description 	  		VARCHAR2(256) 	    NOT NULL,
-	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID)
+	CONSTRAINT pk_Response PRIMARY KEY(responderID, requestID, description)
 );
 
 CREATE TABLE Perk_Request
