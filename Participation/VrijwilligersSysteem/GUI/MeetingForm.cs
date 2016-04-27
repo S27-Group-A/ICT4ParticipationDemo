@@ -21,5 +21,10 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

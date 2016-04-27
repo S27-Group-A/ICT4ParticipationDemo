@@ -72,6 +72,7 @@ namespace Participation.VrijwilligersSysteem.GUI
             lblName.Text = _volunteerSystem.GetPatientFromRequest(_selectedRequest).Name;
             lblDescription.Text = _selectedRequest.Text;
             lblLocation.Text = _selectedRequest.Location;
+            pictureBox1.Image = Image.FromFile(_volunteerSystem.GetPatientFromRequest(_selectedRequest).ProfilePicture);
             if (_selectedRequest.Urgency == 0)
             {
                 lblUrgency.Text = "Niet belangrijk.";
