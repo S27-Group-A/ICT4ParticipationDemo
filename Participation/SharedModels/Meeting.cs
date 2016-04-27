@@ -26,7 +26,7 @@
             this.Location = location;
         }
 
-        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location, int status)
+        public Meeting(IUser volunteer, IUser patient, DateTime date, string location, int status)
         {
             //this.Id = Id; --TODO Get id 
             this.Volunteer = volunteer;
@@ -75,6 +75,9 @@
         }
         */
 
-        
+        public override string ToString()
+        {
+            return this.Patient.Name + ", " + this.Location + ", " + this.Date.ToString();
+        }
     }
 }

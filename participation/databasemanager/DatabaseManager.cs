@@ -829,7 +829,7 @@ namespace Participation
                         if(vog_Other != 0)
                         {
                             IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, true, false);
-                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
                         }
                     }
                 }
@@ -871,7 +871,7 @@ namespace Participation
                             IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
-                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place));
+                            MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
                         }
                         
 
@@ -1249,6 +1249,27 @@ namespace Participation
         #endregion
 
         #region Meeting
+
+        public static bool ChangeStatusMeeting(Meeting meeting, int status)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("UPDATE Meeting SET STATUS = :status WHERE VolunteerID = :volunteerID AND PatientID = :patientID");
+                command.Parameters.Add(":status", status);
+                command.Parameters.Add(":volunteerID", meeting.Volunteer.Id);
+                command.Parameters.Add(":patientID", meeting.Patient.Id);
+                command.BindByName = true;
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
 
         #endregion
 

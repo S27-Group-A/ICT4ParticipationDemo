@@ -230,5 +230,10 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormProvider.MeetingVolunteerForm.Show();
+        }
+
     }
 }

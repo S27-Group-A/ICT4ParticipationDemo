@@ -15,10 +15,12 @@ namespace Participation.VrijwilligersSysteem.GUI
     public partial class MeetingVolunteerForm : Form
     {
         private MeetingLogic _meetingLogic;
+        private Meeting _selectedMeeting;
         public MeetingVolunteerForm()
         {
             InitializeComponent();
             _meetingLogic = new MeetingLogic();
+            _selectedMeeting = null;
         }
 
         private void MeetingVolunteerForm_Load(object sender, EventArgs e)
@@ -36,12 +38,18 @@ namespace Participation.VrijwilligersSysteem.GUI
             {
                 if (m.Status == 0)
                 {
-                    lbNotAccepted.Items.Add(m.Patient.Name + ", " + m.Location);
+                    lbNotAccepted.Items.Add(m.ToString());
                 }
                 else
                 {
-                    lbAccepted.Items.Add(m.Patient.Name + ", " + m.Location);
+                    lbAccepted.Items.Add(m.ToString());
                 }
+            }
+            if (_selectedMeeting != null)
+            {
+                lblDate.Text = _selectedMeeting.Date.ToString();
+                lblPatientName.Text = _selectedMeeting.Patient.Name;
+                lblStatus.Text = _selectedMeeting.Status.ToString();
             }
         }
 
@@ -51,6 +59,44 @@ namespace Participation.VrijwilligersSysteem.GUI
             {
                 
             }
+        }
+
+        private void lbNotAccepted_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedMeeting = GetMeetingNotAccepted();
+            RefreshUI();
+        }
+
+        private Meeting GetMeetingNotAccepted()
+        {
+            List<Meeting> tempMeetings = FormProvider.LoggedInUser.Meetings;
+            foreach (Meeting m in tempMeetings)
+            {
+                if (m.ToString() == lbNotAccepted.SelectedItem)
+                {
+                    return m;
+                }
+            }
+            return null;
+        }
+
+        private Meeting GetMeetingAccepted()
+        {
+            List<Meeting> tempMeetings = FormProvider.LoggedInUser.Meetings;
+            foreach (Meeting m in tempMeetings)
+            {
+                if (m.ToString() == lbAccepted.SelectedItem)
+                {
+                    return m;
+                }
+            }
+            return null;
+        }
+
+        private void lbAccepted_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedMeeting = GetMeetingAccepted();
+            RefreshUI();
         }
     }
 }

@@ -47,6 +47,7 @@
             this.lbNotAccepted.Name = "lbNotAccepted";
             this.lbNotAccepted.Size = new System.Drawing.Size(172, 108);
             this.lbNotAccepted.TabIndex = 0;
+            this.lbNotAccepted.SelectedIndexChanged += new System.EventHandler(this.lbNotAccepted_SelectedIndexChanged);
             // 
             // lbAccepted
             // 
@@ -55,6 +56,7 @@
             this.lbAccepted.Name = "lbAccepted";
             this.lbAccepted.Size = new System.Drawing.Size(172, 134);
             this.lbAccepted.TabIndex = 1;
+            this.lbAccepted.SelectedIndexChanged += new System.EventHandler(this.lbAccepted_SelectedIndexChanged);
             // 
             // label1
             // 

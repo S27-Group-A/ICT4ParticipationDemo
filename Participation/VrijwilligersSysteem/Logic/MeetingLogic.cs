@@ -58,7 +58,9 @@ namespace Participation.VrijwilligersSysteem.Logic
 
         public bool AcceptMeeting(Meeting meeting)
         {
-            return false;
+            return DatabaseManager.ChangeStatusMeeting(meeting, 1);
         }
+
+        
     }
 }
