@@ -118,6 +118,7 @@ namespace Participation.VrijwilligersSysteem.Logic
         {
             Response tempResponse = new Response(text, DateTime.Now, volunteer);
             DatabaseManager.AddResponse(volunteer, request, tempResponse);
+            request.Responses.Add(tempResponse);
         }
     }
 }
