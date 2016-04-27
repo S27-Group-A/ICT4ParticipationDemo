@@ -32,8 +32,6 @@
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
             }
-
-
         }
 
         /// <summary>
@@ -194,17 +192,17 @@
                     MessageBox.Show("U bent gebanned van de chat tot: " + FormProvider.LoggedInUser.Unban.ToShortDateString());
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message);
             }
-            
+
 
         }
 
         private void btnSaveWeek_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
