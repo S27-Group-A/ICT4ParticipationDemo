@@ -40,8 +40,8 @@ namespace Participation.ChatSysteem.ChatService {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/ReceiveMessage")]
         void ReceiveMessage(string msg, string receiver);
 
-        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/ISendChatService/ChatStart")]
-        void ChatStart(string msg, string sender, string receiver);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay = true, Action = "http://tempuri.org/ISendChatService/NewChat")]
+        void NewChat(string msg, string sender, string receiver);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ISendChatService/SendVolunteerNames")]
         void SendVolunteerNames(string[] names);
