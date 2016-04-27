@@ -61,11 +61,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                if (_profileForm == null)
-                {
-                    _profileForm = new ProfileForm(LoggedInUser);
-                }
-                return _profileForm;
+                return _profileForm = new ProfileForm(LoggedInUser);
             }
         }
 
