@@ -1,4 +1,5 @@
-﻿using Participation.Profile.Logic;
+﻿using System.Globalization;
+using Participation.Profile.Logic;
 
 namespace Participation.BeheerSysteem.GUI
 {
@@ -37,9 +38,9 @@ namespace Participation.BeheerSysteem.GUI
                 RefreshPerks();
                 RefreshWeek();
             }
-            
-            
-            
+
+
+
         }
 
         /// <summary>
@@ -199,13 +200,58 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btnSaveWeek_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void RefreshWeek()
         {
             gbxWeekView.Visible = true;
-            var tijden = _profileLogic.GetAvailability(_loggedInUser);
+            var times = new List<string>();
+            try
+            {
+                times = _profileLogic.GetAvailability(_loggedInUser);
+                if (times.Count != 7) 
+                    throw new ArgumentOutOfRangeException("Te veel database elementen opgehaald, aantal: " 
+                        + times.Count + " verwachte aantal: 7" );
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+            var splittedTimes = new List<string>();
+            foreach (string t in times)
+            {
+                var tempTimes = t.Split('-');
+                splittedTimes.AddRange(tempTimes);
+            }
+
+            var trueSplittedTimes = new List<DateTime>();
+            foreach (string t in splittedTimes)
+            {
+                trueSplittedTimes.Add(Convert.ToDateTime(t));
+            }
+
+            #region Set times in form
+
+            dtpStartMo.Value = trueSplittedTimes[0];
+            dtpEndMo.Value = trueSplittedTimes[1];
+            dtpStartTu.Value = trueSplittedTimes[2];
+            dtpEndTu.Value = trueSplittedTimes[3];
+            dtpStartWe.Value = trueSplittedTimes[4];
+            dtpEndWe.Value = trueSplittedTimes[5];
+            dtpStartTh.Value = trueSplittedTimes[6];
+            dtpEndTh.Value = trueSplittedTimes[7];
+            dtpStartFr.Value = trueSplittedTimes[8];
+            dtpEndFr.Value = trueSplittedTimes[9];
+            dtpStartSa.Value = trueSplittedTimes[10];
+            dtpEndSa.Value = trueSplittedTimes[11];
+            dtpStartSu.Value = trueSplittedTimes[12];
+            dtpEndSu.Value = trueSplittedTimes[13];
+
+            #endregion
+
+
         }
     }
 }

@@ -11,8 +11,7 @@ namespace Participation.Profile.Logic
     {
         public List<string> GetAvailability(IUser user)
         {
-            DatabaseManager.GetAvailability(user);
-            throw new NotImplementedException();
+            return DatabaseManager.GetAvailability(user);
         }
     }
 }
