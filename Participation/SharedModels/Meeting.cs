@@ -15,6 +15,7 @@
         public IUser Patient { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
+        public int Status { get; set; }
 
         // constructor
         public Meeting(IUser volunteer, IUser patient, DateTime date, string location)
@@ -25,13 +26,14 @@
             this.Location = location;
         }
 
-        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location)
+        public Meeting(Volunteer volunteer, Patient patient, DateTime date, string location, int status)
         {
             //this.Id = Id; --TODO Get id 
             this.Volunteer = volunteer;
             this.Patient = patient;
             this.Date = date;
             this.Location = location;
+            this.Status = status;
         }
 
 
@@ -72,5 +74,7 @@
             return false;
         }
         */
+
+        
     }
 }
