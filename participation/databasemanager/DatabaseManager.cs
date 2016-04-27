@@ -355,6 +355,7 @@ namespace Participation
             }
             catch (Exception exception)
             {
+                Logger.Write(exception.Message);
                 throw new Exception("Something went wrong: " + exception.Message);
             }
             finally
