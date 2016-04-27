@@ -60,7 +60,7 @@ namespace ICT4ParticipationTest
             Assert.AreEqual(TestPatient1.Password, "Testpassword");
 
             //Tests the second Patient constructor
-            Patient TestPatient2 = new Patient("Testname", "Test@email.com", "Test description", DateTime.Today, "Testprofilepicture", "TestLocation", "123456789", GenderEnum.Male, "Testpassword");
+            //Patient TestPatient2 = new Patient("Testname", "Test@email.com", "Test description", DateTime.Today, "Testprofilepicture", "TestLocation", "123456789", GenderEnum.Male, "Testpassword");
 
             //Assert.AreEqual(TestPatient2.Name, "Testname");
             //Assert.AreEqual(TestPatient2.Description, "Test description");
