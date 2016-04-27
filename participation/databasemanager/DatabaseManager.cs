@@ -780,12 +780,12 @@ namespace Participation
                 if (user.GetType() == typeof(Patient))
                 {
                     command =
-                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID");
+                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.PatientID LEFT JOIN Person p2 On p2.PersonID = m.VolunteerID WHERE m.PatientID = :userID");
                 }
                 if (user.GetType() == typeof(Volunteer))
                 {
                     command =
-                    CreateOracleCommand("SELECT * FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID");
+                    CreateOracleCommand("SELECT m.place, m.placingdate, m.status, p1.personid, p1.name, p1.email, p1.description, p1.profilepicture, p1.location, p1.phone, p1.gender, p1.password, p2.personid as personid_1, p2.name as name_1, p2.email as email_1, p2.description as description_1, p2.profilepicture as profilepicture_1, p2.location as location_1, p2.phone as phone_1, p2.gender as gender_1, p2.password as password_1 FROM Meeting m  LEFT JOIN  Person p1 ON p1.personID = m.VolunteerID LEFT JOIN Person p2 On p2.PersonID = m.PatientID WHERE m.VolunteerID = :userID");
                 }
 
                 command.Parameters.Add(":userID", user.Id);
