@@ -65,7 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
 
-            this.gbxVog.SuspendLayout();
+            //this.gbxVog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
 
             this.SuspendLayout();
@@ -437,8 +437,8 @@
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
 
-            this.gbxVog.ResumeLayout(false);
-            this.gbxVog.PerformLayout();
+            //this.gbxVog.ResumeLayout(false);
+            //this.gbxVog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
 
 

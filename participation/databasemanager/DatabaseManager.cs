@@ -488,54 +488,7 @@ namespace Participation
             }
         }
 
-        internal static IUser GetUserById(string invId)
-        {
-            try
-            {
-                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE personid = :personid and enabled = 1");
-                command.Parameters.Add(":personid", invId);
-                OracleDataReader reader = ExecuteQuery(command);
-
-                while (reader.Read())
-                {
-                    int id = Convert.ToInt32(reader["personid"].ToString());
-                    string name = reader["name"].ToString();
-                    string emailAdress = reader["email"].ToString();
-                    string description = reader["description"].ToString();
-                    string dateTime = reader["dateOfBirth"].ToString();
-                    string picture = reader["ProfilePicture"].ToString();
-                    DateTime dateOfBirth = Convert.ToDateTime(dateTime);
-                    string location = reader["location"].ToString();
-                    string phoneNumber = reader["phone"].ToString();
-                    GenderEnum gender = ToGender(reader["gender"].ToString());
-                    string password = reader["password"].ToString();
-                    string vog = reader["VOG"].ToString();
-
-                    string personType = reader["personType"].ToString();
-                    if (personType == "Volunteer")
-                    {
-                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
-                    }
-                    if (personType == "Patient")
-                    {
-                        return new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
-                    }
-                    if (personType == "Admin")
-                    {
-                        return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, true);
-                    }
-                }
-                return null;
-            }
-            catch (Exception exception)
-            {
-                throw new Exception("Something went wrong: " + exception.Message);
-            }
-            finally
-            {
-                _Connection.Close();
-            }
-        }
+        
 
         /// <summary>
         /// Gets a list of all users from the database
@@ -1100,9 +1053,13 @@ namespace Participation
                     string phoneNumber = reader["phone"].ToString();
                     GenderEnum gender = ToGender(reader["gender"].ToString());
                     string password = reader["password"].ToString();
-                    string vog = reader["VOG"].ToString();
-
-                    Volunteer poster = new Volunteer(id, name, emailAdress, "-", dateOfBirth, picture, location, phoneNumber, gender, password, vog, false);
+                    int vog = Convert.ToInt32(reader["VOG"]);
+                    bool vogBool = false;
+                    if (vog == 1)
+                    {
+                        vogBool = true;
+                    }
+                    Volunteer poster = new Volunteer(id, name, emailAdress, "-", dateOfBirth, picture, location, phoneNumber, gender, password, vogBool, false);
                     ResponsesList.Add(new Response(description_r, date, poster));
                }
                 
