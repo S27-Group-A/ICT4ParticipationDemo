@@ -44,5 +44,13 @@ namespace Participation.VrijwilligersSysteem.GUI
                 }
             }
         }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            if (lbNotAccepted.SelectedIndex >= 0)
+            {
+                
+            }
+        }
     }
 }

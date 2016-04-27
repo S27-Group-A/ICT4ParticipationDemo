@@ -33,10 +33,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblPatientName = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblPatientName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,23 +87,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gesprek";
             // 
-            // lblPatientName
+            // btnAccept
             // 
-            this.lblPatientName.AutoSize = true;
-            this.lblPatientName.Location = new System.Drawing.Point(7, 20);
-            this.lblPatientName.Name = "lblPatientName";
-            this.lblPatientName.Size = new System.Drawing.Size(35, 13);
-            this.lblPatientName.TabIndex = 0;
-            this.lblPatientName.Text = "label3";
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(223, 20);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(35, 13);
-            this.lblDate.TabIndex = 1;
-            this.lblDate.Text = "label3";
+            this.btnAccept.Location = new System.Drawing.Point(183, 59);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 3;
+            this.btnAccept.Text = "Accepteren";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblStatus
             // 
@@ -114,14 +106,23 @@
             this.lblStatus.TabIndex = 2;
             this.lblStatus.Text = "label3";
             // 
-            // btnAccept
+            // lblDate
             // 
-            this.btnAccept.Location = new System.Drawing.Point(183, 59);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 3;
-            this.btnAccept.Text = "Accepteren";
-            this.btnAccept.UseVisualStyleBackColor = true;
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(223, 20);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(35, 13);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.Text = "label3";
+            // 
+            // lblPatientName
+            // 
+            this.lblPatientName.AutoSize = true;
+            this.lblPatientName.Location = new System.Drawing.Point(7, 20);
+            this.lblPatientName.Name = "lblPatientName";
+            this.lblPatientName.Size = new System.Drawing.Size(35, 13);
+            this.lblPatientName.TabIndex = 0;
+            this.lblPatientName.Text = "label3";
             // 
             // MeetingVolunteerForm
             // 

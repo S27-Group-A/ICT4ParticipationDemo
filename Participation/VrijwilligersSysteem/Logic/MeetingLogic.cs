@@ -56,6 +56,9 @@ namespace Participation.VrijwilligersSysteem.Logic
             volunteer.Meetings = DatabaseManager.GetMeetingList(volunteer);
         }
 
-
+        public bool AcceptMeeting(Meeting meeting)
+        {
+            return 0;
+        }
     }
 }
