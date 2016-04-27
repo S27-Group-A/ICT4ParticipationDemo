@@ -401,16 +401,15 @@ namespace Participation
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        if(vog != 0)
+                        if (vog != 0)
                         {
-                            bool VOG = true;
-                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, VOG, false);
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                         }
                         else
                         {
                             throw new Exception("Account is niet goedgekeurd.");
                         }
-                        
+
                     }
                     if (personType == "Patient")
                     {
@@ -418,10 +417,9 @@ namespace Participation
                     }
                     if (personType == "Admin")
                     {
-                        if(vog != 0)
+                        if (vog != 0)
                         {
-                            bool VOG = true;
-                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, VOG, true);
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, true);
                         }
                         else
                         {
@@ -465,20 +463,35 @@ namespace Participation
                     string phoneNumber = reader["phone"].ToString();
                     GenderEnum gender = ToGender(reader["gender"].ToString());
                     string password = reader["password"].ToString();
-                    string vog = reader["VOG"].ToString();
+                    int vog = Convert.ToInt32(reader["VOG"].ToString());
 
                     string personType = reader["personType"].ToString();
                     if (personType == "Volunteer")
                     {
-                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, false));
+                        if (vog != 0)
+                        {
+; 
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
+
                     }
                     if (personType == "Patient")
                     {
-                        Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
+                       Users.Add(new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password));
                     }
                     if (personType == "Admin")
                     {
-                        Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, vog, true));
+                        if (vog != 0)
+                        {
+                            Users.Add(new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false));
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
                     }
                 }
                 return Users;

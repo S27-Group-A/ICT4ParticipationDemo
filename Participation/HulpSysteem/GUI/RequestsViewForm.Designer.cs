@@ -34,7 +34,6 @@
             this.lbxRequests = new System.Windows.Forms.ListBox();
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
-            this.btnLogOut = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,23 +90,12 @@
             this.btnHelprequests.Text = "Hulp Vragen";
             this.btnHelprequests.UseVisualStyleBackColor = true;
             // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Location = new System.Drawing.Point(13, 662);
-            this.btnLogOut.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(125, 28);
-            this.btnLogOut.TabIndex = 7;
-            this.btnLogOut.Text = "Log Uit";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            // 
             // RequestsViewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1011, 703);
-            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.gbForm);
@@ -124,7 +112,6 @@
         private System.Windows.Forms.GroupBox gbForm;
         private System.Windows.Forms.Button btnProfile;
         private System.Windows.Forms.Button btnHelprequests;
-        private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btnAddRequest;
         private System.Windows.Forms.ListBox lbxRequests;
     }

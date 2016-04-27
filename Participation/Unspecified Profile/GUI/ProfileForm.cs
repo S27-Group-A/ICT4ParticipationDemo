@@ -107,13 +107,13 @@
         /// <summary>
         /// Gets the vog url and displays it
         /// </summary>
-        private void RefreshVogUrl()
-        {
-            gbxVog.Visible = true;
-            Volunteer tempV = _loggedInUser as Volunteer;
-            lblVogUrl.Text = tempV.verklaringPdf;
-            pbVog.Image = Image.FromFile(tempV.verklaringPdf);
-        }
+        //private void RefreshVogUrl()
+        //{
+        //    gbxVog.Visible = true;
+        //    Volunteer tempV = _loggedInUser as Volunteer;
+        //    lblVogUrl.Text = tempV.verklaringPdf;
+        //    pbVog.Image = Image.FromFile(tempV.verklaringPdf);
+        //}
 
         /// <summary>
         /// Gets all the perks from the user and displays it
@@ -136,20 +136,20 @@
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBrowseVogUrl_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    Volunteer tempVolunteer = _loggedInUser as Volunteer;
-                    tempVolunteer.AddVerklaring(ofd.FileName);
-                    RefreshVogUrl();
-                }
+        //private void btnBrowseVogUrl_Click(object sender, EventArgs e)
+        //{
+        //    using (OpenFileDialog ofd = new OpenFileDialog())
+        //    {
+        //        ofd.Filter = "Image Files | *.jpg; *.png; *.bmp; *.pdf; *.docx ";
+        //        if (ofd.ShowDialog() == DialogResult.OK)
+        //        {
+        //            Volunteer tempVolunteer = _loggedInUser as Volunteer;
+        //            tempVolunteer.AddVerklaring(ofd.FileName);
+        //            //RefreshVogUrl();
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Add more perks to your existing profile

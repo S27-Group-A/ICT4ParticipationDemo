@@ -166,16 +166,29 @@ namespace Participation.BeheerSysteem.GUI
                 MessageBoxButtons.YesNoCancel);
             if (dialogresult == DialogResult.Yes)
             {
-                if (_BHSLogic.ChangeAdminRights(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+                var user = _BHSLogic.Users[lbxUserList.SelectedIndex] as Volunteer;
+                if (user.isAdmin)
                 {
-                    MessageBox.Show(_BHSLogic.Users[lbxUserList.SelectedIndex].Name + "is nu een " + ((_BHSLogic.Users[lbxUserList.SelectedIndex] as Volunteer).isAdmin ? "Admin" : "Volunteer"));
+                    user.isAdmin = false;
+                }
+                else if (!user.isAdmin)
+                {
+                    user.isAdmin = true;
+                }
+                else
+                {
+                    throw new Exception("isAdmin not found");
+                }
+                if (_BHSLogic.ChangeAdminRights(user))
+                {
+                    MessageBox.Show(user.Name + "is nu een " + ((user.isAdmin ? "Admin" : "Volunteer")));
                     emptyProfileInformation();
                 }
                 else
                 {
                     MessageBox.Show("Er was een error bij het aanwijzen van adminrechten voor " +
                                     _BHSLogic.Users[lbxUserList.SelectedIndex].Name +
-                                    "! Weet U zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
+                                    "! Weet u zeker dat deze gebruiker een vrijwilliger is, niet gebanned is en een VOG heeft ingeleverd?");
                 }
             }
             if (dialogresult == DialogResult.No)
