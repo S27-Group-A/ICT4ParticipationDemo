@@ -28,14 +28,19 @@ namespace Participation.SharedModels
                 birthday, profilePicture, location, phoneNumber, gender, password)
         {
             Requests = new List<Request>();
-            while (
-                System.IO.File.Exists(Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() +
-                                      ".png"))
+            if (!string.IsNullOrEmpty(profilePicture))
             {
-                fileNameCountProfilePic++;
+
+                while (
+                    System.IO.File.Exists(Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() +
+                                          ".png"))
+                {
+                    fileNameCountProfilePic++;
+                }
+                System.IO.File.Copy(profilePicture,
+                    Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png");
+                ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
             }
-            System.IO.File.Copy(profilePicture, Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png");
-            ProfilePicture = Environment.CurrentDirectory + @"\\pf" + fileNameCountProfilePic.ToString() + ".png";
         }
 
 

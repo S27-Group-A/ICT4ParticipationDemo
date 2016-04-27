@@ -20,6 +20,11 @@ namespace UI
             {
                 urgencyLbx.Items.Add(i);
             }
+            foreach (var perk in _hpsLogic.GetPerk())
+            {
+                perksClb.Items.Add(perk);
+            }
+
         }
 
         /// <summary>
@@ -46,10 +51,19 @@ namespace UI
             {
                 var request = new Request(titleTbx.Text, descriptionTbx.Text, perks, locationTbx.Text, dateDtp.Value,
                     (int)urgencyLbx.SelectedItem);
-                MessageBox.Show("Test: \n" + request);
-
-                _hpsLogic.AddRequest(FormProvider.LoggedInUser as Patient, request);
+                if (_hpsLogic.AddRequest(FormProvider.LoggedInUser as Patient, request))
+                {
+                    MessageBox.Show("Request " + request.Title + " succesvol aangemaakt");
+                    FormProvider.RequestForm.Hide();
+                    FormProvider.ProfileForm.Show();
+                }
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            FormProvider.RequestForm.Hide();
+            FormProvider.ProfileForm.Show();
         }
     }
 }

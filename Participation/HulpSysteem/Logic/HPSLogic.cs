@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Participation.InlogSysteem.Interfaces;
 using Participation.SharedModels;
 
@@ -19,6 +20,11 @@ namespace Participation.HulpSysteem.Logic
             patient.Requests.Add(request);
             MessageBox.Show(request.Title + "is toegevoegd!");
             */
+        }
+
+        public List<string> GetPerk()
+        {
+            return DatabaseManager.GetPerks();
         }
 
         /// <summary>

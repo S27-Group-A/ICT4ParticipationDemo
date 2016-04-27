@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Participation.SharedModels;
 using Participation.InlogSysteem.Interfaces;
 
@@ -23,7 +24,7 @@ namespace Participation.BeheerSysteem.Logic
             this.Reviews = GetReviews();
         }
 
-        //Methode vervalt
+        //TODO Methode vervalt
         /*
         public void CreateNewAccount()
         {
@@ -48,121 +49,75 @@ namespace Participation.BeheerSysteem.Logic
         }
 
         //Bans Users permanently
-        public bool BanUserPermanent(IUser user)
+        public bool BanUser(IUser user)
         {
-            /*
-            List<IUser> tempusers = GetUsers();
-            IUser u = new IUser();
-            user = u;
-            foreach (IUser tempuser in tempusers)
+            foreach (var u in GetUsers())
             {
-                if (tempusers.ToString() == tempuser.ToString())
+                if (u.Id == user.Id)
                 {
-                    u = tempuser;
-                    tempuser.Ban = 2;
-                    return true;
+                    return DatabaseManager.BanUser(user);
                 }
             }
             return false;
-            */
-            throw new NotImplementedException();
+
         }
-        // Bans users temporary
-        public bool BanUserTemporary(IUser user, int bantime)
+
+        public bool BanUser(IUser user, DateTime unbanDate)
         {
-            /*
-            List<IUser> tempusers = GetUsers();
-            User u = new IUser();
-            user = u;
-            foreach (User tempuser in tempusers)
+            foreach (var u in GetUsers())
             {
-                if (tempusers.ToString() == tempuser.ToString())
+                if (u.Id == user.Id)
                 {
-                    u = tempuser;
-                    tempuser.Ban = 1;
-                    tempuser.BantimeinDays = bantime;
-                    return true;
+                    return DatabaseManager.BanUser(user, unbanDate);
                 }
             }
             return false;
-            */
-            throw new NotImplementedException();
         }
+
         //Deletes an account
         public bool DeleteAcount(IUser user)
         {
-            foreach (var u in GetUsers())
-                if (u == user)
-                    return (DatabaseManager.RemoveUser(user));
-            return false;
-
-            /*
-            List<IUser> tempusers = GetUsers();
-            User u = new IUser();
-            user = u;
-            foreach (IUser tempuser in tempusers)
+            if (user.Id != FormProvider.LoggedInUser.Id)
             {
-                if (tempusers.ToString() == tempuser.ToString())
-                {
-                    u = tempuser;
-                    Users.Remove(u);
-                    return true;
-                }
+
+                foreach (var u in GetUsers())
+                    if (u.Id == user.Id)
+                        return (DatabaseManager.RemoveUser(user));
+                return false;
             }
+            MessageBox.Show("Je kunt niet jezelf verwijderen!");
             return false;
-            */
-            throw new NotImplementedException();
         }
         //Deletes a Request
         public bool DeleteRequest(Request request)
         {
             foreach (Request req in GetRequests())
-                if (req == request)
+                if (req.Id == request.Id)
                     return DatabaseManager.DeleteRequest(request);
             return false;
         }
         //Deletes a review
         public bool DeleteReview(Review review)
         {
-            /*
-            List<Review> tempreviews = GetReviews();
-            Review r = new Review();
-            review = r;
-            foreach (Review tempreview in Reviews)
-            {
-                if (tempreviews.ToString() == tempreview.ToString())
-                {
-                    r = tempreview;
-                    Reviews.Remove(r);
-                    return true;
-                }
-            }
+
+            foreach (var r in GetReviews())
+                if (r.Id == review.Id)
+                    return DatabaseManager.DeleteReview(review);
             return false;
-            */
-            throw new NotImplementedException();
         }
 
         //Changes Admin Rights <- moet worden aangepast na update van database methodes.
         public bool ChangeAdminRights(IUser user)
         {
-            /*
-            List<Volunteer> Volunteers = DatabaseManager.GetVolunteer();
-            Volunteer V = new Volunteer();
-            V = null;
-            foreach (Volunteer tempvolunteer in Volunteers)
-            {
-                if (Volunteers.ToString() == tempvolunteer.ToString())
-                {
-                    V = tempvolunteer;
-                    V.Adminrights = true;
-                    return true;
-                }
-            }
-            V.Adminrights = false;
+            foreach (var u in GetUsers())
+                if (u.Id == user.Id)
+                    return DatabaseManager.ChangePermission(user);
             return false;
-            */
-            throw new NotImplementedException();
         }
 
+        public IUser GetUser(IUser user)
+        {
+            return DatabaseManager.GetUser(user.Email);
+        }
     }
 }

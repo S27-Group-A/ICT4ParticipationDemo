@@ -41,12 +41,13 @@
             this.perksClb = new System.Windows.Forms.CheckedListBox();
             this.locationLbl = new System.Windows.Forms.Label();
             this.locationTbx = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // confirmBtn
             // 
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirmBtn.Location = new System.Drawing.Point(214, 503);
+            this.confirmBtn.Location = new System.Drawing.Point(214, 558);
             this.confirmBtn.Margin = new System.Windows.Forms.Padding(4);
             this.confirmBtn.Name = "confirmBtn";
             this.confirmBtn.Size = new System.Drawing.Size(100, 28);
@@ -113,7 +114,7 @@
             // dateDtp
             // 
             this.dateDtp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateDtp.Location = new System.Drawing.Point(214, 339);
+            this.dateDtp.Location = new System.Drawing.Point(214, 394);
             this.dateDtp.Margin = new System.Windows.Forms.Padding(4);
             this.dateDtp.Name = "dateDtp";
             this.dateDtp.Size = new System.Drawing.Size(265, 27);
@@ -124,7 +125,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Info;
-            this.label1.Location = new System.Drawing.Point(15, 342);
+            this.label1.Location = new System.Drawing.Point(15, 397);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(195, 20);
@@ -136,7 +137,7 @@
             this.urgencyLbl.AutoSize = true;
             this.urgencyLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urgencyLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.urgencyLbl.Location = new System.Drawing.Point(15, 412);
+            this.urgencyLbl.Location = new System.Drawing.Point(15, 467);
             this.urgencyLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.urgencyLbl.Name = "urgencyLbl";
             this.urgencyLbl.Size = new System.Drawing.Size(77, 20);
@@ -148,7 +149,7 @@
             this.urgencyLbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.urgencyLbx.FormattingEnabled = true;
             this.urgencyLbx.ItemHeight = 20;
-            this.urgencyLbx.Location = new System.Drawing.Point(214, 413);
+            this.urgencyLbx.Location = new System.Drawing.Point(214, 468);
             this.urgencyLbx.Margin = new System.Windows.Forms.Padding(4);
             this.urgencyLbx.Name = "urgencyLbx";
             this.urgencyLbx.Size = new System.Drawing.Size(265, 64);
@@ -161,7 +162,7 @@
             this.perksClb.Location = new System.Drawing.Point(214, 284);
             this.perksClb.Margin = new System.Windows.Forms.Padding(4);
             this.perksClb.Name = "perksClb";
-            this.perksClb.Size = new System.Drawing.Size(159, 38);
+            this.perksClb.Size = new System.Drawing.Size(159, 92);
             this.perksClb.TabIndex = 13;
             // 
             // locationLbl
@@ -169,7 +170,7 @@
             this.locationLbl.AutoSize = true;
             this.locationLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.locationLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.locationLbl.Location = new System.Drawing.Point(16, 377);
+            this.locationLbl.Location = new System.Drawing.Point(16, 432);
             this.locationLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.locationLbl.Name = "locationLbl";
             this.locationLbl.Size = new System.Drawing.Size(102, 20);
@@ -179,18 +180,31 @@
             // locationTbx
             // 
             this.locationTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.locationTbx.Location = new System.Drawing.Point(214, 375);
+            this.locationTbx.Location = new System.Drawing.Point(214, 430);
             this.locationTbx.Margin = new System.Windows.Forms.Padding(4);
             this.locationTbx.Name = "locationTbx";
             this.locationTbx.Size = new System.Drawing.Size(265, 27);
             this.locationTbx.TabIndex = 15;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(334, 558);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(100, 28);
+            this.btnBack.TabIndex = 16;
+            this.btnBack.Text = "Terug";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1116, 543);
+            this.ClientSize = new System.Drawing.Size(1116, 629);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.locationTbx);
             this.Controls.Add(this.locationLbl);
             this.Controls.Add(this.perksClb);
@@ -227,5 +241,6 @@
         private System.Windows.Forms.CheckedListBox perksClb;
         private System.Windows.Forms.Label locationLbl;
         private System.Windows.Forms.TextBox locationTbx;
+        private System.Windows.Forms.Button btnBack;
     }
 }

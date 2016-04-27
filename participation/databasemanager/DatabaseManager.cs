@@ -1,4 +1,6 @@
-﻿namespace Participation
+﻿using SharedModels.Debug;
+
+namespace Participation
 {
     using System;
     using System.Collections.Generic;
@@ -41,6 +43,7 @@
                 return string.Format("Data Source={0};Persist Security Info=True;User Id={1};Password={2}", _ConnectionAddress, _ConnectionId, _ConnectionPassword);
             }
         }
+
         #endregion
 
         #region Methods - Background Processes
@@ -74,6 +77,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -83,8 +87,9 @@
 
                 return reader;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return null;
             }
         }
@@ -106,6 +111,7 @@
                     }
                     catch (OracleException exc)
                     {
+                        Logger.Write(exc.Message);
                         Debug.WriteLine("Database connection failed!\n" + exc.Message);
                         throw;
                     }
@@ -114,8 +120,9 @@
                 command.ExecuteNonQuery();
                 return true;
             }
-            catch (OracleException)
+            catch (OracleException e)
             {
+                Logger.Write(e.Message);
                 return false;
             }
         }
@@ -917,16 +924,17 @@
         /// <returns></returns>
         public static bool BanUser(IUser user)
         {
-            if(user.GetType() == typeof(Volunteer))
+            if (user.GetType() == typeof(Volunteer))
             {
                 Volunteer v = user as Volunteer;
-                if(v.isAdmin == true)
+                if (v.isAdmin == true)
                 {
                     throw new Exception("You can not ban another Administrator.");
                 }
             }
             try
             {
+                user.Ban = 2; //Set user ban to 2 for perma ban
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :ban WHERE personID = :personID");
                 command.Parameters.Add(":ban", user.Ban);
@@ -955,10 +963,13 @@
             }
             try
             {
+                user.Ban = 1; //Set user ban to 1 for temp ban
+                user.Unban = unbanDate; //Set user unban to the unbanDate
+                OracleDate oDate = (OracleDate)user.Unban;
                 OracleCommand command =
                     CreateOracleCommand("UPDATE Person SET banned = :banned, unban = :unban WHERE personID = :personID");
                 command.Parameters.Add(":banned", user.Ban);
-                command.Parameters.Add(":date", user.Unban);
+                command.Parameters.Add(":unban", user.Unban);
                 command.Parameters.Add(":personID", user.Id);
                 command.BindByName = true;
                 return ExecuteNonQuery(command);
@@ -1086,11 +1097,11 @@
             {
                 OracleCommand command = CreateOracleCommand("DELETE FROM PERK_REQUEST Where requestid = :requestID");
                 command.Parameters.Add(":requestID", request.Id);
-                if(ExecuteNonQuery(command))
+                if (ExecuteNonQuery(command))
                 {
                     command = CreateOracleCommand("DELETE FROM RESPONSE WHERE requestid = :requestID");
                     command.Parameters.Add(":requestID", request.Id);
-                    if(ExecuteNonQuery(command))
+                    if (ExecuteNonQuery(command))
                     {
                         command = CreateOracleCommand("DELETE FROM Request WHERE requestID = :requestID");
                         command.Parameters.Add(":requestID", request.Id);

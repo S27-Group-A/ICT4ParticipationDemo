@@ -64,7 +64,8 @@ namespace Participation.SharedModels
 
         public override string ToString()
         {
-            return Name;
+            return Name + "Ban stat:" + Ban;
         }
     }
 }
+

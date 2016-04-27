@@ -50,7 +50,7 @@
             this.logInBtn.Margin = new System.Windows.Forms.Padding(4);
             this.logInBtn.Name = "logInBtn";
             this.logInBtn.Size = new System.Drawing.Size(166, 36);
-            this.logInBtn.TabIndex = 0;
+            this.logInBtn.TabIndex = 3;
             this.logInBtn.Text = "Inloggen";
             this.logInBtn.UseVisualStyleBackColor = true;
             this.logInBtn.Click += new System.EventHandler(this.startMenuLogInBtn_Click);
@@ -63,7 +63,7 @@
             this.registerBtn.Margin = new System.Windows.Forms.Padding(4);
             this.registerBtn.Name = "registerBtn";
             this.registerBtn.Size = new System.Drawing.Size(159, 36);
-            this.registerBtn.TabIndex = 1;
+            this.registerBtn.TabIndex = 4;
             this.registerBtn.Text = "Registreren";
             this.registerBtn.UseVisualStyleBackColor = true;
             this.registerBtn.Click += new System.EventHandler(this.startMenuRegisterBtn_Click);
@@ -74,7 +74,7 @@
             this.passwordTbx.Location = new System.Drawing.Point(163, 53);
             this.passwordTbx.Name = "passwordTbx";
             this.passwordTbx.PasswordChar = '*';
-            this.passwordTbx.Size = new System.Drawing.Size(208, 27);
+            this.passwordTbx.Size = new System.Drawing.Size(213, 27);
             this.passwordTbx.TabIndex = 2;
             // 
             // emailTbx
@@ -82,8 +82,8 @@
             this.emailTbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailTbx.Location = new System.Drawing.Point(164, 12);
             this.emailTbx.Name = "emailTbx";
-            this.emailTbx.Size = new System.Drawing.Size(208, 27);
-            this.emailTbx.TabIndex = 3;
+            this.emailTbx.Size = new System.Drawing.Size(212, 27);
+            this.emailTbx.TabIndex = 1;
             // 
             // emailLbl
             // 
@@ -114,24 +114,27 @@
             this.instructionsLbl.Location = new System.Drawing.Point(34, 140);
             this.instructionsLbl.Name = "instructionsLbl";
             this.instructionsLbl.Size = new System.Drawing.Size(342, 74);
-            this.instructionsLbl.TabIndex = 6;
+            this.instructionsLbl.TabIndex = 10;
             this.instructionsLbl.Text = "Als u nog geen account heeft kil op de \"Registreren\"-knop.";
             // 
             // rfidBtn
             // 
+            this.rfidBtn.Enabled = false;
             this.rfidBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rfidBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.rfidBtn.Location = new System.Drawing.Point(413, 87);
             this.rfidBtn.Margin = new System.Windows.Forms.Padding(4);
             this.rfidBtn.Name = "rfidBtn";
             this.rfidBtn.Size = new System.Drawing.Size(414, 36);
-            this.rfidBtn.TabIndex = 17;
+            this.rfidBtn.TabIndex = 6;
             this.rfidBtn.Text = "Ik heb een RFID!";
             this.rfidBtn.UseVisualStyleBackColor = true;
+            this.rfidBtn.Visible = false;
             // 
             // rfidGbx
             // 
             this.rfidGbx.Controls.Add(this.rfidTbx);
+            this.rfidGbx.Enabled = false;
             this.rfidGbx.Location = new System.Drawing.Point(414, 2);
             this.rfidGbx.Margin = new System.Windows.Forms.Padding(4);
             this.rfidGbx.Name = "rfidGbx";
@@ -140,6 +143,7 @@
             this.rfidGbx.TabIndex = 18;
             this.rfidGbx.TabStop = false;
             this.rfidGbx.Text = "RFID Code";
+            this.rfidGbx.Visible = false;
             // 
             // rfidTbx
             // 
@@ -147,25 +151,27 @@
             this.rfidTbx.Margin = new System.Windows.Forms.Padding(4);
             this.rfidTbx.Name = "rfidTbx";
             this.rfidTbx.Size = new System.Drawing.Size(369, 22);
-            this.rfidTbx.TabIndex = 17;
+            this.rfidTbx.TabIndex = 5;
             // 
             // label1
             // 
+            this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.label1.Location = new System.Drawing.Point(409, 140);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(418, 74);
-            this.label1.TabIndex = 19;
+            this.label1.TabIndex = 11;
             this.label1.Text = "U kunt ook inloggen met uw pasje. Houdt u pasje voor de scanner en klik op de \"Ik" +
     " heb een RFID!\"-knop als het rfid code veld eenmaal is ingevuld.";
+            this.label1.Visible = false;
             // 
             // Startmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(860, 229);
+            this.ClientSize = new System.Drawing.Size(413, 201);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rfidGbx);
             this.Controls.Add(this.rfidBtn);

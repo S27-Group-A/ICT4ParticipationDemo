@@ -107,7 +107,7 @@
             this.tbxEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxEmail.Name = "tbxEmail";
             this.tbxEmail.Size = new System.Drawing.Size(208, 27);
-            this.tbxEmail.TabIndex = 10;
+            this.tbxEmail.TabIndex = 4;
             // 
             // tbxPassword
             // 
@@ -117,17 +117,17 @@
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PasswordChar = '*';
             this.tbxPassword.Size = new System.Drawing.Size(208, 27);
-            this.tbxPassword.TabIndex = 9;
+            this.tbxPassword.TabIndex = 5;
             // 
             // btnRegister
             // 
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnRegister.Location = new System.Drawing.Point(181, 674);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(411, 36);
-            this.btnRegister.TabIndex = 8;
+            this.btnRegister.TabIndex = 18;
             this.btnRegister.Text = "Registreren";
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.registerBtn_Click);
@@ -206,7 +206,7 @@
             this.tbxRepeatPassword.Name = "tbxRepeatPassword";
             this.tbxRepeatPassword.PasswordChar = '*';
             this.tbxRepeatPassword.Size = new System.Drawing.Size(208, 27);
-            this.tbxRepeatPassword.TabIndex = 19;
+            this.tbxRepeatPassword.TabIndex = 6;
             // 
             // dtpBirthdate
             // 
@@ -214,7 +214,7 @@
             this.dtpBirthdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpBirthdate.Name = "dtpBirthdate";
             this.dtpBirthdate.Size = new System.Drawing.Size(208, 22);
-            this.dtpBirthdate.TabIndex = 20;
+            this.dtpBirthdate.TabIndex = 7;
             // 
             // tbxLocation
             // 
@@ -223,7 +223,7 @@
             this.tbxLocation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxLocation.Name = "tbxLocation";
             this.tbxLocation.Size = new System.Drawing.Size(208, 27);
-            this.tbxLocation.TabIndex = 21;
+            this.tbxLocation.TabIndex = 8;
             // 
             // tbxPhonenumber
             // 
@@ -232,7 +232,7 @@
             this.tbxPhonenumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPhonenumber.Name = "tbxPhonenumber";
             this.tbxPhonenumber.Size = new System.Drawing.Size(208, 27);
-            this.tbxPhonenumber.TabIndex = 22;
+            this.tbxPhonenumber.TabIndex = 9;
             // 
             // tbxProfilePictureUrl
             // 
@@ -241,7 +241,7 @@
             this.tbxProfilePictureUrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxProfilePictureUrl.Name = "tbxProfilePictureUrl";
             this.tbxProfilePictureUrl.Size = new System.Drawing.Size(208, 27);
-            this.tbxProfilePictureUrl.TabIndex = 24;
+            this.tbxProfilePictureUrl.TabIndex = 12;
             // 
             // rbtMale
             // 
@@ -251,7 +251,7 @@
             this.rbtMale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtMale.Name = "rbtMale";
             this.rbtMale.Size = new System.Drawing.Size(56, 21);
-            this.rbtMale.TabIndex = 25;
+            this.rbtMale.TabIndex = 10;
             this.rbtMale.TabStop = true;
             this.rbtMale.Text = "Man";
             this.rbtMale.UseVisualStyleBackColor = true;
@@ -265,7 +265,7 @@
             this.rbtFemale.Name = "rbtFemale";
             this.rbtFemale.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rbtFemale.Size = new System.Drawing.Size(68, 21);
-            this.rbtFemale.TabIndex = 26;
+            this.rbtFemale.TabIndex = 11;
             this.rbtFemale.TabStop = true;
             this.rbtFemale.Text = "Vrouw";
             this.rbtFemale.UseVisualStyleBackColor = true;
@@ -279,7 +279,7 @@
             this.rbtNeedHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtNeedHelp.Name = "rbtNeedHelp";
             this.rbtNeedHelp.Size = new System.Drawing.Size(295, 33);
-            this.rbtNeedHelp.TabIndex = 27;
+            this.rbtNeedHelp.TabIndex = 1;
             this.rbtNeedHelp.TabStop = true;
             this.rbtNeedHelp.Text = "Ik ben op zoek naar hulp";
             this.rbtNeedHelp.UseVisualStyleBackColor = true;
@@ -294,7 +294,7 @@
             this.rbtCanHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtCanHelp.Name = "rbtCanHelp";
             this.rbtCanHelp.Size = new System.Drawing.Size(168, 33);
-            this.rbtCanHelp.TabIndex = 28;
+            this.rbtCanHelp.TabIndex = 2;
             this.rbtCanHelp.TabStop = true;
             this.rbtCanHelp.Text = "Ik wil helpen";
             this.rbtCanHelp.UseVisualStyleBackColor = true;
@@ -316,10 +316,10 @@
             this.btnBrowseProfilePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseProfilePicture.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBrowseProfilePicture.Location = new System.Drawing.Point(460, 256);
-            this.btnBrowseProfilePicture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrowseProfilePicture.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowseProfilePicture.Name = "btnBrowseProfilePicture";
             this.btnBrowseProfilePicture.Size = new System.Drawing.Size(99, 27);
-            this.btnBrowseProfilePicture.TabIndex = 30;
+            this.btnBrowseProfilePicture.TabIndex = 13;
             this.btnBrowseProfilePicture.Text = "Bladeren...";
             this.btnBrowseProfilePicture.UseVisualStyleBackColor = true;
             this.btnBrowseProfilePicture.Click += new System.EventHandler(this.browseProfilePictureBtn_Click);
@@ -351,10 +351,10 @@
             this.btnBrowseVOG.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrowseVOG.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBrowseVOG.Location = new System.Drawing.Point(459, 34);
-            this.btnBrowseVOG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBrowseVOG.Margin = new System.Windows.Forms.Padding(4);
             this.btnBrowseVOG.Name = "btnBrowseVOG";
             this.btnBrowseVOG.Size = new System.Drawing.Size(99, 27);
-            this.btnBrowseVOG.TabIndex = 34;
+            this.btnBrowseVOG.TabIndex = 15;
             this.btnBrowseVOG.Text = "Bladeren...";
             this.btnBrowseVOG.UseVisualStyleBackColor = true;
             this.btnBrowseVOG.Click += new System.EventHandler(this.browseVogUrlBtn_Click);
@@ -366,7 +366,7 @@
             this.tbxVOGUrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxVOGUrl.Name = "tbxVOGUrl";
             this.tbxVOGUrl.Size = new System.Drawing.Size(432, 27);
-            this.tbxVOGUrl.TabIndex = 33;
+            this.tbxVOGUrl.TabIndex = 14;
             // 
             // gbxVOG
             // 
@@ -391,17 +391,17 @@
             this.tbxPerk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxPerk.Name = "tbxPerk";
             this.tbxPerk.Size = new System.Drawing.Size(432, 27);
-            this.tbxPerk.TabIndex = 36;
+            this.tbxPerk.TabIndex = 16;
             // 
             // btnAddPerk
             // 
             this.btnAddPerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddPerk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddPerk.Location = new System.Drawing.Point(459, 36);
-            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddPerk.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddPerk.Name = "btnAddPerk";
             this.btnAddPerk.Size = new System.Drawing.Size(99, 27);
-            this.btnAddPerk.TabIndex = 36;
+            this.btnAddPerk.TabIndex = 17;
             this.btnAddPerk.Text = "Toevoegen";
             this.btnAddPerk.UseVisualStyleBackColor = true;
             this.btnAddPerk.Click += new System.EventHandler(this.addPerkTbx_Click);
@@ -447,10 +447,10 @@
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnBack.Location = new System.Drawing.Point(13, 674);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(159, 36);
-            this.btnBack.TabIndex = 40;
+            this.btnBack.TabIndex = 19;
             this.btnBack.Text = "Terug";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.backBtn_Click);
@@ -473,7 +473,7 @@
             this.tbxName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(208, 27);
-            this.tbxName.TabIndex = 42;
+            this.tbxName.TabIndex = 3;
             // 
             // helpGbx
             // 
@@ -545,7 +545,7 @@
             this.pnlHasRfid.BackColor = System.Drawing.Color.Red;
             this.pnlHasRfid.ForeColor = System.Drawing.SystemColors.Menu;
             this.pnlHasRfid.Location = new System.Drawing.Point(464, 161);
-            this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHasRfid.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHasRfid.Name = "pnlHasRfid";
             this.pnlHasRfid.Size = new System.Drawing.Size(100, 60);
             this.pnlHasRfid.TabIndex = 45;
