@@ -265,6 +265,31 @@ namespace Participation
                 return false;
             }
         }
+
+        public static bool SetAvailability(IUser user, List<string> times)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (:personID, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)");
+                command.Parameters.Add(":personID", user.Id);
+                command.Parameters.Add(":monday", times[0]);
+                command.Parameters.Add(":tuesday", times[1]);
+                command.Parameters.Add(":wednesday", times[2]);
+                command.Parameters.Add(":thursday", times[3]);
+                command.Parameters.Add(":friday", times[4]);
+                command.Parameters.Add(":saturday", times[5]);
+                command.Parameters.Add(":sunday", times[6]);
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
         #endregion
 
         #region Review
@@ -328,6 +353,10 @@ namespace Participation
             catch
             {
                 return false;
+            }
+            finally
+            {
+                _Connection.Close();
             }
         }
 
@@ -503,6 +532,32 @@ namespace Participation
             finally
             {
                 _Connection.Close();
+            }
+        }
+        
+        public static List<string> GetAvailability(IUser user)
+        {
+            try
+            {
+                List<string> times = new List<string>();
+                OracleCommand command = CreateOracleCommand("Select * from Availability WHERE PersonID = :personID");
+                command.Parameters.Add(":personID", user.Id);
+                OracleDataReader reader = ExecuteQuery(command);
+                while (reader.Read())
+                {
+                    times.Add(reader["Monday"].ToString());
+                    times.Add(reader["Tuesday"].ToString());
+                    times.Add(reader["Wednesday"].ToString());
+                    times.Add(reader["Thursday"].ToString());
+                    times.Add(reader["Friday"].ToString());
+                    times.Add(reader["Saturday"].ToString());
+                    times.Add(reader["Sunday"].ToString());
+                }
+                return times;
+            }
+            catch
+            {
+                throw new Exception("Could not get availability of volunteer out of the database.");
             }
         }
         #endregion
@@ -853,6 +908,7 @@ namespace Participation
                     }
                     r.Perks = perks;
                 }
+                return RequestList;
             }
             catch
             {
@@ -862,7 +918,7 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return RequestList;
+
         }
 
         /// <summary>
@@ -908,6 +964,7 @@ namespace Participation
                         r.Perks = perks;
                     }
                 }
+                return RequestList;
             }
             catch
             {
@@ -917,7 +974,7 @@ namespace Participation
             {
                 _Connection.Close();
             }
-            return RequestList;
+
         }
 
         #endregion
