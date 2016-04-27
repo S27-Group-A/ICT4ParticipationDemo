@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System;
 namespace Participation.ChatSysteem.ChatService {
     
     
@@ -81,7 +81,15 @@ namespace Participation.ChatSysteem.ChatService {
         }
         
         public void SendMessage(string msg, string sender, string receiver) {
-            base.Channel.SendMessage(msg, sender, receiver);
+            try
+            {
+                base.Channel.SendMessage(msg, sender, receiver);
+            }
+            catch
+            {
+                throw new Exception("Fuck this shit");
+            }
+
         }
 
         public void StartChat(string msg, string sender, string receiver)

@@ -77,14 +77,15 @@ namespace Participation.ChatSysteem
         {
             if (tbxName.Text != string.Empty && this.NewChat == false)
             {
-                tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ">" + txtSend.Text;
+                tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ": " + txtSend.Text;
                 RecieveClient.SendMessage(txtSend.Text, FormProvider.LoggedInUser.Name, tbxName.Text );
                 txtSend.Clear();
             }
             if (tbxName.Text != string.Empty && this.NewChat == true)
             {
-                tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ">" + txtSend.Text;
+                tbxMessage.Text += Environment.NewLine + FormProvider.LoggedInUser.Name + ": " + txtSend.Text;
                 RecieveClient.StartChat(txtSend.Text, FormProvider.LoggedInUser.Name, tbxName.Text);
+                this.NewChat = false;
                 txtSend.Clear();
             }
         }
