@@ -50,5 +50,12 @@ namespace Participation.VrijwilligersSysteem.Logic
                 return false;
             }
         }
+
+        public void GetMeetingsForVolunteer(Volunteer volunteer)
+        {
+            volunteer.Meetings = DatabaseManager.GetMeetingList(volunteer);
+        }
+
+
     }
 }

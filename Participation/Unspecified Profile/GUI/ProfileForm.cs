@@ -200,7 +200,7 @@ namespace Participation.BeheerSysteem.GUI
         {
             if (FormProvider.LoggedInUser is Volunteer)
             {
-                FormProvider.MeetingForm.Show();
+                FormProvider.MeetingVolunteerForm.Show();
             }
         }
 

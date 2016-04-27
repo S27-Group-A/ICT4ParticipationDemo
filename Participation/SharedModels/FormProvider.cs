@@ -28,6 +28,7 @@ namespace Participation.SharedModels
         private static ChatUsers _chatuserform;
         private static ChatForm _chatform;
         private static MeetingForm _meetingForm;
+        private static MeetingVolunteerForm _meetingVolunteerForm;
 
         /// <summary>
         ///     Static logged in user used throughout the forms
@@ -150,6 +151,14 @@ namespace Participation.SharedModels
             _chatform = new ChatForm(recieveClient, target, msg);
 
             return _chatform;
+        }
+
+        public static MeetingVolunteerForm MeetingVolunteerForm
+        {
+            get
+            {
+                return _meetingVolunteerForm = new MeetingVolunteerForm();
+            }
         }
     }
 }

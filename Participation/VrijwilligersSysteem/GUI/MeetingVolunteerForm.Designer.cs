@@ -33,6 +33,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblPatientName = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbNotAccepted
@@ -71,12 +76,52 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAccept);
+            this.groupBox1.Controls.Add(this.lblStatus);
+            this.groupBox1.Controls.Add(this.lblDate);
+            this.groupBox1.Controls.Add(this.lblPatientName);
             this.groupBox1.Location = new System.Drawing.Point(200, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 275);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gesprek";
+            // 
+            // lblPatientName
+            // 
+            this.lblPatientName.AutoSize = true;
+            this.lblPatientName.Location = new System.Drawing.Point(7, 20);
+            this.lblPatientName.Name = "lblPatientName";
+            this.lblPatientName.Size = new System.Drawing.Size(35, 13);
+            this.lblPatientName.TabIndex = 0;
+            this.lblPatientName.Text = "label3";
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(223, 20);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(35, 13);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.Text = "label3";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(7, 64);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(35, 13);
+            this.lblStatus.TabIndex = 2;
+            this.lblStatus.Text = "label3";
+            // 
+            // btnAccept
+            // 
+            this.btnAccept.Location = new System.Drawing.Point(183, 59);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 3;
+            this.btnAccept.Text = "Accepteren";
+            this.btnAccept.UseVisualStyleBackColor = true;
             // 
             // MeetingVolunteerForm
             // 
@@ -90,6 +135,9 @@
             this.Controls.Add(this.lbNotAccepted);
             this.Name = "MeetingVolunteerForm";
             this.Text = "MeetingVolunteerForm";
+            this.Load += new System.EventHandler(this.MeetingVolunteerForm_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,5 +150,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblPatientName;
     }
 }
