@@ -34,9 +34,16 @@ namespace Participation.VrijwilligersSysteem.Logic
         {
             if (date >= DateTime.Today)
             {
-                Meeting meeting = new Meeting(volunteer, patient, date, location);
-                volunteer.Meetings.Add(meeting);
-                patient.Meetings.Add(meeting);
+                if (DatabaseManager.AddMeeting(volunteer, patient, date, location, 0))
+                {
+                    Meeting meeting = new Meeting(volunteer, patient, date, location, 0);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
             else
             {

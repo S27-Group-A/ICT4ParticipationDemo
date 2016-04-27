@@ -59,6 +59,7 @@
             this.btnVolunteer = new System.Windows.Forms.Button();
             this.pbVog = new System.Windows.Forms.PictureBox();
             this.btnAddMeeting = new System.Windows.Forms.Button();
+            this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
@@ -428,12 +429,23 @@
             this.btnAddMeeting.UseVisualStyleBackColor = true;
             this.btnAddMeeting.Click += new System.EventHandler(this.btnAddMeeting_Click);
             // 
+            // btnMeetingsVolunteers
+            // 
+            this.btnMeetingsVolunteers.Location = new System.Drawing.Point(10, 164);
+            this.btnMeetingsVolunteers.Name = "btnMeetingsVolunteers";
+            this.btnMeetingsVolunteers.Size = new System.Drawing.Size(94, 35);
+            this.btnMeetingsVolunteers.TabIndex = 10;
+            this.btnMeetingsVolunteers.Text = "Kennismakings gesprekken";
+            this.btnMeetingsVolunteers.UseVisualStyleBackColor = true;
+            this.btnMeetingsVolunteers.Click += new System.EventHandler(this.btnMeetingsVolunteers_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(736, 571);
+            this.Controls.Add(this.btnMeetingsVolunteers);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.btnVolunteer);
             this.Controls.Add(this.btnLogOut);
@@ -488,5 +500,6 @@
         private System.Windows.Forms.Button btnVolunteer;
         private System.Windows.Forms.PictureBox pbVog;
         private System.Windows.Forms.Button btnAddMeeting;
+        private System.Windows.Forms.Button btnMeetingsVolunteers;
     }
 }

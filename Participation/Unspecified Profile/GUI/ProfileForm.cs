@@ -196,6 +196,14 @@ namespace Participation.BeheerSysteem.GUI
             }
         }
 
+        private void btnMeetingsVolunteers_Click(object sender, EventArgs e)
+        {
+            if (FormProvider.LoggedInUser is Volunteer)
+            {
+                FormProvider.MeetingForm.Show();
+            }
+        }
+
 
     }
 }

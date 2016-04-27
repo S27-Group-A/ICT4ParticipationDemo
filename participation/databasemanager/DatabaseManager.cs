@@ -302,6 +302,25 @@ namespace Participation
 
         #region Meeting
 
+        internal static bool AddMeeting(Volunteer volunteer, Patient patient, DateTime datePosted, string text, int status)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("INSERT INTO Meeting(VolunteerID, PatientID, Place, PlacingDate, status) VALUES (:volunteerid, :patientid, :place, :placingdate, :status)");
+                command.Parameters.Add(":volunteerid", volunteer.Id);
+                command.Parameters.Add(":patientid", patient.Id);
+                command.Parameters.Add(":place", text);
+                command.Parameters.Add(":placingdate", datePosted);
+                command.Parameters.Add(":status", status);
+                command.BindByName = true;
+                return ExecuteNonQuery(command);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         #region Request

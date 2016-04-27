@@ -141,6 +141,12 @@
     <Compile Include="VrijwilligersSysteem\GUI\MeetingForm.Designer.cs">
       <DependentUpon>MeetingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingVolunteerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VrijwilligersSysteem\GUI\MeetingVolunteerForm.Designer.cs">
+      <DependentUpon>MeetingVolunteerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VrijwilligersSysteem\GUI\VolunteerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\MeetingForm.resx">
       <DependentUpon>MeetingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VrijwilligersSysteem\GUI\MeetingVolunteerForm.resx">
+      <DependentUpon>MeetingVolunteerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VrijwilligersSysteem\GUI\VolunteerForm.resx">
       <DependentUpon>VolunteerForm.cs</DependentUpon>

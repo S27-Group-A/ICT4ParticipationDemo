@@ -24,8 +24,15 @@ namespace Participation.VrijwilligersSysteem.GUI
         {
             if (lbVolunteers.SelectedIndex >= 0 && tbLocation.Text.Length > 0)
             {
-                _meetingLogic.AddMeeting(_meetingLogic.Volunteers[lbVolunteers.SelectedIndex],
-                    InvitedPatient.PatientForInvite, dtpDate.Value, tbLocation.Text);
+                if (_meetingLogic.AddMeeting(_meetingLogic.Volunteers[lbVolunteers.SelectedIndex],
+                    InvitedPatient.PatientForInvite, dtpDate.Value, tbLocation.Text))
+                {
+                    MessageBox.Show("Gesprek is nu in afwachting voor goedkeuring", "Melding", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Er is iets fout gegaan.");
+                }
             }
         }
 
