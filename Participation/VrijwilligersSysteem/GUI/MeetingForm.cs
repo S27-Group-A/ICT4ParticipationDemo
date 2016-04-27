@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Participation.SharedModels;
+using Participation.VrijwilligersSysteem.Logic;
 
 namespace Participation.VrijwilligersSysteem.GUI
 {
     public partial class MeetingForm : Form
     {
+        private MeetingLogic _meetingLogic;
         public MeetingForm()
         {
             InitializeComponent();
@@ -25,6 +28,23 @@ namespace Participation.VrijwilligersSysteem.GUI
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MeetingForm_Load(object sender, EventArgs e)
+        {
+            _meetingLogic = new MeetingLogic();
+            MessageBox.Show(InvitedPatient.PatientForInvite.Email);
+            RefreshUI();
+        }
+
+        private void RefreshUI()
+        {
+            List<Volunteer> tempVolunteers = _meetingLogic.Volunteers;
+            lbVolunteers.Items.Clear();
+            foreach (Volunteer v in tempVolunteers)
+            {
+                lbVolunteers.Items.Add(v.Name);
+            }
         }
     }
 }

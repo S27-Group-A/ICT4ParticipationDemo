@@ -1,4 +1,6 @@
-﻿namespace Participation.BeheerSysteem.GUI
+﻿using Participation.VrijwilligersSysteem.Logic;
+
+namespace Participation.BeheerSysteem.GUI
 {
     using System;
     using System.Collections.Generic;
@@ -183,6 +185,15 @@
         {
             FormProvider.VolunteerForm.Show();
             this.Hide();
+        }
+
+        private void btnAddMeeting_Click(object sender, EventArgs e)
+        {
+            if (FormProvider.LoggedInUser is Patient)
+            {
+                InvitedPatient.PatientForInvite = FormProvider.LoggedInUser as Patient;
+                FormProvider.MeetingForm.Show();
+            }
         }
 
 

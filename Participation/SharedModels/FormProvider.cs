@@ -27,6 +27,7 @@ namespace Participation.SharedModels
         private static AdminSystemForm _adminSystemForm;
         private static ChatUsers _chatuserform;
         private static ChatForm _chatform;
+        private static MeetingForm _meetingForm;
 
         /// <summary>
         ///     Static logged in user used throughout the forms
@@ -114,6 +115,14 @@ namespace Participation.SharedModels
                     _adminSystemForm = new AdminSystemForm();
                 }
                 return _adminSystemForm;
+            }
+        }
+
+        public static MeetingForm MeetingForm
+        {
+            get
+            {
+                    return _meetingForm = new MeetingForm();
             }
         }
 

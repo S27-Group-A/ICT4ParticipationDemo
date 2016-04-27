@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileForm));
             this.gbForm = new System.Windows.Forms.GroupBox();
-            this.pbVog = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblPreName = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
@@ -58,12 +57,14 @@
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnVolunteer = new System.Windows.Forms.Button();
+            this.pbVog = new System.Windows.Forms.PictureBox();
+            this.btnAddMeeting = new System.Windows.Forms.Button();
             this.gbForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
             this.gbxVog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).BeginInit();
             this.SuspendLayout();
             // 
             // gbForm
@@ -79,15 +80,6 @@
             this.gbForm.Size = new System.Drawing.Size(899, 591);
             this.gbForm.TabIndex = 0;
             this.gbForm.TabStop = false;
-            // 
-            // pbVog
-            // 
-            this.pbVog.Location = new System.Drawing.Point(624, 24);
-            this.pbVog.Name = "pbVog";
-            this.pbVog.Size = new System.Drawing.Size(252, 346);
-            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbVog.TabIndex = 51;
-            this.pbVog.TabStop = false;
             // 
             // groupBox2
             // 
@@ -417,12 +409,32 @@
             this.btnVolunteer.UseVisualStyleBackColor = true;
             this.btnVolunteer.Click += new System.EventHandler(this.button1_Click);
             // 
+            // pbVog
+            // 
+            this.pbVog.Location = new System.Drawing.Point(624, 24);
+            this.pbVog.Name = "pbVog";
+            this.pbVog.Size = new System.Drawing.Size(252, 346);
+            this.pbVog.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbVog.TabIndex = 51;
+            this.pbVog.TabStop = false;
+            // 
+            // btnAddMeeting
+            // 
+            this.btnAddMeeting.Location = new System.Drawing.Point(10, 115);
+            this.btnAddMeeting.Name = "btnAddMeeting";
+            this.btnAddMeeting.Size = new System.Drawing.Size(94, 42);
+            this.btnAddMeeting.TabIndex = 9;
+            this.btnAddMeeting.Text = "Kennismakings gesprek";
+            this.btnAddMeeting.UseVisualStyleBackColor = true;
+            this.btnAddMeeting.Click += new System.EventHandler(this.btnAddMeeting_Click);
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(736, 571);
+            this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.btnVolunteer);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
@@ -432,7 +444,6 @@
             this.Text = "Profiel";
             this.Load += new System.EventHandler(this.ProfileForm_Load);
             this.gbForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
@@ -440,6 +451,7 @@
             this.gbxPerks.PerformLayout();
             this.gbxVog.ResumeLayout(false);
             this.gbxVog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbVog)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,7 +485,8 @@
         private System.Windows.Forms.LinkLabel lblVogUrl;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox lbPerks;
-        private System.Windows.Forms.PictureBox pbVog;
         private System.Windows.Forms.Button btnVolunteer;
+        private System.Windows.Forms.PictureBox pbVog;
+        private System.Windows.Forms.Button btnAddMeeting;
     }
 }

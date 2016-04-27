@@ -114,7 +114,12 @@ namespace Participation.VrijwilligersSysteem.GUI
 
         private void btnMeeting_Click(object sender, EventArgs e)
         {
-
+            if (lbPatients.SelectedIndex >= 0)
+            {
+                InvitedPatient.PatientForInvite = _volunteerSystem.GetPatientFromRequest(_selectedRequest);
+                FormProvider.MeetingForm.Show();
+            }
+            
         }
     }
 }

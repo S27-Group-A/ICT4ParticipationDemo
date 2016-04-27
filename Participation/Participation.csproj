@@ -148,6 +148,8 @@
       <DependentUpon>VolunteerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedModels\Request.cs" />
+    <Compile Include="VrijwilligersSysteem\Logic\InvitedPatient.cs" />
+    <Compile Include="VrijwilligersSysteem\Logic\MeetingLogic.cs" />
     <Compile Include="VrijwilligersSysteem\Logic\VolunteerSystem.cs" />
     <EmbeddedResource Include="BeheerSysteem\GUI\AdminSystemForm.resx">
       <DependentUpon>AdminSystemForm.cs</DependentUpon>

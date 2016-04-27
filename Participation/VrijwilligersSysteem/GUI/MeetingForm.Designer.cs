@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.btnPlannen = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.tbLocation = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbVolunteers = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btnPlannen
@@ -44,19 +45,19 @@
             this.btnPlannen.UseVisualStyleBackColor = true;
             this.btnPlannen.Click += new System.EventHandler(this.btnPlannen_Click);
             // 
-            // dateTimePicker1
+            // dtpDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 1;
+            this.dtpDate.Location = new System.Drawing.Point(12, 12);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpDate.TabIndex = 1;
             // 
-            // textBox1
+            // tbLocation
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 2;
+            this.tbLocation.Location = new System.Drawing.Point(12, 124);
+            this.tbLocation.Name = "tbLocation";
+            this.tbLocation.Size = new System.Drawing.Size(200, 20);
+            this.tbLocation.TabIndex = 2;
             // 
             // label1
             // 
@@ -69,17 +70,27 @@
             this.label1.Text = "Woonplaats";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // lbVolunteers
+            // 
+            this.lbVolunteers.FormattingEnabled = true;
+            this.lbVolunteers.Location = new System.Drawing.Point(219, 12);
+            this.lbVolunteers.Name = "lbVolunteers";
+            this.lbVolunteers.Size = new System.Drawing.Size(233, 134);
+            this.lbVolunteers.TabIndex = 4;
+            // 
             // MeetingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 150);
+            this.ClientSize = new System.Drawing.Size(464, 150);
+            this.Controls.Add(this.lbVolunteers);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.tbLocation);
+            this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnPlannen);
             this.Name = "MeetingForm";
             this.Text = "MeetingForm";
+            this.Load += new System.EventHandler(this.MeetingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,8 +99,9 @@
         #endregion
 
         private System.Windows.Forms.Button btnPlannen;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.TextBox tbLocation;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbVolunteers;
     }
 }
