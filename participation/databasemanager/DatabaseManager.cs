@@ -525,6 +525,70 @@ namespace Participation
         }
 
 
+        internal static IUser GetUserByRfid(string rfid)
+        {
+            try
+            {
+                OracleCommand command = CreateOracleCommand("SELECT * FROM Person WHERE rfid = :rfid and enabled = 1");
+                command.Parameters.Add(":rfid", rfid);
+                OracleDataReader reader = ExecuteQuery(command);
+
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(reader["personid"].ToString());
+                    string name = reader["name"].ToString();
+                    string emailAdress = reader["email"].ToString();
+                    string description = reader["description"].ToString();
+                    string dateTime = reader["dateOfBirth"].ToString();
+                    string picture = reader["ProfilePicture"].ToString();
+                    DateTime dateOfBirth = Convert.ToDateTime(dateTime);
+                    string location = reader["location"].ToString();
+                    string phoneNumber = reader["phone"].ToString();
+                    GenderEnum gender = ToGender(reader["gender"].ToString());
+                    string password = reader["password"].ToString();
+                    int vog = Convert.ToInt32(reader["VOG"].ToString());
+
+                    string personType = reader["personType"].ToString();
+                    if (personType == "Volunteer")
+                    {
+                        if (vog != 0)
+                        {
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
+
+                    }
+                    if (personType == "Patient")
+                    {
+                        return new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
+                    }
+                    if (personType == "Admin")
+                    {
+                        if (vog != 0)
+                        {
+                            return new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, true);
+                        }
+                        else
+                        {
+                            throw new Exception("Account is niet goedgekeurd.");
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Something went wrong: " + exception.Message);
+            }
+            finally
+            {
+                _Connection.Close();
+            }
+        }
+
 
         /// <summary>
         /// Gets a list of all users from the database
