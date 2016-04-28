@@ -89,7 +89,7 @@
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.btnPlannen);
             this.Name = "MeetingForm";
-            this.Text = "MeetingForm";
+            this.Text = "Afspraak plannen";
             this.Load += new System.EventHandler(this.MeetingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

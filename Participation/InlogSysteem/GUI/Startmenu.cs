@@ -119,5 +119,33 @@ namespace Participation
                 }
             }
         }
+
+        private void rfidBtn_Click(object sender, EventArgs e)
+        {
+            if (rfidTbx.Text.Length >= 0)
+            {
+                IUser user;
+                try
+                {
+                    user = _lisLogic.GetUserByRfid(rfidTbx.Text);
+                    LogIn(user);
+                }
+                catch (Exception)
+                {
+                    ClearFields();
+                    MessageBox.Show("Vul uw gegevens opnieuw in");
+                }
+            }
+            else
+            {
+                ClearFields();
+                MessageBox.Show("Vul uw e-mail adres en wachtwoord in");
+            }
+        }
+
+        private void Startmenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
