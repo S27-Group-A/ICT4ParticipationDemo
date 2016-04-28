@@ -197,6 +197,7 @@
             this.btnMeeting.TabIndex = 10;
             this.btnMeeting.Text = "Afspraak maken";
             this.btnMeeting.UseVisualStyleBackColor = true;
+            this.btnMeeting.Visible = false;
             this.btnMeeting.Click += new System.EventHandler(this.btnMeeting_Click);
             // 
             // btnProfile
