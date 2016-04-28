@@ -83,6 +83,9 @@
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
             this.btnChat = new System.Windows.Forms.Button();
+
+            this.btnWriteReview = new System.Windows.Forms.Button();
+
             this.gbForm.SuspendLayout();
             this.gbxWeekView.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -702,13 +705,30 @@
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = true;
             this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
+
+            // 
+            // btnWriteReview
+            // 
+            this.btnWriteReview.Enabled = false;
+            this.btnWriteReview.Location = new System.Drawing.Point(13, 122);
+            this.btnWriteReview.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWriteReview.Name = "btnWriteReview";
+            this.btnWriteReview.Size = new System.Drawing.Size(125, 28);
+            this.btnWriteReview.TabIndex = 11;
+            this.btnWriteReview.Text = "Review Schrijven";
+            this.btnWriteReview.UseVisualStyleBackColor = true;
+            this.btnWriteReview.Visible = false;
+            this.btnWriteReview.Click += new System.EventHandler(this.btnWriteReview_Click);
+
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1202, 838);
+    this.ClientSize = new System.Drawing.Size(1170, 838);
+            this.Controls.Add(this.btnWriteReview);
+
             this.Controls.Add(this.btnMeetingsVolunteers);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.btnVolunteer);
@@ -791,5 +811,6 @@
         private System.Windows.Forms.DateTimePicker dtpEndMo;
         private System.Windows.Forms.Label lblStart;
         private System.Windows.Forms.Button btnAgain;
+        private System.Windows.Forms.Button btnWriteReview;
     }
 }

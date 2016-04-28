@@ -29,11 +29,24 @@ namespace Participation.SharedModels
         private static ChatForm _chatform;
         private static MeetingForm _meetingForm;
         private static MeetingVolunteerForm _meetingVolunteerForm;
+        private static ReviewForm _reviewForm;
 
         /// <summary>
         ///     Static logged in user used throughout the forms
         /// </summary>
         public static IUser LoggedInUser { get; set; }
+
+        public static ReviewForm ReviewForm
+        {
+            get
+            {
+                if (_reviewForm == null)
+                {
+                    _reviewForm = new ReviewForm();
+                }
+                return _reviewForm;
+            }
+        }
 
         public static Startmenu StartMenu
         {
@@ -119,7 +132,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                    return _meetingForm = new MeetingForm();
+                return _meetingForm = new MeetingForm();
             }
         }
 

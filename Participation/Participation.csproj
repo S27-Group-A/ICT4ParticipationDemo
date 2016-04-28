@@ -74,6 +74,12 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Debugging\Logger.cs" />
+    <Compile Include="HulpSysteem\GUI\ReviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HulpSysteem\GUI\ReviewForm.Designer.cs">
+      <DependentUpon>ReviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Profile\Logic\ProfileLogic.cs" />
     <Compile Include="Service References\ChatService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HulpSysteem\GUI\RequestsViewForm.resx">
       <DependentUpon>RequestsViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HulpSysteem\GUI\ReviewForm.resx">
+      <DependentUpon>ReviewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InlogSysteem\GUI\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
