@@ -232,7 +232,7 @@ namespace Participation
 
                 if (ExecuteNonQuery(command))
                 {
-                    command = CreateOracleCommand("SELECT MAX(PERSONID) FROM PERSON");
+                    command = CreateOracleCommand("SELECT MAX() FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
                     while (reader.Read())
                     {
@@ -327,14 +327,27 @@ namespace Participation
         {
             try
             {
-                OracleCommand command = CreateOracleCommand("INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description) VALUES(:reviewID, :reviewerID, :revieweeID, :rating, :description)");
-                command.Parameters.Add(":reviewID", review.Id);
+                OracleCommand command = CreateOracleCommand("INSERT INTO Review(reviewID, reviewerID, revieweeID, rating, description) VALUES(SEQ_reviewID.NEXTVAL, :reviewerID, :revieweeID, :rating, :description)");
                 command.Parameters.Add(":reviewerID", patient.Id);
                 command.Parameters.Add(":revieweeID", volunteer.Id);
                 command.Parameters.Add(":rating", review.Rating);
                 command.Parameters.Add(":description", review.Text);
+                //command.BindByName = true;
 
-                return ExecuteNonQuery(command);
+                if (ExecuteNonQuery(command))
+                {
+                    command = CreateOracleCommand("SELECT MAX(REVIEWID) FROM REVIEW");
+                    OracleDataReader reader = ExecuteQuery(command);
+                    while (reader.Read())
+                    {
+                        review.Id = Convert.ToInt32(reader["MAX(REVIEWID)"].ToString());
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -511,6 +524,7 @@ namespace Participation
             }
         }
 
+
         internal static IUser GetUserByRfid(string rfid)
         {
             try
@@ -575,6 +589,7 @@ namespace Participation
             }
         }
 
+
         /// <summary>
         /// Gets a list of all users from the database
         /// </summary>
@@ -626,7 +641,7 @@ namespace Participation
                 _Connection.Close();
             }
         }
-        
+
         public static List<string> GetAvailability(IUser user)
         {
             try
@@ -719,12 +734,12 @@ namespace Participation
                         string password = volunteerReader["password"].ToString();
                         int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                        if(vog != 0 )
+                        if (vog != 0)
                         {
                             volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             i.Volunteer = volunteer;
                         }
-                        
+
                     }
                 }
 
@@ -817,7 +832,7 @@ namespace Participation
                             string password = volunteerReader["password"].ToString();
                             int vog = Convert.ToInt32(volunteerReader["vog"].ToString());
 
-                            if(vog != 0)
+                            if (vog != 0)
                             {
                                 castvolunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                                 i.Volunteer = castvolunteer;
@@ -900,7 +915,7 @@ namespace Participation
                         int vog_Other = Convert.ToInt32(reader["vog_1"].ToString());
 
                         IUser patient = new Patient(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password);
-                        if(vog_Other != 0)
+                        if (vog_Other != 0)
                         {
                             IUser volunteer = new Volunteer(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other, true, false);
                             MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
@@ -940,14 +955,14 @@ namespace Participation
                         GenderEnum gender_Other = ToGender(reader["gender_1"].ToString());
                         string password_Other = reader["password_1"].ToString();
 
-                        if(vog != 0)
+                        if (vog != 0)
                         {
                             IUser volunteer = new Volunteer(id, name, emailAdress, description, dateOfBirth, picture, location, phoneNumber, gender, password, true, false);
                             IUser patient = new Patient(id_other, name_Other, emailAdress_Other, description_Other, dateOfBirth_Other, picture_Other, location_Other, phoneNumber_Other, gender_Other, password_Other);
 
                             MeetingList.Add(new Meeting(volunteer, patient, dateOfMeeting, place, status));
                         }
-                        
+
 
                     }
                 }
@@ -1135,8 +1150,8 @@ namespace Participation
                     }
                     Volunteer poster = new Volunteer(id, name, emailAdress, "-", dateOfBirth, picture, location, phoneNumber, gender, password, vogBool, false);
                     ResponsesList.Add(new Response(description_r, date, poster));
-               }
-                
+                }
+
             }
             catch
             {
@@ -1289,7 +1304,7 @@ namespace Participation
                 _Connection.Close();
             }
         }
-        
+
         public static bool UpdateAvailability(IUser user, List<string> times)
         {
             try
