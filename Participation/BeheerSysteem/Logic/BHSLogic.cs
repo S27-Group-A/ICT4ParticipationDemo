@@ -17,6 +17,11 @@ namespace Participation.BeheerSysteem.Logic
         public List<Review> Reviews { get; set; }
         public List<Volunteer> Volunteers { get; set; }
 
+        public bool ChangeVog(IUser user)
+        {
+            return DatabaseManager.ChangeVOG(user);
+        }
+
         public BHSLogic()
         {
             this.Users = GetUsers();

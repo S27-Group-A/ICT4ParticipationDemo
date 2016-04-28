@@ -147,7 +147,13 @@ namespace Participation.BeheerSysteem.GUI
                 MessageBoxButtons.YesNoCancel);
             if (dialogresult == DialogResult.Yes)
             {
-                MessageBox.Show("Deze vrijwilliger is nu goedgekeurd om te beginnen!");
+                if (_BHSLogic.ChangeVog(_BHSLogic.Users[lbxUserList.SelectedIndex]))
+                    MessageBox.Show("Deze vrijwilliger is nu goedgekeurd om te beginnen!");
+                else
+                {
+                    MessageBox.Show("Er ging iets fout in de database check de logger");
+                }
+                
 
             }
             if (dialogresult == DialogResult.No)
