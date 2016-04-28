@@ -30,12 +30,17 @@ namespace Participation.HulpSysteem.GUI
         private void btnAddRequest_Click(object sender, EventArgs e)
         {
             FormProvider.RequestsViewForm.Hide();
-            FormProvider.RequestForm.Show();
+            FormProvider.RequestForm.ShowDialog();
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            FormProvider.RequestForm.Close();
+            this.Close();
+        }
+
+        private void btnHelprequests_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

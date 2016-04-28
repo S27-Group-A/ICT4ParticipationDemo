@@ -68,8 +68,7 @@ namespace Participation.HulpSysteem.GUI
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            FormProvider.ReviewForm.Hide();
-            FormProvider.ProfileForm.Show();
+            this.Close();
         }
 
         private void btnWriteReview_Click(object sender, EventArgs e)

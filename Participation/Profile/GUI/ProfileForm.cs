@@ -351,7 +351,7 @@ namespace Participation.BeheerSysteem.GUI
 
         private void btnWriteReview_Click(object sender, EventArgs e)
         {
-            FormProvider.ProfileForm.Hide();
+            this.Hide();
             FormProvider.ReviewForm.ShowDialog();
             this.Show();
         }

@@ -54,16 +54,14 @@ namespace UI
                 if (_hpsLogic.AddRequest(FormProvider.LoggedInUser as Patient, request))
                 {
                     MessageBox.Show("Request " + request.Title + " succesvol aangemaakt");
-                    FormProvider.RequestForm.Hide();
-                    FormProvider.ProfileForm.Show();
+                    this.Close();
                 }
             }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            FormProvider.RequestForm.Hide();
-            FormProvider.ProfileForm.Show();
+            this.Close();
         }
     }
 }

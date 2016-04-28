@@ -89,6 +89,7 @@
             this.btnHelprequests.TabIndex = 2;
             this.btnHelprequests.Text = "Hulp Vragen";
             this.btnHelprequests.UseVisualStyleBackColor = true;
+            this.btnHelprequests.Click += new System.EventHandler(this.btnHelprequests_Click);
             // 
             // RequestsViewForm
             // 
