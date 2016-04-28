@@ -35,11 +35,13 @@ namespace Participation.BeheerSysteem.GUI
             //TODO Implement once fileserver is in place
             //RefreshPic();
             btnVolunteer.Visible = false;
+            btnMeetingsVolunteers.Visible = false;
             if (_loggedInUser.GetType() == typeof(Volunteer))
             {
                 //RefreshVogUrl(); obsolete
                 RefreshPerks();
                 btnVolunteer.Visible = true;
+                btnMeetingsVolunteers.Visible = true;
                 RefreshWeek();
             }
 

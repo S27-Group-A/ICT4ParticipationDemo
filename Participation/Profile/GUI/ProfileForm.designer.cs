@@ -79,20 +79,17 @@
             this.btnProfile = new System.Windows.Forms.Button();
             this.btnHelprequests = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-
             this.btnVolunteer = new System.Windows.Forms.Button();
             this.btnAddMeeting = new System.Windows.Forms.Button();
             this.btnMeetingsVolunteers = new System.Windows.Forms.Button();
-
             this.btnChat = new System.Windows.Forms.Button();
-
             this.gbForm.SuspendLayout();
-
             this.gbxWeekView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).BeginInit();
             this.gbxPerks.SuspendLayout();
+            this.SuspendLayout();
             // 
             // gbForm
             // 
@@ -406,7 +403,6 @@
             this.lblStart.TabIndex = 48;
             this.lblStart.Text = "Starttijd";
             // 
-
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblPreName);
@@ -646,7 +642,7 @@
             // 
             // btnHelprequests
             // 
-            this.btnHelprequests.Location = new System.Drawing.Point(13, 49);
+            this.btnHelprequests.Location = new System.Drawing.Point(13, 85);
             this.btnHelprequests.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelprequests.Name = "btnHelprequests";
             this.btnHelprequests.Size = new System.Drawing.Size(125, 28);
@@ -666,12 +662,11 @@
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btn_LogUit_Click);
             // 
-
             // btnVolunteer
             // 
-            this.btnVolunteer.Location = new System.Drawing.Point(10, 69);
+            this.btnVolunteer.Location = new System.Drawing.Point(11, 86);
             this.btnVolunteer.Name = "btnVolunteer";
-            this.btnVolunteer.Size = new System.Drawing.Size(94, 39);
+            this.btnVolunteer.Size = new System.Drawing.Size(126, 28);
             this.btnVolunteer.TabIndex = 8;
             this.btnVolunteer.Text = "Hulpvragen beantwoorden";
             this.btnVolunteer.UseVisualStyleBackColor = true;
@@ -679,9 +674,9 @@
             // 
             // btnAddMeeting
             // 
-            this.btnAddMeeting.Location = new System.Drawing.Point(10, 115);
+            this.btnAddMeeting.Location = new System.Drawing.Point(11, 122);
             this.btnAddMeeting.Name = "btnAddMeeting";
-            this.btnAddMeeting.Size = new System.Drawing.Size(94, 42);
+            this.btnAddMeeting.Size = new System.Drawing.Size(126, 59);
             this.btnAddMeeting.TabIndex = 9;
             this.btnAddMeeting.Text = "Kennismakings gesprek";
             this.btnAddMeeting.UseVisualStyleBackColor = true;
@@ -689,17 +684,17 @@
             // 
             // btnMeetingsVolunteers
             // 
-            this.btnMeetingsVolunteers.Location = new System.Drawing.Point(10, 164);
+            this.btnMeetingsVolunteers.Location = new System.Drawing.Point(11, 122);
             this.btnMeetingsVolunteers.Name = "btnMeetingsVolunteers";
-            this.btnMeetingsVolunteers.Size = new System.Drawing.Size(94, 35);
+            this.btnMeetingsVolunteers.Size = new System.Drawing.Size(126, 59);
             this.btnMeetingsVolunteers.TabIndex = 10;
             this.btnMeetingsVolunteers.Text = "Kennismakings gesprekken";
             this.btnMeetingsVolunteers.UseVisualStyleBackColor = true;
             this.btnMeetingsVolunteers.Click += new System.EventHandler(this.btnMeetingsVolunteers_Click);
-
+            // 
             // btnChat
             // 
-            this.btnChat.Location = new System.Drawing.Point(13, 85);
+            this.btnChat.Location = new System.Drawing.Point(12, 51);
             this.btnChat.Margin = new System.Windows.Forms.Padding(4);
             this.btnChat.Name = "btnChat";
             this.btnChat.Size = new System.Drawing.Size(125, 28);
@@ -707,22 +702,17 @@
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = true;
             this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
-
             // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(736, 571);
+            this.ClientSize = new System.Drawing.Size(1202, 838);
             this.Controls.Add(this.btnMeetingsVolunteers);
             this.Controls.Add(this.btnAddMeeting);
             this.Controls.Add(this.btnVolunteer);
-
-            this.ClientSize = new System.Drawing.Size(981, 703);
-            this.ClientSize = new System.Drawing.Size(1170, 838);
             this.Controls.Add(this.btnChat);
-
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnHelprequests);
             this.Controls.Add(this.btnProfile);
@@ -741,9 +731,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxProfilePicture)).EndInit();
             this.gbxPerks.ResumeLayout(false);
             this.gbxPerks.PerformLayout();
-
-
-
             this.ResumeLayout(false);
 
         }
