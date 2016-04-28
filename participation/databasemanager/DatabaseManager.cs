@@ -232,7 +232,7 @@ namespace Participation
 
                 if (ExecuteNonQuery(command))
                 {
-                    command = CreateOracleCommand("SELECT MAX() FROM PERSON");
+                    command = CreateOracleCommand("SELECT MAX(PERSONID) FROM PERSON");
                     OracleDataReader reader = ExecuteQuery(command);
                     while (reader.Read())
                     {
