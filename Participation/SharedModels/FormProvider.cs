@@ -39,12 +39,8 @@ namespace Participation.SharedModels
         public static ReviewForm ReviewForm
         {
             get
-            {
-                if (_reviewForm == null)
-                {
-                    _reviewForm = new ReviewForm();
-                }
-                return _reviewForm;
+            { 
+                    return _reviewForm = new ReviewForm();
             }
         }
 
