@@ -164,7 +164,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Male,
-                            tbxPassword.Text, true, false);
+                            tbxPassword.Text, false,false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add Perks
@@ -193,7 +193,7 @@ namespace Participation.InlogSysteem.GUI
                     {
                         var newVolunteer = new Volunteer(tbxName.Text, tbxEmail.Text, "", dtpBirthdate.Value,
                             tbxProfilePictureUrl.Text, tbxLocation.Text, tbxPhonenumber.Text, GenderEnum.Female,
-                            tbxPassword.Text, true, false);
+                            tbxPassword.Text, false, false);
                         if (_lisLogic.AddUser(newVolunteer))
                         {
                             // Add perk
