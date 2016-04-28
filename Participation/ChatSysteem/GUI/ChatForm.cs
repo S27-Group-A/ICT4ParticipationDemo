@@ -65,7 +65,7 @@ namespace Participation.ChatSysteem
         void rc_ReceiveMsg(string sender, string msg)
         {
             if (msg.Length > 0)
-                tbxMessage.Text +=Environment.NewLine + sender +">"+ msg;
+                tbxMessage.Text +=Environment.NewLine + sender +": "+ msg;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
