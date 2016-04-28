@@ -39,7 +39,7 @@ namespace Participation.ChatSysteem
             this.RecieveClient = recieveClient;
             this.RecieveClient.ReceiveMsg += new ReceivedMessage(rc_ReceiveMsg);
             if (message.Length > 0)
-                tbxMessage.Text += Environment.NewLine + sender + ">" + message;
+                tbxMessage.Text += Environment.NewLine + sender + ": " + message;
             this.tbxName.Text = sender;
             this.NewChat = false;
         }
