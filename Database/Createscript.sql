@@ -139,15 +139,15 @@ ALTER TABLE Perk_Request	ADD FOREIGN KEY(perkID)			REFERENCES Perk(perkID);
 
 -- INSERT DATA --
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
-VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 0a006f46cf, 1, 0, 1);
+VALUES(1, 'Patient', 'Marian', 'Marian@email.com', 'Hallo, ik ben Marian, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', '0a006f46cf', 1, 0, 1);
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
-VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', 2, 1, 0, 1);
+VALUES(2, 'Patient', 'Dory', 'Dory@email.com', 'Hallo, ik ben Dory, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 2, Eindhoven', '061234547', 'V', 'Wachtwoord', '2', 1, 0, 1);
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
-VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 1c00fcb125, 1, 0, 1);
+VALUES(3, 'Volunteer', 'Jan', 'Jan@email.com', 'Hallo, ik ben Jan, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', '1c00fcb125', 1, 0, 1);
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
-VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', 4, 1, 0, 1);
+VALUES(4, 'Volunteer', 'Nemo', 'Nemo@email.com', 'Hallo, ik ben Nemo, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 5, Eindhoven', '061234547', 'M', 'Wachtwoord', '4', 1, 0, 1);
 INSERT INTO Person(personID, personType, name, email, description, dateOfBirth, profilePicture, location, phone, gender, password, rfid, vog, banned, enabled)
-VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', 21004920ed, 1, 0, 1);
+VALUES(5, 'Admin', 'Mr. Jansen', 'M.Jansen@email.com', 'Hallo, ik ben Mr. Jansen, en dit is mijn profiel', to_date('10/09/2015', 'dd/mm/yyyy'), 'pf0.png', 'Rachelsmolen 1, Eindhoven', '061234547', 'M', 'Wachtwoord', '21004920ed', 1, 0, 1);
 
 INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (3, '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 13:00',  '9:00 - 13:00');
 INSERT INTO Availability(PersonID, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES (4, '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 17:00', '9:00 - 13:00',  '9:00 - 13:00');
