@@ -96,7 +96,8 @@ namespace Participation.BeheerSysteem.GUI
         private void btn_Hulpvragen_Click(object sender, EventArgs e)
         {
             FormProvider.ProfileForm.Hide();
-            FormProvider.RequestsViewForm.Show();
+            FormProvider.RequestsViewForm.ShowDialog();
+            FormProvider.ProfileForm.Show();
         }
 
         private void EditInfo_Click(object sender, EventArgs e)
@@ -188,8 +189,9 @@ namespace Participation.BeheerSysteem.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormProvider.VolunteerForm.Show();
             this.Hide();
+            FormProvider.VolunteerForm.ShowDialog();
+            this.Show();
         }
 
         private void btnAddMeeting_Click(object sender, EventArgs e)
@@ -205,7 +207,9 @@ namespace Participation.BeheerSysteem.GUI
         {
             if (FormProvider.LoggedInUser is Volunteer)
             {
-                FormProvider.MeetingVolunteerForm.Show();
+                this.Hide();
+                FormProvider.MeetingVolunteerForm.ShowDialog();
+                this.Show();
             }
         }
 
@@ -348,7 +352,8 @@ namespace Participation.BeheerSysteem.GUI
         private void btnWriteReview_Click(object sender, EventArgs e)
         {
             FormProvider.ProfileForm.Hide();
-            FormProvider.ReviewForm.Show();
+            FormProvider.ReviewForm.ShowDialog();
+            this.Show();
         }
     }
 }
