@@ -121,5 +121,11 @@ namespace Participation.VrijwilligersSysteem.GUI
             }
             
         }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            FormProvider.ProfileForm.Show();
+            this.Hide();
+        }
     }
 }

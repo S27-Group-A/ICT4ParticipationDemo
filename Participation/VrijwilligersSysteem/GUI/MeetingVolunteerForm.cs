@@ -49,14 +49,15 @@ namespace Participation.VrijwilligersSysteem.GUI
             {
                 lblDate.Text = _selectedMeeting.Date.ToString();
                 lblPatientName.Text = _selectedMeeting.Patient.Name;
-                lblStatus.Text = _selectedMeeting.Status.ToString();
                 if (_selectedMeeting.Status == 1)
                 {
                     btnAccept.Enabled = false;
+                    lblStatus.Text = "Geaccepteerd";
                 }
                 else
                 {
                     btnAccept.Enabled = true;
+                    lblStatus.Text = "Niet geaccepteerd";
                 }
             }
         }

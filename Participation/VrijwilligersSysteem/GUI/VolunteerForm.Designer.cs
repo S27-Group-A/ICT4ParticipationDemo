@@ -43,6 +43,7 @@
             this.btnPostResponse = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMeeting = new System.Windows.Forms.Button();
+            this.btnProfile = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -197,11 +198,22 @@
             this.btnMeeting.UseVisualStyleBackColor = true;
             this.btnMeeting.Click += new System.EventHandler(this.btnMeeting_Click);
             // 
+            // btnProfile
+            // 
+            this.btnProfile.Location = new System.Drawing.Point(13, 12);
+            this.btnProfile.Name = "btnProfile";
+            this.btnProfile.Size = new System.Drawing.Size(111, 23);
+            this.btnProfile.TabIndex = 11;
+            this.btnProfile.Text = "Profiel";
+            this.btnProfile.UseVisualStyleBackColor = true;
+            this.btnProfile.Click += new System.EventHandler(this.btnProfile_Click);
+            // 
             // VolunteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 436);
+            this.Controls.Add(this.btnProfile);
             this.Controls.Add(this.btnMeeting);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnPostResponse);
@@ -240,5 +252,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListBox lbResponses;
         private System.Windows.Forms.Button btnMeeting;
+        private System.Windows.Forms.Button btnProfile;
     }
 }
