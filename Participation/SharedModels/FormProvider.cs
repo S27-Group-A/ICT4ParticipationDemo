@@ -92,11 +92,7 @@ namespace Participation.SharedModels
         {
             get
             {
-                if (_requestsViewForm == null)
-                {
-                    _requestsViewForm = new RequestsViewForm();
-                }
-                return _requestsViewForm;
+                return _requestsViewForm = new RequestsViewForm();
             }
         }
 

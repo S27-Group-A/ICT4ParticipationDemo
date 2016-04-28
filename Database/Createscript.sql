@@ -45,13 +45,13 @@ CREATE TABLE Person
 CREATE TABLE Availability
 (
 personID		NUMBER(10)			PRIMARY KEY,
-Monday			VARCHAR(255)		,
-Tuesday			VARCHAR(255)		,
-Wednesday		VARCHAR(255)    ,
-Thursday		VARCHAR(255)	  ,
-Friday			VARCHAR(255)		,
-Saturday		VARCHAR(255)	  ,
-Sunday			VARCHAR(255)		
+Monday			VARCHAR(255)		DEFAULT ('00:00-00;00'),
+Tuesday			VARCHAR(255)		DEFAULT ('00:00-00;00'),
+Wednesday		VARCHAR(255)    	DEFAULT ('00:00-00;00'),
+Thursday		VARCHAR(255)	  	DEFAULT ('00:00-00;00'),
+Friday			VARCHAR(255)		DEFAULT ('00:00-00;00'),
+Saturday		VARCHAR(255)	  	DEFAULT ('00:00-00;00'),
+Sunday			VARCHAR(255)		DEFAULT ('00:00-00;00')
 );
 
 CREATE TABLE Perk

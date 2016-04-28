@@ -35,8 +35,7 @@ namespace Participation.HulpSysteem.GUI
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            FormProvider.RequestsViewForm.Hide();
-            FormProvider.ProfileForm.Show();
+            FormProvider.RequestForm.Close();
         }
     }
 }
