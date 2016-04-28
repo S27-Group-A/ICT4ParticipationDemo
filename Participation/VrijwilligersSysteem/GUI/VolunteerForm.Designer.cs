@@ -78,11 +78,12 @@
             // 
             this.lblRequestTitle.AutoSize = true;
             this.lblRequestTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestTitle.Location = new System.Drawing.Point(341, 112);
+            this.lblRequestTitle.Location = new System.Drawing.Point(342, 86);
+            this.lblRequestTitle.MaximumSize = new System.Drawing.Size(300, 0);
             this.lblRequestTitle.Name = "lblRequestTitle";
-            this.lblRequestTitle.Size = new System.Drawing.Size(128, 24);
+            this.lblRequestTitle.Size = new System.Drawing.Size(293, 48);
             this.lblRequestTitle.TabIndex = 3;
-            this.lblRequestTitle.Text = "Hulpvraag titel";
+            this.lblRequestTitle.Text = "Dit is een veel te lange titel omdat het kan";
             // 
             // lblDescription
             // 
@@ -110,10 +111,10 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(13, 54);
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(4, 73);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(48, 22);
+            this.lblDate.Size = new System.Drawing.Size(38, 17);
             this.lblDate.TabIndex = 2;
             this.lblDate.Text = "Date";
             this.lblDate.Click += new System.EventHandler(this.label6_Click);
@@ -121,20 +122,20 @@
             // lblLocation
             // 
             this.lblLocation.AutoSize = true;
-            this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocation.Location = new System.Drawing.Point(13, 32);
+            this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(3, 41);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(78, 22);
+            this.lblLocation.Size = new System.Drawing.Size(62, 17);
             this.lblLocation.TabIndex = 1;
             this.lblLocation.Text = "Location";
             // 
             // lblUrgency
             // 
             this.lblUrgency.AutoSize = true;
-            this.lblUrgency.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrgency.Location = new System.Drawing.Point(13, 10);
+            this.lblUrgency.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrgency.Location = new System.Drawing.Point(4, 10);
             this.lblUrgency.Name = "lblUrgency";
-            this.lblUrgency.Size = new System.Drawing.Size(77, 22);
+            this.lblUrgency.Size = new System.Drawing.Size(61, 17);
             this.lblUrgency.TabIndex = 0;
             this.lblUrgency.Text = "Urgency";
             // 
@@ -161,10 +162,10 @@
             // tbResponse
             // 
             this.tbResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbResponse.Location = new System.Drawing.Point(566, 293);
+            this.tbResponse.Location = new System.Drawing.Point(566, 321);
             this.tbResponse.Multiline = true;
             this.tbResponse.Name = "tbResponse";
-            this.tbResponse.Size = new System.Drawing.Size(270, 87);
+            this.tbResponse.Size = new System.Drawing.Size(270, 59);
             this.tbResponse.TabIndex = 7;
             // 
             // btnPostResponse
@@ -225,7 +226,7 @@
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lbPatients);
             this.Name = "VolunteerForm";
-            this.Text = "VolunteerForm";
+            this.Text = "DIT is een veel te lange titel om te testen want dat is chill";
             this.Load += new System.EventHandler(this.VolunteerForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

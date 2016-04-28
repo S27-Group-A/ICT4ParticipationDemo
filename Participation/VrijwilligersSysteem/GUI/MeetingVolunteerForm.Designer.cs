@@ -33,13 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblPatientName = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@
             this.lbNotAccepted.FormattingEnabled = true;
             this.lbNotAccepted.Location = new System.Drawing.Point(13, 27);
             this.lbNotAccepted.Name = "lbNotAccepted";
-            this.lbNotAccepted.Size = new System.Drawing.Size(172, 108);
+            this.lbNotAccepted.Size = new System.Drawing.Size(201, 108);
             this.lbNotAccepted.TabIndex = 0;
             this.lbNotAccepted.SelectedIndexChanged += new System.EventHandler(this.lbNotAccepted_SelectedIndexChanged);
             // 
@@ -57,7 +57,7 @@
             this.lbAccepted.FormattingEnabled = true;
             this.lbAccepted.Location = new System.Drawing.Point(13, 154);
             this.lbAccepted.Name = "lbAccepted";
-            this.lbAccepted.Size = new System.Drawing.Size(172, 134);
+            this.lbAccepted.Size = new System.Drawing.Size(201, 134);
             this.lbAccepted.TabIndex = 1;
             this.lbAccepted.SelectedIndexChanged += new System.EventHandler(this.lbAccepted_SelectedIndexChanged);
             // 
@@ -88,12 +88,39 @@
             this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.lblDate);
             this.groupBox1.Controls.Add(this.lblPatientName);
-            this.groupBox1.Location = new System.Drawing.Point(200, 8);
+            this.groupBox1.Location = new System.Drawing.Point(220, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 275);
+            this.groupBox1.Size = new System.Drawing.Size(256, 275);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gesprek";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 92);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Status:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 55);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Datum:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Naam:";
             // 
             // btnAccept
             // 
@@ -110,54 +137,27 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(51, 92);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(35, 13);
+            this.lblStatus.Size = new System.Drawing.Size(10, 13);
             this.lblStatus.TabIndex = 2;
-            this.lblStatus.Text = "label3";
+            this.lblStatus.Text = "-";
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Location = new System.Drawing.Point(51, 55);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(35, 13);
+            this.lblDate.Size = new System.Drawing.Size(10, 13);
             this.lblDate.TabIndex = 1;
-            this.lblDate.Text = "label3";
+            this.lblDate.Text = "-";
             // 
             // lblPatientName
             // 
             this.lblPatientName.AutoSize = true;
             this.lblPatientName.Location = new System.Drawing.Point(51, 19);
             this.lblPatientName.Name = "lblPatientName";
-            this.lblPatientName.Size = new System.Drawing.Size(35, 13);
+            this.lblPatientName.Size = new System.Drawing.Size(10, 13);
             this.lblPatientName.TabIndex = 0;
-            this.lblPatientName.Text = "label3";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Naam:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 55);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Datum:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Status:";
+            this.lblPatientName.Text = "-";
             // 
             // MeetingVolunteerForm
             // 
@@ -170,7 +170,7 @@
             this.Controls.Add(this.lbAccepted);
             this.Controls.Add(this.lbNotAccepted);
             this.Name = "MeetingVolunteerForm";
-            this.Text = "MeetingVolunteerForm";
+            this.Text = "Kennismakingsgesprekken";
             this.Load += new System.EventHandler(this.MeetingVolunteerForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

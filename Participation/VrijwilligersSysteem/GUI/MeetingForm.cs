@@ -44,7 +44,7 @@ namespace Participation.VrijwilligersSysteem.GUI
         private void MeetingForm_Load(object sender, EventArgs e)
         {
             _meetingLogic = new MeetingLogic();
-            MessageBox.Show(InvitedPatient.PatientForInvite.Email);
+            //MessageBox.Show(InvitedPatient.PatientForInvite.Email);
             RefreshUI();
         }
 

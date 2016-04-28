@@ -80,6 +80,11 @@
             return DatabaseManager.GetUser(email);
         }
 
+        public IUser GetUserByRfid(string rfid)
+        {
+            return DatabaseManager.GetUserByRfid(rfid);
+        }
+
         public List<IUser> GetUsers()
         {
             return DatabaseManager.GetUsers();
