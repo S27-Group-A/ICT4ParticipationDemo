@@ -37,7 +37,10 @@ Create Table "User"
   Rfid Varchar2(255),
   Banned Varchar2(1),
   Unban Date,
-  Enabled Varchar2(1)
+  Enabled Varchar2(1), 
+  CHECK (Car = '1' OR Car = '0'), 
+  CHECK (Banned = '1' OR Banned = '0'), 
+  CHECK (Enabled = '1' OR Enabled = '0') 
 );
 
 Create Table "Admin"
@@ -52,7 +55,8 @@ Create Table Volunteer
   Vog Varchar2(255),
   Birthdate Date,
   Photo Varchar2(255),
-  Vogconfirmation Varchar2(1)
+  VogConfirmation Varchar2(1),
+  CHECK (VogConfirmation = '1' OR VogConfirmation = '0') 
 );
 
 Create Table Skill
@@ -85,7 +89,7 @@ Create Table Review
 
 Create Table Vehicletype
 ( 
-  Vehicletypeid Number(10),
+  VehicleTypeId Number(10),
   Requestid Number(10),
   Description Varchar2(255) Not Null,
   Primary Key (Vehicletypeid, Requestid)
@@ -94,7 +98,8 @@ Create Table Vehicletype
 Create Table Patient
 ( 
   Accountid Number(10) Primary Key,
-  Ov Varchar2(1)
+  Ov Varchar2(1),
+  CHECK (Ov = '1' OR Ov = '0')
 );
 
 Create Table Meeting
@@ -104,7 +109,8 @@ Create Table Meeting
   Location Varchar(255),
   Meetingdate Date,
   Status Varchar2(1),
-  Primary Key(Volunteerid, Patientid)
+  Primary Key(Volunteerid, Patientid),
+  CHECK (Status = '1' OR Status = '0')
 );
 
 Create Table Volunteerskill
@@ -134,7 +140,8 @@ Create Table "Availability"
 (
   Accountid Number(10) Primary Key,
   Day Varchar2(2),
-  Timeofday Varchar2(10) 
+  Timeofday Varchar2(10),
+  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo')
 );
 
 Create Table Response
@@ -164,5 +171,5 @@ Alter Table Review Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table Review Add Foreign Key (AccountId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (ResponderId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
-
+Alter Table VehicleType Add Foreign Key (Requestid) References Request(RequestId);
 
