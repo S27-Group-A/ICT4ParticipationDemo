@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace Participation_ASP.Models
+{
+    public class Account
+    {
+        public int AccountID  { get; set; }
+
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
+        public string Email { get; set; }
+
+        public string Name { get; set; }
+
+        public int Phone { get; set; }
+
+        public DateTime DateCancellation { get; set; }
+
+        public string Address { get; set; }
+
+        public string Location { get; set; }
+
+        public bool HasCar { get; set; }
+
+        public bool HasDriversLicense { get; set; }
+
+        public string RFID { get; set; }
+
+        public bool Banned { get; set; }
+
+        public bool Unban { get; set; }
+
+        public bool Enabled { get; set; }
+
+
+        public Account(int accountId, string username, string password, string email, string name, int phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, bool unban, bool enabled)
+        {
+            this.AccountID = accountId;
+            this.Username = username;
+            this.Password = password;
+            this.Email = email;
+            this.Name = name;
+            this.Phone = phone;
+            this.DateCancellation = dateCancellation;
+            this.Address = address;
+            this.Location = location;
+            this.HasCar = hasCar;
+            this.HasDriversLicense = hasDriversLicense;
+            this.RFID = rfid;
+            this.Banned = banned;
+            this.Unban = unban;
+            this.Enabled = enabled;
+        }
+    }
+}
