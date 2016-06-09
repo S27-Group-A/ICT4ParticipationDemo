@@ -21,7 +21,7 @@ namespace Participation_ASP.Controllers
             return View();
         }
 
-        public ActionResult Login()
+        public ActionResult LogIn()
         {
             return View();
         }
@@ -29,12 +29,12 @@ namespace Participation_ASP.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(IAccount loginAccount)
+        public async Task<ActionResult> Login(Account loginAccount)
         {
-            if (loginAccount.Email != String.Empty && loginAccount.Password != string.Empty)
+            if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {
-                Session["User"] = loginAccount.LoginAccount(loginAccount);
-                if (Session["User"] != null)
+                Session["Account"] = loginAccount.LoginAccount(loginAccount);
+                if (Session["Account"] != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }

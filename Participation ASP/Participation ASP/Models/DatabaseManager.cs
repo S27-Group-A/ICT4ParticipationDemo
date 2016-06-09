@@ -134,10 +134,10 @@ namespace Participation_ASP.Models
                                                                  "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN Patient p ON v.AccountId = p.AccountId " +
-                                                                 "WHERE a.Username = :Username AND a.Password = :Password");
+                                                                 "WHERE a.Email = :Email AND a.Password = :Password");
 
 
-                    cmd.Parameters.Add("Username", account.Username);
+                    cmd.Parameters.Add("Email", account.Email);
                     cmd.Parameters.Add("Password", account.Password);
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
@@ -146,7 +146,7 @@ namespace Participation_ASP.Models
                         //User- and Account Data
                         int AccountId = new int();
                         if (reader["UserId"] != null)
-                            Convert.ToInt32(reader["UserId"].ToString());
+                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
                         string Username = reader["Username"].ToString();
                         string Password = reader["Password"].ToString();
                         string Email = reader["Email"].ToString();
@@ -184,7 +184,7 @@ namespace Participation_ASP.Models
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
                             string Vog = reader["Vog"].ToString();
-                            bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogCofirmation"]));
+                            bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());

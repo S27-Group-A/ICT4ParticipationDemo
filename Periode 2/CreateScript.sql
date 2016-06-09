@@ -33,7 +33,7 @@ Create Table "User"
   Adress Varchar2(255),
   Location Varchar(255),
   Car Varchar2(1) DEFAULT '0',
-  Driverslicense Varchar2(1),
+  Driverslicense Varchar2(1) DEFAULT '0',
   Rfid Varchar2(255),
   Banned Varchar2(1) DEFAULT '0',
   Unban Date,
@@ -268,6 +268,9 @@ INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'voluntee
 INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
 INSERT INTO Volunteer (AccountId) VALUES (2);
 
+INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
+INSERT INTO "Admin" (AccountId) VALUES (3);
+
 commit;
 
 SELECT ad.AccountId as "AdminId",
@@ -278,5 +281,5 @@ FROM "User" u FULL OUTER JOIN "Account" a ON u.AccountId = a.AccountId
 FULL OUTER JOIN "Admin" ad ON ad.AccountId = a.AccountId
 FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId
 FULL OUTER JOIN Patient p ON v.AccountId = p.AccountId
-WHERE a.Username = 'test' AND a.Password = 'test' 
+WHERE a.Username = 'patient' AND a.Password = 'patient' 
 ; 

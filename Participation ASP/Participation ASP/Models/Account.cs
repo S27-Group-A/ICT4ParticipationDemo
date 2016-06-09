@@ -47,6 +47,9 @@ namespace Participation_ASP.Models
 
         public bool IsAdmin { get; set; }
 
+        public Account()
+        {
+        }
 
         public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin)
         {
