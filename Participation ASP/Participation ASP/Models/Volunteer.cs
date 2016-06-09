@@ -24,6 +24,10 @@ namespace Participation_ASP.Models
 
         public void AddSkill(string skill)
         {
+            if(Skills == null)
+            {
+                Skills = new List<Skill>();
+            }
             Skills.Add(new Skill(skill));
         }
     }
