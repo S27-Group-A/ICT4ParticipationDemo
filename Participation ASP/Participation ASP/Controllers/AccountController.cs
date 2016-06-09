@@ -18,9 +18,19 @@ namespace Participation_ASP.Controllers
         {
             return View();
         }
-
-        public ActionResult Login()
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(Account loginAccount)
         {
+            if (loginAccount.Email != String.Empty && loginAccount.Password != string.Empty)
+            {
+                Session["User"] = loginAccount.GetAccount(loginAccount);
+                if (Session["User"] != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
             return View();
         }
     }
