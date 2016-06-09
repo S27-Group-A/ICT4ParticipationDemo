@@ -158,7 +158,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\DatabaseManager.cs" />
+=======
+    <Compile Include="Models\IAccount.cs" />
+>>>>>>> refs/remotes/origin/webSander
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Request.cs" />
