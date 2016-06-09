@@ -1,5 +1,5 @@
 ﻿@using Participation_ASP.Models
-@model Participation_ASP.Models.Account
+@model Participation_ASP.Models.IAccount
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,9 +12,33 @@
 <p></p>
 @if (Model is Volunteer)
 {
-    <div>
-        
-    </div>
+    {
+         Volunteer volunteer = Model as Volunteer;
+         <p>Beschikbaarheid:</p>
+        <ul>
+            @foreach (Availability a in volunteer.Availabilities)
+            {
+                <li>@a.Day: @a.TimeOfDay</li>
+            }
+        </ul>
+        <p>Vaardigheden:</p>
+        <ul>
+            @foreach (Skill s in volunteer.Skills)
+            {
+                <li>@s.Description</li>
+            }
+        </ul>
+        @using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
+        {
+            <input="text" name="skill" id="skill"/>
+            <!--
+            <input type="password" name="Password" />
+            You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
+            -->
+            <input type="submit" value="AddSkill" />
+        }
+    }
+
 }
 
 
