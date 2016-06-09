@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Participation_ASP.Models;
 
 namespace Participation_ASP.Controllers
 {
-    public class HomeController : Controller
+    public class ChatController : Controller
     {
-        // GET: Home
+        // GET: Chat
         public ActionResult Index()
         {
-            DatabaseManager.TestConnection();
             return View();
         }
     }

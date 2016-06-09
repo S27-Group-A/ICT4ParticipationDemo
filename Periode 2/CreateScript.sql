@@ -32,12 +32,12 @@ Create Table "User"
   Datederegistration Date,
   Adress Varchar2(255),
   Location Varchar(255),
-  Car Varchar2(1),
+  Car Varchar2(1) DEFAULT '0',
   Driverslicense Varchar2(1),
   Rfid Varchar2(255),
-  Banned Varchar2(1),
+  Banned Varchar2(1) DEFAULT '0',
   Unban Date,
-  Enabled Varchar2(1), 
+  Enabled Varchar2(1) DEFAULT '1', 
   CHECK (Car = '1' OR Car = '0'), 
   CHECK (Banned = '1' OR Banned = '0'), 
   CHECK (Enabled = '1' OR Enabled = '0') 
@@ -259,3 +259,5 @@ BEGIN
   SELECT RequestIncrementSeq.NEXTVAL INTO :new.RequestId FROM dual;
 END;
 /
+
+INSERT INTO Account (Username, Password, Email)VALUES('test', 'test', 'test@test.nl');
