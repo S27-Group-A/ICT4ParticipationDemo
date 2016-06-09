@@ -115,6 +115,48 @@ namespace Participation_ASP.Models
             return reader.HasRows;
         }
 
+        #region User
+        public static Account GetUser(string username, string password)
+        {
+            try
+            {
+                using (OracleConnection con = Connection)
+                {
+                    string sql = "SELECT * FROM ACCOUNT WHERE Username = :Username AND Password = :Password";
+                    using (OracleCommand cmd = new OracleCommand(sql, con))
+                    {
+                        cmd.Parameters.Add("Username", username);
+                        cmd.Parameters.Add("Password", password);
+                        con.Open();
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            int Id = Convert.ToInt32(reader["AccountId"].ToString());
+                            string Username = reader["Username"].ToString();
+                            string Email = reader["Email"].ToString();
+                            string Password = reader["Password"].ToString();
+                            bool IsAdmin = Convert.ToBoolean(Convert.ToInt32(reader["IsAdmin"].ToString()));
+                            return new User(Id, Email, Password, Username, Signature, AvatarUrl, IsAdmin);
+                        }
+                        reader.Close();
+                    }
+                    //TODO Close connection maybe?
+                    return null;
+                }
+            }
+            catch (OracleException oracleExc)
+            {
+                //TODO Needs proper exception handling
+                //Logger.Write(exc.Message);
+                return null;
+            }
+            catch (Exception exc)
+            {
+                return null;
+            }
 
-    }
+            #endregion
+
+
+        }
 }
