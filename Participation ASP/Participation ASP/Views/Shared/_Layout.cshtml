@@ -28,8 +28,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["Account"] != null)
                     {
-                        Account account = (Account)Session["User"];
-                        @Html.ActionLink("Profile", "Profile", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        IAccount account = (IAccount)Session["Account"];
+                        @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     else
