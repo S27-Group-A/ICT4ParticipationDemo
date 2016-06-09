@@ -9,6 +9,7 @@ namespace Participation_ASP.Models
     {
         public List<Account> AccountList { get; private set; }
 
+
         public List<Account> GetAccountList()
         {
             return DatabaseManager.GetAccounts();

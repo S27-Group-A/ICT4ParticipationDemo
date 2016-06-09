@@ -25,11 +25,9 @@
             <div class="form-group">
                 @foreach (Account account in Model.AccountList)
                 {
-                    <li>@Html.ActionLink(account.Username, "Index")</li>
+                    <li>@Html.ActionLink(account.Username, "Account", "Profile", new { id = account.AccountId }, new { @class = "list-group-item" })</li>
                 }
             </div>
         </div>
-
-
     </div>
 }
