@@ -21,9 +21,15 @@ namespace Participation_ASP.Controllers
             return View();
         }
 
-        public ActionResult LogIn()
+        public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["Account"] = null;
+            return RedirectToAction("index", "Home");
         }
 
         [AllowAnonymous]
