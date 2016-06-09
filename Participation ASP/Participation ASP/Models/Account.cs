@@ -50,7 +50,7 @@ namespace Participation_ASP.Models
 
         public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled)
         {
-            this.AccountID = accountId;
+            this.AccountId = accountId;
             this.Username = username;
             this.Password = password;
             this.Email = email;
@@ -65,6 +65,12 @@ namespace Participation_ASP.Models
             this.Banned = banned;
             this.Unban = unban;
             this.Enabled = enabled;
+        }
+
+
+        public IAccount LoginAccount(IAccount loginAccount)
+        {
+            return DatabaseManager.Get(loginAccount);
         }
     }
 }

@@ -39,5 +39,7 @@ namespace Participation_ASP.Models
         bool Enabled { get; set; }
 
         bool IsAdmin { get; set; }
+
+        IAccount LoginAccount(IAccount account);
     }
 }
