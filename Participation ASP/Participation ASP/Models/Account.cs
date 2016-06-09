@@ -8,7 +8,7 @@ namespace Participation_ASP.Models
 {
     public class Account : IAccount
     {
-        public int AccountId  { get; set; }
+        public int AccountId { get; set; }
 
         public string Username { get; set; }
 
@@ -25,7 +25,7 @@ namespace Participation_ASP.Models
 
         public string Name { get; set; }
 
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         public DateTime DateCancellation { get; set; }
 
@@ -41,14 +41,14 @@ namespace Participation_ASP.Models
 
         public bool Banned { get; set; }
 
-        public bool Unban { get; set; }
+        public DateTime Unban { get; set; }
 
         public bool Enabled { get; set; }
 
         public bool IsAdmin { get; set; }
 
 
-        public Account(int accountId, string username, string password, string email, string name, int phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, bool unban, bool enabled)
+        public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled)
         {
             this.AccountID = accountId;
             this.Username = username;

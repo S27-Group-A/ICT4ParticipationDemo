@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using System.Web.UI.WebControls;
 using MyFigureCollection.Exceptions;
 using Oracle.DataAccess.Client;
 
@@ -80,7 +81,7 @@ namespace Participation_ASP.Models
                     catch (OracleException exc)
                     {
                         Debug.WriteLine("Database Connection failed!\n" + exc.Message);
-                        throw;
+                        throw exc;
                     }
                 }
 
@@ -116,47 +117,104 @@ namespace Participation_ASP.Models
         }
 
         #region User
-        public static Account GetUser(string username, string password)
+        public static IAccount GetUser(IAccount account)
         {
-            try
+            using (OracleConnection con = Connection)
             {
-                using (OracleConnection con = Connection)
+                try
                 {
-                    string sql = "SELECT * FROM ACCOUNT WHERE Username = :Username AND Password = :Password";
-                    using (OracleCommand cmd = new OracleCommand(sql, con))
+
+                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
+                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
+                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
+                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "FROM \"User\" u " +
+                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN Patient p ON v.AccountId = p.AccountId " +
+                                                                 "WHERE a.Username = :Username AND a.Password = :Password");
+
+
+                    cmd.Parameters.Add("Username", account.Username);
+                    cmd.Parameters.Add("Password", account.Password);
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
                     {
-                        cmd.Parameters.Add("Username", username);
-                        cmd.Parameters.Add("Password", password);
-                        con.Open();
-                        OracleDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
+                        //User- and Account Data
+                        int AccountId = new int();
+                        if (reader["UserId"] != null)
+                            Convert.ToInt32(reader["UserId"].ToString());
+                        string Username = reader["Username"].ToString();
+                        string Password = reader["Password"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string Name = reader["Name"].ToString();
+                        string Phone = reader["Phone"].ToString();
+                        DateTime DateDeregistration = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
+                            DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
+                        string Adress = reader["Adress"].ToString();
+                        string Location = reader["Location"].ToString();
+                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+                        string Rfid = reader["Rfid"].ToString();
+                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
+                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
+                        DateTime Unban = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
+                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+
+                        //Admin Data
+                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
-                            int Id = Convert.ToInt32(reader["AccountId"].ToString());
-                            string Username = reader["Username"].ToString();
-                            string Email = reader["Email"].ToString();
-                            string Password = reader["Password"].ToString();
-                            bool IsAdmin = Convert.ToBoolean(Convert.ToInt32(reader["IsAdmin"].ToString()));
-                            return new User(Id, Email, Password, Username, Signature, AvatarUrl, IsAdmin);
+                            bool IsAdmin = true;
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled);
                         }
-                        reader.Close();
+
+                        //Patient Data 
+                        if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        {
+                            bool Ov = true;
+                            return new Patient();
+                        }
+
+                        //Volunteer Data
+                        if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
+                        {
+                            string Vog = reader["Vog"].ToString();
+                            bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogCofirmation"]));
+                            DateTime Birthdate = new DateTime();
+                            if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
+                                Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
+                            string Photo = reader["Photo"].ToString();
+                        }
+
                     }
                     //TODO Close connection maybe?
                     return null;
                 }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
-            catch (OracleException oracleExc)
-            {
-                //TODO Needs proper exception handling
-                //Logger.Write(exc.Message);
-                return null;
-            }
-            catch (Exception exc)
-            {
-                return null;
-            }
-
-            #endregion
-
 
         }
+
+        #endregion
+
+
+    }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Participation_ASP.Models
 {
-    interface IAccount
+    public interface IAccount
     {
         int AccountId { get; set; }
 

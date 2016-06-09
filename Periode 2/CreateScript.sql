@@ -20,8 +20,8 @@ Create Table "Account"
 (
   Accountid Number(10) Primary Key,
   Username Varchar2(32) Not Null,
-  Password Varchar2(32) Not Null,
-  Email Varchar2(255) Not Null
+  Password Varchar2(32) Not Null Unique,
+  Email Varchar2(255) Not Null Unique
 );
 
 Create Table "User"
@@ -55,7 +55,7 @@ Create Table Volunteer
   Vog Varchar2(255),
   Birthdate Date,
   Photo Varchar2(255),
-  VogConfirmation Varchar2(1),
+  VogConfirmation Varchar2(1) DEFAULT '0',
   CHECK (VogConfirmation = '1' OR VogConfirmation = '0') 
 );
 
@@ -98,7 +98,7 @@ Create Table Vehicletype
 Create Table Patient
 ( 
   Accountid Number(10) Primary Key,
-  Ov Varchar2(1),
+  Ov Varchar2(1) DEFAULT '0',
   CHECK (Ov = '1' OR Ov = '0')
 );
 
@@ -108,7 +108,7 @@ Create Table Meeting
   Patientid Number(10),
   Location Varchar(255),
   Meetingdate Date,
-  Status Varchar2(1),
+  Status Varchar2(1) DEFAULT '0',
   Primary Key(Volunteerid, Patientid),
   CHECK (Status = '1' OR Status = '0')
 );
@@ -154,8 +154,8 @@ Create Table Response
 );
 
 --ADD FOREIGN KEY CONSTRAINTS
-Alter Table "User" Add Foreign Key (Accountid) References Account(Accountid);
-Alter Table "Admin" Add Foreign Key (Accountid) References Account(Accountid);
+Alter Table "User" Add Foreign Key (Accountid) References "Account"(Accountid);
+Alter Table "Admin" Add Foreign Key (Accountid) References "Account"(Accountid);
 Alter Table Volunteer Add Foreign Key (Accountid) References "User"(Accountid);
 Alter Table Patient Add Foreign Key (Accountid) References "User" (Accountid);
 Alter Table "Availability" Add Foreign Key (Accountid) References Volunteer(Accountid);
@@ -260,4 +260,23 @@ BEGIN
 END;
 /
 
-INSERT INTO Account (Username, Password, Email)VALUES('test', 'test', 'test@test.nl');
+INSERT INTO "Account" (Username, Password, Email) VALUES ('patient', 'patient', 'patient@patient.nl');
+INSERT INTO "User" (AccountId, Name) VALUES (1, 'patientje');
+INSERT INTO Patient (AccountId) VALUES (1);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'volunteer', 'volunteer@volunteer.nl'); 
+INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
+INSERT INTO Volunteer (AccountId) VALUES (2);
+
+commit;
+
+SELECT ad.AccountId as "AdminId",
+v.AccountId as "VolunteerId", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation,
+P.Ov, p.AccountId as "PatientId", a.AccountId as "UserId", a.Username, a.Password, a.Email, 
+u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled 
+FROM "User" u FULL OUTER JOIN "Account" a ON u.AccountId = a.AccountId
+FULL OUTER JOIN "Admin" ad ON ad.AccountId = a.AccountId
+FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId
+FULL OUTER JOIN Patient p ON v.AccountId = p.AccountId
+WHERE a.Username = 'test' AND a.Password = 'test' 
+; 
