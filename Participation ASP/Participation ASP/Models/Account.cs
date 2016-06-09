@@ -64,5 +64,10 @@ namespace Participation_ASP.Models
             this.Unban = unban;
             this.Enabled = enabled;
         }
+
+        public Account LoginAccount(Account account)
+        {
+            return DatabaseManager.LoginAccount(account);
+        }
     }
 }

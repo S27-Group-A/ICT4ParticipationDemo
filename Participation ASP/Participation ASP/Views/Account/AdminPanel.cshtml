@@ -1,0 +1,35 @@
+﻿@using Participation_ASP.Models;
+@model Participation_ASP.Models.ViewModel;
+
+
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+<h2>AdminPanel</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Account</h4>
+        <hr />
+        <div class="form-group">
+            <div class="form-group">
+                <input type="submit" value="Keur Vrijwilliger" class="btn btn-default" />
+                <input type="submit" value="Verwijder Account" class="btn btn-default" />
+                <input type="submit" value="Pas Rechten Aan" class="btn btn-default" />
+            </div>
+
+            <div class="form-group">
+                @foreach (var account in model.ViewModel.GetAccountList())
+                {
+                    <li>@Html.ActionLink(account.Username, "Index")</li>
+                }
+            </div>
+        </div>
+
+
+    </div>
+}

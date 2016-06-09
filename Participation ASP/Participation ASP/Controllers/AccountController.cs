@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
+using Participation_ASP.Models;
 
 namespace Participation_ASP.Controllers
 {
@@ -18,14 +20,20 @@ namespace Participation_ASP.Controllers
         {
             return View();
         }
+
+        public ActionResult Adminpanel()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(Account loginAccount)
+        public async Task<ActionResult> Login(Account account)
         {
-            if (loginAccount.Email != String.Empty && loginAccount.Password != string.Empty)
+            if (account.Email != string.Empty && account.Password != string.Empty)
             {
-                Session["User"] = loginAccount.GetAccount(loginAccount);
+                Session["User"] = account.LoginAccount(account);
                 if (Session["User"] != null)
                 {
                     return RedirectToAction("Index", "Home");
@@ -33,5 +41,7 @@ namespace Participation_ASP.Controllers
             }
             return View();
         }
+
+
     }
 }
