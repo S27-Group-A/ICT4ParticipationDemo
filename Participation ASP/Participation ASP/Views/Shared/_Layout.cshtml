@@ -26,7 +26,7 @@
                     @Html.ActionLink("Test", "Overview", "Product", new { area = "" }, new { @class = "navbar-brand" })
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    @if (Session["User"] != null)
+                    @if (Session["Account"] != null)
                     {
                         Account account = (Account)Session["User"];
                         @Html.ActionLink("Profile", "Profile", "Account", new { area = "" }, new { @class = "navbar-brand" })
