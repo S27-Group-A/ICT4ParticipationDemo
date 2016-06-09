@@ -21,6 +21,11 @@ namespace Participation_ASP.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
