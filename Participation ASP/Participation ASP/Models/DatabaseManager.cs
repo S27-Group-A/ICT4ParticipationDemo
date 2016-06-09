@@ -170,18 +170,18 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
                             bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled);
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, isAdmin:);
                         }
 
                         //Patient Data 
-                        if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
                             bool Ov = true;
-                            return new Patient();
+                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, Ov);
                         }
 
                         //Volunteer Data
-                        if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
+                        else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogCofirmation"]));
@@ -189,11 +189,14 @@ namespace Participation_ASP.Models
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
+                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, Birthdate, Photo, Vog, VogConfirmation);
                         }
-
+                        else
+                        {
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
+                                Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
+                        }
                     }
-                    //TODO Close connection maybe?
-                    return null;
                 }
                 catch (OracleException e)
                 {
