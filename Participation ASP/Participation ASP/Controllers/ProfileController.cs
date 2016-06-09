@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Async;
+using Microsoft.SqlServer.Server;
 using Participation_ASP.Models;
 
 namespace Participation_ASP.Controllers
@@ -19,13 +21,15 @@ namespace Participation_ASP.Controllers
                 tempA.Add(new Availability("Ma", "Morgen"));
                 tempA.Add(new Availability("Di", "Middag"));
                 tempS.Add(new Skill("Timmeren"));
-                IAccount volunteer = new Volunteer(1, "Henk", "test", "-", "Henk", 0, DateTime.Now, "0", "0", true, true, "0", false, true, true, DateTime.Now, "0", "0", true, tempA, tempS);
-                Session["Account"] = volunteer;
+                Volunteer volunteer = new Volunteer(1, "Henk", "test", "testmail@test.nl", "Henk", string.Empty, DateTime.Now, string.Empty, string.Empty, false, false, string.Empty, false, DateTime.Now.AddDays(300), true, false, DateTime.Now, string.Empty, string.Empty, true);
+                volunteer.Availabilities = tempA;
+                volunteer.Skills = tempS;
+                Session["Account"] = (IAccount)volunteer;
                 return View(volunteer);
             }
             else
             {
-                return View((IAccount) Session["Account"]);
+                return View((IAccount)Session["Account"]);
             }
 
         }
@@ -33,7 +37,7 @@ namespace Participation_ASP.Controllers
         [HttpPost]
         public ActionResult AddSkill(FormCollection collection)
         {
-            IAccount account = (IAccount) Session["Account"];
+            IAccount account = (IAccount)Session["Account"];
             if (account is Volunteer)
             {
                 Volunteer tempV = account as Volunteer;

@@ -117,7 +117,7 @@ namespace Participation_ASP.Models
         }
 
         #region User
-        public static IAccount GetUser(IAccount account)
+        public static IAccount GetAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
             {
@@ -170,14 +170,14 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
                             bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, isAdmin:);
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin);
                         }
 
                         //Patient Data 
                         else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
                             bool Ov = true;
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, Ov);
+                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
                         }
 
                         //Volunteer Data
@@ -189,7 +189,7 @@ namespace Participation_ASP.Models
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, Birthdate, Photo, Vog, VogConfirmation);
+                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
                         }
                         else
                         {
@@ -197,6 +197,7 @@ namespace Participation_ASP.Models
                                 Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
                         }
                     }
+                    return null;
                 }
                 catch (OracleException e)
                 {

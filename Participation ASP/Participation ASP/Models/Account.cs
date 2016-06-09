@@ -50,24 +50,6 @@ namespace Participation_ASP.Models
 
         public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin)
         {
-<<<<<<< HEAD
-            AccountId = accountId;
-            Username = username;
-            Password = password;
-            Email = email;
-            Name = name;
-            Phone = phone;
-            DateCancellation = dateCancellation;
-            Address = address;
-            Location = location;
-            HasCar = hasCar;
-            HasDriversLicense = hasDriversLicense;
-            RFID = rfid;
-            Banned = banned;
-            Unban = unban;
-            Enabled = enabled;
-            IsAdmin = isAdmin;
-=======
             this.AccountId = accountId;
             this.Username = username;
             this.Password = password;
@@ -82,15 +64,13 @@ namespace Participation_ASP.Models
             this.RFID = rfid;
             this.Banned = banned;
             this.Unban = unban;
-            this.Enabled = enabled; 
->>>>>>> refs/remotes/origin/webSvenH
+            this.Enabled = enabled;
         }
 
 
         public IAccount LoginAccount(IAccount loginAccount)
         {
-            //return DatabaseManager.Get(loginAccount);
-            return null;
+            return DatabaseManager.GetAccount(loginAccount);
         }
     }
 }
