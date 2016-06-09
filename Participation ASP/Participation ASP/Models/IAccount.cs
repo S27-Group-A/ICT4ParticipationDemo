@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Participation_ASP.Models
 {
-    interface IAccount
+    public interface IAccount
     {
         int AccountId { get; set; }
 
@@ -39,5 +39,7 @@ namespace Participation_ASP.Models
         bool Enabled { get; set; }
 
         bool IsAdmin { get; set; }
+
+        IAccount LoginAccount(IAccount account);
     }
 }

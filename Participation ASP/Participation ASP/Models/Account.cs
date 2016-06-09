@@ -66,5 +66,11 @@ namespace Participation_ASP.Models
             this.Unban = unban;
             this.Enabled = enabled;
         }
+
+
+        public IAccount LoginAccount(IAccount loginAccount)
+        {
+            return DatabaseManager.Get(loginAccount);
+        }
     }
 }
