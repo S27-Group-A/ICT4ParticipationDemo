@@ -18,7 +18,7 @@ namespace Participation_ASP.Models
 
         string Name { get; set; }
 
-        int Phone { get; set; }
+        string Phone { get; set; }
 
         DateTime DateCancellation { get; set; }
 
@@ -34,7 +34,7 @@ namespace Participation_ASP.Models
 
         bool Banned { get; set; }
 
-        bool Unban { get; set; }
+        DateTime Unban { get; set; }
 
         bool Enabled { get; set; }
 

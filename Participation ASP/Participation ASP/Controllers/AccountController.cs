@@ -22,17 +22,27 @@ namespace Participation_ASP.Controllers
         }
 
         public ActionResult Adminpanel()
+		{
+			return View();
+		}
+		
+        public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["Account"] = null;
+            return RedirectToAction("index", "Home");
         }
 
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(Account loginAccount)
-
         {
-            if (account.Email != string.Empty && account.Password != string.Empty)
+            if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {
                 Session["Account"] = loginAccount.LoginAccount(loginAccount);
                 if (Session["Account"] != null)
