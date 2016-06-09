@@ -11,10 +11,16 @@ namespace Participation_ASP.Models
         public string Photo { get; set; }
         public string Vog { get; set; }
         public bool VogConfirmation { get; set; }
+        public List<Availability> Availabilities { get; set; }
+        public List<Skill> Skills { get; set; }
 
         public Volunteer(int accountId, string username, string password, string email, string name, string phone,
             DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid,
+<<<<<<< HEAD
             bool banned, DateTime unban, bool enabled, DateTime birthDate, string photo, string vog, bool vogConfirmation)
+=======
+            bool banned, bool unban, bool enabled, DateTime birthDate, string photo, string vog, bool vogConfirmation, List<Availability> availabilities, List<Skill> skills)
+>>>>>>> refs/remotes/origin/webSvenH
             : base(
                 accountId, username, password, email, name, phone, dateCancellation, address, location, hasCar,
                 hasDriversLicense, rfid, banned, unban, enabled)
@@ -23,6 +29,13 @@ namespace Participation_ASP.Models
             this.Photo = photo;
             this.Vog = vog;
             this.VogConfirmation = vogConfirmation;
+            this.Availabilities = availabilities;
+            this.Skills = skills;
+        }
+
+        public void AddSkill(string skill)
+        {
+            Skills.Add(new Skill(skill));
         }
     }
 }
