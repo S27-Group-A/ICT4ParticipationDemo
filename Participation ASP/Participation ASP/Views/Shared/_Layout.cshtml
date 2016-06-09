@@ -29,6 +29,7 @@
                     @if (Session["Account"] != null)
                     {
                         IAccount account = (IAccount)Session["Account"];
+                        Account account = (Account)Session["Account"];
                         @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
