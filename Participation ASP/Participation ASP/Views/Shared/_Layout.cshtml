@@ -23,14 +23,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @Html.ActionLink("Pricewatch", "Overview", "Product", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Test", "Overview", "Product", new { area = "" }, new { @class = "navbar-brand" })
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["User"] != null)
                     {
                         Account account = (Account)Session["User"];
                         @Html.ActionLink("Profile", "Profile", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Welcome " + account.UserName + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     else
                     {

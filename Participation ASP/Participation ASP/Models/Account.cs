@@ -50,7 +50,7 @@ namespace Participation_ASP.Models
 
         public Account(int accountId, string username, string password, string email, string name, int phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, bool unban, bool enabled)
         {
-            this.AccountID = accountId;
+            this.AccountId = accountId;
             this.Username = username;
             this.Password = password;
             this.Email = email;
