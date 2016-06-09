@@ -11,6 +11,8 @@ namespace Participation_ASP.Models
         public string Photo { get; set; }
         public string Vog { get; set; }
         public bool VogConfirmation { get; set; }
+        public List<Availability> Availability { get; set; }
+        public List<Skill> Skills { get; set; }
 
         public Volunteer(int accountId, string username, string password, string email, string name, int phone,
             DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid,

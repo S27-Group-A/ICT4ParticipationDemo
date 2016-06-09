@@ -64,7 +64,7 @@ namespace Participation_ASP.Models
             this.RFID = rfid;
             this.Banned = banned;
             this.Unban = unban;
-            this.Enabled = enabled;
+            this.Enabled = enabled; 
         }
     }
 }
