@@ -67,12 +67,6 @@ namespace Participation_ASP.Models
             this.Enabled = enabled;
         }
 
-        /*
-        public Account LoginAccount(Account account)
-        {
-            return DatabaseManager.LoginAccount(account);
-        }
-
         public bool ToggleAdmin(Account account)
         {
             return DatabaseManager.ToggleAdmin(account);
@@ -82,6 +76,10 @@ namespace Participation_ASP.Models
         {
             return DatabaseManager.BlockAccount(account);
         }
-        */
+
+        public IAccount LoginAccount(IAccount loginAccount)
+        {
+            return DatabaseManager.GetAccount(loginAccount);
+        }
     }
 }

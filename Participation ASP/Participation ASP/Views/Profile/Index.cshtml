@@ -1,9 +1,17 @@
-﻿@model Participation_ASP.Models.Account
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.Account
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@Model.Name</h2>
+
+@if (Model is Volunteer)
+{
+    <div>
+        <p>TESTSTTST</p>
+    </div>
+}
 
 

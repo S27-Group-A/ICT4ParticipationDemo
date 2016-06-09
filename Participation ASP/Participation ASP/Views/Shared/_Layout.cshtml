@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Diagnostics.Eventing.Reader
+@using Participation_ASP.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,10 +19,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Participation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @Html.ActionLink("Test", "Overview", "Product", new { area = "" }, new { @class = "navbar-brand" })
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["Account"] != null)
+                    {
+                        Account account = (Account)Session["User"];
+                        @Html.ActionLink("Profile", "Profile", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                    }
                 </ul>
             </div>
         </div>

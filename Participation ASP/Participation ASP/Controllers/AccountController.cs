@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
 using Participation_ASP.Models;
 
 namespace Participation_ASP.Controllers
@@ -29,12 +29,13 @@ namespace Participation_ASP.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(Account account)
+        public async Task<ActionResult> Login(Account loginAccount)
+
         {
             if (account.Email != string.Empty && account.Password != string.Empty)
             {
-                Session["User"] = account.LoginAccount(account);
-                if (Session["User"] != null)
+                Session["Account"] = loginAccount.LoginAccount(loginAccount);
+                if (Session["Account"] != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
