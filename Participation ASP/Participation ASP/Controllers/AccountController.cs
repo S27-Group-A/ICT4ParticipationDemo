@@ -41,7 +41,5 @@ namespace Participation_ASP.Controllers
             }
             return View();
         }
-
-
     }
 }

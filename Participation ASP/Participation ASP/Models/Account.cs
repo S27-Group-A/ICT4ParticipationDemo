@@ -6,9 +6,9 @@ using System.Web;
 
 namespace Participation_ASP.Models
 {
-    public class Account
+    public class Account : IAccount
     {
-        public int AccountID  { get; set; }
+        public int AccountId  { get; set; }
 
         public string Username { get; set; }
 
@@ -44,6 +44,8 @@ namespace Participation_ASP.Models
         public bool Unban { get; set; }
 
         public bool Enabled { get; set; }
+
+        public bool IsAdmin { get; set; }
 
 
         public Account(int accountId, string username, string password, string email, string name, int phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, bool unban, bool enabled)

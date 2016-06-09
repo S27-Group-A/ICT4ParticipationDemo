@@ -1,5 +1,5 @@
-﻿@using Participation_ASP.Models;
-@model Participation_ASP.Models.ViewModel;
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.ViewModel
 
 
 @{
@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                @foreach (var account in model.ViewModel.GetAccountList())
+                @foreach (Account account in Model.AccountList)
                 {
                     <li>@Html.ActionLink(account.Username, "Index")</li>
                 }
