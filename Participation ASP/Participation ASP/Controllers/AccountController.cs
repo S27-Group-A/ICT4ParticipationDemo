@@ -34,6 +34,7 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+            return View();
         }
     }
 }

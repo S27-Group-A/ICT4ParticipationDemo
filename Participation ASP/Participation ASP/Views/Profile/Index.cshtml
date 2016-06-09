@@ -28,9 +28,9 @@
                 <li>@s.Description</li>
             }
         </ul>
-        @using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
+        using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
         {
-            <input="text" name="skill" id="skill"/>
+            <input type="text" name="skill" id="skill"/>
             <!--
             <input type="password" name="Password" />
             You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
