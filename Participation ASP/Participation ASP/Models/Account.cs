@@ -70,8 +70,7 @@ namespace Participation_ASP.Models
 
         public IAccount LoginAccount(IAccount loginAccount)
         {
-            //return DatabaseManager.GetAccount(loginAccount);
-            return null;
+            return DatabaseManager.GetAccount(loginAccount);
         }
     }
 }
