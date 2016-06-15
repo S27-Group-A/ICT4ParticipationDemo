@@ -168,6 +168,8 @@
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
