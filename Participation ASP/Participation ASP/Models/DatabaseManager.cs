@@ -694,10 +694,7 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static List<Response> GetResponses()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public static bool ToggleAdmin(Account a)
         {
