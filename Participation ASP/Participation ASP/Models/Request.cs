@@ -10,23 +10,33 @@ namespace Participation_ASP.Models
         public int RequestId { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
-        public DateTime TimeStamp { get; set; }
+        /// <summary>
+        /// Traveltime in minutes
+        /// </summary>
+        public int TravelTime { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Urgency { get; set; }
         public int AmountOfVolunteers { get; set; }
+        public List<Skill> Skills { get; set; }
+        public VehicleType VehicleType { get; set; }
+        public Patient Patient { get; set; }
+        public List<Response> Responses { get; set; }
 
-        public Request(int requestId, string description, string location, DateTime timeStamp, DateTime startDate,
-            DateTime endDate, int urgency, int amountOfVolunteers)
+        public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Patient patient, List<Response> responses)
         {
-            this.RequestId = requestId;
-            this.Description = description;
-            this.Location = location;
-            this.TimeStamp = timeStamp;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Urgency = urgency;
-            this.AmountOfVolunteers = amountOfVolunteers;
+            RequestId = requestId;
+            Description = description;
+            Location = location;
+            TravelTime = travelTime;
+            StartDate = startDate;
+            EndDate = endDate;
+            Urgency = urgency;
+            AmountOfVolunteers = amountOfVolunteers;
+            Skills = skills;
+            VehicleType = vehicleType;
+            Patient = patient;
+            Responses = responses;
         }
     }
 }

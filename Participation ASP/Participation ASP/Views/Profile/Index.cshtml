@@ -13,32 +13,112 @@
 @if (Model is Volunteer)
 {
     {
-         Volunteer volunteer = Model as Volunteer;
-         <p>Beschikbaarheid:</p>
-        <ul>
-            @foreach (Availability a in volunteer.Availabilities)
-            {
-                <li>@a.Day: @a.TimeOfDay</li>
-            }
-        </ul>
-        <p>Vaardigheden:</p>
-        <ul>
-            @foreach (Skill s in volunteer.Skills)
-            {
-                <li>@s.Description</li>
-            }
-        </ul>
-        using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
+        <p>Beschikbaarheid:</p>
+        Volunteer volunteer = Model as Volunteer;
+        if (volunteer.Availabilities != null)
         {
-            <input type="text" name="skill" id="skill"/>
-            <!--
-            <input type="password" name="Password" />
-            You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
-            -->
-            <input type="submit" value="AddSkill" />
+
+            <ul>
+                @foreach (Availability a in volunteer.Availabilities)
+                {
+                    <li>@a.Day: @a.TimeOfDay</li>
+                    <li>@a.Day: @a.TimeOfDay</li>
+                }
+            </ul>
         }
-    }
 
-}
+        {
+            List<SelectListItem> dagen = new List<SelectListItem>();
+            dagen.Add(new SelectListItem
+            {
+                Text = "Maandag",
+                Value = "Ma",
+                Selected = true
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Dinsdag",
+                Value = "Di",
 
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Woensdag",
+                Value = "Wo"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Donderdag",
+                Value = "Do"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Vrijdag",
+                Value = "Vrij"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Zaterdag",
+                Value = "Za"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Zondag",
+                Value = "Zo"
+            });
 
+            @Html.DropDownListFor(model => volunteer, dagen)
+        }
+
+        {
+            List<SelectListItem> dagDeel = new List<SelectListItem>();
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Morgen",
+                Value = "Morning",
+                Selected = true
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Middag",
+                Value = "Midday",
+
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Avond",
+                Value = "Evening"
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Nacht",
+                Value = "Night"
+            });
+
+            @Html.DropDownListFor(model => volunteer, dagDeel)
+        }
+
+            <p>Vaardigheden:</p>
+
+            if (volunteer.Skills != null)
+            {
+                <ul>
+                    @foreach (Skill s in volunteer.Skills)
+                        {
+                        <li>@s.Description</li>
+                    }
+                </ul>
+            }
+
+            using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
+            {
+                <input type="text" name="skill" id="skill" />
+                <!--
+                <input type="password" name="Password" />
+                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
+                -->
+                <input type="submit" value="Toevoegen" />
+                    }
+                }
+
+            }

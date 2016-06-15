@@ -70,15 +70,6 @@ namespace Participation_ASP.Models
             this.Enabled = enabled;
         }
 
-        public bool ToggleAdmin(Account account)
-        {
-            return DatabaseManager.ToggleAdmin(account);
-        }
-
-        public bool BlockAccount(Account account)
-        {
-            return DatabaseManager.BlockAccount(account);
-        }
 
         public IAccount LoginAccount(IAccount loginAccount)
         {

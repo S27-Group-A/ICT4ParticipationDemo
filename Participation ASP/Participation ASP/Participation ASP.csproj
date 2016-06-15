@@ -170,6 +170,7 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +187,8 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\AdminPanel.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Account\Logout.cshtml" />
+    <Content Include="Views\Request\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
