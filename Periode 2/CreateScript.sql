@@ -76,7 +76,7 @@ Create Table Request
   Enddate Date,
   Urgency Number(1),
   AmountOfVolunteers Number(10),
-  PRIMARY KEY (AccountId, RequestId)
+  PRIMARY KEY (RequestId)
 );
 
 Create Table Review
@@ -292,18 +292,15 @@ VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
 
 commit;
 
-SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, 
-s.SkillId, s.Description,
-v.Description, v.VehicleTypeId, v.Description 
+SELECT 
+r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers,
+v.VehicleTypeId, v.Description,
+p.OV, 
+u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled 
 FROM VehicleType v 
-(RIGHT JOIN Request r ON
-v.RequestId = r.RequestId 
-LEFT JOIN RequestSkill rs ON
-rs.RequestId = r.RequestId
-LEFT JOIN Skill s ON
-s.SkillId = rs.SkillId) AND
-r ON patient p
-LEFT JOIN p.AccountId ON r.AccountId
+RIGHT JOIN Request r ON r.RequestId = v.RequestId
+LEFT JOIN Patient p ON p.AccountId = r.AccountId
+LEFT JOIN "User" u ON u.AccountId = p.AccountId
 ;
 
 /*
