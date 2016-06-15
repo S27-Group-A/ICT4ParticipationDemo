@@ -334,8 +334,8 @@ namespace Participation_ASP.Models
                     {
                         //User- and Account Data
                         int AccountId = new int();
-                        if (reader["UserId"] != null)
-                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
+                        if (reader["AccountId"] != null)
+                            AccountId = Convert.ToInt32(reader["AccountId"].ToString());
                         string Username = reader["Username"].ToString();
                         string Password = reader["Password"].ToString();
                         string Email = reader["Email"].ToString();
@@ -345,7 +345,6 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
                             DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
                         string Adress = reader["Adress"].ToString();
-                        string Location = reader["Location"].ToString();
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
@@ -355,17 +354,28 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
                             Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
-                        bool Ov = false;
+                        //Request Data
+                        // r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers
+                        int ReqId = new int();
+                        if (!string.IsNullOrEmpty(reader["RequestId"].ToString()))
+                            ReqId = Convert.ToInt32(reader["RequestId"].ToString());
+                        string Location = reader["Location"].ToString();
+                        TimeSpan TravelTime = new TimeSpan();
+                        if (!string.IsNullOrEmpty(reader["TravelTime"].ToString()))
+
+
+                            //Patient Data
+                            bool Ov = false;
                         if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                             Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                        Patient patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
-                        int VehicleTypeId
+                        Patient Patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
 
-                        VehicleType
-
-
-
-
+                        //Vehicle Data
+                        int VehicleTypeId = new int();
+                        if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
+                            VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
+                        string Description = reader["Description"].ToString();
+                        requests.Add(new Request());
 
                     }
                     return null;
