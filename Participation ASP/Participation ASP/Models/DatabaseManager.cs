@@ -59,10 +59,6 @@ namespace Participation_ASP.Models
             return command;
         }
 
-
-
-
-
         /// <summary>
         /// Runs the query of an OracleCommand, and returns an unread OracleDataReader with the results of the query.
         /// </summary>
@@ -320,21 +316,18 @@ namespace Participation_ASP.Models
             {
                 try
                 {
-                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
-                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
-                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
-                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
-                                                                 "FROM \"User\" u " +
-                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
-                                                                 "WHERE a.Email = :Email AND a.Password = :Password");
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, " +
+                        "v.VehicleTypeId, v.Description, " +
+                        "p.OV, " +
+                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "FROM VehicleType v " +
+                        "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
+                        "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
+                        "LEFT JOIN \"User\" u ON u.AccountId = p.AccountId"
+);
 
-
-                    cmd.Parameters.Add("Email", account.Email);
-                    cmd.Parameters.Add("Password", account.Password);
+                    var requests = new List<Request>();
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
                     while (reader.Read())
@@ -362,36 +355,18 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
                             Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
-                        //Admin Data
-                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
-                        {
-                            bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin);
-                        }
+                        bool Ov = false;
+                        if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
+                            Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
+                        Patient patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
+                        int VehicleTypeId
 
-                        //Patient Data 
-                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
-                        {
-                            bool Ov = true;
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
-                        }
+                        VehicleType
 
-                        //Volunteer Data
-                        else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
-                        {
-                            string Vog = reader["Vog"].ToString();
-                            bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
-                            DateTime Birthdate = new DateTime();
-                            if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
-                                Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
-                            string Photo = reader["Photo"].ToString();
-                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
-                        }
-                        else
-                        {
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
-                                Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
-                        }
+
+
+
+
                     }
                     return null;
                 }
