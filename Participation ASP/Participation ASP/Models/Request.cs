@@ -19,6 +19,8 @@ namespace Participation_ASP.Models
         public VehicleType VehicleType { get; set; }
         public Account Patient { get; set; }
 
+        public List<Response> Responses { get; set; }
+
         public Request(int requestId, string description, string location, DateTime timeStamp, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Account patient)
         {
             RequestId = requestId;
