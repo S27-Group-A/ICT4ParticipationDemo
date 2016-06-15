@@ -19,6 +19,5 @@ namespace Participation_ASP.Models
             this.Description = description;
             this.Date = date;
         }
-
     }
 }

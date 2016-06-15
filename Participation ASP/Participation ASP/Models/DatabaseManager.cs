@@ -59,10 +59,6 @@ namespace Participation_ASP.Models
             return command;
         }
 
-
-
-
-
         /// <summary>
         /// Runs the query of an OracleCommand, and returns an unread OracleDataReader with the results of the query.
         /// </summary>
@@ -240,6 +236,36 @@ namespace Participation_ASP.Models
         }
 
         internal bool BlockAccount(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool GetProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool GetRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool AlterAdmin(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool DeleteProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool DeleteRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool DeleteReview(int ID)
         {
             throw new NotImplementedException();
         }
