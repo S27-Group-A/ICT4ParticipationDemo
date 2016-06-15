@@ -693,6 +693,56 @@ namespace Participation_ASP.Models
                 }
             }
         }
+
+        public static List<Response> GetResponses()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ToggleAdmin(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool BlockAccount(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool GetProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool GetRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AlterAdmin(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteReview(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AlterEnabled(int ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
