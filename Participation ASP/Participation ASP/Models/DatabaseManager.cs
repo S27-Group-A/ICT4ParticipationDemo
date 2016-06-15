@@ -343,8 +343,9 @@ namespace Participation_ASP.Models
                         //Patient Data 
                         else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
-                            //TODO Fix ov
-                            bool Ov = true;
+                            bool Ov = false;
+                            if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
+                                Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
                             return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
                         }
 
@@ -392,15 +393,18 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, v.VehicleTypeId, v.Description, p.OV, a.Username, a.Email, a.Password, u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled FROM VehicleType v RIGHT JOIN Request r ON r.RequestId = v.RequestId LEFT JOIN Patient p ON p.AccountId = r.AccountId LEFT JOIN \"User\" u ON u.AccountId = p.AccountId LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId "/*"SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, " +
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
+                        "r.Urgency, r.AmountOfVolunteers, " +
                         "v.VehicleTypeId, v.Description, " +
-                        "p.OV, a.Username, a.Email, a.Password, " +
-                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "p.OV, " +
+                        "a.Username, a.Email, a.Password, " +
+                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
                         "FROM VehicleType v " +
                         "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
                         "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
                         "LEFT JOIN \"User\" u ON u.AccountId = p.AccountId " +
-                        "LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId "*/);
+                        "LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId ");
 
                     var requests = new List<Request>();
                     con.Open();
