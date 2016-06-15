@@ -47,9 +47,35 @@ namespace Participation_ASP.Models
 
 
 
-        internal static void AddSkill(string skill)
+        public static bool AddSkill(string skill)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO Skill (SkillId, Description)" +
+                        "VALUES (:Skill)"
+                        );
+                    cmd.Parameters.Add("AccountId", skill);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         internal static void AddAvailabilities(string day, string timeOfDay)
@@ -594,10 +620,44 @@ namespace Participation_ASP.Models
 
         public static List<Availability> GetAvailabilities(Volunteer volunteer)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT a.Day, a.TimeOfDay " +
+                        "FROM \"Availability\" a " +
+                        "INNER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                        "WHERE a.AccountId = :AccountId"
+                        );
+                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
+                    var availabilities = new List<Availability>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Day = reader["Day"].ToString();
+                        string TimeOfDay = reader["TimeOfDay"].ToString();
+                        availabilities.Add(new Availability(Day, TimeOfDay));
+                    }
+                    return availabilities;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
         #endregion
-
-
     }
 }

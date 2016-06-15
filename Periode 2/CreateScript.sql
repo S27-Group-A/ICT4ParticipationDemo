@@ -140,10 +140,11 @@ Create Table Chat
 
 Create Table "Availability"
 (
-  AccountId Number(10) Primary Key,
+  AccountId Number(10), --Primary Key,
   Day Varchar2(2),
-  Timeofday Varchar2(10),
-  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo')
+  TimeOfDay Varchar2(10),
+  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo'),
+  Primary Key(AccountId, Day, TimeOfDay)
 );
 
 Create Table Response
@@ -217,11 +218,6 @@ CREATE SEQUENCE RequestIncrementSeq
 /
 
 --AUTO IdINTIFIER INCREMENT TRIGGERS
-DROP TRIGGER AccountIncrementTrig;
-DROP TRIGGER SkillIncrementTrig;
-DROP TRIGGER ReviewIncrementTrig;
-DROP TRIGGER RequestIncrementTrig;
-
 CREATE OR REPLACE TRIGGER AccountIncrementTrig BEFORE INSERT ON "Account" REFERENCING OLD AS "OLD" NEW AS "NEW" FOR EACH ROW ENABLE WHEN (new.AccountId IS NULL)
 BEGIN
   SELECT AccountIncrementSeq.NEXTVAL INTO :new.AccountId FROM dual;
@@ -246,6 +242,7 @@ BEGIN
 END;
 /
 
+--DUMMY DATA
 INSERT INTO "Account" (Username, Password, Email) VALUES ('patient', 'patient', 'patient@patient.nl');
 INSERT INTO "User" (AccountId, Name) VALUES (1, 'patientje');
 INSERT INTO Patient (AccountId) VALUES (1);
@@ -253,6 +250,10 @@ INSERT INTO Patient (AccountId) VALUES (1);
 INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'volunteer', 'volunteer@volunteer.nl'); 
 INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
 INSERT INTO Volunteer (AccountId) VALUES (2);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'secondvolunteer', 'secondvolunteer@volunteer.nl'); 
+INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
+INSERT INTO Volunteer (AccountId) VALUES (3);
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
 INSERT INTO "Admin" (AccountId) VALUES (3);
@@ -264,10 +265,10 @@ TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
 INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
 VALUES (1, 1, 'Volkswagen');
 
-INSERT INTO Skill(SkillId, Description)
-VALUES (1, 'Goed met dieren');
-INSERT INTO Skill(SkillId, Description)
-VALUES (2, 'Masseur');
+INSERT INTO Skill(Description)
+VALUES ('Goed met dieren');
+INSERT INTO Skill(Description)
+VALUES ('Masseur');
 
 INSERT INTO VolunteerSkill(AccountId, SkillId)
 VALUES (2, 1);
@@ -278,40 +279,13 @@ VALUES (1, 1);
 INSERT INTO Response(ResponderId, RequestId, ResponseDate, Description)
 VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
 
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Mo', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Avond');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (3, 'Mo', 'Ochtend');
+
 commit;
-
-/*
-SELECT 
-r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers,
-v.VehicleTypeId, v.Description,
-p.OV, 
-u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled 
-FROM VehicleType v 
-RIGHT JOIN Request r ON r.RequestId = v.RequestId
-LEFT JOIN Patient p ON p.AccountId = r.AccountId
-LEFT JOIN "User" u ON u.AccountId = p.AccountId
-;
-
-SELECT res.RequestId, res.ResponseDate, res.Description,
-v.AccountId, v.Vog, v.VogConfirmation, v.Photo, v.Birthdate,
-u.Name, u.Phone, u.DateDeregistration, u.Adress, u.Location, u.Car, 
-u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled,
-a.Username, a.Password, a.Email
-FROM Request req FULL OUTER JOIN Response res 
-ON req.RequestId = res.RequestId 
-FULL OUTER JOIN Volunteer v ON v.AccountId = res.ResponderId
-FULL OUTER JOIN "User" u ON u.AccountId = v.AccountId
-FULL OUTER JOIN "Account" a ON a.AccountId = u.AccountId
-;
-
-/*
-SELECT ad.AccountId as "AdminId",
-v.AccountId as "VolunteerId", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation,
-P.Ov, p.AccountId as "PatientId", a.AccountId as "UserId", a.Username, a.Password, a.Email, 
-u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled 
-FROM "User" u RIGHT JOIN "Account" a ON u.AccountId = a.AccountId
-LEFT JOIN "Admin" ad ON ad.AccountId = a.AccountId
-LEFT JOIN Volunteer v ON v.AccountId = a.AccountId
-LEFT JOIN Patient p ON a.AccountId = p.AccountId
-; 
-*/
