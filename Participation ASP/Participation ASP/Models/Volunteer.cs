@@ -28,7 +28,31 @@ namespace Participation_ASP.Models
             {
                 Skills = new List<Skill>();
             }
+            DatabaseManager.AddSkill(skill);
             Skills.Add(new Skill(skill));
+        }
+
+        public void GetSkills(Volunteer volunteer)
+        {
+            DatabaseManager.GetSkills(volunteer);
+        }
+
+        public void GetAvailabilities(Volunteer volunteer)
+        {
+            DatabaseManager.GetAvailabilities(volunteer);
+        }
+
+        public void AddAvailabilities(string day, string timeOfDay)
+        {
+            if (day.Length > 0 && timeOfDay.Length > 0)
+            {
+                if (Availabilities == null)
+                {
+                    Availabilities = new List<Availability>();
+                }
+                Availabilities.Add(new Availability(day, timeOfDay));
+                DatabaseManager.AddAvailabilities(day, timeOfDay);
+            }
         }
     }
 }

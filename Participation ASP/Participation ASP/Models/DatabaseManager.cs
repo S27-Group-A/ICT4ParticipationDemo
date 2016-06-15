@@ -45,6 +45,26 @@ namespace Participation_ASP.Models
             }
         }
 
+        internal static void GetSkills(Volunteer volunteer)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void AddSkill(string skill)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void GetAvailabilities(Volunteer volunteer)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void AddAvailabilities(string day, string timeOfDay)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Creates an OracleCommand for the given query using the static OracleConnection field, and sets the CommandType to CommandType.Text (used for plain text queries).
         /// Used prior to adding parameters and executing the query.
@@ -545,6 +565,8 @@ namespace Participation_ASP.Models
         {
             throw new NotImplementedException();
         }
+
+        
 
         #endregion
 
