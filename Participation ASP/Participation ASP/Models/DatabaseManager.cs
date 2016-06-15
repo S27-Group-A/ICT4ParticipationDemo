@@ -54,10 +54,9 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "INSERT INTO Skill (SkillId, Description)" +
-                        "VALUES (:Skill)"
+                        "INSERT INTO Skill (Description) VALUES (:Skill)"
                         );
-                    cmd.Parameters.Add("AccountId", skill);
+                    cmd.Parameters.Add("Skill", skill);
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
@@ -78,9 +77,35 @@ namespace Participation_ASP.Models
             }
         }
 
-        internal static void AddAvailabilities(string day, string timeOfDay)
+        public static bool AddAvailability(int accountId, string day, string timeOfDay)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO \"Availability\" (AccountId, Day, TimeOfDay) VALUES (:AccountId, :Day, :TimeOfDay)");
+                    cmd.Parameters.Add("AccountId", accountId);
+                    cmd.Parameters.Add("Day", day);
+                    cmd.Parameters.Add("TimeOfDay", timeOfDay);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         /// <summary>

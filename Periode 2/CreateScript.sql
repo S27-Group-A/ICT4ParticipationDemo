@@ -140,10 +140,9 @@ Create Table Chat
 
 Create Table "Availability"
 (
-  AccountId Number(10), --Primary Key,
+  AccountId Number(10), 
   Day Varchar2(2),
   TimeOfDay Varchar2(10),
-  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo'),
   Primary Key(AccountId, Day, TimeOfDay)
 );
 
@@ -176,7 +175,11 @@ Alter Table Response Add Foreign Key (ResponderId) References Volunteer(AccountI
 Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId);
 
-
+--CHECK CONSTRAINTS
+ALTER TABLE "Availability" 
+ADD CONSTRAINT chk_Availability_Day  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo');
+ALTER TABLE "Availability"
+ADD CONSTRAINT chk_Availability_TimeOfDay   CHECK (TimeOfDay = 'Middag' OR TimeOfDay = 'Avond' OR TimeOfDay = 'Ochtend');
 
 
 --AUTO IdINTIFIER INCREMENT SEQUENCES

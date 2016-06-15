@@ -52,7 +52,8 @@ namespace Participation_ASP.Models
                     Availabilities = new List<Availability>();
                 }
                 Availabilities.Add(new Availability(day, timeOfDay));
-                DatabaseManager.AddAvailabilities(day, timeOfDay);
+                //TODO Requires a account id!
+                //DatabaseManager.AddAvailability(accountday, timeOfDay);
             }
         }
     }
