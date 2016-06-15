@@ -5,10 +5,12 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.WebControls;
 using MyFigureCollection.Exceptions;
 using Oracle.DataAccess.Client;
+using Participation_ASP.Exceptions;
 
 
 namespace Participation_ASP.Models
@@ -93,8 +95,16 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
-                    throw e;
+                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message))
+                    {
+                        throw new DayException(e.Message);
+                    }
+
+                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message))
+                    {
+                        throw new TimeOfDayException(e.Message);
+                    }
+                    return false;
                 }
                 catch (Exception e)
                 {

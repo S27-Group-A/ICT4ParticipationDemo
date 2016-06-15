@@ -179,7 +179,7 @@ Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId
 ALTER TABLE "Availability" 
 ADD CONSTRAINT chk_Availability_Day  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo');
 ALTER TABLE "Availability"
-ADD CONSTRAINT chk_Availability_TimeOfDay   CHECK (TimeOfDay = 'Middag' OR TimeOfDay = 'Avond' OR TimeOfDay = 'Ochtend');
+ADD CONSTRAINT chk_Availability_TimeOfDay CHECK (TimeOfDay = 'Middag' OR TimeOfDay = 'Avond' OR TimeOfDay = 'Ochtend');
 
 
 --AUTO IdINTIFIER INCREMENT SEQUENCES
