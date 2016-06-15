@@ -5,10 +5,12 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI.WebControls;
 using MyFigureCollection.Exceptions;
 using Oracle.DataAccess.Client;
+using Participation_ASP.Exceptions;
 
 
 namespace Participation_ASP.Models
@@ -42,6 +44,77 @@ namespace Participation_ASP.Models
                 return
                     new OracleConnection(
                         ConfigurationManager.ConnectionStrings["MyDatabase"].ConnectionString);
+            }
+        }
+
+
+
+        public static bool AddSkill(string skill)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO Skill (Description) VALUES (:Skill)"
+                        );
+                    cmd.Parameters.Add("Skill", skill);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static bool AddAvailability(int accountId, string day, string timeOfDay)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO \"Availability\" (AccountId, Day, TimeOfDay) VALUES (:AccountId, :Day, :TimeOfDay)");
+                    cmd.Parameters.Add("AccountId", accountId);
+                    cmd.Parameters.Add("Day", day);
+                    cmd.Parameters.Add("TimeOfDay", timeOfDay);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message))
+                    {
+                        throw new DayException(e.Message);
+                    }
+
+                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message))
+                    {
+                        throw new TimeOfDayException(e.Message);
+                    }
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
         }
 
@@ -541,71 +614,135 @@ namespace Participation_ASP.Models
             }
         }
 
+        public static List<Skill> GetSkills(Volunteer volunteer)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT s.SkillId, s.Description FROM Skill s RIGHT JOIN VolunteerSkill vs ON vs.SkillId = s.SkillId LEFT JOIN Volunteer v ON v.AccountId = vs.AccountId WHERE v.AccountId = :AccountId");
+                    cmd.Parameters.Add("RequestId", volunteer.AccountId);
+                    var skills = new List<Skill>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Description = reader["Description"].ToString();
+                        int SkillId = new int();
+                        if (!string.IsNullOrEmpty(reader["SkillId"].ToString()))
+                            SkillId = Convert.ToInt32(reader["SkillId"].ToString());
+                        skills.Add(new Skill(SkillId, Description));
+                    }
+                    return skills;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static List<Availability> GetAvailabilities(Volunteer volunteer)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT a.Day, a.TimeOfDay " +
+                        "FROM \"Availability\" a " +
+                        "INNER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                        "WHERE a.AccountId = :AccountId"
+                        );
+                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
+                    var availabilities = new List<Availability>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Day = reader["Day"].ToString();
+                        string TimeOfDay = reader["TimeOfDay"].ToString();
+                        availabilities.Add(new Availability(Day, TimeOfDay));
+                    }
+                    return availabilities;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         public static List<Response> GetResponses()
         {
             throw new NotImplementedException();
         }
 
+        public static bool ToggleAdmin(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool BlockAccount(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool GetProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool GetRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AlterAdmin(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteRequest(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool DeleteReview(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AlterEnabled(int ID)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
-
-        internal List<Account> GetAccounts()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal List<Request> GetRequests()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal List<Response> GetResponses()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool ToggleAdmin(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool BlockAccount(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool GetProfile(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool GetRequest(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool AlterAdmin(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool DeleteProfile(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool DeleteRequest(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool DeleteReview(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal bool AlterEnabled(int ID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
