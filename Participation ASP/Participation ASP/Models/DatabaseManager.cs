@@ -602,5 +602,10 @@ namespace Participation_ASP.Models
         {
             throw new NotImplementedException();
         }
+
+        internal bool AlterEnabled(int ID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

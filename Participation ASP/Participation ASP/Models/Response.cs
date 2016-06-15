@@ -18,6 +18,8 @@ namespace Participation_ASP.Models
             this.RequestId = RequestId;
             this.Description = description;
             this.Date = date;
+        }
+
         public Account Volunteer { get; set; }
 
         public string Context { get; set; }

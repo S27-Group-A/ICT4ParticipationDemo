@@ -90,6 +90,25 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult AlterEnabled(int ID)
+        {
+            IAccount account = Session["Account"] as Account;
+            if (account != null)
+            {
+                if (account.IsAdmin)
+                {
+                    //DatabaseManager.AlterEnabled(ID);
+                    return RedirectToAction("AdminPanel");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         #region Delete
         public ActionResult AdminDeleteProfile(int ID)
         {

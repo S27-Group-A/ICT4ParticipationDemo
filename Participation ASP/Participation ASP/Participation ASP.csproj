@@ -189,6 +189,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
+    <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

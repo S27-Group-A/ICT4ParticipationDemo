@@ -9,8 +9,6 @@ namespace Participation_ASP.Models
     {
         public int ReviewId { get; set; }
 
-        public Account Volunteer { get; set; }
-
         public Account Patient { get; set; }
 
         public int Rating { get; set; }
@@ -18,10 +16,9 @@ namespace Participation_ASP.Models
         public string Context { get; set; }
 
 
-        public Review(int reviewId, Account volunteer, Account patient, int rating, string context)
+        public Review(int reviewId, Account patient, int rating, string context)
         {
             ReviewId = reviewId;
-            Volunteer = volunteer;
             Patient = patient;
             Rating = rating;
             Context = context;

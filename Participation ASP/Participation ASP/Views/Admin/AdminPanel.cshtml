@@ -13,12 +13,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Account</h4>
         <hr />
         <div class="form-group">
             @Html.Label("Accounts: ")
             <div class="form-group">
-                @foreach (Account i in Model.GetAccountList())
+                @foreach (IAccount i in Model.GetAccountList())
                 {
                     <ul>
                         <li>@Html.ActionLink(i.Username, "Account", "Profile", new { id = i.AccountId }, new { @class = "list-group-item" })</li>
