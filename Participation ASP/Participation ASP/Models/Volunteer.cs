@@ -30,5 +30,10 @@ namespace Participation_ASP.Models
             }
             Skills.Add(new Skill(skill));
         }
+
+        public void GetSkills(Volunteer volunteer)
+        {
+            DatabaseManager.GetSkills(volunteer);
+        }
     }
 }

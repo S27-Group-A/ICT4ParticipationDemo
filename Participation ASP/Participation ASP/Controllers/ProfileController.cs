@@ -38,10 +38,11 @@ namespace Participation_ASP.Controllers
         public ActionResult AddSkill(FormCollection collection)
         {
             IAccount account = (IAccount)Session["Account"];
-            if (account is Volunteer)
+            string skill = collection["skill"];
+            if (account is Volunteer && skill.Length > 0)
             {
                 Volunteer tempV = account as Volunteer;
-                tempV.AddSkill(collection["skill"]);
+                tempV.AddSkill(skill);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

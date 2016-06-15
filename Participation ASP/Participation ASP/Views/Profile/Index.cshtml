@@ -67,10 +67,6 @@
                 Value = "Zo"
             });
 
-            @Html.DropDownListFor(model => volunteer, dagen)
-        }
-
-        {
             List<SelectListItem> dagDeel = new List<SelectListItem>();
             dagDeel.Add(new SelectListItem
             {
@@ -94,8 +90,17 @@
                 Text = "Nacht",
                 Value = "Night"
             });
-
-            @Html.DropDownListFor(model => volunteer, dagDeel)
+            using (Html.BeginForm("AddAvailability", "Profile", FormMethod.Post))
+            {
+                @Html.DropDownListFor(model => volunteer, dagDeel)
+                @Html.DropDownListFor(model => volunteer, dagen)
+                <!--
+                <input type="password" name="Password" />
+                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
+                -->
+                <input type="submit" value="Toevoegen" />
+            }
+            
         }
 
             <p>Vaardigheden:</p>
