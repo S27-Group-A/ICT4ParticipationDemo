@@ -159,18 +159,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
-
     <Compile Include="Models\DatabaseManager.cs" />
-
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\IAccount.cs" />
-
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Skill.cs" />
+    <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

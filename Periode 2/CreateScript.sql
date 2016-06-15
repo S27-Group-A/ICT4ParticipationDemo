@@ -18,7 +18,7 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 --CREATE TABLES AND ADD PRIMARY KEYS
 Create Table "Account"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Username Varchar2(32) Not Null,
   Password Varchar2(32) Not Null Unique,
   Email Varchar2(255) Not Null Unique
@@ -26,7 +26,7 @@ Create Table "Account"
 
 Create Table "User"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Name Varchar2(32) Not Null,
   Phone Varchar2(16),
   Datederegistration Date,
@@ -34,7 +34,7 @@ Create Table "User"
   Location Varchar(255),
   Car Varchar2(1) DEFAULT '0',
   Driverslicense Varchar2(1) DEFAULT '0',
-  Rfid Varchar2(255),
+  RfId Varchar2(255),
   Banned Varchar2(1) DEFAULT '0',
   Unban Date,
   Enabled Varchar2(1) DEFAULT '1', 
@@ -45,13 +45,13 @@ Create Table "User"
 
 Create Table "Admin"
 (
-  Accountid Number(10) Primary Key
+  AccountId Number(10) Primary Key
 );
 
 
 Create Table Volunteer
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Vog Varchar2(255),
   Birthdate Date,
   Photo Varchar2(255),
@@ -61,70 +61,72 @@ Create Table Volunteer
 
 Create Table Skill
 (
-  Skillid Number(10) Primary Key,
+  SkillId Number(10) Primary Key,
   Description Varchar2(255) Not Null
 );
 
 Create Table Request
 (
-  Requestid Number(10) Primary Key,
+  AccountId NUMBER(10),
+  RequestId Number(10),
   Description Varchar2(255),
   Location Varchar2(255),
   Traveltime Timestamp,
   Startdate Date,
   Enddate Date,
   Urgency Number(1),
-  Amountofvolunteers Number(10)
+  AmountOfVolunteers Number(10),
+  PRIMARY KEY (AccountId, RequestId)
 );
 
 Create Table Review
 (  
-  Reviewid Number(10),
-  Accountid Number(10),
-  Requestid Number(10),
+  ReviewId Number(10),
+  AccountId Number(10),
+  RequestId Number(10),
   Rating Number(2),
   "Comment" Varchar2(255),
-  Primary Key (Reviewid, Accountid, Requestid)
+  Primary Key (ReviewId, AccountId, RequestId)
 );
 
 Create Table Vehicletype
 ( 
   VehicleTypeId Number(10),
-  Requestid Number(10),
+  RequestId Number(10),
   Description Varchar2(255) Not Null,
-  Primary Key (Vehicletypeid, Requestid)
+  Primary Key (VehicletypeId, RequestId)
 );
 
 Create Table Patient
 ( 
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Ov Varchar2(1) DEFAULT '0',
   CHECK (Ov = '1' OR Ov = '0')
 );
 
 Create Table Meeting
 (
-  Volunteerid Number(10),
-  Patientid Number(10),
+  VolunteerId Number(10),
+  PatientId Number(10),
   Location Varchar(255),
   Meetingdate Date,
   Status Varchar2(1) DEFAULT '0',
-  Primary Key(Volunteerid, Patientid),
+  Primary Key(VolunteerId, PatientId),
   CHECK (Status = '1' OR Status = '0')
 );
 
 Create Table Volunteerskill
 (
-  Accountid Number(10),
-  Skillid Number(10),
-  Primary Key (Accountid, Skillid)
+  AccountId Number(10),
+  SkillId Number(10),
+  Primary Key (AccountId, SkillId)
 );
 --TODO Drop below
 Create Table Requestskill
 (
-  Requestid Number(10),
-  Skillid Number(10),
-  Primary Key (RequestId, Skillid)
+  RequestId Number(10),
+  SkillId Number(10),
+  Primary Key (RequestId, SkillId)
 );
 
 Create Table Chat
@@ -138,7 +140,7 @@ Create Table Chat
 
 Create Table "Availability"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Day Varchar2(2),
   Timeofday Varchar2(10),
   CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo')
@@ -154,24 +156,24 @@ Create Table Response
 );
 
 --ADD FOREIGN KEY CONSTRAINTS
-Alter Table "User" Add Foreign Key (Accountid) References "Account"(Accountid);
-Alter Table "Admin" Add Foreign Key (Accountid) References "Account"(Accountid);
-Alter Table Volunteer Add Foreign Key (Accountid) References "User"(Accountid);
-Alter Table Patient Add Foreign Key (Accountid) References "User" (Accountid);
-Alter Table "Availability" Add Foreign Key (Accountid) References Volunteer(Accountid);
-Alter Table Meeting Add Foreign Key (Volunteerid) References Volunteer(Accountid);
-Alter Table Meeting Add Foreign Key (Patientid) References Patient(Accountid);
-Alter Table Chat Add Foreign Key (Accounta) References Volunteer(Accountid);
-Alter Table Chat Add Foreign Key (Accountb) References Patient(Accountid);
-Alter Table Volunteerskill Add Foreign Key (Accountid) References Volunteer(Accountid);
-Alter Table Volunteerskill Add Foreign Key (Skillid) References Skill(Skillid);
-Alter Table Requestskill Add Foreign Key (RequestId) References Request(RequestId);
-Alter Table Requestskill Add Foreign Key (SkillId) References Skill(SkillId);
+Alter Table "User" Add Foreign Key (AccountId) References "Account"(AccountId);
+Alter Table "Admin" Add Foreign Key (AccountId) References "Account"(AccountId);
+Alter Table Volunteer Add Foreign Key (AccountId) References "User"(AccountId);
+Alter Table Patient Add Foreign Key (AccountId) References "User" (AccountId);
+Alter Table "Availability" Add Foreign Key (AccountId) References Volunteer(AccountId);
+Alter Table Meeting Add Foreign Key (VolunteerId) References Volunteer(AccountId);
+Alter Table Meeting Add Foreign Key (PatientId) References Patient(AccountId);
+Alter Table Chat Add Foreign Key (Accounta) References Volunteer(AccountId);
+Alter Table Chat Add Foreign Key (Accountb) References Patient(AccountId);
+Alter Table Volunteerskill Add Foreign Key (AccountId) References Volunteer(AccountId);
+Alter Table Volunteerskill Add Foreign Key (SkillId) References Skill(SkillId);
+Alter Table RequestSkill Add Foreign Key (RequestId) References Request(RequestId);
+Alter Table RequestSkill Add Foreign Key (SkillId) References Skill(SkillId);
 Alter Table Review Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table Review Add Foreign Key (AccountId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (ResponderId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
-Alter Table VehicleType Add Foreign Key (Requestid) References Request(RequestId);
+Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId);
 
 
 /*
@@ -192,7 +194,7 @@ DROP TABLE "Availability" CASCADE CONSTRAINTS;
 DROP TABLE Response CASCADE CONSTRAINTS;
 */
 
---AUTO IDINTIFIER INCREMENT SEQUENCES
+--AUTO IdINTIFIER INCREMENT SEQUENCES
 DROP SEQUENCE AccountIncrementSeq;
 DROP SEQUENCE SkillIncrementSeq;
 DROP SEQUENCE ReviewIncrementSeq;
@@ -230,7 +232,7 @@ CREATE SEQUENCE RequestIncrementSeq
  CACHE 20;
 /
 
---AUTO IDINTIFIER INCREMENT TRIGGERS
+--AUTO IdINTIFIER INCREMENT TRIGGERS
 DROP TRIGGER AccountIncrementTrig;
 DROP TRIGGER SkillIncrementTrig;
 DROP TRIGGER ReviewIncrementTrig;
@@ -271,14 +273,47 @@ INSERT INTO Volunteer (AccountId) VALUES (2);
 INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
 INSERT INTO "Admin" (AccountId) VALUES (3);
 
+INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', TO_TIMESTAMP ('01:00:00', 'HH24:MI:SS'), 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
+
+INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
+VALUES (1, 1, 'Volkswagen');
+
+INSERT INTO Skill(SkillId, Description)
+VALUES (1, 'Goed met dieren')
+;
+
+INSERT INTO RequestSkill(SkillId, RequestId)
+VALUES (1, 1);
+
+INSERT INTO Response(ResponderId, RequestId, ResponseDate, Description)
+VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
+
 commit;
 
+SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, 
+s.SkillId, s.Description,
+v.Description, v.VehicleTypeId, v.Description 
+FROM VehicleType v 
+(RIGHT JOIN Request r ON
+v.RequestId = r.RequestId 
+LEFT JOIN RequestSkill rs ON
+rs.RequestId = r.RequestId
+LEFT JOIN Skill s ON
+s.SkillId = rs.SkillId) AND
+r ON patient p
+LEFT JOIN p.AccountId ON r.AccountId
+;
+
+/*
 SELECT ad.AccountId as "AdminId",
 v.AccountId as "VolunteerId", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation,
 P.Ov, p.AccountId as "PatientId", a.AccountId as "UserId", a.Username, a.Password, a.Email, 
-u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled 
+u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled 
 FROM "User" u RIGHT JOIN "Account" a ON u.AccountId = a.AccountId
 LEFT JOIN "Admin" ad ON ad.AccountId = a.AccountId
 LEFT JOIN Volunteer v ON v.AccountId = a.AccountId
 LEFT JOIN Patient p ON a.AccountId = p.AccountId
 ; 
+*/

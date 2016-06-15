@@ -12,7 +12,7 @@ namespace Particpation_ASP_Test
         public void GetAccountsTest()
         {
             var accounts = DatabaseManager.GetAccounts();
-            Assert.AreNotEqual(accounts.Count, 0);
+            Assert.IsNotNull(accounts);
         }
     }
 }

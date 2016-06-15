@@ -7,7 +7,7 @@ namespace Participation_ASP.Models
 {
     public class ViewModel
     {
-        public List<Account> GetAccountList()
+        public List<IAccount> GetAccountList()
         {
             return DatabaseManager.GetAccounts();
         }
