@@ -26,12 +26,6 @@ namespace Participation_ASP.Controllers
             return View();
         }
 
-        public ActionResult Logout()
-        {
-            Session["Account"] = null;
-            return RedirectToAction("index", "Home");
-        }
-
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -44,6 +38,16 @@ namespace Participation_ASP.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
+            }
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["Account"] = null;
+            if (Session["Account"] == null)
+            {
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
