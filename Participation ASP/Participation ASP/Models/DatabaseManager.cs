@@ -45,17 +45,9 @@ namespace Participation_ASP.Models
             }
         }
 
-        internal static void GetSkills(Volunteer volunteer)
-        {
-            throw new NotImplementedException();
-        }
+
 
         internal static void AddSkill(string skill)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal static void GetAvailabilities(Volunteer volunteer)
         {
             throw new NotImplementedException();
         }
@@ -561,13 +553,49 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static List<Response> GetResponses()
+        public static List<Skill> GetSkills(Volunteer volunteer)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT s.SkillId, s.Description FROM Skill s RIGHT JOIN VolunteerSkill vs ON vs.SkillId = s.SkillId LEFT JOIN Volunteer v ON v.AccountId = vs.AccountId WHERE v.AccountId = :AccountId");
+                    cmd.Parameters.Add("RequestId", volunteer.AccountId);
+                    var skills = new List<Skill>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Description = reader["Description"].ToString();
+                        int SkillId = new int();
+                        if (!string.IsNullOrEmpty(reader["SkillId"].ToString()))
+                            SkillId = Convert.ToInt32(reader["SkillId"].ToString());
+                        skills.Add(new Skill(SkillId, Description));
+                    }
+                    return skills;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static List<Availability> GetAvailabilities(Volunteer volunteer)
         {
             throw new NotImplementedException();
         }
-
-        
-
         #endregion
 
 

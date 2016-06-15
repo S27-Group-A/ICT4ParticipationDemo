@@ -265,8 +265,12 @@ INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
 VALUES (1, 1, 'Volkswagen');
 
 INSERT INTO Skill(SkillId, Description)
-VALUES (1, 'Goed met dieren')
-;
+VALUES (1, 'Goed met dieren');
+INSERT INTO Skill(SkillId, Description)
+VALUES (2, 'Masseur');
+
+INSERT INTO VolunteerSkill(AccountId, SkillId)
+VALUES (2, 1);
 
 INSERT INTO RequestSkill(SkillId, RequestId)
 VALUES (1, 1);
