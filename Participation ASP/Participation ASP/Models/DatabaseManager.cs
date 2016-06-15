@@ -219,6 +219,29 @@ namespace Participation_ASP.Models
 
         #endregion
 
+        internal List<Account> GetAccounts()
+        {
+            throw new NotImplementedException();
+        }
 
+        internal List<Request> GetRequests()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal List<Response> GetResponses()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool ToggleAdmin(Account a)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool BlockAccount(Account a)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
