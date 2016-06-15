@@ -16,12 +16,5 @@ namespace Participation_ASP.Models
         {
             return DatabaseManager.GetRequests();
         }
-
-        //TODO Remove this
-        public List<Response> GetResponseList()
-        {
-            throw new NotImplementedException("Is this function really needed? Just call GetRequestList.Responses?");
-            return DatabaseManager.GetResponses();
-        }
     }
 }
