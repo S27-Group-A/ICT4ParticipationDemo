@@ -277,9 +277,8 @@ SELECT ad.AccountId as "AdminId",
 v.AccountId as "VolunteerId", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation,
 P.Ov, p.AccountId as "PatientId", a.AccountId as "UserId", a.Username, a.Password, a.Email, 
 u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled 
-FROM "User" u FULL OUTER JOIN "Account" a ON u.AccountId = a.AccountId
-FULL OUTER JOIN "Admin" ad ON ad.AccountId = a.AccountId
-FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId
-FULL OUTER JOIN Patient p ON v.AccountId = p.AccountId
-WHERE a.Username = 'patient' AND a.Password = 'patient' 
+FROM "User" u RIGHT JOIN "Account" a ON u.AccountId = a.AccountId
+LEFT JOIN "Admin" ad ON ad.AccountId = a.AccountId
+LEFT JOIN Volunteer v ON v.AccountId = a.AccountId
+LEFT JOIN Patient p ON a.AccountId = p.AccountId
 ; 
