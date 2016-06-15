@@ -399,7 +399,7 @@ namespace Participation_ASP.Models
                         requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, Skills, new VehicleType(VehicleTypeId, VehicleDescription), new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false), Responses));
 
                     }
-                    return null;
+                    return requests;
                 }
                 catch (OracleException e)
                 {
