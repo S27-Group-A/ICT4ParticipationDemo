@@ -382,7 +382,6 @@ namespace Participation_ASP.Models
                         bool Ov = false;
                         if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                             Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                        //Patient Patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
 
                         //Vehicle Data
                         int VehicleTypeId = new int();
@@ -391,12 +390,12 @@ namespace Participation_ASP.Models
                         string VehicleDescription = reader["Description"].ToString();
 
                         //Get Skill Data
-                        List<Skill> Skills = GetSkills(AccountId);
+                        List<Skill> skills = GetSkills(AccountId);
 
                         //Get Response Data
-                        List<Response> Responses = GetResponses(ReqId);
+                        List<Response> responses = GetResponses(ReqId);
 
-                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, Skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), Responses));
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
 
                     }
                     return requests;

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Participation_ASP.Models;
 
@@ -18,8 +20,8 @@ namespace Particpation_ASP_Test
         [TestMethod]
         public void GetRequests()
         {
-            var request = DatabaseManager.GetRequests();
-            Assert.IsNotNull(request);
+            List<Request> requests = DatabaseManager.GetRequests();
+            Assert.IsNotNull(requests);
         }
     }
 }
