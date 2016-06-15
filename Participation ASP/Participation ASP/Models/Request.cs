@@ -10,7 +10,10 @@ namespace Participation_ASP.Models
         public int RequestId { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
-        public TimeSpan TravelTime { get; set; }
+        /// <summary>
+        /// Traveltime in minutes
+        /// </summary>
+        public int TravelTime { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Urgency { get; set; }
@@ -18,14 +21,10 @@ namespace Participation_ASP.Models
         public List<Skill> Skills { get; set; }
         public VehicleType VehicleType { get; set; }
         public Account Patient { get; set; }
-public List<Response> Responses { get; set; }
+        public List<Response> Responses { get; set; }
 
-
-        public Request(int requestId, string description, string location, DateTime travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Account patient)
-
-        
-
-                {
+        public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Account patient, List<Response> responses)
+        {
             RequestId = requestId;
             Description = description;
             Location = location;
@@ -37,6 +36,7 @@ public List<Response> Responses { get; set; }
             Skills = skills;
             VehicleType = vehicleType;
             Patient = patient;
+            Responses = responses;
         }
     }
 }

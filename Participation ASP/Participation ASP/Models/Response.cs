@@ -13,12 +13,14 @@ namespace Participation_ASP.Models
 
         public string Context { get; set; }
 
+        public DateTime ResponseDate { get; set; }
 
-        public Response(Account volunteer, Request request, string context)
+
+        public Response(Account volunteer, string context, DateTime responseDate)
         {
             Volunteer = volunteer;
-            Request = request;
             Context = context;
+            ResponseDate = responseDate;
         }
     }
 }

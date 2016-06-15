@@ -14,5 +14,12 @@ namespace Particpation_ASP_Test
             var accounts = DatabaseManager.GetAccounts();
             Assert.IsNotNull(accounts);
         }
+
+        [TestMethod]
+        public void GetRequests()
+        {
+            var request = DatabaseManager.GetRequests();
+            Assert.IsNotNull(request);
+        }
     }
 }

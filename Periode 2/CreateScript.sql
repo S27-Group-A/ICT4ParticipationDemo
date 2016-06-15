@@ -71,7 +71,7 @@ Create Table Request
   RequestId Number(10),
   Description Varchar2(255),
   Location Varchar2(255),
-  Traveltime Timestamp,
+  Traveltime NUMBER(10),
   Startdate Date,
   Enddate Date,
   Urgency Number(1),
@@ -176,23 +176,7 @@ Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId);
 
 
-/*
-DROP TABLE "Account" CASCADE CONSTRAINTS;
-DROP TABLE "User" CASCADE CONSTRAINTS;
-DROP TABLE "Admin" CASCADE CONSTRAINTS;
-DROP TABLE Volunteer CASCADE CONSTRAINTS;
-DROP TABLE Skill CASCADE CONSTRAINTS;
-DROP TABLE Review CASCADE CONSTRAINTS;
-DROP TABLE Request CASCADE CONSTRAINTS;
-DROP TABLE VehicleType CASCADE CONSTRAINTS;
-DROP TABLE Patient CASCADE CONSTRAINTS;
-DROP TABLE Meeting CASCADE CONSTRAINTS;
-DROP TABLE VolunteerSkill CASCADE CONSTRAINTS;
-DROP TABLE RequestSkill CASCADE CONSTRAINTS;
-DROP TABLE Chat CASCADE CONSTRAINTS;
-DROP TABLE "Availability" CASCADE CONSTRAINTS;
-DROP TABLE Response CASCADE CONSTRAINTS;
-*/
+
 
 --AUTO IdINTIFIER INCREMENT SEQUENCES
 DROP SEQUENCE AccountIncrementSeq;
@@ -274,7 +258,7 @@ INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'adm
 INSERT INTO "Admin" (AccountId) VALUES (3);
 
 INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
-VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', TO_TIMESTAMP ('01:00:00', 'HH24:MI:SS'), 
+VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
 TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
 
 INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
@@ -292,6 +276,7 @@ VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
 
 commit;
 
+/*
 SELECT 
 r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers,
 v.VehicleTypeId, v.Description,
@@ -301,6 +286,18 @@ FROM VehicleType v
 RIGHT JOIN Request r ON r.RequestId = v.RequestId
 LEFT JOIN Patient p ON p.AccountId = r.AccountId
 LEFT JOIN "User" u ON u.AccountId = p.AccountId
+;
+
+SELECT res.RequestId, res.ResponseDate, res.Description,
+v.AccountId, v.Vog, v.VogConfirmation, v.Photo, v.Birthdate,
+u.Name, u.Phone, u.DateDeregistration, u.Adress, u.Location, u.Car, 
+u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled,
+a.Username, a.Password, a.Email
+FROM Request req FULL OUTER JOIN Response res 
+ON req.RequestId = res.RequestId 
+FULL OUTER JOIN Volunteer v ON v.AccountId = res.ResponderId
+FULL OUTER JOIN "User" u ON u.AccountId = v.AccountId
+FULL OUTER JOIN "Account" a ON a.AccountId = u.AccountId
 ;
 
 /*
