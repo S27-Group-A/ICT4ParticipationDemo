@@ -382,7 +382,7 @@ namespace Participation_ASP.Models
                         bool Ov = false;
                         if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                             Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                        Patient Patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
+                        //Patient Patient = new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
 
                         //Vehicle Data
                         int VehicleTypeId = new int();
@@ -396,7 +396,7 @@ namespace Participation_ASP.Models
                         //Get Response Data
                         List<Response> Responses = GetResponses(ReqId);
 
-                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, Skills, new VehicleType(VehicleTypeId, VehicleDescription), new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false), Responses));
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, Skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), Responses));
 
                     }
                     return requests;

@@ -20,10 +20,10 @@ namespace Participation_ASP.Models
         public int AmountOfVolunteers { get; set; }
         public List<Skill> Skills { get; set; }
         public VehicleType VehicleType { get; set; }
-        public Account Patient { get; set; }
+        public Patient Patient { get; set; }
         public List<Response> Responses { get; set; }
 
-        public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Account patient, List<Response> responses)
+        public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Patient patient, List<Response> responses)
         {
             RequestId = requestId;
             Description = description;
