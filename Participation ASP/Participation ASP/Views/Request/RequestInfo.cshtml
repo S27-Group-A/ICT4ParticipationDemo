@@ -1,0 +1,24 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.Request
+@{
+    ViewBag.Title = "RequestInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Patient.Name</h2>
+<p>@Model.Description</p>
+<p>Datum: @Model.StartDate.Day-@Model.StartDate.Month-@Model.StartDate.Year</p>
+<p>Locatie: @Model.Location</p>
+<p>Aantal Vrijwilliger gevraagd: @Model.AmountOfVolunteers</p>
+<p>Reacties:</p>
+<ul>
+    @foreach (Response response in Model.Responses)
+    {
+        <li>@response.Volunteer.Name: @response.Description</li>
+    }
+</ul>
+@using (Html.BeginForm("RespondToRequest", "Request"))
+{
+    <input type="text" id="Response" name="ResponseText"/>
+    <input type="submit" value="Reactie plaatsen"/>
+}

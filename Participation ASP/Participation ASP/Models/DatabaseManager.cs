@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI.WebControls;
-using MyFigureCollection.Exceptions;
-using Oracle.DataAccess.Client;
-using Participation_ASP.Exceptions;
-
-
-namespace Participation_ASP.Models
+﻿namespace Participation_ASP.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data;
+    using System.Diagnostics;
+    using System.Text.RegularExpressions;
+    using MyFigureCollection.Exceptions;
+    using Oracle.DataAccess.Client;
+    using Participation_ASP.Exceptions;
+
     public static class DatabaseManager
     {
-
         public static void TestConnection()
         {
             using (OracleConnection con = Connection)
@@ -48,7 +42,11 @@ namespace Participation_ASP.Models
         }
 
 
-
+        /// <summary>
+        /// Adds a skill to the database table
+        /// </summary>
+        /// <param name="skill">skill description</param>
+        /// <returns></returns>
         public static bool AddSkill(string skill)
         {
             using (OracleConnection con = Connection)
@@ -66,13 +64,13 @@ namespace Participation_ASP.Models
                 {
                     if (Regex.IsMatch("unique", e.Message))
                     {
-                        //throw new ExistingSkillException(e.Message);
+                        throw new ExistingSkillException(e.Message);
                     }
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -82,6 +80,13 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Adds a availability to the availability table
+        /// </summary>
+        /// <param name="accountId">acount identifier</param>
+        /// <param name="day">day in the format of {Mo, Di, Wo, Do, Vr, Za, Zo}</param>
+        /// <param name="timeOfDay">time of day in format of {ochtend, middag, avond}</param>
+        /// <returns></returns>
         public static bool AddAvailability(int accountId, string day, string timeOfDay)
         {
             using (OracleConnection con = Connection)
@@ -111,7 +116,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -183,13 +188,17 @@ namespace Participation_ASP.Models
             return command.ExecuteNonQuery() != 0;
         }
 
+        /// <summary>
+        /// Checks wether the current reader has any rows
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private static bool CheckReader(OracleDataReader reader)
         {
             return reader.HasRows;
         }
 
 
-        #region Get
         public static List<IAccount> GetAccounts()
         {
             using (OracleConnection con = Connection)
@@ -275,12 +284,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -290,6 +299,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets an account based on it's AccountId
+        /// </summary>
+        /// <param name="id">account identifier</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(int id)
         {
             using (OracleConnection con = Connection)
@@ -375,12 +389,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -390,7 +404,13 @@ namespace Participation_ASP.Models
             }
         }
 
-
+        /// <summary>
+        /// Gets an account based on it's email and password
+        /// Mainly used for logging in
+        /// </summary>
+        /// <param name="email">user's email</param>
+        /// <param name="password">user's password</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(string email, string password)
         {
             using (OracleConnection con = Connection)
@@ -484,12 +504,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -500,7 +520,13 @@ namespace Participation_ASP.Models
 
         }
 
+        /// <summary>
+        /// Returns a list of reviews based on an account's identifier
+        /// </summary>
+        /// <param name="accountId">account identifier</param>
+        /// <returns>All reviews of specified user</returns>
         public static List<Review> GetReviews(int accountId)
+
         {
             using (OracleConnection con = Connection)
             {
@@ -535,12 +561,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -550,6 +576,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Returns request based on request's indentifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns></returns>
         public static Request GetRequest(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -633,18 +664,17 @@ namespace Participation_ASP.Models
                         List<Response> responses = GetResponses(ReqId);
 
                         return new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses);
-
                     }
                     return null;
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -743,12 +773,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -850,12 +880,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -889,12 +919,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -972,12 +1002,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1011,12 +1041,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1049,12 +1079,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1090,12 +1120,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1143,12 +1173,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1198,12 +1228,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1265,7 +1295,15 @@ namespace Participation_ASP.Models
                     succes = ExecuteNonQuery(cmd);
 
                     //Add User
-                    int AccountId = GetAccount(account.Email, account.Password).AccountId;
+                    int AccountId = new int();
+                    cmd = CreateOracleCommand(con, "SELECT MAX(AccountId) AS AccountId FROM \"Account\"");
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        AccountId = Convert.ToInt32(reader["AccountId"].ToString());
+                    }
+
+
                     cmd = CreateOracleCommand(con,
                         "INSERT INTO \"User\"(AccountId, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid) " +
                         "VALUES(:AccountId, :Name, :Phone, :DateDeregistration, :Adress, :Location, :Car, :DriversLicense, :Rfid)");
@@ -1310,7 +1348,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                     return false;
                 }
@@ -1363,10 +1401,14 @@ namespace Participation_ASP.Models
                         int skillcount = request.Skills.Count;
                         int count = 0;
 
-                        OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
-                        vehicleCommand.Parameters.Add(":requestID", requestID);
-                        vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
-                        if (ExecuteNonQuery(vehicleCommand))
+                        if (request.VehicleType != null)
+                        {
+                            OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
+                            vehicleCommand.Parameters.Add(":requestID", requestID);
+                            vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
+                            ExecuteNonQuery(vehicleCommand);
+                        }
+                        if (request.Skills != null)
                         {
                             foreach (Skill s in request.Skills)
                             {
@@ -1402,13 +1444,19 @@ namespace Participation_ASP.Models
             {
                 try
                 {
+                    
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status)");
                     insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     insertCommand.Parameters.Add(":location", meeting.Location);
                     insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    insertCommand.Parameters.Add(":status", meeting.Status);
+                    int intStatus = 0;
+                    if (meeting.Status)
+                    {
+                        intStatus = 1;
+                    }
+                    insertCommand.Parameters.Add(":status", intStatus);
 
                     return ExecuteNonQuery(insertCommand);
                 }
@@ -1506,13 +1554,7 @@ namespace Participation_ASP.Models
             }
         }
 
-
-
-
-
-        //TODO Tom
-        public static
-        bool DeleteReview(int reviewId)
+        public static bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1539,9 +1581,9 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Fix this/Test this
         public static bool AddReview(Review review, int volunteerId)
         {
+            //TODO Fix this/Test this
             using (OracleConnection con = Connection)
             {
                 try
@@ -1573,7 +1615,6 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Sander
         public static List<Meeting> GetMeetings()
         {
             using (OracleConnection connection = Connection)
@@ -1581,64 +1622,73 @@ namespace Participation_ASP.Models
                 try
                 {
                     List<Meeting> returnMeetings = new List<Meeting>();
-
-                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID;");
+                    int volunteerID = 0;
+                    int patientID = 0;
+                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, v.VOG, v.BirthDate, v.PHOTO, v.VOGCONFIRMATION, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID");
 
                     OracleDataReader MainReader = ExecuteQuery(selectCommand);
 
                     while (MainReader.Read())
                     {
-                        int volunteerID = 0;
-                        int patientID = 0;
                         volunteerID = Convert.ToInt32(MainReader["VOLUNTEERID"].ToString());
                         patientID = Convert.ToInt32(MainReader["PATIENTID"].ToString());
                         string location = MainReader["MLOCATION"].ToString();
                         DateTime MeetingDate = Convert.ToDateTime(MainReader["MeetingDate"].ToString());
                         bool status = Convert.ToBoolean(Convert.ToInt32(MainReader["Status"].ToString()));
-                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"]).ToString());
+                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"].ToString()));
                         string pname = MainReader["pname"].ToString();
                         string pphone = MainReader["pphone"].ToString();
-                        DateTime pDateReg = Convert.ToDateTime(MainReader["PDATEREG"].ToString());
+                        DateTime pDateReg = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["PDATEDEREG"].ToString()))
+                        {
+                            pDateReg = Convert.ToDateTime(MainReader["PDATEDEREG"].ToString());
+                        }
                         string padress = MainReader["padress"].ToString();
                         string plocation = MainReader["plocation"].ToString();
                         bool pcar = Convert.ToBoolean(Convert.ToInt32(MainReader["pcar"].ToString()));
                         bool pdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["pdrivers"].ToString()));
-                        string prfid = MainReader["prifd"].ToString();
+                        string prfid = MainReader["PRFID"].ToString();
                         bool penabled = Convert.ToBoolean(Convert.ToInt32(MainReader["penabled"].ToString()));
-                        string pusername = MainReader["pusername"].ToString();
-                        string ppassword = MainReader["ppasswword"].ToString();
-                        string pemail = MainReader["pemail"].ToString();
+                        string pusername = MainReader["PUSERNAME"].ToString();
+                        string ppassword = MainReader["PPASSWORD"].ToString();
+                        string pemail = MainReader["PEMAIL"].ToString();
                         string vog = MainReader["vog"].ToString();
-                        DateTime vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        DateTime vbd = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["BIRTHDATE"].ToString()))
+                        {
+                            vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        }
                         string photo = MainReader["PHOTO"].ToString();
-                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"]).ToString());
-                        string vname = MainReader["vname"].ToString();
+                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"].ToString()));
+                        string vname = MainReader["VNAME"].ToString();
                         string vphone = MainReader["vphone"].ToString();
-                        DateTime vDateReg = Convert.ToDateTime(MainReader["vDATEREG"].ToString());
+                        DateTime vDateReg = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["vDATEDEREG"].ToString()))
+                        {
+                            vDateReg = Convert.ToDateTime(MainReader["vDATEDEREG"].ToString());
+                        }
                         string vadress = MainReader["vadress"].ToString();
                         string vlocation = MainReader["vlocation"].ToString();
                         bool vcar = Convert.ToBoolean(Convert.ToInt32(MainReader["vcar"].ToString()));
                         bool vdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["vdrivers"].ToString()));
-                        string vrfid = MainReader["vrifd"].ToString();
+                        string vrfid = MainReader["VRFID"].ToString();
                         bool venabled = Convert.ToBoolean(Convert.ToInt32(MainReader["venabled"].ToString()));
-                        string vusername = MainReader["pusername"].ToString();
-                        string vpassword = MainReader["ppasswword"].ToString();
-                        string vemail = MainReader["pemail"].ToString();
+                        string vusername = MainReader["VUSERNAME"].ToString();
+                        string vpassword = MainReader["VPASSWORD"].ToString();
+                        string vemail = MainReader["VEMAIL"].ToString();
                         Volunteer volunteer = new Volunteer(volunteerID, vusername, vpassword, vemail, vname, vphone, vDateReg, vadress, vlocation, vcar, vdrivers, vrfid, false, venabled, vbd, photo, vog, vogCon);
                         Patient patient = new Patient(patientID, pusername, ppassword, pemail, pname, pphone, pDateReg, padress, plocation, pcar, pdrivers, prfid, false, penabled, pOV);
                         returnMeetings.Add(new Meeting(patient, volunteer, location, MeetingDate, status));
                     }
                     return returnMeetings;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
-                    throw e;
+                    throw;
                 }
             }
         }
 
-        //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
-        #endregion
     }
 }

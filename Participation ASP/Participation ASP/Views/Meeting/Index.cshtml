@@ -1,0 +1,43 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.IAccount
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model is Volunteer)
+{
+    <h2>Kennismakinggesprekken goedkeuren.</h2>
+
+}
+@if (Model is Patient)
+{
+    <h2>Kennismakingsgesprekken plannen.</h2>
+    {
+        ViewModel viewModel = new ViewModel();
+        using (Html.BeginForm("PlanMeeting", "Meeting"))
+        {
+            <p>Kies een vrijwilliger:</p>
+            <select id="volunteer" class="form-control" size="1" name="volunteer">
+                @foreach (IAccount account in viewModel.AccountList)
+                {
+                    if (account is Volunteer)
+                    {
+                        Volunteer volunteer = account as Volunteer;
+                        <option value="@volunteer.Email">@volunteer.Name</option>
+                    }
+                }
+            </select>
+            <div class="control-group">
+                <p>Datum:</p>
+                <div class="controls">
+                    <input type="date" id="date" name="date" class="input-xlarge">
+                </div>
+                <p>Locatie:</p>
+                <input type="text" name="location" id="location"/>
+                <input type="submit" value="Plannen"/>
+            </div>
+        }
+
+    }
+}
+
