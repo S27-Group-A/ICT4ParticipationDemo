@@ -899,8 +899,40 @@ namespace Participation_ASP.Models
         }
 
 
+        //Must
+        public static bool AddAccount(IAccount account)
+        {
+            throw new NotImplementedException();
+        }
 
-        public static bool ToggleAdmin(Account a)
+        //Must
+        public static bool AlterSkills(List<Skill> skills)
+        {
+            throw new NotImplementedException();
+        }
+
+        //For changing the status of meeting
+        public static bool AlterMeeting(Meeting meeting)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AddRequest(Request request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AddMeeting(Meeting meeting)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AddResponse(Response response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AlterAdmin(Account a)
         {
             throw new NotImplementedException();
         }
@@ -915,16 +947,12 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-
+        //Must
         public static bool AlterAdmin(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public static bool DeleteProfile(int ID)
-        {
-            throw new NotImplementedException();
-        }
 
         public static bool DeleteRequest(int ID)
         {
@@ -936,10 +964,18 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
+        //Must
         public static bool AlterEnabled(int ID)
         {
             throw new NotImplementedException();
         }
+
+        //Must
+        public static bool AlterVogConfirmation(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }
