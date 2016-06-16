@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @if (Model is Volunteer)
 {
     <h2>Kennismakinggesprekken goedkeuren.</h2>
@@ -15,8 +14,9 @@
     <h2>Kennismakingsgesprekken plannen.</h2>
     {
         ViewModel viewModel = new ViewModel();
-        using (Html.BeginForm("SelectVolunteer", "Meeting"))
+        using (Html.BeginForm("PlanMeeting", "Meeting"))
         {
+            <p>Kies een vrijwilliger:</p>
             <select id="volunteer" class="form-control" size="1" name="volunteer">
                 @foreach (IAccount account in viewModel.AccountList)
                 {
@@ -27,7 +27,15 @@
                     }
                 }
             </select>
-            <input type="date" id="datepicker"/>
+            <div class="control-group">
+                <p>Datum:</p>
+                <div class="controls">
+                    <input type="date" id="DateAdded" name="DateAdded" class="input-xlarge">
+                </div>
+                <p>Locatie:</p>
+                <input type="text" name="location" id="location"/>
+                <input type="submit" value="Plannen"/>
+            </div>
         }
 
     }

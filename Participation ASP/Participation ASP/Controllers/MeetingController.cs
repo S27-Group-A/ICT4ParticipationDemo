@@ -28,5 +28,11 @@ namespace Participation_ASP.Controllers
             }
             return RedirectToAction("Index", "Error");
         }
+
+        [HttpPost]
+        public ActionResult PlanMeeting(FormCollection collection)
+        {
+            
+        }
     }
 }
