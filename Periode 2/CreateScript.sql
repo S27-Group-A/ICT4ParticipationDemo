@@ -291,4 +291,7 @@ VALUES (2, 'Di', 'Middag');
 INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
 VALUES (3, 'Mo', 'Ochtend');
 
+INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
+VALUES (1, 2, 10, 'Aardige jongeman');
+
 commit;

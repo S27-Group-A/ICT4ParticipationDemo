@@ -9,17 +9,17 @@ namespace Participation_ASP.Models
     {
         public int ReviewId { get; set; }
 
-        public Account Patient { get; set; }
+        public Request Request { get; set; }
 
         public int Rating { get; set; }
 
         public string Context { get; set; }
 
 
-        public Review(int reviewId, Account patient, int rating, string context)
+        public Review(int reviewId, Request request, int rating, string context)
         {
             ReviewId = reviewId;
-            Patient = patient;
+            Request = request;
             Rating = rating;
             Context = context;
         }
