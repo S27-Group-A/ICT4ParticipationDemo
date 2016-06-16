@@ -29,7 +29,7 @@ namespace Participation_ASP.Models
 
         public DateTime DateCancellation { get; set; }
 
-        public string Address { get; set; }
+        public string Adress { get; set; }
 
         public string Location { get; set; }
 
@@ -37,43 +37,38 @@ namespace Participation_ASP.Models
 
         public bool HasDriversLicense { get; set; }
 
-        public string RFID { get; set; }
-
-        public bool Banned { get; set; }
-
-        public DateTime Unban { get; set; }
-
-        public bool Enabled { get; set; }
+        public string Rfid { get; set; }
 
         public bool IsAdmin { get; set; }
+
+        public bool Enabled { get; set; }
 
         public Account()
         {
         }
 
-        public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin)
+        public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool isAdmin, bool enabled)
         {
-            this.AccountId = accountId;
-            this.Username = username;
-            this.Password = password;
-            this.Email = email;
-            this.Name = name;
-            this.Phone = phone;
-            this.DateCancellation = dateCancellation;
-            this.Address = address;
-            this.Location = location;
-            this.HasCar = hasCar;
-            this.HasDriversLicense = hasDriversLicense;
-            this.RFID = rfid;
-            this.Banned = banned;
-            this.Unban = unban;
-            this.Enabled = enabled;
+            AccountId = accountId;
+            Username = username;
+            Password = password;
+            Email = email;
+            Name = name;
+            Phone = phone;
+            DateCancellation = dateCancellation;
+            Adress = adress;
+            Location = location;
+            HasCar = hasCar;
+            HasDriversLicense = hasDriversLicense;
+            Rfid = rfid;
+            IsAdmin = isAdmin;
+            Enabled = enabled;
         }
 
 
         public IAccount LoginAccount(IAccount loginAccount)
         {
-            return DatabaseManager.GetAccount(loginAccount);
+            return DatabaseManager.GetAccount(loginAccount.Email, loginAccount.Password);
         }
     }
 }

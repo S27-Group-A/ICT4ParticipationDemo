@@ -16,22 +16,43 @@ namespace Participation_ASP.Models
         public List<Review> Reviews { get; set; }
 
 
-        public Volunteer(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin, DateTime birthDate, string photo, string vog, bool vogConfirmation) : base(accountId, username, password, email, name, phone, dateCancellation, address, location, hasCar, hasDriversLicense, rfid, banned, unban, enabled, isAdmin)
+        public Volunteer(DateTime birthDate, string photo, string vog, bool vogConfirmation, List<Availability> availabilities, List<Skill> skills)
         {
-            this.BirthDate = birthDate;
-            this.Photo = photo;
-            this.Vog = vog;
-            this.VogConfirmation = vogConfirmation;
+            BirthDate = birthDate;
+            Photo = photo;
+            Vog = vog;
+            VogConfirmation = vogConfirmation;
+            Availabilities = availabilities;
+            Skills = skills;
         }
 
-        public Volunteer(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin, DateTime birthDate, string photo, string vog, bool vogConfirmation, List<Review> reviewlist) : base(accountId, username, password, email, name, phone, dateCancellation, address, location, hasCar, hasDriversLicense, rfid, banned, unban, enabled, isAdmin)
+        public Volunteer(DateTime birthDate, string photo, string vog, bool vogConfirmation, List<Availability> availabilities, List<Skill> skills, List<Review> reviews)
         {
-            this.BirthDate = birthDate;
+            BirthDate = birthDate;
+            Photo = photo;
+            Vog = vog;
+            VogConfirmation = vogConfirmation;
+            Availabilities = availabilities;
+            Skills = skills;
+            Reviews = reviews;
+        }
+
+
+        public Volunteer(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool isAdmin, bool enabled, DateTime birthdate, string photo, string vog, bool vogConfirmation, List<Review> reviews) : base(accountId, username, password, email, name, phone, dateCancellation, adress, location, hasCar, hasDriversLicense, rfid, isAdmin, enabled)
+        {
+            this.BirthDate = birthdate;
             this.Photo = photo;
             this.Vog = vog;
             this.VogConfirmation = vogConfirmation;
+            this.Reviews = reviews;
+        }
 
-            this.Reviews = reviewlist;
+        public Volunteer(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool isAdmin, bool enabled, DateTime birthdate, string photo, string vog, bool vogConfirmation) : base(accountId, username, password, email, name, phone, dateCancellation, adress, location, hasCar, hasDriversLicense, rfid, isAdmin, enabled)
+        {
+            this.BirthDate = birthdate;
+            this.Photo = photo;
+            this.Vog = vog;
+            this.VogConfirmation = vogConfirmation;
         }
 
         public void AddSkill(string skill)
