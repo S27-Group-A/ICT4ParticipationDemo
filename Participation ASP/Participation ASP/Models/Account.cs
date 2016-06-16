@@ -58,7 +58,7 @@ namespace Participation_ASP.Models
         public DateTime DateCancellation { get; set; }
 
         /// <summary>
-        /// Gets or the adress.
+        /// Gets or the address.
         /// </summary>
         public string Adress { get; set; }
 
