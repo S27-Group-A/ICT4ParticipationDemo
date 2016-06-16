@@ -5,18 +5,18 @@ using Participation_ASP.Models;
 namespace Particpation_ASP_Test
 {
     [TestClass]
-    public class DatabaseManagerAlterTests
+    public class DatabaseManagerDeleteTests
     {
         [TestMethod]
-        public void AlterAdmin()
+        public void DeleteRequest()
         {
-            Assert.IsTrue(DatabaseManager.AlterAdmin(2));
+            DatabaseManager.DeleteRequest(2);
         }
 
         [TestMethod]
-        public void AlterEnabled()
+        public void DeleteReview()
         {
-            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
+            DatabaseManager.DeleteReview(2);
         }
     }
 }

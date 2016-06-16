@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="DatabaseManagerAddTests.cs" />
     <Compile Include="DatabaseManagerAlterTests.cs" />
+    <Compile Include="DatabaseManagerDeleteTests.cs" />
     <Compile Include="DatabaseManagerGetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -855,7 +855,7 @@ namespace Participation_ASP.Models
                         //Get Response Data
                         List<Response> responses = GetResponses(ReqId);
 
-                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
+                        //requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
 
                     }
                     return requests;
@@ -1140,19 +1140,15 @@ namespace Participation_ASP.Models
                     //User is not an admin, add user to admin
                     if (string.IsNullOrEmpty(value))
                     {
-                        cmd = CreateOracleCommand(con,
-                            "INSERT INTO \"Admin\" (AccountID) VALUES (:accountId);"
-                            );
+                        cmd.CommandText = "INSERT INTO \"Admin\" (AccountID) VALUES (:accountId)";
+                            
                     }
                     //User is an admin, remove user from admin
                     else
                     {
-                        cmd = CreateOracleCommand(con,
-                            "DELETE FROM \"Admin\" WHERE AccountID = :accountId);"
-                            );
+                        cmd.CommandText = "DELETE FROM \"Admin\" WHERE AccountID = :accountId";
                     }
 
-                        cmd.Parameters.Add(":accountId", ID);
                         cmd.ExecuteNonQuery();
 
                         return true;
@@ -1181,7 +1177,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId;"
+                        "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
                         );
 
                     cmd.Parameters.Add(":accountId", ID);
@@ -1195,18 +1191,18 @@ namespace Participation_ASP.Models
                     }
 
                     cmd = CreateOracleCommand(con,
-                        "UPDATE \"User\" SET Enabled :value WHERE AccountID = :accountId;"
+                        "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
                         );
 
                     cmd.Parameters.Add(":accountId", ID);
 
                     if (value == 0)
                     {
-                        cmd.Parameters.Add(":value", 1);
+                        cmd.Parameters.Add(":value", '1');
                     }
                     else
                     {
-                        cmd.Parameters.Add(":value", 0);
+                        cmd.Parameters.Add(":value", '0');
                     }
 
                     cmd.ExecuteNonQuery();
@@ -1325,7 +1321,7 @@ namespace Participation_ASP.Models
 
                     cmd.Parameters.Add(":requestid", ID);
 
-                    cmd.ExecuteNonQuery();
+                    ExecuteNonQuery(cmd);
                     return true;
                 }
                 catch (OracleException e)
@@ -1359,7 +1355,8 @@ namespace Participation_ASP.Models
 
                     cmd.Parameters.Add(":reviewid", ID);
 
-                    cmd.ExecuteNonQuery();
+                    ExecuteNonQuery(cmd);
+
                     return true;
                 }
                 catch (OracleException e)
@@ -1404,11 +1401,6 @@ namespace Participation_ASP.Models
         }
 
         public static bool BlockAccount(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool GetProfile(int ID)
         {
             throw new NotImplementedException();
         }
