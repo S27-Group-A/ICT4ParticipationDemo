@@ -1104,7 +1104,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description");
+                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description)");
                     insertCommand.Parameters.Add(":responderID", response.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":requestID", request.RequestId);
                     insertCommand.Parameters.Add(":responseDate", response.ResponseDate);
