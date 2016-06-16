@@ -21,5 +21,10 @@ namespace Participation_ASP.Models
             this.Date = date;
             this.Status = status;
         }
+
+        public bool AddMeeting(Meeting meeting)
+        {
+            return DatabaseManager.AddMeeting(meeting);
+        }
     }
 }

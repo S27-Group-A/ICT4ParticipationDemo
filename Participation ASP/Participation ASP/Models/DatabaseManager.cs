@@ -1002,32 +1002,80 @@ namespace Participation_ASP.Models
 
         public static bool AddRequest(Request request)
         {
-            using (OracleConnection con = new OracleConnection())
+            using (OracleConnection connection = Connection)
             {
                 try
                 {
-                    OracleCommand cmd = CreateOracleCommand(con,
-                        "INSERT INTO " +
-                        "Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers) " +
-                        "VALUES (:AccountId, :Description, :Location, :TravelTime, :StartDate, :EndDate, :Urgency, :AmountOfVolunteers)");
-                    return ExecuteNonQuery(cmd);
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUEST.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
+                    insertCommand.Parameters.Add(":patientID", request.Patient.AccountId);
+                    insertCommand.Parameters.Add(":description", request.Description);
+                    insertCommand.Parameters.Add(":location", request.Location);
+                    insertCommand.Parameters.Add(":travelTime", request.TravelTime);
+                    insertCommand.Parameters.Add(":startDate", request.StartDate);
+                    insertCommand.Parameters.Add(":endDate", request.EndDate);
+                    insertCommand.Parameters.Add(":urgency", request.Urgency);
+                    insertCommand.Parameters.Add(":amountOfVolunteers", request.AmountOfVolunteers);
+
+
+                    if (ExecuteNonQuery(insertCommand))
+                    {
+                        int requestID = 0;
+                        OracleCommand selectCommand = CreateOracleCommand(connection,
+                            "SELECT MAX(REQUESTID) FROM REQUEST");
+                        OracleDataReader MainReader = ExecuteQuery(selectCommand);
+
+                        while (MainReader.Read())
+                        {
+                            requestID = Convert.ToInt32(MainReader["MAX(REQUESTID)"].ToString());
+                        }
+                        int skillcount = request.Skills.Count;
+                        int count = 0;
+                        foreach (Skill s in request.Skills)
+                        {
+                            OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
+                            subinsertCommand.Parameters.Add(":requestID", requestID);
+                            subinsertCommand.Parameters.Add(":skillID", s.Id);
+                            if (ExecuteNonQuery(subinsertCommand))
+                            {
+                                count++;
+                            }
+                        }
+                        if (count >= skillcount)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
-                catch (OracleException e)
-                {
-                    throw e;
-                }
-                catch (Exception e)
+                catch (Exception)
                 {
 
-                    throw e;
+                    throw;
                 }
             }
         }
 
-        //TODO Sander
-        public static bool AddMeeting(Meeting meeting)
+        public static bool AddResponse(Response response, Request request)
         {
-            throw new NotImplementedException();
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description");
+                    insertCommand.Parameters.Add(":responderID", response.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":requestID", request.RequestId);
+                    insertCommand.Parameters.Add(":responseDate", response.ResponseDate);
+                    insertCommand.Parameters.Add(":description", response.Description);
+
+                    return ExecuteNonQuery(insertCommand);
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
         }
 
         //TODO Sander
@@ -1071,6 +1119,7 @@ namespace Participation_ASP.Models
                     OracleCommand cmd = CreateOracleCommand(con,
                         "DELETE FROM Review WHERE ReviewId = :ReviewId");
                     cmd.Parameters.Add("ReviewId", reviewId);
+                    con.Open();
                     return ExecuteNonQuery(cmd);
                 }
                 catch (OracleException e)
@@ -1080,6 +1129,10 @@ namespace Participation_ASP.Models
                 catch (Exception e)
                 {
                     throw e;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
         }
@@ -1096,10 +1149,36 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
+
         //TODO Sven J
         public static bool AlterVogConfirmation(int ID)
         {
             throw new NotImplementedException();
+        }
+
+        public static bool AddMeeting(Meeting meeting)
+
+        {
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    insertCommand.Parameters.Add(":location", meeting.Location);
+                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    insertCommand.Parameters.Add(":status", meeting.Status);
+
+                    return ExecuteNonQuery(insertCommand);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
 
         //TODO Sander
