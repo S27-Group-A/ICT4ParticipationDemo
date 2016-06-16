@@ -41,7 +41,6 @@
             }
         }
 
-
         /// <summary>
         /// Adds a skill to the database table
         /// </summary>
@@ -69,7 +68,6 @@
                 }
                 catch (Exception e)
                 {
-
                     throw e;
                 }
                 finally
@@ -82,7 +80,7 @@
         /// <summary>
         /// Adds a availability to the availability table
         /// </summary>
-        /// <param name="accountId">acount identifier</param>
+        /// <param name="accountId">account identifier</param>
         /// <param name="day">day in the format of {Mo, Di, Wo, Do, Vr, Za, Zo}</param>
         /// <param name="timeOfDay">time of day in format of {ochtend, middag, avond}</param>
         /// <returns></returns>
