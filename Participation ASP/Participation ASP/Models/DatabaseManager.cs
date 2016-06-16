@@ -971,86 +971,144 @@ namespace Participation_ASP.Models
         }
 
         //Must
-        public static bool AlterSkills(List<Skill> skills)
+        public static bool AlterVolunteerSkills(List<Skill> skills, int accountId)
         {
             using (OracleConnection con = new OracleConnection())
             {
+                //    try
+                //    {
+                //        OracleCommand cmd = CreateOracleCommand(con, 
+                //            "UPDATE Skill SET Description ");
+                //        cmd.Parameters.Add("Username", account.Username);
+                //        cmd.Parameters.Add("Password", account.Password);
+                //        cmd.Parameters.Add(":Email", account.Email);
+                //    }
+                //    catch (OracleException e)
+                //    {
+                //        throw e;
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        throw e;
+                //    }
+                //    finally
+                //    {
+                //        con.Close();
+                //    }
+                //}
                 throw new NotImplementedException();
             }
         }
 
-        //For changing the status of meeting
-        public static bool AlterMeeting(Meeting meeting)
-        {
-            throw new NotImplementedException();
-        }
-
         public static bool AddRequest(Request request)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = new OracleConnection())
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO " +
+                        "Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers) " +
+                        "VALUES (:AccountId, :Description, :Location, :TravelTime, :StartDate, :EndDate, :Urgency, :AmountOfVolunteers)");
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+            }
         }
 
+        //TODO Sander
         public static bool AddMeeting(Meeting meeting)
         {
             throw new NotImplementedException();
         }
 
+        //TODO Sander
+        public static bool AlterMeeting(Meeting meeting)
+        {
+            //Voor het accepteren/weigeren van een meeting
+            throw new NotImplementedException();
+        }
+
+        //TODO Sander
         public static bool AddResponse(Response response)
         {
             throw new NotImplementedException();
         }
 
-        public static bool AlterAdmin(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool BlockAccount(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
+        //TODO Sven H
         public static bool GetProfile(int ID)
         {
             throw new NotImplementedException();
         }
 
+        //TODO Sven J
         public static bool AlterAdmin(int accountId)
         {
             throw new NotImplementedException();
         }
 
-
+        //TODO Tom
         public static bool DeleteRequest(int ID)
         {
             throw new NotImplementedException();
         }
 
+        //TODO Tom
         public static bool DeleteReview(int ID)
+        {
+            using (OracleConnection con = new OracleConnection())
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "DELETE FROM");
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+            }
+        }
+
+        //TODO Tom
+        public static bool AddReview(int ID)
         {
             throw new NotImplementedException();
         }
 
+        //TODO Sven J
         public static bool AlterEnabled(int ID)
         {
             throw new NotImplementedException();
         }
 
+        //TODO Sven J
         public static bool AlterVogConfirmation(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public static bool AddMeeting()
-        {
-            throw new NotImplementedException();
-        }
-
+        //TODO Sander
         public static List<Meeting> GetMeetings()
         {
             throw new NotImplementedException();
         }
 
+        //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
         #endregion
     }
 }
