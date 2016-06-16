@@ -18,21 +18,26 @@ namespace Participation_ASP.Controllers
                 Volunteer volunteer = accountInlog as Volunteer;
                 return View(volunteer);
             }
+            if (accountInlog is Patient)
+            {
+                Patient patient = accountInlog as Patient;
+                return View(patient);
+            }
             return RedirectToAction("Index", "Error");
         }
 
         [HttpPost]
-        public ActionResult RespondToRequest(FormCollection collection, Request request)
+        public ActionResult RespondToRequest(FormCollection collection)
         {
             string reactie = collection["ResponseText"];
             if (reactie.Length > 0)
             {
-                Response newResponse = null;
+                Response newResponse = new Response();
                 IAccount accountLoggedIn = (IAccount) Session["Account"];
                 Volunteer volunteerAccount = accountLoggedIn as Volunteer;
-                newResponse.AddResponse(new Response(volunteerAccount, reactie, DateTime.Now), request);
-                request.AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
-                return View("RequestInfo", request);
+                newResponse.AddResponse(new Response(volunteerAccount, reactie, DateTime.Now), (Request)Session["CurrentRequest"]);
+                ((Request)Session["CurrentRequest"]).AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
+                return View("RequestInfo", (Request)Session["CurrentRequest"]);
             }
             return RedirectToAction("Index", "Error");
         }
@@ -43,7 +48,7 @@ namespace Participation_ASP.Controllers
             Request request = (Request) Session["Request" + id.ToString()];
             if (request != null)
             {
-                
+                Session["CurrentRequest"] = request;
                 return View(request);
             }
             return RedirectToAction("Index", "Error");

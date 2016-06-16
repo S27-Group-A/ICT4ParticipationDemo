@@ -23,6 +23,10 @@ namespace Participation_ASP.Models
         public Patient Patient { get; set; }
         public List<Response> Responses { get; set; }
 
+        public Request()
+        {
+            
+        }
         public Request(int requestId)
         {
             RequestId = requestId;

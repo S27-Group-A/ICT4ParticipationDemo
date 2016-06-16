@@ -21,6 +21,9 @@ namespace Participation_ASP.Models
 
         public int ResponseId { get; set; }
 
+        public Response()
+        {
+        }
 
         public Response(int responderid, int RequestId, string description, DateTime date)
         {
