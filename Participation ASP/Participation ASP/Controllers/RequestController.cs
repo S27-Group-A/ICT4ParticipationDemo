@@ -65,6 +65,20 @@ namespace Participation_ASP.Controllers
             int skillId = Convert.ToInt32(collection["skill"]);
             if (description != "" && location != "" && date > DateTime.Today)
             {
+                ViewModel viewModel = new ViewModel();
+                Skill tempSkill = null;
+                foreach (Skill s in viewModel.SkillList)
+                {
+                    if (s.Id == skillId)
+                    {
+                        tempSkill = s;
+                    }
+                }
+                List<Skill> skills = new List<Skill>();
+                skills.Add(tempSkill);
+                Request request = new Request();
+                request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers,
+                    skills, null, (Patient) Session["Account"]));
                 return Content(description + location + date + urgence + amountOfVolunteers + skillId);
             }
             return RedirectToAction("Index", "Error");
