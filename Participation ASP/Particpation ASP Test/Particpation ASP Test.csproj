@@ -52,7 +52,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AdminControllerTests.cs" />
     <Compile Include="DatabaseManagerAddTests.cs" />
     <Compile Include="DatabaseManagerGetTests.cs" />
     <Compile Include="DatabaseManagerDeleteTests.cs" />

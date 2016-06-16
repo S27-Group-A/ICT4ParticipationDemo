@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Participation_ASP.Models;
-
-namespace Participation_ASP.Controllers
+﻿namespace Participation_ASP.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Participation_ASP.Models;
+
     public class AccountController : Controller
     {
         // GET: Account

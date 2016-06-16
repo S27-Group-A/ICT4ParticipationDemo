@@ -131,7 +131,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="ClassDiagram.cd" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
@@ -152,13 +151,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminController.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Exceptions\ExistingSkillException.cs" />
     <Compile Include="Exceptions\DayException.cs" />
     <Compile Include="Exceptions\DatabaseNotConnectedException.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Exceptions\ExistingSkillException.cs" />
     <Compile Include="Exceptions\ExistingUserException.cs" />
     <Compile Include="Exceptions\TimeOfDayException.cs" />
     <Compile Include="Global.asax.cs">
