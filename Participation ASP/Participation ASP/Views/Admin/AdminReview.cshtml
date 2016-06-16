@@ -1,0 +1,38 @@
+﻿@using Participation_ASP.Models
+@model List<Review>
+
+@{
+    ViewBag.Title = "AdminReviews";
+}
+
+<h2>AdminReviews</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                <h5>Hulpvragen</h5>
+                <div class="col-md-10">
+                    @foreach (Review r in Model)
+                    {
+                        <div class="col-md-10">
+                            @Html.Label("Reviewer: " + r.Patient.Name)
+                            @Html.Label("Aantal punten: " + r.Rating)
+                            @Html.Label("Beschrijving: " + r.Context)
+                        </div>
+
+                        <div class="col-md-10">
+                            @Html.ActionLink("Verwijder Review", "DeleteReview", new { Id = r.ReviewId })
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

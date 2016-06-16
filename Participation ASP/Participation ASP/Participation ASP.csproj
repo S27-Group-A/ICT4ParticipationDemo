@@ -193,8 +193,8 @@
     <Content Include="Views\Request\Index.cshtml" />
     <Content Include="Views\Admin\AdminProfilePatient.cshtml" />
     <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
-    <Content Include="Views\Admin\AdminRequests.cshtml" />
-    <Content Include="Views\Admin\AdminReviews.cshtml" />
+    <Content Include="Views\Admin\AdminRequest.cshtml" />
+    <Content Include="Views\Admin\AdminReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -204,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AdminProfilePatient\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
