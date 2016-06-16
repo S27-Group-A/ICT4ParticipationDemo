@@ -755,6 +755,117 @@ namespace Participation_ASP.Models
             }
         }
 
+        public static List<Request> GetRequests(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
+                        "r.Urgency, r.AmountOfVolunteers, " +
+                        "v.VehicleTypeId, v.Description, " +
+                        "p.OV, " +
+                        "a.Username, a.Email, a.Password, " +
+                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "FROM VehicleType v " +
+                        "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
+                        "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
+                        "LEFT JOIN \"User\" u ON u.AccountId = p.AccountId " +
+                        "LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId " +
+                        "WHERE r.RequestID = :requestid");
+
+                    cmd.Parameters.Add(":requestid", ID);
+
+                    var requests = new List<Request>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        //User- and Account Data
+                        int AccountId = new int();
+                        if (reader["AccountId"] != null)
+                            AccountId = Convert.ToInt32(reader["AccountId"].ToString());
+                        string Username = reader["Username"].ToString();
+                        string Password = reader["Password"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string Name = reader["Name"].ToString();
+                        string Phone = reader["Phone"].ToString();
+                        DateTime DateDeregistration = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
+                            DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
+                        string Adress = reader["Adress"].ToString();
+                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+                        string Rfid = reader["Rfid"].ToString();
+                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
+                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
+                        DateTime Unban = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
+                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+
+                        //Request Data
+                        int ReqId = new int();
+                        if (!string.IsNullOrEmpty(reader["RequestId"].ToString()))
+                            ReqId = Convert.ToInt32(reader["RequestId"].ToString());
+                        string Location = reader["Location"].ToString();
+                        int TravelTime = new int();
+                        if (!string.IsNullOrEmpty(reader["TravelTime"].ToString()))
+                            Convert.ToInt32(reader["TravelTime"].ToString());
+                        DateTime StartDate = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["StartDate"].ToString()))
+                            StartDate = Convert.ToDateTime(reader["StartDate"].ToString());
+                        DateTime EndDate = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["EndDate"].ToString()))
+                            EndDate = Convert.ToDateTime(reader["EndDate"].ToString());
+                        int Urgency = new int();
+                        if (!string.IsNullOrEmpty(reader["Urgency"].ToString()))
+                            Urgency = Convert.ToInt32(reader["Urgency"].ToString());
+                        int AmountOfVolunteers = new int();
+                        if (!string.IsNullOrEmpty(reader["AmountOfVolunteers"].ToString()))
+                            AmountOfVolunteers = Convert.ToInt32(reader["AmountOfVolunteers"].ToString());
+                        string Description = reader["Description"].ToString();
+
+                        //Patient Data
+                        bool Ov = false;
+                        if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
+                            Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
+
+                        //Vehicle Data
+                        int VehicleTypeId = new int();
+                        if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
+                            VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
+                        string VehicleDescription = reader["Description"].ToString();
+
+                        //Get Skill Data
+                        List<Skill> skills = GetSkills(AccountId);
+
+                        //Get Response Data
+                        List<Response> responses = GetResponses(ReqId);
+
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
+
+                    }
+                    return requests;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         private static List<Skill> GetSkills(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -997,6 +1108,117 @@ namespace Participation_ASP.Models
             }
         }
 
+        public static bool AlterAdmin(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT AccountID FROM \"Admin\" WHERE AccountID = :accountId"
+                        );
+
+                    cmd.Parameters.Add(":accountId", ID);
+
+                    string value = null;
+
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        value = reader["AccountID"].ToString();
+                    }
+
+                    //User is not an admin, add user to admin
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        cmd = CreateOracleCommand(con,
+                            "INSERT INTO \"Admin\" (AccountID) VALUES (:accountId);"
+                            );
+                    }
+                    //User is an admin, remove user from admin
+                    else
+                    {
+                        cmd = CreateOracleCommand(con,
+                            "DELETE FROM \"Admin\" WHERE AccountID = :accountId);"
+                            );
+                    }
+
+                        cmd.Parameters.Add(":accountId", ID);
+                        cmd.ExecuteNonQuery();
+
+                        return true;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static bool AlterEnabled(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId;"
+                        );
+
+                    cmd.Parameters.Add(":accountId", ID);
+
+                    int value = 1;
+
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        value = Convert.ToInt32(reader["Enabled"].ToString());
+                    }
+
+                    cmd = CreateOracleCommand(con,
+                        "UPDATE \"User\" SET Enabled :value WHERE AccountID = :accountId;"
+                        );
+
+                    cmd.Parameters.Add(":accountId", ID);
+
+                    if (value == 0)
+                    {
+                        cmd.Parameters.Add(":value", 1);
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add(":value", 0);
+                    }
+
+                    cmd.ExecuteNonQuery();
+                    return true;           
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
 
         //Must
         public static bool AddAccount(IAccount account)
@@ -1031,11 +1253,6 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-        public static bool AlterAdmin(Account a)
-        {
-            throw new NotImplementedException();
-        }
-
         public static bool BlockAccount(Account a)
         {
             throw new NotImplementedException();
@@ -1047,24 +1264,12 @@ namespace Participation_ASP.Models
         }
 
         //Must
-        public static bool AlterAdmin(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-
         public static bool DeleteRequest(int ID)
         {
             throw new NotImplementedException();
         }
 
         public static bool DeleteReview(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        //Must
-        public static bool AlterEnabled(int ID)
         {
             throw new NotImplementedException();
         }
