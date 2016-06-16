@@ -64,7 +64,10 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    if (Regex.IsMatch("UNIQUE", e.Message))
+                    {
+                        throw new ExistingSkillException(e.Message);
+                    }
                     throw e;
                 }
                 catch (Exception e)
@@ -197,7 +200,7 @@ namespace Participation_ASP.Models
                                                                  "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
                                                                  "p.Ov, p.AccountId as \"PatientId\", " +
                                                                  "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
                                                                  "FROM \"User\" u " +
                                                                  "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
@@ -229,21 +232,13 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["DriversLicense"].ToString()))
                             DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = false;
-                        if (!string.IsNullOrEmpty(reader["Banned"].ToString()))
-                            Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = true;
                         if (!string.IsNullOrEmpty(reader["Enabled"].ToString()))
                             Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
                         //Admin Data
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
-                            bool IsAdmin = true;
-                            accounts.Add(new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin));
                         }
 
                         //Patient Data 
@@ -252,12 +247,13 @@ namespace Participation_ASP.Models
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            accounts.Add(new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov));
+                            accounts.Add(new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov));
                         }
 
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
+
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
@@ -265,7 +261,17 @@ namespace Participation_ASP.Models
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
-                            accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                            {
+                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            }
+                            else
+                            {
+                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            }
                         }
                     }
                     return accounts;
@@ -386,7 +392,8 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static IAccount GetAccount(IAccount account)
+
+        public static IAccount GetAccount(string email, string password)
         {
             using (OracleConnection con = Connection)
             {
@@ -396,7 +403,7 @@ namespace Participation_ASP.Models
                                                                  "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
                                                                  "p.Ov, p.AccountId as \"PatientId\", " +
                                                                  "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
                                                                  "FROM \"User\" u " +
                                                                  "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
@@ -405,8 +412,8 @@ namespace Participation_ASP.Models
                                                                  "WHERE a.Email = :Email AND a.Password = :Password");
 
 
-                    cmd.Parameters.Add("Email", account.Email);
-                    cmd.Parameters.Add("Password", account.Password);
+                    cmd.Parameters.Add("Email", email);
+                    cmd.Parameters.Add("Password", password);
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
                     while (reader.Read())
@@ -425,20 +432,27 @@ namespace Participation_ASP.Models
                             DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
                         string Adress = reader["Adress"].ToString();
                         string Location = reader["Location"].ToString();
-                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
-                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+
+                        bool Car = false;
+                        if (!string.IsNullOrEmpty(reader["Car"].ToString()))
+                            Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+
+                        bool DriversLicense = false;
+                        if (!string.IsNullOrEmpty(reader["DriversLicense"].ToString()))
+                            DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
-                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+
+                        bool Enabled = true;
+                        if (!string.IsNullOrEmpty(reader["Enabled"].ToString()))
+                            Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
+
 
                         //Admin Data
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
                             bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin);
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, IsAdmin);
                         }
 
                         //Patient Data 
@@ -447,7 +461,7 @@ namespace Participation_ASP.Models
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
+                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov);
                         }
 
                         //Volunteer Data
@@ -460,12 +474,12 @@ namespace Participation_ASP.Models
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
-                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
                         }
                         else
                         {
                             return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
-                                Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
+                                Location, Car, DriversLicense, Rfid, Enabled, false);
                         }
                     }
                     return null;
@@ -551,7 +565,7 @@ namespace Participation_ASP.Models
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
-                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Enabled " +
                         "FROM VehicleType v " +
                         "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
                         "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
@@ -579,11 +593,7 @@ namespace Participation_ASP.Models
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
                         //Request Data
                         int ReqId = new int();
@@ -624,7 +634,7 @@ namespace Participation_ASP.Models
                         //Get Response Data
                         List<Response> responses = GetResponses(ReqId);
 
-                        return new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses);
+                        return new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses);
 
                     }
                     return null;
@@ -646,7 +656,6 @@ namespace Participation_ASP.Models
             }
         }
 
-
         public static List<Request> GetRequests()
         {
             using (OracleConnection con = Connection)
@@ -660,7 +669,7 @@ namespace Participation_ASP.Models
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
-                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Enabled " +
                         "FROM VehicleType v " +
                         "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
                         "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
@@ -688,11 +697,7 @@ namespace Participation_ASP.Models
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
                         //Request Data
                         int ReqId = new int();
@@ -733,7 +738,7 @@ namespace Participation_ASP.Models
                         //Get Response Data
                         List<Response> responses = GetResponses(ReqId);
 
-                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses));
 
                     }
                     return requests;
@@ -915,7 +920,7 @@ namespace Participation_ASP.Models
                         "SELECT res.RequestId, res.ResponseDate, res.Description, " +
                         "v.AccountId, v.Vog, v.VogConfirmation, v.Photo, v.Birthdate, " +
                         "u.Name, u.Phone, u.DateDeregistration, u.Adress, u.Location AS UserLocation, " +
-                        "u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled, " +
+                        "u.Car, u.DriversLicense, u.Rfid, u.Enabled, " +
                         "a.Username, a.Password, a.Email " +
                         "FROM Request req " +
                         "RIGHT JOIN Response res ON req.RequestId = res.RequestId " +
@@ -946,11 +951,7 @@ namespace Participation_ASP.Models
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
 
                         //Volunteer Data
                         string Vog = reader["Vog"].ToString();
@@ -959,7 +960,9 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                             Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                         string Photo = reader["Photo"].ToString();
-                        var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, UserLocation, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
+
+                        //TODO Maybe add List<Review> to this instance of volunteer
+                        var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, UserLocation, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
 
                         //Response Data
                         //res.RequestId, res.ResponseDate, res.Description
@@ -1220,16 +1223,83 @@ namespace Participation_ASP.Models
             }
         }
 
-        //Must
         public static bool AddAccount(IAccount account)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    //Add Account
+                    bool succes = false;
+                    OracleCommand cmd = CreateOracleCommand(con, "INSERT INTO \"Account\" (Username, Password, Email) VALUES (:Username, :Password, :Email)");
+                    cmd.Parameters.Add("Username", account.Username);
+                    cmd.Parameters.Add("Password", account.Password);
+                    cmd.Parameters.Add(":Email", account.Email);
+                    succes = ExecuteNonQuery(cmd);
+
+                    //Add User
+                    int AccountId = GetAccount(account.Email, account.Password).AccountId;
+                    cmd = CreateOracleCommand(con,
+                        "INSERT INTO \"User\"(AccountId, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid) " +
+                        "VALUES(:AccountId, :Name, :Phone, :DateDeregistration, :Adress, :Location, :Car, :DriversLicense, :Rfid)");
+                    cmd.Parameters.Add("AccountId", AccountId);
+                    cmd.Parameters.Add("Name", account.Name);
+                    cmd.Parameters.Add("Phone", account.Phone);
+                    cmd.Parameters.Add("DateDeregistration", account.DateCancellation);
+                    cmd.Parameters.Add("Adress", account.Adress);
+                    cmd.Parameters.Add("Location", account.Location);
+                    cmd.Parameters.Add("Car", Convert.ToInt32(account.HasCar));
+                    cmd.Parameters.Add("DriversLicense", Convert.ToInt32(account.HasDriversLicense));
+                    cmd.Parameters.Add("Rfid", account.Rfid);
+                    succes = ExecuteNonQuery(cmd);
+
+                    if (account is Volunteer)
+                    {
+                        var volunteer = (Volunteer)account;
+                        cmd = CreateOracleCommand(con,
+                            "INSERT INTO Volunteer (AccountId, Vog, Birthdate, Photo) VALUES(:AccountId, :Vog, :Birthdate, :Photo)");
+                        cmd.Parameters.Add("AccountId", AccountId);
+                        cmd.Parameters.Add("Vog", volunteer.Vog);
+                        cmd.Parameters.Add("Birthdate", volunteer.BirthDate);
+                        cmd.Parameters.Add("Photo", volunteer.Photo);
+                        succes = ExecuteNonQuery(cmd);
+                    }
+                    if (account is Patient)
+                    {
+                        var patient = (Patient)account;
+                        cmd = CreateOracleCommand(con,
+                            "INSERT INTO Patient (AccountId, Ov) VALUES (:AccountId, :Ov)");
+                        cmd.Parameters.Add("AccountId", AccountId);
+                        cmd.Parameters.Add("Ov", Convert.ToInt32(patient.Ov));
+                        succes = ExecuteNonQuery(cmd);
+                    }
+                    return succes;
+                }
+                catch (OracleException e)
+                {
+                    if (Regex.IsMatch("UNIQUE", e.Message))
+                        throw new ExistingUserException();
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         //Must
         public static bool AlterSkills(List<Skill> skills)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = new OracleConnection())
+            {
+                throw new NotImplementedException();
+            }
         }
 
         //For changing the status of meeting
@@ -1263,7 +1333,6 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-        //Must
         public static bool DeleteRequest(int ID)
         {
             throw new NotImplementedException();
@@ -1274,8 +1343,17 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-        //Must
         public static bool AlterVogConfirmation(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AddMeeting()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static List<Meeting> GetMeetings()
         {
             throw new NotImplementedException();
         }
