@@ -35,11 +35,11 @@ Create Table "User"
   Car Varchar2(1) DEFAULT '0',
   Driverslicense Varchar2(1) DEFAULT '0',
   RfId Varchar2(255),
-  Banned Varchar2(1) DEFAULT '0',
-  Unban Date,
+  --Banned Varchar2(1) DEFAULT '0',
+  --Unban Date,
   Enabled Varchar2(1) DEFAULT '1', 
   CHECK (Car = '1' OR Car = '0'), 
-  CHECK (Banned = '1' OR Banned = '0'), 
+  --CHECK (Banned = '1' OR Banned = '0'), 
   CHECK (Enabled = '1' OR Enabled = '0') 
 );
 
@@ -62,7 +62,7 @@ Create Table Volunteer
 Create Table Skill
 (
   SkillId Number(10) Primary Key,
-  Description Varchar2(255) Not Null
+  Description Varchar2(255) Not Null Unique
 );
 
 Create Table Request
@@ -258,8 +258,10 @@ INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'se
 INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
 INSERT INTO Volunteer (AccountId) VALUES (3);
 
-INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
-INSERT INTO "Admin" (AccountId) VALUES (3);
+INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'password', 'admin@admin.nl');
+INSERT INTO "User" (AccountId, Name) VALUES (4, 'Administrator');
+INSERT INTO  Volunteer (AccountId) VALUES (4);
+INSERT INTO "Admin" (AccountId) VALUES (4);
 
 INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
 VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
