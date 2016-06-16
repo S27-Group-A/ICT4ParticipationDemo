@@ -9,16 +9,16 @@ namespace Participation_ASP.Models
     {
         public Account Volunteer { get; set; }
 
-        public Request Request { get; set; }
+        public string Description { get; set; }
 
-        public string Context { get; set; }
+        public DateTime ResponseDate { get; set; }
 
 
-        public Response(Account volunteer, Request request, string context)
+        public Response(Account volunteer, string description, DateTime responseDate)
         {
             Volunteer = volunteer;
-            Request = request;
-            Context = context;
+            Description = description;
+            ResponseDate = responseDate;
         }
     }
 }

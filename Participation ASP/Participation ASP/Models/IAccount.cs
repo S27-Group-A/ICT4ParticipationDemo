@@ -22,7 +22,7 @@ namespace Participation_ASP.Models
 
         DateTime DateCancellation { get; set; }
 
-        string Address { get; set; }
+        string Adress { get; set; }
 
         string Location { get; set; }
 
@@ -30,11 +30,7 @@ namespace Participation_ASP.Models
 
         bool HasDriversLicense { get; set; }
 
-        string RFID { get; set; }
-
-        bool Banned { get; set; }
-
-        DateTime Unban { get; set; }
+        string Rfid { get; set; }
 
         bool Enabled { get; set; }
 

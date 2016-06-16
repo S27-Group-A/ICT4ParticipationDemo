@@ -19,8 +19,8 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 Create Table "Account"
 (
   AccountId Number(10) Primary Key,
-  Username Varchar2(32) Not Null,
-  Password Varchar2(32) Not Null Unique,
+  Username Varchar2(32) Not Null Unique,
+  Password Varchar2(32) Not Null,
   Email Varchar2(255) Not Null Unique
 );
 
@@ -35,11 +35,11 @@ Create Table "User"
   Car Varchar2(1) DEFAULT '0',
   Driverslicense Varchar2(1) DEFAULT '0',
   RfId Varchar2(255),
-  Banned Varchar2(1) DEFAULT '0',
-  Unban Date,
+  --Banned Varchar2(1) DEFAULT '0',
+  --Unban Date,
   Enabled Varchar2(1) DEFAULT '1', 
   CHECK (Car = '1' OR Car = '0'), 
-  CHECK (Banned = '1' OR Banned = '0'), 
+  --CHECK (Banned = '1' OR Banned = '0'), 
   CHECK (Enabled = '1' OR Enabled = '0') 
 );
 
@@ -62,7 +62,7 @@ Create Table Volunteer
 Create Table Skill
 (
   SkillId Number(10) Primary Key,
-  Description Varchar2(255) Not Null
+  Description Varchar2(255) Not Null Unique
 );
 
 Create Table Request
@@ -71,12 +71,12 @@ Create Table Request
   RequestId Number(10),
   Description Varchar2(255),
   Location Varchar2(255),
-  Traveltime Timestamp,
+  Traveltime NUMBER(10),
   Startdate Date,
   Enddate Date,
   Urgency Number(1),
   AmountOfVolunteers Number(10),
-  PRIMARY KEY (AccountId, RequestId)
+  PRIMARY KEY (RequestId)
 );
 
 Create Table Review
@@ -140,10 +140,10 @@ Create Table Chat
 
 Create Table "Availability"
 (
-  AccountId Number(10) Primary Key,
+  AccountId Number(10), 
   Day Varchar2(2),
-  Timeofday Varchar2(10),
-  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo')
+  TimeOfDay Varchar2(10),
+  Primary Key(AccountId, Day, TimeOfDay)
 );
 
 Create Table Response
@@ -175,24 +175,12 @@ Alter Table Response Add Foreign Key (ResponderId) References Volunteer(AccountI
 Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId);
 
+--CHECK CONSTRAINTS
+ALTER TABLE "Availability" 
+ADD CONSTRAINT chk_Availability_Day  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo');
+ALTER TABLE "Availability"
+ADD CONSTRAINT chk_Availability_TimeOfDay CHECK (TimeOfDay = 'Middag' OR TimeOfDay = 'Avond' OR TimeOfDay = 'Ochtend');
 
-/*
-DROP TABLE "Account" CASCADE CONSTRAINTS;
-DROP TABLE "User" CASCADE CONSTRAINTS;
-DROP TABLE "Admin" CASCADE CONSTRAINTS;
-DROP TABLE Volunteer CASCADE CONSTRAINTS;
-DROP TABLE Skill CASCADE CONSTRAINTS;
-DROP TABLE Review CASCADE CONSTRAINTS;
-DROP TABLE Request CASCADE CONSTRAINTS;
-DROP TABLE VehicleType CASCADE CONSTRAINTS;
-DROP TABLE Patient CASCADE CONSTRAINTS;
-DROP TABLE Meeting CASCADE CONSTRAINTS;
-DROP TABLE VolunteerSkill CASCADE CONSTRAINTS;
-DROP TABLE RequestSkill CASCADE CONSTRAINTS;
-DROP TABLE Chat CASCADE CONSTRAINTS;
-DROP TABLE "Availability" CASCADE CONSTRAINTS;
-DROP TABLE Response CASCADE CONSTRAINTS;
-*/
 
 --AUTO IdINTIFIER INCREMENT SEQUENCES
 DROP SEQUENCE AccountIncrementSeq;
@@ -233,11 +221,6 @@ CREATE SEQUENCE RequestIncrementSeq
 /
 
 --AUTO IdINTIFIER INCREMENT TRIGGERS
-DROP TRIGGER AccountIncrementTrig;
-DROP TRIGGER SkillIncrementTrig;
-DROP TRIGGER ReviewIncrementTrig;
-DROP TRIGGER RequestIncrementTrig;
-
 CREATE OR REPLACE TRIGGER AccountIncrementTrig BEFORE INSERT ON "Account" REFERENCING OLD AS "OLD" NEW AS "NEW" FOR EACH ROW ENABLE WHEN (new.AccountId IS NULL)
 BEGIN
   SELECT AccountIncrementSeq.NEXTVAL INTO :new.AccountId FROM dual;
@@ -262,6 +245,7 @@ BEGIN
 END;
 /
 
+--DUMMY DATA
 INSERT INTO "Account" (Username, Password, Email) VALUES ('patient', 'patient', 'patient@patient.nl');
 INSERT INTO "User" (AccountId, Name) VALUES (1, 'patientje');
 INSERT INTO Patient (AccountId) VALUES (1);
@@ -270,19 +254,29 @@ INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'voluntee
 INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
 INSERT INTO Volunteer (AccountId) VALUES (2);
 
-INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
-INSERT INTO "Admin" (AccountId) VALUES (3);
+INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'secondvolunteer', 'secondvolunteer@volunteer.nl'); 
+INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
+INSERT INTO Volunteer (AccountId) VALUES (3);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'password', 'admin@admin.nl');
+INSERT INTO "User" (AccountId, Name) VALUES (4, 'Administrator');
+INSERT INTO  Volunteer (AccountId) VALUES (4);
+INSERT INTO "Admin" (AccountId) VALUES (4);
 
 INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
-VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', TO_TIMESTAMP ('01:00:00', 'HH24:MI:SS'), 
+VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
 TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
 
 INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
 VALUES (1, 1, 'Volkswagen');
 
-INSERT INTO Skill(SkillId, Description)
-VALUES (1, 'Goed met dieren')
-;
+INSERT INTO Skill(Description)
+VALUES ('Goed met dieren');
+INSERT INTO Skill(Description)
+VALUES ('Masseur');
+
+INSERT INTO VolunteerSkill(AccountId, SkillId)
+VALUES (2, 1);
 
 INSERT INTO RequestSkill(SkillId, RequestId)
 VALUES (1, 1);
@@ -290,30 +284,19 @@ VALUES (1, 1);
 INSERT INTO Response(ResponderId, RequestId, ResponseDate, Description)
 VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
 
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Mo', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Avond');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (3, 'Mo', 'Ochtend');
+
+INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
+VALUES (1, 2, 10, 'Aardige jongeman');
+
 commit;
 
-SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Urgency, r.AmountOfVolunteers, 
-s.SkillId, s.Description,
-v.Description, v.VehicleTypeId, v.Description 
-FROM VehicleType v 
-(RIGHT JOIN Request r ON
-v.RequestId = r.RequestId 
-LEFT JOIN RequestSkill rs ON
-rs.RequestId = r.RequestId
-LEFT JOIN Skill s ON
-s.SkillId = rs.SkillId) AND
-r ON patient p
-LEFT JOIN p.AccountId ON r.AccountId
-;
-
-/*
-SELECT ad.AccountId as "AdminId",
-v.AccountId as "VolunteerId", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation,
-P.Ov, p.AccountId as "PatientId", a.AccountId as "UserId", a.Username, a.Password, a.Email, 
-u.Name, u.Phone, u. Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled 
-FROM "User" u RIGHT JOIN "Account" a ON u.AccountId = a.AccountId
-LEFT JOIN "Admin" ad ON ad.AccountId = a.AccountId
-LEFT JOIN Volunteer v ON v.AccountId = a.AccountId
-LEFT JOIN Patient p ON a.AccountId = p.AccountId
-; 
-*/
+savepoint svpoint;
+rollback to svpoint;

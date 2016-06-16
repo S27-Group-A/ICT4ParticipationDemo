@@ -1,0 +1,89 @@
+﻿@using Participation_ASP.Models
+@model Volunteer
+
+
+
+
+
+@{
+    ViewBag.Title = "AdminProfile";
+}
+
+<h2>Profiel Beheer</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <h5>Account informatie</h5>
+                <div class="col-md-10">
+                    @Html.Label("Gebruikersnaam: " + Model.Username)
+                    @Html.Label("Email adres: " + Model.Email)
+                    @Html.Label("Naam: " + Model.Name)
+                    @Html.Label("Telefoonnummer: " + Model.Name)
+
+                    @if (Model.DateCancellation != new DateTime())
+                    {
+                        @Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())
+                    }
+                    else
+                    {
+                        @Html.Label("Cancellation date: Active")
+                    }
+
+                    @Html.Label("Location: " + Model.Location)
+                    @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
+                    @Html.Label("RFID: " + Model.Rfid)
+                    @Html.Label("Banned: " + Model.Banned.ToString())
+
+                    @if (Model.Banned == true)
+                    {
+                        if (Model.Unban != new DateTime())
+                        {
+                            @Html.Label("Unban datum: " + Model.Unban.ToString())
+                        }
+                    }
+                    @Html.Label("Enabled: " + Model.Enabled.ToString())
+
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+                    </div>
+
+                    @Html.Label("IsAdmin: " + Model.IsAdmin.ToString())
+
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <h5>rijwilliger informatie</h5>
+                <div class="col-md-10">
+                    @Html.Label("Geboortedatum: " + Model.BirthDate.ToString())
+                    @Html.Label("Geboortedatum: " + Model.Vog)
+                    @Html.Label("Geboortedatum: " + Model.VogConfirmation.ToString())
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("KeurAccount", "AlterEnabled", new { Id = Model.AccountId })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <h5>Reviews</h5>
+                <div class="col-md-10">
+                    @foreach (Review i in Model.Reviews)
+                    {
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

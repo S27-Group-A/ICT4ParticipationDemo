@@ -21,7 +21,7 @@ namespace Participation_ASP.Controllers
                 tempA.Add(new Availability("Ma", "Morgen"));
                 tempA.Add(new Availability("Di", "Middag"));
                 tempS.Add(new Skill("Timmeren"));
-                Volunteer volunteer = new Volunteer(1, "Henk", "test", "testmail@test.nl", "Henk", string.Empty, DateTime.Now, string.Empty, string.Empty, false, false, string.Empty, false, DateTime.Now.AddDays(300), true, false, DateTime.Now, string.Empty, string.Empty, true);
+                Volunteer volunteer = new Volunteer(1, "Henk", "test", "testmail@test.nl", "Henk", string.Empty, new DateTime(), string.Empty, string.Empty, false, false, string.Empty, false, true, new DateTime(), string.Empty, string.Empty, false);
                 volunteer.Availabilities = tempA;
                 volunteer.Skills = tempS;
                 Session["Account"] = (IAccount)volunteer;
@@ -38,10 +38,11 @@ namespace Participation_ASP.Controllers
         public ActionResult AddSkill(FormCollection collection)
         {
             IAccount account = (IAccount)Session["Account"];
-            if (account is Volunteer)
+            string skill = collection["skill"];
+            if (account is Volunteer && skill.Length > 0)
             {
                 Volunteer tempV = account as Volunteer;
-                tempV.AddSkill(collection["skill"]);
+                tempV.AddSkill(skill);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
