@@ -173,7 +173,9 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\DatabaseManager.cs" />
     <Compile Include="Models\Availability.cs" />
-    <Compile Include="Models\IAccount.cs" />
+    <Compile Include="Models\IAccount.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\Request.cs" />

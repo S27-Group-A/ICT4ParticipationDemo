@@ -35,7 +35,22 @@ namespace Participation_ASP.Controllers
             string volunteerEmail = collection["volunteer"];
             string location = collection["location"];
             DateTime date = Convert.ToDateTime(collection["date"]);
-            return Content(volunteerEmail + "/" + location + "/" + date.ToString());
+            if (location != "" && date > DateTime.Today)
+            {
+                ViewModel viewModel = new ViewModel();
+                Volunteer volunteer = null;
+                foreach (IAccount a in viewModel.AccountList)
+                {
+                    if (a.Email == volunteerEmail)
+                    {
+                        volunteer = a as Volunteer;
+                    }
+                }
+                Meeting meeting = new Meeting();
+                meeting.AddMeeting(new Meeting((Patient) Session["Account"], volunteer, location, date, false));
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Error");
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿
+﻿// <copyright file="Request.cs" company="Ict4Participation">
+//      Copyright (c) ICT4Rails. All rights reserved.
+// </copyright>
+// <author>Sander Koch</author>
+// <author>Sven Hendericks</author>
 namespace Participation_ASP.Models
 {
     using System;
@@ -12,72 +16,77 @@ namespace Participation_ASP.Models
     public class Request
     {
         /// <summary>
-        /// Requestid from the database.
+        /// Gets or sets the request id.
         /// </summary>
         public int RequestId { get; set; }
 
         /// <summary>
-        /// Request description.
+        /// Gets or sets the request description.
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Request location.
+        /// Gets or sets the request location.
         /// </summary>
         public string Location { get; set; }
-        
+
         /// <summary>
-        /// Traveltime in minutes
+        /// Gets or sets the travel time in minutes
         /// </summary>
         public int TravelTime { get; set; }
 
         /// <summary>
-        /// Request start date.
+        /// Gets or sets the request start date.
         /// </summary>
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// Request end date.
+        /// Gets or sets the request end date.
         /// </summary>
         public DateTime EndDate { get; set; }
 
         /// <summary>
-        /// How urgent the request is.
+        /// Gets or sets how urgent the request is.
         /// </summary>
         public int Urgency { get; set; }
 
         /// <summary>
-        /// How many volunteers this request requires.
+        /// Gets or sets how many volunteers this request requires.
         /// </summary>
         public int AmountOfVolunteers { get; set; }
 
         /// <summary>
-        /// Which skills this request requires.
+        /// Gets or sets which skills this request requires.
         /// </summary>
         public List<Skill> Skills { get; set; }
 
         /// <summary>
-        /// What kind of vehicle is required for this request.
+        /// Gets or sets the kind of vehicle that is required for this request.
         /// </summary>
         public VehicleType VehicleType { get; set; }
 
         /// <summary>
-        /// Who is requesting help.
+        /// Gets or sets who is requesting help.
         /// </summary>
         public Patient Patient { get; set; }
 
         /// <summary>
-        /// Responses to the request.
+        /// Gets or sets responses to the request.
         /// </summary>
         public List<Response> Responses { get; set; }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Request"/> class.
         /// </summary>
         /// <param name="requestId">The database ID for request</param>
+        public Request()
+        {
+        }
+
         public Request(int requestId)
         {
-            RequestId = requestId;
+            this.RequestId = requestId;
         }
 
         /// <summary>
@@ -86,7 +95,7 @@ namespace Participation_ASP.Models
         /// <param name="requestId">The database ID for request.</param>
         /// <param name="description">The request's description.</param>
         /// <param name="location">the request's location.</param>
-        /// <param name="travelTime">the possible traveltime.</param>
+        /// <param name="travelTime">the possible travel time.</param>
         /// <param name="startDate">The start date of the request.</param>
         /// <param name="endDate">The end date of the request.</param>
         /// <param name="urgency">How urgent is the request.</param>
@@ -117,7 +126,7 @@ namespace Participation_ASP.Models
         /// <param name="requestId">The database ID for request.</param>
         /// <param name="description">The request's description.</param>
         /// <param name="location">the request's location.</param>
-        /// <param name="travelTime">the possible traveltime.</param>
+        /// <param name="travelTime">the possible travel time.</param>
         /// <param name="startDate">The start date of the request.</param>
         /// <param name="endDate">The end date of the request.</param>
         /// <param name="urgency">How urgent is the request.</param>
@@ -144,17 +153,16 @@ namespace Participation_ASP.Models
         /// Method used to store the response in the database.
         /// </summary>
         /// <param name="response">The response object that will be stored in the database.</param>
-        /// <param name="request">The request object that will be stored in the database.</param>
-        public bool AddResponse(Response response, Request request)
+        public void AddResponse(Response response)
         {
-            return DatabaseManager.AddResponse(response, request);
+           this.Responses.Add(response);
         }
 
         /// <summary>
         /// Adds a new request to the database.
         /// </summary>
-        /// <param name="request"></param>
-        /// <returns>A true of false depending on the database method succes</returns>
+        /// <param name="request">The request that will be added to the database.</param>
+        /// <returns>A true of false depending on the database method success</returns>
         public bool AddRequest(Request request)
         {
             return DatabaseManager.AddRequest(request);
