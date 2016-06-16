@@ -29,7 +29,7 @@ namespace Participation_ASP.Models
 
         public DateTime DateCancellation { get; set; }
 
-        public string Address { get; set; }
+        public string Adress { get; set; }
 
         public string Location { get; set; }
 
@@ -37,7 +37,7 @@ namespace Participation_ASP.Models
 
         public bool HasDriversLicense { get; set; }
 
-        public string RFID { get; set; }
+        public string Rfid { get; set; }
 
         public bool Banned { get; set; }
 
@@ -51,7 +51,7 @@ namespace Participation_ASP.Models
         {
         }
 
-        public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string address, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin)
+        public Account(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool banned, DateTime unban, bool enabled, bool isAdmin)
         {
             this.AccountId = accountId;
             this.Username = username;
@@ -60,11 +60,11 @@ namespace Participation_ASP.Models
             this.Name = name;
             this.Phone = phone;
             this.DateCancellation = dateCancellation;
-            this.Address = address;
+            this.Adress = adress;
             this.Location = location;
             this.HasCar = hasCar;
             this.HasDriversLicense = hasDriversLicense;
-            this.RFID = rfid;
+            this.Rfid = rfid;
             this.Banned = banned;
             this.Unban = unban;
             this.Enabled = enabled;
@@ -73,7 +73,7 @@ namespace Participation_ASP.Models
 
         public IAccount LoginAccount(IAccount loginAccount)
         {
-            return DatabaseManager.GetAccount(loginAccount);
+            return DatabaseManager.GetAccount(loginAccount.Email, loginAccount.Password);
         }
     }
 }
