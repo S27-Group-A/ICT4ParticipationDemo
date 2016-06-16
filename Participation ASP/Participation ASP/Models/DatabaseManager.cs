@@ -64,7 +64,7 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("UNIQUE", e.Message))
+                    if (Regex.IsMatch("unique", e.Message))
                     {
                         throw new ExistingSkillException(e.Message);
                     }
@@ -954,7 +954,7 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("UNIQUE", e.Message))
+                    if (Regex.IsMatch("unique", e.Message))
                         throw new ExistingUserException();
                     return false;
                 }
@@ -1063,9 +1063,7 @@ namespace Participation_ASP.Models
             }
         }
 
-
-        //TODO Sander
-        public static bool AddMeeting(Meeting meeting)
+        public static bool AddResponse(Response response, Request request)
         {
             using (OracleConnection connection = Connection)
             {
@@ -1138,14 +1136,16 @@ namespace Participation_ASP.Models
         }
 
         //TODO Tom
-        public static bool DeleteReview(int ID)
+        public static bool DeleteReview(int reviewId)
         {
-            using (OracleConnection con = new OracleConnection())
+            using (OracleConnection con = Connection)
             {
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "DELETE FROM");
+                        "DELETE FROM Review WHERE ReviewId = :ReviewId");
+                    cmd.Parameters.Add("ReviewId", reviewId);
+                    con.Open();
                     return ExecuteNonQuery(cmd);
                 }
                 catch (OracleException e)
@@ -1154,16 +1154,47 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-
                     throw e;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
         }
 
-        //TODO Tom
-        public static bool AddReview(int ID)
+        //TODO Fix this/Test this
+        public static bool AddReview(Review review, int volunteerId)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO Review (AccountId, RequestId, Rating, Description) " +
+                        "VALUES (:AccountId, :RequestId, :Rating, :Description)"
+                    );
+                    cmd.Parameters.Add("RequestId", review.Request.RequestId);
+                    cmd.Parameters.Add("AccountId", volunteerId);
+                    cmd.Parameters.Add("Rating", review.Rating);
+                    cmd.Parameters.Add("Description", review.Comment);
+
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         //TODO Sven J
@@ -1176,6 +1207,30 @@ namespace Participation_ASP.Models
         public static bool AlterVogConfirmation(int ID)
         {
             throw new NotImplementedException();
+        }
+
+        public static bool AddMeeting(Meeting meeting)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    insertCommand.Parameters.Add(":location", meeting.Location);
+                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    insertCommand.Parameters.Add(":status", meeting.Status);
+
+                    return ExecuteNonQuery(insertCommand);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
 
         //TODO Sander

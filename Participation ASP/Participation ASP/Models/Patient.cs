@@ -10,6 +10,11 @@ namespace Participation_ASP.Models
         public bool Ov { get; set; }
         public List<Request> Requests { get; set; }
 
+        public Patient()
+        {
+
+        }
+
         public Patient(bool ov, List<Request> requests)
         {
             Ov = ov;
