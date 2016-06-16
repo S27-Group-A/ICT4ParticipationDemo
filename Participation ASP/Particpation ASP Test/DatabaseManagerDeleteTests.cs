@@ -12,5 +12,9 @@ namespace Particpation_ASP_Test
         {
             Assert.IsTrue(DatabaseManager.DeleteReview(1));
         }
+        public void DeleteRequest()
+        {
+            DatabaseManager.DeleteRequest(2);
+        }
     }
 }

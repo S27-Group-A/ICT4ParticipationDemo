@@ -58,5 +58,17 @@ namespace Particpation_ASP_Test
                     new Review(0, new Request(1), 7, "Cool")
                     , 2));
         }
+
+        [TestMethod]
+        public void AlterAdmin()
+        {
+            Assert.IsTrue(DatabaseManager.AlterAdmin(2));
+        }
+
+        [TestMethod]
+        public void AlterEnabled()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
+        }
     }
 }

@@ -44,9 +44,27 @@ namespace Participation_ASP.Models
             Responses = responses;
         }
 
+
         public bool AddRequest(Request request)
         {
             return DatabaseManager.AddRequest(request);
-        }
+		}
+		
+        public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Patient patient)
+        {
+            RequestId = requestId;
+            Description = description;
+            Location = location;
+            TravelTime = travelTime;
+            StartDate = startDate;
+            EndDate = endDate;
+            Urgency = urgency;
+            AmountOfVolunteers = amountOfVolunteers;
+            Skills = skills;
+            VehicleType = vehicleType;
+            Patient = patient;
+		}
+
+        
     }
 }
