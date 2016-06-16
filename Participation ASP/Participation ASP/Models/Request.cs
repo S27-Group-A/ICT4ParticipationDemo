@@ -45,6 +45,11 @@ namespace Participation_ASP.Models
         }
 
 
+        public void AddResponse(Response response)
+        {
+            Responses.Add(response);
+        }
+
         public bool AddRequest(Request request)
         {
             return DatabaseManager.AddRequest(request);
