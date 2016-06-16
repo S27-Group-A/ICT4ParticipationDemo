@@ -50,7 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DatabaseManagerTests.cs" />
+    <Compile Include="DatabaseManagerAddTests.cs" />
+    <Compile Include="DatabaseManagerGetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

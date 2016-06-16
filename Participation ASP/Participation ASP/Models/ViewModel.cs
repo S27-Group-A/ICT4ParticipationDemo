@@ -7,6 +7,16 @@ namespace Participation_ASP.Models
 {
     public class ViewModel
     {
+
+        public List<IAccount> AccountList { get; private set; }
+        public List<Request> RequestList { get; private set; }
+
+        public ViewModel()
+        {
+            this.AccountList = GetAccountList();
+            this.RequestList = GetRequestList();
+        }
+
         public List<IAccount> GetAccountList()
         {
             return DatabaseManager.GetAccounts();
@@ -15,11 +25,6 @@ namespace Participation_ASP.Models
         public List<Request> GetRequestList()
         {
             return DatabaseManager.GetRequests();
-        }
-
-        public List<Response> GetResponseList()
-        {
-            return DatabaseManager.GetResponses();
         }
     }
 }

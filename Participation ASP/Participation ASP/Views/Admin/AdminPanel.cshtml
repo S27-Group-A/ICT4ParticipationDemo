@@ -1,0 +1,39 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.ViewModel
+
+
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+<h2>AdminPanel</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.Label("Accounts: ")
+            <div class="form-group">
+                @foreach (IAccount i in Model.GetAccountList())
+                {
+                    <ul>
+                        <li>@Html.ActionLink(i.Username, "Account", "Profile", new { id = i.AccountId }, new { @class = "list-group-item" })</li>
+                    </ul>
+                }
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Requests: ")
+                @foreach (Request i in Model.GetRequestList())
+                {
+                    <ul>
+                        <li>@Html.ActionLink(i.Description, "Account", "Profile", new { id = i.RequestId }, new { @class = "list-group-item" })</li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </div>
+}
