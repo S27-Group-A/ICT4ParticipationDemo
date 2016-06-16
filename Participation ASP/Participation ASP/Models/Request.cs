@@ -23,6 +23,7 @@ namespace Participation_ASP.Models
         public Patient Patient { get; set; }
         public List<Response> Responses { get; set; }
 
+
         public Request(int requestId, string description, string location, int travelTime, DateTime startDate, DateTime endDate, int urgency, int amountOfVolunteers, List<Skill> skills, VehicleType vehicleType, Patient patient, List<Response> responses)
         {
             RequestId = requestId;
@@ -42,6 +43,10 @@ namespace Participation_ASP.Models
         public void AddResponse(Response response)
         {
             DatabaseManager.AddResponse(response);
+
+        public bool AddRequest(Request request)
+        {
+            return DatabaseManager.AddRequest(request);
         }
     }
 }

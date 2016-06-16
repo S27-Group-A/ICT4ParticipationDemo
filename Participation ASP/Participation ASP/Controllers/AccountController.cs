@@ -29,7 +29,7 @@ namespace Participation_ASP.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(Account loginAccount)
+        public ActionResult Login(Account loginAccount)
         {
             if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {

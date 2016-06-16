@@ -42,5 +42,17 @@ namespace Particpation_ASP_Test
                 DatabaseManager.AddAccount(new Volunteer(0, "henkje", "password", "email@mail.com", "Henk", "84984894",
                     new DateTime(), "Wilhelminastraat 15", "Uden", false, false, string.Empty, false, true, new DateTime(), string.Empty, string.Empty, false)));
         }
+
+        [TestMethod]
+        public void AddRequest()
+        {
+            List<Skill> skills = new List<Skill>();
+            skills.Add(new Skill(1, "Goed met dieren"));
+            skills.Add(new Skill(2, "Masseur"));
+            VehicleType vecType = new VehicleType(-1, "Dweebcar for the dweebs.");
+            Patient patient = new Patient(1, "patient", "patient", "patient@patient.nl","patientje", string.Empty, DateTime.MinValue, string.Empty, string.Empty, false, false, string.Empty, false, true, true);
+            Request request = new Request(-1,"testrequest", "testlocation", 1337, DateTime.Now, new DateTime(2016, 06, 20),3, 1, skills, vecType, patient, null );
+            Assert.IsTrue(request.AddRequest(request));
+        }
     }
 }
