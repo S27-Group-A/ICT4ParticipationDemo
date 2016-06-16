@@ -170,7 +170,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="Models\DatabaseManager.cs" />
+    <Compile Include="Models\DatabaseManager.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Models\Availability.cs" />
     <Compile Include="Models\IAccount.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
@@ -183,7 +185,9 @@
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\VehicleType.cs" />
-    <Compile Include="Models\Volunteer.cs" />
+    <Compile Include="Models\Volunteer.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

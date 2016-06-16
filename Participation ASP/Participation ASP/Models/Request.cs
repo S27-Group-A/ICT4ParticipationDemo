@@ -1,5 +1,5 @@
 ﻿// <copyright file="Request.cs" company="Ict4Participation">
-//      Copyright (c) ICT4Rails. All rights reserved.
+//      Copyright (c) Ict4Participation. All rights reserved.
 // </copyright>
 // <author>Sander Koch</author>
 // <author>Sven Hendericks</author>

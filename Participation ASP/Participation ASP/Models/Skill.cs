@@ -1,4 +1,7 @@
-﻿namespace Participation_ASP.Models
+﻿// <copyright file="Skills.cs" company="Ict4Participation">
+//      Copyright (c) Ict4Participation. All rights reserved.
+// </copyright>
+namespace Participation_ASP.Models
 {
     public class Skill
     {
