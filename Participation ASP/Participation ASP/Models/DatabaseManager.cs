@@ -826,7 +826,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT s.SkillId, s.Description FROM Skill s RIGHT JOIN VolunteerSkill vs ON vs.SkillId = s.SkillId LEFT JOIN Volunteer v ON v.AccountId = vs.AccountId");
+                        "SELECT s.SkillId, s.Description FROM Skill s");
                     var skills = new List<Skill>();
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
