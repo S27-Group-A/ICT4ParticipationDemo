@@ -8,9 +8,27 @@
 @if (Model is Volunteer)
 {
     <h2>Kennismakinggesprekken goedkeuren.</h2>
+
 }
 @if (Model is Patient)
 {
     <h2>Kennismakingsgesprekken plannen.</h2>
-}
+    {
+        ViewModel viewModel = new ViewModel();
+        using (Html.BeginForm("SelectVolunteer", "Meeting"))
+        {
+            <select id="volunteer" class="form-control" size="1" name="volunteer">
+                @foreach (IAccount account in viewModel.AccountList)
+                {
+                    if (account is Volunteer)
+                    {
+                        Volunteer volunteer = account as Volunteer;
+                        <option value="@volunteer.Email">@volunteer.Name</option>
+                    }
+                }
+            </select>
+        }
+
+    }
+        }
 
