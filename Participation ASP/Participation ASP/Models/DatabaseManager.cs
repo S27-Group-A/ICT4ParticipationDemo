@@ -1015,7 +1015,6 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-        //Must
         public static bool AlterAdmin(int accountId)
         {
             throw new NotImplementedException();
@@ -1032,13 +1031,11 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-        //Must
         public static bool AlterEnabled(int ID)
         {
             throw new NotImplementedException();
         }
 
-        //Must
         public static bool AlterVogConfirmation(int ID)
         {
             throw new NotImplementedException();
