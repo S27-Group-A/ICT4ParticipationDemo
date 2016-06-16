@@ -921,8 +921,6 @@ namespace Participation_ASP.Models
             }
         }
 
-
-        //Must
         public static bool AddAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
@@ -1036,7 +1034,7 @@ namespace Participation_ASP.Models
         }
 
         //Must
-        public static bool AlterAdmin(int ID)
+        public static bool AlterAdmin(int accountId)
         {
             throw new NotImplementedException();
         }
