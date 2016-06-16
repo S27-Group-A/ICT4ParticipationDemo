@@ -84,6 +84,9 @@ namespace Participation_ASP.Models
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Request"/> class.
+        /// </summary>
         public Request(int requestId)
         {
             this.RequestId = requestId;
