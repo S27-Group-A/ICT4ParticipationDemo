@@ -328,7 +328,7 @@ namespace Participation_ASP.Models
                         string Location = reader["Location"].ToString();
 
                         bool Car = false;
-                        if(!string.IsNullOrEmpty(reader["Car"].ToString()))
+                        if (!string.IsNullOrEmpty(reader["Car"].ToString()))
                             Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
 
                         bool DriversLicense = false;
@@ -560,7 +560,6 @@ namespace Participation_ASP.Models
                 }
             }
         }
-
 
         public static List<Request> GetRequests()
         {
@@ -968,8 +967,9 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
-                    throw e;
+                    if (Regex.IsMatch("UNIQUE", e.Message))
+                        throw new ExistingUserException();
+                    return false;
                 }
                 catch (Exception e)
                 {
