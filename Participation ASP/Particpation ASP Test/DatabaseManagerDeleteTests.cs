@@ -14,7 +14,7 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
-        public void DeleteReviwew()
+        public void DeleteReview()
         {
             Assert.IsTrue(DatabaseManager.DeleteReview(2));
         }
