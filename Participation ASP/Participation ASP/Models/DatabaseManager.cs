@@ -525,7 +525,7 @@
         /// </summary>
         /// <param name="accountId">account identifier</param>
         /// <returns>All reviews of specified user</returns>
-        private static List<Review> GetReviews(int accountId)
+        public static List<Review> GetReviews(int accountId)
 
         {
             using (OracleConnection con = Connection)

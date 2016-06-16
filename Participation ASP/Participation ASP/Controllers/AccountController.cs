@@ -1,5 +1,6 @@
 
-﻿namespace Participation_ASP.Controllers
+
+namespace Participation_ASP.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -8,6 +9,7 @@
     using System.Web;
     using System.Web.Mvc;
     using Participation_ASP.Models;
+    using Participation_ASP.Exceptions;
 
 
     /// <summary>
