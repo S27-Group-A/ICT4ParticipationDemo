@@ -14,11 +14,11 @@
 <ul>
     @foreach (Response response in Model.Responses)
     {
-        <li>@response.Volunteer.Name: @response.Context</li>
+        <li>@response.Volunteer.Name: @response.Description</li>
     }
 </ul>
 @using (Html.BeginForm("RespondToRequest", "Request"))
 {
-    <input type="text" id="Response" name="Response"/>
+    <input type="text" id="Response" name="ResponseText"/>
     <input type="submit" value="Reactie plaatsen"/>
 }

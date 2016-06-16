@@ -34,11 +34,6 @@ namespace Participation_ASP.Models
             }
         }
 
-        internal static List<Meeting> GetMeetings()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Gets a new OracleConnection with it's connection string set (using 'OracleConnectionString' from the web config).
         /// </summary>

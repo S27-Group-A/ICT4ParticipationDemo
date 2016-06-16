@@ -22,12 +22,17 @@ namespace Participation_ASP.Controllers
         }
 
         [HttpPost]
-        public ActionResult RespondToRequest(FormCollection collection)
+        public ActionResult RespondToRequest(FormCollection collection, Request request)
         {
-            string reactie = collection["Response"];
+            string reactie = collection["ResponseText"];
             if (reactie.Length > 0)
             {
-                return Content(reactie);
+                Response newResponse = null;
+                IAccount accountLoggedIn = (IAccount) Session["Account"];
+                Volunteer volunteerAccount = accountLoggedIn as Volunteer;
+                newResponse.AddResponse(new Response(volunteerAccount, reactie, DateTime.Now), request);
+                request.AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
+                return View("RequestInfo", request);
             }
             return RedirectToAction("Index", "Error");
         }
@@ -38,6 +43,7 @@ namespace Participation_ASP.Controllers
             Request request = (Request) Session["Request" + id.ToString()];
             if (request != null)
             {
+                
                 return View(request);
             }
             return RedirectToAction("Index", "Error");
