@@ -9,14 +9,14 @@ namespace Particpation_ASP_Test
     {
         [TestMethod]
         public void DeleteRequest()
-        {
-            DatabaseManager.DeleteRequest(2);
+        {  
+            Assert.IsTrue(DatabaseManager.DeleteRequest(2));
         }
 
         [TestMethod]
         public void DeleteReview()
         {
-            DatabaseManager.DeleteReview(2);
+            Assert.IsTrue(DatabaseManager.DeleteReview(2));
         }
     }
 }
