@@ -36,7 +36,7 @@ namespace Participation_ASP.Controllers
             {
                 if (account.IsAdmin)
                 {
-                    IAccount dbaccount = DatabaseManager.GetProfile(ID);
+                    IAccount dbaccount = DatabaseManager.GetAccount(ID);
                     TempData["dbaccount"] = dbaccount;
                     if (dbaccount.GetType() == typeof(Volunteer))
                     {

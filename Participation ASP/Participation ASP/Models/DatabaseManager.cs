@@ -287,6 +287,105 @@ namespace Participation_ASP.Models
             }
         }
 
+        public static IAccount GetAccount(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
+                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
+                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
+                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "FROM \"User\" u " +
+                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                                                                 "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
+                                                                 "WHERE a.AccountId = :accountid");
+                    cmd.Parameters.Add(":accountid", ID);
+
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        //User- and Account Data
+                        int AccountId = new int();
+                        if (reader["UserId"] != null)
+                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
+                        string Username = reader["Username"].ToString();
+                        string Password = reader["Password"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string Name = reader["Name"].ToString();
+                        string Phone = reader["Phone"].ToString();
+                        DateTime DateDeregistration = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
+                            DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
+                        string Adress = reader["Adress"].ToString();
+                        string Location = reader["Location"].ToString();
+                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+                        string Rfid = reader["Rfid"].ToString();
+                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
+                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
+                        DateTime Unban = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
+                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+
+                        //Admin Data
+                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                        {
+                            bool IsAdmin = true;
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin);
+                        }
+
+                        //Patient Data 
+                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        {
+                            bool Ov = false;
+                            if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
+                                Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
+                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
+                        }
+
+                        //Volunteer Data
+                        else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
+                        {
+                            string Vog = reader["Vog"].ToString();
+                            bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
+                            DateTime Birthdate = new DateTime();
+                            if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
+                                Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
+                            string Photo = reader["Photo"].ToString();
+                            List<Review> reviews = GetReviews(AccountId);
+                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                        }
+                        else
+                        {
+                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
+                                Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
+                        }
+                    }
+                    return null;
+                }
+                catch (OracleException e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         public static IAccount GetAccount(IAccount account)
         {
             using (OracleConnection con = Connection)

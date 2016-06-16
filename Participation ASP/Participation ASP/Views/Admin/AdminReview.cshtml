@@ -20,7 +20,7 @@
                     @foreach (Review r in Model)
                     {
                         <div class="col-md-10">
-                            @Html.Label("Reviewer: " + r.Patient.Name)
+                            @Html.Label("Reviewer: " + r.Request.Patient.Name)
                             @Html.Label("Aantal punten: " + r.Rating)
                             @Html.Label("Beschrijving: " + r.Context)
                         </div>
