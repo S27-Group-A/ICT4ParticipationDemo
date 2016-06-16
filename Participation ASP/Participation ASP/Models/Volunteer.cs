@@ -46,6 +46,11 @@ namespace Participation_ASP.Models
             this.Reviews = reviews;
         }
 
+        internal bool AddPatient(Volunteer volunteer)
+        {
+            return DatabaseManager.AddAccount(volunteer);
+        }
+
         public Volunteer(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool isAdmin, bool enabled, DateTime birthdate, string photo, string vog, bool vogConfirmation) : base(accountId, username, password, email, name, phone, dateCancellation, adress, location, hasCar, hasDriversLicense, rfid, isAdmin, enabled)
         {
             this.BirthDate = birthdate;
