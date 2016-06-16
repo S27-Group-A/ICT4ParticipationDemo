@@ -1,8 +1,4 @@
-﻿/// <summary>
-/// Manages the getting and setting of database values.
-/// </summary>
-
-namespace Participation_ASP.Models
+﻿namespace Participation_ASP.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +12,6 @@ namespace Participation_ASP.Models
 
     public static class DatabaseManager
     {
-
         public static void TestConnection()
         {
             using (OracleConnection con = Connection)
@@ -47,7 +42,11 @@ namespace Participation_ASP.Models
         }
 
 
-
+        /// <summary>
+        /// Adds a skill to the database table
+        /// </summary>
+        /// <param name="skill">skill description</param>
+        /// <returns></returns>
         public static bool AddSkill(string skill)
         {
             using (OracleConnection con = Connection)
@@ -65,13 +64,13 @@ namespace Participation_ASP.Models
                 {
                     if (Regex.IsMatch("unique", e.Message))
                     {
-                        //throw new ExistingSkillException(e.Message);
+                        throw new ExistingSkillException(e.Message);
                     }
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -81,6 +80,13 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Adds a availability to the availability table
+        /// </summary>
+        /// <param name="accountId">acount identifier</param>
+        /// <param name="day">day in the format of {Mo, Di, Wo, Do, Vr, Za, Zo}</param>
+        /// <param name="timeOfDay">time of day in format of {ochtend, middag, avond}</param>
+        /// <returns></returns>
         public static bool AddAvailability(int accountId, string day, string timeOfDay)
         {
             using (OracleConnection con = Connection)
@@ -110,7 +116,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -182,6 +188,11 @@ namespace Participation_ASP.Models
             return command.ExecuteNonQuery() != 0;
         }
 
+        /// <summary>
+        /// Checks wether the current reader has any rows
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private static bool CheckReader(OracleDataReader reader)
         {
             return reader.HasRows;
@@ -273,12 +284,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -288,6 +299,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets an account based on it's AccountId
+        /// </summary>
+        /// <param name="id">account identifier</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(int id)
         {
             using (OracleConnection con = Connection)
@@ -373,12 +389,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -388,7 +404,13 @@ namespace Participation_ASP.Models
             }
         }
 
-
+        /// <summary>
+        /// Gets an account based on it's email and password
+        /// Mainly used for logging in
+        /// </summary>
+        /// <param name="email">user's email</param>
+        /// <param name="password">user's password</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(string email, string password)
         {
             using (OracleConnection con = Connection)
@@ -482,12 +504,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -498,6 +520,11 @@ namespace Participation_ASP.Models
 
         }
 
+        /// <summary>
+        /// Returns a list of reviews based on an account's identifier
+        /// </summary>
+        /// <param name="accountId">account identifier</param>
+        /// <returns>All reviews of specified user</returns>
         private static List<Review> GetReviews(int accountId)
         {
             using (OracleConnection con = Connection)
@@ -533,12 +560,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -548,6 +575,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Returns request based on request's indentifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns></returns>
         public static Request GetRequest(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -636,12 +668,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -740,12 +772,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -851,12 +883,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -890,12 +922,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -973,12 +1005,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1012,12 +1044,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1050,12 +1082,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1091,12 +1123,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1144,12 +1176,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1199,12 +1231,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                 }
                 finally
@@ -1282,7 +1314,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    
+
                     throw e;
                     return false;
                 }
