@@ -35,15 +35,6 @@
                     @Html.Label("Location: " + Model.Location)
                     @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
                     @Html.Label("RFID: " + Model.Rfid)
-                    @Html.Label("Banned: " + Model.Banned.ToString())
-
-                    @if (Model.Banned == true)
-                    {
-                        if (Model.Unban != new DateTime())
-                        {
-                            @Html.Label("Unban datum: " + Model.Unban.ToString())
-                        }
-                    }
                     @Html.Label("Enabled: " + Model.Enabled.ToString())
 
                     <div class="col-md-offset-2 col-md-10">

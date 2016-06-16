@@ -66,7 +66,7 @@ namespace Participation_ASP.Models
                 {
                     if (Regex.IsMatch("UNIQUE", e.Message))
                     {
-                        throw new ExistingSkillException(e.Message);
+                        //throw new ExistingSkillException(e.Message);
                     }
                     throw e;
                 }
@@ -330,20 +330,20 @@ namespace Participation_ASP.Models
                             DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
                         string Adress = reader["Adress"].ToString();
                         string Location = reader["Location"].ToString();
-                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
-                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+                        bool Car = false;
+                        if (!string.IsNullOrEmpty(reader["Car"].ToString()))
+                            Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+                        bool DriversLicense = false;
+                        if (!string.IsNullOrEmpty(reader["DriversLicense"].ToString()))
+                            DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
-                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+                        bool Enabled = true;
+                        if (!string.IsNullOrEmpty(reader["Enabled"].ToString()))
+                            Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
 
                         //Admin Data
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
-                            bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin);
                         }
 
                         //Patient Data 
@@ -352,12 +352,13 @@ namespace Participation_ASP.Models
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov);
+                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov);
                         }
 
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
+
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
@@ -365,12 +366,17 @@ namespace Participation_ASP.Models
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
-                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
-                        }
-                        else
-                        {
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
-                                Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false);
+                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                            {
+                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                            }
+                            else
+                            {
+                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                            }
                         }
                     }
                     return null;
@@ -1278,13 +1284,18 @@ namespace Participation_ASP.Models
                 catch (OracleException e)
                 {
                     if (Regex.IsMatch("UNIQUE", e.Message))
-                        throw new ExistingUserException();
+                    {
+                        //throw new ExistingUserException();
+                        return false;
+                    }
+
                     return false;
                 }
                 catch (Exception e)
                 {
                     //TODO Needs proper exception handling
                     throw e;
+                    return false;
                 }
                 finally
                 {
@@ -1301,6 +1312,75 @@ namespace Participation_ASP.Models
                 throw new NotImplementedException();
             }
         }
+
+        public static bool DeleteRequest(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "DELETE FROM Request WHERE RequestID = :requestid"
+                        );
+
+                    cmd.Parameters.Add(":requestid", ID);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (OracleException e)
+                {
+                    //throw new ExistingUserException();
+                    return false;
+
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static bool DeleteReview(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "DELETE FROM Review WHERE ReviewID = :reviewid"
+                        );
+
+                    cmd.Parameters.Add(":reviewid", ID);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (OracleException e)
+                {
+                    //throw new ExistingUserException();
+                    return false;
+
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
 
         //For changing the status of meeting
         public static bool AlterMeeting(Meeting meeting)
@@ -1329,16 +1409,6 @@ namespace Participation_ASP.Models
         }
 
         public static bool GetProfile(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool DeleteRequest(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool DeleteReview(int ID)
         {
             throw new NotImplementedException();
         }

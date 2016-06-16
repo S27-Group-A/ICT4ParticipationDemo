@@ -12,5 +12,10 @@ namespace Particpation_ASP_Test
         {
             Assert.IsTrue(DatabaseManager.AlterAdmin(2));
         }
+
+        public void AlterEnabled()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
+        }
     }
 }

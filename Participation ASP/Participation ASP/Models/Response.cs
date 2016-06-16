@@ -17,8 +17,6 @@ namespace Participation_ASP.Models
 
         public Account Volunteer { get; set; }
 
-        public string Description { get; set; }
-
         public DateTime ResponseDate { get; set; }
 
         public Response(int responderid, int RequestId, string description, DateTime date)
