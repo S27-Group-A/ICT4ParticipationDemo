@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Participation_ASP.Exceptions;
 using Participation_ASP.Models;
 
 namespace Participation_ASP.Controllers
@@ -51,5 +52,63 @@ namespace Participation_ASP.Controllers
             }
             return View();
         }
+
+        public ActionResult RegisterPatient()
+        {
+            return View();
+        }
+
+        public ActionResult RegisterVolunteer()
+        {
+            return View();
+        }
+
+        public ActionResult AddPatient(Patient patient)
+        {
+            try
+            {
+
+                if (Session["Account"] == null)
+                {
+                    patient.AddPatient(patient);
+                    return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("Index", "Error");
+            }
+            catch (ExistingUserException)
+            {
+                //TODO Error Message 
+                return RedirectToAction("Index", "Error");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+
+        }
+
+        public ActionResult AddVolunteer(Volunteer volunteer)
+        {
+            try
+            {
+                if (Session["Account"] == null)
+                {
+                    volunteer.AddPatient(volunteer);
+                    return RedirectToAction("Index", "Home");
+                }
+                return RedirectToAction("Index", "Error");
+            }
+            catch (ExistingUserException)
+            {
+                //TODO Error Message
+                return RedirectToAction("Index", "Error");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Error");
+            }
+        }
+
+
     }
 }

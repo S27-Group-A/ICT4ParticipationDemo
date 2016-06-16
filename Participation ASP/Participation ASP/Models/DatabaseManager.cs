@@ -1231,7 +1231,15 @@ namespace Participation_ASP.Models
                     succes = ExecuteNonQuery(cmd);
 
                     //Add User
-                    int AccountId = GetAccount(account.Email, account.Password).AccountId;
+                    int AccountId = new int();
+                    cmd = CreateOracleCommand(con, "SELECT MAX(AccountId) AS AccountId FROM \"Account\"");
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        AccountId = Convert.ToInt32(reader["AccountId"].ToString());
+                    }
+
+
                     cmd = CreateOracleCommand(con,
                         "INSERT INTO \"User\"(AccountId, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid) " +
                         "VALUES(:AccountId, :Name, :Phone, :DateDeregistration, :Adress, :Location, :Car, :DriversLicense, :Rfid)");
