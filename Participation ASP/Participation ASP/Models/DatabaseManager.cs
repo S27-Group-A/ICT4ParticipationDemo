@@ -1063,30 +1063,6 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static bool AddResponse(Response response, Request request)
-        {
-            using (OracleConnection connection = Connection)
-            {
-                try
-                {
-                    OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
-                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
-                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
-                    insertCommand.Parameters.Add(":location", meeting.Location);
-                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    insertCommand.Parameters.Add(":status", meeting.Status);
-
-                    return ExecuteNonQuery(insertCommand);
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
-            }
-        }
-
         //TODO Sander
         public static bool AlterMeeting(Meeting meeting)
         {
