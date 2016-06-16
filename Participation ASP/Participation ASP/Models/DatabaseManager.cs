@@ -973,7 +973,10 @@ namespace Participation_ASP.Models
         //Must
         public static bool AlterSkills(List<Skill> skills)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = new OracleConnection())
+            {
+                throw new NotImplementedException();
+            }
         }
 
         //For changing the status of meeting
@@ -1037,6 +1040,16 @@ namespace Participation_ASP.Models
 
         //Must
         public static bool AlterVogConfirmation(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool AddMeeting()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static List<Meeting> GetMeetings()
         {
             throw new NotImplementedException();
         }
