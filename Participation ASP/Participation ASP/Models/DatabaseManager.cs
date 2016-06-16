@@ -1373,13 +1373,19 @@ namespace Participation_ASP.Models
             {
                 try
                 {
+                    
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status)");
                     insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     insertCommand.Parameters.Add(":location", meeting.Location);
                     insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    insertCommand.Parameters.Add(":status", meeting.Status);
+                    int intStatus = 0;
+                    if (meeting.Status)
+                    {
+                        intStatus = 1;
+                    }
+                    insertCommand.Parameters.Add(":status", intStatus);
 
                     return ExecuteNonQuery(insertCommand);
                 }

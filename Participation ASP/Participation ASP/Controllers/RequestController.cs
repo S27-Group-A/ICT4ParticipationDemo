@@ -79,7 +79,7 @@ namespace Participation_ASP.Controllers
                 Request request = new Request();
                 request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers,
                     skills, null, (Patient) Session["Account"]));
-                return Content(description + location + date + urgence + amountOfVolunteers + skillId);
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Index", "Error");
         }
