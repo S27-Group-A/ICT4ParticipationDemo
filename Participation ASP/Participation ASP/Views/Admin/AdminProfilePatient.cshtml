@@ -1,8 +1,8 @@
 ﻿@using Participation_ASP.Models
-@model Volunteer
+@model Patient
 
 @{
-    ViewBag.Title = "AdminProfileVolunteer";
+    ViewBag.Title = "AdminProfilePatient";
 }
 
 <h2>Profiel Beheer</h2>
@@ -59,19 +59,14 @@
             </div>
 
             <div class="col-md-10">
-                <h5>Vrijwilliger informatie</h5>
+                <h5>Hulpbehoevende informatie</h5>
                 <div class="col-md-10">
-                    @Html.Label("Geboortedatum: " + Model.BirthDate.ToString())
-                    @Html.Label("Geboortedatum: " + Model.Vog)
-                    @Html.Label("Geboortedatum: " + Model.VogConfirmation.ToString())
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("KeurAccount", "AlterEnabled", new { Id = Model.AccountId })
-                    </div>
+                    @Html.Label("Openbaar vervoersbewijs: " + Model.Ov.ToString())
                 </div>
             </div>
 
             <div class="col-md-10">
-                @Html.ActionLink("Bekijk Recensies", "AdminReview", new { Id = Model.AccountId })
+                @Html.ActionLink("Bekijk Hulpvragen", "AdminRequest", new { Id = Model.AccountId })
             </div>
         </div>
     </div>

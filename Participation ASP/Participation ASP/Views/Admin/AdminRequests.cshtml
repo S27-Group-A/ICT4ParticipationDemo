@@ -1,0 +1,62 @@
+﻿@using Participation_ASP.Models
+@model List<Request>
+
+@{
+    ViewBag.Title = "AdminRequests";
+}
+
+<h2>Hulpvragen beheer</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                <h5>Hulpvragen</h5>
+                <div class="col-md-10">
+                    @foreach (Request r in Model)
+                    {
+                        @Html.Label("Opdrachtgever: " + r.Patient.Name)
+                        @Html.Label("Beschrijving: " + r.Description)
+                        @Html.Label("Locatie: " + r.Location)
+                        @Html.Label("Reistijd: " + r.Description)
+
+                        @Html.Label("Datum: van" + r.StartDate.ToString() + " tot " + r.EndDate.ToString())
+                        @Html.Label("Urgentie:" + r.Urgency.ToString())
+
+                        @Html.Label("Hoeveelheid vrijwilligers:" + r.AmountOfVolunteers.ToString())
+                        @Html.Label("Soort voertuig: " + r.VehicleType.Description)
+
+                        @Html.Label("Vaardigheden: ")
+                        <div class="col-md-10">
+                            @foreach (Skill s in r.Skills)
+                            {
+                                @Html.Label(s.Description)
+                            }
+                        </div>
+
+                        <div class="col-md-10">
+                            @Html.ActionLink("Verwijder Hulpvraag", "DeleteRequest", new { Id = r.RequestId })
+                        </div>
+
+                            @Html.Label("Antwoorden: ")
+                        <div class="col-md-10">
+                            @foreach (Response e in r.Responses)
+                            {
+                                <div class="col-md-10">
+                                    @Html.ActionLink("Vrijwilliger", "AdminProfileVolunteer", new { Id = e.Volunteer.AccountId })
+                                    @Html.Label(e.Context)
+                                    @Html.Label(e.ResponseDate.ToString())
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
