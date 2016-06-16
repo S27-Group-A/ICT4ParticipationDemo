@@ -42,5 +42,11 @@ namespace Particpation_ASP_Test
                 DatabaseManager.AddAccount(new Volunteer(0, "henkje", "password", "email@mail.com", "Henk", "84984894",
                     new DateTime(), "Wilhelminastraat 15", "Uden", false, false, string.Empty, false, true, new DateTime(), string.Empty, string.Empty, false)));
         }
+
+        [TestMethod]
+        public void AddRequest()
+        {
+
+        }
     }
 }
