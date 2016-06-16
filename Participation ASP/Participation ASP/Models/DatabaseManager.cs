@@ -1092,8 +1092,26 @@ namespace Participation_ASP.Models
         //TODO Sander
         public static bool AlterMeeting(Meeting meeting)
         {
-            //Voor het accepteren/weigeren van een meeting
-            throw new NotImplementedException();
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand updateCommand = CreateOracleCommand(connection,
+                        "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
+                    updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    updateCommand.Parameters.Add(":location", meeting.Location);
+                    updateCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    updateCommand.Parameters.Add(":status", meeting.Status);
+
+                    return ExecuteNonQuery(updateCommand);
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+            }
         }
 
         //TODO Sander
@@ -1181,7 +1199,65 @@ namespace Participation_ASP.Models
         //TODO Sander
         public static List<Meeting> GetMeetings()
         {
-            throw new NotImplementedException();
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    List<Meeting> returnMeetings = new List<Meeting>();
+                    int volunteerID = 0;
+                    int patientID = 0;
+                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID;");
+
+                    OracleDataReader MainReader = ExecuteQuery(selectCommand);
+
+                    while (MainReader.Read())
+                    {
+                        volunteerID = Convert.ToInt32(MainReader["VOLUNTEERID"].ToString());
+                        patientID = Convert.ToInt32(MainReader["PATIENTID"].ToString());
+                        string location = MainReader["MLOCATION"].ToString();
+                        DateTime MeetingDate = Convert.ToDateTime(MainReader["MeetingDate"].ToString());
+                        bool status = Convert.ToBoolean(Convert.ToInt32(MainReader["Status"].ToString()));
+                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"]).ToString());
+                        string pname = MainReader["pname"].ToString();
+                        string pphone = MainReader["pphone"].ToString();
+                        DateTime pDateReg = Convert.ToDateTime(MainReader["PDATEREG"].ToString());
+                        string padress = MainReader["padress"].ToString();
+                        string plocation = MainReader["plocation"].ToString();
+                        bool pcar = Convert.ToBoolean(Convert.ToInt32(MainReader["pcar"].ToString()));
+                        bool pdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["pdrivers"].ToString()));
+                        string prfid = MainReader["prifd"].ToString();
+                        bool penabled = Convert.ToBoolean(Convert.ToInt32(MainReader["penabled"].ToString()));
+                        string pusername = MainReader["pusername"].ToString();
+                        string ppassword = MainReader["ppasswword"].ToString();
+                        string pemail = MainReader["pemail"].ToString();
+                        string vog = MainReader["vog"].ToString();
+                        DateTime vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        string photo = MainReader["PHOTO"].ToString();
+                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"]).ToString());
+                        string vname = MainReader["vname"].ToString();
+                        string vphone = MainReader["vphone"].ToString();
+                        DateTime vDateReg = Convert.ToDateTime(MainReader["vDATEREG"].ToString());
+                        string vadress = MainReader["vadress"].ToString();
+                        string vlocation = MainReader["vlocation"].ToString();
+                        bool vcar = Convert.ToBoolean(Convert.ToInt32(MainReader["vcar"].ToString()));
+                        bool vdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["vdrivers"].ToString()));
+                        string vrfid = MainReader["vrifd"].ToString();
+                        bool venabled = Convert.ToBoolean(Convert.ToInt32(MainReader["venabled"].ToString()));
+                        string vusername = MainReader["pusername"].ToString();
+                        string vpassword = MainReader["ppasswword"].ToString();
+                        string vemail = MainReader["pemail"].ToString();
+                        Volunteer volunteer = new Volunteer(volunteerID, vusername, vpassword, vemail, vname, vphone, vDateReg, vadress, vlocation, vcar, vdrivers, vrfid, false, venabled, vbd, photo, vog, vogCon);
+                        Patient patient = new Patient(patientID, pusername, ppassword, pemail, pname, pphone, pDateReg, padress, plocation, pcar, pdrivers, prfid, false, penabled, pOV);
+                        returnMeetings.Add(new Meeting(patient, volunteer, location, MeetingDate, status));
+                    }
+                    return returnMeetings;
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+            }
         }
 
         //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
