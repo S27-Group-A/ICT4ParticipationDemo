@@ -1,8 +1,22 @@
-﻿
+﻿@using Participation_ASP.Models
+@model Volunteer
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Hulpvragen</h2>
+@{
+    ViewModel viewModel = new ViewModel();
+    foreach (Request r in viewModel.RequestList)
+    {
+        <h3>@r.Patient.Name</h3>
+        <p>@r.Description</p>
+        using (Html.BeginForm("RespondToRequest", "Request"))
+        {
+            <input type="text" name="Response" id="Response"/>
+            <input type="submit" value="Plaats reactie"/>
+        }
+    }
+}
 

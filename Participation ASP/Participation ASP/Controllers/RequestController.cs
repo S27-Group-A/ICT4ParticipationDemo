@@ -15,7 +15,19 @@ namespace Participation_ASP.Controllers
             IAccount accountInlog = (IAccount) Session["Account"];
             if (accountInlog is Volunteer)
             {
-                return View();
+                Volunteer volunteer = accountInlog as Volunteer;
+                return View(volunteer);
+            }
+            return RedirectToAction("Index", "Error");
+        }
+
+        [HttpPost]
+        public ActionResult RespondToRequeset(FormCollection collection)
+        {
+            string reactie = collection["Response"];
+            if (reactie.Length > 0)
+            {
+                Content(reactie);
             }
             return RedirectToAction("Index", "Error");
         }

@@ -26,6 +26,10 @@
                     @if (Session["Account"] != null)
                     {
                         @Html.ActionLink("Kennismakinggesprek", "Index", "Meeting", new { area = "" }, new { @class = "navbar-brand" })
+                        if ((IAccount) Session["Account"] is Volunteer)
+                        {
+                            @Html.ActionLink("Hulpvragen", "Index", "Request", new { area = "" }, new { @class = "navbar-brand" })
+                        }
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
