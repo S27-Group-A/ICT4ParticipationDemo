@@ -1,0 +1,129 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.IAccount
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<p>Gebruikersnaam: @Model.Username</p>
+<p>Email: @Model.Email</p>
+<p>Adres: @Model.Address</p>
+<p></p>
+@if (Model is Volunteer)
+{
+    {
+        <p>Beschikbaarheid:</p>
+        Volunteer volunteer = Model as Volunteer;
+        if (volunteer.Availabilities != null)
+        {
+
+            <ul>
+                @foreach (Availability a in volunteer.Availabilities)
+                {
+                    <li>@a.Day: @a.TimeOfDay</li>
+                    <li>@a.Day: @a.TimeOfDay</li>
+                }
+            </ul>
+        }
+
+        {
+            List<SelectListItem> dagen = new List<SelectListItem>();
+            dagen.Add(new SelectListItem
+            {
+                Text = "Maandag",
+                Value = "Ma",
+                Selected = true
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Dinsdag",
+                Value = "Di",
+
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Woensdag",
+                Value = "Wo"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Donderdag",
+                Value = "Do"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Vrijdag",
+                Value = "Vrij"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Zaterdag",
+                Value = "Za"
+            });
+            dagen.Add(new SelectListItem
+            {
+                Text = "Zondag",
+                Value = "Zo"
+            });
+
+            List<SelectListItem> dagDeel = new List<SelectListItem>();
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Morgen",
+                Value = "Morning",
+                Selected = true
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Middag",
+                Value = "Midday",
+
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Avond",
+                Value = "Evening"
+            });
+            dagDeel.Add(new SelectListItem
+            {
+                Text = "Nacht",
+                Value = "Night"
+            });
+            using (Html.BeginForm("AddAvailability", "Profile", FormMethod.Post))
+            {
+                @Html.DropDownListFor(model => volunteer, dagDeel)
+                @Html.DropDownListFor(model => volunteer, dagen)
+                <!--
+                <input type="password" name="Password" />
+                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
+                -->
+                <input type="submit" value="Toevoegen" />
+            }
+            
+        }
+
+            <p>Vaardigheden:</p>
+
+            if (volunteer.Skills != null)
+            {
+                <ul>
+                    @foreach (Skill s in volunteer.Skills)
+                        {
+                        <li>@s.Description</li>
+                    }
+                </ul>
+            }
+
+            using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
+            {
+                <input type="text" name="skill" id="skill" />
+                <!--
+                <input type="password" name="Password" />
+                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
+                -->
+                <input type="submit" value="Toevoegen" />
+                    }
+                }
+
+            }

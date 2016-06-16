@@ -18,23 +18,23 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 --CREATE TABLES AND ADD PRIMARY KEYS
 Create Table "Account"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Username Varchar2(32) Not Null,
-  Password Varchar2(32) Not Null,
-  Email Varchar2(255) Not Null
+  Password Varchar2(32) Not Null Unique,
+  Email Varchar2(255) Not Null Unique
 );
 
 Create Table "User"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Name Varchar2(32) Not Null,
   Phone Varchar2(16),
   Datederegistration Date,
   Adress Varchar2(255),
   Location Varchar(255),
   Car Varchar2(1) DEFAULT '0',
-  Driverslicense Varchar2(1),
-  Rfid Varchar2(255),
+  Driverslicense Varchar2(1) DEFAULT '0',
+  RfId Varchar2(255),
   Banned Varchar2(1) DEFAULT '0',
   Unban Date,
   Enabled Varchar2(1) DEFAULT '1', 
@@ -45,86 +45,88 @@ Create Table "User"
 
 Create Table "Admin"
 (
-  Accountid Number(10) Primary Key
+  AccountId Number(10) Primary Key
 );
 
 
 Create Table Volunteer
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10) Primary Key,
   Vog Varchar2(255),
   Birthdate Date,
   Photo Varchar2(255),
-  VogConfirmation Varchar2(1),
+  VogConfirmation Varchar2(1) DEFAULT '0',
   CHECK (VogConfirmation = '1' OR VogConfirmation = '0') 
 );
 
 Create Table Skill
 (
-  Skillid Number(10) Primary Key,
+  SkillId Number(10) Primary Key,
   Description Varchar2(255) Not Null
 );
 
 Create Table Request
 (
-  Requestid Number(10) Primary Key,
+  AccountId NUMBER(10),
+  RequestId Number(10),
   Description Varchar2(255),
   Location Varchar2(255),
-  Traveltime Timestamp,
+  Traveltime NUMBER(10),
   Startdate Date,
   Enddate Date,
   Urgency Number(1),
-  Amountofvolunteers Number(10)
+  AmountOfVolunteers Number(10),
+  PRIMARY KEY (RequestId)
 );
 
 Create Table Review
 (  
-  Reviewid Number(10),
-  Accountid Number(10),
-  Requestid Number(10),
+  ReviewId Number(10),
+  AccountId Number(10),
+  RequestId Number(10),
   Rating Number(2),
   "Comment" Varchar2(255),
-  Primary Key (Reviewid, Accountid, Requestid)
+  Primary Key (ReviewId, AccountId, RequestId)
 );
 
 Create Table Vehicletype
 ( 
   VehicleTypeId Number(10),
-  Requestid Number(10),
+  RequestId Number(10),
   Description Varchar2(255) Not Null,
-  Primary Key (Vehicletypeid, Requestid)
+  Primary Key (VehicletypeId, RequestId)
 );
 
 Create Table Patient
 ( 
-  Accountid Number(10) Primary Key,
-  Ov Varchar2(1),
+  AccountId Number(10) Primary Key,
+  Ov Varchar2(1) DEFAULT '0',
   CHECK (Ov = '1' OR Ov = '0')
 );
 
 Create Table Meeting
 (
-  Volunteerid Number(10),
-  Patientid Number(10),
+  VolunteerId Number(10),
+  PatientId Number(10),
   Location Varchar(255),
   Meetingdate Date,
-  Status Varchar2(1),
-  Primary Key(Volunteerid, Patientid),
+  Status Varchar2(1) DEFAULT '0',
+  Primary Key(VolunteerId, PatientId),
   CHECK (Status = '1' OR Status = '0')
 );
 
 Create Table Volunteerskill
 (
-  Accountid Number(10),
-  Skillid Number(10),
-  Primary Key (Accountid, Skillid)
+  AccountId Number(10),
+  SkillId Number(10),
+  Primary Key (AccountId, SkillId)
 );
 --TODO Drop below
 Create Table Requestskill
 (
-  Requestid Number(10),
-  Skillid Number(10),
-  Primary Key (RequestId, Skillid)
+  RequestId Number(10),
+  SkillId Number(10),
+  Primary Key (RequestId, SkillId)
 );
 
 Create Table Chat
@@ -138,10 +140,10 @@ Create Table Chat
 
 Create Table "Availability"
 (
-  Accountid Number(10) Primary Key,
+  AccountId Number(10), 
   Day Varchar2(2),
-  Timeofday Varchar2(10),
-  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo')
+  TimeOfDay Varchar2(10),
+  Primary Key(AccountId, Day, TimeOfDay)
 );
 
 Create Table Response
@@ -154,45 +156,33 @@ Create Table Response
 );
 
 --ADD FOREIGN KEY CONSTRAINTS
-Alter Table "User" Add Foreign Key (Accountid) References Account(Accountid);
-Alter Table "Admin" Add Foreign Key (Accountid) References Account(Accountid);
-Alter Table Volunteer Add Foreign Key (Accountid) References "User"(Accountid);
-Alter Table Patient Add Foreign Key (Accountid) References "User" (Accountid);
-Alter Table "Availability" Add Foreign Key (Accountid) References Volunteer(Accountid);
-Alter Table Meeting Add Foreign Key (Volunteerid) References Volunteer(Accountid);
-Alter Table Meeting Add Foreign Key (Patientid) References Patient(Accountid);
-Alter Table Chat Add Foreign Key (Accounta) References Volunteer(Accountid);
-Alter Table Chat Add Foreign Key (Accountb) References Patient(Accountid);
-Alter Table Volunteerskill Add Foreign Key (Accountid) References Volunteer(Accountid);
-Alter Table Volunteerskill Add Foreign Key (Skillid) References Skill(Skillid);
-Alter Table Requestskill Add Foreign Key (RequestId) References Request(RequestId);
-Alter Table Requestskill Add Foreign Key (SkillId) References Skill(SkillId);
+Alter Table "User" Add Foreign Key (AccountId) References "Account"(AccountId);
+Alter Table "Admin" Add Foreign Key (AccountId) References "Account"(AccountId);
+Alter Table Volunteer Add Foreign Key (AccountId) References "User"(AccountId);
+Alter Table Patient Add Foreign Key (AccountId) References "User" (AccountId);
+Alter Table "Availability" Add Foreign Key (AccountId) References Volunteer(AccountId);
+Alter Table Meeting Add Foreign Key (VolunteerId) References Volunteer(AccountId);
+Alter Table Meeting Add Foreign Key (PatientId) References Patient(AccountId);
+Alter Table Chat Add Foreign Key (Accounta) References Volunteer(AccountId);
+Alter Table Chat Add Foreign Key (Accountb) References Patient(AccountId);
+Alter Table Volunteerskill Add Foreign Key (AccountId) References Volunteer(AccountId);
+Alter Table Volunteerskill Add Foreign Key (SkillId) References Skill(SkillId);
+Alter Table RequestSkill Add Foreign Key (RequestId) References Request(RequestId);
+Alter Table RequestSkill Add Foreign Key (SkillId) References Skill(SkillId);
 Alter Table Review Add Foreign Key (RequestId) References Request(RequestId);
 Alter Table Review Add Foreign Key (AccountId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (ResponderId) References Volunteer(AccountId);
 Alter Table Response Add Foreign Key (RequestId) References Request(RequestId);
-Alter Table VehicleType Add Foreign Key (Requestid) References Request(RequestId);
+Alter Table VehicleType Add Foreign Key (RequestId) References Request(RequestId);
+
+--CHECK CONSTRAINTS
+ALTER TABLE "Availability" 
+ADD CONSTRAINT chk_Availability_Day  CHECK (Day = 'Mo' OR Day = 'Di' OR Day = 'Wo' OR Day = 'Do' OR Day = 'Vr' OR Day = 'Za' OR Day = 'Zo');
+ALTER TABLE "Availability"
+ADD CONSTRAINT chk_Availability_TimeOfDay CHECK (TimeOfDay = 'Middag' OR TimeOfDay = 'Avond' OR TimeOfDay = 'Ochtend');
 
 
-/*
-DROP TABLE "Account" CASCADE CONSTRAINTS;
-DROP TABLE "User" CASCADE CONSTRAINTS;
-DROP TABLE "Admin" CASCADE CONSTRAINTS;
-DROP TABLE Volunteer CASCADE CONSTRAINTS;
-DROP TABLE Skill CASCADE CONSTRAINTS;
-DROP TABLE Review CASCADE CONSTRAINTS;
-DROP TABLE Request CASCADE CONSTRAINTS;
-DROP TABLE VehicleType CASCADE CONSTRAINTS;
-DROP TABLE Patient CASCADE CONSTRAINTS;
-DROP TABLE Meeting CASCADE CONSTRAINTS;
-DROP TABLE VolunteerSkill CASCADE CONSTRAINTS;
-DROP TABLE RequestSkill CASCADE CONSTRAINTS;
-DROP TABLE Chat CASCADE CONSTRAINTS;
-DROP TABLE "Availability" CASCADE CONSTRAINTS;
-DROP TABLE Response CASCADE CONSTRAINTS;
-*/
-
---AUTO IDINTIFIER INCREMENT SEQUENCES
+--AUTO IdINTIFIER INCREMENT SEQUENCES
 DROP SEQUENCE AccountIncrementSeq;
 DROP SEQUENCE SkillIncrementSeq;
 DROP SEQUENCE ReviewIncrementSeq;
@@ -230,12 +220,7 @@ CREATE SEQUENCE RequestIncrementSeq
  CACHE 20;
 /
 
---AUTO IDINTIFIER INCREMENT TRIGGERS
-DROP TRIGGER AccountIncrementTrig;
-DROP TRIGGER SkillIncrementTrig;
-DROP TRIGGER ReviewIncrementTrig;
-DROP TRIGGER RequestIncrementTrig;
-
+--AUTO IdINTIFIER INCREMENT TRIGGERS
 CREATE OR REPLACE TRIGGER AccountIncrementTrig BEFORE INSERT ON "Account" REFERENCING OLD AS "OLD" NEW AS "NEW" FOR EACH ROW ENABLE WHEN (new.AccountId IS NULL)
 BEGIN
   SELECT AccountIncrementSeq.NEXTVAL INTO :new.AccountId FROM dual;
@@ -260,4 +245,53 @@ BEGIN
 END;
 /
 
-INSERT INTO Account (Username, Password, Email)VALUES('test', 'test', 'test@test.nl');
+--DUMMY DATA
+INSERT INTO "Account" (Username, Password, Email) VALUES ('patient', 'patient', 'patient@patient.nl');
+INSERT INTO "User" (AccountId, Name) VALUES (1, 'patientje');
+INSERT INTO Patient (AccountId) VALUES (1);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'volunteer', 'volunteer@volunteer.nl'); 
+INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
+INSERT INTO Volunteer (AccountId) VALUES (2);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'secondvolunteer', 'secondvolunteer@volunteer.nl'); 
+INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
+INSERT INTO Volunteer (AccountId) VALUES (3);
+
+INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'admin', 'admin@admin.nl');
+INSERT INTO "Admin" (AccountId) VALUES (3);
+
+INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
+
+INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
+VALUES (1, 1, 'Volkswagen');
+
+INSERT INTO Skill(Description)
+VALUES ('Goed met dieren');
+INSERT INTO Skill(Description)
+VALUES ('Masseur');
+
+INSERT INTO VolunteerSkill(AccountId, SkillId)
+VALUES (2, 1);
+
+INSERT INTO RequestSkill(SkillId, RequestId)
+VALUES (1, 1);
+
+INSERT INTO Response(ResponderId, RequestId, ResponseDate, Description)
+VALUES (2, 1, TO_DATE('01-03-2017', 'DD-MM-YY'), 'Ik kan helpen!');
+
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Mo', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Avond');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (2, 'Di', 'Middag');
+INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
+VALUES (3, 'Mo', 'Ochtend');
+
+INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
+VALUES (1, 2, 10, 'Aardige jongeman');
+
+commit;
