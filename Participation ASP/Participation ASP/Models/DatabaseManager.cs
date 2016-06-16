@@ -1580,14 +1580,15 @@ namespace Participation_ASP.Models
                 try
                 {
                     List<Meeting> returnMeetings = new List<Meeting>();
-                    int volunteerID = 0;
-                    int patientID = 0;
+
                     OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID;");
 
                     OracleDataReader MainReader = ExecuteQuery(selectCommand);
 
                     while (MainReader.Read())
                     {
+                        int volunteerID = 0;
+                        int patientID = 0;
                         volunteerID = Convert.ToInt32(MainReader["VOLUNTEERID"].ToString());
                         patientID = Convert.ToInt32(MainReader["PATIENTID"].ToString());
                         string location = MainReader["MLOCATION"].ToString();
@@ -1628,10 +1629,10 @@ namespace Participation_ASP.Models
                     }
                     return returnMeetings;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
-                    throw;
+                    throw e;
                 }
             }
         }
