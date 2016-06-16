@@ -1062,14 +1062,15 @@ namespace Participation_ASP.Models
         }
 
         //TODO Tom
-        public static bool DeleteReview(int ID)
+        public static bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = new OracleConnection())
             {
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "DELETE FROM");
+                        "DELETE FROM Review WHERE ReviewId = :ReviewId");
+                    cmd.Parameters.Add("ReviewId", reviewId);
                     return ExecuteNonQuery(cmd);
                 }
                 catch (OracleException e)
@@ -1078,7 +1079,6 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-
                     throw e;
                 }
             }
