@@ -314,7 +314,7 @@
                                                                  "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
                                                                  "p.Ov, p.AccountId as \"PatientId\", " +
                                                                  "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
                                                                  "FROM \"User\" u " +
                                                                  "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
@@ -526,6 +526,7 @@
         /// <param name="accountId">account identifier</param>
         /// <returns>All reviews of specified user</returns>
         private static List<Review> GetReviews(int accountId)
+
         {
             using (OracleConnection con = Connection)
             {
@@ -800,7 +801,7 @@
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
-                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Enabled " +
                         "FROM VehicleType v " +
                         "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
                         "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
@@ -811,7 +812,6 @@
                     cmd.Parameters.Add(":requestid", ID);
 
                     var requests = new List<Request>();
-                    con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
                     while (reader.Read())
                     {
@@ -831,11 +831,8 @@
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+                        
 
                         //Request Data
                         int ReqId = new int();
@@ -876,7 +873,7 @@
                         //Get Response Data
                         List<Response> responses = GetResponses(ReqId);
 
-                        //requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses));
 
                     }
                     return requests;
@@ -1246,6 +1243,43 @@
             }
         }
 
+        public static bool AlterVogConfirmation(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "UPDATE Volunteer SET VogConfirmation = 1 WHERE AccountID = :accountId"
+                        );
+
+                    cmd.Parameters.Add(":accountId", ID);                   
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (OracleException e)
+                {
+                    if (Regex.IsMatch("unique", e.Message))
+                    {
+                        return false;
+                    }
+                        return false;
+
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         public static bool AddAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
@@ -1497,6 +1531,11 @@
                     cmd.Parameters.Add(":requestid", ID);
 
                     ExecuteNonQuery(cmd);
+
+                    cmd.CommandText = "DELETE FROM Response WHERE RequestID = :requestid";
+
+                    ExecuteNonQuery(cmd);
+
                     return true;
                 }
                 catch (OracleException e)
@@ -1575,13 +1614,6 @@
                 }
             }
         }
-
-
-        public static bool AlterVogConfirmation(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public static List<Meeting> GetMeetings()
         {
