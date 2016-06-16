@@ -26,7 +26,7 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
-        public void GetSkills()
+        public void GetSkillsByVolunteer()
         {
             Volunteer volunteer = new Volunteer(2, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, new DateTime(), string.Empty, string.Empty, false, false, string.Empty, false, new DateTime(), true, false, new DateTime(), string.Empty, string.Empty, true);
             List<Skill> skills = DatabaseManager.GetSkills(volunteer);
@@ -39,6 +39,13 @@ namespace Particpation_ASP_Test
             Volunteer volunteer = new Volunteer(2, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, new DateTime(), string.Empty, string.Empty, false, false, string.Empty, false, new DateTime(), true, false, new DateTime(), string.Empty, string.Empty, true);
             List<Availability> availabilities = DatabaseManager.GetAvailabilities(volunteer);
             Assert.AreNotEqual(availabilities.Count, 0);
+        }
+
+        [TestMethod]
+        public void GetSkills()
+        {
+            List<Skill> skills = DatabaseManager.GetSkills();
+            Assert.AreNotEqual(skills.Count, 0);
         }
     }
 }
