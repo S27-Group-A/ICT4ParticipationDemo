@@ -1330,10 +1330,14 @@ namespace Participation_ASP.Models
                         int skillcount = request.Skills.Count;
                         int count = 0;
 
-                        OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
-                        vehicleCommand.Parameters.Add(":requestID", requestID);
-                        vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
-                        if (ExecuteNonQuery(vehicleCommand))
+                        if (request.VehicleType != null)
+                        {
+                            OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
+                            vehicleCommand.Parameters.Add(":requestID", requestID);
+                            vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
+                            ExecuteNonQuery(vehicleCommand);
+                        }
+                        if (request.Skills != null)
                         {
                             foreach (Skill s in request.Skills)
                             {
