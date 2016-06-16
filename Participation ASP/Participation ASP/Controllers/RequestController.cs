@@ -53,5 +53,21 @@ namespace Participation_ASP.Controllers
             }
             return RedirectToAction("Index", "Error");
         }
+
+        [HttpPost]
+        public ActionResult AddRequest(FormCollection collection)
+        {
+            string description = collection["description"];
+            string location = collection["location"];
+            DateTime date = Convert.ToDateTime(collection["date"]);
+            int urgence = Convert.ToInt32(collection["urgence"]);
+            int amountOfVolunteers = Convert.ToInt32(collection["amountOfVolunteers"]);
+            int skillId = Convert.ToInt32(collection["skill"]);
+            if (description != "" && location != "" && date > DateTime.Today)
+            {
+                return Content(description + location + date + urgence + amountOfVolunteers + skillId);
+            }
+            return RedirectToAction("Index", "Error");
+        }
     }
 }

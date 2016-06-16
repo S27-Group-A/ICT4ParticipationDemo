@@ -9,7 +9,7 @@
 <h2>Hulpvragen</h2>
 @if (Model is Volunteer)
 {
-    @{
+    {
         ViewModel viewModel = new ViewModel();
         foreach (Request r in viewModel.RequestList)
         {
@@ -26,7 +26,28 @@
 @if (Model is Patient)
 {
     Patient patient = Model as Patient;
-
+    using (Html.BeginForm("AddRequest", "Request"))
+    {
+        <p>Beschrijving</p>
+        <input type="text" name="description"/>
+        <p>Locatie</p>
+        <input type="text" name="location"/>
+        <p>Datum</p>
+        <input type="date" id="date" name="date" class="input-xlarge">
+        <p>Urgentie</p>
+        <input type="number" min="0" max="5" name="urgence"/>
+        <p>Aantal vrijwilligers</p>
+        <input type="number" min="1" name="amountOfVolunteers"/>
+        ViewModel viewModel = new ViewModel();
+        <p>Vaardigheden</p>
+        <select id="skill" class="form-control" size="1" name="skill">
+            @foreach (Skill skill in viewModel.SkillList)
+            {
+                <option value="@skill.Id">@skill.Description</option>
+            }
+        </select>
+        <input type="submit" class="btn btn-success"/>
+    }
 }
 
 
