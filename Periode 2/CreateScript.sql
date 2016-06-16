@@ -85,7 +85,7 @@ Create Table Review
   AccountId Number(10),
   RequestId Number(10),
   Rating Number(2),
-  "Comment" Varchar2(255),
+  Description Varchar2(255),
   Primary Key (ReviewId, AccountId, RequestId)
 );
 
@@ -308,8 +308,11 @@ VALUES (2, 'Di', 'Middag');
 INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
 VALUES (3, 'Mo', 'Ochtend');
 
-INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
+INSERT INTO Review (Requestid, AccountId, Rating, Description)
 VALUES (1, 2, 10, 'Aardige jongeman');
+
+INSERT INTO Meeting (VolunteerId, PatientId, Location, MeetingDate, Status)
+VALUES (2, 1, 'Hier', TO_DATE('20-01-1995', 'DD-MM-YYYY'), 0);
 
 commit;
 
