@@ -32,10 +32,6 @@ namespace Participation_ASP.Models
 
         string Rfid { get; set; }
 
-        bool Banned { get; set; }
-
-        DateTime Unban { get; set; }
-
         bool Enabled { get; set; }
 
         bool IsAdmin { get; set; }
