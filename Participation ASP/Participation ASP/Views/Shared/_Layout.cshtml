@@ -23,7 +23,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @Html.ActionLink("Test", "Overview", "Product", new { area = "" }, new { @class = "navbar-brand" })
+                    @if (Session["Account"] != null)
+                    {
+                        @Html.ActionLink("Kennismakinggesprek", "Index", "Meeting", new { area = "" }, new { @class = "navbar-brand" })
+                        if ((IAccount) Session["Account"] is Volunteer)
+                        {
+                            @Html.ActionLink("Hulpvragen", "Index", "Request", new { area = "" }, new { @class = "navbar-brand" })
+                        }
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["Account"] != null)
