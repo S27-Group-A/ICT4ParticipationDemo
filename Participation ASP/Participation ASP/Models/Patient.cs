@@ -9,6 +9,12 @@ namespace Participation_ASP.Models
     {
         public bool Ov { get; set; }
 
+        public Patient()
+        {
+
+        }
+
+
         public Patient(bool ov)
         {
             Ov = ov;

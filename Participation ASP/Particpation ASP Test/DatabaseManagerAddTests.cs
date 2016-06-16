@@ -36,11 +36,39 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
+        //TODO Fix this
         public void AddVolunteer()
         {
             Assert.IsTrue(
                 DatabaseManager.AddAccount(new Volunteer(0, "henkje", "password", "email@mail.com", "Henk", "84984894",
                     new DateTime(), "Wilhelminastraat 15", "Uden", false, false, string.Empty, false, true, new DateTime(), string.Empty, string.Empty, false)));
+        }
+
+        [TestMethod]
+        public void AddRequest()
+        {
+
+        }
+
+        [TestMethod]
+        public void AddReview()
+        {
+            Assert.IsTrue(
+                DatabaseManager.AddReview(
+                    new Review(0, new Request(1), 7, "Cool")
+                    , 2));
+        }
+
+        [TestMethod]
+        public void AlterAdmin()
+        {
+            Assert.IsTrue(DatabaseManager.AlterAdmin(2));
+        }
+
+        [TestMethod]
+        public void AlterEnabled()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
         }
     }
 }

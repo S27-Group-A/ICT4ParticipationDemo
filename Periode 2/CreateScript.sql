@@ -85,7 +85,7 @@ Create Table Review
   AccountId Number(10),
   RequestId Number(10),
   Rating Number(2),
-  "Comment" Varchar2(255),
+  Description Varchar2(255),
   Primary Key (ReviewId, AccountId, RequestId)
 );
 
@@ -187,6 +187,7 @@ DROP SEQUENCE AccountIncrementSeq;
 DROP SEQUENCE SkillIncrementSeq;
 DROP SEQUENCE ReviewIncrementSeq;
 DROP SEQUENCE RequestIncrementSeq;
+DROP SEQUENCE VehicleTypeIncrementSeq;
 
 CREATE SEQUENCE AccountIncrementSeq
  INCREMENT BY 1
@@ -220,6 +221,14 @@ CREATE SEQUENCE RequestIncrementSeq
  CACHE 20;
 /
 
+CREATE SEQUENCE VehicleTypeIncrementSeq
+ INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 9999999999999999999999999999
+ START WITH 1
+ CACHE 20;
+/
+
 --AUTO IdINTIFIER INCREMENT TRIGGERS
 CREATE OR REPLACE TRIGGER AccountIncrementTrig BEFORE INSERT ON "Account" REFERENCING OLD AS "OLD" NEW AS "NEW" FOR EACH ROW ENABLE WHEN (new.AccountId IS NULL)
 BEGIN
@@ -245,6 +254,12 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE TRIGGER VehicleTypeIncrementTrig BEFORE INSERT ON VehicleType REFERENCING OLD AS "OLD" NEW AS "NEW" FOR EACH ROW ENABLE WHEN (new.VehicleTypeId IS NULL)
+BEGIN
+  SELECT VehicleTypeIncrementSeq.NEXTVAL INTO :new.VehicleTypeId FROM dual; 
+END;
+/
+
 --DUMMY DATA
 INSERT INTO "Account" (Username, Password, Email) VALUES ('patient', 'patient', 'patient@patient.nl');
 INSERT INTO "User" (AccountId, Name) VALUES (1, 'patientje');
@@ -263,12 +278,12 @@ INSERT INTO "User" (AccountId, Name) VALUES (4, 'Administrator');
 INSERT INTO  Volunteer (AccountId) VALUES (4);
 INSERT INTO "Admin" (AccountId) VALUES (4);
 
-INSERT INTO Request (AccountId, RequestId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
-VALUES (1, 1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
 TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
 
-INSERT INTO VehicleType (VehicleTypeId, RequestId, Description)
-VALUES (1, 1, 'Volkswagen');
+INSERT INTO VehicleType (RequestId, Description)
+VALUES (1, 'Volkswagen');
 
 INSERT INTO Skill(Description)
 VALUES ('Goed met dieren');
@@ -293,8 +308,11 @@ VALUES (2, 'Di', 'Middag');
 INSERT INTO "Availability"(AccountId, Day, TimeOfDay)
 VALUES (3, 'Mo', 'Ochtend');
 
-INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
+INSERT INTO Review (Requestid, AccountId, Rating, Description)
 VALUES (1, 2, 10, 'Aardige jongeman');
+
+INSERT INTO Meeting (VolunteerId, PatientId, Location, MeetingDate, Status)
+VALUES (2, 1, 'Hier', TO_DATE('20-01-1995', 'DD-MM-YYYY'), 0);
 
 commit;
 

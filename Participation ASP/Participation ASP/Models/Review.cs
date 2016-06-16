@@ -13,15 +13,15 @@ namespace Participation_ASP.Models
 
         public int Rating { get; set; }
 
-        public string Context { get; set; }
+        public string Comment { get; set; }
 
 
-        public Review(int reviewId, Request request, int rating, string context)
+        public Review(int reviewId, Request request, int rating, string comment)
         {
-            this.ReviewId = reviewId;
-            this.Request = request;
-            this.Rating = rating;
-            this.Context = context;
+            ReviewId = reviewId;
+            Request = request;
+            Rating = rating;
+            Comment = comment;
         }
     }
 }

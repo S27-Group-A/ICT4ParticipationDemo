@@ -19,6 +19,9 @@ namespace Participation_ASP.Models
 
         public DateTime ResponseDate { get; set; }
 
+        public int ResponseId { get; set; }
+
+
         public Response(int responderid, int RequestId, string description, DateTime date)
         {
             this.ResponderId = responderid;
@@ -27,11 +30,17 @@ namespace Participation_ASP.Models
             this.Date = date;
         }
 
+
         public Response(Account volunteer, string description, DateTime responseDate)
         {
             Volunteer = volunteer;
             Description = description;
             ResponseDate = responseDate;
+        }
+
+        public bool AddResponse(Response response, Request request)
+        {
+            return DatabaseManager.AddResponse(response, request);
         }
     }
 }
