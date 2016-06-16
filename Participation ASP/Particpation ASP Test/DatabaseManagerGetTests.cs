@@ -18,6 +18,14 @@ namespace Particpation_ASP_Test
             Assert.AreNotEqual(accounts.Count, 0);
         }
 
+
+        [TestMethod]
+        public void GetAccountTest()
+        {
+            var account = DatabaseManager.GetAccount("volunteer@volunteer.nl", "volunteer");
+            Assert.IsNotNull(account);
+        }
+
         [TestMethod]
         public void GetRequests()
         {

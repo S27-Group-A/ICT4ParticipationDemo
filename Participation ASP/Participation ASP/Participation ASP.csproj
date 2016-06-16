@@ -194,7 +194,10 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Account\Logout.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
+    <Content Include="Views\Admin\AdminProfilePatient.cshtml" />
     <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
+    <Content Include="Views\Admin\AdminRequest.cshtml" />
+    <Content Include="Views\Admin\AdminReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

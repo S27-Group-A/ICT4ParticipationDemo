@@ -36,6 +36,7 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
+        //TODO Fix this
         public void AddVolunteer()
         {
             Assert.IsTrue(
@@ -53,6 +54,27 @@ namespace Particpation_ASP_Test
             Patient patient = new Patient(1, "patient", "patient", "patient@patient.nl","patientje", string.Empty, DateTime.MinValue, string.Empty, string.Empty, false, false, string.Empty, false, true, true);
             Request request = new Request(-1,"testrequest", "testlocation", 1337, DateTime.Now, new DateTime(2016, 06, 20),3, 1, skills, vecType, patient, null );
             Assert.IsTrue(request.AddRequest(request));
+        }
+
+        [TestMethod]
+        public void AddReview()
+        {
+            Assert.IsTrue(
+                DatabaseManager.AddReview(
+                    new Review(0, new Request(1), 7, "Cool")
+                    , 2));
+        }
+
+        [TestMethod]
+        public void AlterAdmin()
+        {
+            Assert.IsTrue(DatabaseManager.AlterAdmin(2));
+        }
+
+        [TestMethod]
+        public void AlterEnabled()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
         }
     }
 }

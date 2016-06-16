@@ -20,7 +20,7 @@
                 @foreach (IAccount i in Model.GetAccountList())
                 {
                     <ul>
-                        <li>@Html.ActionLink(i.Username, "Account", "Profile", new { id = i.AccountId }, new { @class = "list-group-item" })</li>
+                        <li>@Html.ActionLink(i.Username, "AdminProfile", new { id = i.AccountId })</li>
                     </ul>
                 }
             </div>
@@ -30,7 +30,7 @@
                 @foreach (Request i in Model.GetRequestList())
                 {
                     <ul>
-                        <li>@Html.ActionLink(i.Description, "Account", "Profile", new { id = i.RequestId }, new { @class = "list-group-item" })</li>
+                        <li>@Html.ActionLink(i.Description, "AdminRequest", new { id = i.RequestId })</li>
                     </ul>
                 }
             </div>

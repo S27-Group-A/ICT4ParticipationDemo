@@ -12,12 +12,14 @@ namespace Participation_ASP.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
+
         public ActionResult Index()
         {
             if (Session["Account"] == null)
             {
                 List<Availability> tempA = new List<Availability>();
                 List<Skill> tempS = new List<Skill>();
+                /*
                 tempA.Add(new Availability("Ma", "Morgen"));
                 tempA.Add(new Availability("Di", "Middag"));
                 tempS.Add(new Skill("Timmeren"));
@@ -25,7 +27,8 @@ namespace Participation_ASP.Controllers
                 volunteer.Availabilities = tempA;
                 volunteer.Skills = tempS;
                 Session["Account"] = (IAccount)volunteer;
-                return View(volunteer);
+                */
+                return RedirectToAction("Index", "Error");
             }
             else
             {

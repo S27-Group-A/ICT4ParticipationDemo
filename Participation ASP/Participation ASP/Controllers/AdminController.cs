@@ -17,16 +17,12 @@ namespace Participation_ASP.Controllers
 
         public ActionResult AdminPanel()
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
                     return View(new ViewModel());
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -35,17 +31,50 @@ namespace Participation_ASP.Controllers
 
         public ActionResult AdminProfile(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    //return View(DatabaseManager.GetProfile(ID));
-                    return View();
+                    IAccount dbaccount = DatabaseManager.GetAccount(ID);
+                    TempData["dbaccount"] = dbaccount;
+                    if (dbaccount.GetType() == typeof(Volunteer))
+                    {
+                        return RedirectToAction("AdminProfileVolunteer");
+                    }
+
+                    if (dbaccount.GetType() == typeof(Patient))
+                    {
+                        return RedirectToAction("AdminProfilePatient");
+                    }
                 }
-                else
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AdminProfileVolunteer()
+        {
+            IAccount account = TempData["dbaccount"] as IAccount;
+            if (account != null)
+            {
+                if (account.IsAdmin)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View(account);
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult AdminProfilePatient()
+        {
+            IAccount account = TempData["dbaccount"] as IAccount;
+            if (account != null)
+            {
+                if (account.IsAdmin)
+                {
+                    return View(account);
                 }
             }
 
@@ -54,36 +83,44 @@ namespace Participation_ASP.Controllers
 
         public ActionResult AdminRequest(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    //return View(DatabaseManager.GetRequest(ID));
+                    //return View(DatabaseManager.GetRequests(ID));
                     return View();
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult AdminReview(int ID)
+        {
+            IAccount account = Session["Account"] as IAccount;
+            if (account != null)
+            {
+                if (account.IsAdmin)
+                {
+                    //return View(DatabaseManager.GetReviews(ID));
+                    return View();
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        #region Alter
         public ActionResult AlterAdmin(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
                     //DatabaseManager.AlterAdmin(ID);
                     return RedirectToAction("AdminPanel");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -92,7 +129,7 @@ namespace Participation_ASP.Controllers
 
         public ActionResult AlterEnabled(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
@@ -100,29 +137,22 @@ namespace Participation_ASP.Controllers
                     //DatabaseManager.AlterEnabled(ID);
                     return RedirectToAction("AdminPanel");
                 }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
             }
 
             return RedirectToAction("Index", "Home");
         }
+        #endregion
 
         #region Delete
         public ActionResult AdminDeleteProfile(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
                     //DatabaseManager.DeleteProfile(ID);
                     return RedirectToAction("AdminPanel");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -132,17 +162,13 @@ namespace Participation_ASP.Controllers
 
         public ActionResult DeleteRequest(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
                     //DatabaseManager.DeleteRequest(ID);
                     return RedirectToAction("AdminPanel");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
@@ -151,17 +177,13 @@ namespace Participation_ASP.Controllers
 
         public ActionResult DeleteReview(int ID)
         {
-            IAccount account = Session["Account"] as Account;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
                     //DatabaseManager.DeleteReview(ID)
                     return RedirectToAction("AdminPanel");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
 
