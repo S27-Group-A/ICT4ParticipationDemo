@@ -19,10 +19,13 @@
                 <h5>Account informatie</h5>
                 <div class="col-md-10">
                     @Html.Label("Gebruikersnaam: " + Model.Username)
+                    <br>
                     @Html.Label("Email adres: " + Model.Email)
+                    <br>
                     @Html.Label("Naam: " + Model.Name)
+                    <br>
                     @Html.Label("Telefoonnummer: " + Model.Name)
-
+                    <br>
                     @if (Model.DateCancellation != new DateTime())
                     {
                         @Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())
@@ -31,10 +34,13 @@
                     {
                         @Html.Label("Cancellation date: Active")
                     }
-
+                    <br>
                     @Html.Label("Location: " + Model.Location)
+                    <br>
                     @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
+                    <br>
                     @Html.Label("RFID: " + Model.Rfid)
+                    <br>
                     @Html.Label("Enabled: " + Model.Enabled.ToString())
 
                     <div class="col-md-offset-2 col-md-10">
