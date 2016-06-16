@@ -1,0 +1,16 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.IAccount
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model is Volunteer)
+{
+    <h2>Kennismakinggesprekken goedkeuren.</h2>
+}
+@if (Model is Patient)
+{
+    <h2>Kennismakingsgesprekken plannen.</h2>
+}
+

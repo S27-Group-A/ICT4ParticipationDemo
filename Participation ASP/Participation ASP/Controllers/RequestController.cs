@@ -13,9 +13,9 @@ namespace Participation_ASP.Controllers
         public ActionResult Index()
         {
             IAccount accountInlog = (IAccount) Session["Account"];
-            if (accountInlog is Patient)
+            if (accountInlog is Volunteer)
             {
-                return View(accountInlog);
+                return View();
             }
             return RedirectToAction("Index", "Error");
         }

@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap-old.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DLL\Oracle.DataAccess.dll" />
@@ -155,6 +156,7 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Exceptions\DayException.cs" />
     <Compile Include="Exceptions\DatabaseNotConnectedException.cs" />
@@ -196,6 +198,7 @@
     <Content Include="Views\Error.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
+    <Content Include="Views\Meeting\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
