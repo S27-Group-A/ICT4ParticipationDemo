@@ -8,24 +8,44 @@
     using System.Web.Mvc;
     using Participation_ASP.Models;
 
+
+    /// <summary>
+    /// The controller for the Login System
+    /// </summary>
     public class AccountController : Controller
     {
-        // GET: Account
+        /// <summary>
+        /// The standard ActionResult; this redirects to an empty page.
+        /// </summary>
+        /// <returns> View() </returns>
         public ActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// The ActionResult for loading a blank Register page.
+        /// </summary>
+        /// <returns> View() </returns>
         public ActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// The ActionResult for loading a blank Login page.
+        /// </summary>
+        /// <returns> View() </returns>
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// The Actionresult for a submitted account. The data gets inserted into the database, and the user gets redirected to the Profile System.
+        /// </summary>
+        /// <param name="loginAccount"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -42,6 +62,10 @@
             return View();
         }
 
+        /// <summary>
+        /// The ActionResult to log out. This redirects the user to the Homepage of the Account System.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Logout()
         {
             Session["Account"] = null;
