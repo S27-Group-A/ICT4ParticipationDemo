@@ -38,5 +38,10 @@ namespace Participation_ASP.Models
             Patient = patient;
             Responses = responses;
         }
+
+        public void AddResponse(Response response)
+        {
+            DatabaseManager.AddResponse(response);
+        }
     }
 }
