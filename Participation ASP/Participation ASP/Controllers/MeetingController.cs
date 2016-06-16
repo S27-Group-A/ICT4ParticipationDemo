@@ -32,7 +32,10 @@ namespace Participation_ASP.Controllers
         [HttpPost]
         public ActionResult PlanMeeting(FormCollection collection)
         {
-            
+            string volunteerEmail = collection["volunteer"];
+            string location = collection["location"];
+            string date = collection["date"];
+            return Content(volunteerEmail + "/" + location + "/" + date);
         }
     }
 }
