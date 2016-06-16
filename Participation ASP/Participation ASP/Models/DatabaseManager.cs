@@ -471,7 +471,8 @@ namespace Participation_ASP.Models
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
+                            //List<Review> reviews = GetReviews(AccountId);
+                            var reviews = new List<Review>();
                             return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
                         }
                         else
@@ -1355,9 +1356,6 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception)
                 {
-<<<<<<< HEAD
-
-=======
 
                     throw;
                 }
@@ -1410,16 +1408,12 @@ namespace Participation_ASP.Models
                 catch (Exception)
                 {
                     
->>>>>>> refs/remotes/origin/webSander
                     throw;
                 }
             }
         }
 
-<<<<<<< HEAD
-=======
-        //TODO Sander
->>>>>>> refs/remotes/origin/webSander
+
         public static bool AddResponse(Response response, Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1442,9 +1436,9 @@ namespace Participation_ASP.Models
             }
         }
 
-<<<<<<< HEAD
-        public static
-            bool DeleteRequest(int ID)
+
+
+        public static bool DeleteRequest(int ID)
         {
             using (OracleConnection con = Connection)
             {
@@ -1463,40 +1457,25 @@ namespace Participation_ASP.Models
                 {
                     //throw new ExistingUserException();
                     return false;
-=======
-        //TODO Sven H
-        public static bool GetProfile(int ID)
-        {
-            throw new NotImplementedException();
-        }
->>>>>>> refs/remotes/origin/webSander
-
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
                     throw e;
-                    return false;
                 }
                 finally
                 {
-                    con.Close();
+
                 }
             }
         }
 
 
-        //For changing the status of meeting
-        public static bool AlterMeeting(Meeting meeting)
-
-        {
-            throw new NotImplementedException();
-        }
 
 
 
         //TODO Tom
-        public static bool DeleteReview(int reviewId)
+            public static
+            bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1565,18 +1544,9 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
-<<<<<<< HEAD
-        public static bool AddMeeting(Meeting meeting)
-=======
-        //TODO Sven J
-        public static bool AlterVogConfirmation(int ID)
-        {
-            throw new NotImplementedException();
-        }
 
         //TODO Sander
         public static List<Meeting> GetMeetings()
->>>>>>> refs/remotes/origin/webSander
         {
             using (OracleConnection connection = Connection)
             {
