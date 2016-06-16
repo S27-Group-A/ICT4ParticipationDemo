@@ -1007,7 +1007,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUESTID.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
+                        "INSERT INTO REQUEST (AccountID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(:patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers)");
                     insertCommand.Parameters.Add(":patientID", request.Patient.AccountId);
                     insertCommand.Parameters.Add(":description", request.Description);
                     insertCommand.Parameters.Add(":location", request.Location);
@@ -1031,19 +1031,26 @@ namespace Participation_ASP.Models
                         }
                         int skillcount = request.Skills.Count;
                         int count = 0;
-                        foreach (Skill s in request.Skills)
+
+                        OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
+                        vehicleCommand.Parameters.Add(":requestID", requestID);
+                        vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
+                        if (ExecuteNonQuery(vehicleCommand))
                         {
-                            OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
-                            subinsertCommand.Parameters.Add(":requestID", requestID);
-                            subinsertCommand.Parameters.Add(":skillID", s.Id);
-                            if (ExecuteNonQuery(subinsertCommand))
+                            foreach (Skill s in request.Skills)
                             {
-                                count++;
+                                OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
+                                subinsertCommand.Parameters.Add(":requestID", requestID);
+                                subinsertCommand.Parameters.Add(":skillID", s.Id);
+                                if (ExecuteNonQuery(subinsertCommand))
+                                {
+                                    count++;
+                                }
                             }
-                        }
-                        if (count >= skillcount)
-                        {
-                            return true;
+                            if (count >= skillcount)
+                            {
+                                return true;
+                            }
                         }
                     }
                     return false;
