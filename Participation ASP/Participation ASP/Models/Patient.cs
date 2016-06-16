@@ -24,5 +24,10 @@ namespace Participation_ASP.Models
         {
             this.Ov = ov;
         }
+
+        public bool AddPatient(Patient patient)
+        {
+            return DatabaseManager.AddAccount(patient);
+        }
     }
 }

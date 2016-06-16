@@ -8,13 +8,15 @@ namespace Particpation_ASP_Test
     public class DatabaseManagerDeleteTests
     {
         [TestMethod]
+        public void DeleteRequest()
+        {  
+            Assert.IsTrue(DatabaseManager.DeleteRequest(2));
+        }
+
+        [TestMethod]
         public void DeleteReview()
         {
-            Assert.IsTrue(DatabaseManager.DeleteReview(1));
-        }
-        public void DeleteRequest()
-        {
-            DatabaseManager.DeleteRequest(2);
+            Assert.IsTrue(DatabaseManager.DeleteReview(2));
         }
     }
 }

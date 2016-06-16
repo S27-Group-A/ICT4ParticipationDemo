@@ -76,5 +76,11 @@ namespace Particpation_ASP_Test
         {
             Assert.IsTrue(DatabaseManager.AlterEnabled(2));
         }
+
+        [TestMethod]
+        public void AlterVogConfirmation()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
+        }
     }
 }
