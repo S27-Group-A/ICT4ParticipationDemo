@@ -1217,6 +1217,43 @@ namespace Participation_ASP.Models
             }
         }
 
+        public static bool AlterVogConfirmation(int ID)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "UPDATE Volunteer SET VogConfirmation = 1 WHERE AccountID = :accountId"
+                        );
+
+                    cmd.Parameters.Add(":accountId", ID);                   
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (OracleException e)
+                {
+                    if (Regex.IsMatch("unique", e.Message))
+                    {
+                        return false;
+                    }
+                        return false;
+
+                }
+                catch (Exception e)
+                {
+                    //TODO Needs proper exception handling
+                    throw e;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         public static bool AddAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
@@ -1534,15 +1571,6 @@ namespace Participation_ASP.Models
                 }
             }
         }
-
-
-
-        //TODO Sven J
-        public static bool AlterVogConfirmation(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
 
         //TODO Sander
         public static List<Meeting> GetMeetings()
