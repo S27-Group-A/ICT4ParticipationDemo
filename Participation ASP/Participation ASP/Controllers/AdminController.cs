@@ -1,4 +1,8 @@
-﻿namespace Participation_ASP.Controllers
+﻿// <copyright file="AccountController.cs">
+// All rights reserved.
+// </copyright>
+// <author>S27 A</author>
+namespace Participation_ASP.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +12,7 @@
     using Participation_ASP.Models;
 
     /// <summary>
-    /// The controller for the Admin System
+    /// The controller for the Admin-system
     /// </summary>
     public class AdminController : Controller
     {
@@ -71,7 +75,7 @@
         /// <summary>
         /// ActionResult that shows a specific Profile belonging to a Volunteer.
         /// </summary>
-        /// <returns> RedirectToAction() or View() </returns>
+        /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfileVolunteer()
         {
             IAccount account = TempData["dbaccount"] as IAccount;
@@ -89,7 +93,7 @@
         /// <summary>
         /// ActionResult that shows a specific Profile belonging to a Patient.
         /// </summary>
-        /// <returns> RedirectToAction() or View() </returns>
+        /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfilePatient()
         {
             IAccount account = TempData["dbaccount"] as IAccount;
@@ -108,7 +112,7 @@
         /// ActionResult that shows a specific Request.
         /// </summary>
         /// <param name="iD"> The iD of the Account </param>
-        /// <returns> RedirectToAction() or View() </returns>
+        /// <returns> RedirectToAction() or View(List<Request>) </returns>
         public ActionResult AdminRequest(int iD)
         {
             IAccount account = Session["Account"] as IAccount;
@@ -124,10 +128,10 @@
         }
 
         /// <summary>
-        /// ActionResult that shows a specific Review.
+        /// ActionResult that shows a specific list of reviews.
         /// </summary>
         /// <param name="iD"> The iD of the Account </param>
-        /// <returns> RedirectToAction() or View() </returns>
+        /// <returns> RedirectToAction() or View(List<Review>) </returns>
         public ActionResult AdminReview(int iD)
         {
             IAccount account = Session["Account"] as IAccount;
