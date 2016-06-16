@@ -19,8 +19,8 @@ DROP TABLE Response CASCADE CONSTRAINTS;
 Create Table "Account"
 (
   AccountId Number(10) Primary Key,
-  Username Varchar2(32) Not Null,
-  Password Varchar2(32) Not Null Unique,
+  Username Varchar2(32) Not Null Unique,
+  Password Varchar2(32) Not Null,
   Email Varchar2(255) Not Null Unique
 );
 
@@ -295,3 +295,6 @@ INSERT INTO Review (Requestid, AccountId, Rating, "Comment")
 VALUES (1, 2, 10, 'Aardige jongeman');
 
 commit;
+
+savepoint svpoint;
+rollback to svpoint;
