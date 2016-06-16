@@ -1,8 +1,22 @@
-﻿
+﻿@using Participation_ASP.Models
+@model Volunteer
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Hulpvragen</h2>
+@{
+    ViewModel viewModel = new ViewModel();
+    foreach (Request r in viewModel.RequestList)
+    {
+        {
+            Session["request" + @r.RequestId.ToString()] = r;
+        }
+        <h3>@r.Patient.Name</h3>
+        <p>@r.Description</p>
+        @Html.ActionLink("Meer Informatie", @r.RequestId.ToString(), "Request/RequestInfo")
+        <p>_______________________________________________</p>
+    }
+}
 

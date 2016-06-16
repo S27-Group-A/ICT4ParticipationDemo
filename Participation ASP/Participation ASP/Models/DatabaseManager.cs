@@ -1007,7 +1007,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUEST.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
+                        "INSERT INTO REQUEST (AccountID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(:patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers)");
                     insertCommand.Parameters.Add(":patientID", request.Patient.AccountId);
                     insertCommand.Parameters.Add(":description", request.Description);
                     insertCommand.Parameters.Add(":location", request.Location);
@@ -1031,19 +1031,26 @@ namespace Participation_ASP.Models
                         }
                         int skillcount = request.Skills.Count;
                         int count = 0;
-                        foreach (Skill s in request.Skills)
+
+                        OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
+                        vehicleCommand.Parameters.Add(":requestID", requestID);
+                        vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
+                        if (ExecuteNonQuery(vehicleCommand))
                         {
-                            OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
-                            subinsertCommand.Parameters.Add(":requestID", requestID);
-                            subinsertCommand.Parameters.Add(":skillID", s.Id);
-                            if (ExecuteNonQuery(subinsertCommand))
+                            foreach (Skill s in request.Skills)
                             {
-                                count++;
+                                OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
+                                subinsertCommand.Parameters.Add(":requestID", requestID);
+                                subinsertCommand.Parameters.Add(":skillID", s.Id);
+                                if (ExecuteNonQuery(subinsertCommand))
+                                {
+                                    count++;
+                                }
                             }
-                        }
-                        if (count >= skillcount)
-                        {
-                            return true;
+                            if (count >= skillcount)
+                            {
+                                return true;
+                            }
                         }
                     }
                     return false;
@@ -1063,16 +1070,18 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description");
-                    insertCommand.Parameters.Add(":responderID", response.Volunteer.AccountId);
-                    insertCommand.Parameters.Add(":requestID", request.RequestId);
-                    insertCommand.Parameters.Add(":responseDate", response.ResponseDate);
-                    insertCommand.Parameters.Add(":description", response.Description);
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    insertCommand.Parameters.Add(":location", meeting.Location);
+                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    insertCommand.Parameters.Add(":status", meeting.Status);
 
                     return ExecuteNonQuery(insertCommand);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
+
                     throw;
                 }
             }
@@ -1086,9 +1095,26 @@ namespace Participation_ASP.Models
         }
 
         //TODO Sander
-        public static bool AddResponse(Response response)
+        public static bool AddResponse(Response response, Request request)
         {
-            throw new NotImplementedException();
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description)");
+                    insertCommand.Parameters.Add(":responderID", response.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":requestID", request.RequestId);
+                    insertCommand.Parameters.Add(":responseDate", response.ResponseDate);
+                    insertCommand.Parameters.Add(":description", response.Description);
+
+                    return ExecuteNonQuery(insertCommand);
+                }
+                catch (Exception e)
+                {
+                    throw;
+                }
+            }
         }
 
         //TODO Sven H
@@ -1176,7 +1202,6 @@ namespace Participation_ASP.Models
         {
             throw new NotImplementedException();
         }
-
 
         //TODO Sven J
         public static bool AlterVogConfirmation(int ID)
