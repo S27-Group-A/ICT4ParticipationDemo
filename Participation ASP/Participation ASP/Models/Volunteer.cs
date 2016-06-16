@@ -15,7 +15,6 @@ namespace Participation_ASP.Models
         public List<Skill> Skills { get; set; }
         public List<Review> Reviews { get; set; }
 
-
         public Volunteer(DateTime birthDate, string photo, string vog, bool vogConfirmation, List<Availability> availabilities, List<Skill> skills)
         {
             BirthDate = birthDate;

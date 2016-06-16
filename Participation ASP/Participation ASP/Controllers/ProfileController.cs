@@ -12,6 +12,7 @@ namespace Participation_ASP.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
+
         public ActionResult Index()
         {
             if (Session["Account"] == null)

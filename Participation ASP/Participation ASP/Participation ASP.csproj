@@ -205,6 +205,10 @@
     <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Request\RequestInfo.cshtml" />
+    <Content Include="Views\Admin\AdminProfilePatient.cshtml" />
+    <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
+    <Content Include="Views\Admin\AdminRequest.cshtml" />
+    <Content Include="Views\Admin\AdminReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
