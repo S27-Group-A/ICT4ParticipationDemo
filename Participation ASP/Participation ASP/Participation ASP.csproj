@@ -157,6 +157,7 @@
     <Compile Include="Exceptions\DayException.cs" />
     <Compile Include="Exceptions\DatabaseNotConnectedException.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Exceptions\ExistingUserException.cs" />
     <Compile Include="Exceptions\TimeOfDayException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

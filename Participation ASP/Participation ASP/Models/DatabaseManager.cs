@@ -242,8 +242,6 @@ namespace Participation_ASP.Models
                         //Admin Data
                         if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                         {
-                            bool IsAdmin = true;
-                            accounts.Add(new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, IsAdmin));
                         }
 
                         //Patient Data 
@@ -258,6 +256,7 @@ namespace Participation_ASP.Models
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
+
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
@@ -265,7 +264,18 @@ namespace Participation_ASP.Models
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
-                            accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                            {
+                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban,
+                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            }
+                            else
+                            {
+                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban,
+                                    Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                            }
                         }
                     }
                     return accounts;
