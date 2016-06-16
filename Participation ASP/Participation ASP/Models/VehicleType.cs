@@ -7,6 +7,8 @@ namespace Participation_ASP.Models
 {
     public class VehicleType
     {
+
+
         public VehicleType(int id, string description)
         {
             Id = id;

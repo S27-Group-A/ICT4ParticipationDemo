@@ -64,7 +64,7 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("UNIQUE", e.Message))
+                    if (Regex.IsMatch("unique", e.Message))
                     {
                         throw new ExistingSkillException(e.Message);
                     }
@@ -954,7 +954,7 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("UNIQUE", e.Message))
+                    if (Regex.IsMatch("unique", e.Message))
                         throw new ExistingUserException();
                     return false;
                 }
@@ -1112,7 +1112,7 @@ namespace Participation_ASP.Models
         //TODO Tom
         public static bool DeleteReview(int reviewId)
         {
-            using (OracleConnection con = new OracleConnection())
+            using (OracleConnection con = Connection)
             {
                 try
                 {
@@ -1137,10 +1137,38 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Tom
-        public static bool AddReview(int ID)
+        //TODO Fix this/Test this
+        public static bool AddReview(Review review, int volunteerId)
         {
-            throw new NotImplementedException();
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO Review (AccountId, RequestId, Rating, Description) " +
+                        "VALUES (:AccountId, :RequestId, :Rating, :Description)"
+                    );
+                    cmd.Parameters.Add("RequestId", review.Request.RequestId);
+                    cmd.Parameters.Add("AccountId", volunteerId);
+                    cmd.Parameters.Add("Rating", review.Rating);
+                    cmd.Parameters.Add("Description", review.Comment);
+
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         //TODO Sven J
@@ -1157,7 +1185,6 @@ namespace Participation_ASP.Models
         }
 
         public static bool AddMeeting(Meeting meeting)
-
         {
             using (OracleConnection connection = Connection)
             {

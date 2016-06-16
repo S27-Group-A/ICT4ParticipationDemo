@@ -36,6 +36,7 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
+        //TODO Fix this
         public void AddVolunteer()
         {
             Assert.IsTrue(
@@ -47,6 +48,15 @@ namespace Particpation_ASP_Test
         public void AddRequest()
         {
 
+        }
+
+        [TestMethod]
+        public void AddReview()
+        {
+            Assert.IsTrue(
+                DatabaseManager.AddReview(
+                    new Review(0, new Request(1), 7, "Cool")
+                    , 2));
         }
     }
 }
