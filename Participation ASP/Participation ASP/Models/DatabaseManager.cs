@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI.WebControls;
-using MyFigureCollection.Exceptions;
-using Oracle.DataAccess.Client;
-using Participation_ASP.Exceptions;
-
+﻿/// <summary>
+/// Manages the getting and setting of database values.
+/// </summary>
 
 namespace Participation_ASP.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data;
+    using System.Diagnostics;
+    using System.Text.RegularExpressions;
+    using MyFigureCollection.Exceptions;
+    using Oracle.DataAccess.Client;
+    using Participation_ASP.Exceptions;
+
     public static class DatabaseManager
     {
 
@@ -72,7 +71,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -111,7 +110,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -189,7 +188,6 @@ namespace Participation_ASP.Models
         }
 
 
-        #region Get
         public static List<IAccount> GetAccounts()
         {
             using (OracleConnection con = Connection)
@@ -275,12 +273,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -375,12 +373,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -484,12 +482,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -535,12 +533,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -638,12 +636,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -742,12 +740,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -853,12 +851,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -892,12 +890,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -975,12 +973,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1014,12 +1012,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1052,12 +1050,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1093,12 +1091,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1146,12 +1144,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1201,12 +1199,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                 }
                 finally
@@ -1284,7 +1282,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+                    
                     throw e;
                     return false;
                 }
@@ -1475,13 +1473,7 @@ namespace Participation_ASP.Models
             }
         }
 
-
-
-
-
-        //TODO Tom
-        public static
-        bool DeleteReview(int reviewId)
+        public static bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1508,9 +1500,9 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Fix this/Test this
         public static bool AddReview(Review review, int volunteerId)
         {
+            //TODO Fix this/Test this
             using (OracleConnection con = Connection)
             {
                 try
@@ -1543,15 +1535,12 @@ namespace Participation_ASP.Models
         }
 
 
-
-        //TODO Sven J
         public static bool AlterVogConfirmation(int ID)
         {
             throw new NotImplementedException();
         }
 
 
-        //TODO Sander
         public static List<Meeting> GetMeetings()
         {
             using (OracleConnection connection = Connection)
@@ -1627,7 +1616,5 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
-        #endregion
     }
 }
