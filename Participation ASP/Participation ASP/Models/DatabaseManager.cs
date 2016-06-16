@@ -992,7 +992,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUEST.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
+                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUESTID.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
                     insertCommand.Parameters.Add(":patientID", request.Patient.AccountId);
                     insertCommand.Parameters.Add(":description", request.Description);
                     insertCommand.Parameters.Add(":location", request.Location);
