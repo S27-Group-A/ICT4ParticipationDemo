@@ -260,7 +260,7 @@ namespace Participation_ASP.Models
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
+                            List<Review> reviews = new List<Review>();
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
                                 accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
@@ -373,7 +373,7 @@ namespace Participation_ASP.Models
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
+                            List<Review> reviews = new List<Review>();
                             return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
                         }
                         else
