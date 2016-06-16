@@ -236,10 +236,7 @@ namespace Participation_ASP.Models
                         if (!string.IsNullOrEmpty(reader["Enabled"].ToString()))
                             Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
 
-                        //Admin Data
-                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
-                        {
-                        }
+
 
                         //Patient Data 
                         else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
@@ -340,11 +337,6 @@ namespace Participation_ASP.Models
                         bool Enabled = true;
                         if (!string.IsNullOrEmpty(reader["Enabled"].ToString()))
                             Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-
-                        //Admin Data
-                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
-                        {
-                        }
 
                         //Patient Data 
                         else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
@@ -515,7 +507,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT r.ReviewId, r.Requestid, r.Rating, r.\"Comment\" " +
+                        "SELECT r.ReviewId, r.Requestid, r.Rating, r.Description " +
                         "FROM Review r " +
                         "INNER JOIN Volunteer v ON v.AccountId = r.AccountId WHERE v.AccountId = :AccountId");
 
@@ -536,7 +528,7 @@ namespace Participation_ASP.Models
                         int Rating = new int();
                         if (!string.IsNullOrEmpty(reader["Rating"].ToString()))
                             Rating = Convert.ToInt32(reader["Rating"].ToString());
-                        string Comment = reader["Comment"].ToString();
+                        string Comment = reader["Description"].ToString();
                         reviews.Add(new Review(ReviewId, request, Rating, Comment));
                     }
                     return reviews;
