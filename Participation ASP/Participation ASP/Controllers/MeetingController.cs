@@ -34,8 +34,8 @@ namespace Participation_ASP.Controllers
         {
             string volunteerEmail = collection["volunteer"];
             string location = collection["location"];
-            string date = collection["date"];
-            return Content(volunteerEmail + "/" + location + "/" + date);
+            DateTime date = Convert.ToDateTime(collection["date"]);
+            return Content(volunteerEmail + "/" + location + "/" + date.ToString());
         }
     }
 }
