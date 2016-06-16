@@ -38,9 +38,9 @@ namespace Participation_ASP.Models
             ResponseDate = responseDate;
         }
 
-        public bool AddResponse(Response response, Request request)
+        public void AddResponse(Response response)
         {
-            return DatabaseManager.AddResponse(response, request);
+            return DatabaseManager.AddResponse(response;
         }
     }
 }
