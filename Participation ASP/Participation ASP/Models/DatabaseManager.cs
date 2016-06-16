@@ -54,8 +54,7 @@
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "INSERT INTO Skill (Description) VALUES (:Skill)"
-                        );
+                        "INSERT INTO Skill (Description) VALUES (:Skill)");
                     cmd.Parameters.Add("Skill", skill);
                     con.Open();
                     return ExecuteNonQuery(cmd);
@@ -683,6 +682,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets all requests
+        /// </summary>
+        /// <returns>all requests</returns>
         public static List<Request> GetRequests()
         {
             using (OracleConnection con = Connection)
@@ -787,117 +790,11 @@
             }
         }
 
-        public static List<Request> GetRequests(int ID)
-        {
-            using (OracleConnection con = Connection)
-            {
-                try
-                {
-                    OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
-                        "r.Urgency, r.AmountOfVolunteers, " +
-                        "v.VehicleTypeId, v.Description, " +
-                        "p.OV, " +
-                        "a.Username, a.Email, a.Password, " +
-                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
-                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
-                        "FROM VehicleType v " +
-                        "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
-                        "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
-                        "LEFT JOIN \"User\" u ON u.AccountId = p.AccountId " +
-                        "LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId " +
-                        "WHERE r.RequestID = :requestid");
-
-                    cmd.Parameters.Add(":requestid", ID);
-
-                    var requests = new List<Request>();
-                    con.Open();
-                    OracleDataReader reader = ExecuteQuery(cmd);
-                    while (reader.Read())
-                    {
-                        //User- and Account Data
-                        int AccountId = new int();
-                        if (reader["AccountId"] != null)
-                            AccountId = Convert.ToInt32(reader["AccountId"].ToString());
-                        string Username = reader["Username"].ToString();
-                        string Password = reader["Password"].ToString();
-                        string Email = reader["Email"].ToString();
-                        string Name = reader["Name"].ToString();
-                        string Phone = reader["Phone"].ToString();
-                        DateTime DateDeregistration = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
-                            DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
-                        string Adress = reader["Adress"].ToString();
-                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
-                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
-                        string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
-                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
-
-                        //Request Data
-                        int ReqId = new int();
-                        if (!string.IsNullOrEmpty(reader["RequestId"].ToString()))
-                            ReqId = Convert.ToInt32(reader["RequestId"].ToString());
-                        string Location = reader["Location"].ToString();
-                        int TravelTime = new int();
-                        if (!string.IsNullOrEmpty(reader["TravelTime"].ToString()))
-                            Convert.ToInt32(reader["TravelTime"].ToString());
-                        DateTime StartDate = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["StartDate"].ToString()))
-                            StartDate = Convert.ToDateTime(reader["StartDate"].ToString());
-                        DateTime EndDate = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["EndDate"].ToString()))
-                            EndDate = Convert.ToDateTime(reader["EndDate"].ToString());
-                        int Urgency = new int();
-                        if (!string.IsNullOrEmpty(reader["Urgency"].ToString()))
-                            Urgency = Convert.ToInt32(reader["Urgency"].ToString());
-                        int AmountOfVolunteers = new int();
-                        if (!string.IsNullOrEmpty(reader["AmountOfVolunteers"].ToString()))
-                            AmountOfVolunteers = Convert.ToInt32(reader["AmountOfVolunteers"].ToString());
-                        string Description = reader["Description"].ToString();
-
-                        //Patient Data
-                        bool Ov = false;
-                        if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
-                            Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-
-                        //Vehicle Data
-                        int VehicleTypeId = new int();
-                        if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
-                            VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
-                        string VehicleDescription = reader["Description"].ToString();
-
-                        //Get Skill Data
-                        List<Skill> skills = GetSkills(AccountId);
-
-                        //Get Response Data
-                        List<Response> responses = GetResponses(ReqId);
-
-                        //requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
-
-                    }
-                    return requests;
-                }
-                catch (OracleException e)
-                {
-
-                    throw e;
-                }
-                catch (Exception e)
-                {
-
-                    throw e;
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-        }
-
+        /// <summary>
+        /// Returns a list of skills based on request identifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns></returns>
         private static List<Skill> GetSkills(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -937,6 +834,11 @@
             }
         }
 
+        /// <summary>
+        /// Gets all responses based on a request's identifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns>List of all responses with specified request id</returns>
         private static List<Response> GetResponses(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -992,8 +894,6 @@
                         var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, UserLocation, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
 
                         //Response Data
-                        //res.RequestId, res.ResponseDate, res.Description
-                        //var RequestId = requestId;
                         DateTime ResponseDate = new DateTime();
                         if (!string.IsNullOrEmpty(reader["ResponseDate"].ToString()))
                             ResponseDate = Convert.ToDateTime(reader["ResponseDate"].ToString());
@@ -1020,6 +920,11 @@
             }
         }
 
+        /// <summary>
+        /// List of skills based on a volunteer
+        /// </summary>
+        /// <param name="volunteer">volunteer</param>
+        /// <returns>List of skills based on a volunteer</returns>
         public static List<Skill> GetSkills(Volunteer volunteer)
         {
             using (OracleConnection con = Connection)
@@ -1059,6 +964,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets all skills from table Skill
+        /// </summary>
+        /// <returns>list of all skills</returns>
         public static List<Skill> GetSkills()
         {
             using (OracleConnection con = Connection)
@@ -1097,6 +1006,12 @@
             }
         }
 
+        /// <summary>
+        /// Returns all availabilities based on a volunteer.
+        /// Used for displaying current free schedule of a volunteer.
+        /// </summary>
+        /// <param name="volunteer"></param>
+        /// <returns></returns>
         public static List<Availability> GetAvailabilities(Volunteer volunteer)
         {
             using (OracleConnection con = Connection)
@@ -1138,7 +1053,12 @@
             }
         }
 
-        public static bool AlterAdmin(int ID)
+        /// <summary>
+        /// Makes a volunteer become an admin
+        /// </summary>
+        /// <param name="AccountId">volunteer identifier</param>
+        /// <returns></returns>
+        public static bool AlterAdmin(int AccountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1148,7 +1068,7 @@
                         "SELECT AccountID FROM \"Admin\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     string value = null;
 
@@ -1191,7 +1111,12 @@
             }
         }
 
-        public static bool AlterEnabled(int ID)
+        /// <summary>
+        /// 'Deletes' and account by disabling the account
+        /// </summary>
+        /// <param name="AccountId">account identifier</param>
+        /// <returns></returns>
+        public static bool AlterEnabled(int AccountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1201,7 +1126,7 @@
                         "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     int value = 1;
 
@@ -1215,7 +1140,7 @@
                         "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     if (value == 0)
                     {
@@ -1246,6 +1171,11 @@
             }
         }
 
+        /// <summary>
+        /// Adds an account to the database
+        /// </summary>
+        /// <param name="account">account to be added</param>
+        /// <returns></returns>
         public static bool AddAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
@@ -1312,10 +1242,8 @@
                         throw new ExistingUserException();
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
-                    throw e;
                     return false;
                 }
                 finally
@@ -1325,7 +1253,12 @@
             }
         }
 
-        //Must
+        /// <summary>
+        /// Changes the current skills of a volunteer
+        /// </summary>
+        /// <param name="skills">list of skills to changed to</param>
+        /// <param name="accountId">volunteer identifier</param>
+        /// <returns></returns>
         public static bool AlterVolunteerSkills(List<Skill> skills, int accountId)
         {
             using (OracleConnection con = new OracleConnection())
@@ -1334,7 +1267,11 @@
             }
         }
 
-
+        /// <summary>
+        /// Adds a request to the request table
+        /// </summary>
+        /// <param name="request">request to be added</param>
+        /// <returns></returns>
         public static bool AddRequest(Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1399,7 +1336,11 @@
         }
 
 
-        //TODO Sander
+        /// <summary>
+        /// Adds a meeting to the meeting table
+        /// </summary>
+        /// <param name="meeting">meeting to be added</param>
+        /// <returns></returns>
         public static bool AddMeeting(Meeting meeting)
         {
             using (OracleConnection connection = Connection)
@@ -1424,7 +1365,11 @@
             }
         }
 
-        //TODO Sander
+        /// <summary>
+        /// Alters the meeting, this used so users will be able to accept meetings
+        /// </summary>
+        /// <param name="meeting">meeting to be altered</param>
+        /// <returns></returns>
         public static bool AlterMeeting(Meeting meeting)
         {
             using (OracleConnection connection = Connection)
@@ -1449,7 +1394,12 @@
             }
         }
 
-
+        /// <summary>
+        /// Adds a response to a request
+        /// </summary>
+        /// <param name="response">response to be added</param>
+        /// <param name="request">request to which the response is pointed</param>
+        /// <returns></returns>
         public static bool AddResponse(Response response, Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1467,14 +1417,18 @@
                 }
                 catch (Exception e)
                 {
-                    throw;
+                    throw e;
                 }
             }
         }
 
 
-
-        public static bool DeleteRequest(int ID)
+        /// <summary>
+        /// Deletes a request by it's id
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <returns></returns>
+        public static bool DeleteRequest(int requestId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1484,15 +1438,14 @@
                         "DELETE FROM Request WHERE RequestID = :requestid"
                         );
 
-                    cmd.Parameters.Add(":requestid", ID);
+                    cmd.Parameters.Add(":requestid", requestId);
 
                     ExecuteNonQuery(cmd);
                     return true;
                 }
                 catch (OracleException e)
                 {
-                    //throw new ExistingUserException();
-                    return false;
+                    throw new ExistingUserException(e.Message);
                 }
                 catch (Exception e)
                 {
@@ -1500,11 +1453,16 @@
                 }
                 finally
                 {
-
+                    con.Close();
                 }
             }
         }
 
+        /// <summary>
+        /// Deletes a review by it's id
+        /// </summary>
+        /// <param name="reviewId">review to be removed</param>
+        /// <returns></returns>
         public static bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
@@ -1532,9 +1490,14 @@
             }
         }
 
+        /// <summary>
+        /// Adds a review to a volunteer
+        /// </summary>
+        /// <param name="review">review to be added</param>
+        /// <param name="volunteerId">volunteer to which the review is adressed</param>
+        /// <returns></returns>
         public static bool AddReview(Review review, int volunteerId)
         {
-            //TODO Fix this/Test this
             using (OracleConnection con = Connection)
             {
                 try
@@ -1566,8 +1529,12 @@
             }
         }
 
-
-        public static bool AlterVogConfirmation(int ID)
+        /// <summary>
+        /// Used for accepting a VOG
+        /// </summary>
+        /// <param name="accountId">account identifier</param>
+        /// <returns></returns>
+        public static bool AlterVogConfirmation(int accountId)
         {
             throw new NotImplementedException();
         }
@@ -1640,10 +1607,10 @@
                     }
                     return returnMeetings;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
-                    throw;
+                    throw e;
                 }
             }
         }
