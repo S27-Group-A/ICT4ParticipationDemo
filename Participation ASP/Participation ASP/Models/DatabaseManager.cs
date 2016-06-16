@@ -239,7 +239,7 @@ namespace Participation_ASP.Models
 
 
                         //Patient Data 
-                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
@@ -290,7 +290,7 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static IAccount GetAccount(int ID)
+        public static IAccount GetAccount(int id)
         {
             using (OracleConnection con = Connection)
             {
@@ -307,7 +307,7 @@ namespace Participation_ASP.Models
                                                                  "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
                                                                  "WHERE a.AccountId = :accountid");
-                    cmd.Parameters.Add(":accountid", ID);
+                    cmd.Parameters.Add(":accountid", id);
 
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
@@ -339,7 +339,7 @@ namespace Participation_ASP.Models
                             Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
 
                         //Patient Data 
-                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
@@ -446,15 +446,9 @@ namespace Participation_ASP.Models
                             Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
 
 
-                        //Admin Data
-                        if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
-                        {
-                            bool IsAdmin = true;
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, IsAdmin);
-                        }
 
                         //Patient Data 
-                        else if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
+                        if (!string.IsNullOrEmpty(reader["PatientId"].ToString()))
                         {
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
@@ -465,20 +459,25 @@ namespace Participation_ASP.Models
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
+
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            //List<Review> reviews = GetReviews(AccountId);
-                            var reviews = new List<Review>();
-                            return new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
-                        }
-                        else
-                        {
-                            return new Account(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress,
-                                Location, Car, DriversLicense, Rfid, Enabled, false);
+                            List<Review> reviews = GetReviews(AccountId);
+                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                            {
+                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                            }
+                            else
+                            {
+                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                            }
                         }
                     }
                     return null;
@@ -1407,7 +1406,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
             }
@@ -1474,8 +1473,8 @@ namespace Participation_ASP.Models
 
 
         //TODO Tom
-            public static
-            bool DeleteReview(int reviewId)
+        public static
+        bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
             {
