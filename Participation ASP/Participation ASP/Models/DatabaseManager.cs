@@ -1305,7 +1305,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO REQUEST (ReviewID, PatientID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(SEQ_REQUEST.NEXTVAL, :patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers ");
+                        "INSERT INTO REQUEST (AccountID, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountofVolunteers) VALUES(:patientID, :description, :location, :travelTime, :startDate, :endDate, :urgency, :amountOfVolunteers)");
                     insertCommand.Parameters.Add(":patientID", request.Patient.AccountId);
                     insertCommand.Parameters.Add(":description", request.Description);
                     insertCommand.Parameters.Add(":location", request.Location);
@@ -1329,22 +1329,58 @@ namespace Participation_ASP.Models
                         }
                         int skillcount = request.Skills.Count;
                         int count = 0;
-                        foreach (Skill s in request.Skills)
+
+                        OracleCommand vehicleCommand = CreateOracleCommand(connection, "INSERT INTO VEHICLETYPE(RequestID, Description) VALUES(:requestID, :description)");
+                        vehicleCommand.Parameters.Add(":requestID", requestID);
+                        vehicleCommand.Parameters.Add(":description", request.VehicleType.Description);
+                        if (ExecuteNonQuery(vehicleCommand))
                         {
-                            OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
-                            subinsertCommand.Parameters.Add(":requestID", requestID);
-                            subinsertCommand.Parameters.Add(":skillID", s.Id);
-                            if (ExecuteNonQuery(subinsertCommand))
+                            foreach (Skill s in request.Skills)
                             {
-                                count++;
+                                OracleCommand subinsertCommand = CreateOracleCommand(connection, "INSERT INTO REQUESTSKILL (RequestID, SkillID) VALUES (:requestID, :skillID)");
+                                subinsertCommand.Parameters.Add(":requestID", requestID);
+                                subinsertCommand.Parameters.Add(":skillID", s.Id);
+                                if (ExecuteNonQuery(subinsertCommand))
+                                {
+                                    count++;
+                                }
                             }
-                        }
-                        if (count >= skillcount)
-                        {
-                            return true;
+                            if (count >= skillcount)
+                            {
+                                return true;
+                            }
                         }
                     }
                     return false;
+                }
+                catch (Exception)
+                {
+<<<<<<< HEAD
+
+=======
+
+                    throw;
+                }
+            }
+        }
+
+
+        //TODO Sander
+        public static bool AddMeeting(Meeting meeting)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
+                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    insertCommand.Parameters.Add(":location", meeting.Location);
+                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    insertCommand.Parameters.Add(":status", meeting.Status);
+
+                    return ExecuteNonQuery(insertCommand);
                 }
                 catch (Exception)
                 {
@@ -1354,6 +1390,36 @@ namespace Participation_ASP.Models
             }
         }
 
+        //TODO Sander
+        public static bool AlterMeeting(Meeting meeting)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                try
+                {
+                    OracleCommand updateCommand = CreateOracleCommand(connection,
+                        "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
+                    updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
+                    updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
+                    updateCommand.Parameters.Add(":location", meeting.Location);
+                    updateCommand.Parameters.Add(":meetingDate", meeting.Date);
+                    updateCommand.Parameters.Add(":status", meeting.Status);
+
+                    return ExecuteNonQuery(updateCommand);
+                }
+                catch (Exception)
+                {
+                    
+>>>>>>> refs/remotes/origin/webSander
+                    throw;
+                }
+            }
+        }
+
+<<<<<<< HEAD
+=======
+        //TODO Sander
+>>>>>>> refs/remotes/origin/webSander
         public static bool AddResponse(Response response, Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1361,7 +1427,7 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description");
+                        "INSERT INTO RESPONSE (ResponderID, RequestID, ResponseDate, Description) Values(:responderID, :requestID, :responseDate, :description)");
                     insertCommand.Parameters.Add(":responderID", response.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":requestID", request.RequestId);
                     insertCommand.Parameters.Add(":responseDate", response.ResponseDate);
@@ -1376,6 +1442,7 @@ namespace Participation_ASP.Models
             }
         }
 
+<<<<<<< HEAD
         public static
             bool DeleteRequest(int ID)
         {
@@ -1396,6 +1463,13 @@ namespace Participation_ASP.Models
                 {
                     //throw new ExistingUserException();
                     return false;
+=======
+        //TODO Sven H
+        public static bool GetProfile(int ID)
+        {
+            throw new NotImplementedException();
+        }
+>>>>>>> refs/remotes/origin/webSander
 
                 }
                 catch (Exception e)
@@ -1491,21 +1565,71 @@ namespace Participation_ASP.Models
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         public static bool AddMeeting(Meeting meeting)
+=======
+        //TODO Sven J
+        public static bool AlterVogConfirmation(int ID)
+        {
+            throw new NotImplementedException();
+        }
+
+        //TODO Sander
+        public static List<Meeting> GetMeetings()
+>>>>>>> refs/remotes/origin/webSander
         {
             using (OracleConnection connection = Connection)
             {
                 try
                 {
-                    OracleCommand insertCommand = CreateOracleCommand(connection,
-                        "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status");
-                    insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
-                    insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
-                    insertCommand.Parameters.Add(":location", meeting.Location);
-                    insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    insertCommand.Parameters.Add(":status", meeting.Status);
+                    List<Meeting> returnMeetings = new List<Meeting>();
+                    int volunteerID = 0;
+                    int patientID = 0;
+                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID;");
 
-                    return ExecuteNonQuery(insertCommand);
+                    OracleDataReader MainReader = ExecuteQuery(selectCommand);
+
+                    while (MainReader.Read())
+                    {
+                        volunteerID = Convert.ToInt32(MainReader["VOLUNTEERID"].ToString());
+                        patientID = Convert.ToInt32(MainReader["PATIENTID"].ToString());
+                        string location = MainReader["MLOCATION"].ToString();
+                        DateTime MeetingDate = Convert.ToDateTime(MainReader["MeetingDate"].ToString());
+                        bool status = Convert.ToBoolean(Convert.ToInt32(MainReader["Status"].ToString()));
+                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"]).ToString());
+                        string pname = MainReader["pname"].ToString();
+                        string pphone = MainReader["pphone"].ToString();
+                        DateTime pDateReg = Convert.ToDateTime(MainReader["PDATEREG"].ToString());
+                        string padress = MainReader["padress"].ToString();
+                        string plocation = MainReader["plocation"].ToString();
+                        bool pcar = Convert.ToBoolean(Convert.ToInt32(MainReader["pcar"].ToString()));
+                        bool pdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["pdrivers"].ToString()));
+                        string prfid = MainReader["prifd"].ToString();
+                        bool penabled = Convert.ToBoolean(Convert.ToInt32(MainReader["penabled"].ToString()));
+                        string pusername = MainReader["pusername"].ToString();
+                        string ppassword = MainReader["ppasswword"].ToString();
+                        string pemail = MainReader["pemail"].ToString();
+                        string vog = MainReader["vog"].ToString();
+                        DateTime vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        string photo = MainReader["PHOTO"].ToString();
+                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"]).ToString());
+                        string vname = MainReader["vname"].ToString();
+                        string vphone = MainReader["vphone"].ToString();
+                        DateTime vDateReg = Convert.ToDateTime(MainReader["vDATEREG"].ToString());
+                        string vadress = MainReader["vadress"].ToString();
+                        string vlocation = MainReader["vlocation"].ToString();
+                        bool vcar = Convert.ToBoolean(Convert.ToInt32(MainReader["vcar"].ToString()));
+                        bool vdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["vdrivers"].ToString()));
+                        string vrfid = MainReader["vrifd"].ToString();
+                        bool venabled = Convert.ToBoolean(Convert.ToInt32(MainReader["venabled"].ToString()));
+                        string vusername = MainReader["pusername"].ToString();
+                        string vpassword = MainReader["ppasswword"].ToString();
+                        string vemail = MainReader["pemail"].ToString();
+                        Volunteer volunteer = new Volunteer(volunteerID, vusername, vpassword, vemail, vname, vphone, vDateReg, vadress, vlocation, vcar, vdrivers, vrfid, false, venabled, vbd, photo, vog, vogCon);
+                        Patient patient = new Patient(patientID, pusername, ppassword, pemail, pname, pphone, pDateReg, padress, plocation, pcar, pdrivers, prfid, false, penabled, pOV);
+                        returnMeetings.Add(new Meeting(patient, volunteer, location, MeetingDate, status));
+                    }
+                    return returnMeetings;
                 }
                 catch (Exception)
                 {
@@ -1513,12 +1637,6 @@ namespace Participation_ASP.Models
                     throw;
                 }
             }
-        }
-
-        //TODO Sander
-        public static List<Meeting> GetMeetings()
-        {
-            throw new NotImplementedException();
         }
 
         //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
