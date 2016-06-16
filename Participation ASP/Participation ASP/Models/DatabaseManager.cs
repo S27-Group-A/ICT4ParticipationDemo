@@ -1206,7 +1206,7 @@ namespace Participation_ASP.Models
                     List<Meeting> returnMeetings = new List<Meeting>();
                     int volunteerID = 0;
                     int patientID = 0;
-                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID;");
+                    OracleCommand selectCommand = CreateOracleCommand(connection, "SELECT m.VolunteerID as VolunteerID, m.PatientID as PatientID, m.Location as mLocation, m.MeetingDate, m.status, p.AccountID, p.OV, u1.Name as pName, u1.Phone as pPhone, u1.DATEDEREGISTRATION as pDATEDEREG, u1.ADRESS as pAdress, u1.location as pLocation, u1.car as pCar, u1.driverslicense as pDrivers, u1.rfid as pRFID, u1.enabled as pEnabled, a1.username as pUsername, a1.password as pPassword, a1.email as pEmail, v.VOG, v.BirthDate, v.PHOTO, v.VOGCONFIRMATION, u2.Name as vName, u2.Phone as vPhone, u2.DATEDEREGISTRATION as vDATEDEREG, u2.ADRESS as vAdress, u2.location as vLocation, u2.car as vCar, u2.driverslicense as vDrivers, u2.rfid as vRFID, u2.enabled as vEnabled, a2.username as vUsername, a2.password as vPassword, a2.email as vEmail FROM MEETING m LEFT JOIN PATIENT p ON m.PATIENTID = p.ACCOUNTID LEFT JOIN \"User\" u1 ON p.ACCOUNTID = u1.ACCOUNTID  LEFT JOIN \"Account\" a1 on u1.ACCOUNTID = a1.ACCOUNTID LEFT JOIN VOLUNTEER v on m.VOLUNTEERID = v.ACCOUNTID  LEFT JOIN \"User\" u2 ON v.ACCOUNTID = u2.ACCOUNTID LEFT JOIN \"Account\" a2 ON u2.ACCOUNTID = a2.ACCOUNTID");
 
                     OracleDataReader MainReader = ExecuteQuery(selectCommand);
 
@@ -1217,35 +1217,47 @@ namespace Participation_ASP.Models
                         string location = MainReader["MLOCATION"].ToString();
                         DateTime MeetingDate = Convert.ToDateTime(MainReader["MeetingDate"].ToString());
                         bool status = Convert.ToBoolean(Convert.ToInt32(MainReader["Status"].ToString()));
-                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"]).ToString());
+                        bool pOV = Convert.ToBoolean(Convert.ToInt32(MainReader["OV"].ToString()));
                         string pname = MainReader["pname"].ToString();
                         string pphone = MainReader["pphone"].ToString();
-                        DateTime pDateReg = Convert.ToDateTime(MainReader["PDATEREG"].ToString());
+                        DateTime pDateReg = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["PDATEDEREG"].ToString()))
+                        {
+                            pDateReg = Convert.ToDateTime(MainReader["PDATEDEREG"].ToString());
+                        }
                         string padress = MainReader["padress"].ToString();
                         string plocation = MainReader["plocation"].ToString();
                         bool pcar = Convert.ToBoolean(Convert.ToInt32(MainReader["pcar"].ToString()));
                         bool pdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["pdrivers"].ToString()));
-                        string prfid = MainReader["prifd"].ToString();
+                        string prfid = MainReader["PRFID"].ToString();
                         bool penabled = Convert.ToBoolean(Convert.ToInt32(MainReader["penabled"].ToString()));
-                        string pusername = MainReader["pusername"].ToString();
-                        string ppassword = MainReader["ppasswword"].ToString();
-                        string pemail = MainReader["pemail"].ToString();
+                        string pusername = MainReader["PUSERNAME"].ToString();
+                        string ppassword = MainReader["PPASSWORD"].ToString();
+                        string pemail = MainReader["PEMAIL"].ToString();
                         string vog = MainReader["vog"].ToString();
-                        DateTime vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        DateTime vbd = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["BIRTHDATE"].ToString()))
+                        {
+                            vbd = Convert.ToDateTime(MainReader["BIRTHDATE"].ToString());
+                        }
                         string photo = MainReader["PHOTO"].ToString();
-                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"]).ToString());
-                        string vname = MainReader["vname"].ToString();
+                        bool vogCon = Convert.ToBoolean(Convert.ToInt32(MainReader["VOGCONFIRMATION"].ToString()));
+                        string vname = MainReader["VNAME"].ToString();
                         string vphone = MainReader["vphone"].ToString();
-                        DateTime vDateReg = Convert.ToDateTime(MainReader["vDATEREG"].ToString());
+                        DateTime vDateReg = new DateTime();
+                        if (!string.IsNullOrEmpty(MainReader["vDATEDEREG"].ToString()))
+                        {
+                            vDateReg = Convert.ToDateTime(MainReader["vDATEDEREG"].ToString());
+                        }
                         string vadress = MainReader["vadress"].ToString();
                         string vlocation = MainReader["vlocation"].ToString();
                         bool vcar = Convert.ToBoolean(Convert.ToInt32(MainReader["vcar"].ToString()));
                         bool vdrivers = Convert.ToBoolean(Convert.ToInt32(MainReader["vdrivers"].ToString()));
-                        string vrfid = MainReader["vrifd"].ToString();
+                        string vrfid = MainReader["VRFID"].ToString();
                         bool venabled = Convert.ToBoolean(Convert.ToInt32(MainReader["venabled"].ToString()));
-                        string vusername = MainReader["pusername"].ToString();
-                        string vpassword = MainReader["ppasswword"].ToString();
-                        string vemail = MainReader["pemail"].ToString();
+                        string vusername = MainReader["VUSERNAME"].ToString();
+                        string vpassword = MainReader["VPASSWORD"].ToString();
+                        string vemail = MainReader["VEMAIL"].ToString();
                         Volunteer volunteer = new Volunteer(volunteerID, vusername, vpassword, vemail, vname, vphone, vDateReg, vadress, vlocation, vcar, vdrivers, vrfid, false, venabled, vbd, photo, vog, vogCon);
                         Patient patient = new Patient(patientID, pusername, ppassword, pemail, pname, pphone, pDateReg, padress, plocation, pcar, pdrivers, prfid, false, penabled, pOV);
                         returnMeetings.Add(new Meeting(patient, volunteer, location, MeetingDate, status));

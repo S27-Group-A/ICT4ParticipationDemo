@@ -47,5 +47,12 @@ namespace Particpation_ASP_Test
             List<Skill> skills = DatabaseManager.GetSkills();
             Assert.AreNotEqual(skills.Count, 0);
         }
+
+        [TestMethod]
+        public void GetMeetings()
+        {
+            List<Meeting> meetings = DatabaseManager.GetMeetings();
+            Assert.AreNotEqual(meetings.Count, 0);
+        }
     }
 }
