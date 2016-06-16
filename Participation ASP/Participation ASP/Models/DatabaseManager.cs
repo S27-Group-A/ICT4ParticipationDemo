@@ -633,7 +633,6 @@ namespace Participation_ASP.Models
                         List<Response> responses = GetResponses(ReqId);
 
                         return new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses);
-
                     }
                     return null;
                 }
