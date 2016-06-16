@@ -22,12 +22,23 @@ namespace Participation_ASP.Controllers
         }
 
         [HttpPost]
-        public ActionResult RespondToRequeset(FormCollection collection)
+        public ActionResult RespondToRequest(FormCollection collection)
         {
             string reactie = collection["Response"];
             if (reactie.Length > 0)
             {
-                Content(reactie);
+                return Content(reactie);
+            }
+            return RedirectToAction("Index", "Error");
+        }
+
+        [Route("Request/RequestInfo/{id}")]
+        public ActionResult RequestInfo(int id)
+        {
+            Request request = (Request) Session["Request" + id.ToString()];
+            if (request != null)
+            {
+                return View(request);
             }
             return RedirectToAction("Index", "Error");
         }
