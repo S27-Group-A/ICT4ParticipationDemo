@@ -43,7 +43,9 @@ namespace Participation_ASP.Controllers
         /// <returns> View() </returns>
         public ActionResult Login()
         {
-            return View();
+            if (Session["Account"] == null)
+                return View();
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
@@ -64,7 +66,6 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
             return View();
         }
 
