@@ -114,7 +114,7 @@ namespace Participation_ASP.Controllers
                 {
                     Session["ErrorMsg"] = string.Empty;
                     patient.AddPatient(patient);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 return RedirectToAction("Index", "Error");
@@ -144,7 +144,7 @@ namespace Participation_ASP.Controllers
                 {
                     Session["ErrorMsg"] = string.Empty;
                     volunteer.AddVolunteer(volunteer);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
                 return RedirectToAction("Index", "Error");
             }
