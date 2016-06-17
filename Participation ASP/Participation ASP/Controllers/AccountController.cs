@@ -43,7 +43,9 @@ namespace Participation_ASP.Controllers
         /// <returns> View() </returns>
         public ActionResult Login()
         {
-            return View();
+            if (Session["Account"] == null)
+                return View();
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
@@ -64,7 +66,6 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
             return View();
         }
 
@@ -112,16 +113,17 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
+                    Session["ErrorMsg"] = string.Empty;
                     patient.AddPatient(patient);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 return RedirectToAction("Index", "Error");
             }
             catch (ExistingUserException)
             {
-                //TODO Error Message 
-                return RedirectToAction("Index", "Error");
+                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                return RedirectToAction("RegisterPatient", "Account");
             }
             catch (Exception)
             {
@@ -141,16 +143,16 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    volunteer.AddPatient(volunteer);
-                    return RedirectToAction("Index", "Home");
+                    Session["ErrorMsg"] = string.Empty;
+                    volunteer.AddVolunteer(volunteer);
+                    return RedirectToAction("Login", "Account");
                 }
-
                 return RedirectToAction("Index", "Error");
             }
             catch (ExistingUserException)
             {
-                //TODO Error Message
-                return RedirectToAction("Index", "Error");
+                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                return RedirectToAction("RegisterVolunteer", "Account");
             }
             catch (Exception)
             {

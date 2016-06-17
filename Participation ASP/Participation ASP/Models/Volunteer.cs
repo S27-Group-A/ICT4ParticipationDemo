@@ -50,6 +50,14 @@ namespace Participation_ASP.Models
         public List<Review> Reviews { get; set; }
 
         /// <summary>
+        /// Initializes a new default instance of the Volunteer class.
+        /// </summary>
+        public Volunteer()
+        {
+
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Volunteer"/> class.
         /// </summary>
         /// <param name="birthDate">Volunteer birthdate</param>
@@ -88,7 +96,6 @@ namespace Participation_ASP.Models
             this.Skills = skills;
             this.Reviews = reviews;
         }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Volunteer"/> class.
@@ -150,6 +157,7 @@ namespace Participation_ASP.Models
             this.VogConfirmation = vogConfirmation;
         }
 
+
         /// <summary>
         /// Add volunteer, needs to be renamed
         /// </summary>
@@ -181,7 +189,7 @@ namespace Participation_ASP.Models
         /// <param name="volunteer">The volunteer.</param>
         public void GetSkills(Volunteer volunteer)
         {
-           this.Skills = DatabaseManager.GetSkills(volunteer);
+            this.Skills = DatabaseManager.GetSkills(volunteer);
         }
 
         /// <summary>
@@ -209,6 +217,11 @@ namespace Participation_ASP.Models
 
                 this.Availabilities.Add(new Availability(day, timeOfDay));
             }
+        }
+
+        public bool AddVolunteer(Volunteer volunteer)
+        {
+            return DatabaseManager.AddAccount(volunteer);
         }
     }
 }
