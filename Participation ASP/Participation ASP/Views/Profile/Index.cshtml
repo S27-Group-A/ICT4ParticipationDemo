@@ -4,125 +4,89 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>@Model.Name</h2>
-<p>Gebruikersnaam: @Model.Username</p>
-<p>Email: @Model.Email</p>
-<p>Adres: @Model.Adress</p>
-<p></p>
+<div class="jumbotron">
+    <h2>@Model.Name</h2>
+    <p>Gebruikersnaam: @Model.Username</p>
+    <p>Email: @Model.Email</p>
+    <p>Adres: @Model.Adress</p>
+    <p>Telefoonnummer: @Model.Phone</p>
+    <p>Locatie: @Model.Location</p>
+</div>
 @if (Model is Volunteer)
 {
     {
-        <p>Beschikbaarheid:</p>
         Volunteer volunteer = Model as Volunteer;
-        if (volunteer.Availabilities != null)
-        {
-
-            <ul>
-                @foreach (Availability a in volunteer.Availabilities)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Beschikbaarheid</h3>
+            </div>
+            <div class="panel-body">
+                @if (volunteer.Availabilities != null)
                 {
-                    <li>@a.Day: @a.TimeOfDay</li>
-                }
-            </ul>
-        }
-
-        {
-            List<SelectListItem> dagen = new List<SelectListItem>();
-            dagen.Add(new SelectListItem
-            {
-                Text = "Maandag",
-                Value = "Ma",
-                Selected = true
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Dinsdag",
-                Value = "Di",
-
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Woensdag",
-                Value = "Wo"
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Donderdag",
-                Value = "Do"
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Vrijdag",
-                Value = "Vrij"
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Zaterdag",
-                Value = "Za"
-            });
-            dagen.Add(new SelectListItem
-            {
-                Text = "Zondag",
-                Value = "Zo"
-            });
-
-            List<SelectListItem> dagDeel = new List<SelectListItem>();
-            dagDeel.Add(new SelectListItem
-            {
-                Text = "Morgen",
-                Value = "Morning",
-                Selected = true
-            });
-            dagDeel.Add(new SelectListItem
-            {
-                Text = "Middag",
-                Value = "Midday",
-
-            });
-            dagDeel.Add(new SelectListItem
-            {
-                Text = "Avond",
-                Value = "Evening"
-            });
-            dagDeel.Add(new SelectListItem
-            {
-                Text = "Nacht",
-                Value = "Night"
-            });
-            using (Html.BeginForm("AddAvailability", "Profile", FormMethod.Post))
-            {
-                @Html.DropDownListFor(model => volunteer, dagDeel)
-                @Html.DropDownListFor(model => volunteer, dagen)
-                <!--
-                <input type="password" name="Password" />
-                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
-                -->
-                <input type="submit" value="Beschikbaarheid" />
-            }
-            
-        }
-
-            <p>Vaardigheden:</p>
-
-            if (volunteer.Skills != null)
-            {
-                <ul>
-                    @foreach (Skill s in volunteer.Skills)
+                    <ul>
+                        @foreach (Availability a in volunteer.Availabilities)
                         {
-                        <li>@s.Description</li>
-                    }
-                </ul>
-            }
-
-            using (Html.BeginForm("AddSkill", "Profile", FormMethod.Post))
-            {
-                <input type="text" name="skill" id="skill" />
-                <!--
-                <input type="password" name="Password" />
-                You can use HTML inputs, but it's more reliable to use strongly-typed MVC helpers.
-                -->
-                <input type="submit" value="Toevoegen" />
-                    }
+                            <li>@a.Day: @a.TimeOfDay</li>
+                        }
+                    </ul>
                 }
+                @using (Html.BeginForm("AddAvailabilities", "Profile"))
+                {
+                    <select id="dag" class="form-control" size="1" name="dag">
+                        <option value="Mo">Maandag</option>
+                        <option value="Di">Dinsdag</option>
+                        <option value="Wo">Woensdag</option>
+                        <option value="Do">Donderdag</option>
+                        <option value="Vr">Vrijdag</option>
+                        <option value="Za">Zaterdag</option>
+                        <option value="Zo">Zondag</option>
+                    </select>
+                    <select id="dagdeel" class="form-control" size="1" name="dagdeel">
+                        <option value="Ochtend">Ochtend</option>
+                        <option value="Middag">Middag</option>
+                        <option value="Avond">Avond</option>
+                        <option value="Nacht">Nacht</option>
+                    </select>
+                    <br/>
+                    <input type="submit" class="btn btn-success" value="Aanpassen" name="toevoegen"/>
+                }
+            </div>
+        </div>
 
-            }
+        //vaardigheden
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vaardigheden</h3>
+            </div>
+            <div class="panel-body">
+                @if (volunteer.Skills != null)
+                {
+                    <div class="list-group">
+                        
+                        @foreach (Skill s in volunteer.Skills)
+                        {
+                            <a class="list-group-item">
+                                @s.Description
+                            </a>
+                        }
+                    </div>
+                    
+                }
+                @using (Html.BeginForm("AddSKill", "Profile"))
+                {
+                    ViewModel viewModel = new ViewModel();
+                    <select id="skill" class="form-control" size="1" name="skill">
+                        @foreach (Skill skill in viewModel.SkillList)
+                        {
+                            <option value="@skill.Description">@skill.Description</option>
+                        }
+                    </select>
+                    <br/>
+                    <input type="submit" class="btn btn-success" value="Toevoegen" name="toevoegen" />
+                }
+                <br />
+            </div>
+        </div>
+      }
+
+}
