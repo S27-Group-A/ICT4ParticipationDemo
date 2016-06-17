@@ -64,5 +64,10 @@ namespace Participation_ASP.Models
         {
             return DatabaseManager.AddMeeting(meeting);
         }
+
+        public bool ChangeStatus(Meeting meeting)
+        {
+            return DatabaseManager.AlterMeeting(meeting);
+        }
     }
 }

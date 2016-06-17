@@ -1529,13 +1529,18 @@
             {
                 try
                 {
+                    int status = 0;
+                    if (meeting.Status)
+                    {
+                        status = 1;
+                    }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
                         "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
                     updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     updateCommand.Parameters.Add(":location", meeting.Location);
                     updateCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    updateCommand.Parameters.Add(":status", meeting.Status);
+                    updateCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(updateCommand);
                 }
