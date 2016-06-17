@@ -88,5 +88,33 @@ namespace Participation_ASP.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult AddAvailabilities(FormCollection collection)
+        {
+            string dag = collection["dag"];
+            string dagdeel = collection["dagdeel"];
+            Volunteer volunteer = (Volunteer) Session["Account"];
+            bool added = false;
+            foreach (Availability a in volunteer.Availabilities)
+            {
+                if (a.Day == dag && a.TimeOfDay == dagdeel)
+                {
+                    added = true;
+                }
+            }
+            if (!added)
+            {
+                if (!DatabaseManager.AddAvailability(volunteer.AccountId, dag, dagdeel))
+                {
+                    return Content("Something went wrong");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Profile");
+                }
+            }
+            return RedirectToAction("Index", "Error");
+        }
     }
 }
