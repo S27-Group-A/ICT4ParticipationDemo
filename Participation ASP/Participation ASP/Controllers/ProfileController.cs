@@ -39,6 +39,8 @@ namespace Participation_ASP.Controllers
             }
             else
             {
+                IAccount temp = (IAccount) Session["Account"];
+                Session["Account"] = DatabaseManager.GetAccount(temp.Email, temp.Password);
                 return View((IAccount)Session["Account"]);
             }
 
@@ -58,7 +60,16 @@ namespace Participation_ASP.Controllers
             if (account is Volunteer && skill.Length > 0)
             {
                 Volunteer tempV = account as Volunteer;
-                tempV.AddSkill(skill);
+                ViewModel viewModel = new ViewModel();
+                Skill temp = null;
+                foreach (Skill s in viewModel.SkillList)
+                {
+                    if (skill == s.Description)
+                    {
+                        temp = s;
+                    }
+                }
+                DatabaseManager.AddVolunteerSkill(tempV, temp);
                 return RedirectToAction("Index");
             }
 
