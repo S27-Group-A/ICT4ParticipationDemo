@@ -9,7 +9,7 @@ namespace Participation_ASP.Models
     /// </summary>
     public class Availability
     {
-        /// <summary>
+
         /// Gets or sets the day.
         /// </summary>
         public string Day { get; set; }

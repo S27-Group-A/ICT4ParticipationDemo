@@ -1,5 +1,5 @@
 ﻿// <copyright file="Request.cs" company="Ict4Participation">
-//      Copyright (c) ICT4Rails. All rights reserved.
+//      Copyright (c) Ict4Participation. All rights reserved.
 // </copyright>
 // <author>Sander Koch</author>
 // <author>Sven Hendericks</author>
@@ -84,6 +84,9 @@ namespace Participation_ASP.Models
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Request"/> class.
+        /// </summary>
         public Request(int requestId)
         {
             this.RequestId = requestId;

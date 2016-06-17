@@ -23,6 +23,7 @@ namespace Participation_ASP.Controllers
         public ActionResult Index()
         {
             IAccount accountInlog = (IAccount)Session["Account"];
+            Session["NoTextResponse"] = string.Empty;
             if (accountInlog is Volunteer)
             {
                 Volunteer volunteer = accountInlog as Volunteer;
@@ -46,6 +47,7 @@ namespace Participation_ASP.Controllers
         public ActionResult RespondToRequest(FormCollection collection)
         {
             string reactie = collection["ResponseText"];
+            Session["NoTextResponse"] = string.Empty;
             if (reactie.Length > 0)
             {
                 Response newResponse = new Response();
@@ -55,8 +57,8 @@ namespace Participation_ASP.Controllers
                 ((Request)Session["CurrentRequest"]).AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
                 return View("RequestInfo", (Request)Session["CurrentRequest"]);
             }
-
-            return RedirectToAction("Index", "Error");
+            Session["NoTextResponse"] = "Geen text";
+            return View("RequestInfo", (Request) Session["CurrentRequest"]);
         }
 
         /// <summary>
@@ -87,12 +89,12 @@ namespace Participation_ASP.Controllers
         {
             string description = collection["description"];
             string location = collection["location"];
-            DateTime date = Convert.ToDateTime(collection["date"]);
+            DateTime date = new DateTime();
             int urgence = Convert.ToInt32(collection["urgence"]);
             int amountOfVolunteers = Convert.ToInt32(collection["amountOfVolunteers"]);
             int skillId = Convert.ToInt32(collection["skill"]);
 
-            if (description != "" && location != "" && date > DateTime.Today)
+            if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) && date > DateTime.Today)
             {
                 ViewModel viewModel = new ViewModel();
                 Skill tempSkill = null;

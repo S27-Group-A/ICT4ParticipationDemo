@@ -192,16 +192,16 @@ namespace Participation_ASP.Controllers
         /// <summary>
         /// ActionResult that calls the AlterProfile method in DatabaseManager, Locking the account.
         /// </summary>
-        /// <param name="iD"> The iD of the Account </param>
+        /// <param name="id"> The iD of the Account </param>
         /// <returns> RedirectToAction() </returns>
-        public ActionResult AdminDeleteProfile(int iD)
+        public ActionResult AdminDeleteProfile(int id)
         {
             IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    DatabaseManager.AlterEnabled(iD);
+                    DatabaseManager.AlterEnabled(id);
                     return RedirectToAction("AdminPanel");
                 }
             }
@@ -212,16 +212,16 @@ namespace Participation_ASP.Controllers
         /// <summary>
         /// ActionResult that calls the DeleteRequest method in DatabaseManager, deleting the Request and al its connections.
         /// </summary>
-        /// <param name="iD"> The iD of the Request </param>
+        /// <param name="id"> The iD of the Request </param>
         /// <returns> RedirectToAction() </returns>
-        public ActionResult DeleteRequest(int iD)
+        public ActionResult DeleteRequest(int id)
         {
             IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    DatabaseManager.DeleteRequest(iD);
+                    DatabaseManager.DeleteRequest(id);
                     return RedirectToAction("AdminPanel");
                 }
             }
