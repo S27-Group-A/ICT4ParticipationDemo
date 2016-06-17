@@ -14,49 +14,46 @@
     <div class="form-horizontal">
         <hr />
         <div class="form-group">
-
-            <div class="col-md-10">
-                <h5>Account informatie</h5>
-                <div class="col-md-10">
-                    @Html.Label("Gebruikersnaam: " + Model.Username)
-                    <br>
-                    @Html.Label("Email adres: " + Model.Email)
-                    <br>
-                    @Html.Label("Naam: " + Model.Name)
-                    <br>
-                    @Html.Label("Telefoonnummer: " + Model.Name)
-                    <br>
-                    @if (Model.DateCancellation != new DateTime())
-                    {
-                        @Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())
-                    }
-                    else
-                    {
-                        @Html.Label("Cancellation date: Active")
-                    }
-                    <br>
-                    @Html.Label("Location: " + Model.Location)
-                    <br>
-                    @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
-                    <br>
-                    @Html.Label("RFID: " + Model.Rfid)
-                    <br>
-                    @Html.Label("Enabled: " + Model.Enabled.ToString())
-
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
-                    </div>
-
-                    @Html.Label("IsAdmin: " + Model.IsAdmin.ToString())
-
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
-                    </div>
-                </div>
+            <h5>Account informatie:</h5>
+            <div class="col-md-6">
+                @Html.Label("Gebruikersnaam: " + Model.Username)
+                <br>
+                @Html.Label("Email adres: " + Model.Email)
+                <br>
+                @Html.Label("Naam: " + Model.Name)
+                <br>
+                @Html.Label("Telefoonnummer: " + Model.Phone)
+                <br>
+                @if (Model.DateCancellation != new DateTime())
+                {
+                    @Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())
+                }
+                else
+                {
+                    @Html.Label("Cancellation date: Active")
+                }
+                <br>
+                @Html.Label("Location: " + Model.Location)
+                <br>
+                @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
+                <br>
+                @Html.Label("RFID: " + Model.Rfid)
+                <br>
+                @Html.Label("Enabled: " + Model.Enabled.ToString())
+                <br>
+                @Html.Label("IsAdmin: " + Model.IsAdmin.ToString())
+                <br>
             </div>
 
             <div class="col-md-10">
-                <h5>Hulpbehoevende informatie</h5>
+                @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+            </div>
+            <div class="col-md-10">
+                @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
+            </div>
+
+            <div class="col-md-10">
+                <h5>Hulpbehoevende informatie:</h5>
                 <div class="col-md-10">
                     @Html.Label("Openbaar vervoersbewijs: " + Model.Ov.ToString())
                 </div>
