@@ -50,6 +50,14 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
+        public void GetAvailabilitiesById()
+        {
+            Volunteer volunteer = new Volunteer(2, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, new DateTime(), string.Empty, string.Empty, false, false, "7as343sd", false, true, new DateTime(), "photolink", "voglink", false);
+            List<Availability> availabilities = DatabaseManager.GetAvailabilities(2);
+            Assert.AreNotEqual(availabilities.Count, 0);
+        }
+
+        [TestMethod]
         public void GetSkills()
         {
             List<Skill> skills = DatabaseManager.GetSkills();
