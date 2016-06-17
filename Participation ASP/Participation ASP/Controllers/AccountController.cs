@@ -112,6 +112,7 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
+                    Session["ErrorMsg"] = string.Empty;
                     patient.AddPatient(patient);
                     return RedirectToAction("Index", "Home");
                 }
@@ -120,8 +121,8 @@ namespace Participation_ASP.Controllers
             }
             catch (ExistingUserException)
             {
-                //TODO Error Message 
-                return RedirectToAction("Index", "Error");
+                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                return RedirectToAction("RegisterPatient", "Account");
             }
             catch (Exception)
             {
@@ -141,16 +142,16 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    volunteer.AddPatient(volunteer);
+                    Session["ErrorMsg"] = string.Empty;
+                    volunteer.AddVolunteer(volunteer);
                     return RedirectToAction("Index", "Home");
                 }
-
                 return RedirectToAction("Index", "Error");
             }
             catch (ExistingUserException)
             {
-                //TODO Error Message
-                return RedirectToAction("Index", "Error");
+                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                return RedirectToAction("RegisterVolunteer", "Account");
             }
             catch (Exception)
             {

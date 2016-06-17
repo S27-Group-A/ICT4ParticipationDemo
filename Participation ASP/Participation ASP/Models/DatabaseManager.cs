@@ -60,7 +60,7 @@
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("unique", e.Message))
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
                     {
                         throw new ExistingSkillException(e.Message);
                     }
@@ -100,12 +100,12 @@
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message))
+                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message, RegexOptions.IgnoreCase))
                     {
                         throw new DayException(e.Message);
                     }
 
-                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message))
+                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message, RegexOptions.IgnoreCase))
                     {
                         throw new TimeOfDayException(e.Message);
                     }
@@ -1304,10 +1304,6 @@
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("unique", e.Message))
-                    {
-                        return false;
-                    }
                     return false;
 
                 }
@@ -1372,7 +1368,7 @@
                         cmd.Parameters.Add("Photo", volunteer.Photo);
                         succes = ExecuteNonQuery(cmd);
                     }
-                    if (account is Patient)
+                    else if (account is Patient)
                     {
                         var patient = (Patient)account;
                         cmd = CreateOracleCommand(con,
@@ -1385,8 +1381,8 @@
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("unique", e.Message))
-                        throw new ExistingUserException();
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                        throw new ExistingUserException(e.Message);
                     return false;
                 }
                 catch (Exception)
