@@ -113,7 +113,7 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    Session["ErrorMsg"] = string.Empty;
+                    Session["ErrorMsg"] = null;
                     patient.AddPatient(patient);
                     return RedirectToAction("Login", "Account");
                 }
@@ -143,7 +143,7 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    Session["ErrorMsg"] = string.Empty;
+                    Session["ErrorMsg"] = null;
                     volunteer.AddVolunteer(volunteer);
                     return RedirectToAction("Login", "Account");
                 }

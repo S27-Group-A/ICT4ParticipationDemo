@@ -1331,9 +1331,9 @@
         /// <summary>
         /// 'Deletes' and account by disabling the account
         /// </summary>
-        /// <param name="AccountId">account identifier</param>
+        /// <param name="accountId">account identifier</param>
         /// <returns></returns>
-        public static bool AlterEnabled(int AccountId)
+        public static bool AlterEnabled(int accountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1343,7 +1343,7 @@
                         "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", AccountId);
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     int value = 1;
 
@@ -1357,7 +1357,7 @@
                         "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", AccountId);
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     if (value == 0)
                     {
@@ -1408,7 +1408,7 @@
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
                     return false;
 

@@ -75,7 +75,7 @@ namespace Participation_ASP.Controllers
                 try
                 {
                     DatabaseManager.AddVolunteerSkill(tempV, temp);
-                    Session["ErrorMsg"] = string.Empty;
+                    Session["ErrorMsg"] = null;
                 }
                 catch (ExistingSkillException)
                 {
