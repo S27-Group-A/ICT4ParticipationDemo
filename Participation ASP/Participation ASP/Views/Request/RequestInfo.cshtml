@@ -5,20 +5,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>@Model.Patient.Name</h2>
 <p>@Model.Description</p>
 <p>Datum: @Model.StartDate.Day-@Model.StartDate.Month-@Model.StartDate.Year</p>
 <p>Locatie: @Model.Location</p>
 <p>Aantal Vrijwilliger gevraagd: @Model.AmountOfVolunteers</p>
+<br/>
 <p>Reacties:</p>
-<ul>
+<table class="table table-striped table-hover ">
+    <colgroup>
+        <col span="1" style="width: 0%;">
+        <col span="2" style="width: 100%;">
+    </colgroup>
+    <tbody>
     @foreach (Response response in Model.Responses)
     {
-        <li>@response.Volunteer.Name: @response.Description</li>
+        <tr width="400">
+            <td>@response.Volunteer.Name</td>
+            <td class="active">@response.Description</td>
+        </tr>
     }
-</ul>
+    </tbody>
+</table>
+    
+
 @using (Html.BeginForm("RespondToRequest", "Request"))
 {
-    <input type="text" id="Response" name="ResponseText"/>
-    <input type="submit" value="Reactie plaatsen"/>
+    <input type="text" id="Response" name="ResponseText" class="form-control" id="inputDefault"/>
+    <br/>
+    <input type="submit" value="Reactie plaatsen" class="btn btn-succes"/>
 }

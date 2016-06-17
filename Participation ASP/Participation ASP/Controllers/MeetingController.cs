@@ -83,6 +83,7 @@ namespace Participation_ASP.Controllers
             {
                 if (m.Volunteer.AccountId == volunteerId && m.Patient.AccountId == patientId)
                 {
+                    m.Status = true;
                     if (m.ChangeStatus(m))
                     {
                         return RedirectToAction("Index", "Meeting");
