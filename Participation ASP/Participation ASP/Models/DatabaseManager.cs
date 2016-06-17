@@ -77,6 +77,38 @@
             }
         }
 
+        public static bool AddVolunteerSkill(Volunteer volunteer, Skill skill)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO VolunteerSkill (AccountId, SkillId) VALUES (:AccountId, :SkillId)");
+                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
+                    cmd.Parameters.Add("Skillid", skill.Id);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                    {
+                        throw new ExistingSkillException(e.Message);
+                    }
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         /// <summary>
         /// Adds a availability to the availability table
         /// </summary>
