@@ -1,18 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Async;
-using Microsoft.SqlServer.Server;
-using Participation_ASP.Models;
-
+﻿// <copyright file="AccountController.cs">
+// All rights reserved.
+// </copyright>
+// <author>S27 A</author>
 namespace Participation_ASP.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Mvc.Async;
+    using Microsoft.SqlServer.Server;
+    using Participation_ASP.Models;
+
+    /// <summary>
+    /// The controller for the Profile-system
+    /// </summary>
     public class ProfileController : Controller
     {
-        // GET: Profile
-
+        /// <summary>
+        /// ActionResult that returns the index of a profile page.
+        /// </summary>
+        /// <returns> View(IAcount) Or RedirectToAction() </returns>
         public ActionResult Index()
         {
             if (Session["Account"] == null)
@@ -35,17 +44,24 @@ namespace Participation_ASP.Controllers
 
         }
 
+        /// <summary>
+        /// Actionresult that creates a Skill-object and inserts in into the database.
+        /// </summary>
+        /// <param name="collection"> The data for the skill-object </param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AddSkill(FormCollection collection)
         {
             IAccount account = (IAccount)Session["Account"];
             string skill = collection["skill"];
+
             if (account is Volunteer && skill.Length > 0)
             {
                 Volunteer tempV = account as Volunteer;
                 tempV.AddSkill(skill);
                 return RedirectToAction("Index");
             }
+
             return RedirectToAction("Index");
         }
     }
