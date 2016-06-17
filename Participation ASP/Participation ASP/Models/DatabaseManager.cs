@@ -1662,23 +1662,23 @@
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
                         "INSERT INTO Review (AccountId, RequestId, Rating, Description) " +
-                        "VALUES (:AccountId, :RequestId, :Rating, :Description)"
+                        "VALUES (:accountId, :requestId, :rating, :description)"
                     );
-                    cmd.Parameters.Add("RequestId", review.Request.RequestId);
-                    cmd.Parameters.Add("AccountId", volunteerId);
-                    cmd.Parameters.Add("Rating", review.Rating);
-                    cmd.Parameters.Add("Description", review.Comment);
+                    cmd.Parameters.Add("accountId", volunteerId);
+                    cmd.Parameters.Add("requestId", review.Request.RequestId);
+                    cmd.Parameters.Add("rating", review.Rating);
+                    cmd.Parameters.Add("description", review.Comment);
 
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
-                    throw e;
+                    return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    return false;
                 }
                 finally
                 {
