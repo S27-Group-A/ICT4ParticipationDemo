@@ -1,15 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Participation_ASP.Models;
-
+﻿// <copyright file="AccountController.cs">
+// All rights reserved.
+// </copyright>
+// <author>S27 A</author>
 namespace Participation_ASP.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Participation_ASP.Models;
+
+    /// <summary>
+    /// The controller for the Homme-system
+    /// </summary>
     public class HomeController : Controller
     {
-        // GET: Home
+        /// <summary>
+        /// Actionresult that returns the Index page
+        /// </summary>
+        /// <returns> View() </returns>
         public ActionResult Index()
         {
             DatabaseManager.TestConnection();

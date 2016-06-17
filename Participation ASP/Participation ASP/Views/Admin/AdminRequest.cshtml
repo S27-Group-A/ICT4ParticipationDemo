@@ -20,34 +20,44 @@
                     @foreach (Request r in Model)
                     {
                         @Html.Label("Opdrachtgever: " + r.Patient.Name)
+                        <br>
                         @Html.Label("Beschrijving: " + r.Description)
+                        <br>
                         @Html.Label("Locatie: " + r.Location)
+                        <br>
                         @Html.Label("Reistijd: " + r.Description)
-
+                        <br>
                         @Html.Label("Datum: van" + r.StartDate.ToString() + " tot " + r.EndDate.ToString())
+                        <br>
                         @Html.Label("Urgentie:" + r.Urgency.ToString())
-
+                        <br>
                         @Html.Label("Hoeveelheid vrijwilligers:" + r.AmountOfVolunteers.ToString())
+                        <br>
                         @Html.Label("Soort voertuig: " + r.VehicleType.Description)
+                        <br>
 
-                        @Html.Label("Vaardigheden: ")
                         <div class="col-md-10">
+                            @Html.Label("Vaardigheden: ")
                             @foreach (Skill s in r.Skills)
                             {
-                                @Html.Label(s.Description)
+                                <ul>
+                                    <li>@Html.Label(s.Description)</li>
+                                </ul>
                             }
                         </div>
-
+                        <br>
                         <div class="col-md-10">
                             @Html.ActionLink("Verwijder Hulpvraag", "DeleteRequest", new { Id = r.RequestId })
                         </div>
+                        <br>
 
-                            @Html.Label("Antwoorden: ")
+                        
                         <div class="col-md-10">
+                            @Html.Label("Antwoorden: ")
                             @foreach (Response e in r.Responses)
                             {
                                 <div class="col-md-10">
-                                    @Html.ActionLink("Vrijwilliger", "AdminProfileVolunteer", new { Id = e.Volunteer.AccountId })
+                                    @Html.ActionLink("Profiel Vrijwilliger", "AdminProfile", new { Id = e.Volunteer.AccountId })
                                     @Html.Label(e.Description)
                                     @Html.Label(e.ResponseDate.ToString())
                                 </div>

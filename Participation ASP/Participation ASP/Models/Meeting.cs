@@ -1,4 +1,7 @@
-﻿namespace Participation_ASP.Models
+﻿// <copyright file="Meeting.cs" company="Ict4Participation">
+//      Copyright (c) Ict4Participation. All rights reserved.
+// </copyright>
+namespace Participation_ASP.Models
 {
     using System;
     using System.Collections.Generic;
@@ -60,6 +63,11 @@
         public bool AddMeeting(Meeting meeting)
         {
             return DatabaseManager.AddMeeting(meeting);
+        }
+
+        public bool ChangeStatus(Meeting meeting)
+        {
+            return DatabaseManager.AlterMeeting(meeting);
         }
     }
 }

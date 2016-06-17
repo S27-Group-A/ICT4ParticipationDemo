@@ -36,7 +36,6 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
-        //TODO Fix this
         public void AddVolunteer()
         {
             Assert.IsTrue(
@@ -51,18 +50,16 @@ namespace Particpation_ASP_Test
             skills.Add(new Skill(1, "Goed met dieren"));
             skills.Add(new Skill(2, "Masseur"));
             VehicleType vecType = new VehicleType(-1, "Dweebcar for the dweebs.");
-            Patient patient = new Patient(1, "patient", "patient", "patient@patient.nl","patientje", string.Empty, DateTime.MinValue, string.Empty, string.Empty, false, false, string.Empty, false, true, true);
-            Request request = new Request(-1,"testrequest", "testlocation", 1337, DateTime.Now, new DateTime(2016, 06, 20),3, 1, skills, vecType, patient, null );
+            Patient patient = new Patient(1, "patient", "patient", "patient@patient.nl", "patientje", string.Empty, DateTime.MinValue, string.Empty, string.Empty, false, false, string.Empty, false, true, true);
+            Request request = new Request(-1, "testrequest", "testlocation", 1337, DateTime.Now, new DateTime(2016, 06, 20), 3, 1, skills, vecType, patient, null);
             Assert.IsTrue(request.AddRequest(request));
         }
 
         [TestMethod]
         public void AddReview()
         {
-            Assert.IsTrue(
-                DatabaseManager.AddReview(
-                    new Review(0, new Request(1), 7, "Cool")
-                    , 2));
+            var review = new Review(1, new Request(1), 7, "Coolio");
+            Assert.IsTrue(DatabaseManager.AddReview(review, 2));
         }
 
         [TestMethod]
@@ -73,6 +70,12 @@ namespace Particpation_ASP_Test
 
         [TestMethod]
         public void AlterEnabled()
+        {
+            Assert.IsTrue(DatabaseManager.AlterEnabled(2));
+        }
+
+        [TestMethod]
+        public void AlterVogConfirmation()
         {
             Assert.IsTrue(DatabaseManager.AlterEnabled(2));
         }

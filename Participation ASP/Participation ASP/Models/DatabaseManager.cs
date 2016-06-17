@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI.WebControls;
-using MyFigureCollection.Exceptions;
-using Oracle.DataAccess.Client;
-using Participation_ASP.Exceptions;
-
-
-namespace Participation_ASP.Models
+﻿namespace Participation_ASP.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Data;
+    using System.Diagnostics;
+    using System.Text.RegularExpressions;
+    using MyFigureCollection.Exceptions;
+    using Oracle.DataAccess.Client;
+    using Participation_ASP.Exceptions;
+
     public static class DatabaseManager
     {
-
         public static void TestConnection()
         {
             using (OracleConnection con = Connection)
@@ -47,8 +41,11 @@ namespace Participation_ASP.Models
             }
         }
 
-
-
+        /// <summary>
+        /// Adds a skill to the database table
+        /// </summary>
+        /// <param name="skill">skill description</param>
+        /// <returns></returns>
         public static bool AddSkill(string skill)
         {
             using (OracleConnection con = Connection)
@@ -56,23 +53,21 @@ namespace Participation_ASP.Models
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "INSERT INTO Skill (Description) VALUES (:Skill)"
-                        );
+                        "INSERT INTO Skill (Description) VALUES (:Skill)");
                     cmd.Parameters.Add("Skill", skill);
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("unique", e.Message))
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
                     {
-                        //throw new ExistingSkillException(e.Message);
+                        throw new ExistingSkillException(e.Message);
                     }
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
                     throw e;
                 }
                 finally
@@ -82,6 +77,13 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Adds a availability to the availability table
+        /// </summary>
+        /// <param name="accountId">account identifier</param>
+        /// <param name="day">day in the format of {Mo, Di, Wo, Do, Vr, Za, Zo}</param>
+        /// <param name="timeOfDay">time of day in format of {ochtend, middag, avond}</param>
+        /// <returns></returns>
         public static bool AddAvailability(int accountId, string day, string timeOfDay)
         {
             using (OracleConnection con = Connection)
@@ -98,12 +100,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message))
+                    if (Regex.IsMatch("CHK_AVAILABILITY_DAY", e.Message, RegexOptions.IgnoreCase))
                     {
                         throw new DayException(e.Message);
                     }
 
-                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message))
+                    else if (Regex.IsMatch("CHK_AVAILABILITY_TIMEOFDAY", e.Message, RegexOptions.IgnoreCase))
                     {
                         throw new TimeOfDayException(e.Message);
                     }
@@ -111,7 +113,7 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -183,13 +185,17 @@ namespace Participation_ASP.Models
             return command.ExecuteNonQuery() != 0;
         }
 
+        /// <summary>
+        /// Checks wether the current reader has any rows
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
         private static bool CheckReader(OracleDataReader reader)
         {
             return reader.HasRows;
         }
 
 
-        #region Get
         public static List<IAccount> GetAccounts()
         {
             using (OracleConnection con = Connection)
@@ -275,12 +281,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -290,6 +296,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets an account based on it's AccountId
+        /// </summary>
+        /// <param name="id">account identifier</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(int id)
         {
             using (OracleConnection con = Connection)
@@ -300,7 +311,7 @@ namespace Participation_ASP.Models
                                                                  "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
                                                                  "p.Ov, p.AccountId as \"PatientId\", " +
                                                                  "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Banned, u.Unban, u.Enabled " +
+                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
                                                                  "FROM \"User\" u " +
                                                                  "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
                                                                  "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
@@ -375,12 +386,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -390,7 +401,13 @@ namespace Participation_ASP.Models
             }
         }
 
-
+        /// <summary>
+        /// Gets an account based on it's email and password
+        /// Mainly used for logging in
+        /// </summary>
+        /// <param name="email">user's email</param>
+        /// <param name="password">user's password</param>
+        /// <returns>Patient or Volunteer</returns>
         public static IAccount GetAccount(string email, string password)
         {
             using (OracleConnection con = Connection)
@@ -484,12 +501,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -500,7 +517,13 @@ namespace Participation_ASP.Models
 
         }
 
-        private static List<Review> GetReviews(int accountId)
+        /// <summary>
+        /// Returns a list of reviews based on an account's identifier
+        /// </summary>
+        /// <param name="accountId">account identifier</param>
+        /// <returns>All reviews of specified user</returns>
+        public static List<Review> GetReviews(int accountId)
+
         {
             using (OracleConnection con = Connection)
             {
@@ -535,12 +558,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -550,6 +573,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Returns request based on request's indentifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns></returns>
         public static Request GetRequest(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -633,18 +661,17 @@ namespace Participation_ASP.Models
                         List<Response> responses = GetResponses(ReqId);
 
                         return new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses);
-
                     }
                     return null;
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -654,6 +681,10 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets all requests
+        /// </summary>
+        /// <returns>all requests</returns>
         public static List<Request> GetRequests()
         {
             using (OracleConnection con = Connection)
@@ -743,12 +774,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -758,6 +789,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Returns a list of skills based on request identifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns></returns>
         public static List<Request> GetRequests(int ID)
         {
             using (OracleConnection con = Connection)
@@ -771,7 +807,7 @@ namespace Participation_ASP.Models
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
-                        "u.Car, u.DriversLicense, u.RfId, u.Banned, u.Unban, u.Enabled " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Enabled " +
                         "FROM VehicleType v " +
                         "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
                         "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
@@ -782,7 +818,6 @@ namespace Participation_ASP.Models
                     cmd.Parameters.Add(":requestid", ID);
 
                     var requests = new List<Request>();
-                    con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
                     while (reader.Read())
                     {
@@ -802,11 +837,8 @@ namespace Participation_ASP.Models
                         bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
                         bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
                         string Rfid = reader["Rfid"].ToString();
-                        bool Banned = Convert.ToBoolean(Convert.ToInt32(reader["Banned"].ToString()));
                         bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
-                        DateTime Unban = new DateTime();
-                        if (!string.IsNullOrEmpty(reader["Unban"].ToString()))
-                            Unban = Convert.ToDateTime(reader["Banned"].ToString());
+
 
                         //Request Data
                         int ReqId = new int();
@@ -847,19 +879,19 @@ namespace Participation_ASP.Models
                         //Get Response Data
                         List<Response> responses = GetResponses(ReqId);
 
-                        //requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Banned, Unban, Enabled, false, Ov), responses));
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses));
 
                     }
                     return requests;
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -869,7 +901,12 @@ namespace Participation_ASP.Models
             }
         }
 
-        private static List<Skill> GetSkills(int requestId)
+        /// <summary>
+        /// Returns all skills by request identifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns>skills</returns>
+        public static List<Skill> GetSkills(int requestId)
         {
             using (OracleConnection con = Connection)
             {
@@ -893,12 +930,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -908,6 +945,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets all responses based on a request's identifier
+        /// </summary>
+        /// <param name="requestId">request identifier</param>
+        /// <returns>List of all responses with specified request id</returns>
         private static List<Response> GetResponses(int requestId)
         {
             using (OracleConnection con = Connection)
@@ -963,8 +1005,6 @@ namespace Participation_ASP.Models
                         var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, UserLocation, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation);
 
                         //Response Data
-                        //res.RequestId, res.ResponseDate, res.Description
-                        //var RequestId = requestId;
                         DateTime ResponseDate = new DateTime();
                         if (!string.IsNullOrEmpty(reader["ResponseDate"].ToString()))
                             ResponseDate = Convert.ToDateTime(reader["ResponseDate"].ToString());
@@ -976,12 +1016,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -991,6 +1031,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// List of skills based on a volunteer
+        /// </summary>
+        /// <param name="volunteer">volunteer</param>
+        /// <returns>List of skills based on a volunteer</returns>
         public static List<Skill> GetSkills(Volunteer volunteer)
         {
             using (OracleConnection con = Connection)
@@ -1015,12 +1060,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1030,6 +1075,10 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Gets all skills from table Skill
+        /// </summary>
+        /// <returns>list of all skills</returns>
         public static List<Skill> GetSkills()
         {
             using (OracleConnection con = Connection)
@@ -1053,12 +1102,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1068,6 +1117,12 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Returns all availabilities based on a volunteer.
+        /// Used for displaying current free schedule of a volunteer.
+        /// </summary>
+        /// <param name="volunteer"></param>
+        /// <returns></returns>
         public static List<Availability> GetAvailabilities(Volunteer volunteer)
         {
             using (OracleConnection con = Connection)
@@ -1094,12 +1149,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1109,7 +1164,12 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static bool AlterAdmin(int ID)
+        /// <summary>
+        /// Makes a volunteer become an admin
+        /// </summary>
+        /// <param name="AccountId">volunteer identifier</param>
+        /// <returns></returns>
+        public static bool AlterAdmin(int AccountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1119,7 +1179,7 @@ namespace Participation_ASP.Models
                         "SELECT AccountID FROM \"Admin\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     string value = null;
 
@@ -1147,12 +1207,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1162,7 +1222,12 @@ namespace Participation_ASP.Models
             }
         }
 
-        public static bool AlterEnabled(int ID)
+        /// <summary>
+        /// 'Deletes' and account by disabling the account
+        /// </summary>
+        /// <param name="AccountId">account identifier</param>
+        /// <returns></returns>
+        public static bool AlterEnabled(int AccountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1172,7 +1237,7 @@ namespace Participation_ASP.Models
                         "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     int value = 1;
 
@@ -1186,7 +1251,7 @@ namespace Participation_ASP.Models
                         "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", ID);
+                    cmd.Parameters.Add(":accountId", AccountId);
 
                     if (value == 0)
                     {
@@ -1202,12 +1267,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 catch (Exception e)
                 {
-                    //TODO Needs proper exception handling
+
                     throw e;
                 }
                 finally
@@ -1216,6 +1281,43 @@ namespace Participation_ASP.Models
                 }
             }
         }
+
+        /// <summary>
+        /// Adds an account to the database
+        /// </summary>
+        /// <param name="account">account to be added</param>
+        /// <returns></returns>
+        public static bool AlterVogConfirmation(int accountId)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "UPDATE Volunteer SET VogConfirmation = 1 WHERE AccountID = :accountId"
+                        );
+
+                    cmd.Parameters.Add(":accountId", accountId);
+
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (OracleException e)
+                {
+                    return false;
+
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
 
         public static bool AddAccount(IAccount account)
         {
@@ -1232,7 +1334,15 @@ namespace Participation_ASP.Models
                     succes = ExecuteNonQuery(cmd);
 
                     //Add User
-                    int AccountId = GetAccount(account.Email, account.Password).AccountId;
+                    int AccountId = new int();
+                    cmd = CreateOracleCommand(con, "SELECT MAX(AccountId) AS AccountId FROM \"Account\"");
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        AccountId = Convert.ToInt32(reader["AccountId"].ToString());
+                    }
+
+
                     cmd = CreateOracleCommand(con,
                         "INSERT INTO \"User\"(AccountId, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid) " +
                         "VALUES(:AccountId, :Name, :Phone, :DateDeregistration, :Adress, :Location, :Car, :DriversLicense, :Rfid)");
@@ -1258,7 +1368,7 @@ namespace Participation_ASP.Models
                         cmd.Parameters.Add("Photo", volunteer.Photo);
                         succes = ExecuteNonQuery(cmd);
                     }
-                    if (account is Patient)
+                    else if (account is Patient)
                     {
                         var patient = (Patient)account;
                         cmd = CreateOracleCommand(con,
@@ -1271,14 +1381,12 @@ namespace Participation_ASP.Models
                 }
                 catch (OracleException e)
                 {
-                    if (Regex.IsMatch("unique", e.Message))
-                        throw new ExistingUserException();
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                        throw new ExistingUserException(e.Message);
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    //TODO Needs proper exception handling
-                    throw e;
                     return false;
                 }
                 finally
@@ -1288,7 +1396,12 @@ namespace Participation_ASP.Models
             }
         }
 
-        //Must
+        /// <summary>
+        /// Changes the current skills of a volunteer
+        /// </summary>
+        /// <param name="skills">list of skills to changed to</param>
+        /// <param name="accountId">volunteer identifier</param>
+        /// <returns></returns>
         public static bool AlterVolunteerSkills(List<Skill> skills, int accountId)
         {
             using (OracleConnection con = new OracleConnection())
@@ -1297,7 +1410,11 @@ namespace Participation_ASP.Models
             }
         }
 
-
+        /// <summary>
+        /// Adds a request to the request table
+        /// </summary>
+        /// <param name="request">request to be added</param>
+        /// <returns></returns>
         public static bool AddRequest(Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1366,14 +1483,18 @@ namespace Participation_ASP.Models
         }
 
 
-        //TODO Sander
+        /// <summary>
+        /// Adds a meeting to the meeting table
+        /// </summary>
+        /// <param name="meeting">meeting to be added</param>
+        /// <returns></returns>
         public static bool AddMeeting(Meeting meeting)
         {
             using (OracleConnection connection = Connection)
             {
                 try
                 {
-                    
+
                     OracleCommand insertCommand = CreateOracleCommand(connection,
                         "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status)");
                     insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
@@ -1397,20 +1518,29 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Sander
+        /// <summary>
+        /// Alters the meeting, this used so users will be able to accept meetings
+        /// </summary>
+        /// <param name="meeting">meeting to be altered</param>
+        /// <returns></returns>
         public static bool AlterMeeting(Meeting meeting)
         {
             using (OracleConnection connection = Connection)
             {
                 try
                 {
+                    int status = 0;
+                    if (meeting.Status)
+                    {
+                        status = 1;
+                    }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
                         "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
                     updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     updateCommand.Parameters.Add(":location", meeting.Location);
                     updateCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    updateCommand.Parameters.Add(":status", meeting.Status);
+                    updateCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(updateCommand);
                 }
@@ -1422,7 +1552,12 @@ namespace Participation_ASP.Models
             }
         }
 
-
+        /// <summary>
+        /// Adds a response to a request
+        /// </summary>
+        /// <param name="response">response to be added</param>
+        /// <param name="request">request to which the response is pointed</param>
+        /// <returns></returns>
         public static bool AddResponse(Response response, Request request)
         {
             using (OracleConnection connection = Connection)
@@ -1440,14 +1575,18 @@ namespace Participation_ASP.Models
                 }
                 catch (Exception e)
                 {
-                    throw;
+                    throw e;
                 }
             }
         }
 
 
-
-        public static bool DeleteRequest(int ID)
+        /// <summary>
+        /// Deletes a request by it's id
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <returns></returns>
+        public static bool DeleteRequest(int requestId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1457,15 +1596,19 @@ namespace Participation_ASP.Models
                         "DELETE FROM Request WHERE RequestID = :requestid"
                         );
 
-                    cmd.Parameters.Add(":requestid", ID);
+                    cmd.Parameters.Add(":requestid", requestId);
 
                     ExecuteNonQuery(cmd);
+
+                    cmd.CommandText = "DELETE FROM Response WHERE RequestID = :requestid";
+
+                    ExecuteNonQuery(cmd);
+
                     return true;
                 }
                 catch (OracleException e)
                 {
-                    //throw new ExistingUserException();
-                    return false;
+                    throw new ExistingUserException(e.Message);
                 }
                 catch (Exception e)
                 {
@@ -1473,18 +1616,17 @@ namespace Participation_ASP.Models
                 }
                 finally
                 {
-
+                    con.Close();
                 }
             }
         }
 
-
-
-
-
-        //TODO Tom
-        public static
-        bool DeleteReview(int reviewId)
+        /// <summary>
+        /// Deletes a review by it's id
+        /// </summary>
+        /// <param name="reviewId">review to be removed</param>
+        /// <returns></returns>
+        public static bool DeleteReview(int reviewId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1511,7 +1653,12 @@ namespace Participation_ASP.Models
             }
         }
 
-        //TODO Fix this/Test this
+        /// <summary>
+        /// Adds a review to a volunteer
+        /// </summary>
+        /// <param name="review">review to be added</param>
+        /// <param name="volunteerId">volunteer to which the review is adressed</param>
+        /// <returns></returns>
         public static bool AddReview(Review review, int volunteerId)
         {
             using (OracleConnection con = Connection)
@@ -1520,23 +1667,23 @@ namespace Participation_ASP.Models
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
                         "INSERT INTO Review (AccountId, RequestId, Rating, Description) " +
-                        "VALUES (:AccountId, :RequestId, :Rating, :Description)"
+                        "VALUES (:accountId, :requestId, :rating, :description)"
                     );
-                    cmd.Parameters.Add("RequestId", review.Request.RequestId);
-                    cmd.Parameters.Add("AccountId", volunteerId);
-                    cmd.Parameters.Add("Rating", review.Rating);
-                    cmd.Parameters.Add("Description", review.Comment);
+                    cmd.Parameters.Add("accountId", volunteerId);
+                    cmd.Parameters.Add("requestId", review.Request.RequestId);
+                    cmd.Parameters.Add("rating", review.Rating);
+                    cmd.Parameters.Add("description", review.Comment);
 
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
-                    throw e;
+                    return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    return false;
                 }
                 finally
                 {
@@ -1545,16 +1692,6 @@ namespace Participation_ASP.Models
             }
         }
 
-
-
-        //TODO Sven J
-        public static bool AlterVogConfirmation(int ID)
-        {
-            throw new NotImplementedException();
-        }
-
-
-        //TODO Sander
         public static List<Meeting> GetMeetings()
         {
             using (OracleConnection connection = Connection)
@@ -1622,15 +1759,13 @@ namespace Participation_ASP.Models
                     }
                     return returnMeetings;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
 
-                    throw;
+                    throw e;
                 }
             }
         }
 
-        //TODO Tom fix review adressering, request beschrijving bug, fix amount of volunteers/implementeer list<Volunteer> bij een request
-        #endregion
     }
 }

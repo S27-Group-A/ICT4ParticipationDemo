@@ -1,21 +1,29 @@
-﻿namespace Participation_ASP.Models
+﻿// <copyright file="Availability.cs" company="Ict4Participation">
+//      Copyright (c) Ict4Participation. All rights reserved.
+// </copyright>
+// <author>Sven Henderickx</author>
+namespace Participation_ASP.Models
 {
+    /// <summary>
+    /// Availability of a volunteer.
+    /// </summary>
     public class Availability
     {
-        /// <summary>
-        /// Gets or sets the day
+
+        /// Gets or sets the day.
         /// </summary>
         public string Day { get; set; }
+
         /// <summary>
-        /// gets or sets the timeofday
+        /// Gets or sets the time of day.
         /// </summary>
         public string TimeOfDay { get; set; }
 
         /// <summary>
-        /// Constructor with all the properties
+        /// Initializes a new instance of the <see cref="Availability"/> class.
         /// </summary>
-        /// <param name="day"></param>
-        /// <param name="timeOfDay"></param>
+        /// <param name="day">The day of the week.</param>
+        /// <param name="timeOfDay">Time of day, noon, afternoon etc.</param>
         public Availability(string day, string timeOfDay)
         {
             this.Day = day;

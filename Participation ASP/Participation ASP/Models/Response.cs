@@ -79,7 +79,7 @@
         /// <returns></returns>
         public bool AddResponse(Response response, Request request)
         {
-            return DatabaseManager.AddResponse(response, request);
+            return DatabaseManager.AddResponse(response,request);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Participation_ASP.Models
+﻿// <copyright file="Patient.cs" company="Ict4Participation">
+//      Copyright (c) Ict4Participation. All rights reserved.
+// </copyright>
+namespace Participation_ASP.Models
 {
     using System;
     using System.Collections.Generic;
@@ -49,6 +52,11 @@
         public Patient(int accountId, string username, string password, string email, string name, string phone, DateTime dateCancellation, string adress, string location, bool hasCar, bool hasDriversLicense, string rfid, bool isAdmin, bool enabled, bool ov) : base(accountId, username, password, email, name, phone, dateCancellation, adress, location, hasCar, hasDriversLicense, rfid, isAdmin, enabled)
         {
             this.Ov = ov;
+        }
+
+        public bool AddPatient(Patient patient)
+        {
+            return DatabaseManager.AddAccount(patient);
         }
     }
 }
