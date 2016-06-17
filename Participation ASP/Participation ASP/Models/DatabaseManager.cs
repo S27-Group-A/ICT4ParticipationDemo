@@ -534,7 +534,7 @@
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            new Patient(accountId, Username, Password, Email, Name, Phone,
+                            return new Patient(accountId, Username, Password, Email, Name, Phone,
                                 DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                 false, Enabled, Ov);
                         }
