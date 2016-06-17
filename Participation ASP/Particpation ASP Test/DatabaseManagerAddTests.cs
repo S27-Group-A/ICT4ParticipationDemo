@@ -36,7 +36,6 @@ namespace Particpation_ASP_Test
         }
 
         [TestMethod]
-        //TODO Fix this
         public void AddVolunteer()
         {
             Assert.IsTrue(
