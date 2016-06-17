@@ -35,7 +35,15 @@
 
 @using (Html.BeginForm("RespondToRequest", "Request"))
 {
-    <input type="text" id="Response" name="ResponseText" class="form-control" id="inputDefault"/>
-    <br/>
+    if (Session["NoTextResponse"].ToString() != string.Empty)
+    {
+        <input type="text" id="Response" name="ResponseText" class="form-control" id="inputDefault"/>
+        <br/>
+    }
+    else
+    {
+        <input type="text" id="Response" name="ResponseText" class="form-control" id="inputError" />
+        <br />
+    }
     <input type="submit" value="Reactie plaatsen" class="btn btn-succes"/>
 }

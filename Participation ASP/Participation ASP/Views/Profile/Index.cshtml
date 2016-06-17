@@ -47,7 +47,6 @@
                         <option value="Ochtend">Ochtend</option>
                         <option value="Middag">Middag</option>
                         <option value="Avond">Avond</option>
-                        <option value="Nacht">Nacht</option>
                     </select>
                     <br/>
                     <input type="submit" class="btn btn-success" value="Aanpassen" name="toevoegen"/>
@@ -71,9 +70,10 @@
                                 @s.Description
                             </a>
                         }
+
                         @if (Session["ErrorMsg"] != null)
                         {
-                            <a class="list-group-item-danger">
+                            <a class="list-group-item active">
                                 @Session["ErrorMsg"].ToString()
                             </a>
                         }
