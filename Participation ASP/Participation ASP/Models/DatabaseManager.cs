@@ -455,6 +455,7 @@
                             }
                         }
                     }
+                    //TODO catch this null 
                     return null;
                 }
                 catch (OracleException e)
