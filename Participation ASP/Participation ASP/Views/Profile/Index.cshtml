@@ -71,11 +71,19 @@
                                 @s.Description
                             </a>
                         }
+                        @if (Session["ErrorMsg"] != null)
+                        {
+                            <a class="list-group-item-danger">
+                                @Session["ErrorMsg"].ToString()
+                            </a>
+                        }
                     </div>
                     
                 }
+                
                 @using (Html.BeginForm("AddSKill", "Profile"))
                 {
+                    
                     ViewModel viewModel = new ViewModel();
                     <select id="skill" class="form-control" size="1" name="skill">
                         @foreach (Skill skill in viewModel.SkillList)

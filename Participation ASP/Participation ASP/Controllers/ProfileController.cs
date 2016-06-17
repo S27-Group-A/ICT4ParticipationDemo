@@ -2,6 +2,9 @@
 // All rights reserved.
 // </copyright>
 // <author>S27 A</author>
+
+using Participation_ASP.Exceptions;
+
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -69,7 +72,17 @@ namespace Participation_ASP.Controllers
                         temp = s;
                     }
                 }
-                DatabaseManager.AddVolunteerSkill(tempV, temp);
+                try
+                {
+                    DatabaseManager.AddVolunteerSkill(tempV, temp);
+                    Session["ErrorMsg"] = string.Empty;
+                }
+                catch (ExistingSkillException)
+                {
+                    Session["ErrorMsg"] = "U bezit deze vaardigheid al.";
+                    return RedirectToAction("Index", "Profile");
+                }
+                
                 return RedirectToAction("Index");
             }
 
