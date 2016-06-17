@@ -16,10 +16,14 @@
             {
                 Session["request" + @r.RequestId.ToString()] = r;
             }
-            <h3>@r.Patient.Name</h3>
-            <p>@r.Description</p>
-            @Html.ActionLink("Meer Informatie", @r.RequestId.ToString(), "Request/RequestInfo")
-            <p>_______________________________________________</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">@r.Patient.Name</div>
+                <div class="panel-body">
+                    @r.Description
+                </div>
+                <div class="panel-footer">@Html.ActionLink("Meer Informatie", @r.RequestId.ToString(), "Request/RequestInfo")</div>
+            </div>
+
         }
     }
 }
