@@ -296,12 +296,16 @@
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
                             List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
                                 var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                     Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 accounts.Add(volunteer);
                             }
                             else
@@ -310,6 +314,7 @@
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
                                     Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 accounts.Add(volunteer);
                             }
                         }
@@ -405,12 +410,16 @@
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
                             List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
                                 var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                     Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 return volunteer;
                             }
                             else
@@ -419,6 +428,7 @@
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
                                     Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 return volunteer;
                             }
                         }
@@ -526,12 +536,16 @@
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
                             List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
                                 var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                     Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 return volunteer;
                             }
                             else
@@ -540,6 +554,7 @@
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
                                     Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
                                 return volunteer;
                             }
                         }
