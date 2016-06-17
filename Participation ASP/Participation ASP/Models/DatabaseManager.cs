@@ -692,9 +692,9 @@
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Description, " +
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Description AS \"Description\", " +
                         "r.Urgency, r.AmountOfVolunteers, " +
-                        "v.VehicleTypeId, v.Description AS VehicleDescription, " +
+                        "v.VehicleTypeId, v.Description AS \"VehicleDescription\", " +
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
@@ -789,6 +789,7 @@
             }
         }
 
+        ///TODO SVEN WHYYYYYYYYYYYYYYYYYYYYYYY
         /// <summary>
         /// Returns a list of skills based on request identifier
         /// </summary>
@@ -803,7 +804,7 @@
                     OracleCommand cmd = CreateOracleCommand(con,
                         "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
                         "r.Urgency, r.AmountOfVolunteers, " +
-                        "v.VehicleTypeId, v.Description, " +
+                        "v.VehicleTypeId, v.Description as \"VehicleDescription\", " +
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
@@ -871,7 +872,7 @@
                         int VehicleTypeId = new int();
                         if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
                             VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
-                        string VehicleDescription = reader["Description"].ToString();
+                        string VehicleDescription = reader["VehicleDescription"].ToString();
 
                         //Get Skill Data
                         List<Skill> skills = GetSkills(AccountId);
