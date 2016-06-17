@@ -71,5 +71,26 @@ namespace Participation_ASP.Controllers
 
             return RedirectToAction("Index", "Error");
         }
+
+        [Route("Request/RequestInfo/{id}")]
+        public ActionResult AcceptMeeting(string id)
+        {
+            string[] input = id.Split('-');
+            int volunteerId = Convert.ToInt32(input[0]);
+            int patientId = Convert.ToInt32(input[1]);
+            ViewModel viewModel = new ViewModel();
+            foreach (Meeting m in viewModel.MeetingList)
+            {
+                if (m.Volunteer.AccountId == volunteerId && m.Patient.AccountId == patientId)
+                {
+                    m.Status = true;
+                    if (m.ChangeStatus(m))
+                    {
+                        return RedirectToAction("Index", "Meeting");
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Error");
+        }
     }
 }

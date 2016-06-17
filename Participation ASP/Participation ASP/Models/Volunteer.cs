@@ -157,6 +157,7 @@ namespace Participation_ASP.Models
             this.VogConfirmation = vogConfirmation;
         }
 
+
         /// <summary>
         /// Add volunteer, needs to be renamed
         /// </summary>

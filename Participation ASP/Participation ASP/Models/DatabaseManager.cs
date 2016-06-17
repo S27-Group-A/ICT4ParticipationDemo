@@ -77,6 +77,38 @@
             }
         }
 
+        public static bool AddVolunteerSkill(Volunteer volunteer, Skill skill)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "INSERT INTO VolunteerSkill (AccountId, SkillId) VALUES (:AccountId, :SkillId)");
+                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
+                    cmd.Parameters.Add("Skillid", skill.Id);
+                    con.Open();
+                    return ExecuteNonQuery(cmd);
+                }
+                catch (OracleException e)
+                {
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                    {
+                        throw new ExistingSkillException(e.Message);
+                    }
+                    throw e;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
         /// <summary>
         /// Adds a availability to the availability table
         /// </summary>
@@ -195,7 +227,6 @@
             return reader.HasRows;
         }
 
-
         public static List<IAccount> GetAccounts()
         {
             using (OracleConnection con = Connection)
@@ -264,16 +295,27 @@
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
+                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
-                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
-                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                accounts.Add(volunteer);
                             }
                             else
                             {
-                                accounts.Add(new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews));
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
+                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                accounts.Add(volunteer);
                             }
                         }
                     }
@@ -281,12 +323,10 @@
                 }
                 catch (OracleException e)
                 {
-
                     throw e;
                 }
                 catch (Exception e)
                 {
-
                     throw e;
                 }
                 finally
@@ -369,16 +409,27 @@
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
+                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
-                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                     Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                return volunteer;
                             }
                             else
                             {
-                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
+                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                return volunteer;
                             }
                         }
                     }
@@ -484,16 +535,27 @@
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
                             List<Review> reviews = GetReviews(AccountId);
+                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            var temp = new Volunteer();
+                            temp.AccountId = AccountId;
+                            List<Skill> skills = GetSkills(temp);
                             if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
                             {
-                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
                                     Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                return volunteer;
                             }
                             else
                             {
-                                return new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
+                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                volunteer.Availabilities = availabilities;
+                                volunteer.Skills = skills;
+                                return volunteer;
                             }
                         }
                     }
@@ -515,6 +577,94 @@
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Returns all availabilities based on a volunteer.
+        /// Used for displaying current free schedule of a volunteer.
+        /// </summary>
+        /// <param name="volunteer"></param>
+        /// <returns></returns>
+        public static List<Availability> GetAvailabilities(Volunteer volunteer)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT a.Day, a.TimeOfDay " +
+                        "FROM \"Availability\" a " +
+                        "INNER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                        "WHERE a.AccountId = :AccountId"
+                        );
+                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
+                    var availabilities = new List<Availability>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Day = reader["Day"].ToString();
+                        string TimeOfDay = reader["TimeOfDay"].ToString();
+                        availabilities.Add(new Availability(Day, TimeOfDay));
+                    }
+                    return availabilities;
+                }
+                catch (OracleException e)
+                {
+
+                    throw e;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        public static List<Availability> GetAvailabilities(int accountId)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT a.Day, a.TimeOfDay " +
+                        "FROM \"Availability\" a " +
+                        "INNER JOIN Volunteer v ON v.AccountId = a.AccountId " +
+                        "WHERE a.AccountId = :AccountId"
+                        );
+                    cmd.Parameters.Add("AccountId", accountId);
+                    var availabilities = new List<Availability>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        string Day = reader["Day"].ToString();
+                        string TimeOfDay = reader["TimeOfDay"].ToString();
+                        availabilities.Add(new Availability(Day, TimeOfDay));
+                    }
+                    return availabilities;
+                }
+                catch (OracleException e)
+                {
+
+                    throw e;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
 
         /// <summary>
@@ -692,9 +842,9 @@
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Description AS \"Description\", " +
                         "r.Urgency, r.AmountOfVolunteers, " +
-                        "v.VehicleTypeId, v.Description, " +
+                        "v.VehicleTypeId, v.Description AS \"VehicleDescription\", " +
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
@@ -759,7 +909,7 @@
                         int VehicleTypeId = new int();
                         if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
                             VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
-                        string VehicleDescription = reader["Description"].ToString();
+                        string VehicleDescription = reader["VehicleDescription"].ToString();
 
                         //Get Skill Data
                         List<Skill> skills = GetSkills(AccountId);
@@ -789,6 +939,7 @@
             }
         }
 
+        ///TODO SVEN WHYYYYYYYYYYYYYYYYYYYYYYY
         /// <summary>
         /// Returns a list of skills based on request identifier
         /// </summary>
@@ -803,7 +954,7 @@
                     OracleCommand cmd = CreateOracleCommand(con,
                         "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, " +
                         "r.Urgency, r.AmountOfVolunteers, " +
-                        "v.VehicleTypeId, v.Description, " +
+                        "v.VehicleTypeId, v.Description as \"VehicleDescription\", " +
                         "p.OV, " +
                         "a.Username, a.Email, a.Password, " +
                         "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
@@ -871,7 +1022,7 @@
                         int VehicleTypeId = new int();
                         if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
                             VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
-                        string VehicleDescription = reader["Description"].ToString();
+                        string VehicleDescription = reader["VehicleDescription"].ToString();
 
                         //Get Skill Data
                         List<Skill> skills = GetSkills(AccountId);
@@ -1117,52 +1268,7 @@
             }
         }
 
-        /// <summary>
-        /// Returns all availabilities based on a volunteer.
-        /// Used for displaying current free schedule of a volunteer.
-        /// </summary>
-        /// <param name="volunteer"></param>
-        /// <returns></returns>
-        public static List<Availability> GetAvailabilities(Volunteer volunteer)
-        {
-            using (OracleConnection con = Connection)
-            {
-                try
-                {
-                    OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT a.Day, a.TimeOfDay " +
-                        "FROM \"Availability\" a " +
-                        "INNER JOIN Volunteer v ON v.AccountId = a.AccountId " +
-                        "WHERE a.AccountId = :AccountId"
-                        );
-                    cmd.Parameters.Add("AccountId", volunteer.AccountId);
-                    var availabilities = new List<Availability>();
-                    con.Open();
-                    OracleDataReader reader = ExecuteQuery(cmd);
-                    while (reader.Read())
-                    {
-                        string Day = reader["Day"].ToString();
-                        string TimeOfDay = reader["TimeOfDay"].ToString();
-                        availabilities.Add(new Availability(Day, TimeOfDay));
-                    }
-                    return availabilities;
-                }
-                catch (OracleException e)
-                {
 
-                    throw e;
-                }
-                catch (Exception e)
-                {
-
-                    throw e;
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-        }
 
         /// <summary>
         /// Makes a volunteer become an admin
@@ -1225,9 +1331,9 @@
         /// <summary>
         /// 'Deletes' and account by disabling the account
         /// </summary>
-        /// <param name="AccountId">account identifier</param>
+        /// <param name="accountId">account identifier</param>
         /// <returns></returns>
-        public static bool AlterEnabled(int AccountId)
+        public static bool AlterEnabled(int accountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -1237,7 +1343,7 @@
                         "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", AccountId);
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     int value = 1;
 
@@ -1251,7 +1357,7 @@
                         "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
                         );
 
-                    cmd.Parameters.Add(":accountId", AccountId);
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     if (value == 0)
                     {
@@ -1302,7 +1408,7 @@
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
                     return false;
 
@@ -1317,7 +1423,6 @@
                 }
             }
         }
-
 
         public static bool AddAccount(IAccount account)
         {
@@ -1482,7 +1587,6 @@
             }
         }
 
-
         /// <summary>
         /// Adds a meeting to the meeting table
         /// </summary>
@@ -1529,13 +1633,18 @@
             {
                 try
                 {
+                    int status = 0;
+                    if (meeting.Status)
+                    {
+                        status = 1;
+                    }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
                         "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
                     updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     updateCommand.Parameters.Add(":location", meeting.Location);
                     updateCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    updateCommand.Parameters.Add(":status", meeting.Status);
+                    updateCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(updateCommand);
                 }
@@ -1574,7 +1683,6 @@
                 }
             }
         }
-
 
         /// <summary>
         /// Deletes a request by it's id
@@ -1662,23 +1770,23 @@
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
                         "INSERT INTO Review (AccountId, RequestId, Rating, Description) " +
-                        "VALUES (:AccountId, :RequestId, :Rating, :Description)"
+                        "VALUES (:accountId, :requestId, :rating, :description)"
                     );
-                    cmd.Parameters.Add("RequestId", review.Request.RequestId);
-                    cmd.Parameters.Add("AccountId", volunteerId);
-                    cmd.Parameters.Add("Rating", review.Rating);
-                    cmd.Parameters.Add("Description", review.Comment);
+                    cmd.Parameters.Add("accountId", volunteerId);
+                    cmd.Parameters.Add("requestId", review.Request.RequestId);
+                    cmd.Parameters.Add("rating", review.Rating);
+                    cmd.Parameters.Add("description", review.Comment);
 
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
-                    throw e;
+                    return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    return false;
                 }
                 finally
                 {

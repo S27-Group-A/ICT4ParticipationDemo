@@ -43,7 +43,9 @@ namespace Participation_ASP.Controllers
         /// <returns> View() </returns>
         public ActionResult Login()
         {
-            return View();
+            if (Session["Account"] == null)
+                return View();
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
@@ -64,7 +66,6 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-
             return View();
         }
 
@@ -112,9 +113,9 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    Session["ErrorMsg"] = string.Empty;
+                    Session["ErrorMsg"] = null;
                     patient.AddPatient(patient);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 return RedirectToAction("Index", "Error");
@@ -142,9 +143,9 @@ namespace Participation_ASP.Controllers
             {
                 if (Session["Account"] == null)
                 {
-                    Session["ErrorMsg"] = string.Empty;
+                    Session["ErrorMsg"] = null;
                     volunteer.AddVolunteer(volunteer);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login", "Account");
                 }
                 return RedirectToAction("Index", "Error");
             }

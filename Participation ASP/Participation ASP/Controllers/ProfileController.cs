@@ -2,6 +2,9 @@
 // All rights reserved.
 // </copyright>
 // <author>S27 A</author>
+
+using Participation_ASP.Exceptions;
+
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -39,6 +42,8 @@ namespace Participation_ASP.Controllers
             }
             else
             {
+                IAccount temp = (IAccount) Session["Account"];
+                Session["Account"] = DatabaseManager.GetAccount(temp.Email, temp.Password);
                 return View((IAccount)Session["Account"]);
             }
 
@@ -58,7 +63,26 @@ namespace Participation_ASP.Controllers
             if (account is Volunteer && skill.Length > 0)
             {
                 Volunteer tempV = account as Volunteer;
-                tempV.AddSkill(skill);
+                ViewModel viewModel = new ViewModel();
+                Skill temp = null;
+                foreach (Skill s in viewModel.SkillList)
+                {
+                    if (skill == s.Description)
+                    {
+                        temp = s;
+                    }
+                }
+                try
+                {
+                    DatabaseManager.AddVolunteerSkill(tempV, temp);
+                    Session["ErrorMsg"] = null;
+                }
+                catch (ExistingSkillException)
+                {
+                    Session["ErrorMsg"] = "U bezit deze vaardigheid al.";
+                    return RedirectToAction("Index", "Profile");
+                }
+                
                 return RedirectToAction("Index");
             }
 
