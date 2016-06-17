@@ -23,12 +23,14 @@
             <div class="panel-body">
                 @if (volunteer.Availabilities != null)
                 {
-                    <ul>
+                    <div class="list-group">
                         @foreach (Availability a in volunteer.Availabilities)
                         {
-                            <li>@a.Day: @a.TimeOfDay</li>
+                            <a class="list-group-item">
+                                @a.Day - @a.TimeOfDay
+                            </a>
                         }
-                    </ul>
+                    </div>
                 }
                 @using (Html.BeginForm("AddAvailabilities", "Profile"))
                 {
