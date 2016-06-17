@@ -1408,7 +1408,7 @@
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-                catch (OracleException e)
+                catch (OracleException)
                 {
                     return false;
 

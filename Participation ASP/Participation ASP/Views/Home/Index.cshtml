@@ -6,3 +6,8 @@
 
 <h2>Index</h2>
 
+@if (Session["DbErrorMsg"] != null)
+{
+    <p>Kon geen verbinding maken met de database:</p>
+    <p>Error: @Session["DbErrorMsg"].ToString();</p>
+}

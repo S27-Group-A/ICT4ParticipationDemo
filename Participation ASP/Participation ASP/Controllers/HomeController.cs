@@ -2,6 +2,9 @@
 // All rights reserved.
 // </copyright>
 // <author>S27 A</author>
+
+using MyFigureCollection.Exceptions;
+
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -22,8 +25,17 @@ namespace Participation_ASP.Controllers
         /// <returns> View() </returns>
         public ActionResult Index()
         {
-            DatabaseManager.TestConnection();
-            return View();
+            try
+            {
+                DatabaseManager.TestConnection();
+                Session["DbErrorMsg"] = string.Empty;
+                return View();
+            }
+            catch (DatabaseNotConnectedException e)
+            {
+                Session["DbErrorMsg"] = e.Message;
+                return View();
+            }
         }
     }
 }
