@@ -233,25 +233,16 @@
             {
                 try
                 {
-                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
-                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
-                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
-                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
-                                                                 "FROM \"User\" u " +
-                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId ");
+                    OracleCommand cmd = CreateOracleCommand(con, "SELECT v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, p.Ov, p.AccountId as \"PatientId\", a.AccountId as \"UserId\", a.Username, a.Password, a.Email, u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled FROM \"User\" u FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId");
                     var accounts = new List<IAccount>();
                     con.Open();
                     OracleDataReader reader = ExecuteQuery(cmd);
                     while (reader.Read())
                     {
                         //User- and Account Data
-                        int AccountId = new int();
+                        int accountId = new int();
                         if (reader["UserId"] != null)
-                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
+                            accountId = Convert.ToInt32(reader["UserId"].ToString());
                         string Username = reader["Username"].ToString();
                         string Password = reader["Password"].ToString();
                         string Email = reader["Email"].ToString();
@@ -281,38 +272,40 @@
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            accounts.Add(new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov));
+                            accounts.Add(new Patient(accountId, Username, Password, Email, Name, Phone,
+                                DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                false, Enabled, Ov));
                         }
 
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
-
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
-                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            List<Review> reviews = GetReviews(accountId);
+                            List<Availability> availabilities = GetAvailabilities(accountId);
                             var temp = new Volunteer();
-                            temp.AccountId = AccountId;
+                            temp.AccountId = accountId;
                             List<Skill> skills = GetSkills(temp);
-                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+
+                            if (CheckAdmin(accountId))
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
-                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                    true, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 accounts.Add(volunteer);
                             }
                             else
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
-                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    false, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 accounts.Add(volunteer);
@@ -336,6 +329,41 @@
             }
         }
 
+        private static bool CheckAdmin(int accountId)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT AccountId FROM \"Admin\" WHERE AccountId = :accoundId");
+                    cmd.Parameters.Add("accountId", accountId);
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        if (!string.IsNullOrEmpty(reader["AccountId"].ToString()))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Gets an account based on it's AccountId
         /// </summary>
@@ -347,16 +375,7 @@
             {
                 try
                 {
-                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
-                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
-                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
-                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
-                                                                 "FROM \"User\" u " +
-                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
+                    OracleCommand cmd = CreateOracleCommand(con, "SELECT v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, p.Ov, p.AccountId as \"PatientId\", a.AccountId as \"UserId\", a.Username, a.Password, a.Email, u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled FROM \"User\" u FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
                                                                  "WHERE a.AccountId = :accountid");
                     cmd.Parameters.Add(":accountid", id);
 
@@ -365,9 +384,9 @@
                     while (reader.Read())
                     {
                         //User- and Account Data
-                        int AccountId = new int();
+                        int accountId = new int();
                         if (reader["UserId"] != null)
-                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
+                            accountId = Convert.ToInt32(reader["UserId"].ToString());
                         string Username = reader["Username"].ToString();
                         string Password = reader["Password"].ToString();
                         string Email = reader["Email"].ToString();
@@ -395,7 +414,9 @@
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov);
+                            return new Patient(accountId, Username, Password, Email, Name, Phone,
+                                DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                false, Enabled, Ov);
                         }
 
                         //Volunteer Data
@@ -408,25 +429,26 @@
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
-                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            List<Review> reviews = GetReviews(accountId);
+                            List<Availability> availabilities = GetAvailabilities(accountId);
                             var temp = new Volunteer();
-                            temp.AccountId = AccountId;
+                            temp.AccountId = accountId;
                             List<Skill> skills = GetSkills(temp);
-                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+
+                            if (CheckAdmin(accountId))
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
-                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                    true, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 return volunteer;
                             }
                             else
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
-                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    false, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 return volunteer;
@@ -465,16 +487,7 @@
             {
                 try
                 {
-                    OracleCommand cmd = CreateOracleCommand(con, "SELECT ad.AccountId as \"AdminId\", " +
-                                                                 "v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, " +
-                                                                 "p.Ov, p.AccountId as \"PatientId\", " +
-                                                                 "a.AccountId as \"UserId\", a.Username, a.Password, a.Email, " +
-                                                                 "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled " +
-                                                                 "FROM \"User\" u " +
-                                                                 "FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN \"Admin\" ad ON ad.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId " +
-                                                                 "FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
+                    OracleCommand cmd = CreateOracleCommand(con, "SELECT v.AccountId as \"VolunteerId\", v.Birthdate, v.Photo, v.Vog, v.VogConfirmation, p.Ov, p.AccountId as \"PatientId\", a.AccountId as \"UserId\", a.Username, a.Password, a.Email, u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location, u.Car, u.DriversLicense, u.Rfid, u.Enabled FROM \"User\" u FULL OUTER JOIN \"Account\" a ON u.AccountId = a.AccountId FULL OUTER JOIN Volunteer v ON v.AccountId = a.AccountId FULL OUTER JOIN Patient p ON a.AccountId = p.AccountId " +
                                                                  "WHERE a.Email = :Email AND a.Password = :Password");
 
 
@@ -485,9 +498,9 @@
                     while (reader.Read())
                     {
                         //User- and Account Data
-                        int AccountId = new int();
+                        int accountId = new int();
                         if (reader["UserId"] != null)
-                            AccountId = Convert.ToInt32(reader["UserId"].ToString());
+                            accountId = Convert.ToInt32(reader["UserId"].ToString());
                         string Username = reader["Username"].ToString();
                         string Password = reader["Password"].ToString();
                         string Email = reader["Email"].ToString();
@@ -521,38 +534,39 @@
                             bool Ov = false;
                             if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
                                 Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
-                            return new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov);
+                            new Patient(accountId, Username, Password, Email, Name, Phone,
+                                DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                false, Enabled, Ov);
                         }
 
                         //Volunteer Data
                         else if (!string.IsNullOrEmpty(reader["VolunteerId"].ToString()))
                         {
-
                             string Vog = reader["Vog"].ToString();
                             bool VogConfirmation = Convert.ToBoolean(Convert.ToInt32(reader["VogConfirmation"].ToString()));
                             DateTime Birthdate = new DateTime();
                             if (!string.IsNullOrEmpty(reader["Birthdate"].ToString()))
                                 Birthdate = Convert.ToDateTime(reader["Birthdate"].ToString());
                             string Photo = reader["Photo"].ToString();
-                            List<Review> reviews = GetReviews(AccountId);
-                            List<Availability> availabilities = GetAvailabilities(AccountId);
+                            List<Review> reviews = GetReviews(accountId);
+                            List<Availability> availabilities = GetAvailabilities(accountId);
                             var temp = new Volunteer();
-                            temp.AccountId = AccountId;
+                            temp.AccountId = accountId;
                             List<Skill> skills = GetSkills(temp);
-                            if (!string.IsNullOrEmpty(reader["AdminId"].ToString()))
+                            if (CheckAdmin(accountId))
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
                                     DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
-                                    Enabled, true, Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                    true, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 return volunteer;
                             }
                             else
                             {
-                                var volunteer = new Volunteer(AccountId, Username, Password, Email, Name, Phone,
-                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false,
-                                    Birthdate, Photo, Vog, VogConfirmation, reviews);
+                                var volunteer = new Volunteer(accountId, Username, Password, Email, Name, Phone,
+                                    DateDeregistration, Adress, Location, Car, DriversLicense, Rfid,
+                                    false, Enabled, Birthdate, Photo, Vog, VogConfirmation, reviews);
                                 volunteer.Availabilities = availabilities;
                                 volunteer.Skills = skills;
                                 return volunteer;
