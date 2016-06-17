@@ -185,7 +185,9 @@
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\VehicleType.cs" />
-    <Compile Include="Models\Volunteer.cs" />
+    <Compile Include="Models\Volunteer.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
