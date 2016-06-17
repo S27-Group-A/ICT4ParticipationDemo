@@ -28,7 +28,7 @@ namespace Participation_ASP.Controllers
             try
             {
                 DatabaseManager.TestConnection();
-                Session["DbErrorMsg"] = string.Empty;
+                Session["DbErrorMsg"] = null;
                 return View();
             }
             catch (DatabaseNotConnectedException e)
