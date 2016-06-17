@@ -78,12 +78,16 @@ namespace Participation_ASP.Controllers
         /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfileVolunteer()
         {
-            IAccount account = TempData["dbaccount"] as IAccount;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    return View(account);
+                    IAccount dbaccount = TempData["dbaccount"] as IAccount;
+                    if (account != null)
+                    {
+                        return View(dbaccount);
+                    }
                 }
             }
 
@@ -96,12 +100,16 @@ namespace Participation_ASP.Controllers
         /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfilePatient()
         {
-            IAccount account = TempData["dbaccount"] as IAccount;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    return View(account);
+                    IAccount dbaccount = TempData["dbaccount"] as IAccount;
+                    if (account != null)
+                    {
+                        return View(dbaccount);
+                    }
                 }
             }
 

@@ -1353,11 +1353,7 @@
                         value = Convert.ToInt32(reader["Enabled"].ToString());
                     }
 
-                    cmd = CreateOracleCommand(con,
-                        "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId"
-                        );
-
-                    cmd.Parameters.Add(":accountId", accountId);
+                    cmd.CommandText = "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId";
 
                     if (value == 0)
                     {
@@ -1368,7 +1364,7 @@
                         cmd.Parameters.Add(":value", '0');
                     }
 
-                    cmd.ExecuteNonQuery();
+                    ExecuteNonQuery(cmd);
                     return true;
                 }
                 catch (OracleException e)
