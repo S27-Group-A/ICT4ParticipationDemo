@@ -245,6 +245,21 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult AcceptVog(int id)
+        {
+            IAccount account = Session["Account"] as IAccount;
+            if (account != null)
+            {
+                if (account.IsAdmin)
+                {
+                    DatabaseManager.AlterVogConfirmation(id);
+                    return RedirectToAction("AdminPanel");
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         /// <summary>
         /// ActionResult that calls the DeleteRequest method in DatabaseManager, deleting the Request and al its connections.
         /// </summary>

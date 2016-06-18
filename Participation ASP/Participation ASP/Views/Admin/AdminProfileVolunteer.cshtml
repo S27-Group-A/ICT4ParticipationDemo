@@ -50,7 +50,7 @@
                 <li>@Html.Label("VOG Confirmatie: " + Model.VogConfirmation.ToString())</li>
             </ul>
 
-            @Html.ActionLink("Keur account", "AlterEnabled", new { Id = Model.AccountId })
+            @Html.ActionLink("Keur account", "AcceptVog", new { Id = Model.AccountId })
             <br>
             @Html.ActionLink("Bekijk Recensies", "AdminProfileReview", new { Id = Model.AccountId })
         </div>
