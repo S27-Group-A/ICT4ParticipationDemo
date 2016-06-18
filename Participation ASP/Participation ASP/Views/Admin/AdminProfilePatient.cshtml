@@ -43,11 +43,17 @@
             <br>
 
             <h5>Hulpbehoevende informatie:</h5>
+<<<<<<< HEAD
                 <ul>
                     <li>@Html.Label("Openbaar vervoersbewijs: " + Model.Ov)</li>
                 </ul>
+=======
+            <ul>
+                <li>@Html.Label("Openbaar vervoersbewijs: " + Model.Ov.ToString())</li>
+            </ul>
+>>>>>>> refs/remotes/origin/WebSvenJ
 
-            @Html.ActionLink("Bekijk Hulpvragen", "AdminRequest", new { Id = Model.AccountId })
+            @Html.ActionLink("Bekijk Hulpvragen", "AdminProfileRequest", new { Id = Model.AccountId })
         </div>
     </div>
 }

@@ -15,60 +15,44 @@
         <hr />
         <div class="form-group">
             <h5>Account informatie:</h5>
-            <div class="col-md-6">
-                @Html.Label("Gebruikersnaam: " + Model.Username)
-                <br>
-                @Html.Label("Email adres: " + Model.Email)
-                <br>
-                @Html.Label("Naam: " + Model.Name)
-                <br>
-                @Html.Label("Telefoonnummer: " + Model.Name)
-                <br>
+            <ul>
+                <li>@Html.Label("Gebruikersnaam: " + Model.Username)</li>
+                <li>@Html.Encode("Email adres: " + Model.Email)</li>
+                <li>@Html.Label("Naam: " + Model.Name)</li>
+                <li>@Html.Label("Telefoonnummer: " + Model.Phone)</li>
+
                 @if (Model.DateCancellation != new DateTime())
                 {
-                    @Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())
+                    <li>@Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())</li>
                 }
                 else
                 {
-                    @Html.Label("Cancellation date: Active")
+                    <li>@Html.Label("Cancellation date: Active")</li>
                 }
-                <br>
-                @Html.Label("Location: " + Model.Location)
-                <br>
-                @Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())
-                <br>
-                @Html.Label("RFID: " + Model.Rfid)
-                <br>
-                @Html.Label("Enabled: " + Model.Enabled.ToString())
-                <br>
-                @Html.Label("IsAdmin: " + Model.IsAdmin.ToString())
-                <br>
-            </div>
-                
-            <div class="col-md-offset-2 col-md-10">
-                @Html.ActionLink("Enable/Disable Account", "AdminDeleteProfile", new { Id = Model.AccountId })
-            </div>
 
 
-            <div class="col-md-offset-2 col-md-10">
-                @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
-            </div>
+                <li>@Html.Label("Location: " + Model.Location)</li>
+                <li>@Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())</li>
+                <li>@Html.Label("RFID: " + Model.Rfid)</li>
+                <li>@Html.Label("Enabled: " + Model.Enabled.ToString())</li>
+                <li>@Html.Label("IsAdmin: " + Model.IsAdmin.ToString())</li>
+            </ul>
 
-            <div class="col-md-10">
-                <h5>Vrijwilliger informatie:</h5>
-                <div class="col-md-10">
-                    @Html.Label("Geboortedatum: " + Model.BirthDate.ToString())
-                    @Html.Label("Geboortedatum: " + Model.Vog)
-                    @Html.Label("Geboortedatum: " + Model.VogConfirmation.ToString())
-                    <div class="col-md-offset-2 col-md-10">
-                        @Html.ActionLink("KeurAccount", "AlterEnabled", new { Id = Model.AccountId })
-                    </div>
-                </div>
-            </div>
+            @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+            <br>
+            @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
+            <br>
 
-            <div class="col-md-10">
-                @Html.ActionLink("Bekijk Recensies", "AdminReview", new { Id = Model.AccountId })
-            </div>
+            <h5>Vrijwilliger informatie:</h5>
+            <ul>
+                <li>@Html.Label("Geboortedatum: " + Model.BirthDate.ToString())</li>
+                <li>@Html.Label("VOG: " + Model.Vog)</li>
+                <li>@Html.Label("VOG Confirmatie: " + Model.VogConfirmation.ToString())</li>
+            </ul>
+
+            @Html.ActionLink("Keur account", "AlterEnabled", new { Id = Model.AccountId })
+            <br>
+            @Html.ActionLink("Bekijk Recensies", "AdminProfileReview", new { Id = Model.AccountId })
         </div>
     </div>
 }
