@@ -3,6 +3,7 @@
 // </copyright>
 // <author>S27 A</author>
 
+using System.Text.RegularExpressions;
 using Participation_ASP.Exceptions;
 
 namespace Participation_ASP.Controllers
@@ -56,7 +57,11 @@ namespace Participation_ASP.Controllers
                 Session["MeetingErrorMsg"] = null;
                 string volunteerEmail = collection["volunteer"];
                 string location = collection["location"];
-                DateTime date = Convert.ToDateTime(collection["date"]);
+                DateTime date = new DateTime();
+                if (!string.IsNullOrEmpty(collection["date"]))
+                {
+                    date = Convert.ToDateTime(collection["date"]);
+                }
 
                 if (!string.IsNullOrEmpty(location) && date > DateTime.Today)
                 {
@@ -86,6 +91,11 @@ namespace Participation_ASP.Controllers
                 }
 
                 return RedirectToAction("Index", "Error");
+            }
+            catch (FormatException)
+            {
+                Session["MeetingErrorMsg"] = "De velden waren niet correct ingevuld";
+                return RedirectToAction("Index", "Meeting");
             }
             catch (ExistingMeetingException)
             {
