@@ -110,7 +110,7 @@ namespace Participation_ASP.Controllers
                 skills.Add(tempSkill);
                 Request request = new Request();
                 request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers, skills, null, (Patient)Session["Account"]));
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Request");
             }
 
             return RedirectToAction("Index", "Error");
