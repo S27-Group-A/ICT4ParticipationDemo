@@ -11,52 +11,48 @@
 {
     if (!string.IsNullOrEmpty(Session["DbErrorMsg"].ToString()))
     {
-        <p>Kon geen verbinding maken met de database:</p>
-        <p>
+        <p style="color: red;">Kon geen verbinding maken met de database:
+            <br/>   
             Error: @Session["DbErrorMsg"].ToString()
             <br/>
-            Neem contact op met de administrator, als deze waarschuwing niet verdwijnt.
+            Neem contact op met de <a href="administratorparticipation@gmail.com">administrator</a>, als deze waarschuwing niet verdwijnt.
         </p>
     }
-    else
-    {
-        if (Session["Account"] == null)
-        {
-            <table>
-                <td>
-                    <p>
-                        Participation is een applicatie met als hoofddoel om mensen te helpen die het nodig hebben bij bij verschillende taken.
-                        Dit kan zijn omdat hij/zij dit iets niet meer kan doen of gewoon een extra handje kan gebruiken.
-                    </p>
+}
+@if (Session["Account"] == null)
+{
+    <table>
+        <td>
+            <p>
+                Participation is een applicatie met als hoofddoel om mensen te helpen die het nodig hebben bij bij verschillende taken.
+                Dit kan zijn omdat hij/zij dit iets niet meer kan doen of gewoon een extra handje kan gebruiken.
+            </p>
 
 
-                    <h3>Heeft u hulp nodig?</h3>
-                    <p>
-                        Meld u dan @Html.ActionLink("hier", "RegisterPatient", "Account") aan om te vragen naar hulp.
-                    </p>
+            <h3>Heeft u hulp nodig?</h3>
+            <p>
+                Registreer u dan @Html.ActionLink("hier", "RegisterPatient", "Account") om te vragen naar hulp.
+            </p>
 
-                    <h3>Kan u hulp bieden?</h3>
-                    <p>
-                        Meld u dan @Html.ActionLink("hier", "RegisterVolunteer", "Account") aan om te hulp te verlenen.
-                    </p>
+            <h3>Kan u hulp bieden?</h3>
+            <p>
+                Registreer u dan @Html.ActionLink("hier", "RegisterVolunteer", "Account") om te hulp te verlenen.
+            </p>
 
-                    <h3>Heeft u al een account?</h3>
-                    <p>
-                        Dan kunt u @Html.ActionLink("hier", "Login", "Account") in-loggen.
-                    </p>
+            <h3>Heeft u al een account?</h3>
+            <p>
+                Dan kunt u @Html.ActionLink("hier", "Login", "Account") zich aanmelden.
+            </p>
 
-                </td>
-                <td>
-                    <img src="http://tinyurl.com/zsz5cwz" />
-                </td>
-            </table>
-        }
-        else
-        {
-            <h3>Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
-        }
-
-    }
+        </td>
+        <td>
+            <img src="http://tinyurl.com/zsz5cwz" />
+        </td>
+    </table>
+}
+else
+{
+     <h3> Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
 }
 
 

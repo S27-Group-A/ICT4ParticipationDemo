@@ -2,6 +2,10 @@
 // All rights reserved.
 // </copyright>
 // <author>S27 A</author>
+
+using System.Text.RegularExpressions;
+using Participation_ASP.Exceptions;
+
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -50,28 +54,56 @@ namespace Participation_ASP.Controllers
         [HttpPost]
         public ActionResult PlanMeeting(FormCollection collection)
         {
-            string volunteerEmail = collection["volunteer"];
-            string location = collection["location"];
-            DateTime date = Convert.ToDateTime(collection["date"]);
-
-            if (location != "" && date > DateTime.Today)
+            try
             {
-                ViewModel viewModel = new ViewModel();
-                Volunteer volunteer = null;
-                foreach (IAccount a in viewModel.AccountList)
+                Session["MeetingErrorMsg"] = null;
+                string volunteerEmail = collection["volunteer"];
+                string location = collection["location"];
+                DateTime date = new DateTime();
+                if (!string.IsNullOrEmpty(collection["date"]))
                 {
-                    if (a.Email == volunteerEmail)
-                    {
-                        volunteer = a as Volunteer;
-                    }
+                    date = Convert.ToDateTime(collection["date"]);
                 }
 
-                Meeting meeting = new Meeting();
-                meeting.AddMeeting(new Meeting((Patient) Session["Account"], volunteer, location, date, false));
+                if (!string.IsNullOrEmpty(location) && date > DateTime.Today)
+                {
+                    ViewModel viewModel = new ViewModel();
+                    Volunteer volunteer = null;
+                    foreach (IAccount a in viewModel.AccountList)
+                    {
+                        if (a.Email == volunteerEmail)
+                        {
+                            volunteer = a as Volunteer;
+                        }
+                    }
+
+                    Meeting meeting = new Meeting();
+                    meeting.AddMeeting(new Meeting((Patient)Session["Account"], volunteer, location, date, false));
+                    return RedirectToAction("Index", "Meeting");
+                }
+                else if (date < DateTime.Today)
+                {
+                    Session["MeetingErrorMsg"] = "U kunt alleen een toekomstige datum kiezen.";
+                    return RedirectToAction("Index", "Meeting");
+                }
+                else
+                {
+                    Session["MeetingErrorMsg"] = "U moet alle velden invullen om een gesprek te plannen.";
+                    return RedirectToAction("Index", "Meeting");
+                }
+
+                return RedirectToAction("Index", "Error");
+            }
+            catch (FormatException)
+            {
+                Session["MeetingErrorMsg"] = "De velden waren niet correct ingevuld";
                 return RedirectToAction("Index", "Meeting");
             }
-
-            return RedirectToAction("Index", "Error");
+            catch (ExistingMeetingException)
+            {
+                Session["MeetingErrorMsg"] = "U heeft al een kennismakingsgesprek met deze persoon.";
+                return RedirectToAction("Index", "Meeting");
+            }
         }
 
         [Route("Request/RequestInfo/{id}")]

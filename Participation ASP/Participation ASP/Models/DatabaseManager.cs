@@ -1492,30 +1492,40 @@
         /// <returns></returns>
         public static bool AddMeeting(Meeting meeting)
         {
-            using (OracleConnection connection = Connection)
+            using (OracleConnection con = Connection)
             {
                 try
                 {
 
-                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                    OracleCommand insertCommand = CreateOracleCommand(con,
                         "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status)");
                     insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     insertCommand.Parameters.Add(":location", meeting.Location);
                     insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    int intStatus = 0;
+                    int status = 0;
                     if (meeting.Status)
                     {
-                        intStatus = 1;
+                        status = 1;
                     }
-                    insertCommand.Parameters.Add(":status", intStatus);
+                    insertCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(insertCommand);
                 }
+                catch (OracleException e)
+                {
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                        throw new ExistingMeetingException(e.Message);
+                    else
+                        return false;
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
         }
@@ -1537,11 +1547,10 @@
                         status = 1;
                     }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
-                        "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
-                    updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
-                    updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
-                    updateCommand.Parameters.Add(":location", meeting.Location);
-                    updateCommand.Parameters.Add(":meetingDate", meeting.Date);
+                        "UPDATE Meeting SET Status = :status " +
+                        "WHERE VolunteerId =  :volunteerId AND PatientId = :patientId");
+                    updateCommand.Parameters.Add(":volunteerId", meeting.Volunteer.AccountId);
+                    updateCommand.Parameters.Add(":patientId", meeting.Patient.AccountId);
                     updateCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(updateCommand);

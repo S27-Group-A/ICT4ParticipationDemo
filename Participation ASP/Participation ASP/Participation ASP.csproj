@@ -161,6 +161,7 @@
     <Compile Include="Controllers\MeetingController.cs" />
     <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Exceptions\ExistingMeetingException.cs" />
     <Compile Include="Exceptions\ExistingSkillException.cs" />
     <Compile Include="Exceptions\DayException.cs" />
     <Compile Include="Exceptions\DatabaseNotConnectedException.cs" />

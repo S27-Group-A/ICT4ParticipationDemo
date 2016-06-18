@@ -41,13 +41,13 @@
                     @if (Session["Account"] != null)
                     {
                         Account account = (Account)Session["Account"];
-                        @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Profiel", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Welkom " + account.Username + " (Afmelden)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     else
                     {
-                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Aanmelden", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Registreren", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                 </ul>
             </div>
@@ -58,7 +58,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ParticipationWebApp</p>
         </footer>
     </div>
 
