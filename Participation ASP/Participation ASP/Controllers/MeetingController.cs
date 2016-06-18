@@ -66,7 +66,7 @@ namespace Participation_ASP.Controllers
 
                 Meeting meeting = new Meeting();
                 meeting.AddMeeting(new Meeting((Patient) Session["Account"], volunteer, location, date, false));
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Meeting");
             }
 
             return RedirectToAction("Index", "Error");

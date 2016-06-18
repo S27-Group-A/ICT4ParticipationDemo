@@ -1,0 +1,85 @@
+﻿@using Participation_ASP.Models
+@model Participation_ASP.Models.IAccount
+@{
+    ViewBag.Title = "ProfileInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h2>@Model.Name</h2>
+    <table style="border-spacing: 10px;">
+        <tr>
+            <td>
+                <p>Gebruikersnaam: @Model.Username</p>
+                <p>Email: @Model.Email</p>
+                <p>Adres: @Model.Adress</p>
+                <p>Telefoonnummer: @Model.Phone</p>
+                <p>Locatie: @Model.Location</p>
+            </td>
+            <td style="padding: 50px; text-align: right;">
+                @if (Model is Volunteer && !string.IsNullOrEmpty(((Volunteer)Model).Photo))
+                {
+                    <img src=@(((Volunteer) Model).Photo) width="300" height="300" />
+                }
+                else
+                {
+                    <img src="http://tinyurl.com/zbyn293" width="300" height="300" />
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+@if (Model is Volunteer)
+{
+    {
+        Volunteer volunteer = Model as Volunteer;
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Beschikbaarheid</h3>
+            </div>
+            <div class="panel-body">
+                @if (volunteer.Availabilities != null)
+                {
+                    <div class="list-group">
+                        @foreach (Availability a in volunteer.Availabilities)
+                        {
+                            <a class="list-group-item">
+                                @a.Day - @a.TimeOfDay
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        //vaardigheden
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vaardigheden</h3>
+            </div>
+            <div class="panel-body">
+                @if (volunteer.Skills != null)
+                {
+                    <div class="list-group">
+
+                        @foreach (Skill s in volunteer.Skills)
+                        {
+                            <a class="list-group-item">
+                                @s.Description
+                            </a>
+                        }
+
+                        @if (Session["ErrorMsg"] != null)
+                        {
+                            <a class="list-group-item active">
+                                @Session["ErrorMsg"].ToString()
+                            </a>
+                        }
+                    </div>
+
+                }
+            </div>
+        </div>
+    }
+
+}

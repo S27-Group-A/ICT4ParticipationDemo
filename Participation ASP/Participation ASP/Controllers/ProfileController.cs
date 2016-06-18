@@ -116,5 +116,17 @@ namespace Participation_ASP.Controllers
             }
             return RedirectToAction("Index", "Error");
         }
+
+        [Route("Profile/ProfileInfo/{id}")]
+        public ActionResult ProfileInfo(string id)
+        {
+            int intId;
+            if (int.TryParse(id, out intId))
+            {
+                IAccount account = DatabaseManager.GetAccount(intId);
+                return View(account);
+            }
+            return RedirectToAction("Index", "Error");
+        }
     }
 }

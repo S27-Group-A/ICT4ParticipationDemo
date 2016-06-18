@@ -6,7 +6,7 @@
 }
 
 <div class="jumbotron">
-<h2>@Model.Patient.Name</h2>
+<h2>@Html.ActionLink(@Model.Patient.Name, @Model.Patient.AccountId.ToString(), "Profile/ProfileInfo")</h2>
 <p>@Model.Description</p>
 <p>Datum: @Model.StartDate.Day-@Model.StartDate.Month-@Model.StartDate.Year</p>
 <p>Locatie: @Model.Location</p>
@@ -25,7 +25,7 @@
     @foreach (Response response in Model.Responses)
     {
         <tr width="400">
-            <td>@response.Volunteer.Name</td>
+            <td>@Html.ActionLink(@response.Volunteer.Name, @response.Volunteer.AccountId.ToString(), "Profile/ProfileInfo")</td>
             <td class="active">@response.Description</td>
         </tr>
     }
