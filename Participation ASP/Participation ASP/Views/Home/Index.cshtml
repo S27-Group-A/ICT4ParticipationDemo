@@ -51,12 +51,11 @@
                 </td>
             </table>
         }
-        else
-        {
-            <h3>Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
-        }
-
     }
+}
+@if (Session["Account"] != null)
+{
+     <h3> Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
 }
 
 
