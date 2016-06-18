@@ -210,14 +210,15 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Account\RegisterPatient.cshtml" />
     <Content Include="Views\Account\RegisterVolunteer.cshtml" />
-    <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
+    <Content Include="Views\Admin\AdminProfileRequest.cshtml" />
     <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Request\RequestInfo.cshtml" />
     <Content Include="Views\Admin\AdminProfilePatient.cshtml" />
-    <None Include="Views\Admin\AdminProfileVolunteer.cshtml" />
     <Content Include="Views\Admin\AdminRequest.cshtml" />
     <Content Include="Views\Admin\AdminReview.cshtml" />
     <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Admin\AdminProfileVolunteer.cshtml" />
+    <Content Include="Views\Admin\AdminProfileReview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
