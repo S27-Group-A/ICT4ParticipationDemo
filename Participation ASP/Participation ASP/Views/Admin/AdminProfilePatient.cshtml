@@ -17,7 +17,7 @@
             <h5>Account informatie:</h5>
             <ul>
                 <li>@Html.Label("Gebruikersnaam: " + Model.Username)</li>
-                <li>@Html.Label("Email adres: " + Model.Email)</li>
+                <li>@Html.Encode("Email adres: " + Model.Email)</li>
                 <li>@Html.Label("Naam: " + Model.Name)</li>
                 <li>@Html.Label("Telefoonnummer: " + Model.Phone)</li>
 
@@ -40,6 +40,7 @@
             @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
             <br>
             @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
+            <br>
 
             <h5>Hulpbehoevende informatie:</h5>
                 <ul>
@@ -47,7 +48,6 @@
                 </ul>
 
             @Html.ActionLink("Bekijk Hulpvragen", "AdminRequest", new { Id = Model.AccountId })
-
         </div>
     </div>
 }

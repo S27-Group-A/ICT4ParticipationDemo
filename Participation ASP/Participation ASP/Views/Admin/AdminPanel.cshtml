@@ -15,25 +15,22 @@
     <div class="form-horizontal">
         <hr />
         <div class="form-group">
-            @Html.Label("Accounts: ")
-            <div class="form-group">
+            <h5>Accounts:</h5>
+            <ul>
                 @foreach (IAccount i in Model.GetAccountList())
                 {
-                    <ul>
-                        <li>@Html.ActionLink(i.Username, "AdminProfile", new { id = i.AccountId })</li>
-                    </ul>
-                }
-            </div>
 
-            <div class="form-group">
-                @Html.Label("Requests: ")
+                    <li>@Html.ActionLink(i.Username, "AdminProfile", new { id = i.AccountId })</li>
+                }
+            </ul>
+
+            <h5>Hulpvragen:</h5>
+            <ul>
                 @foreach (Request i in Model.GetRequestList())
                 {
-                    <ul>
-                        <li>@Html.ActionLink(i.Description, "AdminRequest", new { id = i.RequestId })</li>
-                    </ul>
+                    <li>@Html.ActionLink(i.Description, "AdminRequest", new { id = i.RequestId })</li>
                 }
-            </div>
+            </ul>
         </div>
     </div>
 }
