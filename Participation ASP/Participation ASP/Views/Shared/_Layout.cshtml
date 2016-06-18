@@ -41,6 +41,7 @@
                     @if (Session["Account"] != null)
                     {
                         Account account = (Account)Session["Account"];
+                        @Html.ActionLink("Chat", "Room", "Chat", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
