@@ -1242,7 +1242,7 @@
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
+                        "SELECT Enabled FROM \"User\" WHERE AccountId = :accountId"
                         );
 
                     cmd.Parameters.Add(":accountId", accountId);
@@ -1255,16 +1255,16 @@
                         value = Convert.ToInt32(reader["Enabled"].ToString());
                     }
 
-                    cmd.CommandText = "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId";
+                    cmd = CreateOracleCommand(con,
+                        "UPDATE \"User\" SET Enabled = :value WHERE AccountId = :accountId");
+
 
                     if (value == 0)
-                    {
                         cmd.Parameters.Add(":value", '1');
-                    }
                     else
-                    {
                         cmd.Parameters.Add(":value", '0');
-                    }
+
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     ExecuteNonQuery(cmd);
                     return true;
@@ -1594,7 +1594,7 @@
                 try
                 {
                     bool succes = true;
-                    OracleCommand cmd = CreateOracleCommand(con, 
+                    OracleCommand cmd = CreateOracleCommand(con,
                         "DELETE FROM Response WHERE RequestID = :requestid");
                     cmd.Parameters.Add(":requestid", requestId);
                     succes = ExecuteNonQuery(cmd);
