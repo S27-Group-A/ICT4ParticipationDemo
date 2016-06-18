@@ -100,7 +100,7 @@
             @Html.Label("Geboortedatum", htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.BirthDate)
+                    @Html.EditorFor(model => model.BirthDate, new {htmlAttributes = new { @type = "date" } })
                     @Html.ValidationMessageFor(model => model, "", new {@class = "text-danger"})
                 </div>
             </div>
