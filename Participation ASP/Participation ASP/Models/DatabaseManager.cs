@@ -1414,7 +1414,7 @@
 
                     cmd.Parameters.Add(":accountId", accountId);
 
-                    cmd.ExecuteNonQuery();
+                    ExecuteNonQuery(cmd);
                     return true;
                 }
                 catch (OracleException)
