@@ -24,7 +24,7 @@ namespace Participation_ASP.Controllers
         /// ActionResult that returns the Index-page of a meeting.
         /// </summary>
         /// <returns> View(patient) Or View(Volunteer) </returns>
-        
+
         public ActionResult Index()
         {
             Session["MeetingVolunteer"] = null;
@@ -91,8 +91,6 @@ namespace Participation_ASP.Controllers
                     Session["MeetingErrorMsg"] = "U moet alle velden invullen om een gesprek te plannen.";
                     return RedirectToAction("Index", "Meeting");
                 }
-
-                return RedirectToAction("Index", "Error");
             }
             catch (FormatException)
             {
