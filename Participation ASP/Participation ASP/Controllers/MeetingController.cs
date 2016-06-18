@@ -20,8 +20,10 @@ namespace Participation_ASP.Controllers
         /// ActionResult that returns the Index-page of a meeting.
         /// </summary>
         /// <returns> View(patient) Or View(Volunteer) </returns>
+        
         public ActionResult Index()
         {
+            Session["MeetingVolunteer"] = null;
             IAccount accountLoggedIn = (IAccount)Session["Account"];
             if (accountLoggedIn != null)
             {
