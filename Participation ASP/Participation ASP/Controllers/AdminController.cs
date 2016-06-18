@@ -84,7 +84,7 @@ namespace Participation_ASP.Controllers
                 if (account.IsAdmin)
                 {
                     IAccount dbaccount = TempData["dbaccount"] as IAccount;
-                    if (account != null)
+                    if (dbaccount != null)
                     {
                         return View(dbaccount);
                     }
@@ -106,7 +106,7 @@ namespace Participation_ASP.Controllers
                 if (account.IsAdmin)
                 {
                     IAccount dbaccount = TempData["dbaccount"] as IAccount;
-                    if (account != null)
+                    if (dbaccount != null)
                     {
                         return View(dbaccount);
                     }
