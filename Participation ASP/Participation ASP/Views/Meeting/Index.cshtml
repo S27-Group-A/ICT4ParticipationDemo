@@ -53,6 +53,10 @@
 @if (Model is Patient)
 {
     <h2>Kennismakingsgesprekken</h2>
+    if (Session["MeetingErrorMsg"] != null)
+    {
+        <p style="color: red;">@Session["MeetingErrorMsg"].ToString()</p>
+    }
     {
         ViewModel viewModel = new ViewModel();
         Patient patient = Model as Patient;
