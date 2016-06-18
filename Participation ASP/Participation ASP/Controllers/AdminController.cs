@@ -78,12 +78,16 @@ namespace Participation_ASP.Controllers
         /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfileVolunteer()
         {
-            IAccount account = TempData["dbaccount"] as IAccount;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    return View(account);
+                    IAccount dbaccount = TempData["dbaccount"] as IAccount;
+                    if (dbaccount != null)
+                    {
+                        return View(dbaccount);
+                    }
                 }
             }
 
@@ -96,12 +100,16 @@ namespace Participation_ASP.Controllers
         /// <returns> RedirectToAction() or View(account) </returns>
         public ActionResult AdminProfilePatient()
         {
-            IAccount account = TempData["dbaccount"] as IAccount;
+            IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    return View(account);
+                    IAccount dbaccount = TempData["dbaccount"] as IAccount;
+                    if (dbaccount != null)
+                    {
+                        return View(dbaccount);
+                    }
                 }
             }
 
@@ -111,16 +119,16 @@ namespace Participation_ASP.Controllers
         /// <summary>
         /// ActionResult that shows a specific Request.
         /// </summary>
-        /// <param name="iD"> The iD of the Account </param>
+        /// <param name="id"> The iD of the Account </param>
         /// <returns> RedirectToAction() or View(List<Request>) </returns>
-        public ActionResult AdminRequest(int iD)
+        public ActionResult AdminRequest(int id)
         {
             IAccount account = Session["Account"] as IAccount;
             if (account != null)
             {
                 if (account.IsAdmin)
                 {
-                    return View(DatabaseManager.GetRequests(iD));
+                    return View(DatabaseManager.GetRequest(id));
                 }
             }
 
