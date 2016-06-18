@@ -282,6 +282,18 @@ INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, En
 VALUES (1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
 TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
 
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn hond zit vast in de boom!', 'Rachelsmolen 2, Eindhoven', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 4, 1);
+
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn olifant zit vast in de boom!', 'Rachelsmolen 2, Eindhoven', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 5, 1);
+
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn dolfijn zit vast in de boom!', 'Aqualand', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 5, 1);
+
 INSERT INTO VehicleType (RequestId, Description)
 VALUES (1, 'Volkswagen');
 
