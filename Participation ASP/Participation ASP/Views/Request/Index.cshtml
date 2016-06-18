@@ -68,6 +68,10 @@
         <input value="Stel vraag" type="submit" class="btn btn-success" />
     }
 
+    <p>Hier staan al uw hulpvragen tot nu toe.<br/>
+    U kunt hier uw reacties zien op uw hulpvragen.
+    </p>
+
     foreach (Request req in viewModel.RequestList)
     {
         if (req.Patient.AccountId == patient.AccountId)
