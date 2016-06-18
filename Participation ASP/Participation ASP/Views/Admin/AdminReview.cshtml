@@ -14,26 +14,24 @@
     <div class="form-horizontal">
         <hr />
         <div class="form-group">
-            <h5>Reviews:</h5>
-            @if (Model.Count != 0)
-            {
-                foreach (Review r in Model)
-                {
-                    <ul>
-                        <li>@Html.ActionLink("Reviewer: " + r.Request.Patient.Name, "AdminProfile", new { id = r.Request.Patient.AccountId })</li>
-                        <li>@Html.Label("Aantal punten: " + r.Rating)</li>
-                        <li>@Html.Label("Beschrijving: " + r.Comment)</li>
-                    </ul>
+            <div class="col-md-10">
+                <h5>Hulpvragen</h5>
+                <div class="col-md-10">
+                    @foreach (Review r in Model)
+                    {
+                        <div class="col-md-10">
+                            @Html.Label("Reviewer: " + r.Request.Patient.Name)
+                            @Html.Label("Aantal punten: " + r.Rating)
+                            @Html.Label("Beschrijving: " + r.Comment)
+                        </div>
 
-                    @Html.ActionLink("Verwijder Review", "DeleteReview", new { Id = r.ReviewId })
-                }
+                        <div class="col-md-10">
+                            @Html.ActionLink("Verwijder Review", "DeleteReview", new { Id = r.ReviewId })
+                        </div>
 
-            }
-            else
-            {
-                @Html.Label("Deze vrijwilliger heeft (nog) geen reviews")
-            }
-
+                    }
+                </div>
+            </div>
         </div>
     </div>
 }

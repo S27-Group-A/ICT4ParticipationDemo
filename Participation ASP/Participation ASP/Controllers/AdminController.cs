@@ -116,39 +116,11 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult AdminProfileRequest(int id)
-        {
-            IAccount account = Session["Account"] as IAccount;
-            if (account != null)
-            {
-                if (account.IsAdmin)
-                {
-                    return View(ViewModel.ViewModelRequestList(id));
-                }
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
-
-        public ActionResult AdminProfileReview(int id)
-        {
-            IAccount account = Session["Account"] as IAccount;
-            if (account != null)
-            {
-                if (account.IsAdmin)
-                {
-                    return View(ViewModel.ViewModelReviewList(id));
-                }
-            }
-
-            return RedirectToAction("Index", "Home");
-        }
-
         /// <summary>
         /// ActionResult that shows a specific Request.
         /// </summary>
         /// <param name="id"> The iD of the Account </param>
-        /// <returns> RedirectToAction() or View(Request) </returns>
+        /// <returns> RedirectToAction() or View(List<Request>) </returns>
         public ActionResult AdminRequest(int id)
         {
             IAccount account = Session["Account"] as IAccount;

@@ -17,15 +17,16 @@
         <div class="form-group">
             <h5>Accounts:</h5>
             <ul>
-                @foreach (IAccount i in Model.AccountList)
+                @foreach (IAccount i in Model.GetAccountList())
                 {
+
                     <li>@Html.ActionLink(i.Username, "AdminProfile", new { id = i.AccountId })</li>
                 }
             </ul>
 
             <h5>Hulpvragen:</h5>
             <ul>
-                @foreach (Request i in Model.RequestList)
+                @foreach (Request i in Model.GetRequestList())
                 {
                     <li>@Html.ActionLink(i.Description, "AdminRequest", new { id = i.RequestId })</li>
                 }
