@@ -28,6 +28,14 @@
                         @Html.ActionLink("Kennismakinggesprek", "Index", "Meeting", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Hulpvragen", "Index", "Request", new { area = "" }, new { @class = "navbar-brand" })
                     }
+                    @if (Session["Account"] != null)
+                    {
+                        if (((Account) Session["Account"]).IsAdmin)
+                        {
+                            @Html.ActionLink("Beheer", "Adminpanel", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                        }
+                    }
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["Account"] != null)

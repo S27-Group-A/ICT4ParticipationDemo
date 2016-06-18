@@ -1,11 +1,10 @@
 ﻿@using Participation_ASP.Models
-@model List<Request>
-
+@model Request
 @{
     ViewBag.Title = "AdminRequests";
 }
 
-<h2>Hulpvragen beheer</h2>
+<h2>Hulpvragen Beheer</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,53 +16,50 @@
             <div class="col-md-10">
                 <h5>Hulpvragen</h5>
                 <div class="col-md-10">
-                    @foreach (Request r in Model)
-                    {
-                        @Html.Label("Opdrachtgever: " + r.Patient.Name)
-                        <br>
-                        @Html.Label("Beschrijving: " + r.Description)
-                        <br>
-                        @Html.Label("Locatie: " + r.Location)
-                        <br>
-                        @Html.Label("Reistijd: " + r.Description)
-                        <br>
-                        @Html.Label("Datum: van" + r.StartDate.ToString() + " tot " + r.EndDate.ToString())
-                        <br>
-                        @Html.Label("Urgentie:" + r.Urgency.ToString())
-                        <br>
-                        @Html.Label("Hoeveelheid vrijwilligers:" + r.AmountOfVolunteers.ToString())
-                        <br>
-                        @Html.Label("Soort voertuig: " + r.VehicleType.Description)
-                        <br>
+                    @Html.Label("Opdrachtgever: " + @Model.Patient.Name)
+                    <br>
+                    @Html.Label("Beschrijving: " + @Model.Description)
+                    <br>
+                    @Html.Label("Locatie: " + @Model.Location)
+                    <br>
+                    @Html.Label("Reistijd: " + @Model.Description)
+                    <br>
+                    @Html.Label("Datum: van" + @Model.StartDate + " tot " + @Model.EndDate)
+                    <br>
+                    @Html.Label("Urgentie:" + @Model.Urgency)
+                    <br>
+                    @Html.Label("Hoeveelheid vrijwilligers:" + @Model.AmountOfVolunteers)
+                    <br>
+                    @Html.Label("Soort voertuig: " + @Model.VehicleType.Description)
+                    <br>
 
-                        <div class="col-md-10">
-                            @Html.Label("Vaardigheden: ")
-                            @foreach (Skill s in r.Skills)
-                            {
-                                <ul>
-                                    <li>@Html.Label(s.Description)</li>
-                                </ul>
-                            }
-                        </div>
-                        <br>
-                        <div class="col-md-10">
-                            @Html.ActionLink("Verwijder Hulpvraag", "DeleteRequest", new { Id = r.RequestId })
-                        </div>
-                        <br>
+                    <div class="col-md-10">
+                        @Html.Label("Vaardigheden: ")
+                        @foreach (Skill s in @Model.Skills)
+                        {
+                            <ul>
+                                <li>@Html.Label(s.Description)</li>
+                            </ul>
+                        }
+                    </div>
+                    <br>
+                    <div class="col-md-10">
+                        @Html.ActionLink("Verwijder Hulpvraag", "DeleteRequest", new { Id = @Model.RequestId })
+                    </div>
+                    <br>
 
                         
-                        <div class="col-md-10">
-                            @Html.Label("Antwoorden: ")
-                            @foreach (Response e in r.Responses)
-                            {
-                                <div class="col-md-10">
-                                    @Html.ActionLink("Profiel Vrijwilliger", "AdminProfile", new { Id = e.Volunteer.AccountId })
-                                    @Html.Label(e.Description)
-                                    @Html.Label(e.ResponseDate.ToString())
-                                </div>
-                            }
-                        </div>
-                    }
+                    <div class="col-md-10">
+                        @Html.Label("Antwoorden: ")
+                        @foreach (Response e in @Model.Responses)
+                        {
+                            <div class="col-md-10">
+                                @Html.ActionLink("Profiel Vrijwilliger", "AdminProfile", new { Id = e.Volunteer.AccountId })
+                                @Html.Label(e.Description)
+                                @Html.Label(e.ResponseDate.ToString())
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

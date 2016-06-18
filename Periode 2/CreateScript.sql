@@ -267,10 +267,10 @@ INSERT INTO Patient (AccountId) VALUES (1);
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'volunteer', 'volunteer@volunteer.nl'); 
 INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
-INSERT INTO Volunteer (AccountId) VALUES (2);
+INSERT INTO Volunteer (AccountId, Photo) VALUES (2, 'https://pbs.twimg.com/profile_images/560732178925899777/CExQrLXP.png');
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'secondvolunteer', 'secondvolunteer@volunteer.nl'); 
-INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
+INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteert2');
 INSERT INTO Volunteer (AccountId) VALUES (3);
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'password', 'admin@admin.nl');
@@ -281,6 +281,18 @@ INSERT INTO "Admin" (AccountId) VALUES (4);
 INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
 VALUES (1, 'Mijn kat zit vast in de boom!', 'Rachelsmolen 1, Eindhoven', 80, 
 TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 3, 2);
+
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn hond zit vast in de boom!', 'Rachelsmolen 2, Eindhoven', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 4, 1);
+
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn olifant zit vast in de boom!', 'Rachelsmolen 2, Eindhoven', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 5, 1);
+
+INSERT INTO Request (AccountId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers)
+VALUES (1, 'Mijn dolfijn zit vast in de boom!', 'Aqualand', 80, 
+TO_DATE('01-01-2017', 'DD-MM-YY'), TO_DATE('01-01-2018', 'DD-MM-YY'), 5, 1);
 
 INSERT INTO VehicleType (RequestId, Description)
 VALUES (1, 'Volkswagen');
