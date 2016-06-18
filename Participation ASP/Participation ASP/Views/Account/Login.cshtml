@@ -6,6 +6,12 @@
 }
 <h2>Log-in</h2>
 
+@if (Session["BannedMsg"] != null)
+{
+    <p>@Session["BannedMsg"].ToString()</p>
+}
+
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
