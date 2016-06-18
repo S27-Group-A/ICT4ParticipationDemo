@@ -35,15 +35,11 @@
 
 @using (Html.BeginForm("RespondToRequest", "Request"))
 {
-    if (Session["NoTextResponse"].ToString() != string.Empty)
+    if ((IAccount)Session["Account"] is Volunteer)
     {
-        <input type="text" id="Response" name="ResponseText" class="form-control" id="inputDefault"/>
-        <br/>
-    }
-    else
-    {
-        <input type="text" id="Response" name="ResponseText" class="form-control" id="inputError" />
+        <input type="text" id="Response" name="ResponseText" class="form-control" id="inputDefault" />
         <br />
+        <input type="submit" value="Reactie plaatsen" class="btn btn-succes" />
     }
-    <input type="submit" value="Reactie plaatsen" class="btn btn-succes"/>
+
 }
