@@ -6,11 +6,27 @@
 }
 <div class="jumbotron">
     <h2>@Model.Name</h2>
-    <p>Gebruikersnaam: @Model.Username</p>
-    <p>Email: @Model.Email</p>
-    <p>Adres: @Model.Adress</p>
-    <p>Telefoonnummer: @Model.Phone</p>
-    <p>Locatie: @Model.Location</p>
+    <table style="border-spacing: 10px;">
+        <tr>
+            <td>
+                <p>Gebruikersnaam: @Model.Username</p>
+                <p>Email: @Model.Email</p>
+                <p>Adres: @Model.Adress</p>
+                <p>Telefoonnummer: @Model.Phone</p>
+                <p>Locatie: @Model.Location</p>
+            </td>
+            <td style="padding: 50px; text-align: right;">
+                @if (Model is Volunteer && !string.IsNullOrEmpty(((Volunteer)Model).Photo))
+                {
+                    <img src=@(((Volunteer) Model).Photo) width="300" height="300" />
+                }
+                else
+                {
+                    <img src="http://tinyurl.com/zbyn293" width="300" height="300" />
+                }
+            </td>
+        </tr>
+    </table>
 </div>
 @if (Model is Volunteer)
 {
