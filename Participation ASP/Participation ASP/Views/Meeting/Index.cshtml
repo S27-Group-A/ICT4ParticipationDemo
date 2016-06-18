@@ -37,7 +37,7 @@
                             <td>@status</td>
                             @if (!meeting.Status)
                             {
-                                <td><input type="button" class="btn btn-succes" name="Accept" value="Accepteren"/ <input type="button" value="Some text" onclick="@("window.location.href='" + @Url.Action(meeting.Volunteer.AccountId.ToString() + "-" + meeting.Patient.AccountId, "Meeting/AcceptMeeting") + "'");"></td>
+                                <td><input type="button" class="btn btn-succes" name="Accept" value="Accepteren" onclick="@("window.location.href='" + @Url.Action(meeting.Volunteer.AccountId.ToString() + "-" + meeting.Patient.AccountId, "Meeting/AcceptMeeting") + "'");"></td>
                             }
                             else
                             {
