@@ -37,7 +37,7 @@
                 <li>@Html.Label("IsAdmin: " + Model.IsAdmin)</li>
             </ul>
 
-            @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+            @Html.ActionLink("Enable/Disable Account", "AdminDeleteProfile", new { Id = Model.AccountId })
             <br>
             @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
             <br>
