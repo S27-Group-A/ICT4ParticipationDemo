@@ -267,10 +267,10 @@ INSERT INTO Patient (AccountId) VALUES (1);
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('volunteer', 'volunteer', 'volunteer@volunteer.nl'); 
 INSERT INTO "User" (AccountId, Name) VALUES (2, 'volunteertje');
-INSERT INTO Volunteer (AccountId) VALUES (2);
+INSERT INTO Volunteer (AccountId, Photo) VALUES (2, 'https://pbs.twimg.com/profile_images/560732178925899777/CExQrLXP.png');
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('secondvolunteer', 'secondvolunteer', 'secondvolunteer@volunteer.nl'); 
-INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteertjetje');
+INSERT INTO "User" (AccountId, Name) VALUES (3, 'volunteert2');
 INSERT INTO Volunteer (AccountId) VALUES (3);
 
 INSERT INTO "Account" (Username, Password, Email) VALUES ('admin', 'password', 'admin@admin.nl');

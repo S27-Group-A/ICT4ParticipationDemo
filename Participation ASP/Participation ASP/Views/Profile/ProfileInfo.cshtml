@@ -1,9 +1,10 @@
 ﻿@using Participation_ASP.Models
 @model Participation_ASP.Models.IAccount
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ProfileInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="jumbotron">
     <h2>@Model.Name</h2>
     <table style="border-spacing: 10px;">
@@ -48,25 +49,6 @@
                         }
                     </div>
                 }
-                @using (Html.BeginForm("AddAvailabilities", "Profile"))
-                {
-                    <select id="dag" class="form-control" size="1" name="dag">
-                        <option value="Mo">Maandag</option>
-                        <option value="Di">Dinsdag</option>
-                        <option value="Wo">Woensdag</option>
-                        <option value="Do">Donderdag</option>
-                        <option value="Vr">Vrijdag</option>
-                        <option value="Za">Zaterdag</option>
-                        <option value="Zo">Zondag</option>
-                    </select>
-                    <select id="dagdeel" class="form-control" size="1" name="dagdeel">
-                        <option value="Ochtend">Ochtend</option>
-                        <option value="Middag">Middag</option>
-                        <option value="Avond">Avond</option>
-                    </select>
-                    <br/>
-                    <input type="submit" class="btn btn-success" value="Aanpassen" name="toevoegen"/>
-                }
             </div>
         </div>
 
@@ -79,7 +61,7 @@
                 @if (volunteer.Skills != null)
                 {
                     <div class="list-group">
-                        
+
                         @foreach (Skill s in volunteer.Skills)
                         {
                             <a class="list-group-item">
@@ -94,25 +76,10 @@
                             </a>
                         }
                     </div>
-                    
+
                 }
-                
-                @using (Html.BeginForm("AddSKill", "Profile"))
-                {
-                    
-                    ViewModel viewModel = new ViewModel();
-                    <select id="skill" class="form-control" size="1" name="skill">
-                        @foreach (Skill skill in viewModel.SkillList)
-                        {
-                            <option value="@skill.Description">@skill.Description</option>
-                        }
-                    </select>
-                    <br/>
-                    <input type="submit" class="btn btn-success" value="Toevoegen" name="toevoegen" />
-                }
-                <br />
             </div>
         </div>
-      }
+    }
 
 }

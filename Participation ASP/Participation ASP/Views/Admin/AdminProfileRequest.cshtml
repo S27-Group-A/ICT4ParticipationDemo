@@ -1,0 +1,33 @@
+﻿@using Participation_ASP.Models
+@model ViewModel
+
+@{
+    ViewBag.Title = "AdminProfileRequest";
+}
+
+<h2>Beheer</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <h5>Hulpvragen:</h5>
+            <ul>
+                @if (Model.PatientRequestList.Count != 0)
+                {
+                    foreach (Request i in Model.PatientRequestList)
+                    {
+                        <li>@Html.ActionLink(i.Description, "AdminRequest", new { id = i.RequestId })</li>
+                    }
+                }
+                else
+                {
+                    @Html.Label("Deze hulpbehoevende heeft (nog) geen hulpvragen.")
+                }
+            </ul>
+        </div>
+    </div>
+}

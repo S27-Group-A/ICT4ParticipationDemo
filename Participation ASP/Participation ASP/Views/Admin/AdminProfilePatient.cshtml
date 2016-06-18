@@ -23,7 +23,7 @@
 
                 @if (Model.DateCancellation != new DateTime())
                 {
-                    <li>@Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())</li>
+                    <li>@Html.Label("Annuleringsdatum: " + Model.DateCancellation))</li>
                 }
                 else
                 {
@@ -31,23 +31,25 @@
                 }
 
                 <li>@Html.Label("Location: " + Model.Location)</li>
-                <li>@Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())</li>
+                <li>@Html.Label("Rijbewijs: " + Model.HasDriversLicense)</li>
                 <li>@Html.Label("RFID: " + Model.Rfid)</li>
-                <li>@Html.Label("Enabled: " + Model.Enabled.ToString())</li>
-                <li>@Html.Label("IsAdmin: " + Model.IsAdmin.ToString())</li>
+                <li>@Html.Label("Enabled: " + Model.Enabled)</li>
+                <li>@Html.Label("IsAdmin: " + Model.IsAdmin)</li>
             </ul>
 
-            @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+            @Html.ActionLink("Enable/Disable Account", "AdminDeleteProfile", new { Id = Model.AccountId })
             <br>
             @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
             <br>
 
             <h5>Hulpbehoevende informatie:</h5>
+
                 <ul>
-                    <li>@Html.Label("Openbaar vervoersbewijs: " + Model.Ov.ToString())</li>
+                    <li>@Html.Label("Openbaar vervoersbewijs: " + Model.Ov)</li>
                 </ul>
 
-            @Html.ActionLink("Bekijk Hulpvragen", "AdminRequest", new { Id = Model.AccountId })
+
+            @Html.ActionLink("Bekijk Hulpvragen", "AdminProfileRequest", new { Id = Model.AccountId })
         </div>
     </div>
 }

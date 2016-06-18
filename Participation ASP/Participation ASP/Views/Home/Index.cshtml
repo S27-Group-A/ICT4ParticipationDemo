@@ -9,17 +9,16 @@
 
 @if (Session["DbErrorMsg"] != null)
 {
-    if (string.IsNullOrEmpty(Session["DbErrorMsg"].ToString()))
+    if (!string.IsNullOrEmpty(Session["DbErrorMsg"].ToString()))
     {
-        <p>Kon geen verbinding maken met de database:</p>
-        <p>
+        <p style="color: red;">Kon geen verbinding maken met de database:
+            <br/>   
             Error: @Session["DbErrorMsg"].ToString()
             <br/>
-            Neem contact op met de administrator, als deze waarschuwing niet verdwijnt.
+            Neem contact op met de <a href="administratorparticipation@gmail.com">administrator</a>, als deze waarschuwing niet verdwijnt.
         </p>
     }
 }
-
 @if (Session["Account"] == null)
 {
     <table>
@@ -32,28 +31,29 @@
 
             <h3>Heeft u hulp nodig?</h3>
             <p>
-                Meld u dan @Html.ActionLink("hier", "RegisterPatient", "Account") aan om te vragen naar hulp.
+                Registreer u dan @Html.ActionLink("hier", "RegisterPatient", "Account") om te vragen naar hulp.
             </p>
 
             <h3>Kan u hulp bieden?</h3>
             <p>
-                Meld u dan @Html.ActionLink("hier", "RegisterVolunteer", "Account") aan om te hulp te verlenen.
+                Registreer u dan @Html.ActionLink("hier", "RegisterVolunteer", "Account") om te hulp te verlenen.
             </p>
 
             <h3>Heeft u al een account?</h3>
             <p>
-                Dan kunt u @Html.ActionLink("hier", "Login", "Account") in-loggen.
-        </p>
-        
+                Dan kunt u @Html.ActionLink("hier", "Login", "Account") zich aanmelden.
+            </p>
+
         </td>
         <td>
-            <img src="http://tinyurl.com/zsz5cwz"/>
+            <img src="http://tinyurl.com/zsz5cwz" />
         </td>
     </table>
 }
 else
 {
-    <h3>Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
+     <h3> Welkom terug @Html.Raw(((Account)Session["Account"]).Name)!</h3>
 }
+
 
 

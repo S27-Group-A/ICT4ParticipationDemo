@@ -63,7 +63,17 @@ namespace Participation_ASP.Controllers
                 Session["Account"] = loginAccount.LoginAccount(loginAccount);
                 if (Session["Account"] != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (((Account)Session["Account"]).Enabled)
+                    {
+                        Session["BannedMsg"] = null;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        Session["Account"] = null;
+                        Session["BannedMsg"] = "U bent verbannen u heeft geen toegang meer tot de applicatie.";
+                        return RedirectToAction("Login", "Account");
+                    }
                 }
             }
             return View();
@@ -125,6 +135,11 @@ namespace Participation_ASP.Controllers
                 Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
                 return RedirectToAction("RegisterPatient", "Account");
             }
+            catch (FormatException)
+            {
+                Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
+                return RedirectToAction("RegisterVolunteer", "Account");
+            }
             catch (Exception)
             {
                 return RedirectToAction("Index", "Error");
@@ -152,6 +167,11 @@ namespace Participation_ASP.Controllers
             catch (ExistingUserException)
             {
                 Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                return RedirectToAction("RegisterVolunteer", "Account");
+            }
+            catch (FormatException)
+            {
+                Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
                 return RedirectToAction("RegisterVolunteer", "Account");
             }
             catch (Exception)

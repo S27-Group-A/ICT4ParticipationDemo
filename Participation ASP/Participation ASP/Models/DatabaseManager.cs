@@ -955,6 +955,117 @@
         }
 
         /// <summary>
+        /// Gets all requests
+        /// </summary>
+        /// <returns>all requests</returns>
+        public static List<Request> GetRequests(int accountId)
+        {
+            using (OracleConnection con = Connection)
+            {
+                try
+                {
+                    OracleCommand cmd = CreateOracleCommand(con,
+                        "SELECT r.AccountId, r.RequestId, r.Location, r.TravelTime, r.StartDate, r.EndDate, r.Description AS \"Description\", " +
+                        "r.Urgency, r.AmountOfVolunteers, " +
+                        "v.VehicleTypeId, v.Description AS \"VehicleDescription\", " +
+                        "p.OV, " +
+                        "a.Username, a.Email, a.Password, " +
+                        "u.Name, u.Phone, u.Datederegistration, u.Adress, u.Location as \"UserLocation\", " +
+                        "u.Car, u.DriversLicense, u.RfId, u.Enabled " +
+                        "FROM VehicleType v " +
+                        "RIGHT JOIN Request r ON r.RequestId = v.RequestId " +
+                        "LEFT JOIN Patient p ON p.AccountId = r.AccountId " +
+                        "LEFT JOIN \"User\" u ON u.AccountId = p.AccountId " +
+                        "LEFT JOIN \"Account\" a ON u.AccountId = a.AccountId " +
+                        "WHERE r.AccountId = :account");
+
+                    cmd.Parameters.Add(":account", accountId);
+
+                    var requests = new List<Request>();
+                    con.Open();
+                    OracleDataReader reader = ExecuteQuery(cmd);
+                    while (reader.Read())
+                    {
+                        //User- and Account Data
+                        int AccountId = new int();
+                        if (reader["AccountId"] != null)
+                            AccountId = Convert.ToInt32(reader["AccountId"].ToString());
+                        string Username = reader["Username"].ToString();
+                        string Password = reader["Password"].ToString();
+                        string Email = reader["Email"].ToString();
+                        string Name = reader["Name"].ToString();
+                        string Phone = reader["Phone"].ToString();
+                        DateTime DateDeregistration = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["DateDeregistration"].ToString()))
+                            DateDeregistration = Convert.ToDateTime(reader["DateDeregistration"].ToString());
+                        string Adress = reader["Adress"].ToString();
+                        bool Car = Convert.ToBoolean(Convert.ToInt32(reader["Car"].ToString()));
+                        bool DriversLicense = Convert.ToBoolean(Convert.ToInt32(reader["DriversLicense"].ToString()));
+                        string Rfid = reader["Rfid"].ToString();
+                        bool Enabled = Convert.ToBoolean(Convert.ToInt32(reader["Enabled"].ToString()));
+
+                        //Request Data
+                        int ReqId = new int();
+                        if (!string.IsNullOrEmpty(reader["RequestId"].ToString()))
+                            ReqId = Convert.ToInt32(reader["RequestId"].ToString());
+                        string Location = reader["Location"].ToString();
+                        int TravelTime = new int();
+                        if (!string.IsNullOrEmpty(reader["TravelTime"].ToString()))
+                            Convert.ToInt32(reader["TravelTime"].ToString());
+                        DateTime StartDate = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["StartDate"].ToString()))
+                            StartDate = Convert.ToDateTime(reader["StartDate"].ToString());
+                        DateTime EndDate = new DateTime();
+                        if (!string.IsNullOrEmpty(reader["EndDate"].ToString()))
+                            EndDate = Convert.ToDateTime(reader["EndDate"].ToString());
+                        int Urgency = new int();
+                        if (!string.IsNullOrEmpty(reader["Urgency"].ToString()))
+                            Urgency = Convert.ToInt32(reader["Urgency"].ToString());
+                        int AmountOfVolunteers = new int();
+                        if (!string.IsNullOrEmpty(reader["AmountOfVolunteers"].ToString()))
+                            AmountOfVolunteers = Convert.ToInt32(reader["AmountOfVolunteers"].ToString());
+                        string Description = reader["Description"].ToString();
+
+                        //Patient Data
+                        bool Ov = false;
+                        if (!string.IsNullOrEmpty(reader["Ov"].ToString()))
+                            Ov = Convert.ToBoolean(Convert.ToInt32(reader["Ov"].ToString()));
+
+                        //Vehicle Data
+                        int VehicleTypeId = new int();
+                        if (!string.IsNullOrEmpty(reader["VehicleTypeId"].ToString()))
+                            VehicleTypeId = Convert.ToInt32(reader["VehicleTypeId"].ToString());
+                        string VehicleDescription = reader["VehicleDescription"].ToString();
+
+                        //Get Skill Data
+                        List<Skill> skills = GetSkills(AccountId);
+
+                        //Get Response Data
+                        List<Response> responses = GetResponses(ReqId);
+
+                        requests.Add(new Request(ReqId, Description, Location, TravelTime, StartDate, EndDate, Urgency, AmountOfVolunteers, skills, new VehicleType(VehicleTypeId, VehicleDescription), new Patient(AccountId, Username, Password, Email, Name, Phone, DateDeregistration, Adress, Location, Car, DriversLicense, Rfid, Enabled, false, Ov), responses));
+
+                    }
+                    return requests;
+                }
+                catch (OracleException e)
+                {
+
+                    throw e;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        /// <summary>
         /// Returns all skills by request identifier
         /// </summary>
         /// <param name="requestId">request identifier</param>
@@ -1242,7 +1353,7 @@
                 try
                 {
                     OracleCommand cmd = CreateOracleCommand(con,
-                        "SELECT Enabled FROM \"User\" WHERE AccountID = :accountId"
+                        "SELECT Enabled FROM \"User\" WHERE AccountId = :accountId"
                         );
 
                     cmd.Parameters.Add(":accountId", accountId);
@@ -1255,16 +1366,16 @@
                         value = Convert.ToInt32(reader["Enabled"].ToString());
                     }
 
-                    cmd.CommandText = "UPDATE \"User\" SET Enabled = :value WHERE AccountID = :accountId";
+                    cmd = CreateOracleCommand(con,
+                        "UPDATE \"User\" SET Enabled = :value WHERE AccountId = :accountId");
+
 
                     if (value == 0)
-                    {
                         cmd.Parameters.Add(":value", '1');
-                    }
                     else
-                    {
                         cmd.Parameters.Add(":value", '0');
-                    }
+
+                    cmd.Parameters.Add(":accountId", accountId);
 
                     ExecuteNonQuery(cmd);
                     return true;
@@ -1303,7 +1414,7 @@
 
                     cmd.Parameters.Add(":accountId", accountId);
 
-                    cmd.ExecuteNonQuery();
+                    ExecuteNonQuery(cmd);
                     return true;
                 }
                 catch (OracleException)
@@ -1492,30 +1603,40 @@
         /// <returns></returns>
         public static bool AddMeeting(Meeting meeting)
         {
-            using (OracleConnection connection = Connection)
+            using (OracleConnection con = Connection)
             {
                 try
                 {
 
-                    OracleCommand insertCommand = CreateOracleCommand(connection,
+                    OracleCommand insertCommand = CreateOracleCommand(con,
                         "INSERT INTO MEETING (VolunteerID, PatientID, Location, MeetingDate, Status) VALUES (:volunteerID, :patientID, :location, :meetingDate, :status)");
                     insertCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
                     insertCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
                     insertCommand.Parameters.Add(":location", meeting.Location);
                     insertCommand.Parameters.Add(":meetingDate", meeting.Date);
-                    int intStatus = 0;
+                    int status = 0;
                     if (meeting.Status)
                     {
-                        intStatus = 1;
+                        status = 1;
                     }
-                    insertCommand.Parameters.Add(":status", intStatus);
+                    insertCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(insertCommand);
                 }
+                catch (OracleException e)
+                {
+                    if (e.Message.StartsWith("ORA-00001: unique constraint"))
+                        throw new ExistingMeetingException(e.Message);
+                    else
+                        return false;
+                }
                 catch (Exception)
                 {
-
-                    throw;
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
         }
@@ -1537,12 +1658,11 @@
                         status = 1;
                     }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
-                        "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
-                    updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
-                    updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
-                    updateCommand.Parameters.Add(":location", meeting.Location);
-                    updateCommand.Parameters.Add(":meetingDate", meeting.Date);
+                        "UPDATE Meeting SET Status = :status " +
+                        "WHERE VolunteerId =  :volunteerId AND PatientId = :patientId");
                     updateCommand.Parameters.Add(":status", status);
+                    updateCommand.Parameters.Add(":volunteerId", meeting.Volunteer.AccountId);
+                    updateCommand.Parameters.Add(":patientId", meeting.Patient.AccountId);
 
                     return ExecuteNonQuery(updateCommand);
                 }
@@ -1594,7 +1714,7 @@
                 try
                 {
                     bool succes = true;
-                    OracleCommand cmd = CreateOracleCommand(con, 
+                    OracleCommand cmd = CreateOracleCommand(con,
                         "DELETE FROM Response WHERE RequestID = :requestid");
                     cmd.Parameters.Add(":requestid", requestId);
                     succes = ExecuteNonQuery(cmd);

@@ -9,6 +9,9 @@
 <h2>Hulpvragen</h2>
 @if (Model is Volunteer)
 {
+    <p>
+        Op deze pagina ziet u alle hulpvragen. Klik op meer informatie als u denkt dat u kan helpen.
+    </p>
     {
         ViewModel viewModel = new ViewModel();
         foreach (Request r in viewModel.RequestList)
@@ -29,24 +32,30 @@
 }
 @if (Model is Patient)
 {
+    <p>Op deze pagina kunt u om hulp vragen en kunt u inzien welke vragen u hebt gesteld.</p>
+    <p>Hieronder kunt u om hulpvragen door dit formulier hier in te vullen.</p>
+
     Patient patient = Model as Patient;
+    ViewModel viewModel = new ViewModel();
+
     using (Html.BeginForm("AddRequest", "Request"))
     {
+
+        <h1>Nieuwe hulpvraag</h1>
         <p>Beschrijving</p>
-        <input type="text" name="description" class="form-control" id="inputDefault"/>
-        <br/>
+        <input type="text" name="description" class="form-control" id="inputDefault" />
+        <br />
         <p>Locatie</p>
-        <input type="text" name="location" class="form-control" id="inputDefault"/>
+        <input type="text" name="location" class="form-control" id="inputDefault" />
         <br />
         <p>Datum</p>
         <input type="date" id="date" name="date" class="input-xlarge" class="form-control" id="inputDefault">
         <br />
         <p>Urgentie</p>
-        <input type="number" min="0" max="5" name="urgence"  class="form-control" id="inputDefault" value="0"/>
+        <input type="number" min="0" max="5" name="urgence" class="form-control" id="inputDefault" value="0" />
         <br />
         <p>Aantal vrijwilligers</p>
-        <input type="number" min="1" name="amountOfVolunteers" class="form-control" id="inputDefault" value="1"/>
-        ViewModel viewModel = new ViewModel();
+        <input type="number" min="1" name="amountOfVolunteers" class="form-control" id="inputDefault" value="1" />
         <br />
         <p>Vaardigheden</p>
         <select id="skill" class="form-control" size="1" name="skill">
@@ -56,8 +65,32 @@
             }
         </select>
         <br />
-        <input type="submit" class="btn btn-success"/>
+        <input value="Stel vraag" type="submit" class="btn btn-success" />
     }
+
+    <p>Hier staan al uw hulpvragen tot nu toe.<br/>
+    U kunt hier uw reacties zien op uw hulpvragen.
+    </p>
+
+    foreach (Request req in viewModel.RequestList)
+    {
+        if (req.Patient.AccountId == patient.AccountId)
+        {
+            {
+                Session["request" + @req.RequestId.ToString()] = req;
+            }
+            <div class="panel panel-default">
+                <div class="panel-heading">@req.Patient.Name</div>
+                <div class="panel-body">
+                    @req.Description
+                    <br/>
+                    Aantal reacties: @req.Responses.Count
+                </div>
+                <div class="panel-footer">@Html.ActionLink("Meer Informatie", @req.RequestId.ToString(), "Request/RequestInfo")</div>
+            </div>
+        }
+    }
+    
 }
 
 

@@ -47,8 +47,8 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Aanmelden", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Registreren", "Register", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                 </ul>
             </div>
@@ -59,7 +59,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ParticipationWebApp</p>
         </footer>
     </div>
 

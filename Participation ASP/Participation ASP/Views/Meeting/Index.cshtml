@@ -31,13 +31,13 @@
                             status = "Ja";
                         }
                         <tr>
-                            <td>@meeting.Patient.Name</td>
+                            <td>@Html.ActionLink(@meeting.Patient.Name, @meeting.Patient.AccountId.ToString(), "Profile/ProfileInfo")</td>
                             <td>@meeting.Location</td>
                             <td>@meeting.Date.Day-@meeting.Date.Month-@meeting.Date.Year</td>
                             <td>@status</td>
                             @if (!meeting.Status)
                             {
-                                <td><input type="button" class="btn btn-succes" name="Accept" value="Accepteren"/ <input type="button" value="Some text" onclick="@("window.location.href='" + @Url.Action(meeting.Volunteer.AccountId.ToString() + "-" + meeting.Patient.AccountId, "Meeting/AcceptMeeting") + "'");"></td>
+                                <td><input type="button" class="btn btn-succes" name="Accept" value="Accepteren" onclick="@("window.location.href='" + @Url.Action(meeting.Volunteer.AccountId.ToString() + "-" + meeting.Patient.AccountId, "Meeting/AcceptMeeting") + "'");"></td>
                             }
                             else
                             {
@@ -52,9 +52,44 @@
 }
 @if (Model is Patient)
 {
-    <h2>Kennismakingsgesprekken plannen.</h2>
+    <h2>Kennismakingsgesprekken</h2>
+    if (Session["MeetingErrorMsg"] != null)
+    {
+        <p style="color: red;">@Session["MeetingErrorMsg"].ToString()</p>
+    }
     {
         ViewModel viewModel = new ViewModel();
+        Patient patient = Model as Patient;
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Naam</th>
+                <th>Locatie</th>
+                <th>Datum</th>
+                <th>Geaccepteerd</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (Meeting meeting in viewModel.MeetingList)
+            {
+                if (meeting.Patient.AccountId == patient.AccountId)
+                {
+                    string status = "Nee";
+                    if (meeting.Status)
+                    {
+                        status = "Ja";
+                    }
+                    <tr>
+                        <td>@Html.ActionLink(@meeting.Volunteer.Name, @meeting.Volunteer.AccountId.ToString(), "Profile/ProfileInfo")</td>
+                        <td>@meeting.Location</td>
+                        <td>@meeting.Date.Day-@meeting.Date.Month-@meeting.Date.Year</td>
+                        <td>@status</td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+        <h2>Kennismakingsgesprek plannen</h2>
         using (Html.BeginForm("PlanMeeting", "Meeting"))
         {
             <p>Kies een vrijwilliger:</p>
