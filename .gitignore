@@ -195,8 +195,8 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 *.DotSettings
-participation/databasemanager/DatabaseManager.cs
-Participation ASP/Participation ASP/Web.config
-Participation ASP/Participation ASP/Web.config
-Participation ASP/Participation ASP/Web.config
-Participation ASP/Participation ASP/Web.config
+
+/Web.Config
+/App.Config
+
+Participation ASP/Particpation ASP Test/App.config
