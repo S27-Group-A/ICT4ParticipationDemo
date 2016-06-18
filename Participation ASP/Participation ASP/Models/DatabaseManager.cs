@@ -1547,11 +1547,10 @@
                         status = 1;
                     }
                     OracleCommand updateCommand = CreateOracleCommand(connection,
-                        "UPDATE MEETING SET VOLUNTEERID = :volunteerID, PATIENTID = :patientID, LOCATION = :location, MEETINGDATE = :meetingDate, STATUS = :status");
-                    updateCommand.Parameters.Add(":volunteerID", meeting.Volunteer.AccountId);
-                    updateCommand.Parameters.Add(":patientID", meeting.Patient.AccountId);
-                    updateCommand.Parameters.Add(":location", meeting.Location);
-                    updateCommand.Parameters.Add(":meetingDate", meeting.Date);
+                        "UPDATE Meeting SET Status = :status " +
+                        "WHERE VolunteerId =  :volunteerId AND PatientId = :patientId");
+                    updateCommand.Parameters.Add(":volunteerId", meeting.Volunteer.AccountId);
+                    updateCommand.Parameters.Add(":patientId", meeting.Patient.AccountId);
                     updateCommand.Parameters.Add(":status", status);
 
                     return ExecuteNonQuery(updateCommand);
