@@ -1,5 +1,5 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="RequestController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
 namespace Participation_ASP.Controllers
@@ -29,6 +29,7 @@ namespace Participation_ASP.Controllers
                 Volunteer volunteer = accountInlog as Volunteer;
                 return View(volunteer);
             }
+
             if (accountInlog is Patient)
             {
                 Patient patient = accountInlog as Patient;
@@ -57,6 +58,7 @@ namespace Participation_ASP.Controllers
                 ((Request)Session["CurrentRequest"]).AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
                 return View("RequestInfo", (Request)Session["CurrentRequest"]);
             }
+
             Session["NoTextResponse"] = "Geen text";
             return View("RequestInfo", (Request)Session["CurrentRequest"]);
         }
@@ -96,27 +98,34 @@ namespace Participation_ASP.Controllers
 
             if (!string.IsNullOrEmpty(collection["date"]) && collection["date"] != "dd-mm-yyyy" && Convert.ToDateTime(collection["date"]) != new DateTime())
             {
-                Session["InvalideDateErrorMsg"] = null;
-                if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) &&
-                    date > DateTime.Today)
+                if (description != string.Empty && location != string.Empty &&
+                    DateTime.TryParse(collection["date"], out date) && date > DateTime.Today)
                 {
-                    ViewModel viewModel = new ViewModel();
-                    Skill tempSkill = null;
-                    foreach (Skill s in viewModel.SkillList)
+                    Session["InvalideDateErrorMsg"] = null;
+                    if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) &&
+                        date > DateTime.Today)
                     {
-                        if (s.Id == skillId)
+                        ViewModel viewModel = new ViewModel();
+                        Skill tempSkill = null;
+                        foreach (Skill s in viewModel.SkillList)
                         {
-                            tempSkill = s;
+                            if (s.Id == skillId)
+                            {
+                                tempSkill = s;
+                            }
                         }
-                    }
 
-                    List<Skill> skills = new List<Skill>();
-                    skills.Add(tempSkill);
-                    Request request = new Request();
-                    request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers,
-                        skills, null, (Patient)Session["Account"]));
+                        List<Skill> skills = new List<Skill>();
+                        skills.Add(tempSkill);
+                        Request request = new Request();
+                        request.AddRequest(new Request(-1, description, location, 0, date, date, urgence,
+                            amountOfVolunteers,
+                            skills, null, (Patient)Session["Account"]));
+                        return RedirectToAction("Index", "Request");
+                    }
                     return RedirectToAction("Index", "Request");
                 }
+                Session["InvalideDateErrorMsg"] = "Vul alle velden in.";
                 return RedirectToAction("Index", "Request");
             }
             else

@@ -1,18 +1,16 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="MeetingController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
-
-using System.Text.RegularExpressions;
-using Participation_ASP.Exceptions;
-
 namespace Participation_ASP.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Web;
     using System.Web.Mvc;
+    using Participation_ASP.Exceptions;
     using Participation_ASP.Models;
 
     /// <summary>
@@ -24,7 +22,6 @@ namespace Participation_ASP.Controllers
         /// ActionResult that returns the Index-page of a meeting.
         /// </summary>
         /// <returns> View(patient) Or View(Volunteer) </returns>
-
         public ActionResult Index()
         {
             Session["MeetingVolunteer"] = null;
@@ -36,6 +33,7 @@ namespace Participation_ASP.Controllers
                     Patient patient = accountLoggedIn as Patient;
                     return View(patient);
                 }
+
                 if (accountLoggedIn is Volunteer)
                 {
                     Volunteer volunteer = accountLoggedIn as Volunteer;
@@ -49,7 +47,7 @@ namespace Participation_ASP.Controllers
         /// <summary>
         /// ActionResult that creates a meeting-object, and inserts it into the database.
         /// </summary>
-        /// <param name="collection"></param>
+        /// <param name="collection"> The data collected from the page </param>
         /// <returns> RedirectToAction() </returns>
         [HttpPost]
         public ActionResult PlanMeeting(FormCollection collection)
@@ -104,6 +102,11 @@ namespace Participation_ASP.Controllers
             }
         }
 
+        /// <summary>
+        /// ActionResult that accepts the meeting.
+        /// </summary>
+        /// <param name="id"> The Meeting id </param>
+        /// <returns> RedirectToAction() </returns>
         [Route("Request/RequestInfo/{id}")]
         public ActionResult AcceptMeeting(string id)
         {
@@ -122,6 +125,7 @@ namespace Participation_ASP.Controllers
                     }
                 }
             }
+
             return RedirectToAction("Index", "Error");
         }
     }
