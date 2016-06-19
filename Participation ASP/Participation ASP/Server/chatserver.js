@@ -138,8 +138,8 @@ function sendUserListToAll() {
 // server.
 
 var httpsOptions = {
-  key: fs.readFileSync("/Program Files/nodejs/Test/key.pem"),
-  cert: fs.readFileSync("/Program Files/nodejs/Test/cert.pem")
+    key: fs.readFileSync("/Participation/Participation/Server/key.pem"),
+  cert: fs.readFileSync("/Participation/Participation/Server/cert.pem")
 };
 
 
@@ -169,7 +169,7 @@ var handleRequest = function(request, response) {
 };
 
 var httpsServer = https.createServer(httpsOptions, handleRequest);
-httpsServer.listen(6503, '0.0.0.0');
+httpsServer.listen(443, '0.0.0.0');
 console.log('Server online');
 
 // Create the WebSocket server by converting the HTTPS server into one.

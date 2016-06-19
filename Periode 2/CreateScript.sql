@@ -300,7 +300,34 @@ VALUES (1, 'Volkswagen');
 INSERT INTO Skill(Description)
 VALUES ('Goed met dieren');
 INSERT INTO Skill(Description)
-VALUES ('Masseur');
+VALUES ('Masseur/Masseuse');
+INSERT INTO Skill(Description)
+VALUES ('Chauffeur');
+INSERT INTO Skill(Description)
+VALUES ('Fiets');
+INSERT INTO Skill(Description)
+VALUES ('Goed met ouderen');
+INSERT INTO Skill(Description)
+VALUES ('Goed met kinderen');
+INSERT INTO Skill(Description)
+VALUES ('Brommer');
+INSERT INTO Skill(Description)
+VALUES ('Motor');
+INSERT INTO Skill(Description)
+VALUES ('Entertainer');
+INSERT INTO Skill(Description)
+VALUES ('Goed met computers');
+INSERT INTO Skill(Description)
+VALUES ('Jachtinstinct');
+INSERT INTO Skill(Description)
+VALUES ('Goed met electronica');
+INSERT INTO Skill(Description)
+VALUES ('EHBO vaardigheden');
+INSERT INTO Skill(Description)
+VALUES ('Goed in de tuin');
+INSERT INTO Skill(Description)
+VALUES ('Technisch');
+
 
 INSERT INTO VolunteerSkill(AccountId, SkillId)
 VALUES (2, 1);
