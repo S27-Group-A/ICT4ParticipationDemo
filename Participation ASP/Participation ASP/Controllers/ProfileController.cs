@@ -105,6 +105,7 @@ namespace Participation_ASP.Controllers
             }
             if (!added)
             {
+                Session["ErrorAvail"] = string.Empty;
                 if (!DatabaseManager.AddAvailability(volunteer.AccountId, dag, dagdeel))
                 {
                     return Content("Something went wrong");
@@ -114,7 +115,11 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Profile");
                 }
             }
-            return RedirectToAction("Index", "Error");
+            else
+            {
+                Session["ErrorAvail"] = "Deze is al in gebruik.";
+                return RedirectToAction("Index", "Profile");
+            }
         }
 
         [Route("Profile/ProfileInfo/{id}")]

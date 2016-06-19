@@ -46,6 +46,12 @@
                                 @a.Day - @a.TimeOfDay
                             </a>
                         }
+                        @if (Session["ErrorAvail"] != string.Empty)
+                        {
+                            <a class="list-group-item active">
+                                U heeft deze al toegevoegd.
+                            </a>
+                        }
                     </div>
                 }
                 @using (Html.BeginForm("AddAvailabilities", "Profile"))
