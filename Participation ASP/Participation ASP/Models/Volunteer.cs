@@ -1,6 +1,9 @@
 ﻿// <copyright file="Volunteer.cs" company="Ict4Participation">
 //      Copyright (c) Ict4Participation. All rights reserved.
 // </copyright>
+
+using System.ComponentModel.DataAnnotations;
+
 namespace Participation_ASP.Models
 {
     using System;
@@ -26,6 +29,7 @@ namespace Participation_ASP.Models
         /// <summary>
         /// Gets or sets the vog reference.
         /// </summary>
+        [Required]
         public string Vog { get; set; }
 
         /// <summary>
@@ -218,6 +222,11 @@ namespace Participation_ASP.Models
             }
         }
 
+        /// <summary>
+        /// Adds a volunteer
+        /// </summary>
+        /// <param name="volunteer">Volunteer to add</param>
+        /// <returns></returns>
         public bool AddVolunteer(Volunteer volunteer)
         {
             return DatabaseManager.AddAccount(volunteer);
