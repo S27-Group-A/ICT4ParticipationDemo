@@ -12,6 +12,55 @@
 
     public static class DatabaseManager
     {
+        /// <summary>
+        /// Creates an OracleCommand for the given query using the static OracleConnection field, and sets the CommandType to CommandType.Text (used for plain text queries).
+        /// Used prior to adding parameters and executing the query.
+        /// </summary>
+        /// <param name="connection">The connection information, which should be made using the Connection property.</param>
+        /// <param name="sql">Query string to run</param>
+        /// <returns>OracleCommand with the query and Connection information set</returns>
+        private static OracleCommand CreateOracleCommand(OracleConnection connection, string sql)
+        {
+            OracleCommand command = new OracleCommand(sql, connection);
+            command.CommandType = System.Data.CommandType.Text;
+            return command;
+        }
+
+        /// <summary>
+        /// Runs the query of an OracleCommand, and returns an unread OracleDataReader with the results of the query.
+        /// </summary>
+        /// <param name="command">OracleCommand containing the data for the query</param>
+        /// <returns>OracleDataReader with the result of the query</returns>
+        private static OracleDataReader ExecuteQuery(OracleCommand command)
+        {
+            try
+            {
+                if (command.Connection.State == ConnectionState.Closed)
+                {
+                    try
+                    {
+                        command.Connection.Open();
+                    }
+                    catch (OracleException exc)
+                    {
+                        Debug.WriteLine("Database Connection failed!\n" + exc.Message);
+                        throw exc;
+                    }
+                }
+
+                OracleDataReader reader = command.ExecuteReader();
+
+                return reader;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        /// <summary>
+        /// Tests the connection
+        /// </summary>
         public static void TestConnection()
         {
             using (OracleConnection con = Connection)
@@ -64,7 +113,7 @@
                     {
                         throw new ExistingSkillException(e.Message);
                     }
-                    throw e;
+                    return false;
                 }
                 catch (Exception e)
                 {
@@ -77,6 +126,12 @@
             }
         }
 
+        /// <summary>
+        /// Adds a record to the VolunteerSkill table
+        /// </summary>
+        /// <param name="volunteer">Volunteer to be added</param>
+        /// <param name="skill">Skill to be added</param>
+        /// <returns></returns>
         public static bool AddVolunteerSkill(Volunteer volunteer, Skill skill)
         {
             using (OracleConnection con = Connection)
@@ -96,11 +151,11 @@
                     {
                         throw new ExistingSkillException(e.Message);
                     }
-                    throw e;
+                    return false;
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    return false;
                 }
                 finally
                 {
@@ -143,61 +198,14 @@
                     }
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
-                    throw e;
+                    return false;
                 }
                 finally
                 {
                     con.Close();
                 }
-            }
-        }
-
-        /// <summary>
-        /// Creates an OracleCommand for the given query using the static OracleConnection field, and sets the CommandType to CommandType.Text (used for plain text queries).
-        /// Used prior to adding parameters and executing the query.
-        /// </summary>
-        /// <param name="connection">The connection information, which should be made using the Connection property.</param>
-        /// <param name="sql">Query string to run</param>
-        /// <returns>OracleCommand with the query and Connection information set</returns>
-        private static OracleCommand CreateOracleCommand(OracleConnection connection, string sql)
-        {
-            OracleCommand command = new OracleCommand(sql, connection);
-            command.CommandType = System.Data.CommandType.Text;
-            return command;
-        }
-
-        /// <summary>
-        /// Runs the query of an OracleCommand, and returns an unread OracleDataReader with the results of the query.
-        /// </summary>
-        /// <param name="command">OracleCommand containing the data for the query</param>
-        /// <returns>OracleDataReader with the result of the query</returns>
-        private static OracleDataReader ExecuteQuery(OracleCommand command)
-        {
-            try
-            {
-                if (command.Connection.State == ConnectionState.Closed)
-                {
-                    try
-                    {
-                        command.Connection.Open();
-                    }
-                    catch (OracleException exc)
-                    {
-                        Debug.WriteLine("Database Connection failed!\n" + exc.Message);
-                        throw exc;
-                    }
-                }
-
-                OracleDataReader reader = command.ExecuteReader();
-
-                return reader;
-            }
-            catch (Exception e)
-            {
-                throw e;
             }
         }
 
@@ -227,6 +235,10 @@
             return reader.HasRows;
         }
 
+        /// <summary>
+        /// Returns all accounts
+        /// </summary>
+        /// <returns>All accounts</returns>
         public static List<IAccount> GetAccounts()
         {
             using (OracleConnection con = Connection)
@@ -329,7 +341,12 @@
             }
         }
 
-        private static bool CheckAdmin(int accountId)
+        /// <summary>
+        /// Checks if specified account is admin
+        /// </summary>
+        /// <param name="accountId">Account to check</param>
+        /// <returns></returns>
+        public static bool CheckAdmin(int accountId)
         {
             using (OracleConnection con = Connection)
             {
@@ -641,6 +658,12 @@
             }
         }
 
+
+        /// <summary>
+        /// Returns all availabilities based on a volunteer identifier.
+        /// </summary>
+        /// <param name="accountId">Volunteer identifier</param>
+        /// <returns>Volunteer's availabilities</returns>
         public static List<Availability> GetAvailabilities(int accountId)
         {
             using (OracleConnection con = Connection)
@@ -1281,8 +1304,6 @@
             }
         }
 
-
-
         /// <summary>
         /// Makes a volunteer become an admin
         /// </summary>
@@ -1324,15 +1345,9 @@
 
                     return true;
                 }
-                catch (OracleException e)
+                catch (Exception)
                 {
-
-                    throw e;
-                }
-                catch (Exception e)
-                {
-
-                    throw e;
+                    return false;
                 }
                 finally
                 {
@@ -1380,15 +1395,9 @@
                     ExecuteNonQuery(cmd);
                     return true;
                 }
-                catch (OracleException e)
+                catch (Exception)
                 {
-
-                    throw e;
-                }
-                catch (Exception e)
-                {
-
-                    throw e;
+                    return false;
                 }
                 finally
                 {
@@ -1417,11 +1426,6 @@
                     ExecuteNonQuery(cmd);
                     return true;
                 }
-                catch (OracleException)
-                {
-                    return false;
-
-                }
                 catch (Exception)
                 {
                     return false;
@@ -1433,6 +1437,11 @@
             }
         }
 
+        /// <summary>
+        /// Adds an account
+        /// </summary>
+        /// <param name="account">Account to be added</param>
+        /// <returns></returns>
         public static bool AddAccount(IAccount account)
         {
             using (OracleConnection con = Connection)
@@ -1590,8 +1599,7 @@
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    return false;
                 }
             }
         }
@@ -1668,8 +1676,7 @@
                 }
                 catch (Exception)
                 {
-
-                    throw;
+                    return false;
                 }
             }
         }
@@ -1695,9 +1702,9 @@
 
                     return ExecuteNonQuery(insertCommand);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    throw e;
+                    return false;
                 }
             }
         }
@@ -1770,13 +1777,9 @@
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
-                catch (OracleException e)
+                catch (Exception)
                 {
-                    throw e;
-                }
-                catch (Exception e)
-                {
-                    throw e;
+                    return false;
                 }
                 finally
                 {
@@ -1809,10 +1812,6 @@
                     con.Open();
                     return ExecuteNonQuery(cmd);
                 }
-                catch (OracleException)
-                {
-                    return false;
-                }
                 catch (Exception)
                 {
                     return false;
@@ -1824,6 +1823,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets all meetings
+        /// </summary>
+        /// <returns>All meetings</returns>
         public static List<Meeting> GetMeetings()
         {
             using (OracleConnection connection = Connection)
@@ -1898,6 +1901,5 @@
                 }
             }
         }
-
     }
 }
