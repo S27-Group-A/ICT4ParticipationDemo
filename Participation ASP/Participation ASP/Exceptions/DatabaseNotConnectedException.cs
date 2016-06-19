@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MyFigureCollection.Exceptions
+namespace Participation_ASP.Exceptions
 {
     public class DatabaseNotConnectedException : Exception
     {
