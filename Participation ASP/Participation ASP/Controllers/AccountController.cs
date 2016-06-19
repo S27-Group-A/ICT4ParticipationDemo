@@ -166,7 +166,7 @@ namespace Participation_ASP.Controllers
                 catch (FormatException)
                 {
                     Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
-                    return RedirectToAction("RegisterVolunteer", "Account");
+                    return RedirectToAction("RegisterPatient", "Account");
                 }
                 catch (Exception)
                 {
@@ -174,7 +174,7 @@ namespace Participation_ASP.Controllers
                 }
             }
             Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
-            return RedirectToAction("RegisterVolunteer", "Account");
+            return RedirectToAction("RegisterPatient", "Account");
         }
 
         /// <summary>

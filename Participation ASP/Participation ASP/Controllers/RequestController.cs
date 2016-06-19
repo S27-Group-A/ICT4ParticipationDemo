@@ -58,7 +58,7 @@ namespace Participation_ASP.Controllers
                 return View("RequestInfo", (Request)Session["CurrentRequest"]);
             }
             Session["NoTextResponse"] = "Geen text";
-            return View("RequestInfo", (Request) Session["CurrentRequest"]);
+            return View("RequestInfo", (Request)Session["CurrentRequest"]);
         }
 
         /// <summary>
@@ -94,26 +94,36 @@ namespace Participation_ASP.Controllers
             int amountOfVolunteers = Convert.ToInt32(collection["amountOfVolunteers"]);
             int skillId = Convert.ToInt32(collection["skill"]);
 
-            if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) && date > DateTime.Today)
+            if (!string.IsNullOrEmpty(collection["date"]) && collection["date"] != "dd-mm-yyyy" && Convert.ToDateTime(collection["date"]) != new DateTime())
             {
-                ViewModel viewModel = new ViewModel();
-                Skill tempSkill = null;
-                foreach (Skill s in viewModel.SkillList)
+                Session["InvalideDateErrorMsg"] = null;
+                if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) &&
+                    date > DateTime.Today)
                 {
-                    if (s.Id == skillId)
+                    ViewModel viewModel = new ViewModel();
+                    Skill tempSkill = null;
+                    foreach (Skill s in viewModel.SkillList)
                     {
-                        tempSkill = s;
+                        if (s.Id == skillId)
+                        {
+                            tempSkill = s;
+                        }
                     }
-                }
 
-                List<Skill> skills = new List<Skill>();
-                skills.Add(tempSkill);
-                Request request = new Request();
-                request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers, skills, null, (Patient)Session["Account"]));
+                    List<Skill> skills = new List<Skill>();
+                    skills.Add(tempSkill);
+                    Request request = new Request();
+                    request.AddRequest(new Request(-1, description, location, 0, date, date, urgence, amountOfVolunteers,
+                        skills, null, (Patient)Session["Account"]));
+                    return RedirectToAction("Index", "Request");
+                }
                 return RedirectToAction("Index", "Request");
             }
-
-            return RedirectToAction("Index", "Error");
+            else
+            {
+                Session["InvalideDateErrorMsg"] = "Vul een datum in.";
+                return RedirectToAction("Index", "Request");
+            }
         }
     }
 }

@@ -47,7 +47,11 @@
         <br />
         <p>Locatie</p>
         <input type="text" name="location" class="form-control" id="inputDefault" />
-        <br />
+        <br/>
+        if (Session["InvalideDateErrorMsg"] != null)
+        {
+            <p style="color: red;">@Session["InvalideDateErrorMsg"].ToString()</p>
+        }
         <p>Datum</p>
         <input type="date" id="date" name="date" class="input-xlarge" class="form-control" id="inputDefault">
         <br />
