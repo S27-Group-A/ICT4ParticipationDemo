@@ -1,7 +1,6 @@
 ﻿// <copyright file="Volunteer.cs" company="Ict4Participation">
 //      Copyright (c) Ict4Participation. All rights reserved.
 // </copyright>
-
 namespace Participation_ASP.Models
 {
     using System;
