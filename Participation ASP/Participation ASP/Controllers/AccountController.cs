@@ -61,22 +61,23 @@ namespace Participation_ASP.Controllers
             if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {
                 Session["Account"] = loginAccount.LoginAccount(loginAccount);
+                Session["ErrorMsg"] = null;
                 if (Session["Account"] != null)
                 {
                     if (((Account)Session["Account"]).Enabled)
                     {
-                        Session["BannedMsg"] = null;
+                        Session["ErrorMsg"] = null;
                         if (Session["Account"].GetType() == typeof(Volunteer))
                         {
                             if(((Volunteer)Session["Account"]).VogConfirmation || ((Volunteer)Session["Account"]).IsAdmin)
                             {
-                                Session["VogMsg"] = null;
+                                Session["ErrorMsg"] = null;
                                 return RedirectToAction("Index", "Home");
                             }
                             else
                             {
                                 Session["Account"] = null;
-                                Session["VogMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd";
+                                Session["ErrorMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd.";
                                 return RedirectToAction("Login", "Account");
                             }
                         }
@@ -84,14 +85,18 @@ namespace Participation_ASP.Controllers
                         {
                             return RedirectToAction("Index", "Home");
                         }
-
                     }
                     else
                     {
                         Session["Account"] = null;
-                        Session["BannedMsg"] = "U bent verbannen u heeft geen toegang meer tot de applicatie.";
+                        Session["ErrorMsg"] = "U bent verbannen u heeft geen toegang meer tot de applicatie.";
                         return RedirectToAction("Login", "Account");
                     }
+                }
+                else
+                {
+                    Session["ErrorMsg"] = "De combinatie van gebruikersnaam en wachtwoord is niet correct.";
+                    return View();
                 }
             }
             return View();
