@@ -3,7 +3,8 @@
 // </copyright>
 // <author>S27 A</author>
 
-using MyFigureCollection.Exceptions;
+
+using Participation_ASP.Exceptions;
 
 namespace Participation_ASP.Controllers
 {

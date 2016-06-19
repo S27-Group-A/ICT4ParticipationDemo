@@ -6,7 +6,6 @@
     using System.Data;
     using System.Diagnostics;
     using System.Text.RegularExpressions;
-    using MyFigureCollection.Exceptions;
     using Oracle.DataAccess.Client;
     using Participation_ASP.Exceptions;
 
