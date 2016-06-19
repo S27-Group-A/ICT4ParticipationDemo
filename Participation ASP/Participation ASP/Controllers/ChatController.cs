@@ -15,14 +15,13 @@ namespace Participation_ASP.Controllers
         {
             if (Session["Account"] != null)
             {
-                ViewBag.UserName = ((IAccount) Session["Account"]).Username;
+                ViewBag.UserName = ((IAccount)Session["Account"]).Username;
                 return View();
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View();
         }
     }
 }
