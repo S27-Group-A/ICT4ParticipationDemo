@@ -400,6 +400,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+    <Folder Include="Vog\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

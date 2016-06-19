@@ -17,6 +17,7 @@
             <h5>Account informatie:</h5>
             <ul>
                 <li>@Html.Label("Gebruikersnaam: " + Model.Username)</li>
+                <li><img src=@Model.Photo width="100" height="100" /></li>
                 <li>@Html.Encode("Email adres: " + Model.Email)</li>
                 <li>@Html.Label("Naam: " + Model.Name)</li>
                 <li>@Html.Label("Telefoonnummer: " + Model.Phone)</li>
@@ -60,6 +61,8 @@
                 {
                     <li>@Html.Label("Admin: Nee")</li>
                 }
+                <li><img src=@Model.Vog/></li>
+                <li><a href=@Model.Vog></a></li>
             </ul>
 
             @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
