@@ -1,5 +1,5 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="AdminController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
 namespace Participation_ASP.Controllers
@@ -116,6 +116,11 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Gets a specific Request from the database, and returns it.
+        /// </summary>
+        /// <param name="id"> The Request id </param>
+        /// <returns> View() or RedirectToAction() </returns>
         public ActionResult AdminProfileRequest(int id)
         {
             IAccount account = Session["Account"] as IAccount;
@@ -130,6 +135,11 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Gets all Reviews belonging to a specific Volunteer from the database, and returns them.
+        /// </summary>
+        /// <param name="id"> The Account id </param>
+        /// <returns> View() or RedirectToAction() </returns>
         public ActionResult AdminProfileReview(int id)
         {
             IAccount account = Session["Account"] as IAccount;
@@ -182,7 +192,6 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        #region Alter
         /// <summary>
         /// ActionResult that calls the AlterAdmin method in DatabaseManager, Giving the Account admin rights, or taking them away.
         /// </summary>
@@ -222,9 +231,7 @@ namespace Participation_ASP.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        #endregion
 
-        #region Delete
         /// <summary>
         /// ActionResult that calls the AlterProfile method in DatabaseManager, Locking the account.
         /// </summary>
@@ -245,6 +252,11 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Calls the AlterVogConfirmation method in DatabaseManager, Accepting the Vog, enabling the log in.
+        /// </summary>
+        /// <param name="id"> the user whose Vog is being confirmed </param>
+        /// <returns> RedirectToAction() </returns>
         public ActionResult AcceptVog(int id)
         {
             IAccount account = Session["Account"] as IAccount;
@@ -299,6 +311,5 @@ namespace Participation_ASP.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        #endregion
     }
 }

@@ -1,5 +1,5 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="ErrorController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
 namespace Participation_ASP.Controllers

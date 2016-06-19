@@ -1,5 +1,5 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="RequestController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
 namespace Participation_ASP.Controllers
@@ -29,6 +29,7 @@ namespace Participation_ASP.Controllers
                 Volunteer volunteer = accountInlog as Volunteer;
                 return View(volunteer);
             }
+
             if (accountInlog is Patient)
             {
                 Patient patient = accountInlog as Patient;
@@ -57,8 +58,9 @@ namespace Participation_ASP.Controllers
                 ((Request)Session["CurrentRequest"]).AddResponse(new Response(volunteerAccount, reactie, DateTime.Now));
                 return View("RequestInfo", (Request)Session["CurrentRequest"]);
             }
+
             Session["NoTextResponse"] = "Geen text";
-            return View("RequestInfo", (Request) Session["CurrentRequest"]);
+            return View("RequestInfo", (Request)Session["CurrentRequest"]);
         }
 
         /// <summary>
@@ -94,7 +96,7 @@ namespace Participation_ASP.Controllers
             int amountOfVolunteers = Convert.ToInt32(collection["amountOfVolunteers"]);
             int skillId = Convert.ToInt32(collection["skill"]);
 
-            if (description != "" && location != "" && DateTime.TryParse(collection["date"], out date) && date > DateTime.Today)
+            if (description != string.Empty && location != string.Empty && DateTime.TryParse(collection["date"], out date) && date > DateTime.Today)
             {
                 ViewModel viewModel = new ViewModel();
                 Skill tempSkill = null;

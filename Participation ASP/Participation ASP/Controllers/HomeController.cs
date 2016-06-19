@@ -1,10 +1,7 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="HomeController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
-
-using MyFigureCollection.Exceptions;
-
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -12,6 +9,7 @@ namespace Participation_ASP.Controllers
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using MyFigureCollection.Exceptions;
     using Participation_ASP.Models;
 
     /// <summary>

@@ -1,10 +1,7 @@
-﻿// <copyright file="AccountController.cs">
-// All rights reserved.
+﻿// <copyright file="ProfileController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
-
-using Participation_ASP.Exceptions;
-
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -13,7 +10,7 @@ namespace Participation_ASP.Controllers
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Async;
-    using Microsoft.SqlServer.Server;
+    using Participation_ASP.Exceptions;
     using Participation_ASP.Models;
 
     /// <summary>
@@ -24,36 +21,26 @@ namespace Participation_ASP.Controllers
         /// <summary>
         /// ActionResult that returns the index of a profile page.
         /// </summary>
-        /// <returns> View(IAcount) Or RedirectToAction() </returns>
+        /// <returns> View(IAccount) Or RedirectToAction() </returns>
         public ActionResult Index()
         {
             if (Session["Account"] == null)
             {
-                //List<Availability> tempA = new List<Availability>();
-                //List<Skill> tempS = new List<Skill>();
-                //tempA.Add(new Availability("Ma", "Morgen"));
-                //tempA.Add(new Availability("Di", "Middag"));
-                //tempS.Add(new Skill("Timmeren"));
-                //Volunteer volunteer = new Volunteer(1, "Henk", "test", "testmail@test.nl", "Henk", string.Empty, DateTime.Now, string.Empty, string.Empty, false, false, string.Empty, false, DateTime.Now.AddDays(300), true, false, DateTime.Now, string.Empty, string.Empty, true);
-                //volunteer.Availabilities = tempA;
-                //volunteer.Skills = tempS;
-                //Session["Account"] = (IAccount)volunteer;
                 return RedirectToAction("Index", "Error");
             }
             else
             {
-                IAccount temp = (IAccount) Session["Account"];
+                IAccount temp = (IAccount)Session["Account"];
                 Session["Account"] = DatabaseManager.GetAccount(temp.Email, temp.Password);
                 return View((IAccount)Session["Account"]);
             }
-
         }
 
         /// <summary>
-        /// Actionresult that creates a Skill-object and inserts in into the database.
+        /// ActionResult that creates a Skill-object and inserts in into the database.
         /// </summary>
         /// <param name="collection"> The data for the skill-object </param>
-        /// <returns></returns>
+        /// <returns> RedirectToAction() </returns>
         [HttpPost]
         public ActionResult AddSkill(FormCollection collection)
         {
@@ -72,6 +59,7 @@ namespace Participation_ASP.Controllers
                         temp = s;
                     }
                 }
+
                 try
                 {
                     DatabaseManager.AddVolunteerSkill(tempV, temp);
@@ -89,12 +77,17 @@ namespace Participation_ASP.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// ActionResult that adds the availabilities of a Volunteer.
+        /// </summary>
+        /// <param name="collection"> The collection of the page data </param>
+        /// <returns> RedirectToAction() </returns>
         [HttpPost]
         public ActionResult AddAvailabilities(FormCollection collection)
         {
             string dag = collection["dag"];
             string dagdeel = collection["dagdeel"];
-            Volunteer volunteer = (Volunteer) Session["Account"];
+            Volunteer volunteer = (Volunteer)Session["Account"];
             bool added = false;
             foreach (Availability a in volunteer.Availabilities)
             {
@@ -103,6 +96,7 @@ namespace Participation_ASP.Controllers
                     added = true;
                 }
             }
+
             if (!added)
             {
                 if (!DatabaseManager.AddAvailability(volunteer.AccountId, dag, dagdeel))
@@ -114,9 +108,15 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Profile");
                 }
             }
+
             return RedirectToAction("Index", "Error");
         }
 
+        /// <summary>
+        /// Gets an Account from DatabaseManager, and returns it to the View.
+        /// </summary>
+        /// <param name="id"> The Account id </param>
+        /// <returns> View(IAccount) or RedirectToAction() </returns>
         [Route("Profile/ProfileInfo/{id}")]
         public ActionResult ProfileInfo(string id)
         {
@@ -126,6 +126,7 @@ namespace Participation_ASP.Controllers
                 IAccount account = DatabaseManager.GetAccount(intId);
                 return View(account);
             }
+
             return RedirectToAction("Index", "Error");
         }
     }

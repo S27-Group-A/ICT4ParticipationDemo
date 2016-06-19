@@ -1,5 +1,5 @@
-// <copyright file="AccountController.cs">
-// All rights reserved.
+// <copyright file="AccountController.cs" company="Participation.com">
+//      Participation.com. All rights reserved.
 // </copyright>
 // <author>S27 A</author>
 namespace Participation_ASP.Controllers
@@ -10,9 +10,8 @@ namespace Participation_ASP.Controllers
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
-    using Participation_ASP.Models;
     using Participation_ASP.Exceptions;
-
+    using Participation_ASP.Models;
 
     /// <summary>
     /// The controller for the Login-system
@@ -20,7 +19,7 @@ namespace Participation_ASP.Controllers
     public class AccountController : Controller
     {
         /// <summary>
-        /// The standard ActionResult; this redirects to an empty page.
+        /// The standard ActionResult; returns the Index page.
         /// </summary>
         /// <returns> View() </returns>
         public ActionResult Index()
@@ -44,15 +43,18 @@ namespace Participation_ASP.Controllers
         public ActionResult Login()
         {
             if (Session["Account"] == null)
+            {
                 return View();
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
         /// <summary>
         /// The Actionresult for a submitted account. The data gets inserted into the database, and the user gets redirected to the Profile System.
         /// </summary>
-        /// <param name="loginAccount"></param>
-        /// <returns></returns>
+        /// <param name="loginAccount"> The account whose data needs to be checked, and, if correct, added to the Session </param>
+        /// <returns> View() or RedirectToAction() </returns>
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -97,6 +99,7 @@ namespace Participation_ASP.Controllers
                     return View();
                 }
             }
+
             return View();
         }
 
@@ -153,6 +156,7 @@ namespace Participation_ASP.Controllers
                         patient.AddPatient(patient);
                         return RedirectToAction("Login", "Account");
                     }
+
                     return RedirectToAction("Index", "Error");
                 }
                 catch (ExistingUserException)
@@ -170,6 +174,7 @@ namespace Participation_ASP.Controllers
                     return RedirectToAction("Index", "Error");
                 }
             }
+
             Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
             return RedirectToAction("RegisterVolunteer", "Account");
         }
@@ -194,6 +199,7 @@ namespace Participation_ASP.Controllers
                         volunteer.AddVolunteer(volunteer);
                         return RedirectToAction("Login", "Account");
                     }
+
                     return RedirectToAction("Index", "Error");
                 }
                 catch (ExistingUserException)
@@ -210,8 +216,8 @@ namespace Participation_ASP.Controllers
                 {
                     return RedirectToAction("Index", "Error");
                 }
-
             }
+
             Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
             return RedirectToAction("RegisterVolunteer", "Account");
         }
