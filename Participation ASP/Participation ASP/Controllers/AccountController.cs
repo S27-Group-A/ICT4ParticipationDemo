@@ -200,8 +200,8 @@ namespace Participation_ASP.Controllers
                             photo.SaveAs(photopath);
                             vog.SaveAs(vogpath);
 
-                            volunteer.Photo = photopath;
-                            volunteer.Vog = vogpath;
+                            volunteer.Photo = "Images/" + photo.FileName;
+                            volunteer.Vog = "Vog" + vog.FileName;
                             Session["ErrorMsg"] = null;
                             volunteer.AddVolunteer(volunteer);
                             return RedirectToAction("Login", "Account");
