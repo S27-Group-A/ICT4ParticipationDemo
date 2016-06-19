@@ -11,6 +11,11 @@
     <p>@Session["BannedMsg"].ToString()</p>
 }
 
+@if (Session["VogMsg"] != null)
+{
+    <p>@Session["VogMsg"].ToString()</p>
+}
+
 
 @using (Html.BeginForm())
 {
