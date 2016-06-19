@@ -202,7 +202,7 @@ namespace Participation_ASP.Controllers
                             vog.SaveAs(vogpath);
 
                             volunteer.Photo = "Images/" + photo.FileName;
-                            volunteer.Vog = "Vog" + vog.FileName;
+                            volunteer.Vog = "Vog/" + vog.FileName;
                             Session["ErrorMsg"] = null;
                             volunteer.AddVolunteer(volunteer);
                             return RedirectToAction("Login", "Account");
