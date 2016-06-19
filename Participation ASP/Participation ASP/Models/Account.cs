@@ -23,15 +23,18 @@ namespace Participation_ASP.Models
         /// <summary>
         /// Gets or sets the username.
         /// </summary>
+
+        [Required]
+        [Display(Name = "Gebruikersnaam")]
         public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the password.
         /// </summary>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} moet ten minste {2} karakters lang zijn.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Wachtwoord")]
         public string Password { get; set; }
 
         /// <summary>
@@ -39,7 +42,7 @@ namespace Participation_ASP.Models
         /// </summary>
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Email-adres")]
         public string Email { get; set; }
 
         /// <summary>

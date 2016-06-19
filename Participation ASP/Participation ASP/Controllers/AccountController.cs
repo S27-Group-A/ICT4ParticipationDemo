@@ -58,22 +58,43 @@ namespace Participation_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Account loginAccount)
         {
+            Session["ErrorMsg"] = null;
             if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {
                 Session["Account"] = loginAccount.LoginAccount(loginAccount);
+
                 if (Session["Account"] != null)
                 {
                     if (((Account)Session["Account"]).Enabled)
                     {
-                        Session["BannedMsg"] = null;
-                        return RedirectToAction("Index", "Home");
+                        if (Session["Account"].GetType() == typeof(Volunteer))
+                        {
+                            if (((Volunteer)Session["Account"]).VogConfirmation || ((Volunteer)Session["Account"]).IsAdmin)
+                            {
+                                return RedirectToAction("Index", "Home");
+                            }
+                            else
+                            {
+                                Session["ErrorMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd.";
+                                return View();
+                            }
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
                         Session["Account"] = null;
-                        Session["BannedMsg"] = "U bent verbannen u heeft geen toegang meer tot de applicatie.";
-                        return RedirectToAction("Login", "Account");
+                        Session["ErrorMsg"] = "U bent verbannen heeft geen toegang meer tot de applicatie.";
+                        return View();
                     }
+                }
+                else
+                {
+                    Session["ErrorMsg"] = "De combinatie van gebruikersnaam en wachtwoord is niet correct.";
+                    return View();
                 }
             }
             return View();
@@ -117,34 +138,40 @@ namespace Participation_ASP.Controllers
         /// </summary>
         /// <param name="patient"> The patient that needs to be added </param>
         /// <returns> RedirectToAction() </returns>
-        public ActionResult AddPatient(Patient patient)
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterPatient(Patient patient)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (Session["Account"] == null)
+                try
                 {
-                    Session["ErrorMsg"] = null;
-                    patient.AddPatient(patient);
-                    return RedirectToAction("Login", "Account");
+                    if (Session["Account"] == null)
+                    {
+                        Session["ErrorMsg"] = null;
+                        patient.AddPatient(patient);
+                        return RedirectToAction("Login", "Account");
+                    }
+                    return RedirectToAction("Index", "Error");
                 }
-
-                return RedirectToAction("Index", "Error");
+                catch (ExistingUserException)
+                {
+                    Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                    return RedirectToAction("RegisterPatient", "Account");
+                }
+                catch (FormatException)
+                {
+                    Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
+                    return RedirectToAction("RegisterVolunteer", "Account");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
             }
-            catch (ExistingUserException)
-            {
-                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
-                return RedirectToAction("RegisterPatient", "Account");
-            }
-            catch (FormatException)
-            {
-                Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
-                return RedirectToAction("RegisterVolunteer", "Account");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Error");
-            }
-
+            Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
+            return RedirectToAction("RegisterVolunteer", "Account");
         }
 
         /// <summary>
@@ -152,32 +179,41 @@ namespace Participation_ASP.Controllers
         /// </summary>
         /// <param name="volunteer"> The volunteer that needs to be added </param>
         /// <returns> RedirectToAction </returns>
-        public ActionResult AddVolunteer(Volunteer volunteer)
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterVolunteer(Volunteer volunteer)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (Session["Account"] == null)
+                try
                 {
-                    Session["ErrorMsg"] = null;
-                    volunteer.AddVolunteer(volunteer);
-                    return RedirectToAction("Login", "Account");
+                    if (Session["Account"] == null)
+                    {
+                        Session["ErrorMsg"] = null;
+                        volunteer.AddVolunteer(volunteer);
+                        return RedirectToAction("Login", "Account");
+                    }
+                    return RedirectToAction("Index", "Error");
                 }
-                return RedirectToAction("Index", "Error");
+                catch (ExistingUserException)
+                {
+                    Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
+                    return RedirectToAction("RegisterVolunteer", "Account");
+                }
+                catch (FormatException)
+                {
+                    Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
+                    return RedirectToAction("RegisterVolunteer", "Account");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Index", "Error");
+                }
+
             }
-            catch (ExistingUserException)
-            {
-                Session["ErrorMsg"] = "Gebruiker bestaat al vul a.u.b een ander e-mail adres en/of gebruikersnaam in.";
-                return RedirectToAction("RegisterVolunteer", "Account");
-            }
-            catch (FormatException)
-            {
-                Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
-                return RedirectToAction("RegisterVolunteer", "Account");
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Error");
-            }
+            Session["ErrorMsg"] = "De velden waren niet correct ingevuld.";
+            return RedirectToAction("RegisterVolunteer", "Account");
         }
     }
 }

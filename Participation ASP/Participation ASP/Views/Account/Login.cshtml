@@ -4,13 +4,8 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Log-in</h2>
 
-@if (Session["BannedMsg"] != null)
-{
-    <p>@Session["BannedMsg"].ToString()</p>
-}
-
+<h2>Aanmelden</h2>
 
 @using (Html.BeginForm())
 {
@@ -19,6 +14,12 @@
     <div class="form-horizontal">
         <h4>Account</h4>
         <hr />
+
+        @if (Session["ErrorMsg"] != null)
+        {
+            <p>@Session["ErrorMsg"].ToString()</p>
+        }
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
@@ -38,15 +39,15 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Log-in" class="btn btn-default" />
+                <input type="submit" value="Log in" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+<div>
+    @Html.ActionLink("Terug", "Index", "Home")
+</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

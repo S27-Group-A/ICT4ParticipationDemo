@@ -300,7 +300,7 @@ VALUES (1, 'Volkswagen');
 INSERT INTO Skill(Description)
 VALUES ('Goed met dieren');
 INSERT INTO Skill(Description)
-VALUES ('Masseur');
+VALUES ('Masseur/Masseuse');
 INSERT INTO Skill(Description)
 VALUES ('Chauffeur');
 INSERT INTO Skill(Description)
