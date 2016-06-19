@@ -7,6 +7,10 @@ namespace Participation_ASP.Models
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+
+    /// <summary>
+    /// Child of the account class, a volunteer has more rights then a patient.
+    /// </summary>
     public class Patient : Account
     {
         /// <summary>
