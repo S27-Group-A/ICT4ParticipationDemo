@@ -81,7 +81,7 @@ namespace Participation_ASP.Controllers
                             else
                             {
                                 Session["Account"] = null;
-                                Session["ErrorMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd.";
+                                Session["ErrorMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd. Dit kan even duren.";
                                 return View();
                             }
                         }

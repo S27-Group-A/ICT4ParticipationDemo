@@ -68,7 +68,7 @@
                 <li><a href=@ViewBag.Vog></a></li>
             </ul>
 
-            @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
+            @Html.ActionLink("Disable/Enable account", "AdminDeleteProfile", new { Id = Model.AccountId })
             <br>
             @Html.ActionLink("Toggle Administrator", "AlterAdmin", new { Id = Model.AccountId })
             <br>

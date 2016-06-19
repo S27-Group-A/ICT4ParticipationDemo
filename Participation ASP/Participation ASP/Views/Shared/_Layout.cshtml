@@ -25,7 +25,7 @@
                 <ul class="nav navbar-nav">
                     @if (Session["Account"] != null)
                     {
-                        @Html.ActionLink("Kennismakinggesprek", "Index", "Meeting", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Kennismakingsgesprek", "Index", "Meeting", new { area = "" }, new { @class = "navbar-brand" })
                         @Html.ActionLink("Hulpvragen", "Index", "Request", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     @if (Session["Account"] != null)
@@ -42,8 +42,8 @@
                     {
                         Account account = (Account)Session["Account"];
                         @Html.ActionLink("Chat", "Room", "Chat", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Profile", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
-                        @Html.ActionLink("Welcome " + account.Username + " (Logout)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Profiel", "Index", "Profile", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Welkom " + account.Username + " (Afmelden)", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                     }
                     else
                     {
