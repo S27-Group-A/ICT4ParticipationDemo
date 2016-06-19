@@ -169,7 +169,7 @@ var handleRequest = function(request, response) {
 };
 
 var httpsServer = https.createServer(httpsOptions, handleRequest);
-httpsServer.listen(443, '0.0.0.0');
+httpsServer.listen(1723, '0.0.0.0');
 console.log('Server online');
 
 // Create the WebSocket server by converting the HTTPS server into one.
