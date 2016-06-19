@@ -10,6 +10,7 @@ namespace Participation_ASP.Controllers
     public class ChatController : Controller
     {
         // GET: Chat
+        [RequireHttps]
         public ActionResult Room()
         {
             if (Session["Account"] != null)
