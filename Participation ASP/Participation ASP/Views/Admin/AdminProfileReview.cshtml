@@ -17,12 +17,14 @@
             <h5>Reviews:</h5>
                 @if (Model.VolunteerReviewList.Count != 0)
                 {
-                    <ul>
-                        @foreach (Review i in Model.VolunteerReviewList)
-                        {
-                            <li>@Html.ActionLink(i.Comment, "AdminReview", new { id = i.ReviewId })</li>
-                        }
-                    </ul>
+                    @foreach (Review i in Model.VolunteerReviewList)
+                    {
+                        <ul>
+                            <li>@Html.ActionLink("Reviewer: " + i.Request.Patient.Name, "AdminProfile", new { id = r.Request.Patient.AccountId })</li>
+                            <li>@Html.Label("Aantal punten: " + i.Rating)</li>
+                            <li>@Html.Label("Beschrijving: " + i.Comment)</li>
+                        </ul>
+                    }
                 }
                 else
                 {

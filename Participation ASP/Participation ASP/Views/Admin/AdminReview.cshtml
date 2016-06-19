@@ -2,7 +2,7 @@
 @model List<Review>
 
 @{
-    ViewBag.Title = "AdminReviews";
+    ViewBag.Title = "AdminReview";
 }
 
 <h2>AdminReviews</h2>
@@ -27,13 +27,11 @@
 
                     @Html.ActionLink("Verwijder Review", "DeleteReview", new { Id = r.ReviewId })
                 }
-
             }
             else
             {
                 @Html.Label("Deze vrijwilliger heeft (nog) geen reviews")
             }
-
         </div>
     </div>
 }
