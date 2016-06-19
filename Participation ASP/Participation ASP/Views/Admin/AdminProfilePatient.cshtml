@@ -27,14 +27,39 @@
                 }
                 else
                 {
-                    <li>@Html.Label("Cancellation date: Active")</li>
+                    <li>@Html.Label("Annuleringsdatum: Actief")</li>
                 }
 
                 <li>@Html.Label("Location: " + Model.Location)</li>
-                <li>@Html.Label("Rijbewijs: " + Model.HasDriversLicense)</li>
+
+                @if (Model.HasDriversLicense)
+                {
+                    <li>@Html.Label("Rijbewijs: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Rijbewijs: Nee")</li>
+                }
+
                 <li>@Html.Label("RFID: " + Model.Rfid)</li>
-                <li>@Html.Label("Enabled: " + Model.Enabled)</li>
-                <li>@Html.Label("IsAdmin: " + Model.IsAdmin)</li>
+
+                @if (Model.Enabled)
+                {
+                    <li>@Html.Label("Enabled: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Enabled: Nee")</li>
+                }
+
+                @if (Model.IsAdmin)
+                {
+                    <li>@Html.Label("Admin: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Admin: Nee")</li>
+                }
             </ul>
 
             @Html.ActionLink("Enable/Disable Account", "AdminDeleteProfile", new { Id = Model.AccountId })
@@ -45,9 +70,15 @@
             <h5>Hulpbehoevende informatie:</h5>
 
                 <ul>
-                    <li>@Html.Label("Openbaar vervoersbewijs: " + Model.Ov)</li>
+                    @if (Model.Ov)
+                    {
+                        <li>@Html.Label("Openbaar vervoersbewijs: Ja")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.Label("Openbaar vervoersbewijs: Nee")</li>
+                    }
                 </ul>
-
 
             @Html.ActionLink("Bekijk Hulpvragen", "AdminProfileRequest", new { Id = Model.AccountId })
         </div>

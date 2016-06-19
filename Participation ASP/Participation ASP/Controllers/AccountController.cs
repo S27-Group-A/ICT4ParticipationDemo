@@ -58,27 +58,25 @@ namespace Participation_ASP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Account loginAccount)
         {
+            Session["ErrorMsg"] = null;
             if (loginAccount.Email != string.Empty && loginAccount.Password != string.Empty)
             {
                 Session["Account"] = loginAccount.LoginAccount(loginAccount);
-                Session["ErrorMsg"] = null;
+
                 if (Session["Account"] != null)
                 {
                     if (((Account)Session["Account"]).Enabled)
                     {
-                        Session["ErrorMsg"] = null;
                         if (Session["Account"].GetType() == typeof(Volunteer))
                         {
                             if (((Volunteer)Session["Account"]).VogConfirmation || ((Volunteer)Session["Account"]).IsAdmin)
                             {
-                                Session["ErrorMsg"] = null;
                                 return RedirectToAction("Index", "Home");
                             }
                             else
                             {
-                                Session["Account"] = null;
                                 Session["ErrorMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd.";
-                                return RedirectToAction("Login", "Account");
+                                return View();
                             }
                         }
                         else
@@ -89,8 +87,8 @@ namespace Participation_ASP.Controllers
                     else
                     {
                         Session["Account"] = null;
-                        Session["ErrorMsg"] = "U bent verbannen u heeft geen toegang meer tot de applicatie.";
-                        return RedirectToAction("Login", "Account");
+                        Session["ErrorMsg"] = "U bent verbannen heeft geen toegang meer tot de applicatie.";
+                        return View();
                     }
                 }
                 else

@@ -23,19 +23,43 @@
 
                 @if (Model.DateCancellation != new DateTime())
                 {
-                    <li>@Html.Label("Annuleringsdatum: " + Model.DateCancellation.ToString())</li>
+                    <li>@Html.Label("Annuleringsdatum: " + Model.DateCancellation))</li>
                 }
                 else
                 {
-                    <li>@Html.Label("Cancellation date: Active")</li>
+                    <li>@Html.Label("Annuleringsdatum: Actief")</li>
                 }
 
-
                 <li>@Html.Label("Location: " + Model.Location)</li>
-                <li>@Html.Label("Rijbewijs: " + Model.HasDriversLicense.ToString())</li>
+
+                @if (Model.HasDriversLicense)
+                {
+                    <li>@Html.Label("Rijbewijs: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Rijbewijs: Nee")</li>
+                }
+
                 <li>@Html.Label("RFID: " + Model.Rfid)</li>
-                <li>@Html.Label("Enabled: " + Model.Enabled.ToString())</li>
-                <li>@Html.Label("IsAdmin: " + Model.IsAdmin.ToString())</li>
+
+                @if (Model.Enabled)
+                {
+                    <li>@Html.Label("Enabled: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Enabled: Nee")</li>
+                }
+
+                @if (Model.IsAdmin)
+                {
+                    <li>@Html.Label("Admin: Ja")</li>
+                }
+                else
+                {
+                    <li>@Html.Label("Admin: Nee")</li>
+                }
             </ul>
 
             @Html.ActionLink("Verwijder account", "AdminDeleteProfile", new { Id = Model.AccountId })
@@ -46,8 +70,15 @@
             <h5>Vrijwilliger informatie:</h5>
             <ul>
                 <li>@Html.Label("Geboortedatum: " + Model.BirthDate.ToString())</li>
-                <li>@Html.Label("VOG: " + Model.Vog)</li>
-                <li>@Html.Label("VOG Confirmatie: " + Model.VogConfirmation.ToString())</li>
+                <li>@Html.Label("VOG bestandspad: " + Model.Vog)</li>
+                @if (Model.VogConfirmation)
+                {
+                    <li> @Html.Label("VOG bevestigd: Ja")</li>
+                }
+                else
+                {
+                    <li> @Html.Label("VOG bevestigd: Nee")</li>
+                }
             </ul>
 
             @Html.ActionLink("Keur account", "AcceptVog", new { Id = Model.AccountId })
