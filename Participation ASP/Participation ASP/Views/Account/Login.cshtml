@@ -16,6 +16,11 @@
     <p>@Session["VogMsg"].ToString()</p>
 }
 
+@if (Session["ErrorMsg"] != null)
+{
+    <p>@Session["ErrorMsg"].ToString()</p>
+}
+
 
 @using (Html.BeginForm())
 {
@@ -49,9 +54,9 @@
     </div>
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+<div>
+    @Html.ActionLink("Back to List", "Index", "Home")
+</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
