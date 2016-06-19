@@ -66,7 +66,25 @@ namespace Participation_ASP.Controllers
                     if (((Account)Session["Account"]).Enabled)
                     {
                         Session["BannedMsg"] = null;
-                        return RedirectToAction("Index", "Home");
+                        if (Session["Account"].GetType() == typeof(Volunteer))
+                        {
+                            if(((Volunteer)Session["Account"]).VogConfirmation || ((Volunteer)Session["Account"]).IsAdmin)
+                            {
+                                Session["VogMsg"] = null;
+                                return RedirectToAction("Index", "Home");
+                            }
+                            else
+                            {
+                                Session["Account"] = null;
+                                Session["VogMsg"] = "Uw Verklaring Omtrent het Gedrag is nog niet goedgekeurd";
+                                return RedirectToAction("Login", "Account");
+                            }
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+
                     }
                     else
                     {
