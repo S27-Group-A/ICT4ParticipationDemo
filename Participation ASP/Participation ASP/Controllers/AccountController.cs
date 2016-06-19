@@ -2,6 +2,9 @@
 // All rights reserved.
 // </copyright>
 // <author>S27 A</author>
+
+using System.IO;
+
 namespace Participation_ASP.Controllers
 {
     using System;
@@ -182,7 +185,7 @@ namespace Participation_ASP.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult RegisterVolunteer(Volunteer volunteer)
+        public ActionResult RegisterVolunteer(HttpPostedFileBase photo, HttpPostedFileBase vog, Volunteer volunteer)
         {
             if (ModelState.IsValid)
             {
@@ -190,9 +193,26 @@ namespace Participation_ASP.Controllers
                 {
                     if (Session["Account"] == null)
                     {
-                        Session["ErrorMsg"] = null;
-                        volunteer.AddVolunteer(volunteer);
-                        return RedirectToAction("Login", "Account");
+                        if (vog != null && photo != null && vog.ContentLength > 0 && photo.ContentLength > 0)
+                        {
+                            string photopath = Path.Combine(Server.MapPath("~/Images"), Path.GetFileName(photo.FileName));
+                            string vogpath = Path.Combine(Server.MapPath("~/Vog"), Path.GetFileName(vog.FileName));
+                            photo.SaveAs(photopath);
+                            vog.SaveAs(vogpath);
+
+                            volunteer.Photo = photopath;
+                            volunteer.Vog = vogpath;
+                            Session["ErrorMsg"] = null;
+                            volunteer.AddVolunteer(volunteer);
+                            return RedirectToAction("Login", "Account");
+                        }
+                        else
+                        {
+                            Session["ErrorMsg"] =
+                                "U bent vergeten een Verklaring omtrent goedgedrag of profiel foto te uploaden.";
+                            return RedirectToAction("RegisterVolunteer", "Account");
+                        }
+
                     }
                     return RedirectToAction("Index", "Error");
                 }
