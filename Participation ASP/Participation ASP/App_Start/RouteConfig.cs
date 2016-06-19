@@ -18,6 +18,18 @@ namespace Participation_ASP
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.Add(new Route("Chat/Room", new MvcRouteHandler())
+            {
+                Defaults = new RouteValueDictionary(new {Controller = "Chat", action = "Room"}),
+                DataTokens = new RouteValueDictionary(new {scheme = "https"})
+            });
+            routes.MapRoute(
+                name: "Room",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Chat", action = "Room", id = UrlParameter.Optional }
+            );
+
+
         }
     }
 }
