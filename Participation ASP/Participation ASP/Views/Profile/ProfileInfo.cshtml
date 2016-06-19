@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "ProfileInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Photo = "Http://192.168.20.29/Participation/" + (((Volunteer)Model).Photo);
 }
 
 <div class="jumbotron">
@@ -19,7 +20,7 @@
             <td style="padding: 50px; text-align: right;">
                 @if (Model is Volunteer && !string.IsNullOrEmpty(((Volunteer)Model).Photo))
                 {
-                    <img src=@(((Volunteer) Model).Photo) width="300" height="300" />
+                    <img src=@ViewBag.Photo width="300" height="300" />
                 }
                 else
                 {
